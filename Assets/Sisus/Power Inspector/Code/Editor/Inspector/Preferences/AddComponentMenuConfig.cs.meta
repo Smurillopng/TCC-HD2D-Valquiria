@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d6724e203a98ee04db4eee2995d2f73b
+labels:
+- AddComponentMenu
+- Inspector
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: de22353365ca500448a52b887a6f0858
+labels:
+- Assets
+- Configuration
+- GUISkin
+- Graphics
+- Inspector
+- OnGUI
+- UI
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

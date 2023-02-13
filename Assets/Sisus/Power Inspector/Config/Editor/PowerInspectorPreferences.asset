@@ -1,0 +1,959 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc13f46fb13c6447b9923a2f7ffd060, type: 3}
+  m_Name: PowerInspectorPreferences
+  m_EditorClassIdentifier: 
+  showFields: 0
+  showProperties: 0
+  showMethods: 0
+  drawScriptReferenceFields: 0
+  propertyBlacklist: []
+  MemberDisplayOrder: 000000000100000002000000
+  simplePropertiesInDebugMode: 1
+  enableTooltipIcons: 1
+  enableTooltipsFromXmlComments: 1
+  textFieldHeight: 2
+  inOneAtATimeModeAutoUnfoldFirst: 0
+  drawInactivateGreyedOut: 1
+  drawDisabledGreyedOut: 1
+  drawObjectFieldEyedropper: 1
+  mouseoverEffects:
+    unityObjectHeader: 0
+    unityObjectHeaderTint: 1
+    headerButton: 1
+    prefixLabel: 1
+    prefixLabelTint: 1
+  disabledScriptExtension: .disabled
+  enableTutorialTooltips: 1
+  prefixResizerForEditors: 1
+  prefixResizerForEditorless: 2
+  autoResizePrefixLabels: 2
+  autoResizePrefixLabelsInterval: 2
+  minAutoSizedPrefixColumnWidth: 35
+  maxAutoSizedPrefixColumnWidth: 0.55
+  drawDebugModeIcon: 1
+  drawQuickInvokeIcon: 1
+  drawReferenceIcon: 1
+  prefabQuickEditing: 2
+  popupMenusScrollToActiveItem: 1
+  disabledMenuItems: 1
+  foldingAnimationSpeed: 6
+  animateInitialUnfolding: 0
+  reorderingAnimationSpeed: 14
+  reorderingEaseType: 0
+  overrideCustomEditorFieldFocusing: 1
+  useEditorsOverDrawers: 1
+  defaultInspector:
+    overrideGameObjectEditor: 0
+    overrideComponentEditors: 0
+    overrideAssetEditors: 0
+    enhanceFieldContextMenu: 1
+    enhanceUnityObjectContextMenu: 1056
+  changeFoldedStateOnFirstClick: 0
+  keyConfigs:
+    reset:
+      keyCode: 8
+      shift: 0
+      controlOrCommand: 0
+      alt: 0
+    randomize:
+      keyCode: 114
+      shift: 0
+      controlOrCommand: 1
+      alt: 0
+    duplicate:
+      keyCode: 100
+      shift: 0
+      controlOrCommand: 1
+      alt: 0
+    nextFieldUp:
+      keyCode: 273
+      shift: 0
+      controlOrCommand: 0
+      alt: 1
+    nextFieldLeft:
+      keyCode: 276
+      shift: 0
+      controlOrCommand: 0
+      alt: 1
+    nextFieldDown:
+      keyCode: 274
+      shift: 0
+      controlOrCommand: 0
+      alt: 1
+    nextFieldRight:
+      keyCode: 275
+      shift: 0
+      controlOrCommand: 0
+      alt: 1
+    prevComponent:
+      keyCode: 273
+      shift: 0
+      controlOrCommand: 1
+      alt: 0
+    nextComponent:
+      keyCode: 274
+      shift: 0
+      controlOrCommand: 1
+      alt: 0
+    prevOfType:
+      keyCode: 276
+      shift: 0
+      controlOrCommand: 1
+      alt: 0
+    nextOfType:
+      keyCode: 275
+      shift: 0
+      controlOrCommand: 1
+      alt: 0
+    collapseRecursively:
+      keyCode: 276
+      shift: 0
+      controlOrCommand: 0
+      alt: 1
+    uncollapseRecursively:
+      keyCode: 275
+      shift: 0
+      controlOrCommand: 0
+      alt: 1
+    addComponent:
+      keyCode: 116
+      shift: 0
+      controlOrCommand: 1
+      alt: 0
+    stepBackInSelectionHistory:
+      main:
+        keyCode: 276
+        shift: 0
+        controlOrCommand: 1
+        alt: 1
+      secondary:
+        keyCode: 327
+        shift: 0
+        controlOrCommand: 0
+        alt: 0
+    stepForwardInSelectionHistory:
+      main:
+        keyCode: 275
+        shift: 0
+        controlOrCommand: 1
+        alt: 1
+      secondary:
+        keyCode: 326
+        shift: 0
+        controlOrCommand: 0
+        alt: 0
+    openNavigateBackMenu:
+      keyCode: 276
+      shift: 1
+      controlOrCommand: 0
+      alt: 1
+    openNavigateForwardMenu:
+      keyCode: 275
+      shift: 1
+      controlOrCommand: 0
+      alt: 1
+    toggleSplitView:
+      keyCode: 32
+      shift: 0
+      controlOrCommand: 0
+      alt: 1
+    toggleLockView:
+      keyCode: 113
+      shift: 0
+      controlOrCommand: 1
+      alt: 0
+    closeSelectedView:
+      keyCode: 119
+      shift: 0
+      controlOrCommand: 1
+      alt: 0
+    refresh:
+      keyCode: 286
+      shift: 0
+      controlOrCommand: 0
+      alt: 0
+    activate:
+      main:
+        keyCode: 13
+        shift: 0
+        controlOrCommand: 0
+        alt: 0
+      secondary:
+        keyCode: 271
+        shift: 0
+        controlOrCommand: 0
+        alt: 0
+    scrollToTop:
+      keyCode: 278
+      shift: 0
+      controlOrCommand: 0
+      alt: 0
+    scrollToBottom:
+      keyCode: 279
+      shift: 0
+      controlOrCommand: 0
+      alt: 0
+    scrollPageUp:
+      keyCode: 280
+      shift: 0
+      controlOrCommand: 0
+      alt: 0
+    scrollPageDown:
+      keyCode: 281
+      shift: 0
+      controlOrCommand: 0
+      alt: 0
+  defaultScriptPath: Plugins/PowerInspector/Code/GUIInstructions
+  defaultEditorScriptPath: Editor
+  defaultNamespace: 
+  createScriptWizard:
+    curlyBracesOnNewLine: 1
+    addComments: 1
+    addCommentsAsSummary: 1
+    wordWrapCommentsAfterCharacters: 100
+    addUsedImplicitly: 1
+    spaceAfterMethodName: 0
+    newLine: '
+
+'
+    usingNamespaceOptions:
+    - System
+    - System.Collections
+    - System.Collections.Generic
+    - System.Linq
+    - UnityEngine
+    - UnityEditor
+    - Object = UnityEngine.Object
+    - JetBrains.Annotations
+  defaultAddComponentMenuName: 
+  autoNameByAddedComponentIfHasDefaultName: 1
+  addComponentMenuConfig:
+    groups:
+    - label: Analytics
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: AR
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Audio
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Effects
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Event
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Layout
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Mesh
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Miscellaneous
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Navigation
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Network
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Physics 2D
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Physics
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Playables
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Rendering
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Tilemap
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: UI
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: UI/Effects
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Video
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: XR
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: TM Pro
+      customIcon: {fileID: 2800000, guid: 489b0a8b0b633364ea5fddc1abe0f9f9, type: 3}
+    - label: Unity Editor
+      customIcon: {fileID: 2800000, guid: f86d1cb94b98cef45bc621de7ea9279e, type: 3}
+    items:
+    - label: Analytics/Data Privacy Button
+      typeSerialized: UnityEngine.Analytics.DataPrivacyButton, Unity.Analytics.DataPrivacy,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Analytics/Analytics Event Tracker
+      typeSerialized: UnityEngine.Analytics.AnalyticsEventTracker, Unity.Analytics.Tracker,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: AR/World Anchor
+      typeSerialized: UnityEngine.XR.WSA.WorldAnchor, UnityEngine.VRModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Audio/Audio Chorus Filter
+      typeSerialized: UnityEngine.AudioChorusFilter, UnityEngine.AudioModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Audio/Audio Distortion Filter
+      typeSerialized: UnityEngine.AudioDistortionFilter, UnityEngine.AudioModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Audio/Audio Echo Filter
+      typeSerialized: UnityEngine.AudioEchoFilter, UnityEngine.AudioModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Audio/Audio High Pass Filter
+      typeSerialized: UnityEngine.AudioHighPassFilter, UnityEngine.AudioModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Audio/Audio Listener
+      typeSerialized: UnityEngine.AudioListener, UnityEngine.AudioModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Audio/Audio Low Pass Filter
+      typeSerialized: UnityEngine.AudioLowPassFilter, UnityEngine.AudioModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Audio/Audio Reverb Filter
+      typeSerialized: UnityEngine.AudioReverbFilter, UnityEngine.AudioModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Audio/Audio Reverb Zone
+      typeSerialized: UnityEngine.AudioReverbZone, UnityEngine.AudioModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Audio/Audio Source
+      typeSerialized: UnityEngine.AudioSource, UnityEngine.AudioModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Effects/Halo
+      typeSerialized: UnityEngine.Halo, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: Effects/Lens Flare
+      typeSerialized: UnityEngine.LensFlare, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Effects/Line Renderer
+      typeSerialized: UnityEngine.LineRenderer, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Effects/Particle System
+      typeSerialized: UnityEngine.ParticleSystem, UnityEngine.ParticleSystemModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Effects/Projector
+      typeSerialized: UnityEngine.Projector, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Effects/Visual Effect
+      typeSerialized: UnityEngine.Experimental.VFX.VisualEffect, UnityEngine.VFXModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Effects/Trail Renderer
+      typeSerialized: UnityEngine.TrailRenderer, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Event/Event System
+      typeSerialized: UnityEngine.EventSystems.EventSystem, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Event/Event Trigger
+      typeSerialized: UnityEngine.EventSystems.EventTrigger, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Event/Graphic Raycaster
+      typeSerialized: UnityEngine.UI.GraphicRaycaster, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Event/Physics 2D Raycaster
+      typeSerialized: UnityEngine.EventSystems.Physics2DRaycaster, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Event/Physics Raycaster
+      typeSerialized: UnityEngine.EventSystems.PhysicsRaycaster, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Event/Standalone Input Module
+      typeSerialized: UnityEngine.EventSystems.StandaloneInputModule, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Event/Touch Input Module
+      typeSerialized: UnityEngine.EventSystems.TouchInputModule, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Layout/Aspect Ratio Fitter
+      typeSerialized: UnityEngine.UI.AspectRatioFitter, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Layout/Canvas Group
+      typeSerialized: UnityEngine.CanvasGroup, UnityEngine.UIModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Layout/Canvas Scaler
+      typeSerialized: UnityEngine.UI.CanvasScaler, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Layout/Canvas
+      typeSerialized: UnityEngine.Canvas, UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: Layout/Content Size Fitter
+      typeSerialized: UnityEngine.UI.ContentSizeFitter, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Layout/Grid Layout Group
+      typeSerialized: UnityEngine.UI.GridLayoutGroup, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Layout/Horizontal Layout Group
+      typeSerialized: UnityEngine.UI.HorizontalLayoutGroup, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Layout/Layout Element
+      typeSerialized: UnityEngine.UI.LayoutElement, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Layout/Text Container
+      typeSerialized: TMPro.TextContainer, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: Layout/Vertical Layout Group
+      typeSerialized: UnityEngine.UI.VerticalLayoutGroup, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Mesh/Mesh Filter
+      typeSerialized: UnityEngine.MeshFilter, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Mesh/Mesh Renderer
+      typeSerialized: UnityEngine.MeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Mesh/Skinned Mesh Renderer
+      typeSerialized: UnityEngine.SkinnedMeshRenderer, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Mesh/Text Mesh
+      typeSerialized: UnityEngine.TextMesh, UnityEngine.TextRenderingModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Mesh/TextMeshPro - Text
+      typeSerialized: TMPro.TextMeshPro, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: Miscellaneous/Aim Constraint
+      typeSerialized: UnityEngine.Animations.AimConstraint, UnityEngine.AnimationModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Animation
+      typeSerialized: UnityEngine.Animation, UnityEngine.AnimationModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Animator
+      typeSerialized: UnityEngine.Animator, UnityEngine.AnimationModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Billboard Renderer
+      typeSerialized: UnityEngine.BillboardRenderer, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Grid
+      typeSerialized: UnityEngine.Grid, UnityEngine.GridModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: Miscellaneous/Look At Constraint
+      typeSerialized: UnityEngine.Animations.LookAtConstraint, UnityEngine.AnimationModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Parent Constraint
+      typeSerialized: UnityEngine.Animations.ParentConstraint, UnityEngine.AnimationModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Particle System Force Constraint
+      typeSerialized: UnityEngine.ParticleSystemForceField, UnityEngine.ParticleSystemModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Position Constraint
+      typeSerialized: UnityEngine.Animations.PositionConstraint, UnityEngine.AnimationModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Rotation Constraint
+      typeSerialized: UnityEngine.Animations.RotationConstraint, UnityEngine.AnimationModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Scale Constraint
+      typeSerialized: UnityEngine.Animations.ScaleConstraint, UnityEngine.AnimationModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Sprite Mask
+      typeSerialized: UnityEngine.SpriteMask, UnityEngine.SpriteMaskModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Sprite Shape Renderer
+      typeSerialized: UnityEngine.Experimental.U2D.SpriteShapeRenderer, UnityEngine.SpriteShapeModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Terrain
+      typeSerialized: UnityEngine.Terrain, UnityEngine.TerrainModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Miscellaneous/Wind Zone
+      typeSerialized: UnityEngine.WindZone, UnityEngine.WindModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Navigation/Nav Mesh Agent
+      typeSerialized: UnityEngine.AI.NavMeshAgent, UnityEngine.AIModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Navigation/Nav Mesh Obstacle
+      typeSerialized: UnityEngine.AI.NavMeshObstacle, UnityEngine.AIModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Navigation/Off Mesh Link
+      typeSerialized: UnityEngine.AI.OffMeshLink, UnityEngine.AIModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Network/NetworkAnimator
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkDiscovery
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkIdentity
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkLobbyManager
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkLobbyPlayer
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkManager
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkManagerHUD
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkMigrationManager
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkProximityChecker
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkStartPosition
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkTransform
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkTransformChild
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Network/NetworkTransformVisualizer
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+    - label: Physics 2D/Area Effector 2D
+      typeSerialized: UnityEngine.AreaEffector2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Box Collider 2D
+      typeSerialized: UnityEngine.BoxCollider2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Buoyancy Effector 2D
+      typeSerialized: UnityEngine.BuoyancyEffector2D, UnityEngine.Physics2DModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Capsule Collider 2D
+      typeSerialized: UnityEngine.CapsuleCollider2D, UnityEngine.Physics2DModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Circle Collider 2D
+      typeSerialized: UnityEngine.CircleCollider2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Composite Collider 2D
+      typeSerialized: UnityEngine.CompositeCollider2D, UnityEngine.Physics2DModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Constant Force 2D
+      typeSerialized: UnityEngine.ConstantForce2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Distance Joint 2D
+      typeSerialized: UnityEngine.DistanceJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Edge Collider 2D
+      typeSerialized: UnityEngine.EdgeCollider2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Fixed Joint 2D
+      typeSerialized: UnityEngine.FixedJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Friction Joint 2D
+      typeSerialized: UnityEngine.FrictionJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Hinge Joint 2D
+      typeSerialized: UnityEngine.HingeJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Platform Effector 2D
+      typeSerialized: UnityEngine.PlatformEffector2D, UnityEngine.Physics2DModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Point Effector 2D
+      typeSerialized: UnityEngine.PointEffector2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Polygon Collider 2D
+      typeSerialized: UnityEngine.PolygonCollider2D, UnityEngine.Physics2DModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Relative Joint 2D
+      typeSerialized: UnityEngine.RelativeJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Rigidbody 2D
+      typeSerialized: UnityEngine.Rigidbody2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Slider Joint 2D
+      typeSerialized: UnityEngine.SliderJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Spring Joint 2D
+      typeSerialized: UnityEngine.SpringJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Surface Effector 2D
+      typeSerialized: UnityEngine.SurfaceEffector2D, UnityEngine.Physics2DModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Target Joint 2D
+      typeSerialized: UnityEngine.TargetJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics 2D/Wheel Joint 2D
+      typeSerialized: UnityEngine.WheelJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Box Collider
+      typeSerialized: UnityEngine.BoxCollider, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Capsule Collider
+      typeSerialized: UnityEngine.CapsuleCollider, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Character Controller
+      typeSerialized: UnityEngine.CharacterController, UnityEngine.PhysicsModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Physics/Character Joint
+      typeSerialized: UnityEngine.CharacterJoint, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Cloth
+      typeSerialized: UnityEngine.Cloth, UnityEngine.ClothModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Configurable Joint
+      typeSerialized: UnityEngine.ConfigurableJoint, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Constant Force
+      typeSerialized: UnityEngine.ConstantForce, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Fixed Joint
+      typeSerialized: UnityEngine.FixedJoint, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Hinge Joint
+      typeSerialized: UnityEngine.HingeJoint, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Mesh Collider
+      typeSerialized: UnityEngine.MeshCollider, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Rigidbody
+      typeSerialized: UnityEngine.Rigidbody, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Sphere Collider
+      typeSerialized: UnityEngine.SphereCollider, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Spring Joint
+      typeSerialized: UnityEngine.SpringJoint, UnityEngine.PhysicsModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Physics/Terrain Collider
+      typeSerialized: UnityEngine.TerrainCollider, UnityEngine.TerrainPhysicsModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Physics/Wheel Collider
+      typeSerialized: UnityEngine.WheelCollider, UnityEngine.VehiclesModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Playables/Playable Director
+      typeSerialized: UnityEngine.Playables.PlayableDirector, UnityEngine.DirectorModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Camera
+      typeSerialized: UnityEngine.Camera, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Canvas Renderer
+      typeSerialized: UnityEngine.CanvasRenderer, UnityEngine.UIModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Flare Layer
+      typeSerialized: UnityEngine.FlareLayer, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/GUI Layer
+      typeSerialized: UnityEngine.GUILayer, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/GUI Text
+      typeSerialized: UnityEngine.GUIText, UnityEngine.TextRenderingModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/GUI Texture
+      typeSerialized: UnityEngine.GUITexture, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/LOD Group
+      typeSerialized: UnityEngine.LODGroup, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Light Probe Group
+      typeSerialized: UnityEngine.LightProbeGroup, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Light Probe Proxy Volume
+      typeSerialized: UnityEngine.LightProbeProxyVolume, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Light
+      typeSerialized: UnityEngine.Light, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Occlusion Area
+      typeSerialized: UnityEngine.OcclusionArea, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Occlusion Portal
+      typeSerialized: UnityEngine.OcclusionPortal, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Reflection Probe
+      typeSerialized: UnityEngine.ReflectionProbe, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Skybox
+      typeSerialized: UnityEngine.Skybox, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Sorting Group
+      typeSerialized: UnityEngine.Rendering.SortingGroup, UnityEngine.CoreModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Sprite Renderer
+      typeSerialized: UnityEngine.SpriteRenderer, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: Rendering/Streaming Controller
+      typeSerialized: UnityEngine.StreamingController, UnityEngine.StreamingModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Tilemap/Tilemap Collider 2D
+      typeSerialized: UnityEngine.Tilemaps.TilemapCollider2D, UnityEngine.TilemapModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Tilemap/Tilemap Renderer
+      typeSerialized: UnityEngine.Tilemaps.TilemapRenderer, UnityEngine.TilemapModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - label: Tilemap/Tilemap
+      typeSerialized: UnityEngine.Tilemaps.Tilemap, UnityEngine.TilemapModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: UI/Button
+      typeSerialized: UnityEngine.UI.Button, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Dropdown
+      typeSerialized: UnityEngine.UI.Dropdown, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Effects/Outline
+      typeSerialized: UnityEngine.UI.Outline, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Effects/Position As UV1
+      typeSerialized: UnityEngine.UI.PositionAsUV1, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: UI/Effects/Shadow
+      typeSerialized: UnityEngine.UI.Shadow, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Image
+      typeSerialized: UnityEngine.UI.Image, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Input Field
+      typeSerialized: UnityEngine.UI.InputField, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: UI/Mask
+      typeSerialized: UnityEngine.UI.Mask, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Raw Image
+      typeSerialized: UnityEngine.UI.RawImage, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Rect Mask 2D
+      typeSerialized: UnityEngine.UI.RectMask2D, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: UI/Scroll Rect
+      typeSerialized: UnityEngine.UI.ScrollRect, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: UI/Scrollbar
+      typeSerialized: UnityEngine.UI.Scrollbar, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Selectable
+      typeSerialized: UnityEngine.UI.Selectable, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: UI/Slider
+      typeSerialized: UnityEngine.UI.Slider, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/TMP Dropdown
+      typeSerialized: TMPro.TMP_Dropdown, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Text
+      typeSerialized: UnityEngine.UI.Text, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/TextMeshPro - Input Field
+      typeSerialized: TMPro.TMP_InputField, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/TextMeshPro - Text (UI)
+      typeSerialized: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: UI/Toggle Group
+      typeSerialized: UnityEngine.UI.ToggleGroup, UnityEngine.UI, Version=1.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: UI/Toggle
+      typeSerialized: UnityEngine.UI.Toggle, UnityEngine.UI, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    - label: Video/Video Player
+      typeSerialized: UnityEngine.Video.VideoPlayer, UnityEngine.VideoModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - label: XR/Tracked Pose Driver
+      typeSerialized: System.Void, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+  themes:
+    themes:
+    - Name: DefaultClassic
+      guiSkin: {fileID: 0}
+      guiStyles: {fileID: 11400000, guid: c546c13a3f7cb4d4a8a779ebe2450e81, type: 2}
+      graphics: {fileID: 11400000, guid: 6c90163ce0d8fd8479b630efc39a3f5e, type: 2}
+      labels: {fileID: 11400000, guid: de22353365ca500448a52b887a6f0858, type: 2}
+      PrefixIdleText: {r: 0, g: 0, b: 0, a: 1}
+      SelectedLineIndicator: {r: 0, g: 0.21568628, b: 1, a: 0.5019608}
+      SelectedLineIndicatorUnfocused: {r: 0.40392157, g: 0.40392157, b: 0.40392157,
+        a: 0.5019608}
+      PrefixSelectedText: {r: 0, g: 0.19607843, b: 0.9019608, a: 1}
+      PrefixSelectedUnfocusedText: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
+      PrefixMouseoveredText: {r: 0.9372549, g: 0.9372549, b: 0.9372549, a: 1}
+      PrefixMouseoveredRectHighlight: {r: 1, g: 1, b: 1, a: 0.3019608}
+      PrefixMouseoveredRectShadow: {r: 0, g: 0, b: 0, a: 0.14901961}
+      ControlSelectedRect: {r: 0.2, g: 0.30980393, b: 0.81960785, a: 1}
+      ControlSelectedUnfocusedRect: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 1}
+      ControlSelectedTint: {r: 0.5019608, g: 0.59607846, b: 0.9529412, a: 1}
+      ControlSelectedUnfocusedTint: {r: 0.56078434, g: 0.56078434, b: 0.56078434,
+        a: 1}
+      ControlMouseoveredTint: {r: 1, g: 1, b: 1, a: 0.10980392}
+      ControlUnappliedChangesTint: {r: 0.5, g: 1, b: 0.5, a: 0.039215688}
+      CanDragPrefixToAdjustValueTint: {r: 0.5019608, g: 1, b: 0.5019608, a: 0.039215688}
+      Background: {r: 0.7607843, g: 0.7607843, b: 0.7607843, a: 1}
+      BackgroundSelected: {r: 0.24313726, g: 0.49019608, b: 0.90588236, a: 1}
+      BackgroundSelectedUnfocused: {r: 0.56078434, g: 0.56078434, b: 0.56078434, a: 1}
+      ComponentHeaderBackground: {r: 0.7607843, g: 0.7607843, b: 0.7607843, a: 1}
+      ComponentMouseoveredHeaderBackground: {r: 0.7607843, g: 0.7607843, b: 0.7607843,
+        a: 1}
+      ButtonSelected: {r: 0.7019608, g: 0.7490196, b: 1, a: 1}
+      ComponentSeparatorLine: {r: 0.3254902, g: 0.3254902, b: 0.3254902, a: 1}
+      ToolbarSeparator: {r: 0, g: 0, b: 0, a: 0.3019608}
+      FilterHighlight: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.53333336}
+      LockViewHighlight: {r: 0.85490197, g: 0.19215687, b: 0.19215687, a: 1}
+      InvalidAction: {r: 0.85490197, g: 0.19215687, b: 0.19215687, a: 1}
+      ToolbarItemSelected: {r: 0.23529412, g: 0.4627451, b: 0.7529412, a: 1}
+      ToolbarItemSelectedUnfocused: {r: 0.56078434, g: 0.56078434, b: 0.56078434,
+        a: 1}
+      AssetHeaderBackground: {r: 0.85490197, g: 0.85490197, b: 0.85490197, a: 1}
+      SplitViewDivider: {r: 1, g: 1, b: 1, a: 1}
+      SyntaxHighlight:
+        StringColor: {r: 0.8392157, g: 0.6156863, b: 0.52156866, a: 1}
+        KeywordColor: {r: 0.3372549, g: 0.6117647, b: 0.8392157, a: 1}
+        NumberColor: {r: 0.8156863, g: 0.84705883, b: 0.6117647, a: 1}
+        TypeColor: {r: 0.30588236, g: 0.7882353, b: 0.6901961, a: 1}
+        CommentColor: {r: 0.34117648, g: 0.6509804, b: 0.2901961, a: 1}
+        PreprocessorDirectiveColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
+        StringColorTag: <color=#D69D85>
+        KeywordColorTag: <color=#569CD6>
+        NumberColorTag: <color=#D0D89C>
+        TypeColorTag: <color=#4EC9B0>
+        CommentColorTag: <color=#57A64A>
+        PreprocessorDirectiveColorTag: <color=#9A9A9A>
+      nameHash: 308565259
+    - Name: DefaultModern
+      guiSkin: {fileID: 0}
+      guiStyles: {fileID: 11400000, guid: aaf8cad22959ef94182565947d9a4221, type: 2}
+      graphics: {fileID: 11400000, guid: 248f2906b2afe7a4bbb06bcc1fe41bb2, type: 2}
+      labels: {fileID: 11400000, guid: de22353365ca500448a52b887a6f0858, type: 2}
+      PrefixIdleText: {r: 0, g: 0, b: 0, a: 1}
+      SelectedLineIndicator: {r: 0, g: 0.21568628, b: 1, a: 0.5019608}
+      SelectedLineIndicatorUnfocused: {r: 0.40392157, g: 0.40392157, b: 0.40392157,
+        a: 0.5019608}
+      PrefixSelectedText: {r: 0, g: 0.19607843, b: 0.9019608, a: 1}
+      PrefixSelectedUnfocusedText: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
+      PrefixMouseoveredText: {r: 0.9372549, g: 0.9372549, b: 0.9372549, a: 1}
+      PrefixMouseoveredRectHighlight: {r: 1, g: 1, b: 1, a: 0.3019608}
+      PrefixMouseoveredRectShadow: {r: 0, g: 0, b: 0, a: 0.14901961}
+      ControlSelectedRect: {r: 0.2, g: 0.30980393, b: 0.81960785, a: 1}
+      ControlSelectedUnfocusedRect: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 1}
+      ControlSelectedTint: {r: 0.5019608, g: 0.59607846, b: 0.9529412, a: 1}
+      ControlSelectedUnfocusedTint: {r: 0.56078434, g: 0.56078434, b: 0.56078434,
+        a: 1}
+      ControlMouseoveredTint: {r: 1, g: 1, b: 1, a: 0.10980392}
+      ControlUnappliedChangesTint: {r: 0.5, g: 1, b: 0.5, a: 0.039215688}
+      CanDragPrefixToAdjustValueTint: {r: 0.5019608, g: 1, b: 0.5019608, a: 0.039215688}
+      Background: {r: 0.7607843, g: 0.7607843, b: 0.7607843, a: 1}
+      BackgroundSelected: {r: 0.24313726, g: 0.49019608, b: 0.90588236, a: 1}
+      BackgroundSelectedUnfocused: {r: 0.56078434, g: 0.56078434, b: 0.56078434, a: 1}
+      ComponentHeaderBackground: {r: 0.79607844, g: 0.79607844, b: 0.79607844, a: 1}
+      ComponentMouseoveredHeaderBackground: {r: 0.8392157, g: 0.8392157, b: 0.8392157,
+        a: 1}
+      ButtonSelected: {r: 0.7019608, g: 0.7490196, b: 1, a: 1}
+      ComponentSeparatorLine: {r: 0.3254902, g: 0.3254902, b: 0.3254902, a: 1}
+      ToolbarSeparator: {r: 0, g: 0, b: 0, a: 0.3019608}
+      FilterHighlight: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.53333336}
+      LockViewHighlight: {r: 0.85490197, g: 0.19215687, b: 0.19215687, a: 1}
+      InvalidAction: {r: 0.85490197, g: 0.19215687, b: 0.19215687, a: 1}
+      ToolbarItemSelected: {r: 0.23529412, g: 0.4627451, b: 0.7529412, a: 1}
+      ToolbarItemSelectedUnfocused: {r: 0.56078434, g: 0.56078434, b: 0.56078434,
+        a: 1}
+      AssetHeaderBackground: {r: 0.79607844, g: 0.79607844, b: 0.79607844, a: 1}
+      SplitViewDivider: {r: 1, g: 1, b: 1, a: 1}
+      SyntaxHighlight:
+        StringColor: {r: 0.8392157, g: 0.6156863, b: 0.52156866, a: 1}
+        KeywordColor: {r: 0.3372549, g: 0.6117647, b: 0.8392157, a: 1}
+        NumberColor: {r: 0.8156863, g: 0.84705883, b: 0.6117647, a: 1}
+        TypeColor: {r: 0.30588236, g: 0.7882353, b: 0.6901961, a: 1}
+        CommentColor: {r: 0.34117648, g: 0.6509804, b: 0.2901961, a: 1}
+        PreprocessorDirectiveColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
+        StringColorTag: <color=#D69D85>
+        KeywordColorTag: <color=#569CD6>
+        NumberColorTag: <color=#D0D89C>
+        TypeColorTag: <color=#4EC9B0>
+        CommentColorTag: <color=#57A64A>
+        PreprocessorDirectiveColorTag: <color=#9A9A9A>
+      nameHash: 410897520
+    - Name: ProClassic
+      guiSkin: {fileID: 11400000, guid: 11f5f6cee386ce241bff52712393138f, type: 2}
+      guiStyles: {fileID: 11400000, guid: cae1f91789b883743bb161e15833b9e2, type: 2}
+      graphics: {fileID: 11400000, guid: 6c90163ce0d8fd8479b630efc39a3f5e, type: 2}
+      labels: {fileID: 11400000, guid: de22353365ca500448a52b887a6f0858, type: 2}
+      PrefixIdleText: {r: 0.81960785, g: 0.81960785, b: 0.81960785, a: 1}
+      SelectedLineIndicator: {r: 0.28627452, g: 0.5568628, b: 0.89411765, a: 0.5019608}
+      SelectedLineIndicatorUnfocused: {r: 0.3372549, g: 0.3372549, b: 0.3372549, a: 0.5019608}
+      PrefixSelectedText: {r: 0.29803923, g: 0.49411765, b: 1, a: 1}
+      PrefixSelectedUnfocusedText: {r: 0.56078434, g: 0.56078434, b: 0.56078434, a: 1}
+      PrefixMouseoveredText: {r: 1, g: 1, b: 1, a: 1}
+      PrefixMouseoveredRectHighlight: {r: 0.21960784, g: 0.21960784, b: 0.21960784,
+        a: 1}
+      PrefixMouseoveredRectShadow: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
+      ControlSelectedRect: {r: 0.2, g: 0.30980393, b: 0.81960785, a: 1}
+      ControlSelectedUnfocusedRect: {r: 0.39215687, g: 0.39215687, b: 0.39215687,
+        a: 1}
+      ControlSelectedTint: {r: 0.5019608, g: 0.59607846, b: 0.9529412, a: 1}
+      ControlSelectedUnfocusedTint: {r: 0.56078434, g: 0.56078434, b: 0.56078434,
+        a: 1}
+      ControlMouseoveredTint: {r: 1, g: 1, b: 1, a: 0.015686275}
+      ControlUnappliedChangesTint: {r: 0.5, g: 1, b: 0.5, a: 1}
+      CanDragPrefixToAdjustValueTint: {r: 0.5019608, g: 1, b: 0.5019608, a: 0.039215688}
+      Background: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
+      BackgroundSelected: {r: 0.24313726, g: 0.49019608, b: 0.90588236, a: 1}
+      BackgroundSelectedUnfocused: {r: 0.56078434, g: 0.56078434, b: 0.56078434, a: 1}
+      ComponentHeaderBackground: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
+      ComponentMouseoveredHeaderBackground: {r: 0.21960784, g: 0.21960784, b: 0.21960784,
+        a: 1}
+      ButtonSelected: {r: 0.7019608, g: 0.7490196, b: 1, a: 1}
+      ComponentSeparatorLine: {r: 0.3254902, g: 0.3254902, b: 0.3254902, a: 1}
+      ToolbarSeparator: {r: 0, g: 0, b: 0, a: 0.25}
+      FilterHighlight: {r: 0.3019608, g: 0.45490196, b: 0.3019608, a: 1}
+      LockViewHighlight: {r: 0.85490197, g: 0.19215687, b: 0.19215687, a: 1}
+      InvalidAction: {r: 0.85490197, g: 0.19215687, b: 0.19215687, a: 1}
+      ToolbarItemSelected: {r: 0.23529412, g: 0.4627451, b: 0.7529412, a: 1}
+      ToolbarItemSelectedUnfocused: {r: 0.28235295, g: 0.28235295, b: 0.28235295,
+        a: 1}
+      AssetHeaderBackground: {r: 0.24313726, g: 0.24313726, b: 0.24313726, a: 1}
+      SplitViewDivider: {r: 1, g: 1, b: 1, a: 1}
+      SyntaxHighlight:
+        StringColor: {r: 0.8392157, g: 0.6156863, b: 0.52156866, a: 1}
+        KeywordColor: {r: 0.3372549, g: 0.6117647, b: 0.8392157, a: 1}
+        NumberColor: {r: 0.8156863, g: 0.84705883, b: 0.6117647, a: 1}
+        TypeColor: {r: 0.30588236, g: 0.7882353, b: 0.6901961, a: 1}
+        CommentColor: {r: 0.34117648, g: 0.6509804, b: 0.2901961, a: 1}
+        PreprocessorDirectiveColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
+        StringColorTag: <color=#D69D85>
+        KeywordColorTag: <color=#569CD6>
+        NumberColorTag: <color=#D0D89C>
+        TypeColorTag: <color=#4EC9B0>
+        CommentColorTag: <color=#57A64A>
+        PreprocessorDirectiveColorTag: <color=#9A9A9A>
+      nameHash: -1601744955
+    - Name: ProModern
+      guiSkin: {fileID: 11400000, guid: 11f5f6cee386ce241bff52712393138f, type: 2}
+      guiStyles: {fileID: 11400000, guid: 6b88be82e95f4ed4bbcad44172834e6b, type: 2}
+      graphics: {fileID: 11400000, guid: 248f2906b2afe7a4bbb06bcc1fe41bb2, type: 2}
+      labels: {fileID: 11400000, guid: de22353365ca500448a52b887a6f0858, type: 2}
+      PrefixIdleText: {r: 0.6392157, g: 0.6392157, b: 0.6392157, a: 1}
+      SelectedLineIndicator: {r: 0.28627452, g: 0.5568628, b: 0.89411765, a: 0.5019608}
+      SelectedLineIndicatorUnfocused: {r: 0.3372549, g: 0.3372549, b: 0.3372549, a: 0.5019608}
+      PrefixSelectedText: {r: 0.29803923, g: 0.49411765, b: 1, a: 1}
+      PrefixSelectedUnfocusedText: {r: 0.56078434, g: 0.56078434, b: 0.56078434, a: 1}
+      PrefixMouseoveredText: {r: 1, g: 1, b: 1, a: 1}
+      PrefixMouseoveredRectHighlight: {r: 0.21960784, g: 0.21960784, b: 0.21960784,
+        a: 1}
+      PrefixMouseoveredRectShadow: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
+      ControlSelectedRect: {r: 0.2, g: 0.30980393, b: 0.81960785, a: 1}
+      ControlSelectedUnfocusedRect: {r: 0.39215687, g: 0.39215687, b: 0.39215687,
+        a: 1}
+      ControlSelectedTint: {r: 0.5019608, g: 0.59607846, b: 0.9529412, a: 1}
+      ControlSelectedUnfocusedTint: {r: 0.56078434, g: 0.56078434, b: 0.56078434,
+        a: 1}
+      ControlMouseoveredTint: {r: 1, g: 1, b: 1, a: 0.015686275}
+      ControlUnappliedChangesTint: {r: 0.5, g: 1, b: 0.5, a: 1}
+      CanDragPrefixToAdjustValueTint: {r: 0.5019608, g: 1, b: 0.5019608, a: 0.039215688}
+      Background: {r: 0.21960784, g: 0.21960784, b: 0.21960784, a: 1}
+      BackgroundSelected: {r: 0.24313726, g: 0.49019608, b: 0.90588236, a: 1}
+      BackgroundSelectedUnfocused: {r: 0.56078434, g: 0.56078434, b: 0.56078434, a: 1}
+      ComponentHeaderBackground: {r: 0.24313726, g: 0.24313726, b: 0.24313726, a: 1}
+      ComponentMouseoveredHeaderBackground: {r: 0.2784314, g: 0.2784314, b: 0.2784314,
+        a: 1}
+      ButtonSelected: {r: 0.7019608, g: 0.7490196, b: 1, a: 1}
+      ComponentSeparatorLine: {r: 0.101960786, g: 0.101960786, b: 0.101960786, a: 1}
+      ToolbarSeparator: {r: 0, g: 0, b: 0, a: 0.25}
+      FilterHighlight: {r: 0.3019608, g: 0.45490196, b: 0.3019608, a: 1}
+      LockViewHighlight: {r: 0.85490197, g: 0.19215687, b: 0.19215687, a: 1}
+      InvalidAction: {r: 0.85490197, g: 0.19215687, b: 0.19215687, a: 1}
+      ToolbarItemSelected: {r: 0.23529412, g: 0.4627451, b: 0.7529412, a: 1}
+      ToolbarItemSelectedUnfocused: {r: 0.28235295, g: 0.28235295, b: 0.28235295,
+        a: 1}
+      AssetHeaderBackground: {r: 0.23529412, g: 0.23529412, b: 0.23529412, a: 1}
+      SplitViewDivider: {r: 1, g: 1, b: 1, a: 1}
+      SyntaxHighlight:
+        StringColor: {r: 0.8392157, g: 0.6156863, b: 0.52156866, a: 1}
+        KeywordColor: {r: 0.3372549, g: 0.6117647, b: 0.8392157, a: 1}
+        NumberColor: {r: 0.8156863, g: 0.84705883, b: 0.6117647, a: 1}
+        TypeColor: {r: 0.30588236, g: 0.7882353, b: 0.6901961, a: 1}
+        CommentColor: {r: 0.34117648, g: 0.6509804, b: 0.2901961, a: 1}
+        PreprocessorDirectiveColor: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
+        StringColorTag: <color=#D69D85>
+        KeywordColorTag: <color=#569CD6>
+        NumberColorTag: <color=#D0D89C>
+        TypeColorTag: <color=#4EC9B0>
+        CommentColorTag: <color=#57A64A>
+        PreprocessorDirectiveColorTag: <color=#9A9A9A>
+      nameHash: 854051738
+  messageDisplayMethod: 6
+  displayDurationPerWord: 0.1
+  minDisplayDuration: 0.3
+  maxDisplayDuration: 4
+  warnAboutInvokingInEditMode: 1
+  askAboutStartingCoroutines: 0
+  currentVersion: 13000
+  componentCategories:
+  - name: 
+    components:
+    - typeSerialized: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    - typeSerialized: UnityEngine.RectTransform, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  defaultComponentCategory: Miscellaneous
+  categorizedComponents: 0
+  generateFromAddComponentMenu: 1
+  tintXYZLabels: 1

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a08c65fc78c5718489d264cae664ace8
+labels:
+- Configuration
+- Editor
+- EditorWindow
+- Inspector
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

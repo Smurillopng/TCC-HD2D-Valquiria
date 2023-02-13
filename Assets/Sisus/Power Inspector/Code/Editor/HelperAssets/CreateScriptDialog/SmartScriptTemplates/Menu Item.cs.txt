@@ -1,0 +1,23 @@
+BASECLASS=MenuItem
+public class $ClassName
+{
+	/// <summary>
+	/// Add menu item to the Tools menu. 
+	/// </summary>
+	[MenuItem("Tools/$NicifiedClassName"), UsedImplicitly]
+	private static void $ClassNameFunction()
+	{
+		
+	}
+	
+	/// <summary>
+	/// Menu item $ClassNameFunction will be disabled (greyed out) if this returns false.
+	/// </summary>
+	[MenuItem("Tools/$NicifiedClassName", true), UsedImplicitly]
+	private static bool Validate$ClassNameFunction()
+	{
+		return true;
+	}
+		
+	$Functions
+}

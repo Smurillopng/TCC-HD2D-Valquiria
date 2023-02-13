@@ -1,0 +1,23 @@
+BASECLASS=MenuItem
+public class $ClassName
+{
+	/// <summary>
+	/// Add menu item to the Component context menu. 
+	/// </summary>
+	[MenuItem("CONTEXT/Component/$NicifiedClassName"), UsedImplicitly]
+	private static void $ClassNameFunction()
+	{
+		
+	}
+	
+	/// <summary>
+	/// Context menu item $ClassNameFunction will be disabled (greyed out) if this returns false.
+	/// </summary>
+	[MenuItem("CONTEXT/Component/$NicifiedClassName", true), UsedImplicitly]
+	private static bool Validate$ClassNameFunction()
+	{
+		return true;
+	}
+		
+	$Functions
+}

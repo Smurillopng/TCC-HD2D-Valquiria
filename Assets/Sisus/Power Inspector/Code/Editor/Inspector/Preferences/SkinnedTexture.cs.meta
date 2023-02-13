@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c5b736d87523b61478d4206799af191f
+labels:
+- Configuration
+- GUISkin
+- Graphics
+- IMGUI
+- OnGUI
+- UI
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

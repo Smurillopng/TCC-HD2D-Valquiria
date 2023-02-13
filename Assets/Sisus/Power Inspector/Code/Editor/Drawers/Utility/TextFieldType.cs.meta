@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9828c7254b01e4b439de90c3e1dd66d8
+labels:
+- Enum
+- TextField
+- Utility
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,349 @@
+﻿BASECLASS=MonoBehaviour
+public class $ClassName<TSingleton> : MonoBehaviour where TSingleton : $ClassName<TSingleton>
+{
+	private static readonly SingletonSettings settings = new SingletonSettings();
+	private static readonly object threadLock = new object();
+
+	private static TSingleton instance;
+	private static bool quitting;
+
+	public static bool InstanceRetrieved
+	{
+		get
+		{
+			return Volatile.Read(ref instance) != null;
+		}
+	}
+
+	[CanBeNull]
+	public static TSingleton Instance
+	{
+		get
+		{
+			lock(threadLock)
+			{
+				if(instance == null)
+				{
+					if(quitting)
+					{
+						return null;
+					}
+
+					if(!Application.isPlaying)
+					{
+						switch(settings.GetInstanceInEditModeAction)
+						{
+							case GetInstanceInEditModeAction.ReturnNull:
+								return null;
+							case GetInstanceInEditModeAction.LogWarningAndReturnNull:
+								Debug.LogWarning($"{typeof(TSingleton).Name}.Instance called in edit mode.");
+								return null;
+							case GetInstanceInEditModeAction.LogErrorAndReturnNull:
+								Debug.LogError($"{typeof(TSingleton).Name}.Instance called in edit mode.");
+								return null;
+							case GetInstanceInEditModeAction.Exception:
+								throw new InvalidOperationException($"{typeof(TSingleton).Name}.Instance called in edit mode.");
+							case GetInstanceInEditModeAction.LogWarningAndReturnInstance:
+								Debug.LogWarning($"{typeof(TSingleton).Name}.Instance called in edit mode.");
+								break;
+							case GetInstanceInEditModeAction.LogErrorAndReturnInstance:
+								Debug.LogError($"{typeof(TSingleton).Name}.Instance called in edit mode.");
+								break;
+							default:
+								throw new InvalidEnumArgumentException(settings.GetInstanceInEditModeAction.ToString(), (int)settings.GetInstanceInEditModeAction, typeof(GetInstanceInEditModeAction));
+						}
+					}
+
+					instance = GetInstance();
+
+					if(instance == null)
+					{
+						switch(settings.FailedToFindInstanceLogging)
+						{
+							case FailedToFindInstanceLogging.Info:
+								Debug.Log($"{typeof(TSingleton).Name}.Instance failed to find an instance.");
+								return null;
+							case FailedToFindInstanceLogging.Warning:
+								Debug.LogWarning($"{typeof(TSingleton).Name}.Instance failed to find an instance.");
+								return null;
+							case FailedToFindInstanceLogging.Error:
+								Debug.LogError($"{typeof(TSingleton).Name}.Instance failed to find an instance.");
+								return null;
+							case FailedToFindInstanceLogging.ErrorAndBreak:
+								Debug.LogError($"{typeof(TSingleton).Name}.Instance failed to find an instance.");
+								Debug.Break();
+								return null;
+							case FailedToFindInstanceLogging.Exception:
+								throw new NullReferenceException($"{typeof(TSingleton).Name}.Instance failed to find an instance.");
+							case FailedToFindInstanceLogging.None:
+								return null;
+							default:
+								throw new InvalidEnumArgumentException(settings.FailedToFindInstanceLogging.ToString(), (int)settings.FailedToFindInstanceLogging, typeof(FailedToFindInstanceLogging));
+						}
+					}
+
+					if(settings.PersistThroughSceneTransitions)
+					{
+						DontDestroyOnLoad(instance.gameObject);
+					}
+				}
+			}
+			return instance;
+		}
+	}
+
+	private static TSingleton GetInstance()
+	{
+		switch(settings.GetInstanceMethod)
+		{
+			case GetInstanceMethod.FindInScene:
+				TSingleton existing;
+				TryFindInstance(out existing);
+				return existing;
+			case GetInstanceMethod.InstantiateResource:
+				return InstantiateInstance();
+			case GetInstanceMethod.CreateInstance:
+				return CreateInstance();
+			case GetInstanceMethod.FindInSceneAndCreateIfNotFound:
+				if(TryFindInstance(out existing))
+				{
+					return existing;
+				}
+				return CreateInstance();
+			case GetInstanceMethod.FindInSceneAndInstantiateIfNotFound:
+				if(TryFindInstance(out existing))
+				{
+					return existing;
+				}
+				return InstantiateInstance();
+			default:
+				throw new InvalidEnumArgumentException(settings.GetInstanceMethod.ToString(), (int)settings.GetInstanceMethod, typeof(GetInstanceMethod));
+
+		}
+	}
+
+	private static bool TryFindInstance(out TSingleton result)
+	{
+		if(settings.MultipleInstanceAction == MultipleInstanceAction.None && settings.MultipleInstanceLogging == MultipleInstanceLogging.None)
+		{
+			result = FindObjectOfType<TSingleton>();
+			return result != null;
+		}
+
+		var instances = FindObjectsOfType<TSingleton>();
+		int count = instances.Length;
+		if(count == 0)
+		{
+			result = null;
+			return false;
+		}
+
+		if(count == 1)
+		{
+			result = instances[0];
+			return true;
+		}
+
+		if(settings.MultipleInstanceAction == MultipleInstanceAction.None)
+		{
+			result = instances[0];
+		}
+		else
+		{
+			int firstToDestroy;
+			int lastToDestroy;
+			if(settings.MultipleInstanceAction == MultipleInstanceAction.DestroyNew)
+			{
+				result = instances[0];
+				firstToDestroy = 1;
+				lastToDestroy = count - 1;
+			}
+			else
+			{
+				result = instances[count - 1];
+				firstToDestroy = 0;
+				lastToDestroy = count - 2;
+			}
+
+			for(int n = firstToDestroy; n <= lastToDestroy; n++)
+			{
+				DestroyExisting(instances[n]);
+			}
+		}
+
+		switch(settings.MultipleInstanceLogging)
+		{
+			case MultipleInstanceLogging.Info:
+				Debug.LogWarning($"{count} instances of singleton {typeof(TSingleton)} found in scene.", result);
+				break;
+			case MultipleInstanceLogging.Warning:
+				Debug.LogWarning($"{count} instances of singleton {typeof(TSingleton)} found in scene.", result);
+				break;
+			case MultipleInstanceLogging.Error:
+				Debug.LogError($"{count} instances of singleton {typeof(TSingleton)} found in scene.", result);
+				break;
+			case MultipleInstanceLogging.ErrorAndBreak:
+				Debug.LogError($"{count} instances of singleton {typeof(TSingleton)} found in scene.", result);
+				Debug.Break();
+				break;
+			case MultipleInstanceLogging.Exception:
+				throw new InvalidOperationException($"{count} instances of singleton {typeof(TSingleton)} found in scene.");
+		}
+
+		return true;
+	}
+
+	private static void DestroyExisting(TSingleton singleton)
+	{
+		switch(settings.DestroyDuplicatesMethod)
+		{
+			case DestroyDuplicatesMethod.DestroyGameObject:
+				Destroy(singleton.gameObject);
+				return;
+			case DestroyDuplicatesMethod.DestroyComponent:
+				Destroy(singleton);
+				return;
+		}
+	}
+
+	private static TSingleton CreateInstance()
+	{
+		var gameObject = new GameObject(typeof(TSingleton).Name);
+		return gameObject.AddComponent<TSingleton>();
+	}
+
+	private static TSingleton InstantiateInstance()
+	{
+		string prefabPath = $"Singletons/{typeof(TSingleton).Name}";
+		var prefab = Resources.Load<TSingleton>(prefabPath);
+		if(prefab == null)
+		{
+			Debug.LogError($"Failed to find prefab for singleton {typeof(TSingleton).Name} at path {prefabPath}.");
+			return null;
+		}
+		var instantiated = Instantiate(prefab);
+		instantiated.name = typeof(TSingleton).Name;
+		return instantiated;
+	}
+
+	protected virtual void OnApplicationQuit()
+	{
+		quitting = true;
+	}
+
+	private struct SingletonSettings
+	{
+		public bool PersistThroughSceneTransitions
+		{
+			get
+			{
+				return true;
+			}
+		}
+
+		public GetInstanceInEditModeAction GetInstanceInEditModeAction
+		{
+			get
+			{
+				return GetInstanceInEditModeAction.LogErrorAndReturnNull;
+			}
+		}
+
+		public MultipleInstanceAction MultipleInstanceAction
+		{
+			get
+			{
+				return MultipleInstanceAction.DestroyNew;
+			}
+		}
+
+		public MultipleInstanceLogging MultipleInstanceLogging
+		{
+			get
+			{
+				return MultipleInstanceLogging.Warning;
+			}
+		}
+
+		public GetInstanceMethod GetInstanceMethod
+		{
+			get
+			{
+				return GetInstanceMethod.FindInSceneAndCreateIfNotFound;
+			}
+		}
+
+		public FailedToFindInstanceLogging FailedToFindInstanceLogging
+		{
+			get
+			{
+				return FailedToFindInstanceLogging.Warning;
+			}
+		}
+
+		public DestroyDuplicatesMethod DestroyDuplicatesMethod
+		{
+			get
+			{
+				return DestroyDuplicatesMethod.DestroyGameObject;
+			}
+		}
+	}
+
+	private enum MultipleInstanceAction
+	{
+		None,
+		DestroyOld,
+		DestroyNew
+	}
+
+	private enum MultipleInstanceLogging
+	{
+		None,
+		Info,
+		Warning,
+		Error,
+		ErrorAndBreak,
+		Exception
+	}
+
+	private enum FailedToFindInstanceLogging
+	{
+		None,
+		Info,
+		Warning,
+		Error,
+		ErrorAndBreak,
+		Exception
+	}
+
+	private enum GetInstanceMethod
+	{
+		FindInScene,
+
+		InstantiateResource,
+		CreateInstance,
+		FindInSceneAndCreateIfNotFound,
+		FindInSceneAndInstantiateIfNotFound
+	}
+
+	private enum DestroyDuplicatesMethod
+	{
+		None,
+		DestroyComponent,
+		DestroyGameObject
+	}
+
+	private enum GetInstanceInEditModeAction
+	{
+		ReturnInstance,
+		ReturnNull,
+		LogInfoAndReturnNull,
+		LogWarningAndReturnNull,
+		LogInfoAndReturnInstance,
+		LogWarningAndReturnInstance,
+		LogErrorAndReturnNull,
+		LogErrorAndReturnInstance,
+		Exception
+	}
+}

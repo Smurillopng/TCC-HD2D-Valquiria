@@ -1,0 +1,20 @@
+{
+    "name": "PowerInspector",
+    "references": [
+        "Sisus.WebView",
+        "Sisus.Attributes",
+        "Sisus.FastReflection",
+        "PowerInspector.Components"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

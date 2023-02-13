@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 62fcf633f24a4a84b8ca5fdc804a1bea
+labels:
+- AddComponentMenu
+- Decoupled
+- Editor
+- EditorWindow
+- PopupMenu
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ec1600d7322a5b64e9401925610e4c09
+labels:
+- AddComponentMenu
+- Editor
+- EditorWindow
+- PopupMenu
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

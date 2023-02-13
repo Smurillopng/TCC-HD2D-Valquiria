@@ -1,0 +1,14 @@
+BASECLASS=ScriptableWizard
+public class $ClassName : ScriptableWizard
+{
+	/// <summary>
+	/// Add menu item to the Tools menu.
+	/// </summary>
+	[MenuItem("Tools/$NicifiedClassName...")]
+	static void CreateWizard()
+	{
+		ScriptableWizard.DisplayWizard<$ClassName> ("$NicifiedClassName", "Create", "Cancel");
+	}
+	
+	$Functions
+}

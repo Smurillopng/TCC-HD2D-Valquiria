@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 9a35076a4bd28a9478f9407fefed2ff3
+labels:
+- Cross-Platform
+- Editor
+- IMGUI
+- Inspector
+- OnGUI
+- Runtime
+- UI
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

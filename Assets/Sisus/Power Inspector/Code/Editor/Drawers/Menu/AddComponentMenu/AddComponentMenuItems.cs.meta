@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fc120ec450f871d4a9045eac456e7992
+labels:
+- AddComponentMenu
+- PopupMenu
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

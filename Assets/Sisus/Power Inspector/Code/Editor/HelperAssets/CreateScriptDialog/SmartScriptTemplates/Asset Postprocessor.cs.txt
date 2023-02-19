@@ -1,5 +1,0 @@
-BASECLASS=AssetPostprocessor
-public class $ClassName : AssetPostprocessor
-{
-	$Functions
-}

@@ -1,5 +1,0 @@
-BASECLASS=MonoBehaviour
-public class $ClassName : MonoBehaviour
-{
-	$Functions
-}

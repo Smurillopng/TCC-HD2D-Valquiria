@@ -1,1 +1,0 @@
-DEFAULT public $ClassName() The class constructor is called when the class instance is created.

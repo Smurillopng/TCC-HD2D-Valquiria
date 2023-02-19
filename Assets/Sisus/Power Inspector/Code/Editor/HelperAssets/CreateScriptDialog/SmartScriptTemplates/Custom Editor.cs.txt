@@ -1,6 +1,0 @@
-BASECLASS=Editor
-[CustomEditor(typeof($TargetClassName))]
-public class $ClassName : Editor
-{
-	$Functions
-}

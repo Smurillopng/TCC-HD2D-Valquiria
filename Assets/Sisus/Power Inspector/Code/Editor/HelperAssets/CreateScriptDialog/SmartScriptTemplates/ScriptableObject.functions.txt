@@ -1,6 +1,0 @@
-private void Reset() Reset is called when the user hits the Reset button in the Inspector's context menu or when adding the component the first time. This function is only called in editor mode.
-private void Awake() Awake is called when the script instance is being loaded.
-private void OnEnable() This function is called when the object is loaded.
-private void OnDisable() This function is called when the scriptable object goes out of scope.
-private void OnDestroy() This function is called when the scriptable object will be destroyed.
-private void OnValidate() This function is called when the script is loaded or a value is changed in the Inspector (Called in the editor only).

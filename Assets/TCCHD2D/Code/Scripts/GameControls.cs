@@ -35,6 +35,15 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Mouse"",
+                    ""type"": ""Button"",
+                    ""id"": ""eeef05cc-7363-4c34-8bb3-14f2a7fde63c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -92,6 +101,17 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""093b5232-4e03-439a-a865-8291bf7cf3e8"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -118,6 +138,7 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         // Default
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
         m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
+        m_Default_Mouse = m_Default.FindAction("Mouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -178,11 +199,13 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Default;
     private IDefaultActions m_DefaultActionsCallbackInterface;
     private readonly InputAction m_Default_Movement;
+    private readonly InputAction m_Default_Mouse;
     public struct DefaultActions
     {
         private @GameControls m_Wrapper;
         public DefaultActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Default_Movement;
+        public InputAction @Mouse => m_Wrapper.m_Default_Mouse;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -195,6 +218,9 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
+                @Mouse.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouse;
+                @Mouse.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouse;
+                @Mouse.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouse;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -202,6 +228,9 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Mouse.started += instance.OnMouse;
+                @Mouse.performed += instance.OnMouse;
+                @Mouse.canceled += instance.OnMouse;
             }
         }
     }
@@ -218,5 +247,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     public interface IDefaultActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnMouse(InputAction.CallbackContext context);
     }
 }

@@ -4,29 +4,20 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+/// <summary>
+/// Responsible for calculating player position based on the <see cref="Movement"/> input
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-    public bool isMoving;
-    public float speed;
-    public Vector3 movement;
-
-    [SerializeField, ReadOnly] private Vector2 direction;
+    [ShowInInspector] private static bool _canMove;
+    [SerializeField] private float speed;
+    [SerializeField, ReadOnly] private Vector3 movement;
     [SerializeField, ReadOnly] private Rigidbody rb;
-    [SerializeField, ReadOnly] private BoxCollider boxCollider;
-    [SerializeField, ReadOnly] private GameControls controls;
-
-    private void OnEnable()
-    {
-        controls = new GameControls();
-        controls.Enable();
-    }
 
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
         if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
-        boxCollider = gameObject.GetComponent<BoxCollider>();
-        if (boxCollider == null) boxCollider = gameObject.AddComponent<BoxCollider>();
     }
 
     private void FixedUpdate()
@@ -34,18 +25,18 @@ public class PlayerMovement : MonoBehaviour
         Movement();
     }
 
-    private void Movement()
+    /// <summary>
+    /// Responsible for reading the "Movement" input from <see cref="PlayerControls"/> and moving
+    /// the player accordingly.
+    /// </summary>
+    public void Movement()
     {
-        direction = controls.Default.Movement.ReadValue<Vector2>();
+        if (!_canMove) return;
+        var direction = PlayerControls.Instance.MoveValue;
         movement = Vector3.zero;
         movement = new Vector3(direction.x, 0, direction.y).normalized;
 
         if (movement == Vector3.zero) return;
         rb.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
     }
 }

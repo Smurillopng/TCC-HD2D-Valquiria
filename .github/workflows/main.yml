@@ -53,3 +53,4 @@ jobs:
         with:
           files: StandaloneWindows64.zip
           name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref }}

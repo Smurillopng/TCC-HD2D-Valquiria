@@ -1,4 +1,4 @@
-name: Build
+name: DevBuild
 
 on:
   push:
@@ -10,39 +10,42 @@ env:
 
 jobs:
   build:
-    name: Build my project
+    name: Build do jogo para ${{ matrix.targetPlatform }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        targetPlatform: [StandaloneWindows64]
     steps:
       # Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout do repositório
+        uses: actions/checkout@v3.3.0
         with:
+          fetch-depth: 0
           lfs: true
 
       # Cache
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3.2.6
         with:
           path: Library
           key: Library
-
-      # Test
-      - name: Run tests
-        uses: game-ci/unity-test-runner@v2
-        with:
-          unityVersion: 2021.3.17f1
+          restore-keys: Library-
 
       # Build
       - name: Build project
-        uses: game-ci/unity-builder@v2
+        uses: game-ci/unity-builder@v2.2.0
+        env:
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           unityVersion: 2021.3.17f1
-          targetPlatform: StandaloneWindows64
+          targetPlatform: ${{ matrix.targetPlatform }}
 
       # Output
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3.1.2
         with:
-          name: Build
-          path: build
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
 
       - name: Zip build
         run: |
@@ -53,5 +56,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
+          token: ${{ secrets.TOKEN }}
           files: StandaloneWindows64.zip
-          name: Release ${{ github.ref }}
+          name: Release ${{ github.ref }} ${{ matrix.targetPlatform }}
+          tag_name: builds

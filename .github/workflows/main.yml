@@ -1,20 +1,20 @@
-- name: Checkout
-  uses: actions/checkout@v3.3.0
-  with:
-    fetch-depth: 0
+name: Checkout
+uses: actions/checkout@v3.3.0
+with:
+  fetch-depth: 0
 
-- name: Cache
-  uses: actions/cache@v3.2.6
+name: Cache
+uses: actions/cache@v3.2.6
 
-- name: Unity - Activate
-  uses: game-ci/unity-activate@v2.0.0
+name: Unity - Activate
+uses: game-ci/unity-activate@v2.0.0
 
-- name: Unity - Return License
-  uses: game-ci/unity-return-license@v2.0.0
-  if: always()
+name: Unity - Return License
+uses: game-ci/unity-return-license@v2.0.0
+if: always()
 
-- name: Unity - Test runner
-  uses: game-ci/unity-test-runner@v2.1.1
+name: Unity - Test runner
+uses: game-ci/unity-test-runner@v2.1.1
 
-- name: Unity - Builder
-  uses: game-ci/unity-builder@v2.2.0
+name: Unity - Builder
+uses: game-ci/unity-builder@v2.2.0

@@ -1,16 +1,9 @@
-name: Unity - Activate
-uses: game-ci/unity-activate@v2.0.0
-
-name: Unity - Return License
-uses: game-ci/unity-return-license@v2.0.0
-if: always()
-
 name: Build
 
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -20,7 +13,6 @@ jobs:
     name: Build my project
     runs-on: ubuntu-latest
     steps:
-
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -44,9 +36,9 @@ jobs:
         uses: game-ci/unity-builder@v2
         with:
           unityVersion: 2020.3.15f2
-          targetPlatform: StandaloneWindows64 
+          targetPlatform: StandaloneWindows64
 
-      # Output 
+      # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build

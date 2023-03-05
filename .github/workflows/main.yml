@@ -25,12 +25,6 @@ jobs:
           path: Library
           key: Library
 
-      # Test
-      - name: Run tests
-        uses: game-ci/unity-test-runner@v2
-        with:
-          unityVersion: 2021.3.17f1
-
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2

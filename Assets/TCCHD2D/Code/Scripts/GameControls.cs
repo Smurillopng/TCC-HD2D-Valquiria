@@ -28,15 +28,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
             ""id"": ""f55a841e-6cc9-4d2f-837f-dcc7182c7e1d"",
             ""actions"": [
                 {
-                    ""name"": ""Movement"",
-                    ""type"": ""Value"",
-                    ""id"": ""5a9d1b69-05e9-4afe-905e-8b392d17916f"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""Mouse"",
                     ""type"": ""Button"",
                     ""id"": ""eeef05cc-7363-4c34-8bb3-14f2a7fde63c"",
@@ -44,64 +35,27 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""727bb1fd-5703-4224-8a60-d1ece41aaf1b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Walk"",
+                    ""type"": ""Value"",
+                    ""id"": ""5a9d1b69-05e9-4afe-905e-8b392d17916f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": ""Walking"",
-                    ""id"": ""f5a8ceaa-4a0b-4d85-b30d-d4d16de0eb21"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""fc89e04a-3bf3-41c2-8f18-67d28ea25ebd"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""a60dd529-5144-4b71-a845-284a48dfbc22"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""959ff0c4-9350-4d9d-8d9e-c7a8aa0a69cb"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""09b7c17c-8a46-4674-966a-8dbdeba7763b"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": """",
                     ""id"": ""093b5232-4e03-439a-a865-8291bf7cf3e8"",
@@ -112,6 +66,72 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""action"": ""Mouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""222d48df-2647-437b-86f4-f619c4752a67"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Walking"",
+                    ""id"": ""f5a8ceaa-4a0b-4d85-b30d-d4d16de0eb21"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""fc89e04a-3bf3-41c2-8f18-67d28ea25ebd"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""a60dd529-5144-4b71-a845-284a48dfbc22"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""959ff0c4-9350-4d9d-8d9e-c7a8aa0a69cb"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""09b7c17c-8a46-4674-966a-8dbdeba7763b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -137,8 +157,9 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
 }");
         // Default
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
-        m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
         m_Default_Mouse = m_Default.FindAction("Mouse", throwIfNotFound: true);
+        m_Default_Run = m_Default.FindAction("Run", throwIfNotFound: true);
+        m_Default_Walk = m_Default.FindAction("Walk", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -198,14 +219,16 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     // Default
     private readonly InputActionMap m_Default;
     private IDefaultActions m_DefaultActionsCallbackInterface;
-    private readonly InputAction m_Default_Movement;
     private readonly InputAction m_Default_Mouse;
+    private readonly InputAction m_Default_Run;
+    private readonly InputAction m_Default_Walk;
     public struct DefaultActions
     {
         private @GameControls m_Wrapper;
         public DefaultActions(@GameControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_Default_Movement;
         public InputAction @Mouse => m_Wrapper.m_Default_Mouse;
+        public InputAction @Run => m_Wrapper.m_Default_Run;
+        public InputAction @Walk => m_Wrapper.m_Default_Walk;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -215,22 +238,28 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_DefaultActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
                 @Mouse.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouse;
                 @Mouse.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouse;
                 @Mouse.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMouse;
+                @Run.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnRun;
+                @Walk.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnWalk;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Movement.started += instance.OnMovement;
-                @Movement.performed += instance.OnMovement;
-                @Movement.canceled += instance.OnMovement;
                 @Mouse.started += instance.OnMouse;
                 @Mouse.performed += instance.OnMouse;
                 @Mouse.canceled += instance.OnMouse;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
             }
         }
     }
@@ -246,7 +275,8 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     }
     public interface IDefaultActions
     {
-        void OnMovement(InputAction.CallbackContext context);
         void OnMouse(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
+        void OnWalk(InputAction.CallbackContext context);
     }
 }

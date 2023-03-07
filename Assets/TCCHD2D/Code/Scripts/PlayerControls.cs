@@ -10,25 +10,32 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerControls : MonoBehaviour
 {
-    public static PlayerControls Instance;
+    // Public variables
+    public static PlayerControls Instance { get; private set; }
 
-    [SerializeField, ReadOnly] private GameControls _gameControls;
-
+    // Private variables
+    [SerializeField, ReadOnly] private GameControls gameControls;
     [SerializeField, ReadOnly] private Vector2 moveValue;
+    [SerializeField, InlineEditor] private BoolVariable isRunning;
+    
+    // Properties
     public Vector2 MoveValue => moveValue;
+    public bool IsRunning => isRunning.Value;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(this);
+        if (Instance != null && Instance != this)
+            Destroy(gameObject);
+        else
+            Instance = this;
     }
 
     private void OnEnable()
     {
-        _gameControls = new GameControls();
-        _gameControls.Enable();
-        _gameControls.Default.Movement.performed += OnMove;
-        _gameControls.Default.Movement.canceled += OnMoveRelease;
+        gameControls = new GameControls();
+        gameControls.Default.Walk.performed += OnMove;
+        gameControls.Default.Walk.canceled += OnMoveRelease;
+        gameControls.Enable();
     }
     
     private void OnMove(InputAction.CallbackContext ctx)
@@ -39,9 +46,14 @@ public class PlayerControls : MonoBehaviour
     {
         moveValue = Vector2.zero;
     }
+    
+    private void OnRun(InputAction.CallbackContext ctx)
+    {
+        isRunning.Value = ctx.ReadValueAsButton();
+    }
 
     private void OnDisable()
     {
-        _gameControls.Disable();
+        gameControls.Disable();
     }
 }

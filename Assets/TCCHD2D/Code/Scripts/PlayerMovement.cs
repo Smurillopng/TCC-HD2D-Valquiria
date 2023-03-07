@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 19/02/2023
 
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,15 +10,18 @@ using UnityEngine;
 /// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-    [ShowInInspector] private static bool _canMove;
-    [SerializeField] private float speed;
-    [SerializeField, ReadOnly] private Vector3 movement;
-    [SerializeField, ReadOnly] private Rigidbody rb;
+    // Private variables
+    [ShowInInspector] private static bool canMove = true;
+    [SerializeField, InlineEditor] private BoolVariable isRunning;
+    [SerializeField] private FloatVariable speed;
+    [SerializeField] private float runSpeedMultiplier;
+    [SerializeField, ReadOnly] private Vector3 movementValue;
+    [SerializeField, ReadOnly] private Rigidbody rigidBody;
 
     private void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody>();
-        if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
+        if (!gameObject.TryGetComponent(out rigidBody))
+            rigidBody = gameObject.AddComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
@@ -31,12 +35,13 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Movement()
     {
-        if (!_canMove) return;
+        if (!canMove) return;
         var direction = PlayerControls.Instance.MoveValue;
-        movement = Vector3.zero;
-        movement = new Vector3(direction.x, 0, direction.y).normalized;
-
-        if (movement == Vector3.zero) return;
-        rb.MovePosition(transform.position + movement * speed * Time.fixedDeltaTime);
+        if (direction == Vector2.zero) return;
+        movementValue = new Vector3(direction.x, 0, direction.y).normalized;
+        if (isRunning.Value)
+            movementValue *= runSpeedMultiplier;
+        var newPosition = transform.position + movementValue * speed.Value * Time.fixedDeltaTime;
+        rigidBody.MovePosition(newPosition);
     }
 }

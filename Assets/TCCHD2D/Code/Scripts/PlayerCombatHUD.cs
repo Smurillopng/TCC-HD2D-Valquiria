@@ -3,6 +3,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 using Sirenix.OdinInspector;
 using TMPro;
 
@@ -26,6 +27,12 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     private TMP_Text healthText;
 
+    [SerializeField]
+    private PlayableDirector playerDirector;
+
+    [SerializeField]
+    private PlayableAsset basicAttackTimeline;
+
     private void Awake()
     {
         healthText.text = $"{healthbarFill} / {maxHealth}";
@@ -40,6 +47,22 @@ public class PlayerCombatHUD : MonoBehaviour
 
     public void Attack()
     {
-        Debug.Log("Pressed Attack button");
+        Debug.Log("<b>Pressed <color=red>Attack</color> button</b>");
+        playerDirector.Play(basicAttackTimeline);
+    }
+
+    public void Special()
+    {
+        Debug.Log("<b>Pressed  <color=magenta>Special</color> button</b>");
+    }
+
+    public void Item()
+    {
+        Debug.Log("<b>Pressed  <color=cyan>Item</color> button</b>");
+    }
+
+    public void Run()
+    {
+        Debug.Log($"<b>Pressed <color=green>Run</color> button</b>");
     }
 }

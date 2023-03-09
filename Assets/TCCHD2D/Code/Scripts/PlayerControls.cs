@@ -18,6 +18,9 @@ public class PlayerControls : MonoBehaviour
     private GameControls gameControls;
     
     [SerializeField, InlineEditor] 
+    private BoolVariable showConsole;
+    
+    [SerializeField, InlineEditor] 
     private Vector2Variable moveValue;
     
     [SerializeField, InlineEditor] 

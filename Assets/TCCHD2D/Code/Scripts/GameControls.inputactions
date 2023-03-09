@@ -112,6 +112,54 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Console",
+            "id": "2d6d5855-a0e4-4fc4-ba66-ab9df4b0fa65",
+            "actions": [
+                {
+                    "name": "ShowConsole",
+                    "type": "Button",
+                    "id": "667c014a-60ff-4d5c-a299-797fa4be75d4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CommandHistory",
+                    "type": "Button",
+                    "id": "1bf0e21f-ca97-45e3-be8d-1199e1566d07",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0515aa79-74d1-4de4-9fe9-0eb4f5c53d99",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "ShowConsole",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49e40913-51ec-4c30-882b-36867f5ee602",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "CommandHistory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

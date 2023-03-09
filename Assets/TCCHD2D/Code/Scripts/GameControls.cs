@@ -134,6 +134,54 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Console"",
+            ""id"": ""2d6d5855-a0e4-4fc4-ba66-ab9df4b0fa65"",
+            ""actions"": [
+                {
+                    ""name"": ""ShowConsole"",
+                    ""type"": ""Button"",
+                    ""id"": ""667c014a-60ff-4d5c-a299-797fa4be75d4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CommandHistory"",
+                    ""type"": ""Button"",
+                    ""id"": ""1bf0e21f-ca97-45e3-be8d-1199e1566d07"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""0515aa79-74d1-4de4-9fe9-0eb4f5c53d99"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""ShowConsole"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49e40913-51ec-4c30-882b-36867f5ee602"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""CommandHistory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -160,6 +208,10 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         m_Default_Mouse = m_Default.FindAction("Mouse", throwIfNotFound: true);
         m_Default_Run = m_Default.FindAction("Run", throwIfNotFound: true);
         m_Default_Walk = m_Default.FindAction("Walk", throwIfNotFound: true);
+        // Console
+        m_Console = asset.FindActionMap("Console", throwIfNotFound: true);
+        m_Console_ShowConsole = m_Console.FindAction("ShowConsole", throwIfNotFound: true);
+        m_Console_CommandHistory = m_Console.FindAction("CommandHistory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -264,6 +316,47 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         }
     }
     public DefaultActions @Default => new DefaultActions(this);
+
+    // Console
+    private readonly InputActionMap m_Console;
+    private IConsoleActions m_ConsoleActionsCallbackInterface;
+    private readonly InputAction m_Console_ShowConsole;
+    private readonly InputAction m_Console_CommandHistory;
+    public struct ConsoleActions
+    {
+        private @GameControls m_Wrapper;
+        public ConsoleActions(@GameControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ShowConsole => m_Wrapper.m_Console_ShowConsole;
+        public InputAction @CommandHistory => m_Wrapper.m_Console_CommandHistory;
+        public InputActionMap Get() { return m_Wrapper.m_Console; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ConsoleActions set) { return set.Get(); }
+        public void SetCallbacks(IConsoleActions instance)
+        {
+            if (m_Wrapper.m_ConsoleActionsCallbackInterface != null)
+            {
+                @ShowConsole.started -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnShowConsole;
+                @ShowConsole.performed -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnShowConsole;
+                @ShowConsole.canceled -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnShowConsole;
+                @CommandHistory.started -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnCommandHistory;
+                @CommandHistory.performed -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnCommandHistory;
+                @CommandHistory.canceled -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnCommandHistory;
+            }
+            m_Wrapper.m_ConsoleActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ShowConsole.started += instance.OnShowConsole;
+                @ShowConsole.performed += instance.OnShowConsole;
+                @ShowConsole.canceled += instance.OnShowConsole;
+                @CommandHistory.started += instance.OnCommandHistory;
+                @CommandHistory.performed += instance.OnCommandHistory;
+                @CommandHistory.canceled += instance.OnCommandHistory;
+            }
+        }
+    }
+    public ConsoleActions @Console => new ConsoleActions(this);
     private int m_PCSchemeIndex = -1;
     public InputControlScheme PCScheme
     {
@@ -278,5 +371,10 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         void OnMouse(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
+    }
+    public interface IConsoleActions
+    {
+        void OnShowConsole(InputAction.CallbackContext context);
+        void OnCommandHistory(InputAction.CallbackContext context);
     }
 }

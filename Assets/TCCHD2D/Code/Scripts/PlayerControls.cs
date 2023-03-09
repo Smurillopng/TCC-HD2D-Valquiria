@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// Singleton responsible for storing the values of callbacks related to the game controls
+/// Responsible for storing the values of callbacks related to the game controls action map.
 /// </summary>
 public class PlayerControls : MonoBehaviour
 {
@@ -14,13 +14,14 @@ public class PlayerControls : MonoBehaviour
     public static PlayerControls Instance { get; private set; }
 
     // Private variables
-    [SerializeField, ReadOnly] private GameControls gameControls;
-    [SerializeField, ReadOnly] private Vector2 moveValue;
-    [SerializeField, InlineEditor] private BoolVariable isRunning;
+    [SerializeField, ReadOnly] 
+    private GameControls gameControls;
     
-    // Properties
-    public Vector2 MoveValue => moveValue;
-    public bool IsRunning => isRunning.Value;
+    [SerializeField, InlineEditor] 
+    private Vector2Variable moveValue;
+    
+    [SerializeField, InlineEditor] 
+    private BoolVariable isRunning;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class PlayerControls : MonoBehaviour
             Destroy(gameObject);
         else
             Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()
@@ -35,18 +37,31 @@ public class PlayerControls : MonoBehaviour
         gameControls = new GameControls();
         gameControls.Default.Walk.performed += OnMove;
         gameControls.Default.Walk.canceled += OnMoveRelease;
+        gameControls.Default.Run.performed += OnRun;
+        gameControls.Default.Run.canceled += OnRun;
         gameControls.Enable();
     }
     
+    /// <summary>
+    /// Is called when the "Walk" input of the "GameControls" Input Actions is performed.
+    /// </summary>
+    /// <param name="ctx"></param>
     private void OnMove(InputAction.CallbackContext ctx)
     {
-        moveValue = ctx.ReadValue <Vector2>();
+        moveValue.Value = ctx.ReadValue <Vector2>();
     }
+    /// <summary>
+    /// Is called when the "Walk" input of the "GameControls" Input Actions is released.
+    /// </summary>
+    /// <param name="ctx"></param>
     private void OnMoveRelease(InputAction.CallbackContext ctx)
     {
-        moveValue = Vector2.zero;
+        moveValue.Value = Vector2.zero;
     }
-    
+    /// <summary>
+    /// Is called when the "Run" input of the "GameControls" Input Actions is performed.
+    /// </summary>
+    /// <param name="ctx"></param>
     private void OnRun(InputAction.CallbackContext ctx)
     {
         isRunning.Value = ctx.ReadValueAsButton();

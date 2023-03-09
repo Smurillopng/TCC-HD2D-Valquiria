@@ -1,9 +1,10 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 19/02/2023
 
-using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+
+//TODO: Add walking/running/idle animations
 
 /// <summary>
 /// Responsible for calculating player position based on the <see cref="Movement"/> input
@@ -11,12 +12,29 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // Private variables
-    [ShowInInspector] private static bool canMove = true;
-    [SerializeField, InlineEditor] private BoolVariable isRunning;
-    [SerializeField] private FloatVariable speed;
-    [SerializeField] private float runSpeedMultiplier;
-    [SerializeField, ReadOnly] private Vector3 movementValue;
-    [SerializeField, ReadOnly] private Rigidbody rigidBody;
+    [TitleGroup("Input Variables", Alignment = TitleAlignments.Centered)]
+    [SerializeField, InlineEditor] 
+    private BoolVariable canMove;
+    
+    [SerializeField, InlineEditor] 
+    private BoolVariable isRunning;
+    
+    [SerializeField, InlineEditor] 
+    private Vector2Variable direction;
+    
+    [TitleGroup("Movement Variables", Alignment = TitleAlignments.Centered)]
+    [SerializeField, MinValue(0)] 
+    private float speed;
+    
+    [SerializeField, MinValue(1)] 
+    private float runSpeedMultiplier = 1;
+    
+    [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
+    [SerializeField, ReadOnly] 
+    private Rigidbody rigidBody;
+
+    [SerializeField, ReadOnly] 
+    private Vector3 movementValue;
 
     private void Start()
     {
@@ -35,13 +53,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Movement()
     {
-        if (!canMove) return;
-        var direction = PlayerControls.Instance.MoveValue;
-        if (direction == Vector2.zero) return;
-        movementValue = new Vector3(direction.x, 0, direction.y).normalized;
+        if (!canMove.Value) return;
+        if (direction.Value == Vector2.zero) {return;}
+        movementValue = new Vector3(direction.Value.x, 0, direction.Value.y).normalized;
         if (isRunning.Value)
             movementValue *= runSpeedMultiplier;
-        var newPosition = transform.position + movementValue * speed.Value * Time.fixedDeltaTime;
+        var newPosition = transform.position + movementValue * speed * Time.fixedDeltaTime;
         rigidBody.MovePosition(newPosition);
     }
 }

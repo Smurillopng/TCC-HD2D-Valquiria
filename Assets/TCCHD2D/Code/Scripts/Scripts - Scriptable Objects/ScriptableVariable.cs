@@ -4,13 +4,24 @@
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public abstract class ScriptableVariable<T> : ScriptableObject
 {
-    [SerializeField] private bool resetOnExit;
-    [SerializeField] private T defaultValue;
-    [SerializeField] private T value;
+    [FoldoutGroup("Settings")]
+    [SerializeField] 
+    private bool resetOnExit;
+    
+    [TitleGroup("Values", Alignment = TitleAlignments.Centered)]
+    [HorizontalGroup("Values/Split")]
+    [BoxGroup("Values/Split/Default")]
+    [SerializeField, HideLabel] 
+    private T defaultValue;
+
+    [BoxGroup("Values/Split/Current")]
+    [SerializeField, HideLabel] 
+    private T value;
 
     public T Value
     {
@@ -19,6 +30,14 @@ public abstract class ScriptableVariable<T> : ScriptableObject
     }
 
 #if UNITY_EDITOR
+
+    [Button("Reset Value")]
+    [FoldoutGroup("Settings")]
+    private void ResetValue()
+    {
+        value = defaultValue;
+    }
+
     protected void OnEnable()
     {
         EditorApplication.playModeStateChanged += OnPlayModeStateChanged;

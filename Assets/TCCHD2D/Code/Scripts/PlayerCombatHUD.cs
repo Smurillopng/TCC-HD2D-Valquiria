@@ -11,23 +11,20 @@ using TMPro;
 /// </summary>
 public class PlayerCombatHUD : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private GameObject player;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private int maxHealth;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private int healthbarFill;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private Image healthbarFilImage;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private TMP_Text healthText;
-    
-    [SerializeField] 
-    private Button attackButton;
 
     private void Awake()
     {
@@ -43,6 +40,6 @@ public class PlayerCombatHUD : MonoBehaviour
 
     public void Attack()
     {
-        player.GetComponent<Animator>().enabled = true;
+        Debug.Log("Pressed Attack button");
     }
 }

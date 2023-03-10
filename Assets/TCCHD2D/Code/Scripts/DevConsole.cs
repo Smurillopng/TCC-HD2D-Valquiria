@@ -6,6 +6,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Responsible for handling the console window and commands.
+/// </summary>
 public class DevConsole : MonoBehaviour
 {
     public static DevConsole Instance { get; private set; }
@@ -41,12 +44,20 @@ public class DevConsole : MonoBehaviour
         console.SetActive(false);
     }
 
+    /// <summary>
+    /// Enable or disable the console window when the user presses the console button.
+    /// </summary>
+    /// <param name="ctx"></param>
     private void CallConsole (InputAction.CallbackContext ctx)
     {
         showConsole.Value = !showConsole.Value;
         console.SetActive(showConsole.Value);
         Time.timeScale = showConsole.Value ? 0 : 1;
     }
+    /// <summary>
+    /// Show the previous command in the console history.
+    /// </summary>
+    /// <param name="ctx"></param>
     private void ConsoleHistory (InputAction.CallbackContext ctx)
     {
         if (!showConsole.Value) return;
@@ -80,6 +91,10 @@ public class DevConsole : MonoBehaviour
         currentCommandIndex = -1;
     }
 
+    /// <summary>
+    /// Split the input string into a method name and parameters and invoke the method.
+    /// </summary>
+    /// <param name="input"></param>
     private void ExecuteCommand(string input)
     {
         // Check the input and execute the corresponding cheat command

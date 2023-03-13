@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c46bbce2189b40cc947d737f4fdb7c44, type: 3}
-  m_Name: string_previousScene
+  m_Script: {fileID: 11500000, guid: c28ad184b8ab45bf88b444c39c7ffab0, type: 3}
+  m_Name: playerAttributesData
   m_EditorClassIdentifier: 
-  resetOnExit: 1
-  defaultValue: Main Menu
-  value: 
+  level: 1
+  health: 1
+  attack: 1
+  defence: 1
+  speed: 1
+  luck: 1
+  dexterity: 1
+  experience: 0

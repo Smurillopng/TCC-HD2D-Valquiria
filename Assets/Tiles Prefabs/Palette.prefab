@@ -167,6 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9016267477193269816}
   - component: {fileID: 752327151462253252}
+  - component: {fileID: -9052284802548395365}
   m_Layer: 0
   m_Name: Palette
   m_TagString: Untagged
@@ -202,6 +203,20 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!64 &-9052284802548395365
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6365845154802503571}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!114 &5241597579467399772
 MonoBehaviour:
   m_ObjectHideFlags: 0

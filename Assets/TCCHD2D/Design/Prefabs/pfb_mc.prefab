@@ -1,5 +1,38 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &627004100416919626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: -2253911629886400664, guid: a2051b8b3742acb48bfef712621ab295,
+    type: 3}
+  m_PrefabInstance: {fileID: 9145091639768069329}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1422119038900587484}
+  m_Layer: 0
+  m_Name: 'spr_mc (Missing Prefab with guid: a2051b8b3742acb48bfef712621ab295)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1422119038900587484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: a2051b8b3742acb48bfef712621ab295,
+    type: 3}
+  m_PrefabInstance: {fileID: 9145091639768069329}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627004100416919626}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3527680196772662818}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4402599577070806599
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +46,9 @@ GameObject:
   - component: {fileID: 712914218737686930}
   - component: {fileID: 3303538528734337936}
   - component: {fileID: 6120526187644209894}
+  - component: {fileID: 8324841120243778145}
   - component: {fileID: 3172067139826939402}
+  - component: {fileID: 764865421478394117}
   m_Layer: 0
   m_Name: pfb_mc
   m_TagString: Untagged
@@ -117,11 +152,42 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5a9d1b69-05e9-4afe-905e-8b392d17916f
     m_ActionName: Default/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eeef05cc-7363-4c34-8bb3-14f2a7fde63c
+    m_ActionName: Default/Mouse[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 727bb1fd-5703-4224-8a60-d1ece41aaf1b
+    m_ActionName: Default/Run[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 667c014a-60ff-4d5c-a299-797fa4be75d4
+    m_ActionName: Console/ShowConsole[/Keyboard/backquote]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1bf0e21f-ca97-45e3-be8d-1199e1566d07
+    m_ActionName: Console/CommandHistory[/Keyboard/upArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: Default
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8324841120243778145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402599577070806599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9bc86589d947219b4ca1a9a1f8a048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showConsole: {fileID: 11400000, guid: 17650460fd0eddf47a8766be5f6993d3, type: 2}
+  moveValue: {fileID: 11400000, guid: e6f568a8763aad24895fe73b56d77cee, type: 2}
+  isRunning: {fileID: 11400000, guid: 465da39f457c289488fe3acdff34e32d, type: 2}
 --- !u!114 &3172067139826939402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,12 +200,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f139f107cabde564ab275f48e707683a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMoving: 0
+  canMove: {fileID: 11400000, guid: 35b846d0996288b44a4c12697dd879f5, type: 2}
+  isRunning: {fileID: 11400000, guid: 465da39f457c289488fe3acdff34e32d, type: 2}
+  direction: {fileID: 11400000, guid: e6f568a8763aad24895fe73b56d77cee, type: 2}
   speed: 0.5
-  movement: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0}
-  rb: {fileID: 0}
-  boxCollider: {fileID: 0}
+  runSpeedMultiplier: 1
+  rigidBody: {fileID: 0}
+  movementValue: {x: 0, y: 0, z: 0}
+--- !u!212 &764865421478394117
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402599577070806599}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.64, y: 0.64}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &9145091639768069329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -210,9 +329,3 @@ PrefabInstance:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -8435245712485981826, guid: a2051b8b3742acb48bfef712621ab295,
     type: 3}
---- !u!4 &1422119038900587484 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7878350319992209165, guid: a2051b8b3742acb48bfef712621ab295,
-    type: 3}
-  m_PrefabInstance: {fileID: 9145091639768069329}
-  m_PrefabAsset: {fileID: 0}

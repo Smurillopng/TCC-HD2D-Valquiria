@@ -1571,6 +1571,9 @@ MonoBehaviour:
   healthbarFill: 62
   healthbarFilImage: {fileID: 123717955}
   healthText: {fileID: 2047905164}
+  playerDirector: {fileID: 6120526187047363626}
+  basicAttackTimeline: {fileID: 11400000, guid: f2db776eae8ecb642a6cf918e665a812,
+    type: 2}
 --- !u!114 &948602002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2642,8 +2645,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.110378265, y: 0.030863423, z: -0.0034292692, w: 0.99340445}
-  m_LocalPosition: {x: -961.1788, y: -138.79498, z: -6.4592094}
+  m_LocalRotation: {x: 0.11037823, y: 0.030872054, z: -0.0034302282, w: 0.99340415}
+  m_LocalPosition: {x: -960.73, y: -139.15997, z: -4}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:

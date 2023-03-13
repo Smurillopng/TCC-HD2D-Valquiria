@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TCCHD2D/Design/Scenes/Main Menu.unity
+    path: Assets/TCCHD2D/Design/Scenes/scn_mainMenu.unity
     guid: 2bcaec30a8a5a4249816ce521daa74e1
   - enabled: 1
-    path: Assets/TCCHD2D/Design/Scenes/Options Menu.unity
+    path: Assets/TCCHD2D/Design/Scenes/scn_optionsMenu.unity
     guid: eeadf36ba4655e849ae50cf4ed10d08f
   - enabled: 1
-    path: Assets/TCCHD2D/Design/Scenes/Main.unity
+    path: Assets/TCCHD2D/Design/Scenes/scn_game.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/TCCHD2D/Design/Scenes/Combat.unity
+    path: Assets/TCCHD2D/Design/Scenes/scn_combat.unity
     guid: bd14d6e9021cd3446b5714b44331bf4e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 07ecd0aa6c0d4334e868a06370f06769,

@@ -67,26 +67,20 @@ public class OptionsMenuManager : MonoBehaviour
         _resolutions = Screen.resolutions;
         var resolutionOptions = new List<string>();
         var currentResolutionIndex = 0;
-        
+
         // Supported aspect ratios and refresh rates
         float[] aspectRatios = { 16f / 9f, 16f / 10f, 4f / 3f };
-        int[] refreshRates = { 60, 144, 240};
-        
+
         foreach (var resolution in _resolutions)
         {
-            if (Array.Exists(refreshRates, rate => rate == resolution.refreshRate) &&
-                Array.Exists(aspectRatios, ratio => Mathf.Approximately(ratio, (float)resolution.width / resolution.height)))
-            {
-                var option = $"{resolution.width}x{resolution.height} ({resolution.refreshRate}Hz)";
-                resolutionOptions.Add(option);
-
-                if (resolution.width == Screen.currentResolution.width &&
-                    resolution.height == Screen.currentResolution.height)
-                    currentResolutionIndex = resolutionDropdown.options.Count;
-            }
+            if (!Array.Exists(aspectRatios,
+                    ratio => Mathf.Approximately(ratio, (float)resolution.width / resolution.height))) continue;
+            var option = $"{resolution.width}x{resolution.height} @ {resolution.refreshRate}Hz";
+            resolutionOptions.Add(option);
         }
         
         resolutionDropdown.AddOptions(resolutionOptions);
+        currentResolutionIndex = resolutionOptions.Count - 1;
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
@@ -166,10 +160,8 @@ public class OptionsMenuManager : MonoBehaviour
     public void SetResolution()
     {
         var resolution = _resolutions[resolutionDropdown.value];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen, resolution.refreshRate);
-        PlayerPrefs.SetInt("ResolutionWidth", resolution.width);
-        PlayerPrefs.SetInt("ResolutionHeight", resolution.height);
-        PlayerPrefs.SetInt("ResolutionRefreshRate", resolution.refreshRate);
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        PlayerPrefs.SetInt("Resolution", resolutionDropdown.value);
     }
     
     /// <summary>

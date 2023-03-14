@@ -1,8 +1,10 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 13/03/2023
 
+using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -22,6 +24,10 @@ public class UnitController : MonoBehaviour
     private PlayableAsset useItem;
     [SerializeField]
     private PlayableAsset run;
+    [SerializeField]
+    private Animator unitDamageTextAnimator;
+    [SerializeField]
+    private TMP_Text unitDamageText;
     
     public Unit Unit => unit;
     public PlayableDirector UnitDirector => unitDirector;
@@ -58,13 +64,25 @@ public class UnitController : MonoBehaviour
 
         // Subtract damage from health
         unit.CurrentHp -= damageTaken;
+        
+        // Show damage text
+        StartCoroutine(DisplayDamageText(basicAttack, damageTaken));
 
         // Check if the unit has died
         if (unit.CurrentHp <= 0)
         {
             unit.IsDead = true;
             unit.CurrentHp = 0;
+            // TODO: Play death animation
+            // TODO: End the combat
         }
+    }
+    
+    public IEnumerator DisplayDamageText(PlayableAsset action, int damage)
+    {
+        yield return new WaitForSeconds((float)action.duration/4);
+        unitDamageText.text = damage.ToString();
+        unitDamageTextAnimator.SetTrigger(unit.IsPlayer ? "PlayerTookDamage" : "EnemyTookDamage");
     }
     
     public void SpecialAction(int index, UnitController target)

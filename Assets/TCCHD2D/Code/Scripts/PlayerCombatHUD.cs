@@ -16,11 +16,17 @@ public class PlayerCombatHUD : MonoBehaviour
     private GameObject player;
 
     [SerializeField]
-    private Image healthbarFilImage;
+    private Image playerHelthbarFill;
 
     [SerializeField]
-    private TMP_Text healthText;
+    private TMP_Text playerHealthText;
 
+    [SerializeField]
+    private Image enemyHelthbarFill;
+
+    [SerializeField]
+    private TMP_Text enemyHealthText;
+    
     [SerializeField] 
     private GameObject playerUnit;
     
@@ -37,13 +43,17 @@ public class PlayerCombatHUD : MonoBehaviour
         _playerUnitController = playerUnit.GetComponent<UnitController>();
         _enemyUnitController = enemyUnit.GetComponent<UnitController>();
         
-        healthText.text = $"{_playerUnitController.Unit.CurrentHp} / {_playerUnitController.Unit.MaxHp}";
+        playerHealthText.text = $"{_playerUnitController.Unit.CurrentHp} / {_playerUnitController.Unit.MaxHp}";
+        enemyHealthText.text = $"{_enemyUnitController.Unit.CurrentHp} / {_enemyUnitController.Unit.MaxHp}";
     }
 
     private void Update()
     {
-        healthText.text = $"{_playerUnitController.Unit.CurrentHp} / {_playerUnitController.Unit.MaxHp}";
-        healthbarFilImage.fillAmount = (float)_playerUnitController.Unit.CurrentHp / _playerUnitController.Unit.MaxHp;
+        playerHealthText.text = $"{_playerUnitController.Unit.CurrentHp} / {_playerUnitController.Unit.MaxHp}";
+        playerHelthbarFill.fillAmount = (float)_playerUnitController.Unit.CurrentHp / _playerUnitController.Unit.MaxHp;
+        
+        enemyHealthText.text = $"{_enemyUnitController.Unit.CurrentHp} / {_enemyUnitController.Unit.MaxHp}";
+        enemyHelthbarFill.fillAmount = (float)_enemyUnitController.Unit.CurrentHp / _enemyUnitController.Unit.MaxHp;
     }
 
     public void Attack()

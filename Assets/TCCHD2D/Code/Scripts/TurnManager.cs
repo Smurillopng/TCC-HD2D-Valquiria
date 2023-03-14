@@ -32,7 +32,7 @@ public class TurnManager : MonoBehaviour
     private void Update()
     {
         // Check if the current unit is dead or has already taken a turn
-        while (units[currentUnitIndex].Unit.IsDead || units[currentUnitIndex].Unit.HasTakenTurn)
+        if (units[currentUnitIndex].Unit.IsDead || units[currentUnitIndex].Unit.HasTakenTurn)
         {
             currentUnitIndex++;
             if (currentUnitIndex >= units.Count)

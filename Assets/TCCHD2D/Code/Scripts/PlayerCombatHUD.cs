@@ -16,39 +16,41 @@ public class PlayerCombatHUD : MonoBehaviour
     private GameObject player;
 
     [SerializeField]
-    private int maxHealth;
-
-    [SerializeField]
-    private int healthbarFill;
-
-    [SerializeField]
     private Image healthbarFilImage;
 
     [SerializeField]
     private TMP_Text healthText;
 
+    [SerializeField] 
+    private GameObject playerUnit;
+    
     [SerializeField]
-    private PlayableDirector playerDirector;
-
-    [SerializeField]
-    private PlayableAsset basicAttackTimeline;
+    private GameObject enemyUnit;
+    
+    private UnitController _playerUnitController;
+    private UnitController _enemyUnitController;
 
     private void Awake()
     {
-        healthText.text = $"{healthbarFill} / {maxHealth}";
+        if (playerUnit == null) playerUnit = GameObject.FindGameObjectWithTag("Player");
+        if (enemyUnit == null) enemyUnit = GameObject.FindGameObjectWithTag("Enemy");
+        _playerUnitController = playerUnit.GetComponent<UnitController>();
+        _enemyUnitController = enemyUnit.GetComponent<UnitController>();
+        
+        healthText.text = $"{_playerUnitController.Unit.CurrentHp} / {_playerUnitController.Unit.MaxHp}";
     }
 
     private void Update()
     {
-        healthText.text = $"{healthbarFill} / {maxHealth}";
-        healthbarFilImage.fillAmount = (float)healthbarFill / maxHealth;
-
+        healthText.text = $"{_playerUnitController.Unit.CurrentHp} / {_playerUnitController.Unit.MaxHp}";
+        healthbarFilImage.fillAmount = (float)_playerUnitController.Unit.CurrentHp / _playerUnitController.Unit.MaxHp;
     }
 
     public void Attack()
     {
-        Debug.Log("<b>Pressed <color=red>Attack</color> button</b>");
-        playerDirector.Play(basicAttackTimeline);
+        Debug.Log("<b>Pressed <color=red>Attack</color> button</b>"); 
+        _playerUnitController.UnitDirector.Play(_playerUnitController.BasicAttack);
+        _playerUnitController.AttackAction(_enemyUnitController);
     }
 
     public void Special()

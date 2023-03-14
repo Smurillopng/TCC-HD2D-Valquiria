@@ -9,14 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c28ad184b8ab45bf88b444c39c7ffab0, type: 3}
-  m_Name: playerAttributesData
+  m_Script: {fileID: 11500000, guid: d458961d4a2d44cca4f0fcac8a363c99, type: 3}
+  m_Name: so_player
   m_EditorClassIdentifier: 
+  unitName: Player
+  unitSprite: {fileID: -8831790543141067221, guid: a2051b8b3742acb48bfef712621ab295,
+    type: 3}
   level: 1
-  health: 1
+  maxHp: 10
+  currentHp: 10
   attack: 1
   defence: 1
   speed: 1
   luck: 1
   dexterity: 1
   experience: 0
+  isPlayer: 1
+  isDead: 0
+  hasTakenTurn: 0

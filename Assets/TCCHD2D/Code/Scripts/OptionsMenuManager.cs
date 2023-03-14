@@ -17,7 +17,27 @@ public class OptionsMenuManager : MonoBehaviour
 {
     [BoxGroup("Audio Settings")]
     [SerializeField] 
-    private AudioMixer audioMixer;
+    private AudioMixerGroup masterMixer;
+    
+    [BoxGroup("Audio Settings")]
+    [SerializeField]
+    private Slider masterVolumeSlider;
+    
+    [BoxGroup("Audio Settings")]
+    [SerializeField] 
+    private AudioMixerGroup musicMixer;
+    
+    [BoxGroup("Audio Settings")]
+    [SerializeField]
+    private Slider musicVolumeSlider;
+    
+    [BoxGroup("Audio Settings")]
+    [SerializeField] 
+    private AudioMixerGroup sfxMixer;
+    
+    [BoxGroup("Audio Settings")]
+    [SerializeField]
+    private Slider sfxVolumeSlider;
     
     [BoxGroup("Graphics Settings")]
     [SerializeField] 
@@ -25,11 +45,7 @@ public class OptionsMenuManager : MonoBehaviour
     
     [BoxGroup("Graphics Settings")]
     [SerializeField] 
-    private Toggle fullscreenToggle;
-    
-    [BoxGroup("Audio Settings")]
-    [SerializeField]
-    private Slider volumeSlider;
+    private TMP_Dropdown screenDropdown;
     
     [BoxGroup("Graphics Settings")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
@@ -44,13 +60,13 @@ public class OptionsMenuManager : MonoBehaviour
         resolutionDropdown.ClearOptions();
 
         // Populate quality dropdown with available quality levels
-        string[] qualityLevels = QualitySettings.names;
+        var qualityLevels = QualitySettings.names;
         qualityDropdown.AddOptions(new List<string>(qualityLevels));
 
         // Populate resolution dropdown with available resolutions
         _resolutions = Screen.resolutions;
-        List<string> resolutionOptions = new List<string>();
-        int currentResolutionIndex = 0;
+        var resolutionOptions = new List<string>();
+        var currentResolutionIndex = 0;
         
         // Supported aspect ratios and refresh rates
         float[] aspectRatios = { 16f / 9f, 16f / 10f, 4f / 3f };
@@ -61,14 +77,12 @@ public class OptionsMenuManager : MonoBehaviour
             if (Array.Exists(refreshRates, rate => rate == resolution.refreshRate) &&
                 Array.Exists(aspectRatios, ratio => Mathf.Approximately(ratio, (float)resolution.width / resolution.height)))
             {
-                string option = $"{resolution.width}x{resolution.height} ({resolution.refreshRate}Hz)";
+                var option = $"{resolution.width}x{resolution.height} ({resolution.refreshRate}Hz)";
                 resolutionOptions.Add(option);
 
                 if (resolution.width == Screen.currentResolution.width &&
                     resolution.height == Screen.currentResolution.height)
-                {
                     currentResolutionIndex = resolutionDropdown.options.Count;
-                }
             }
         }
         
@@ -78,9 +92,13 @@ public class OptionsMenuManager : MonoBehaviour
 
         // Set initial values for quality, fullscreen, volume, and resolution
         qualityDropdown.value = PlayerPrefs.GetInt("Quality", 3);
-        fullscreenToggle.isOn = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
-        volumeSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        audioMixer.SetFloat("MasterVolume", Mathf.Log10(PlayerPrefs.GetFloat("MasterVolume", 0.75f)) * 20f);
+        screenDropdown.value = PlayerPrefs.GetInt("Fullscreen", 0);
+        masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1f);
+        musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        sfxVolumeSlider.value = PlayerPrefs.GetFloat("SfxVolume", 1f);
+        masterMixer.audioMixer.SetFloat("MasterVolume", Mathf.Log10(PlayerPrefs.GetFloat("MasterVolume", 0.75f)) * 20f);
+        musicMixer.audioMixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume", 0.75f)) * 20f);
+        sfxMixer.audioMixer.SetFloat("SfxVolume", Mathf.Log10(PlayerPrefs.GetFloat("SfxVolume", 0.75f)) * 20f);
         resolutionDropdown.value = PlayerPrefs.GetInt("Resolution", currentResolutionIndex);
     }
 
@@ -89,8 +107,26 @@ public class OptionsMenuManager : MonoBehaviour
     /// </summary>
     public void SetMasterVolume()
     {
-        audioMixer.SetFloat("MasterVolume", Mathf.Log10(volumeSlider.value) * 20f);
-        PlayerPrefs.SetFloat("MasterVolume", volumeSlider.value);
+        masterMixer.audioMixer.SetFloat("MasterVolume", Mathf.Log10(masterVolumeSlider.value) * 20f);
+        PlayerPrefs.SetFloat("MasterVolume", masterVolumeSlider.value);
+    }
+    
+    /// <summary>
+    /// Sets the music volume of the game and saves it to PlayerPrefs.
+    /// </summary>
+    public void SetMusicVolume()
+    {
+        musicMixer.audioMixer.SetFloat("MusicVolume", Mathf.Log10(musicVolumeSlider.value) * 20f);
+        PlayerPrefs.SetFloat("MusicVolume", musicVolumeSlider.value);
+    }
+
+    /// <summary>
+    /// Sets the sfx volume of the game and saves it to PlayerPrefs.
+    /// </summary>
+    public void SetSfxVolume()
+    {
+        sfxMixer.audioMixer.SetFloat("SfxVolume", Mathf.Log10(sfxVolumeSlider.value) * 20f);
+        PlayerPrefs.SetFloat("SfxVolume", sfxVolumeSlider.value);
     }
 
     /// <summary>
@@ -107,8 +143,21 @@ public class OptionsMenuManager : MonoBehaviour
     /// </summary>
     public void SetFullscreen()
     {
-        Screen.fullScreen = fullscreenToggle.isOn;
-        PlayerPrefs.SetInt("Fullscreen", fullscreenToggle.isOn ? 1 : 0);
+        switch (screenDropdown.value)
+        {
+            case 0:
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                PlayerPrefs.SetInt("Fullscreen", 0);
+                break;
+            case 1:
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+                PlayerPrefs.SetInt("Fullscreen", 1);
+                break;
+            case 2:
+                Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+                PlayerPrefs.SetInt("Fullscreen", 2);
+                break;
+        }
     }
 
     /// <summary>

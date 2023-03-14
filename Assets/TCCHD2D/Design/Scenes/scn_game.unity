@@ -812,7 +812,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.11043154, y: 0.000000004275286, z: -4.7503174e-10, w: 0.9938837}
+  m_LocalRotation: {x: 0.11043153, y: -0.000000004275286, z: 4.7503174e-10, w: 0.9938837}
   m_LocalPosition: {x: -0.23, y: 0.84000003, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1980,7 +1980,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438256427}
-  m_LocalRotation: {x: 0.11043154, y: 0.000000004275286, z: -4.7503174e-10, w: 0.9938837}
+  m_LocalRotation: {x: 0.11043153, y: -0.000000004275286, z: 4.7503174e-10, w: 0.9938837}
   m_LocalPosition: {x: 0, y: 1, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2930,7 +2930,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Combat
+          m_StringArgument: scn_combat
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1982424488
@@ -3321,7 +3321,6 @@ GameObject:
   - component: {fileID: 6120526187047363625}
   - component: {fileID: 712914217195419474}
   - component: {fileID: 3172067138290555082}
-  - component: {fileID: 6120526187047363626}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3418,19 +3417,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6120526187047363626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4402599576473323655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dba0bb8b43494e8afd35d008d91eaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attributesData: {fileID: 11400000, guid: d7ea3c57dfdefb543b0fcf270125cfb6, type: 2}
 --- !u!212 &6976687447259235824
 SpriteRenderer:
   m_ObjectHideFlags: 0

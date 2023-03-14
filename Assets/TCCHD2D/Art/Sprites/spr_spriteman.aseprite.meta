@@ -1,0 +1,331 @@
+fileFormatVersion: 2
+guid: 993d1cd5b19fdd141b3328f55fa8a55a
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMasterTextureLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    importHiddenLayers: 0
+    layerImportMode: 0
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    importHiddenLayers: 0
+    layerImportMode: 0
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  multiSpriteImportData:
+  - name: Pele_0
+    originalName: 
+    pivot: {x: 0.5, y: -0.0925926}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 67
+      width: 48
+      height: 54
+    spriteID: 4cb62000d7c3beb439a9887289cc351f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 67}
+  - name: Pele_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.07272727}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 50
+      height: 55
+    spriteID: 7139161b949018242a96ea15eae9adcd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Pele_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.07272727}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 62
+      y: 4
+      width: 50
+      height: 55
+    spriteID: 9da81c322a2c1b24c920833de8664a7d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 62, y: 4}
+  - name: olho_0
+    originalName: 
+    pivot: {x: 0.5, y: -10.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 80
+      y: 101
+      width: 42
+      height: 2
+    spriteID: 49769f1d1a5dd244ebc62946de1ab5bc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 80, y: 101}
+  - name: olho_1
+    originalName: 
+    pivot: {x: 0.5, y: -1.4444444}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 67
+      width: 42
+      height: 9
+    spriteID: 49565a708f6379046a2b2c9ab1a8dd32
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 67}
+  - name: olho_2
+    originalName: 
+    pivot: {x: 0.5, y: -1.4444444}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 84
+      width: 42
+      height: 9
+    spriteID: 8e034e7498f0379409370f60b83daa64
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 84}
+  - name: detalhes
+    originalName: 
+    pivot: {x: 0.5, y: -0.21739131}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 101
+      width: 12
+      height: 23
+    spriteID: a95f2ebce6518cf4cb7a1b7ebcc2d58d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 101}
+  asepriteLayers:
+  - layerIndex: 0
+    name: Pele
+    layerFlags: 3
+    layerType: 0
+    cells:
+    - name: Pele_0
+      frameIndex: 0
+      cellRect:
+        x: 8
+        y: 5
+        width: 48
+        height: 54
+      spriteId: 4cb62000d7c3beb439a9887289cc351f
+    - name: Pele_1
+      frameIndex: 1
+      cellRect:
+        x: 7
+        y: 4
+        width: 50
+        height: 55
+      spriteId: 7139161b949018242a96ea15eae9adcd
+    - name: Pele_2
+      frameIndex: 2
+      cellRect:
+        x: 7
+        y: 4
+        width: 50
+        height: 55
+      spriteId: 9da81c322a2c1b24c920833de8664a7d
+    linkedCells: []
+  - layerIndex: 1
+    name: olho
+    layerFlags: 3
+    layerType: 0
+    cells:
+    - name: olho_0
+      frameIndex: 0
+      cellRect:
+        x: 11
+        y: 21
+        width: 42
+        height: 2
+      spriteId: 49769f1d1a5dd244ebc62946de1ab5bc
+    - name: olho_1
+      frameIndex: 1
+      cellRect:
+        x: 11
+        y: 13
+        width: 42
+        height: 9
+      spriteId: 49565a708f6379046a2b2c9ab1a8dd32
+    - name: olho_2
+      frameIndex: 2
+      cellRect:
+        x: 11
+        y: 13
+        width: 42
+        height: 9
+      spriteId: 8e034e7498f0379409370f60b83daa64
+    linkedCells: []
+  - layerIndex: 2
+    name: detalhes
+    layerFlags: 3
+    layerType: 0
+    cells:
+    - name: detalhes
+      frameIndex: 0
+      cellRect:
+        x: 26
+        y: 5
+        width: 12
+        height: 23
+      spriteId: a95f2ebce6518cf4cb7a1b7ebcc2d58d
+    linkedCells: []
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 

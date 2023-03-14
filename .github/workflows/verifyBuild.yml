@@ -1,4 +1,4 @@
-name: DevBuild
+name: Pull Request DevBuild
 
 on: [pull_request]
 

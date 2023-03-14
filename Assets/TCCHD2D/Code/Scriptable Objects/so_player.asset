@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d458961d4a2d44cca4f0fcac8a363c99, type: 3}
+  m_Name: so_player
+  m_EditorClassIdentifier: 
+  unitName: Player
+  unitSprite: {fileID: -8831790543141067221, guid: a2051b8b3742acb48bfef712621ab295,
+    type: 3}
+  level: 1
+  maxHp: 10
+  currentHp: 10
+  attack: 1
+  defence: 1
+  speed: 1
+  luck: 1
+  dexterity: 1
+  experience: 0
+  isPlayer: 1
+  isDead: 0
+  hasTakenTurn: 0

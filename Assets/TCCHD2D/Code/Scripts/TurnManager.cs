@@ -27,6 +27,8 @@ public class TurnManager : MonoBehaviour
 
         // Sort the units by speed, so the fastest goes first
         units.Sort((a, b) => b.Unit.Speed.CompareTo(a.Unit.Speed));
+
+        PlayerCombatHUD.takenAction += TakeAction;
     }
 
     private void Update()
@@ -44,29 +46,45 @@ public class TurnManager : MonoBehaviour
 
         // Set the current unit and wait for input
         var currentUnit = units[currentUnitIndex];
-        if (currentUnit.Unit.IsPlayer)
+        if (currentUnit.Unit.IsPlayer && currentUnit.Unit.HasTakenTurn == false)
         {
             // Wait for the player to select an action
             // This could be done using Unity's UI system or by using keyboard/mouse input
         }
-        else
+        else if (currentUnit.Unit.IsPlayer == false && currentUnit.Unit.HasTakenTurn == false)
         {
             // Use the AI system to select an action for the enemy
-            currentUnit.SelectAction();
-        }
+            currentUnit.SelectAction(units[currentUnitIndex - 1]);
 
-        // Set the current unit's turn flag
-        currentUnit.Unit.HasTakenTurn = true;
+            PlayerCombatHUD.takenAction?.Invoke();
+        }
 
         // Check if all units have taken a turn
         if (units.All(unit => unit.Unit.HasTakenTurn))
         {
             // Reset the turn flags for all units and start over from the beginning
             foreach (var unit in units)
-            {
                 unit.Unit.HasTakenTurn = false;
-            }
             currentUnitIndex = 0;
         }
     }
+
+    public void TakeAction()
+    {
+        units[currentUnitIndex].Unit.HasTakenTurn = true;
+    }
+
+    private void OnDisable()
+    {
+        foreach (var unit in units)
+            unit.Unit.HasTakenTurn = false;
+        PlayerCombatHUD.takenAction -= TakeAction;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerCombatHUD.takenAction -= TakeAction;
+    }
+
+
 }

@@ -2,6 +2,7 @@
 // Date: 08/03/2023
 
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -23,6 +24,15 @@ public class PlayerCombatHUD : MonoBehaviour
 
     [SerializeField]
     private TMP_Text playerHealthText;
+    
+    [SerializeField]
+    private Image playerTpbarFill;
+
+    [SerializeField]
+    private TMP_Text playerTpText;
+
+    [SerializeField]
+    private TMP_Text enemyName;
 
     [SerializeField]
     private Image enemyHelthbarFill;
@@ -35,6 +45,12 @@ public class PlayerCombatHUD : MonoBehaviour
 
     [SerializeField]
     private UnitController enemyUnitController;
+
+    [SerializeField]
+    private TMP_Text combatTextBox;
+
+    [SerializeField] 
+    private float combatTextTimer;
 
     [TitleGroup("Buttons")]
     [SerializeField]
@@ -53,10 +69,16 @@ public class PlayerCombatHUD : MonoBehaviour
 
     private void Start()
     {
-        playerHealthText.text = $"{playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
+        playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
         playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
-        enemyHealthText.text = $"{enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
+        playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
+        playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
+        enemyHealthText.text = $"HP: {enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
         enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
+        enemyName.text = $"{enemyUnitController.Unit.UnitName}:";
+        playerUnitController.Unit.CurrentTp = 0;
+        combatTextBox.text = "";
+        UpdatePlayerTp();
     }
 
     private void Update()
@@ -94,26 +116,49 @@ public class PlayerCombatHUD : MonoBehaviour
             enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
         }
     }
+    
+    public void UpdatePlayerTp()
+    {
+        if (playerTpText != null && playerTpbarFill != null)
+        {
+            playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
+            playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
+        }
+    }
 
     public void Attack()
     {
-        Debug.Log("<b>Pressed <color=red>Attack</color> button</b>");
         playerUnitController.AttackAction(enemyUnitController);
+        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp)
+        {
+            playerUnitController.Unit.CurrentTp += 10;
+            UpdatePlayerTp();
+        }
+        StartCoroutine(DisplayCombatText($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{playerUnitController.Unit.Attack}</color> damage</b>"));
         takenAction.Invoke();
     }
 
     public void Special()
     {
-        Debug.Log("<b>Pressed  <color=magenta>Special</color> button</b>");
-        //playerUnitController.UnitDirector.Play(playerUnitController.SpecialAttacks[0]);
-        playerUnitController.HealSpecialAction(playerUnitController);
-        UpdatePlayerHealth();
-        takenAction.Invoke();
+        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp/2)
+        {
+            StartCoroutine(DisplayCombatText("<color=red>Not enough TP</color>"));
+        }
+        else
+        {
+            //playerUnitController.UnitDirector.Play(playerUnitController.SpecialAttacks[0]);
+            playerUnitController.HealSpecialAction(playerUnitController);
+            UpdatePlayerHealth();
+            playerUnitController.Unit.CurrentTp -= 50;
+            UpdatePlayerTp();
+            StartCoroutine(DisplayCombatText($"Healed <color=green>{playerUnitController.Unit.Attack}</color> HP"));
+            takenAction.Invoke();
+        }
     }
 
     public void Item()
     {
-        Debug.Log("<b>Pressed  <color=cyan>Item</color> button</b>");
+        StartCoroutine(DisplayCombatText("<b>PLACEHOLDER: Pressed <color=cyan>Item</color> button</b>"));
         //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
         takenAction.Invoke();
     }
@@ -127,13 +172,20 @@ public class PlayerCombatHUD : MonoBehaviour
         {
             //playerUnitController.UnitDirector.Play(playerUnitController.Run);
             SceneManager.LoadScene("scn_game");
-            Debug.Log($"<b>Pressed <color=green>Run</color> button</b> | Run away <color=green>successfully</color>");
+            StartCoroutine(DisplayCombatText("Run away <color=green>successfully</color>"));
             takenAction.Invoke();
         }
         else
         {
-            Debug.Log($"<b>Pressed <color=green>Run</color> button</b> | Run away <color=red>unsuccessfully</color>");
+            StartCoroutine(DisplayCombatText("Run away <color=red>unsuccessfully</color>"));
             takenAction.Invoke();
         }
+    }
+    
+    public IEnumerator DisplayCombatText(string text)
+    {
+        combatTextBox.text = text;
+        yield return new WaitForSeconds(combatTextTimer);
+        combatTextBox.text = "";
     }
 }

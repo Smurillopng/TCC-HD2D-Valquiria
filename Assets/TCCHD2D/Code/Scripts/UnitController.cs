@@ -28,6 +28,8 @@ public class UnitController : MonoBehaviour
     private Animator unitDamageTextAnimator;
     [SerializeField]
     private TMP_Text unitDamageText;
+
+    private int damageTaken;
     
     public Unit Unit => unit;
     public PlayableDirector UnitDirector => unitDirector;
@@ -40,7 +42,10 @@ public class UnitController : MonoBehaviour
     {
         // Set the current HP to the maximum
         if (unit.IsPlayer == false)
+        {
+            unit.IsDead = false;
             unit.CurrentHp = unit.MaxHp;
+        }
         else
         {
             if (unit.IsDead == false && unit.CurrentHp == 0)
@@ -60,13 +65,10 @@ public class UnitController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         // Calculate damage taken based on defense
-        var damageTaken = Mathf.Max(1, damage - unit.Defence);
+        damageTaken = Mathf.Max(1, damage - unit.Defence);
 
         // Subtract damage from health
         unit.CurrentHp -= damageTaken;
-        
-        // Show damage text
-        StartCoroutine(DisplayDamageText(basicAttack, damageTaken));
 
         // Check if the unit has died
         if (unit.CurrentHp <= 0)
@@ -77,11 +79,10 @@ public class UnitController : MonoBehaviour
             // TODO: End the combat
         }
     }
-    
-    public IEnumerator DisplayDamageText(PlayableAsset action, int damage)
+
+    public void DisplayDamageText()
     {
-        yield return new WaitForSeconds((float)action.duration/4);
-        unitDamageText.text = damage.ToString();
+        unitDamageText.text = damageTaken.ToString();
         unitDamageTextAnimator.SetTrigger(unit.IsPlayer ? "PlayerTookDamage" : "EnemyTookDamage");
     }
     

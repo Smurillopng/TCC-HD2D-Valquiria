@@ -1906,8 +1906,8 @@ MonoBehaviour:
   playerHealthText: {fileID: 2047905164}
   enemyHelthbarFill: {fileID: 1748736403}
   enemyHealthText: {fileID: 1425681689}
-  playerUnit: {fileID: 4402599576473323655}
-  enemyUnit: {fileID: 6969460405494510989}
+  playerUnitController: {fileID: 6120526187047363627}
+  enemyUnitController: {fileID: 7878350319063784937}
 --- !u!114 &948602002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3396,7 +3396,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
   m_LocalRotation: {x: 0.11037823, y: 0.030872054, z: -0.0034302282, w: 0.99340415}
-  m_LocalPosition: {x: -960.73, y: -139.15997, z: -4}
+  m_LocalPosition: {x: -960.23, y: -139.15997, z: -4}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4294,6 +4294,7 @@ GameObject:
   - component: {fileID: 712914217195419474}
   - component: {fileID: 6120526187047363626}
   - component: {fileID: 6120526187047363627}
+  - component: {fileID: 6120526187047363628}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4411,11 +4412,15 @@ PlayableDirector:
     value: {fileID: 7994889600021895129}
   - key: {fileID: 5736568967657122819, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
     value: {fileID: 7994889600021895129}
+  - key: {fileID: 6042635807482915121, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
+    value: {fileID: 7878350319063784938}
   m_ExposedReferences:
     m_References:
     - 2b921bf7fc26dd84ca683ec3b5f60c13: {fileID: 1438256429}
     - 900dfbbf45786ff4a83907dab2895db1: {fileID: 4402599576473323655}
+    - 28a4374735a732d44a99a9c94a6f9c78: {fileID: 4402599576473323655}
     - 14a003d3af0c43c4792e142d4a35becd: {fileID: 1795146298}
+    - a9908c60c087b4947b710ea97b075ba7: {fileID: 6969460405494510989}
 --- !u!114 &6120526187047363627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4436,6 +4441,24 @@ MonoBehaviour:
   run: {fileID: 0}
   unitDamageTextAnimator: {fileID: 191108977}
   unitDamageText: {fileID: 191108978}
+--- !u!114 &6120526187047363628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402599576473323655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: fe9411021eff1f0479c7b90c7a07c607, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &6368111825457228120
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,6 +4487,7 @@ GameObject:
   - component: {fileID: 7878350319063784936}
   - component: {fileID: 1160356262608957229}
   - component: {fileID: 7878350319063784937}
+  - component: {fileID: 7878350319063784938}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -4561,6 +4585,51 @@ MonoBehaviour:
   run: {fileID: 0}
   unitDamageTextAnimator: {fileID: 1703950809}
   unitDamageText: {fileID: 1703950810}
+--- !u!114 &7878350319063784938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969460405494510989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: fe9411021eff1f0479c7b90c7a07c607, type: 2}
+    - {fileID: 11400000, guid: 2ad553a5ec8bb524fb4d89d833a6ea51, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 7878350319063784937}
+          m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
+          m_MethodName: DisplayDamageText
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 948602001}
+          m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
+          m_MethodName: UpdateEnemyHealth
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!95 &7994889600021895129
 Animator:
   serializedVersion: 5

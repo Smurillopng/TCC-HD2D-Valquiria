@@ -812,7 +812,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.11043153, y: -0.000000004275286, z: 4.7503174e-10, w: 0.9938837}
+  m_LocalRotation: {x: 0.11043154, y: 0.000000004275286, z: -4.7503174e-10, w: 0.9938837}
   m_LocalPosition: {x: -0.23, y: 0.84000003, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1980,7 +1980,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438256427}
-  m_LocalRotation: {x: 0.11043153, y: -0.000000004275286, z: 4.7503174e-10, w: 0.9938837}
+  m_LocalRotation: {x: 0.11043154, y: 0.000000004275286, z: -4.7503174e-10, w: 0.9938837}
   m_LocalPosition: {x: 0, y: 1, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2052,7 +2052,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Width: 2
-  m_Damping: 1
+  m_Damping: 0
   m_MinFOV: 3
   m_MaxFOV: 60
 --- !u!114 &1438256432
@@ -3415,7 +3415,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!212 &6976687447259235824
 SpriteRenderer:

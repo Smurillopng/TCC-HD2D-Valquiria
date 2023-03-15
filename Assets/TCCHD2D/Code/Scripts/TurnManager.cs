@@ -1,3 +1,4 @@
+using System.Collections;
 // Created by Sérgio Murillo da Costa Faria
 // Date: 13/03/2023
 
@@ -12,6 +13,8 @@ public class TurnManager : MonoBehaviour
     private List<UnitController> units = new();
     [SerializeField, ReadOnly]
     private int currentUnitIndex;
+    private bool aiMoved;
+    private UnitController _playerUnitController;
 
     private void Start()
     {
@@ -19,6 +22,7 @@ public class TurnManager : MonoBehaviour
         foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
         {
             units.Add(unitObject.GetComponent<UnitController>());
+            _playerUnitController = unitObject.GetComponent<UnitController>();
         }
         foreach (var unitObject in GameObject.FindGameObjectsWithTag("Enemy"))
         {
@@ -46,17 +50,12 @@ public class TurnManager : MonoBehaviour
 
         // Set the current unit and wait for input
         var currentUnit = units[currentUnitIndex];
-        if (currentUnit.Unit.IsPlayer && currentUnit.Unit.HasTakenTurn == false)
-        {
-            // Wait for the player to select an action
-            // This could be done using Unity's UI system or by using keyboard/mouse input
-        }
-        else if (currentUnit.Unit.IsPlayer == false && currentUnit.Unit.HasTakenTurn == false)
+        if (currentUnit.Unit.IsPlayer == false && currentUnit.Unit.HasTakenTurn == false && aiMoved == false)
         {
             // Use the AI system to select an action for the enemy
-            currentUnit.SelectAction(units[currentUnitIndex - 1]);
-
-            PlayerCombatHUD.takenAction?.Invoke();
+            aiMoved = true;
+            currentUnit.SelectAction(_playerUnitController);
+            PlayerCombatHUD.takenAction.Invoke();
         }
 
         // Check if all units have taken a turn
@@ -71,7 +70,15 @@ public class TurnManager : MonoBehaviour
 
     public void TakeAction()
     {
+        StartCoroutine(TurnDelay());
+    }
+
+    private IEnumerator TurnDelay()
+    {
+        yield return new WaitForSeconds((float)units[currentUnitIndex].UnitDirector.duration);
         units[currentUnitIndex].Unit.HasTakenTurn = true;
+        if (units[currentUnitIndex].Unit.IsPlayer == false)
+            aiMoved = false;
     }
 
     private void OnDisable()

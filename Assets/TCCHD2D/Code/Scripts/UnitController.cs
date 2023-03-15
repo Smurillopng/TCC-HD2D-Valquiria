@@ -132,8 +132,9 @@ public class UnitController : MonoBehaviour
     {
         // AI logic for selecting an action goes here
         if (unit.IsPlayer == false)
+        {
+            UnitDirector.Play(basicAttack);
             AttackAction(target);
-        var combatHUD = GameObject.FindWithTag("CombatUI").GetComponent<PlayerCombatHUD>();
-        combatHUD.UpdatePlayerHealth();
+        }
     }
 }

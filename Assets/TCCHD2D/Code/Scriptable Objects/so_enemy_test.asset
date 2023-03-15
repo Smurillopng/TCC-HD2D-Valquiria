@@ -27,5 +27,6 @@ MonoBehaviour:
   luck: 1
   dexterity: 1
   isPlayer: 0
-  isDead: 0
+  isDead: 1
   hasTakenTurn: 0
+  resetOnExit: 1

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Responsible for handling the console window and commands.
@@ -12,7 +13,7 @@ using UnityEngine.InputSystem;
 public class DevConsole : MonoBehaviour
 {
     public static DevConsole Instance { get; private set; }
-    
+
     [SerializeField] private GameObject console;
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TMP_Text textField;
@@ -20,7 +21,7 @@ public class DevConsole : MonoBehaviour
     [SerializeField] private string defaultSymbol = ">";
 
     private GameControls gameControls;
-    
+
     private List<string> commandHistory = new();
     private int currentCommandIndex = -1;
 
@@ -33,7 +34,7 @@ public class DevConsole : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        
+
         gameControls = new GameControls();
         gameControls.Console.ShowConsole.started += CallConsole;
         gameControls.Console.CommandHistory.started += ConsoleHistory;
@@ -48,7 +49,7 @@ public class DevConsole : MonoBehaviour
     /// Enable or disable the console window when the user presses the console button.
     /// </summary>
     /// <param name="ctx"></param>
-    private void CallConsole (InputAction.CallbackContext ctx)
+    private void CallConsole(InputAction.CallbackContext ctx)
     {
         showConsole.Value = !showConsole.Value;
         console.SetActive(showConsole.Value);
@@ -58,7 +59,7 @@ public class DevConsole : MonoBehaviour
     /// Show the previous command in the console history.
     /// </summary>
     /// <param name="ctx"></param>
-    private void ConsoleHistory (InputAction.CallbackContext ctx)
+    private void ConsoleHistory(InputAction.CallbackContext ctx)
     {
         if (!showConsole.Value) return;
         if (currentCommandIndex < commandHistory.Count - 1)
@@ -85,7 +86,7 @@ public class DevConsole : MonoBehaviour
         textField.text = $"{defaultSymbol} {input}\n{textField.text}";
         inputField.text = "";
         ExecuteCommand(input);
-        
+
         // Add the command to the history
         commandHistory.Insert(0, input);
         currentCommandIndex = -1;
@@ -101,7 +102,7 @@ public class DevConsole : MonoBehaviour
         var parts = input.Split(' ');
         var methodName = parts[0];
         var parameters = new object[parts.Length - 1];
-        
+
         for (int i = 1; i < parts.Length; i++)
         {
             var parameter = parts[i];
@@ -116,9 +117,9 @@ public class DevConsole : MonoBehaviour
         else
             textField.text = $"Method '{methodName}' not found.\n{textField.text}";
     }
-    
+
     // --- Cheat commands ----------------------------------------------------------
-    
+
     public void Clear()
     {
         textField.text = "";
@@ -133,5 +134,17 @@ public class DevConsole : MonoBehaviour
     {
         Time.timeScale = timeScale;
         textField.text = $"Time scale set to {timeScale}.\n{textField.text}";
+    }
+
+    public void Heal(float healAmount)
+    {
+        var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
+        player.Unit.CurrentHp += (int)healAmount;
+        if (SceneManager.GetActiveScene().name == "scn_combat")
+        {
+            var combatCanvas = GameObject.FindWithTag("CombatUI").GetComponent<PlayerCombatHUD>();
+            combatCanvas.UpdatePlayerHealth();
+        }
+        textField.text = $"Player healed by {healAmount}.\n{textField.text}";
     }
 }

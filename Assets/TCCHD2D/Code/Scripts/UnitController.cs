@@ -11,7 +11,7 @@ using UnityEngine.Playables;
 public class UnitController : MonoBehaviour
 {
     //Stats
-    [SerializeField, InlineEditor] 
+    [SerializeField, InlineEditor]
     private Unit unit;
     //Actions
     [SerializeField]
@@ -30,14 +30,14 @@ public class UnitController : MonoBehaviour
     private TMP_Text unitDamageText;
 
     private int damageTaken;
-    
+
     public Unit Unit => unit;
     public PlayableDirector UnitDirector => unitDirector;
     public PlayableAsset BasicAttack => basicAttack;
     public List<PlayableAsset> SpecialAttacks => specialAttacks;
     public PlayableAsset UseItem => useItem;
     public PlayableAsset Run => run;
-    
+
     public void Start()
     {
         // Set the current HP to the maximum
@@ -48,8 +48,15 @@ public class UnitController : MonoBehaviour
         }
         else
         {
+            if (unit.CurrentHp == unit.MaxHp && unit.IsDead == true)
+                unit.IsDead = false;
             if (unit.IsDead == false && unit.CurrentHp == 0)
                 unit.CurrentHp = unit.MaxHp;
+            if (unit.IsDead == true && unit.CurrentHp == 0)
+            {
+                unit.CurrentHp = unit.MaxHp;
+                unit.IsDead = false;
+            }
         }
     }
 
@@ -61,7 +68,7 @@ public class UnitController : MonoBehaviour
         // Apply damage to target
         target.TakeDamage(damage);
     }
-    
+
     public void TakeDamage(int damage)
     {
         // Calculate damage taken based on defense
@@ -80,12 +87,21 @@ public class UnitController : MonoBehaviour
         }
     }
 
+    public void HealSpecialAction(UnitController target)
+    {
+        // Calculate heal based on strength
+        var heal = unit.Attack;
+
+        // Apply heal to target
+        target.Unit.CurrentHp += heal;
+    }
+
     public void DisplayDamageText()
     {
         unitDamageText.text = damageTaken.ToString();
         unitDamageTextAnimator.SetTrigger(unit.IsPlayer ? "PlayerTookDamage" : "EnemyTookDamage");
     }
-    
+
     public void SpecialAction(int index, UnitController target)
     {
         var damage = unit.Attack;
@@ -93,7 +109,7 @@ public class UnitController : MonoBehaviour
         // Apply damage to target
         target.TakeDamage(damage);
     }
-    
+
     public void UseItemAction()
     {
         // AI logic for using an item goes here
@@ -102,7 +118,7 @@ public class UnitController : MonoBehaviour
             //
         }
     }
-    
+
     public void RunAction()
     {
         // AI logic for running away goes here
@@ -112,12 +128,12 @@ public class UnitController : MonoBehaviour
         }
     }
 
-    public void SelectAction()
+    public void SelectAction(UnitController target)
     {
         // AI logic for selecting an action goes here
         if (unit.IsPlayer == false)
-        {
-            //
-        }
+            AttackAction(target);
+        var combatHUD = GameObject.FindWithTag("CombatUI").GetComponent<PlayerCombatHUD>();
+        combatHUD.UpdatePlayerHealth();
     }
 }

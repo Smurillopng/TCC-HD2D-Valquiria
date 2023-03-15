@@ -23,10 +23,10 @@ MonoBehaviour:
   currentTp: 0
   attack: 1
   defence: 1
-  speed: 1
+  speed: 2
   luck: 1
   dexterity: 1
   isPlayer: 1
   resetOnExit: 0
-  isDead: 1
+  isDead: 0
   hasTakenTurn: 0

@@ -57,13 +57,11 @@ public class PlayerCombatHUD : MonoBehaviour
         playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
         enemyHealthText.text = $"{enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
         enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
-
-        takenAction += UpdatePlayerHealth;
     }
 
     private void Update()
     {
-        if (playerUnitController.Unit.HasTakenTurn == true)
+        if (playerUnitController.UnitDirector.state == PlayState.Playing)
         {
             attackButton.interactable = false;
             specialButton.interactable = false;
@@ -100,7 +98,6 @@ public class PlayerCombatHUD : MonoBehaviour
     public void Attack()
     {
         Debug.Log("<b>Pressed <color=red>Attack</color> button</b>");
-        playerUnitController.UnitDirector.Play(playerUnitController.BasicAttack);
         playerUnitController.AttackAction(enemyUnitController);
         takenAction.Invoke();
     }
@@ -136,7 +133,6 @@ public class PlayerCombatHUD : MonoBehaviour
         else
         {
             Debug.Log($"<b>Pressed <color=green>Run</color> button</b> | Run away <color=red>unsuccessfully</color>");
-            takenAction -= UpdatePlayerHealth;
             takenAction.Invoke();
         }
     }

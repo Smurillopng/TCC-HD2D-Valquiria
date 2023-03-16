@@ -1,7 +1,6 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 08/03/2023
 
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,13 +11,21 @@ using Sirenix.OdinInspector;
 using TMPro;
 
 /// <summary>
-/// Responsible for controling the combat UI and the player's combat actions.
+/// Responsible for controlling the combat UI and the player's combat actions.
 /// </summary>
 public class PlayerCombatHUD : MonoBehaviour
 {
+    [TitleGroup("Units Info", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private GameObject player;
+    
+    [SerializeField]
+    private UnitController playerUnitController;
 
+    [SerializeField]
+    private UnitController enemyUnitController;
+    
+    [TitleGroup("Player HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Image playerHelthbarFill;
 
@@ -31,6 +38,7 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     private TMP_Text playerTpText;
 
+    [TitleGroup("Enemy HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private TMP_Text enemyName;
 
@@ -40,19 +48,14 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     private TMP_Text enemyHealthText;
 
-    [SerializeField]
-    private UnitController playerUnitController;
-
-    [SerializeField]
-    private UnitController enemyUnitController;
-
+    [TitleGroup("Combat Text Box", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private TMP_Text combatTextBox;
-
+    
     [SerializeField] 
     private float combatTextTimer;
 
-    [TitleGroup("Buttons")]
+    [TitleGroup("Buttons", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Button attackButton;
 
@@ -65,7 +68,9 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     private Button runButton;
 
-    public static UnityAction takenAction;
+    [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
+    [SerializeField, ReadOnly]
+    public static UnityAction TakenAction;
 
     private void Start()
     {
@@ -83,7 +88,7 @@ public class PlayerCombatHUD : MonoBehaviour
 
     private void Update()
     {
-        if (playerUnitController.UnitDirector.state == PlayState.Playing)
+        if (playerUnitController.Director.state == PlayState.Playing)
         {
             attackButton.interactable = false;
             specialButton.interactable = false;
@@ -99,6 +104,9 @@ public class PlayerCombatHUD : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the player's health bar and text.
+    /// </summary>
     public void UpdatePlayerHealth()
     {
         if (playerHealthText != null && playerHelthbarFill != null)
@@ -108,6 +116,9 @@ public class PlayerCombatHUD : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the enemy's health bar and text.
+    /// </summary>
     public void UpdateEnemyHealth()
     {
         if (enemyHealthText != null && enemyHelthbarFill != null)
@@ -117,6 +128,9 @@ public class PlayerCombatHUD : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Updates the player's TP bar and text.
+    /// </summary>
     public void UpdatePlayerTp()
     {
         if (playerTpText != null && playerTpbarFill != null)
@@ -126,6 +140,9 @@ public class PlayerCombatHUD : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adds damage text to the combat text box and calls the player unit attack method [<see cref="UnitController.AttackAction"/>].
+    /// </summary>
     public void Attack()
     {
         playerUnitController.AttackAction(enemyUnitController);
@@ -135,9 +152,12 @@ public class PlayerCombatHUD : MonoBehaviour
             UpdatePlayerTp();
         }
         StartCoroutine(DisplayCombatText($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{playerUnitController.Unit.Attack}</color> damage</b>"));
-        takenAction.Invoke();
+        TakenAction.Invoke();
     }
 
+    /// <summary>
+    /// Adds information in the combat text box and calls the player specific special attack method.
+    /// </summary>
     public void Special()
     {
         if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp/2)
@@ -152,17 +172,23 @@ public class PlayerCombatHUD : MonoBehaviour
             playerUnitController.Unit.CurrentTp -= 50;
             UpdatePlayerTp();
             StartCoroutine(DisplayCombatText($"Healed <color=green>{playerUnitController.Unit.Attack}</color> HP"));
-            takenAction.Invoke();
+            TakenAction.Invoke();
         }
     }
 
+    /// <summary>
+    /// Adds information in the combat text box and calls the player specific item method.
+    /// </summary>
     public void Item()
     {
-        StartCoroutine(DisplayCombatText("<b>PLACEHOLDER: Pressed <color=cyan>Item</color> button</b>"));
+        StartCoroutine(DisplayCombatText($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>"));
         //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
-        takenAction.Invoke();
+        TakenAction.Invoke();
     }
 
+    /// <summary>
+    /// Adds information in the combat text box and calls the player run method [<see cref="UnitController.RunAction"/>].
+    /// </summary>
     public void Run()
     {
         var randomChance = UnityEngine.Random.Range(0, 100);
@@ -173,15 +199,19 @@ public class PlayerCombatHUD : MonoBehaviour
             //playerUnitController.UnitDirector.Play(playerUnitController.Run);
             SceneManager.LoadScene("scn_game");
             StartCoroutine(DisplayCombatText("Run away <color=green>successfully</color>"));
-            takenAction.Invoke();
+            TakenAction.Invoke();
         }
         else
         {
             StartCoroutine(DisplayCombatText("Run away <color=red>unsuccessfully</color>"));
-            takenAction.Invoke();
+            TakenAction.Invoke();
         }
     }
     
+    /// <summary>
+    /// Displays combat text in the combat text box for a set amount of time then clears the text.
+    /// </summary>
+    /// <param name="text"></param>
     public IEnumerator DisplayCombatText(string text)
     {
         combatTextBox.text = text;

@@ -1,20 +1,28 @@
-using System.Collections;
 // Created by Sérgio Murillo da Costa Faria
 // Date: 13/03/2023
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+/// <summary>
+/// Responsible for managing the turn order of all units, waiting for player input and selecting actions for the AI.
+/// </summary>
 public class TurnManager : MonoBehaviour
 {
+    [TitleGroup("Units in Combat", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private List<UnitController> units = new();
+    
+    [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [SerializeField, ReadOnly]
     private int currentUnitIndex;
+    [SerializeField, ReadOnly]
     private bool aiMoved;
-    private UnitController _playerUnitController;
+    [SerializeField, ReadOnly]
+    private UnitController playerUnitController;
 
     private void Start()
     {
@@ -22,7 +30,7 @@ public class TurnManager : MonoBehaviour
         foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
         {
             units.Add(unitObject.GetComponent<UnitController>());
-            _playerUnitController = unitObject.GetComponent<UnitController>();
+            playerUnitController = unitObject.GetComponent<UnitController>();
         }
         foreach (var unitObject in GameObject.FindGameObjectsWithTag("Enemy"))
         {
@@ -32,7 +40,7 @@ public class TurnManager : MonoBehaviour
         // Sort the units by speed, so the fastest goes first
         units.Sort((a, b) => b.Unit.Speed.CompareTo(a.Unit.Speed));
 
-        PlayerCombatHUD.takenAction += TakeAction;
+        PlayerCombatHUD.TakenAction += TakeAction;
     }
 
     private void Update()
@@ -54,8 +62,8 @@ public class TurnManager : MonoBehaviour
         {
             // Use the AI system to select an action for the enemy
             aiMoved = true;
-            currentUnit.SelectAction(_playerUnitController);
-            PlayerCombatHUD.takenAction.Invoke();
+            currentUnit.SelectAction(playerUnitController);
+            PlayerCombatHUD.TakenAction.Invoke();
         }
 
         // Check if all units have taken a turn
@@ -68,14 +76,20 @@ public class TurnManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to be called when the unit has selected an action.
+    /// </summary>
     public void TakeAction()
     {
         StartCoroutine(TurnDelay());
     }
 
+    /// <summary>
+    /// This is a delay to wait for the unit's animation to finish before setting the HasTakenTurn flag.
+    /// </summary>
     private IEnumerator TurnDelay()
     {
-        yield return new WaitForSeconds((float)units[currentUnitIndex].UnitDirector.duration);
+        yield return new WaitForSeconds((float)units[currentUnitIndex].Director.duration);
         units[currentUnitIndex].Unit.HasTakenTurn = true;
         if (units[currentUnitIndex].Unit.IsPlayer == false)
             aiMoved = false;
@@ -85,13 +99,11 @@ public class TurnManager : MonoBehaviour
     {
         foreach (var unit in units)
             unit.Unit.HasTakenTurn = false;
-        PlayerCombatHUD.takenAction -= TakeAction;
+        PlayerCombatHUD.TakenAction -= TakeAction;
     }
 
     private void OnDestroy()
     {
-        PlayerCombatHUD.takenAction -= TakeAction;
+        PlayerCombatHUD.TakenAction -= TakeAction;
     }
-
-
 }

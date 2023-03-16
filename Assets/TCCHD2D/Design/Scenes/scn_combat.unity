@@ -2743,6 +2743,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4402599576473323655}
+  playerUnitController: {fileID: 6120526187047363627}
+  enemyUnitController: {fileID: 7878350319063784937}
   playerHelthbarFill: {fileID: 123717955}
   playerHealthText: {fileID: 2047905164}
   playerTpbarFill: {fileID: 1773258698}
@@ -2750,8 +2752,6 @@ MonoBehaviour:
   enemyName: {fileID: 2010210389}
   enemyHelthbarFill: {fileID: 1748736403}
   enemyHealthText: {fileID: 1425681689}
-  playerUnitController: {fileID: 6120526187047363627}
-  enemyUnitController: {fileID: 7878350319063784937}
   combatTextBox: {fileID: 554069869}
   combatTextTimer: 1
   attackButton: {fileID: 626981709}
@@ -3119,6 +3119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   units: []
   currentUnitIndex: 0
+  aiMoved: 0
+  playerUnitController: {fileID: 0}
 --- !u!4 &1058066615
 Transform:
   m_ObjectHideFlags: 0
@@ -5293,7 +5295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.6745098}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5345,7 +5347,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.11037827, y: 0.030872054, z: -0.0034302296, w: 0.99340415}
+  m_LocalRotation: {x: 0.11037826, y: 0.030872054, z: -0.0034302291, w: 0.99340415}
   m_LocalPosition: {x: -960.7, y: -139.15997, z: -4}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
@@ -6430,13 +6432,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 11400000, guid: 70eef26fa3b670347b3a44c4c0832bc5, type: 2}
-  unitDirector: {fileID: 6120526187047363626}
+  director: {fileID: 6120526187047363626}
   basicAttack: {fileID: 11400000, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
   specialAttacks: []
   useItem: {fileID: 0}
   run: {fileID: 0}
-  unitDamageTextAnimator: {fileID: 191108977}
-  unitDamageText: {fileID: 191108978}
+  damageTextAnimator: {fileID: 191108977}
+  damageText: {fileID: 191108978}
 --- !u!114 &6120526187047363628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6602,13 +6604,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 11400000, guid: da62801b992689746857559145ca7220, type: 2}
-  unitDirector: {fileID: 7878350319063784939}
+  director: {fileID: 7878350319063784939}
   basicAttack: {fileID: 11400000, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
   specialAttacks: []
   useItem: {fileID: 0}
   run: {fileID: 0}
-  unitDamageTextAnimator: {fileID: 1703950809}
-  unitDamageText: {fileID: 1703950810}
+  damageTextAnimator: {fileID: 1703950809}
+  damageText: {fileID: 1703950810}
 --- !u!114 &7878350319063784938
 MonoBehaviour:
   m_ObjectHideFlags: 0

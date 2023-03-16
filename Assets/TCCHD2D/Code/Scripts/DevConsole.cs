@@ -33,7 +33,6 @@ public class DevConsole : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         gameControls = new GameControls();
         gameControls.Console.ShowConsole.started += CallConsole;

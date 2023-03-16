@@ -14,16 +14,16 @@ public class PlayerControls : MonoBehaviour
     public static PlayerControls Instance { get; private set; }
 
     // Private variables
-    [SerializeField, ReadOnly] 
+    [SerializeField, ReadOnly]
     private GameControls gameControls;
-    
-    [SerializeField, InlineEditor] 
+
+    [SerializeField, InlineEditor]
     private BoolVariable showConsole;
-    
-    [SerializeField, InlineEditor] 
+
+    [SerializeField, InlineEditor]
     private Vector2Variable moveValue;
-    
-    [SerializeField, InlineEditor] 
+
+    [SerializeField, InlineEditor]
     private BoolVariable isRunning;
 
     private void Awake()
@@ -44,14 +44,14 @@ public class PlayerControls : MonoBehaviour
         gameControls.Default.Run.canceled += OnRun;
         gameControls.Enable();
     }
-    
+
     /// <summary>
     /// Is called when the "Walk" input of the "GameControls" Input Actions is performed.
     /// </summary>
     /// <param name="ctx"></param>
     private void OnMove(InputAction.CallbackContext ctx)
     {
-        moveValue.Value = ctx.ReadValue <Vector2>();
+        moveValue.Value = ctx.ReadValue<Vector2>();
     }
     /// <summary>
     /// Is called when the "Walk" input of the "GameControls" Input Actions is released.
@@ -72,6 +72,7 @@ public class PlayerControls : MonoBehaviour
 
     private void OnDisable()
     {
-        gameControls.Disable();
+        if (gameControls != null)
+            gameControls.Disable();
     }
 }

@@ -16,14 +16,17 @@ MonoBehaviour:
   unitSprite: {fileID: -8831790543141067221, guid: a2051b8b3742acb48bfef712621ab295,
     type: 3}
   level: 1
+  experience: 0
   maxHp: 10
-  currentHp: 10
+  currentHp: 3
+  maxTp: 100
+  currentTp: 0
   attack: 1
   defence: 1
-  speed: 1
+  speed: 2
   luck: 1
   dexterity: 1
-  experience: 0
   isPlayer: 1
+  resetOnExit: 0
   isDead: 0
   hasTakenTurn: 0

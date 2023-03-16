@@ -76,6 +76,7 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     generateModelPrefab: 1
     generateAnimationClips: 1
+    addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
     importHiddenLayers: 0
@@ -85,6 +86,7 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     generateModelPrefab: 1
     generateAnimationClips: 1
+    addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
   platformSettingsDirtyTick: 0
@@ -111,7 +113,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: Pele_0
+  - name: Pele_Frame_0
     originalName: 
     pivot: {x: 0.5, y: -0.0925926}
     alignment: 9
@@ -122,7 +124,7 @@ ScriptedImporter:
       y: 67
       width: 48
       height: 54
-    spriteID: 4cb62000d7c3beb439a9887289cc351f
+    spriteID: 8e36ecd2469605b4bb30f5e4f130571a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -131,7 +133,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 67}
-  - name: Pele_1
+  - name: Pele_Frame_1
     originalName: 
     pivot: {x: 0.5, y: -0.07272727}
     alignment: 9
@@ -142,7 +144,7 @@ ScriptedImporter:
       y: 4
       width: 50
       height: 55
-    spriteID: 7139161b949018242a96ea15eae9adcd
+    spriteID: bd7551b04e1b5934f8b1561395ed4587
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -151,7 +153,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Pele_2
+  - name: Pele_Frame_2
     originalName: 
     pivot: {x: 0.5, y: -0.07272727}
     alignment: 9
@@ -162,7 +164,7 @@ ScriptedImporter:
       y: 4
       width: 50
       height: 55
-    spriteID: 9da81c322a2c1b24c920833de8664a7d
+    spriteID: 20e003fee1e0f5d40a1294378edad483
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -171,7 +173,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 62, y: 4}
-  - name: olho_0
+  - name: olho_Frame_0
     originalName: 
     pivot: {x: 0.5, y: -10.5}
     alignment: 9
@@ -182,7 +184,7 @@ ScriptedImporter:
       y: 101
       width: 42
       height: 2
-    spriteID: 49769f1d1a5dd244ebc62946de1ab5bc
+    spriteID: a143c68792177304496d8b7d77097cc1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -191,7 +193,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 80, y: 101}
-  - name: olho_1
+  - name: olho_Frame_1
     originalName: 
     pivot: {x: 0.5, y: -1.4444444}
     alignment: 9
@@ -202,7 +204,7 @@ ScriptedImporter:
       y: 67
       width: 42
       height: 9
-    spriteID: 49565a708f6379046a2b2c9ab1a8dd32
+    spriteID: 5f58f505c0de9bd4684cbee69afa35f3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -211,7 +213,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 60, y: 67}
-  - name: olho_2
+  - name: olho_Frame_2
     originalName: 
     pivot: {x: 0.5, y: -1.4444444}
     alignment: 9
@@ -222,7 +224,7 @@ ScriptedImporter:
       y: 84
       width: 42
       height: 9
-    spriteID: 8e034e7498f0379409370f60b83daa64
+    spriteID: c073a84da240ca44db78971c960c6859
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -242,7 +244,7 @@ ScriptedImporter:
       y: 101
       width: 12
       height: 23
-    spriteID: a95f2ebce6518cf4cb7a1b7ebcc2d58d
+    spriteID: c5fc3d93fe1150d44a29ffed44ae220a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -253,66 +255,71 @@ ScriptedImporter:
     uvTransform: {x: 60, y: 101}
   asepriteLayers:
   - layerIndex: 0
+    guid: 368251370
     name: Pele
     layerFlags: 3
     layerType: 0
     cells:
-    - name: Pele_0
+    - name: Pele_Frame_0
       frameIndex: 0
       cellRect:
         x: 8
         y: 5
         width: 48
         height: 54
-      spriteId: 4cb62000d7c3beb439a9887289cc351f
-    - name: Pele_1
+      spriteId: 8e36ecd2469605b4bb30f5e4f130571a
+    - name: Pele_Frame_1
       frameIndex: 1
       cellRect:
         x: 7
         y: 4
         width: 50
         height: 55
-      spriteId: 7139161b949018242a96ea15eae9adcd
-    - name: Pele_2
+      spriteId: bd7551b04e1b5934f8b1561395ed4587
+    - name: Pele_Frame_2
       frameIndex: 2
       cellRect:
         x: 7
         y: 4
         width: 50
         height: 55
-      spriteId: 9da81c322a2c1b24c920833de8664a7d
+      spriteId: 20e003fee1e0f5d40a1294378edad483
     linkedCells: []
+    parentIndex: -1
   - layerIndex: 1
+    guid: -564084927
     name: olho
     layerFlags: 3
     layerType: 0
     cells:
-    - name: olho_0
+    - name: olho_Frame_0
       frameIndex: 0
       cellRect:
         x: 11
         y: 21
         width: 42
         height: 2
-      spriteId: 49769f1d1a5dd244ebc62946de1ab5bc
-    - name: olho_1
+      spriteId: a143c68792177304496d8b7d77097cc1
+    - name: olho_Frame_1
       frameIndex: 1
       cellRect:
         x: 11
         y: 13
         width: 42
         height: 9
-      spriteId: 49565a708f6379046a2b2c9ab1a8dd32
-    - name: olho_2
+      spriteId: 5f58f505c0de9bd4684cbee69afa35f3
+    - name: olho_Frame_2
       frameIndex: 2
       cellRect:
         x: 11
         y: 13
         width: 42
         height: 9
-      spriteId: 8e034e7498f0379409370f60b83daa64
+      spriteId: c073a84da240ca44db78971c960c6859
     linkedCells: []
+    parentIndex: -1
   - layerIndex: 2
+    guid: 1197777764
     name: detalhes
     layerFlags: 3
     layerType: 0
@@ -324,8 +331,9 @@ ScriptedImporter:
         y: 5
         width: 12
         height: 23
-      spriteId: a95f2ebce6518cf4cb7a1b7ebcc2d58d
+      spriteId: c5fc3d93fe1150d44a29ffed44ae220a
     linkedCells: []
+    parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 

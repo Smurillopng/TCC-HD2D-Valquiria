@@ -25,6 +25,9 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField, InlineEditor]
     private BoolVariable isRunning;
+    
+    [SerializeField, InlineEditor]
+    private BoolVariable interacted;
 
     private void Awake()
     {
@@ -68,6 +71,14 @@ public class PlayerControls : MonoBehaviour
     private void OnRun(InputAction.CallbackContext ctx)
     {
         isRunning.Value = ctx.ReadValueAsButton();
+    }
+    
+    public void OnInteract()
+    {
+        if (gameControls.Default.Interact.WasPressedThisFrame())
+            interacted.Value = true;
+        else if (gameControls.Default.Interact.WasReleasedThisFrame())
+            interacted.Value = false;
     }
 
     private void OnDisable()

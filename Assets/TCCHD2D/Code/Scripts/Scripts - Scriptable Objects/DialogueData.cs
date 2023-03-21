@@ -16,19 +16,16 @@ public class DialogueData : ScriptableObject
 [System.Serializable]
 public class DialogueLine
 {
-    [SerializeField] private string id;
     [SerializeField] private string text;
     [SerializeField] private bool playAudio;
     [SerializeField] private AudioClip audioClip;
-
-    public string ID => id;
+    
     public string Text => text;
     public bool PlayAudio => playAudio;
     public AudioClip AudioClip => audioClip;
 
     public DialogueLine(string id, string text,bool playAudio, AudioClip audioClip = null)
     {
-        this.id = id;
         this.text = text;
         this.playAudio = playAudio;
         this.audioClip = audioClip;

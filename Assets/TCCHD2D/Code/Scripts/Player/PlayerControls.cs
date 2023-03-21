@@ -45,6 +45,8 @@ public class PlayerControls : MonoBehaviour
         gameControls.Default.Walk.canceled += OnMoveRelease;
         gameControls.Default.Run.performed += OnRun;
         gameControls.Default.Run.canceled += OnRun;
+        gameControls.Default.Interact.performed += OnInteract;
+        gameControls.Default.Interact.canceled += OnInteract;
         gameControls.Enable();
     }
 
@@ -73,11 +75,11 @@ public class PlayerControls : MonoBehaviour
         isRunning.Value = ctx.ReadValueAsButton();
     }
     
-    public void OnInteract()
+    public void OnInteract(InputAction.CallbackContext ctx)
     {
-        if (gameControls.Default.Interact.WasPressedThisFrame())
+        if (ctx.performed)
             interacted.Value = true;
-        else if (gameControls.Default.Interact.WasReleasedThisFrame())
+        else if (ctx.canceled)
             interacted.Value = false;
     }
 

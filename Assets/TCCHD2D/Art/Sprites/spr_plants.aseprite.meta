@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 22048c888cfc17945ae24e138cf52b89
+guid: a2051b8b3742acb48bfef712621ab295
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,7 +11,7 @@ ScriptedImporter:
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
@@ -33,7 +33,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 32
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -70,7 +70,7 @@ ScriptedImporter:
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
     importHiddenLayers: 0
-    layerImportMode: 1
+    layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -80,7 +80,7 @@ ScriptedImporter:
     addShadowCasters: 0
   asepriteImporterSettings:
     importHiddenLayers: 0
-    layerImportMode: 1
+    layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -113,18 +113,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: spr_grass_type_1
+  - name: Base_Frame_0
     originalName: 
-    pivot: {x: 0.625, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 22
-      width: 8
-      height: 6
-    spriteID: 9d079d300f5627b45b10de2740aac76c
+      y: 36
+      width: 14
+      height: 24
+    spriteID: a831a815b9ad3314d9e00d0c54f77959
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -132,19 +132,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 22}
-  - name: spr_grass_type_2
+    uvTransform: {x: 4, y: 36}
+  - name: Base_Frame_1
     originalName: 
-    pivot: {x: 0.5555556, y: 0}
+    pivot: {x: 0.4375, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 9
-      height: 10
-    spriteID: 68c85d41949c26641aef2f40ba014479
+      width: 16
+      height: 24
+    spriteID: 53d3bd5677733ac4c97de538d86a1add
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,18 +153,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: spr_flower_type_2
+  - name: Base_Frame_2
     originalName: 
-    pivot: {x: 0.6666667, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 34
-      y: 4
-      width: 6
-      height: 11
-    spriteID: b3fa390b61f602446bbfdcee9b111aea
+      x: 26
+      y: 36
+      width: 14
+      height: 24
+    spriteID: 85518ccf0e74f714daee6b4fa22a026c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,19 +172,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 34, y: 4}
-  - name: spr_flower_type_1
+    uvTransform: {x: 26, y: 36}
+  - name: Base_Frame_3
     originalName: 
-    pivot: {x: 1, y: 0}
+    pivot: {x: 0.5625, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 21
+      x: 28
       y: 4
-      width: 5
-      height: 16
-    spriteID: 083a3d41b484fd94cab34b982ba0779f
+      width: 16
+      height: 24
+    spriteID: 4c1f1b3e7c46e9d4e8e0a4d559cb4972
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,46 +192,46 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 21, y: 4}
+    uvTransform: {x: 28, y: 4}
   asepriteLayers:
   - layerIndex: 0
-    guid: -115994712
-    name: spr_plants
-    layerFlags: 0
+    guid: 885305061
+    name: Base
+    layerFlags: 3
     layerType: 0
     cells:
-    - name: spr_plants_Frame_0
+    - name: Base_Frame_0
       frameIndex: 0
       cellRect:
-        x: 11
+        x: 9
         y: 0
-        width: 8
-        height: 6
-      spriteId: 9d079d300f5627b45b10de2740aac76c
-    - name: spr_plants_Frame_1
+        width: 14
+        height: 24
+      spriteId: a831a815b9ad3314d9e00d0c54f77959
+    - name: Base_Frame_1
       frameIndex: 1
       cellRect:
-        x: 11
+        x: 9
         y: 0
-        width: 9
-        height: 10
-      spriteId: 68c85d41949c26641aef2f40ba014479
-    - name: spr_plants_Frame_2
+        width: 16
+        height: 24
+      spriteId: 53d3bd5677733ac4c97de538d86a1add
+    - name: Base_Frame_2
       frameIndex: 2
       cellRect:
-        x: 12
+        x: 9
         y: 0
-        width: 6
-        height: 11
-      spriteId: b3fa390b61f602446bbfdcee9b111aea
-    - name: spr_plants_Frame_3
+        width: 14
+        height: 24
+      spriteId: 85518ccf0e74f714daee6b4fa22a026c
+    - name: Base_Frame_3
       frameIndex: 3
       cellRect:
-        x: 11
+        x: 7
         y: 0
-        width: 5
-        height: 16
-      spriteId: 083a3d41b484fd94cab34b982ba0779f
+        width: 16
+        height: 24
+      spriteId: 4c1f1b3e7c46e9d4e8e0a4d559cb4972
     linkedCells: []
     parentIndex: -1
   platformSettings: []

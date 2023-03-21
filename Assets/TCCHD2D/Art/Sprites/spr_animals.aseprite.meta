@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e76e00b829339c744945a90d88cafdc5
+guid: 993d1cd5b19fdd141b3328f55fa8a55a
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 32
+    spritePixelsToUnits: 100
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -70,7 +70,7 @@ ScriptedImporter:
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
     importHiddenLayers: 0
-    layerImportMode: 1
+    layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -80,7 +80,7 @@ ScriptedImporter:
     addShadowCasters: 0
   asepriteImporterSettings:
     importHiddenLayers: 0
-    layerImportMode: 1
+    layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -113,18 +113,38 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: spr_bigfish
+  - name: Pele_Frame_0
     originalName: 
-    pivot: {x: 0.6666667, y: -0.42105263}
+    pivot: {x: 0.5, y: -0.0925926}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 67
+      width: 48
+      height: 54
+    spriteID: cf94fbe3e69b4a441883fe88905c35e7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 67}
+  - name: Pele_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -0.07272727}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 15
-      height: 19
-    spriteID: a878747e5e0678041a6ed711093d5193
+      width: 50
+      height: 55
+    spriteID: 1e0cd525bb2a64e479065ea3006bf00e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -133,18 +153,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: spr_raven
+  - name: Pele_Frame_2
     originalName: 
-    pivot: {x: 1.4444444, y: 0}
+    pivot: {x: 0.5, y: -0.07272727}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 53
-      width: 9
-      height: 7
-    spriteID: 1b22dccb2a8822f4ea8b9571a46596ea
+      x: 62
+      y: 4
+      width: 50
+      height: 55
+    spriteID: 3732d9268f049bb41b209e36ecb338dc
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -152,19 +172,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 53}
-  - name: spr_smallfish
+    uvTransform: {x: 62, y: 4}
+  - name: olho_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: -0.6428572}
+    pivot: {x: 0.5, y: -10.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 31
-      width: 10
-      height: 14
-    spriteID: 02ce8ac00390ba94a98bcf7d42bdbf36
+      x: 80
+      y: 101
+      width: 42
+      height: 2
+    spriteID: cb0ad17e0c60407408c5da5c9779e25f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,38 +192,146 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 31}
+    uvTransform: {x: 80, y: 101}
+  - name: olho_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: -1.4444444}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 67
+      width: 42
+      height: 9
+    spriteID: 6c25f6e69b080b548bdaddbfef821eed
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 67}
+  - name: olho_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -1.4444444}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 84
+      width: 42
+      height: 9
+    spriteID: aa331aa6e262a644db714b86e05e40ee
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 84}
+  - name: detalhes
+    originalName: 
+    pivot: {x: 0.5, y: -0.21739131}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 101
+      width: 12
+      height: 23
+    spriteID: 1d02ef0b111b66940bea283cfaf9270f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 101}
   asepriteLayers:
   - layerIndex: 0
-    guid: -422876117
-    name: spr_animals
-    layerFlags: 0
+    guid: 368251370
+    name: Pele
+    layerFlags: 3
     layerType: 0
     cells:
-    - name: spr_animals_Frame_0
+    - name: Pele_Frame_0
       frameIndex: 0
       cellRect:
-        x: 6
-        y: 8
-        width: 15
-        height: 19
-      spriteId: a878747e5e0678041a6ed711093d5193
-    - name: spr_animals_Frame_1
+        x: 8
+        y: 5
+        width: 48
+        height: 54
+      spriteId: cf94fbe3e69b4a441883fe88905c35e7
+    - name: Pele_Frame_1
       frameIndex: 1
       cellRect:
-        x: 3
-        y: 0
-        width: 9
-        height: 7
-      spriteId: 1b22dccb2a8822f4ea8b9571a46596ea
-    - name: spr_animals_Frame_2
+        x: 7
+        y: 4
+        width: 50
+        height: 55
+      spriteId: 1e0cd525bb2a64e479065ea3006bf00e
+    - name: Pele_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 7
+        y: 4
+        width: 50
+        height: 55
+      spriteId: 3732d9268f049bb41b209e36ecb338dc
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 1
+    guid: -564084927
+    name: olho
+    layerFlags: 3
+    layerType: 0
+    cells:
+    - name: olho_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 11
+        y: 21
+        width: 42
+        height: 2
+      spriteId: cb0ad17e0c60407408c5da5c9779e25f
+    - name: olho_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 11
+        y: 13
+        width: 42
+        height: 9
+      spriteId: 6c25f6e69b080b548bdaddbfef821eed
+    - name: olho_Frame_2
       frameIndex: 2
       cellRect:
         x: 11
-        y: 9
-        width: 10
-        height: 14
-      spriteId: 02ce8ac00390ba94a98bcf7d42bdbf36
+        y: 13
+        width: 42
+        height: 9
+      spriteId: aa331aa6e262a644db714b86e05e40ee
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 2
+    guid: 1197777764
+    name: detalhes
+    layerFlags: 3
+    layerType: 0
+    cells:
+    - name: detalhes
+      frameIndex: 0
+      cellRect:
+        x: 26
+        y: 5
+        width: 12
+        height: 23
+      spriteId: 1d02ef0b111b66940bea283cfaf9270f
     linkedCells: []
     parentIndex: -1
   platformSettings: []

@@ -1017,6 +1017,7 @@ MonoBehaviour:
   showConsole: {fileID: 11400000, guid: 17650460fd0eddf47a8766be5f6993d3, type: 2}
   moveValue: {fileID: 11400000, guid: e6f568a8763aad24895fe73b56d77cee, type: 2}
   isRunning: {fileID: 11400000, guid: 465da39f457c289488fe3acdff34e32d, type: 2}
+  interacted: {fileID: 0}
 --- !u!4 &817035764
 Transform:
   m_ObjectHideFlags: 0

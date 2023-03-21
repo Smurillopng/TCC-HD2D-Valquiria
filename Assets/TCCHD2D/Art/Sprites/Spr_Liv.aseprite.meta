@@ -11,7 +11,7 @@ ScriptedImporter:
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     fadeOut: 0
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
@@ -33,7 +33,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 36
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -113,7 +113,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: Spr_Liv_Frame_0
+  - name: Spr_Liv_side
     originalName: 
     pivot: {x: 0.5, y: -0.058823533}
     alignment: 9
@@ -133,7 +133,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 60, y: 86}
-  - name: Spr_Liv_Frame_1
+  - name: Spr_Liv_back
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9
@@ -153,7 +153,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Spr_Liv_Frame_2
+  - name: Spr_Liv_front
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9
@@ -173,7 +173,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 45}
-  - name: Spr_Liv_Frame_3
+  - name: Spr_Liv_back_Frame_1
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9
@@ -193,7 +193,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 86}
-  - name: Spr_Liv_Frame_4
+  - name: Spr_Liv_back_Frame_2
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9
@@ -213,7 +213,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 127}
-  - name: Spr_Liv_Frame_5
+  - name: Spr_Liv_back_Frame_3
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9
@@ -233,7 +233,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 168}
-  - name: Spr_Liv_Frame_6
+  - name: Spr_Liv_back_Frame_4
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9
@@ -253,7 +253,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 209}
-  - name: Spr_Liv_Frame_7
+  - name: Spr_Liv_back_Frame_5
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9
@@ -273,7 +273,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 32, y: 4}
-  - name: Spr_Liv_Frame_8
+  - name: Spr_Liv_back_Frame_6
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9
@@ -293,7 +293,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 32, y: 45}
-  - name: Spr_Liv_Frame_9
+  - name: Spr_Liv_side_Frame_1
     originalName: 
     pivot: {x: 0.5625, y: -0.09090909}
     alignment: 9
@@ -313,7 +313,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 60, y: 128}
-  - name: Spr_Liv_Frame_10
+  - name: Spr_Liv__side_Frame_2
     originalName: 
     pivot: {x: 0.57142854, y: -0.058823533}
     alignment: 9
@@ -333,7 +333,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 88, y: 4}
-  - name: Spr_Liv_Frame_11
+  - name: Spr_Liv__side_Frame_3
     originalName: 
     pivot: {x: 0.57142854, y: -0.058823533}
     alignment: 9
@@ -353,7 +353,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 88, y: 46}
-  - name: Spr_Liv_Frame_12
+  - name: Spr_Liv__side_Frame_4
     originalName: 
     pivot: {x: 0.5625, y: -0.09090909}
     alignment: 9
@@ -373,7 +373,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 60, y: 169}
-  - name: Spr_Liv_Frame_13
+  - name: Spr_Liv_side_Frame_5
     originalName: 
     pivot: {x: 0.57142854, y: -0.058823533}
     alignment: 9
@@ -393,7 +393,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 88, y: 88}
-  - name: Spr_Liv_Frame_14
+  - name: Spr_Liv_side_Frame_6
     originalName: 
     pivot: {x: 0.57142854, y: -0.02857143}
     alignment: 9
@@ -413,7 +413,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 60, y: 210}
-  - name: Spr_Liv_Frame_15
+  - name: Spr_Liv_bac_Frame_1
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9
@@ -433,7 +433,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 32, y: 86}
-  - name: Spr_Liv_Frame_16
+  - name: Spr_Liv_back_Frame_
     originalName: 
     pivot: {x: 0.5, y: -0.060606062}
     alignment: 9

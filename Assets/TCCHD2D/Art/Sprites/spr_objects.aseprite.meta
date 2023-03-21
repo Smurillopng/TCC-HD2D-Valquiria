@@ -11,7 +11,7 @@ ScriptedImporter:
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     fadeOut: 0
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
@@ -33,7 +33,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 32
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -113,15 +113,15 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: spr_objects_Frame_0
+  - name: spr_web
     originalName: 
     pivot: {x: 0.15789473, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 82
+      x: 40
+      y: 4
       width: 19
       height: 31
     spriteID: ef3a0f17f3a4abc43aa4d8ebddaaf5fa
@@ -132,17 +132,17 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 82}
-  - name: spr_objects_Frame_1
+    uvTransform: {x: 40, y: 4}
+  - name: spr_mug
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.46428573, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 30
+      width: 28
       height: 31
     spriteID: f0103571dcacba043b1a280f071e45e4
     spriteBone: []
@@ -153,16 +153,16 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: spr_objects_Frame_2
+  - name: spr_bowl
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.44444445, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 43
-      width: 30
+      width: 27
       height: 31
     spriteID: 05e1a3a7d43f0994e88bc42d99d5cb60
     spriteBone: []
@@ -191,17 +191,17 @@ ScriptedImporter:
     - name: spr_objects_Frame_1
       frameIndex: 1
       cellRect:
-        x: 1
+        x: 3
         y: 0
-        width: 30
+        width: 28
         height: 31
       spriteId: f0103571dcacba043b1a280f071e45e4
     - name: spr_objects_Frame_2
       frameIndex: 2
       cellRect:
-        x: 1
+        x: 4
         y: 0
-        width: 30
+        width: 27
         height: 31
       spriteId: 05e1a3a7d43f0994e88bc42d99d5cb60
     linkedCells: []

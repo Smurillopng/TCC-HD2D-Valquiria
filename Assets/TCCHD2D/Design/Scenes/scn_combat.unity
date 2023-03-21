@@ -3484,6 +3484,7 @@ MonoBehaviour:
   showConsole: {fileID: 11400000, guid: 17650460fd0eddf47a8766be5f6993d3, type: 2}
   moveValue: {fileID: 11400000, guid: e6f568a8763aad24895fe73b56d77cee, type: 2}
   isRunning: {fileID: 11400000, guid: 465da39f457c289488fe3acdff34e32d, type: 2}
+  interacted: {fileID: 0}
 --- !u!4 &1247704995
 Transform:
   m_ObjectHideFlags: 0
@@ -6292,7 +6293,7 @@ SpriteRenderer:
   m_Size: {x: 0.14, y: 0.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2184697945647451513
@@ -6571,7 +6572,7 @@ SpriteRenderer:
   m_Size: {x: 0.14, y: 0.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &7878350319063784936

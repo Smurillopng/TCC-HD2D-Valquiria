@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Testador
   dialogueLines:
-  - Hmmmmmmmmmm
-  - "Ent\xE3o voc\xEA \xE9 o tal do corno?"
+  - id: 1
+    text: Salve meu maninho
+    playAudio: 0
+    audioClip: {fileID: 0}
+  - id: 2
+    text: "quer dizer que voc\xEA \xE9 o tal do corno?"
+    playAudio: 0
+    audioClip: {fileID: 0}

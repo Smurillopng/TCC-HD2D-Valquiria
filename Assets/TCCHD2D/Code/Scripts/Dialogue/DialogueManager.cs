@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 17/03/2023
 
+using System.Collections;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField, Required] 
     private TextMeshProUGUI dialogueText;
     
+    [SerializeField, Range(0.01f, 1f)]
+    private float charDelay = 0.1f;
+    
     [SerializeField] 
     private AudioSource audioSource;
     
@@ -27,13 +31,25 @@ public class DialogueManager : MonoBehaviour
     private int _currentLine;
 
     public DialogueData CurrentDialogueData { get => currentDialogueData; set => currentDialogueData = value; }
+    
+    public void DisplayDialogue()
+    {
+        StopAllCoroutines();
+        StartCoroutine(DisplayDialogueCoroutine());
+    }
 
-    private void DisplayDialogue()
+    private IEnumerator DisplayDialogueCoroutine()
     {
         var currentLine = CurrentDialogueData.DialogueLines[_currentLine];
         speakerName.text = CurrentDialogueData.CharacterName;
-        dialogueText.text = currentLine.Text;
-        if (!currentLine.PlayAudio) return;
+        dialogueText.text = "";
+        foreach (var character in currentLine.Text)
+        {
+            dialogueText.text += character;
+            yield return new WaitForSeconds(charDelay);
+        }
+
+        if (!currentLine.PlayAudio) yield break;
         var audioClip = currentLine.AudioClip;
         if (audioClip != null) audioSource.PlayOneShot(audioClip);
         else Debug.LogWarning($"Audio clip {currentLine.AudioClip} not found.");
@@ -41,13 +57,21 @@ public class DialogueManager : MonoBehaviour
 
     public void AdvanceDialogue()
     {
-        _currentLine++;
-        if (_currentLine >= CurrentDialogueData.DialogueLines.Length)
+        if (dialogueText.text != CurrentDialogueData.DialogueLines[_currentLine].Text)
         {
-            EndDialogue();
-            return;
+            StopAllCoroutines();
+            dialogueText.text = CurrentDialogueData.DialogueLines[_currentLine].Text;
         }
-        DisplayDialogue();
+        else
+        {
+            _currentLine++;
+            if (_currentLine >= CurrentDialogueData.DialogueLines.Length)
+            {
+                EndDialogue();
+                return;
+            }
+            DisplayDialogue();
+        }
     }
     
     public void StartDialogue(DialogueData dialogueData)

@@ -1328,7 +1328,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 948602001}
+      - m_Target: {fileID: 948602006}
         m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
         m_MethodName: Run
         m_Mode: 1
@@ -2017,7 +2017,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 948602001}
+      - m_Target: {fileID: 948602006}
         m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 1
@@ -2444,7 +2444,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 948602001}
+      - m_Target: {fileID: 948602006}
         m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
         m_MethodName: Special
         m_Mode: 1
@@ -2722,7 +2722,7 @@ GameObject:
   - component: {fileID: 948602004}
   - component: {fileID: 948602003}
   - component: {fileID: 948602002}
-  - component: {fileID: 948602001}
+  - component: {fileID: 948602006}
   m_Layer: 5
   m_Name: Combat Canvas
   m_TagString: CombatUI
@@ -2730,34 +2730,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &948602001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948602000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4873fbe48aa4b08b4a23324993d145e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 4402599576473323655}
-  playerUnitController: {fileID: 6120526187047363627}
-  enemyUnitController: {fileID: 7878350319063784937}
-  playerHelthbarFill: {fileID: 123717955}
-  playerHealthText: {fileID: 2047905164}
-  playerTpbarFill: {fileID: 1773258698}
-  playerTpText: {fileID: 1477120984}
-  enemyName: {fileID: 2010210389}
-  enemyHelthbarFill: {fileID: 1748736403}
-  enemyHealthText: {fileID: 1425681689}
-  combatTextBox: {fileID: 554069869}
-  combatTextTimer: 1
-  attackButton: {fileID: 626981709}
-  specialButton: {fileID: 737856164}
-  itemButton: {fileID: 1570477438}
-  runButton: {fileID: 426683402}
 --- !u!114 &948602002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2841,6 +2813,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &948602006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948602000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956415d1abef18f4cbef130ac135eaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 4402599576473323655}
+  playerUnitController: {fileID: 6120526187047363627}
+  enemyUnitController: {fileID: 7878350319063784937}
+  playerHelthbarFill: {fileID: 123717955}
+  playerHealthText: {fileID: 2047905164}
+  playerTpbarFill: {fileID: 1773258698}
+  playerTpText: {fileID: 1477120984}
+  enemyName: {fileID: 2010210389}
+  enemyHelthbarFill: {fileID: 1748736403}
+  enemyHealthText: {fileID: 1425681689}
+  combatTextBox: {fileID: 554069869}
+  combatTextTimer: 1
+  attackButton: {fileID: 626981709}
+  specialButton: {fileID: 737856164}
+  itemButton: {fileID: 1570477438}
+  runButton: {fileID: 426683402}
 --- !u!1 &969630091
 GameObject:
   m_ObjectHideFlags: 0
@@ -4315,7 +4315,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 948602001}
+      - m_Target: {fileID: 948602006}
         m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
         m_MethodName: Item
         m_Mode: 1
@@ -6216,7 +6216,7 @@ Animator:
   m_GameObject: {fileID: 6969460405494510989}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -4008611296080066649, guid: a2051b8b3742acb48bfef712621ab295,
+  m_Controller: {fileID: 4709120374203025939, guid: e1bf147d0bfd803489ba7806b6dbc24e,
     type: 3}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -6284,16 +6284,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8831790543141067221, guid: a2051b8b3742acb48bfef712621ab295,
+  m_Sprite: {fileID: -8082833562990806136, guid: e1bf147d0bfd803489ba7806b6dbc24e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.14, y: 0.24}
+  m_Size: {x: 0.18, y: 0.31}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2184697945647451513
@@ -6358,7 +6358,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3527680196301676770}
-  - component: {fileID: 5601134825011991079}
   - component: {fileID: 6120526187047363626}
   - component: {fileID: 6120526187047363627}
   - component: {fileID: 6120526187047363628}
@@ -6369,27 +6368,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &5601134825011991079
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4402599576473323655}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -4008611296080066649, guid: a2051b8b3742acb48bfef712621ab295,
-    type: 3}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
 --- !u!320 &6120526187047363626
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -6412,7 +6390,7 @@ PlayableDirector:
   - key: {fileID: -6900325571940078656, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
     value: {fileID: 7994889600021895129}
   - key: {fileID: -851167479724324986, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
-    value: {fileID: 5601134825011991079}
+    value: {fileID: 7994889600021895129}
   m_ExposedReferences:
     m_References:
     - 2b921bf7fc26dd84ca683ec3b5f60c13: {fileID: 1438256429}
@@ -6473,7 +6451,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 948602001}
+        - m_Target: {fileID: 948602006}
           m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
           m_MethodName: UpdatePlayerHealth
           m_Mode: 1
@@ -6645,7 +6623,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 948602001}
+        - m_Target: {fileID: 948602006}
           m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
           m_MethodName: UpdateEnemyHealth
           m_Mode: 1
@@ -6693,8 +6671,7 @@ Animator:
   m_GameObject: {fileID: 2184697945647451513}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -4008611296080066649, guid: a2051b8b3742acb48bfef712621ab295,
-    type: 3}
+  m_Controller: {fileID: 9100000, guid: ea87b12e3269b6a4d837f6f93878dc1b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6745,15 +6722,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -2932603642509562243, guid: 4322c119eb840e0449d93ec61f47dfc2,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.18, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &8960670865502192404

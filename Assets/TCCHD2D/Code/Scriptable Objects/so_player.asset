@@ -18,7 +18,7 @@ MonoBehaviour:
   level: 1
   experience: 0
   maxHp: 10
-  currentHp: 3
+  currentHp: 9
   maxTp: 100
   currentTp: 0
   attack: 1

@@ -101,6 +101,7 @@ public class UnitController : MonoBehaviour
     {
         // Calculate damage based on strength
         var damage = unit.Attack;
+        Director.Play(basicAttack);
 
         // Apply damage to target
         target.TakeDamage(damage);
@@ -195,9 +196,6 @@ public class UnitController : MonoBehaviour
     {
         // AI logic for selecting an action goes here
         if (unit.IsPlayer == false)
-        {
-            Director.Play(basicAttack);
             AttackAction(target);
-        }
     }
 }

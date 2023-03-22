@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a2051b8b3742acb48bfef712621ab295
+guid: 03ac9a4896895684bb183578ce05aa4a
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,7 +11,7 @@ ScriptedImporter:
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     fadeOut: 0
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
@@ -70,7 +70,7 @@ ScriptedImporter:
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
     importHiddenLayers: 0
-    layerImportMode: 0
+    layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -80,7 +80,7 @@ ScriptedImporter:
     addShadowCasters: 0
   asepriteImporterSettings:
     importHiddenLayers: 0
-    layerImportMode: 0
+    layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
@@ -113,38 +113,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: Base_Frame_0
+  - name: spr_animals_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 36
-      width: 14
-      height: 24
-    spriteID: a831a815b9ad3314d9e00d0c54f77959
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 36}
-  - name: Base_Frame_1
-    originalName: 
-    pivot: {x: 0.4375, y: 0}
+    pivot: {x: 0.6666667, y: -0.42105263}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 16
-      height: 24
-    spriteID: 53d3bd5677733ac4c97de538d86a1add
+      width: 15
+      height: 19
+    spriteID: 7ca52836f0d551e4d952abe73e1ba1a8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,18 +133,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Base_Frame_2
+  - name: spr_animals_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 1.4444444, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 26
-      y: 36
-      width: 14
-      height: 24
-    spriteID: 85518ccf0e74f714daee6b4fa22a026c
+      x: 4
+      y: 53
+      width: 9
+      height: 7
+    spriteID: 33b98a2635edec544acadb5c0ed3f6af
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -172,19 +152,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 26, y: 36}
-  - name: Base_Frame_3
+    uvTransform: {x: 4, y: 53}
+  - name: spr_animals_Frame_2
     originalName: 
-    pivot: {x: 0.5625, y: 0}
+    pivot: {x: 0.5, y: -0.6428572}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 28
-      y: 4
-      width: 16
-      height: 24
-    spriteID: 4c1f1b3e7c46e9d4e8e0a4d559cb4972
+      x: 4
+      y: 31
+      width: 10
+      height: 14
+    spriteID: 8817f5737a2bbd0428bb3e42dc545006
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -192,46 +172,38 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 28, y: 4}
+    uvTransform: {x: 4, y: 31}
   asepriteLayers:
   - layerIndex: 0
-    guid: 885305061
-    name: Base
-    layerFlags: 3
+    guid: -422876117
+    name: spr_animals
+    layerFlags: 0
     layerType: 0
     cells:
-    - name: Base_Frame_0
+    - name: spr_animals_Frame_0
       frameIndex: 0
       cellRect:
-        x: 9
-        y: 0
-        width: 14
-        height: 24
-      spriteId: a831a815b9ad3314d9e00d0c54f77959
-    - name: Base_Frame_1
+        x: 6
+        y: 8
+        width: 15
+        height: 19
+      spriteId: 7ca52836f0d551e4d952abe73e1ba1a8
+    - name: spr_animals_Frame_1
       frameIndex: 1
       cellRect:
-        x: 9
+        x: 3
         y: 0
-        width: 16
-        height: 24
-      spriteId: 53d3bd5677733ac4c97de538d86a1add
-    - name: Base_Frame_2
+        width: 9
+        height: 7
+      spriteId: 33b98a2635edec544acadb5c0ed3f6af
+    - name: spr_animals_Frame_2
       frameIndex: 2
       cellRect:
-        x: 9
-        y: 0
-        width: 14
-        height: 24
-      spriteId: 85518ccf0e74f714daee6b4fa22a026c
-    - name: Base_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 7
-        y: 0
-        width: 16
-        height: 24
-      spriteId: 4c1f1b3e7c46e9d4e8e0a4d559cb4972
+        x: 11
+        y: 9
+        width: 10
+        height: 14
+      spriteId: 8817f5737a2bbd0428bb3e42dc545006
     linkedCells: []
     parentIndex: -1
   platformSettings: []

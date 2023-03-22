@@ -76,6 +76,7 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     generateModelPrefab: 1
     generateAnimationClips: 1
+    addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
     importHiddenLayers: 0
@@ -85,6 +86,7 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     generateModelPrefab: 1
     generateAnimationClips: 1
+    addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
   platformSettingsDirtyTick: 0
@@ -111,7 +113,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: Base_0
+  - name: Base_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -122,7 +124,7 @@ ScriptedImporter:
       y: 36
       width: 14
       height: 24
-    spriteID: 6776c8f00cdb87a41b04954c4b08b9ef
+    spriteID: a3b8c68ec8547c34989f5321c9425685
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -131,7 +133,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 36}
-  - name: Base_1
+  - name: Base_Frame_1
     originalName: 
     pivot: {x: 0.4375, y: 0}
     alignment: 9
@@ -142,7 +144,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 24
-    spriteID: 50d1924db8341d74cbd7057010e019d0
+    spriteID: 38871192e8a57dc4c8e5777084b4e732
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -151,7 +153,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Base_2
+  - name: Base_Frame_2
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -162,7 +164,7 @@ ScriptedImporter:
       y: 36
       width: 14
       height: 24
-    spriteID: e9dbae8735bb6e942a2c43b026353a46
+    spriteID: 214cd4afe9c653a49990315af850a072
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -171,7 +173,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 26, y: 36}
-  - name: Base_3
+  - name: Base_Frame_3
     originalName: 
     pivot: {x: 0.5625, y: 0}
     alignment: 9
@@ -182,7 +184,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 24
-    spriteID: 0c18ebf0bac65414caafbe42bb077ba6
+    spriteID: c01aef26eb506ae4b96a775717084d09
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -193,43 +195,45 @@ ScriptedImporter:
     uvTransform: {x: 28, y: 4}
   asepriteLayers:
   - layerIndex: 0
+    guid: 885305061
     name: Base
     layerFlags: 3
     layerType: 0
     cells:
-    - name: Base_0
+    - name: Base_Frame_0
       frameIndex: 0
       cellRect:
         x: 9
         y: 0
         width: 14
         height: 24
-      spriteId: 6776c8f00cdb87a41b04954c4b08b9ef
-    - name: Base_1
+      spriteId: a3b8c68ec8547c34989f5321c9425685
+    - name: Base_Frame_1
       frameIndex: 1
       cellRect:
         x: 9
         y: 0
         width: 16
         height: 24
-      spriteId: 50d1924db8341d74cbd7057010e019d0
-    - name: Base_2
+      spriteId: 38871192e8a57dc4c8e5777084b4e732
+    - name: Base_Frame_2
       frameIndex: 2
       cellRect:
         x: 9
         y: 0
         width: 14
         height: 24
-      spriteId: e9dbae8735bb6e942a2c43b026353a46
-    - name: Base_3
+      spriteId: 214cd4afe9c653a49990315af850a072
+    - name: Base_Frame_3
       frameIndex: 3
       cellRect:
         x: 7
         y: 0
         width: 16
         height: 24
-      spriteId: 0c18ebf0bac65414caafbe42bb077ba6
+      spriteId: c01aef26eb506ae4b96a775717084d09
     linkedCells: []
+    parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 

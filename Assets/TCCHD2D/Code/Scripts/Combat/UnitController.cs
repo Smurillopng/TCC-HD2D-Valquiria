@@ -15,27 +15,27 @@ public class UnitController : MonoBehaviour
     [TitleGroup("Unit Info", Alignment = TitleAlignments.Centered)]
     [SerializeField, InlineEditor]
     private Unit unit;
-    
+
     [TitleGroup("Action Timelines", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private PlayableDirector director;
-    
+
     [SerializeField]
     private PlayableAsset basicAttack;
-    
+
     [SerializeField]
     private List<PlayableAsset> specialAttacks = new();
-    
+
     [SerializeField]
     private PlayableAsset useItem;
-    
+
     [SerializeField]
     private PlayableAsset run;
-    
+
     [TitleGroup("Unit Floating Numbers", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Animator damageTextAnimator;
-    
+
     [SerializeField]
     private TMP_Text damageText;
 
@@ -45,27 +45,27 @@ public class UnitController : MonoBehaviour
     /// The <see cref="Unit"/> that this controller controls.
     /// </summary>
     public Unit Unit => unit;
-    
+
     /// <summary>
     /// The <see cref="PlayableDirector"/> that controls the animations of this unit.
     /// </summary>
     public PlayableDirector Director => director;
-    
+
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
     /// </summary>
     public PlayableAsset BasicAttack => basicAttack;
-    
+
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's special attacks.
     /// </summary>
     public List<PlayableAsset> SpecialAttacks => specialAttacks;
-    
+
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's use item action.
     /// </summary>
     public PlayableAsset UseItem => useItem;
-    
+
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's run action.
     /// </summary>

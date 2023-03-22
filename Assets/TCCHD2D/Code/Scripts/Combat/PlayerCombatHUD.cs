@@ -17,21 +17,18 @@ public class PlayerCombatHUD : MonoBehaviour
 {
     [TitleGroup("Units Info", Alignment = TitleAlignments.Centered)]
     [SerializeField]
-    private GameObject player;
-    
-    [SerializeField]
     private UnitController playerUnitController;
 
     [SerializeField]
     private UnitController enemyUnitController;
-    
+
     [TitleGroup("Player HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Image playerHelthbarFill;
 
     [SerializeField]
     private TMP_Text playerHealthText;
-    
+
     [SerializeField]
     private Image playerTpbarFill;
 
@@ -51,8 +48,8 @@ public class PlayerCombatHUD : MonoBehaviour
     [TitleGroup("Combat Text Box", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private TMP_Text combatTextBox;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private float combatTextTimer;
 
     [TitleGroup("Buttons", Alignment = TitleAlignments.Centered)]
@@ -111,7 +108,7 @@ public class PlayerCombatHUD : MonoBehaviour
     {
         if (playerHealthText != null && playerHelthbarFill != null)
         {
-            playerHealthText.text = $"{playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
+            playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
             playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
         }
     }
@@ -127,7 +124,7 @@ public class PlayerCombatHUD : MonoBehaviour
             enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
         }
     }
-    
+
     /// <summary>
     /// Updates the player's TP bar and text.
     /// </summary>
@@ -160,7 +157,7 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void Special()
     {
-        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp/2)
+        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp / 2)
         {
             StartCoroutine(DisplayCombatText("<color=red>Not enough TP</color>"));
         }
@@ -207,7 +204,7 @@ public class PlayerCombatHUD : MonoBehaviour
             TakenAction.Invoke();
         }
     }
-    
+
     /// <summary>
     /// Displays combat text in the combat text box for a set amount of time then clears the text.
     /// </summary>

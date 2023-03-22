@@ -3870,6 +3870,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.11043154
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000004275286
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -4.7503174e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080997216289527077, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: m_XDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080997216289527077, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: m_YDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080997216289527077, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: m_ZDamping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7246534575480244899, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_RootOrder
@@ -3930,7 +3960,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6737610492944702739, guid: c5b80279cceae2e44851743e79d2436c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c5b80279cceae2e44851743e79d2436c, type: 3}
 --- !u!1 &6969460405494510989
 GameObject:

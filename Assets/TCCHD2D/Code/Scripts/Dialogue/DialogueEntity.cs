@@ -11,10 +11,10 @@ public class DialogueEntity : MonoBehaviour
 
     [SerializeField, Required]
     private DialogueManager dialogueManager;
-    
+
     [SerializeField, Required]
     private SpriteRenderer spriteRenderer;
-    
+
     [SerializeField, Required]
     private Sprite defaultIcon;
 
@@ -22,13 +22,13 @@ public class DialogueEntity : MonoBehaviour
     {
         dialogueManager.StartDialogue(dialogueData);
     }
-    
+
     public void SetIcon()
     {
-        if (spriteRenderer.sprite == defaultIcon) return; 
+        if (spriteRenderer.sprite == defaultIcon) return;
         spriteRenderer.sprite = defaultIcon;
     }
-    
+
     public void ResetIcon()
     {
         if (spriteRenderer.sprite == null) return;

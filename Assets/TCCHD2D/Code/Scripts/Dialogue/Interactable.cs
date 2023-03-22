@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
     [TitleGroup("Interaction Settings", Alignment = TitleAlignments.Centered)]
     [SerializeField, Range(0.1f, 100f)]
     private float interactionRange = 3f;
-    
+
     [SerializeField, Required]
     private Transform playerTransform;
 
@@ -21,7 +21,7 @@ public class Interactable : MonoBehaviour
     public UnityEvent onInteractionStart;
     public UnityEvent onInteractionInRange;
     public UnityEvent onInteractionOffRange;
-    
+
     private bool _hasInteracted;
     public bool CanInteract() => _hasInteracted;
 

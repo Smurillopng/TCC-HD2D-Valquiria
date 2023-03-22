@@ -13,30 +13,30 @@ public class PlayerMovement : MonoBehaviour
 {
     // Private variables
     [TitleGroup("Input Variables", Alignment = TitleAlignments.Centered)]
-    [SerializeField, Required, InlineEditor] 
+    [SerializeField, Required, InlineEditor]
     private BoolVariable canMove;
-    
-    [SerializeField, Required, InlineEditor] 
+
+    [SerializeField, Required, InlineEditor]
     private BoolVariable isRunning;
-    
-    [SerializeField, Required, InlineEditor] 
+
+    [SerializeField, Required, InlineEditor]
     private Vector2Variable direction;
 
     [TitleGroup("Movement Variables", Alignment = TitleAlignments.Centered)]
-    [SerializeField, MinValue(0)] 
+    [SerializeField, MinValue(0)]
     private float speed;
-    
-    [SerializeField, MinValue(1)] 
+
+    [SerializeField, MinValue(1)]
     private float runSpeedMultiplier = 1;
-    
+
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [SerializeField, Required]
     private Animator animator;
 
-    [SerializeField, ReadOnly] 
+    [SerializeField, ReadOnly]
     private Rigidbody rigidBody;
 
-    [SerializeField, ReadOnly] 
+    [SerializeField, ReadOnly]
     private Vector3 movementValue;
 
     private static readonly int SpeedX = Animator.StringToHash("SpeedX");
@@ -74,6 +74,5 @@ public class PlayerMovement : MonoBehaviour
             movementValue *= runSpeedMultiplier;
         var newPosition = transform.position + movementValue * speed * Time.fixedDeltaTime;
         rigidBody.MovePosition(newPosition);
-        
     }
 }

@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private StringVariable previousScene;
-    
+
     /// <summary>
     /// Loads the scene with the given name and saves the previous scene name if the scene to be loaded is the options menu.
     /// </summary>

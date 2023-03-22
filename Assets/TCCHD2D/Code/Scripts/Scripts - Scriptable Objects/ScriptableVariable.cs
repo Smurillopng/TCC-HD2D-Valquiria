@@ -10,17 +10,17 @@ using UnityEngine;
 public abstract class ScriptableVariable<T> : ScriptableObject
 {
     [FoldoutGroup("Settings")]
-    [SerializeField] 
+    [SerializeField]
     private bool resetOnExit;
-    
+
     [TitleGroup("Values", Alignment = TitleAlignments.Centered)]
     [HorizontalGroup("Values/Split")]
     [BoxGroup("Values/Split/Default")]
-    [SerializeField, HideLabel] 
+    [SerializeField, HideLabel]
     private T defaultValue;
 
     [BoxGroup("Values/Split/Current")]
-    [SerializeField, HideLabel] 
+    [SerializeField, HideLabel]
     private T value;
 
     public T Value

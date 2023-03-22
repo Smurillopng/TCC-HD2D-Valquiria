@@ -25,7 +25,7 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField, InlineEditor]
     private BoolVariable isRunning;
-    
+
     [SerializeField, InlineEditor]
     private BoolVariable interacted;
 
@@ -74,7 +74,7 @@ public class PlayerControls : MonoBehaviour
     {
         isRunning.Value = ctx.ReadValueAsButton();
     }
-    
+
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)

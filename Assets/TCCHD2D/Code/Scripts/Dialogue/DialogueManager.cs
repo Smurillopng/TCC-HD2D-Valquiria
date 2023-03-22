@@ -11,27 +11,27 @@ public class DialogueManager : MonoBehaviour
     [TitleGroup("Dialogue Manager Settings", Alignment = TitleAlignments.Centered)]
     [SerializeField, Required]
     private GameObject dialogueBox;
-    
-    [SerializeField, Required] 
+
+    [SerializeField, Required]
     private TextMeshProUGUI speakerName;
-    
-    [SerializeField, Required] 
+
+    [SerializeField, Required]
     private TextMeshProUGUI dialogueText;
-    
+
     [SerializeField, Range(0.01f, 1f)]
     private float charDelay = 0.1f;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private AudioSource audioSource;
-    
+
     [TitleGroup("Dialogue Data", Alignment = TitleAlignments.Centered)]
-    [SerializeField, ReadOnly] 
+    [SerializeField, ReadOnly]
     private DialogueData currentDialogueData;
 
     private int _currentLine;
 
     public DialogueData CurrentDialogueData { get => currentDialogueData; set => currentDialogueData = value; }
-    
+
     public void DisplayDialogue()
     {
         StopAllCoroutines();
@@ -73,7 +73,7 @@ public class DialogueManager : MonoBehaviour
             DisplayDialogue();
         }
     }
-    
+
     public void StartDialogue(DialogueData dialogueData)
     {
         if (dialogueBox.activeSelf == false)

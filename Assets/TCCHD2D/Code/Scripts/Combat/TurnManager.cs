@@ -15,7 +15,7 @@ public class TurnManager : MonoBehaviour
     [TitleGroup("Units in Combat", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private List<UnitController> units = new();
-    
+
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [SerializeField, ReadOnly]
     private int currentUnitIndex;

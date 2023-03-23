@@ -66,7 +66,7 @@ public class PlayerCombatHUD : MonoBehaviour
     private Button runButton;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField, ReadOnly]
+    [ShowInInspector, ReadOnly]
     public static UnityAction TakenAction;
 
     private void Start()

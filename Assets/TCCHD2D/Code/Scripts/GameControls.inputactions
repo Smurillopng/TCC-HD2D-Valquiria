@@ -180,6 +180,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Combat",
+            "id": "2ea20a0e-e1f0-439b-8ea9-17f749fc83de",
+            "actions": [
+                {
+                    "name": "Placeholder",
+                    "type": "Button",
+                    "id": "59957dfe-2f09-4a35-97e6-c0cdb0aec100",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1d6014a3-bdd2-45a0-a228-e105de89c6ae",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Placeholder",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

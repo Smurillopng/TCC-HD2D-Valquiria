@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Responsible for managing the turn order of all units, waiting for player input and selecting actions for the AI.
@@ -23,6 +24,14 @@ public class TurnManager : MonoBehaviour
     private bool aiMoved;
     [SerializeField, ReadOnly]
     private UnitController playerUnitController;
+
+    [TitleGroup("Events", Alignment = TitleAlignments.Centered)]
+    [SerializeField] 
+    private UnityEvent onTurnStart;
+    [SerializeField]
+    private UnityEvent onTurnEnd;
+    [SerializeField]
+    private UnityEvent onTurnChange;
 
     private void Start()
     {
@@ -43,7 +52,7 @@ public class TurnManager : MonoBehaviour
         PlayerCombatHUD.TakenAction += TakeAction;
     }
 
-    private void Update()
+    private void ManageTurns()
     {
         // Check if the current unit is dead or has already taken a turn
         if (units[currentUnitIndex].Unit.IsDead || units[currentUnitIndex].Unit.HasTakenTurn)
@@ -75,6 +84,11 @@ public class TurnManager : MonoBehaviour
             currentUnitIndex = 0;
         }
     }
+    
+    public void NextTurn()
+    {
+        ManageTurns();
+    }
 
     /// <summary>
     /// Method to be called when the unit has selected an action.
@@ -93,6 +107,7 @@ public class TurnManager : MonoBehaviour
         units[currentUnitIndex].Unit.HasTakenTurn = true;
         if (units[currentUnitIndex].Unit.IsPlayer == false)
             aiMoved = false;
+        onTurnChange.Invoke();
     }
 
     private void OnDisable()

@@ -202,6 +202,34 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Combat"",
+            ""id"": ""2ea20a0e-e1f0-439b-8ea9-17f749fc83de"",
+            ""actions"": [
+                {
+                    ""name"": ""Placeholder"",
+                    ""type"": ""Button"",
+                    ""id"": ""59957dfe-2f09-4a35-97e6-c0cdb0aec100"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1d6014a3-bdd2-45a0-a228-e105de89c6ae"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Placeholder"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -233,6 +261,9 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         m_Console = asset.FindActionMap("Console", throwIfNotFound: true);
         m_Console_ShowConsole = m_Console.FindAction("ShowConsole", throwIfNotFound: true);
         m_Console_CommandHistory = m_Console.FindAction("CommandHistory", throwIfNotFound: true);
+        // Combat
+        m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
+        m_Combat_Placeholder = m_Combat.FindAction("Placeholder", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -386,6 +417,39 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         }
     }
     public ConsoleActions @Console => new ConsoleActions(this);
+
+    // Combat
+    private readonly InputActionMap m_Combat;
+    private ICombatActions m_CombatActionsCallbackInterface;
+    private readonly InputAction m_Combat_Placeholder;
+    public struct CombatActions
+    {
+        private @GameControls m_Wrapper;
+        public CombatActions(@GameControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Placeholder => m_Wrapper.m_Combat_Placeholder;
+        public InputActionMap Get() { return m_Wrapper.m_Combat; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CombatActions set) { return set.Get(); }
+        public void SetCallbacks(ICombatActions instance)
+        {
+            if (m_Wrapper.m_CombatActionsCallbackInterface != null)
+            {
+                @Placeholder.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnPlaceholder;
+                @Placeholder.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnPlaceholder;
+                @Placeholder.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnPlaceholder;
+            }
+            m_Wrapper.m_CombatActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Placeholder.started += instance.OnPlaceholder;
+                @Placeholder.performed += instance.OnPlaceholder;
+                @Placeholder.canceled += instance.OnPlaceholder;
+            }
+        }
+    }
+    public CombatActions @Combat => new CombatActions(this);
     private int m_PCSchemeIndex = -1;
     public InputControlScheme PCScheme
     {
@@ -406,5 +470,9 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     {
         void OnShowConsole(InputAction.CallbackContext context);
         void OnCommandHistory(InputAction.CallbackContext context);
+    }
+    public interface ICombatActions
+    {
+        void OnPlaceholder(InputAction.CallbackContext context);
     }
 }

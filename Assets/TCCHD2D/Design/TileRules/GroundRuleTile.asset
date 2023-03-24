@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: GroundRuleTile
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 62ce01ddca719d34ea9648c586a7cc94, type: 3}
-  m_DefaultGameObject: {fileID: 4308655157169985330, guid: 79af690e47388c44a8199d752beb4f84,
+  m_DefaultGameObject: {fileID: 90678348602996552, guid: 87ea8874dfd509e4ab343d7ae9c4f97c,
     type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
     - {fileID: 0}
-    m_GameObject: {fileID: 4308655157169985330, guid: 79af690e47388c44a8199d752beb4f84,
+    m_GameObject: {fileID: 90678348602996552, guid: 87ea8874dfd509e4ab343d7ae9c4f97c,
       type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1

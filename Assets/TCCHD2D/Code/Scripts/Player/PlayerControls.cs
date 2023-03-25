@@ -92,6 +92,11 @@ public class PlayerControls : SerializedMonoBehaviour
         gameControls.Default.Interact.canceled -= OnInteract;
         gameControls.Disable();
     }
+    
+    public void ChangeSceneTo(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 
     /// <summary>
     /// Is called when the "Walk" input of the "GameControls" Input Actions is performed.

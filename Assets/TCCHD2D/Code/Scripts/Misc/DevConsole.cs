@@ -61,8 +61,6 @@ public class DevConsole : MonoBehaviour
         }
         Instance = this;
 
-
-
         _consoleRect = new Rect(consoleX, consoleY, consoleWidth, consoleHeight);
         _consoleScrollPosition = Vector2.zero;
     }
@@ -77,6 +75,7 @@ public class DevConsole : MonoBehaviour
 
     private void OnDisable()
     {
+        if (_gameControls == null) return;
         _gameControls.Console.ShowConsole.started -= CallConsole;
         _gameControls.Console.CommandHistory.started -= ConsoleHistory;
         _gameControls.Disable();

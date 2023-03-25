@@ -7,6 +7,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Responsible for managing the turn order of all units, waiting for player input and selecting actions for the AI.
@@ -85,6 +86,33 @@ public class TurnManager : MonoBehaviour
         }
     }
     
+    public void CheckGameOver()
+    {
+        var playerAlive = units.Any(unit => unit.Unit.IsPlayer && !unit.Unit.IsDead);
+        var enemyAlive = units.Any(unit => !unit.Unit.IsPlayer && !unit.Unit.IsDead);
+        
+        if (!playerAlive)
+        {
+            Debug.Log("Player has been defeated!");
+            GameOver();
+        }
+        else if (!enemyAlive)
+        {
+            Debug.Log("Enemy has been defeated!");
+            Victory();
+        }
+    }
+    
+    public void GameOver()
+    {
+        SceneManager.LoadScene("scn_gameOver");
+    }
+    
+    public void Victory()
+    {
+        SceneManager.LoadScene("scn_game");
+    }
+    
     public void NextTurn()
     {
         ManageTurns();
@@ -96,6 +124,7 @@ public class TurnManager : MonoBehaviour
     public void TakeAction()
     {
         StartCoroutine(TurnDelay());
+        onTurnEnd.Invoke();
     }
 
     /// <summary>
@@ -108,6 +137,7 @@ public class TurnManager : MonoBehaviour
         if (units[currentUnitIndex].Unit.IsPlayer == false)
             aiMoved = false;
         onTurnChange.Invoke();
+        onTurnStart.Invoke();
     }
 
     private void OnDisable()

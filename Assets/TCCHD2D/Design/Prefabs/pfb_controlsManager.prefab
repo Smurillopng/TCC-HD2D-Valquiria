@@ -1238,6 +1238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8094525128678912087}
   - component: {fileID: 8094525128678912086}
+  - component: {fileID: 8365874575631072342}
   m_Layer: 0
   m_Name: DevConsole
   m_TagString: Untagged
@@ -1273,11 +1274,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eca70c8414a42429f87165ba6df5e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  console: {fileID: 8094525128461765014}
-  inputField: {fileID: 8094525129004166008}
-  textField: {fileID: 8094525127877486456}
+  openOnStart: 0
+  consoleX: 10
+  consoleY: 10
+  consoleWidth: 400
+  consoleHeight: 600
+  fontSize: 12
+  scaleFactor: 1
   showConsole: {fileID: 11400000, guid: 17650460fd0eddf47a8766be5f6993d3, type: 2}
-  defaultSymbol: '>'
+  debugConsole: {fileID: 8365874575631072342}
+--- !u!114 &8365874575631072342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094525128678912084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2016aab9d16ebe7459248fe48790aab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toggleKey: 4
+  openOnStart: 0
+  restrictLogCount: 0
+  maxLogCount: 1000
+  collapseLogOnStart: 1
+  logFontSize: 24
+  scaleFactor: 2
 --- !u!1 &8094525129004166006
 GameObject:
   m_ObjectHideFlags: 0

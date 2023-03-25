@@ -1210,6 +1210,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4402940964092420302, guid: b5a6bd9fd5ba197478b695d7931aeae6,
+        type: 3}
+      propertyPath: toggleKey
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402940964092420302, guid: b5a6bd9fd5ba197478b695d7931aeae6,
+        type: 3}
+      propertyPath: logFontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402940964092420302, guid: b5a6bd9fd5ba197478b695d7931aeae6,
+        type: 3}
+      propertyPath: scaleFactor
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8094525127899026400, guid: b5a6bd9fd5ba197478b695d7931aeae6,
         type: 3}
       propertyPath: m_Name
@@ -1280,6 +1295,17 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
+      objectReference: {fileID: 8094525127899026403, guid: b5a6bd9fd5ba197478b695d7931aeae6,
+        type: 3}
+    - target: {fileID: 8094525128678912086, guid: b5a6bd9fd5ba197478b695d7931aeae6,
+        type: 3}
+      propertyPath: fontSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8094525128678912086, guid: b5a6bd9fd5ba197478b695d7931aeae6,
+        type: 3}
+      propertyPath: scaleFactor
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5a6bd9fd5ba197478b695d7931aeae6, type: 3}

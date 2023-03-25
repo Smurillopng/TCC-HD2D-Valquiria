@@ -31,9 +31,9 @@ public class PlayerControls : SerializedMonoBehaviour
 
     [SerializeField, InlineEditor]
     private BoolVariable interacted;
-    
+
     [SerializeField]
-    private Dictionary<string,SceneType> sceneMap = new();
+    private Dictionary<string, SceneType> sceneMap = new();
 
     private void Awake()
     {
@@ -52,36 +52,35 @@ public class PlayerControls : SerializedMonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        gameControls = new GameControls();
+
         var sceneName = SceneManager.GetActiveScene().name;
-        
         if (sceneMap.TryGetValue(sceneName, out var currentScene))
         {
             print($"Current scene: {currentScene}");
             switch (currentScene)
             {
                 case SceneType.Menu:
-                    gameControls.Enable();
                     break;
                 case SceneType.Game:
-                    gameControls = new GameControls();
                     gameControls.Default.Walk.performed += OnMove;
                     gameControls.Default.Walk.canceled += OnMoveRelease;
                     gameControls.Default.Run.performed += OnRun;
                     gameControls.Default.Run.canceled += OnRun;
                     gameControls.Default.Interact.performed += OnInteract;
                     gameControls.Default.Interact.canceled += OnInteract;
-                    gameControls.Enable();
                     break;
                 case SceneType.Combat:
-                    gameControls.Enable();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
         else Debug.LogError($"Scene {sceneName} is not mapped to any SceneType!");
+
+        gameControls.Enable();
     }
-    
+
     private void OnSceneUnloaded(Scene arg0)
     {
         if (gameControls == null) return;
@@ -129,6 +128,8 @@ public class PlayerControls : SerializedMonoBehaviour
 
     private void OnDisable()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
         gameControls?.Disable();
     }
 }

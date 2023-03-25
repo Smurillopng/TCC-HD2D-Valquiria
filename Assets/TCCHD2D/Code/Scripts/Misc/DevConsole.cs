@@ -1,9 +1,11 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 08/03/2023
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -14,16 +16,41 @@ public class DevConsole : MonoBehaviour
 {
     public static DevConsole Instance { get; private set; }
 
-    [SerializeField] private GameObject console;
-    [SerializeField] private TMP_InputField inputField;
-    [SerializeField] private TMP_Text textField;
-    [SerializeField] private BoolVariable showConsole;
-    [SerializeField] private string defaultSymbol = ">";
+    [SerializeField, Tooltip("Whether to show the console window on start.")]
+    private bool openOnStart;
 
-    private GameControls gameControls;
+    [SerializeField, Tooltip("X position of the console window.")]
+    private float consoleX = 10;
 
-    private List<string> commandHistory = new();
-    private int currentCommandIndex = -1;
+    [SerializeField, Tooltip("Y position of the console window.")]
+    private float consoleY = 10;
+
+    [SerializeField, Tooltip("Width of the console window.")]
+    private float consoleWidth = 400;
+
+    [SerializeField, Tooltip("Height of the console window.")]
+    private float consoleHeight = 600;
+
+    [SerializeField, Tooltip("Font size to display log entries with.")]
+    private int fontSize = 12;
+
+    [SerializeField, Tooltip("Amount to scale UI by.")]
+    private float scaleFactor = 1f;
+
+    [SerializeField, Required, Tooltip("Whether to show the console window or not.")]
+    private BoolVariable showConsole;
+
+    [SerializeField, Required, Tooltip("Reference to the debug console")]
+    private DebugConsole debugConsole;
+
+    private GameControls _gameControls;
+
+    private readonly List<string> _commandHistory = new();
+    private int _currentCommandIndex = -1;
+    private Rect _consoleRect;
+
+    private Vector2 _consoleScrollPosition = Vector2.zero;
+    private string _inputString = "";
 
     private void Awake()
     {
@@ -34,14 +61,103 @@ public class DevConsole : MonoBehaviour
         }
         Instance = this;
 
-        gameControls = new GameControls();
-        gameControls.Console.ShowConsole.started += CallConsole;
-        gameControls.Console.CommandHistory.started += ConsoleHistory;
-        gameControls.Enable();
 
-        inputField.onSubmit.AddListener(OnSubmit);
-        textField.text = "--- Console Mode ---";
-        console.SetActive(false);
+
+        _consoleRect = new Rect(consoleX, consoleY, consoleWidth, consoleHeight);
+        _consoleScrollPosition = Vector2.zero;
+    }
+
+    private void OnEnable()
+    {
+        _gameControls = new GameControls();
+        _gameControls.Console.ShowConsole.started += CallConsole;
+        _gameControls.Console.CommandHistory.started += ConsoleHistory;
+        _gameControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _gameControls.Console.ShowConsole.started -= CallConsole;
+        _gameControls.Console.CommandHistory.started -= ConsoleHistory;
+        _gameControls.Disable();
+    }
+
+    private void Start()
+    {
+        if (openOnStart)
+            showConsole.Value = true;
+    }
+
+    private void OnGUI()
+    {
+        if (!showConsole.Value)
+            return;
+
+        var matrix = GUI.matrix;
+        GUI.matrix = Matrix4x4.Scale(new Vector3(scaleFactor, scaleFactor, 1f));
+        _consoleRect = GUILayout.Window(0, _consoleRect, ConsoleWindow, "Console");
+        GUI.matrix = matrix;
+    }
+
+    private void ConsoleWindow(int id)
+    {
+        GUI.matrix = Matrix4x4.Scale(Vector3.one * scaleFactor);
+        var consoleStyle = GUI.skin.label;
+        try { consoleStyle.fontSize = (int)(fontSize * scaleFactor); }
+        catch (Exception e) { print(e.ToString()); }
+
+        GUILayout.BeginVertical();
+
+        _consoleScrollPosition = GUILayout.BeginScrollView(_consoleScrollPosition, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
+
+        GUILayout.Label("--- Console Mode ---");
+
+        for (var i = _commandHistory.Count - 1; i >= 0; i--)
+            GUILayout.Label(_commandHistory[i]);
+
+        GUILayout.EndScrollView();
+        GUILayout.BeginHorizontal();
+
+        GUI.SetNextControlName("inputField");
+        _inputString = GUILayout.TextField(_inputString);
+
+        if (!string.IsNullOrEmpty(_inputString))
+        {
+            var matchingCommands = GetMatchingCommands(_inputString);
+
+            if (matchingCommands.Count > 0)
+            {
+                if (matchingCommands[0] != _inputString)
+                {
+                    GUILayout.BeginVertical(GUI.skin.box);
+
+                    foreach (var command in matchingCommands.Where(command => GUILayout.Button(command)))
+                        _inputString = command;
+
+                    GUILayout.EndVertical();
+                }
+            }
+        }
+
+        if (_gameControls.Console.AutoComplete.triggered)
+        {
+            var matchingCommands = GetMatchingCommands(_inputString);
+
+            if (matchingCommands.Count > 0)
+                _inputString = matchingCommands[0];
+        }
+
+        if (GUILayout.Button("Submit") || (Event.current.type == EventType.KeyUp && Event.current.keyCode == KeyCode.Return))
+        {
+            OnSubmit(_inputString);
+            _inputString = "";
+        }
+
+        GUILayout.EndHorizontal();
+        GUILayout.EndVertical();
+
+        if (Event.current.type == EventType.Repaint)
+            GUI.FocusControl("inputField");
     }
 
     /// <summary>
@@ -51,9 +167,9 @@ public class DevConsole : MonoBehaviour
     private void CallConsole(InputAction.CallbackContext ctx)
     {
         showConsole.Value = !showConsole.Value;
-        console.SetActive(showConsole.Value);
         Time.timeScale = showConsole.Value ? 0 : 1;
     }
+
     /// <summary>
     /// Show the previous command in the console history.
     /// </summary>
@@ -61,34 +177,25 @@ public class DevConsole : MonoBehaviour
     private void ConsoleHistory(InputAction.CallbackContext ctx)
     {
         if (!showConsole.Value) return;
-        if (currentCommandIndex < commandHistory.Count - 1)
-            currentCommandIndex++;
-        if (currentCommandIndex >= 0 && currentCommandIndex < commandHistory.Count)
-            inputField.text = commandHistory[currentCommandIndex];
+        if (_currentCommandIndex < _commandHistory.Count - 1)
+            _currentCommandIndex++;
+        if (_currentCommandIndex >= 0 && _currentCommandIndex < _commandHistory.Count)
+            _inputString = _commandHistory[_currentCommandIndex];
     }
 
-    private void Update()
+    private List<string> GetMatchingCommands(string input)
     {
-        switch (showConsole.Value)
-        {
-            case false:
-                return;
-            case true:
-                inputField.ActivateInputField();
-                break;
-        }
-        console.SetActive(showConsole.Value);
+        return _availableCommands.Where(command => command.StartsWith(input, StringComparison.InvariantCultureIgnoreCase)).ToList();
     }
 
     private void OnSubmit(string input)
     {
-        textField.text = $"{defaultSymbol} {input}\n{textField.text}";
-        inputField.text = "";
+        GUILayout.Label(input);
+        _inputString = "";
         ExecuteCommand(input);
 
-        // Add the command to the history
-        commandHistory.Insert(0, input);
-        currentCommandIndex = -1;
+        _commandHistory.Insert(0, input);
+        _currentCommandIndex = -1;
     }
 
     /// <summary>
@@ -97,12 +204,11 @@ public class DevConsole : MonoBehaviour
     /// <param name="input"></param>
     private void ExecuteCommand(string input)
     {
-        // Check the input and execute the corresponding cheat command
         var parts = input.Split(' ');
         var methodName = parts[0];
         var parameters = new object[parts.Length - 1];
 
-        for (int i = 1; i < parts.Length; i++)
+        for (var i = 1; i < parts.Length; i++)
         {
             var parameter = parts[i];
             if (float.TryParse(parameter, out var floatVal))
@@ -114,25 +220,35 @@ public class DevConsole : MonoBehaviour
         if (methodInfo != null)
             methodInfo.Invoke(this, parameters);
         else
-            textField.text = $"Method '{methodName}' not found.\n{textField.text}";
+            _inputString = $"Method '{methodName}' not found.\n{_inputString}";
     }
 
     // --- Cheat commands ----------------------------------------------------------
 
+    private readonly List<string> _availableCommands = new()
+    {
+        "Clear",
+        "Print",
+        "SetTimeScale",
+        "Heal",
+        "DebugMode"
+        // Add more commands here
+    };
+
     public void Clear()
     {
-        textField.text = "";
+        _commandHistory.Clear();
     }
 
     public void Print(string message)
     {
-        textField.text = $"{message}\n{textField.text}";
+        _commandHistory.Insert(0, message);
     }
 
     public void SetTimeScale(float timeScale)
     {
         Time.timeScale = timeScale;
-        textField.text = $"Time scale set to {timeScale}.\n{textField.text}";
+        _commandHistory.Insert(0, $"{_inputString}\nTime scale set to {timeScale}.");
     }
 
     public void Heal(float healAmount)
@@ -144,6 +260,18 @@ public class DevConsole : MonoBehaviour
             var combatCanvas = GameObject.FindWithTag("CombatUI").GetComponent<PlayerCombatHUD>();
             combatCanvas.UpdatePlayerHealth();
         }
-        textField.text = $"Player healed by {healAmount}.\n{textField.text}";
+        _commandHistory.Insert(0, $"{_inputString}\nPlayer healed for {healAmount}.");
+    }
+
+    public void DebugMode()
+    {
+        debugConsole.TurnOnOff();
+        showConsole.Value = !showConsole.Value;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(new Vector3(consoleX + consoleWidth / 2, consoleY + consoleHeight / 2, 0), new Vector3(consoleWidth, consoleHeight, 0));
     }
 }

@@ -18,9 +18,9 @@ MonoBehaviour:
   level: 1
   experience: 0
   maxHp: 10
-  currentHp: 7
+  currentHp: 9
   maxTp: 100
-  currentTp: 20
+  currentTp: 0
   attack: 1
   defence: 1
   speed: 2

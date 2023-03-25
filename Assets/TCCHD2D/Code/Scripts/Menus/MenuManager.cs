@@ -1,15 +1,16 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 09/03/2023
 
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Responsible for handling everything related to the main menu.
 /// </summary>
-public class MainMenuManager : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
-    [SerializeField] private StringVariable previousScene;
+    [SerializeField, Required] private StringVariable previousScene;
 
     /// <summary>
     /// Loads the scene with the given name and saves the previous scene name if the scene to be loaded is the options menu.

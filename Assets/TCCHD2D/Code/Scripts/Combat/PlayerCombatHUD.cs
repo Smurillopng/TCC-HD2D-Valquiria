@@ -71,6 +71,10 @@ public class PlayerCombatHUD : MonoBehaviour
 
     private void Start()
     {
+        UpdateEnemyHealth();
+        UpdatePlayerTp();
+        UpdatePlayerHealth();
+        
         playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
         playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
         playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
@@ -80,24 +84,32 @@ public class PlayerCombatHUD : MonoBehaviour
         enemyName.text = $"{enemyUnitController.Unit.UnitName}:";
         playerUnitController.Unit.CurrentTp = 0;
         combatTextBox.text = "";
-        UpdatePlayerTp();
     }
 
     private void Update()
     {
-        if (playerUnitController.Director.state == PlayState.Playing)
-        {
-            attackButton.interactable = false;
-            specialButton.interactable = false;
-            itemButton.interactable = false;
-            runButton.interactable = false;
-        }
+        if (playerUnitController.Director.state == PlayState.Playing || enemyUnitController.Director.state == PlayState.Playing)
+            DisableButtons(true);
         else
+            DisableButtons(false);
+    }
+
+    private void DisableButtons(bool disabled)
+    {
+        switch (disabled)
         {
-            attackButton.interactable = true;
-            specialButton.interactable = true;
-            itemButton.interactable = true;
-            runButton.interactable = true;
+            case true:
+                attackButton.interactable = false;
+                specialButton.interactable = false;
+                itemButton.interactable = false;
+                runButton.interactable = false;
+                break;
+            case false:
+                attackButton.interactable = true;
+                specialButton.interactable = true;
+                itemButton.interactable = true;
+                runButton.interactable = true;
+                break;
         }
     }
 
@@ -106,11 +118,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void UpdatePlayerHealth()
     {
-        if (playerHealthText != null && playerHelthbarFill != null)
-        {
-            playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
-            playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
-        }
+        if (playerHealthText == null || playerHelthbarFill == null) return;
+        playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
+        playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
     }
 
     /// <summary>
@@ -118,11 +128,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void UpdateEnemyHealth()
     {
-        if (enemyHealthText != null && enemyHelthbarFill != null)
-        {
-            enemyHealthText.text = $"{enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
-            enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
-        }
+        if (enemyHealthText == null || enemyHelthbarFill == null) return;
+        enemyHealthText.text = $"{enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
+        enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
     }
 
     /// <summary>
@@ -130,11 +138,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void UpdatePlayerTp()
     {
-        if (playerTpText != null && playerTpbarFill != null)
-        {
-            playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
-            playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
-        }
+        if (playerTpText == null || playerTpbarFill == null) return;
+        playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
+        playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
     }
 
     /// <summary>

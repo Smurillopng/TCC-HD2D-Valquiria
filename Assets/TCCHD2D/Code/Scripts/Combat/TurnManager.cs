@@ -124,7 +124,7 @@ public class TurnManager : MonoBehaviour
     public void TakeAction()
     {
         StartCoroutine(TurnDelay());
-        onTurnEnd.Invoke();
+        
     }
 
     /// <summary>
@@ -136,6 +136,7 @@ public class TurnManager : MonoBehaviour
         units[currentUnitIndex].Unit.HasTakenTurn = true;
         if (units[currentUnitIndex].Unit.IsPlayer == false)
             aiMoved = false;
+        onTurnEnd.Invoke();
         onTurnChange.Invoke();
         onTurnStart.Invoke();
     }

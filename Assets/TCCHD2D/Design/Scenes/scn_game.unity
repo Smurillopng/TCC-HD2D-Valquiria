@@ -123,18 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &15386086 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8094525127899026403, guid: b5a6bd9fd5ba197478b695d7931aeae6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1064388589}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f9bc86589d947219b4ca1a9a1f8a048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &41534024
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +251,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.11043154, y: 0.000000004275286, z: -4.7503174e-10, w: 0.9938837}
+  m_LocalRotation: {x: 0.11043153, y: -0.000000004275286, z: 4.7503174e-10, w: 0.9938837}
   m_LocalPosition: {x: -0.23, y: 0.84000003, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2007,6 +1995,7 @@ GameObject:
   - component: {fileID: 1982424489}
   - component: {fileID: 1982424488}
   - component: {fileID: 1982424487}
+  - component: {fileID: 1982424490}
   m_Layer: 5
   m_Name: ChangeScene
   m_TagString: Untagged
@@ -2079,9 +2068,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 15386086}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: ChangeSceneTo
+      - m_Target: {fileID: 1982424490}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: LoadScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2129,6 +2118,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982424485}
   m_CullTransparentMesh: 1
+--- !u!114 &1982424490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982424485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7cebc93785c33244a507ded636de800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previousScene: {fileID: 11400000, guid: 8f95ac550c89d34438fe9bc55132be5a, type: 2}
 --- !u!114 &2063822073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2377,17 +2379,17 @@ PrefabInstance:
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.11043154
+      value: 0.11043153
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000004275286
+      value: -0.000000004275286
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.7503174e-10
+      value: 4.7503174e-10
       objectReference: {fileID: 0}
     - target: {fileID: 6080997216289527077, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}

@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 13/03/2023
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,17 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+
+public enum CombatState
+{
+    CombatStart,
+    TurnCheck,
+    TurnEnd,
+    PlayerTurn,
+    EnemyTurn,
+    PlayerWon,
+    PlayerLost
+}
 
 /// <summary>
 /// Responsible for managing the turn order of all units, waiting for player input and selecting actions for the AI.
@@ -30,60 +42,111 @@ public class TurnManager : MonoBehaviour
     [SerializeField] 
     private UnityEvent onTurnStart;
     [SerializeField]
-    private UnityEvent onTurnEnd;
-    [SerializeField]
     private UnityEvent onTurnChange;
+    private UnitController _currentUnit;
+    private CombatState _combatState;
 
     private void Start()
     {
-        // Add all player and enemy units to the list
-        foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
-        {
-            units.Add(unitObject.GetComponent<UnitController>());
-            playerUnitController = unitObject.GetComponent<UnitController>();
-        }
-        foreach (var unitObject in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            units.Add(unitObject.GetComponent<UnitController>());
-        }
-
-        // Sort the units by speed, so the fastest goes first
-        units.Sort((a, b) => b.Unit.Speed.CompareTo(a.Unit.Speed));
-
+        _combatState = CombatState.CombatStart;
         PlayerCombatHUD.TakenAction += TakeAction;
+        ManageTurns();
     }
 
     private void ManageTurns()
     {
-        // Check if the current unit is dead or has already taken a turn
-        if (units[currentUnitIndex].Unit.IsDead || units[currentUnitIndex].Unit.HasTakenTurn)
+        switch (_combatState)
         {
-            currentUnitIndex++;
-            if (currentUnitIndex >= units.Count)
-            {
-                // If we've reached the end of the list, start over from the beginning
-                currentUnitIndex = 0;
-            }
+            case CombatState.CombatStart:
+                // Add all player and enemy units to the list
+                foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
+                {
+                    units.Add(unitObject.GetComponent<UnitController>());
+                    playerUnitController = unitObject.GetComponent<UnitController>();
+                }
+                foreach (var unitObject in GameObject.FindGameObjectsWithTag("Enemy"))
+                {
+                    units.Add(unitObject.GetComponent<UnitController>());
+                }
+
+                // Sort the units by speed, so the fastest goes first
+                units.Sort((a, b) => b.Unit.Speed.CompareTo(a.Unit.Speed));
+                _combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
+                break;
+            
+            case CombatState.TurnCheck:
+                CheckGameOver();
+                // Check if the current unit is dead or has already taken a turn
+                if (units[currentUnitIndex].Unit.IsDead || units[currentUnitIndex].Unit.HasTakenTurn)
+                {
+                    currentUnitIndex++;
+                    if (currentUnitIndex >= units.Count)
+                    {
+                        // If we've reached the end of the list, start over from the beginning
+                        currentUnitIndex = 0;
+                    }
+                }
+                _combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
+                ManageTurns();
+                break;
+
+            case CombatState.PlayerTurn:
+                _currentUnit = units[currentUnitIndex];
+                if (_currentUnit.Unit.IsPlayer && _currentUnit.Unit.HasTakenTurn == false)
+                {
+                    _combatState = CombatState.PlayerTurn;
+                    onTurnStart.Invoke();
+                    // Wait for player input
+                }
+                if (units[currentUnitIndex].Unit.HasTakenTurn)
+                {
+                    PlayerCombatHUD.TakenAction.Invoke();
+                }
+                break;
+
+            case CombatState.EnemyTurn:
+                _currentUnit = units[currentUnitIndex];
+                if (_currentUnit.Unit.HasTakenTurn == false && aiMoved == false)
+                {
+                    _combatState = CombatState.EnemyTurn;
+                    onTurnStart.Invoke();
+                    // Use the AI system to select an action for the enemy
+                    aiMoved = true;
+                    _currentUnit.SelectAction(playerUnitController);
+                    PlayerCombatHUD.TakenAction.Invoke();
+                }
+                if (units[currentUnitIndex].Unit.HasTakenTurn)
+                {
+                    PlayerCombatHUD.TakenAction.Invoke();
+                }
+                break;
+
+            case CombatState.TurnEnd:
+                // Check if all units have taken a turn
+                if (units.All(unit => unit.Unit.HasTakenTurn))
+                {
+                    // Reset the turn flags for all units and start over from the beginning
+                    foreach (var unit in units)
+                        unit.Unit.HasTakenTurn = false;
+                    currentUnitIndex = 0;
+                }
+                _combatState = CombatState.TurnCheck;
+                ManageTurns();
+                break;
+
+            case CombatState.PlayerWon:
+                Debug.Log("Enemy has been defeated!");
+                Victory();
+                break;
+
+            case CombatState.PlayerLost:
+                Debug.Log("Player has been defeated!");
+                GameOver();
+                break;
         }
 
         // Set the current unit and wait for input
-        var currentUnit = units[currentUnitIndex];
-        if (currentUnit.Unit.IsPlayer == false && currentUnit.Unit.HasTakenTurn == false && aiMoved == false)
-        {
-            // Use the AI system to select an action for the enemy
-            aiMoved = true;
-            currentUnit.SelectAction(playerUnitController);
-            PlayerCombatHUD.TakenAction.Invoke();
-        }
-
-        // Check if all units have taken a turn
-        if (units.All(unit => unit.Unit.HasTakenTurn))
-        {
-            // Reset the turn flags for all units and start over from the beginning
-            foreach (var unit in units)
-                unit.Unit.HasTakenTurn = false;
-            currentUnitIndex = 0;
-        }
+        _currentUnit = units[currentUnitIndex];
     }
     
     public void CheckGameOver()
@@ -93,13 +156,13 @@ public class TurnManager : MonoBehaviour
         
         if (!playerAlive)
         {
-            Debug.Log("Player has been defeated!");
-            GameOver();
+            _combatState = CombatState.PlayerLost;
+            ManageTurns();
         }
         else if (!enemyAlive)
         {
-            Debug.Log("Enemy has been defeated!");
-            Victory();
+            _combatState = CombatState.PlayerWon;
+            ManageTurns();
         }
     }
     
@@ -124,7 +187,6 @@ public class TurnManager : MonoBehaviour
     public void TakeAction()
     {
         StartCoroutine(TurnDelay());
-        
     }
 
     /// <summary>
@@ -136,9 +198,9 @@ public class TurnManager : MonoBehaviour
         units[currentUnitIndex].Unit.HasTakenTurn = true;
         if (units[currentUnitIndex].Unit.IsPlayer == false)
             aiMoved = false;
-        onTurnEnd.Invoke();
+        yield return new WaitForSeconds(0.5f);
+        _combatState = CombatState.TurnEnd;
         onTurnChange.Invoke();
-        onTurnStart.Invoke();
     }
 
     private void OnDisable()

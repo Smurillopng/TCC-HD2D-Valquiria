@@ -71,7 +71,7 @@ public class UnitController : MonoBehaviour
     /// </summary>
     public PlayableAsset Run => run;
 
-    public void Start()
+    public void Awake()
     {
         // Set the current HP to the maximum
         if (unit.IsPlayer == false)
@@ -81,11 +81,11 @@ public class UnitController : MonoBehaviour
         }
         else
         {
-            if (unit.CurrentHp == unit.MaxHp && unit.IsDead == true)
+            if (unit.CurrentHp == unit.MaxHp && unit.IsDead)
                 unit.IsDead = false;
             if (unit.IsDead == false && unit.CurrentHp == 0)
                 unit.CurrentHp = unit.MaxHp;
-            if (unit.IsDead == true && unit.CurrentHp == 0)
+            if (unit.IsDead && unit.CurrentHp == 0)
             {
                 unit.CurrentHp = unit.MaxHp;
                 unit.IsDead = false;

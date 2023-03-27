@@ -9,23 +9,23 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     [TitleGroup("Dialogue Manager Settings", Alignment = TitleAlignments.Centered)]
-    [SerializeField, Required]
+    [SerializeField, Required, Tooltip("Dialogue box that will be displayed on screen.")]
     private GameObject dialogueBox;
 
-    [SerializeField, Required]
+    [SerializeField, Required, Tooltip("Text that will display the name of the character speaking.")]
     private TextMeshProUGUI speakerName;
 
-    [SerializeField, Required]
+    [SerializeField, Required, Tooltip("Text that will display the dialogue of the character speaking.")]
     private TextMeshProUGUI dialogueText;
 
-    [SerializeField, Range(0.01f, 1f)]
+    [SerializeField, Range(0.01f, 1f), Tooltip("Delay between each character of the dialogue text.")]
     private float charDelay = 0.1f;
 
-    [SerializeField]
+    [SerializeField, Required, Tooltip("Audio source that will play the audio clips of the dialogue lines.")]
     private AudioSource audioSource;
 
     [TitleGroup("Dialogue Data", Alignment = TitleAlignments.Centered)]
-    [SerializeField, ReadOnly]
+    [SerializeField, ReadOnly, Tooltip("Current dialogue data being displayed.")]
     private DialogueData currentDialogueData;
 
     private int _currentLine;

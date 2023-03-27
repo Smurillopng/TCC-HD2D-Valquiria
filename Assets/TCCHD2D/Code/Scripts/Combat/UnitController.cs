@@ -12,31 +12,36 @@ using UnityEngine.Playables;
 /// </summary>
 public class UnitController : MonoBehaviour
 {
-    [TitleGroup("Unit Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField, InlineEditor]
+    [BoxGroup("Unit Info")]
+    [SerializeField, InlineEditor, Tooltip("The unit data that this controller controls.")]
     private Unit unit;
 
-    [TitleGroup("Action Timelines", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The playable director that controls the animations of this unit.")]
     private PlayableDirector director;
 
-    [SerializeField]
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private PlayableAsset basicAttack;
 
-    [SerializeField]
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The list of PlayableAssets representing the unit's special attacks.")]
     private List<PlayableAsset> specialAttacks = new();
 
-    [SerializeField]
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The PlayableAsset representing the unit's use item action.")]
     private PlayableAsset useItem;
 
-    [SerializeField]
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The PlayableAsset representing the unit's run action.")]
     private PlayableAsset run;
 
-    [TitleGroup("Unit Floating Numbers", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
+    [FoldoutGroup("Unit Floating Numbers")]
+    [SerializeField, Tooltip("The animator that controls the damage text animation.")]
     private Animator damageTextAnimator;
 
-    [SerializeField]
+    [FoldoutGroup("Unit Floating Numbers")]
+    [SerializeField, Tooltip("The text that displays the damage taken by the unit.")]
     private TMP_Text damageText;
 
     private int _damageTakenThisTurn;

@@ -26,25 +26,29 @@ public enum CombatState
 /// </summary>
 public class TurnManager : MonoBehaviour
 {
-    [TitleGroup("Units in Combat", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
+    [BoxGroup("Units")]
+    [SerializeField, Tooltip("List of all units in combat")]
     private List<UnitController> units = new();
 
-    [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField, ReadOnly]
+    [FoldoutGroup("Events")]
+    [SerializeField, Tooltip("Event called at the start of a unit's turn")]
+    private UnityEvent onTurnStart;
+    [FoldoutGroup("Events")]
+    [SerializeField, Tooltip("Event called when a unit's turn ends or is skipped")]
+    private UnityEvent onTurnChange;
+
+    [FoldoutGroup("Debug Info")]
+    [SerializeField, ReadOnly, Tooltip("The index of the current unit in the units list")]
     private int currentUnitIndex;
-    [SerializeField, ReadOnly]
+    [FoldoutGroup("Debug Info")]
+    [SerializeField, ReadOnly, Tooltip("Whether the current unit is controlled by the AI and has already moved this turn")]
     private bool aiMoved;
-    [SerializeField, ReadOnly]
+    [FoldoutGroup("Debug Info")]
+    [SerializeField, ReadOnly, Tooltip("The UnitController component of the current player unit")]
     private UnitController playerUnitController;
 
-    [TitleGroup("Events", Alignment = TitleAlignments.Centered)]
-    [SerializeField] 
-    private UnityEvent onTurnStart;
-    [SerializeField]
-    private UnityEvent onTurnChange;
-    private UnitController _currentUnit;
-    private CombatState _combatState;
+    private UnitController _currentUnit; // The UnitController component of the current unit
+    private CombatState _combatState; // The current state of the combat
 
     private void Start()
     {
@@ -73,7 +77,7 @@ public class TurnManager : MonoBehaviour
                 units.Sort((a, b) => b.Unit.Speed.CompareTo(a.Unit.Speed));
                 _combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
                 break;
-            
+
             case CombatState.TurnCheck:
                 CheckGameOver();
                 // Check if the current unit is dead or has already taken a turn
@@ -148,12 +152,12 @@ public class TurnManager : MonoBehaviour
         // Set the current unit and wait for input
         _currentUnit = units[currentUnitIndex];
     }
-    
+
     public void CheckGameOver()
     {
         var playerAlive = units.Any(unit => unit.Unit.IsPlayer && !unit.Unit.IsDead);
         var enemyAlive = units.Any(unit => !unit.Unit.IsPlayer && !unit.Unit.IsDead);
-        
+
         if (!playerAlive)
         {
             _combatState = CombatState.PlayerLost;
@@ -165,17 +169,17 @@ public class TurnManager : MonoBehaviour
             ManageTurns();
         }
     }
-    
+
     public void GameOver()
     {
         SceneManager.LoadScene("scn_gameOver");
     }
-    
+
     public void Victory()
     {
         SceneManager.LoadScene("scn_game");
     }
-    
+
     public void NextTurn()
     {
         ManageTurns();

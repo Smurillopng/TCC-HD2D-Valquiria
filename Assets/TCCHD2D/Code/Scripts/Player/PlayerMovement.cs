@@ -13,30 +13,30 @@ public class PlayerMovement : MonoBehaviour
 {
     // Private variables
     [TitleGroup("Input Variables", Alignment = TitleAlignments.Centered)]
-    [SerializeField, Required, InlineEditor]
+    [SerializeField, Required, InlineEditor, Tooltip("Bool variable that tells if the player can move or not.")]
     private BoolVariable canMove;
 
-    [SerializeField, Required, InlineEditor]
+    [SerializeField, Required, InlineEditor, Tooltip("Bool variable that tells if the player is running or not.")]
     private BoolVariable isRunning;
 
-    [SerializeField, Required, InlineEditor]
+    [SerializeField, Required, InlineEditor, Tooltip("Vector2 variable that tells the player's movement direction values.")]
     private Vector2Variable direction;
 
     [TitleGroup("Movement Variables", Alignment = TitleAlignments.Centered)]
-    [SerializeField, MinValue(0)]
+    [SerializeField, MinValue(0), Tooltip("Player's movement speed.")]
     private float speed;
 
-    [SerializeField, MinValue(1)]
+    [SerializeField, MinValue(1), Tooltip("Player's movement speed multiplier when running.")]
     private float runSpeedMultiplier = 1;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField, Required]
+    [SerializeField, Required, Tooltip("Animator component of the player.")]
     private Animator animator;
 
-    [SerializeField, ReadOnly]
+    [SerializeField, ReadOnly, Tooltip("Rigidbody component of the player. If it doesn't exist, it will be added automatically.")]
     private Rigidbody rigidBody;
 
-    [SerializeField, ReadOnly]
+    [SerializeField, ReadOnly, Tooltip("The value that will be used to calculate the player's movement.")]
     private Vector3 movementValue;
 
     private static readonly int SpeedX = Animator.StringToHash("SpeedX");

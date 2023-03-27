@@ -74,7 +74,7 @@ public class UnitController : MonoBehaviour
     public void Awake()
     {
         // Set the current HP to the maximum
-        if (unit.IsPlayer == false)
+        if (!unit.IsPlayer)
         {
             unit.IsDead = false;
             unit.CurrentHp = unit.MaxHp;
@@ -102,6 +102,9 @@ public class UnitController : MonoBehaviour
         // Calculate damage based on strength
         var damage = unit.Attack;
         Director.Play(basicAttack);
+        
+        if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp)
+            unit.CurrentTp += 10;
 
         // Apply damage to target
         target.TakeDamage(damage);
@@ -118,6 +121,12 @@ public class UnitController : MonoBehaviour
 
         // Subtract damage from health
         unit.CurrentHp -= _damageTakenThisTurn;
+        
+        if (unit.IsPlayer)
+        {
+            unit.CurrentTp += 10;
+            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
+        }
 
         // Check if the unit has died
         if (unit.CurrentHp <= 0)
@@ -136,7 +145,7 @@ public class UnitController : MonoBehaviour
     public void HealSpecialAction(UnitController target)
     {
         // Calculate heal based on strength
-        var heal = unit.Attack;
+        var heal = unit.Luck * 2;
 
         // Apply heal to target
         target.Unit.CurrentHp += heal;
@@ -158,6 +167,12 @@ public class UnitController : MonoBehaviour
     /// <param name="target"></param>
     public void SpecialAction(int index, UnitController target)
     {
+        // AI logic for using an item goes here
+        if (!unit.IsPlayer)
+        {
+            //TODO: AI Logic
+        }
+        
         var damage = unit.Attack;
 
         // Apply damage to target
@@ -170,21 +185,33 @@ public class UnitController : MonoBehaviour
     public void UseItemAction()
     {
         // AI logic for using an item goes here
-        if (unit.IsPlayer == false)
+        if (!unit.IsPlayer)
         {
-            //
+            //TODO: AI Logic
         }
     }
 
     /// <summary>
     /// The logic for the player running away.
     /// </summary>
-    public void RunAction()
+    public bool RunAction()
     {
-        // AI logic for running away goes here
-        if (unit.IsPlayer == false)
+        if (!unit.IsPlayer)
         {
-            //
+            //TODO: AI Logic
+        }
+        
+        var randomChance = Random.Range(0, 100);
+        randomChance += Unit.Luck;
+        randomChance = randomChance > 50 ? 1 : 0;
+        if (randomChance == 1)
+        {
+            //TODO: play run animation
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -194,8 +221,39 @@ public class UnitController : MonoBehaviour
     /// <param name="target"></param>
     public void SelectAction(UnitController target)
     {
+        
+        if (unit.IsPlayer) return;
         // AI logic for selecting an action goes here
-        if (unit.IsPlayer == false)
+        if (unit.CurrentHp > unit.MaxHp/4)
+        {
             AttackAction(target);
+            PlayerCombatHUD.CombatTextEvent.Invoke(
+                $"<color=blue>{unit.UnitName}</color> attacked <color=red>{target.Unit.UnitName}</color> for <color=red>{_damageTakenThisTurn}</color> damage!");
+        }
+        else if (unit.CurrentHp < unit.MaxHp / 2)
+        {
+            HealSpecialAction(this);
+            PlayerCombatHUD.CombatTextEvent.Invoke(
+                $"<color=blue>{unit.UnitName}</color> healed for <color=green>{unit.Luck * 2}</color>!");
+            PlayerCombatHUD.UpdateCombatHUDEnemyHp.Invoke();
+        }
+        else
+        {
+            var enemyRan = RunAction();
+            if (enemyRan)
+            {
+                //TODO: give player exp reward
+                //TODO: play run animation
+                //TODO: change scenes
+                PlayerCombatHUD.CombatTextEvent.Invoke(
+                    $"<color=blue>{unit.UnitName}</color> ran away!");
+            }
+            else
+            {
+                //Enemy lost a turn
+                PlayerCombatHUD.CombatTextEvent.Invoke(
+                    $"<color=blue>{unit.UnitName}</color> tried to run away but <color=red>failed</color>");
+            }
+        }
     }
 }

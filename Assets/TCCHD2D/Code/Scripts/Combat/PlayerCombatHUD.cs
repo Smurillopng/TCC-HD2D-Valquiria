@@ -68,6 +68,10 @@ public class PlayerCombatHUD : MonoBehaviour
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [ShowInInspector, ReadOnly]
     public static UnityAction TakenAction;
+    public static UnityAction<string> CombatTextEvent;
+    public static UnityAction UpdateCombatHUDPlayerHp;
+    public static UnityAction UpdateCombatHUDPlayerTp;
+    public static UnityAction UpdateCombatHUDEnemyHp;
 
     private void Start()
     {
@@ -84,6 +88,11 @@ public class PlayerCombatHUD : MonoBehaviour
         enemyName.text = $"{enemyUnitController.Unit.UnitName}:";
         playerUnitController.Unit.CurrentTp = 0;
         combatTextBox.text = "";
+        
+        CombatTextEvent += DisplayCombatText;
+        UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
+        UpdateCombatHUDPlayerTp += UpdatePlayerTp;
+        UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
     }
 
     private void Update()
@@ -149,12 +158,8 @@ public class PlayerCombatHUD : MonoBehaviour
     public void Attack()
     {
         playerUnitController.AttackAction(enemyUnitController);
-        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp)
-        {
-            playerUnitController.Unit.CurrentTp += 10;
-            UpdatePlayerTp();
-        }
-        StartCoroutine(DisplayCombatText($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{playerUnitController.Unit.Attack}</color> damage</b>"));
+        UpdatePlayerTp();
+        CombatTextEvent.Invoke($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{playerUnitController.Unit.Attack}</color> damage</b>");
         TakenAction.Invoke();
     }
 
@@ -165,7 +170,7 @@ public class PlayerCombatHUD : MonoBehaviour
     {
         if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp / 2)
         {
-            StartCoroutine(DisplayCombatText("<color=red>Not enough TP</color>"));
+            CombatTextEvent.Invoke("<color=red>Not enough TP</color>");
         }
         else
         {
@@ -174,7 +179,7 @@ public class PlayerCombatHUD : MonoBehaviour
             UpdatePlayerHealth();
             playerUnitController.Unit.CurrentTp -= 50;
             UpdatePlayerTp();
-            StartCoroutine(DisplayCombatText($"Healed <color=green>{playerUnitController.Unit.Attack}</color> HP"));
+            CombatTextEvent.Invoke($"Healed <color=green>{playerUnitController.Unit.Attack}</color> HP");
             TakenAction.Invoke();
         }
     }
@@ -184,7 +189,7 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void Item()
     {
-        StartCoroutine(DisplayCombatText($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>"));
+        CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
         //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
         TakenAction.Invoke();
     }
@@ -194,28 +199,31 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void Run()
     {
-        var randomChance = UnityEngine.Random.Range(0, 100);
-        randomChance += playerUnitController.Unit.Luck;
-        randomChance = randomChance > 50 ? 1 : 0;
-        if (randomChance == 1)
+        var gotAway = playerUnitController.RunAction();
+
+        if (gotAway)
         {
-            //playerUnitController.UnitDirector.Play(playerUnitController.Run);
             SceneManager.LoadScene("scn_game");
-            StartCoroutine(DisplayCombatText("Run away <color=green>successfully</color>"));
+            CombatTextEvent.Invoke($"<color=green>Ran away</color>");
             TakenAction.Invoke();
         }
         else
         {
-            StartCoroutine(DisplayCombatText("Run away <color=red>unsuccessfully</color>"));
+            CombatTextEvent.Invoke($"<color=red>Failed to run away</color>");
             TakenAction.Invoke();
         }
+    }
+    
+    public void DisplayCombatText(string text)
+    {
+        StartCoroutine(DisplayCombatTextCoroutine(text));
     }
 
     /// <summary>
     /// Displays combat text in the combat text box for a set amount of time then clears the text.
     /// </summary>
     /// <param name="text"></param>
-    public IEnumerator DisplayCombatText(string text)
+    public IEnumerator DisplayCombatTextCoroutine(string text)
     {
         combatTextBox.text = text;
         yield return new WaitForSeconds(combatTextTimer);

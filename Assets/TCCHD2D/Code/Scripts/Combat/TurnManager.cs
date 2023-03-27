@@ -1,7 +1,6 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 13/03/2023
 
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

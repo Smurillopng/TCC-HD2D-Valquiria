@@ -76,7 +76,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(DialogueData dialogueData)
     {
-        if (dialogueBox.activeSelf == false)
+        if (!dialogueBox.activeSelf)
             dialogueBox.SetActive(true);
         if (currentDialogueData != dialogueData)
         {

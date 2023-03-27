@@ -96,7 +96,7 @@ public class TurnManager : MonoBehaviour
 
             case CombatState.PlayerTurn:
                 _currentUnit = units[currentUnitIndex];
-                if (_currentUnit.Unit.IsPlayer && _currentUnit.Unit.HasTakenTurn == false)
+                if (_currentUnit.Unit.IsPlayer && !_currentUnit.Unit.HasTakenTurn)
                 {
                     _combatState = CombatState.PlayerTurn;
                     onTurnStart.Invoke();
@@ -110,7 +110,7 @@ public class TurnManager : MonoBehaviour
 
             case CombatState.EnemyTurn:
                 _currentUnit = units[currentUnitIndex];
-                if (_currentUnit.Unit.HasTakenTurn == false && aiMoved == false)
+                if (!_currentUnit.Unit.HasTakenTurn && !aiMoved)
                 {
                     _combatState = CombatState.EnemyTurn;
                     onTurnStart.Invoke();
@@ -200,7 +200,7 @@ public class TurnManager : MonoBehaviour
     {
         yield return new WaitForSeconds((float)units[currentUnitIndex].Director.duration);
         units[currentUnitIndex].Unit.HasTakenTurn = true;
-        if (units[currentUnitIndex].Unit.IsPlayer == false)
+        if (!units[currentUnitIndex].Unit.IsPlayer)
             aiMoved = false;
         yield return new WaitForSeconds(0.5f);
         _combatState = CombatState.TurnEnd;

@@ -79,7 +79,7 @@ public class UnitController : MonoBehaviour
     public void Awake()
     {
         // Set the current HP to the maximum
-        if (unit.IsPlayer == false)
+        if (!unit.IsPlayer)
         {
             unit.IsDead = false;
             unit.CurrentHp = unit.MaxHp;
@@ -88,7 +88,7 @@ public class UnitController : MonoBehaviour
         {
             if (unit.CurrentHp == unit.MaxHp && unit.IsDead)
                 unit.IsDead = false;
-            if (unit.IsDead == false && unit.CurrentHp == 0)
+            if (!unit.IsDead && unit.CurrentHp == 0)
                 unit.CurrentHp = unit.MaxHp;
             if (unit.IsDead && unit.CurrentHp == 0)
             {
@@ -200,7 +200,7 @@ public class UnitController : MonoBehaviour
     public void SelectAction(UnitController target)
     {
         // AI logic for selecting an action goes here
-        if (unit.IsPlayer == false)
+        if (!unit.IsPlayer)
             AttackAction(target);
     }
 }

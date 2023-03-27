@@ -63,17 +63,18 @@ namespace MuriPNG.Audio
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             if (sound.Source.isPlaying) return;
-            sound.Play();
+            sound?.Play();
         }
         public void PlaySound(string clipName, float volume)
         {
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             sound.Volume = volume;
-            sound.Play();
+            sound?.Play();
         }
         public void PlaySoundOnce(string clipName)
         {
+            CheckAvailableSources();
             var sound = SearchSound(clipName);
             sound?.PlayOnce();
         }
@@ -94,7 +95,7 @@ namespace MuriPNG.Audio
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             sound.Source.time = fromSeconds;
-            sound.Play();
+            sound?.Play();
             sound.Source.SetScheduledEndTime(AudioSettings.dspTime + (toSeconds - fromSeconds));
         }
         public void PlaySoundWithIntro(string introName, string clipName)
@@ -113,14 +114,14 @@ namespace MuriPNG.Audio
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             sound.Pitch = Random.Range(0.1f, 3f);
-            sound.Play();
+            sound?.Play();
         }
         public void PlaySoundWithRandomPitch(string clipName, float minimumPitch, float maximumPitch)
         {
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             sound.Pitch = Random.Range(minimumPitch, maximumPitch);
-            sound.Play();
+            sound?.Play();
         }
 
         public void StopSound(string clipName)
@@ -132,7 +133,7 @@ namespace MuriPNG.Audio
         public void StopAllSounds()
         {
             foreach (var source in sourceList.Where(audioSource => audioSource.isPlaying))
-                source.Stop();
+                source?.Stop();
         }
 
         public void SetMixerVolume(string mixerName, float volume)
@@ -143,12 +144,12 @@ namespace MuriPNG.Audio
         public void MuteMixer(string mixerName)
         {
             var mixer = mixerGroups.Find(mixer => mixer.MixerID == mixerName);
-            mixer?.MuteMixer(true);
+            mixer?.SetMute(true);
         }
         public void PlayMixer(string mixerName)
         {
             var mixer = mixerGroups.Find(mixer => mixer.MixerID == mixerName);
-            mixer?.MuteMixer(false);
+            mixer?.SetMute(false);
         }
 
         public bool IsPlaying(string clipName)
@@ -239,7 +240,7 @@ namespace MuriPNG.Audio
             sound?.Play();
         }
 
-        [Button]
+        [BoxGroup("Debug"), Button]
         public void UpdateSoundSettings()
         {
             foreach (var sound in sounds)
@@ -249,13 +250,19 @@ namespace MuriPNG.Audio
             }
         }
 
-        [Button]
+        [BoxGroup("Debug"), Button]
         public void UpdateMixerSettings()
         {
             foreach (var mixer in mixerGroups)
             {
                 mixer.ApplyMixerSettings();
             }
+        }
+
+        [BoxGroup("Debug"), Button("Play Sample")]
+        public void PlaySample(string sampleName)
+        {
+            PlaySoundOnce(sampleName);
         }
 
         #endregion

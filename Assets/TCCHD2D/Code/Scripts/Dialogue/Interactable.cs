@@ -7,19 +7,23 @@ using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour
 {
-    [TitleGroup("Interaction Settings", Alignment = TitleAlignments.Centered)]
-    [SerializeField, Range(0.1f, 100f)]
+    [FoldoutGroup("Interaction Settings")]
+    [SerializeField, Range(0.1f, 100f), Tooltip("Distance needed to interact with the object.")]
     private float interactionRange = 3f;
 
+    [FoldoutGroup("Interaction Settings")]
     [SerializeField, Required]
     private Transform playerTransform;
 
-    [SerializeField, InlineEditor, Required]
+    [FoldoutGroup("Interaction Settings")]
+    [SerializeField, InlineEditor, Required, Tooltip("Bool variable that will be used to interact with the object.")]
     private BoolVariable interactBool;
 
-    [TitleGroup("Events", Alignment = TitleAlignments.Centered)]
+    [FoldoutGroup("Events"), Tooltip("Event called when the player interacts with the object.")]
     public UnityEvent onInteractionStart;
+    [FoldoutGroup("Events"), Tooltip("Event called when the player is in range of the object.")]
     public UnityEvent onInteractionInRange;
+    [FoldoutGroup("Events"), Tooltip("Event called when the player is out of range of the object.")]
     public UnityEvent onInteractionOffRange;
 
     private bool _hasInteracted;

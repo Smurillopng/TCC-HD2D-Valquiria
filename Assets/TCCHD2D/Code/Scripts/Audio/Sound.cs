@@ -324,6 +324,13 @@ namespace MuriPNG.Audio
             onStop?.Invoke();
         }
 
+        [Button("Play Sample")]
+        public void PlaySample()
+        {
+            if (clip != null)
+                Play();
+        }
+
         public void ApplySoundSettings()
         {
             source.clip = clip;

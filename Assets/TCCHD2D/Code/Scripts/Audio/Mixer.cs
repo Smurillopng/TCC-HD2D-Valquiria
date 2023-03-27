@@ -45,19 +45,18 @@ namespace MuriPNG.Audio
         public void SetVolume(float volumeValue) // Change the volume of the mixer
         {
             volume = volumeValue;
-            if (mixerGroup?.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, volume);
+            if (mixerGroup != null && mixerGroup.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, volume);
         }
 
-        public void MuteMixer(bool muteMixer) // Mute the mixer
+        public void SetMute(bool muteMixer) // Mute the mixer
         {
             mute = muteMixer;
-            if (mixerGroup?.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, mute ? -80f : volume);
+            if (mixerGroup != null && mixerGroup.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, mute ? -80f : volume);
         }
 
         public void ApplyMixerSettings() // Update mixer settings
         {
-            if (mixerGroup?.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, volume);
-            if (mixerGroup?.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, mute ? -80f : volume);
+            if (mixerGroup != null && mixerGroup.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, mute ? -80f : volume);
         }
 
         #endregion

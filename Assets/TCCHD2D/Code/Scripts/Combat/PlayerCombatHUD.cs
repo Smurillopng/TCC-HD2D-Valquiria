@@ -78,7 +78,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateEnemyHealth();
         UpdatePlayerTp();
         UpdatePlayerHealth();
-        
+
         playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
         playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
         playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";

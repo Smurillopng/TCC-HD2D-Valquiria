@@ -156,7 +156,10 @@ ScriptedImporter:
       width: 16
       height: 24
     spriteID: 38871192e8a57dc4c8e5777084b4e732
+<<<<<<< HEAD:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
 >>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+=======
+>>>>>>> Teste-Digo:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -188,7 +191,10 @@ ScriptedImporter:
       width: 14
       height: 24
     spriteID: 214cd4afe9c653a49990315af850a072
+<<<<<<< HEAD:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
 >>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+=======
+>>>>>>> Teste-Digo:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -221,7 +227,10 @@ ScriptedImporter:
       width: 16
       height: 24
     spriteID: c01aef26eb506ae4b96a775717084d09
+<<<<<<< HEAD:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
 >>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+=======
+>>>>>>> Teste-Digo:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -299,7 +308,10 @@ ScriptedImporter:
         width: 16
         height: 24
       spriteId: c01aef26eb506ae4b96a775717084d09
+<<<<<<< HEAD:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
 >>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+=======
+>>>>>>> Teste-Digo:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     linkedCells: []
     parentIndex: -1
   platformSettings: []

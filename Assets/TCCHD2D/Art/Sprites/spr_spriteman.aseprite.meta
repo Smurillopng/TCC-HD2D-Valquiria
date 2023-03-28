@@ -124,7 +124,7 @@ ScriptedImporter:
       y: 67
       width: 48
       height: 54
-    spriteID: cf94fbe3e69b4a441883fe88905c35e7
+    spriteID: 3a49513fdae2b114fa4eb4005480faa5
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,7 +144,7 @@ ScriptedImporter:
       y: 4
       width: 50
       height: 55
-    spriteID: 1e0cd525bb2a64e479065ea3006bf00e
+    spriteID: 2588b51bc84957c4cba3a1e42d188f2a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -164,7 +164,7 @@ ScriptedImporter:
       y: 4
       width: 50
       height: 55
-    spriteID: 3732d9268f049bb41b209e36ecb338dc
+    spriteID: 3b1960e8d8883174a9685a977e8a1052
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -184,7 +184,7 @@ ScriptedImporter:
       y: 101
       width: 42
       height: 2
-    spriteID: cb0ad17e0c60407408c5da5c9779e25f
+    spriteID: 8a5077a5d129109449de9c054d452c9c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -204,7 +204,7 @@ ScriptedImporter:
       y: 67
       width: 42
       height: 9
-    spriteID: 6c25f6e69b080b548bdaddbfef821eed
+    spriteID: 9dd17a117b59269459e919c93ad7498d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -224,7 +224,7 @@ ScriptedImporter:
       y: 84
       width: 42
       height: 9
-    spriteID: aa331aa6e262a644db714b86e05e40ee
+    spriteID: 19b5dcb2d67bb7f4cb759c75e3647e45
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -244,7 +244,7 @@ ScriptedImporter:
       y: 101
       width: 12
       height: 23
-    spriteID: 1d02ef0b111b66940bea283cfaf9270f
+    spriteID: 5de0cd3a0af172e40ab0e95c71bff27a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -267,7 +267,7 @@ ScriptedImporter:
         y: 5
         width: 48
         height: 54
-      spriteId: cf94fbe3e69b4a441883fe88905c35e7
+      spriteId: 3a49513fdae2b114fa4eb4005480faa5
     - name: Pele_Frame_1
       frameIndex: 1
       cellRect:
@@ -275,7 +275,7 @@ ScriptedImporter:
         y: 4
         width: 50
         height: 55
-      spriteId: 1e0cd525bb2a64e479065ea3006bf00e
+      spriteId: 2588b51bc84957c4cba3a1e42d188f2a
     - name: Pele_Frame_2
       frameIndex: 2
       cellRect:
@@ -283,7 +283,7 @@ ScriptedImporter:
         y: 4
         width: 50
         height: 55
-      spriteId: 3732d9268f049bb41b209e36ecb338dc
+      spriteId: 3b1960e8d8883174a9685a977e8a1052
     linkedCells: []
     parentIndex: -1
   - layerIndex: 1
@@ -299,7 +299,7 @@ ScriptedImporter:
         y: 21
         width: 42
         height: 2
-      spriteId: cb0ad17e0c60407408c5da5c9779e25f
+      spriteId: 8a5077a5d129109449de9c054d452c9c
     - name: olho_Frame_1
       frameIndex: 1
       cellRect:
@@ -307,7 +307,7 @@ ScriptedImporter:
         y: 13
         width: 42
         height: 9
-      spriteId: 6c25f6e69b080b548bdaddbfef821eed
+      spriteId: 9dd17a117b59269459e919c93ad7498d
     - name: olho_Frame_2
       frameIndex: 2
       cellRect:
@@ -315,7 +315,7 @@ ScriptedImporter:
         y: 13
         width: 42
         height: 9
-      spriteId: aa331aa6e262a644db714b86e05e40ee
+      spriteId: 19b5dcb2d67bb7f4cb759c75e3647e45
     linkedCells: []
     parentIndex: -1
   - layerIndex: 2
@@ -331,7 +331,7 @@ ScriptedImporter:
         y: 5
         width: 12
         height: 23
-      spriteId: 1d02ef0b111b66940bea283cfaf9270f
+      spriteId: 5de0cd3a0af172e40ab0e95c71bff27a
     linkedCells: []
     parentIndex: -1
   platformSettings: []

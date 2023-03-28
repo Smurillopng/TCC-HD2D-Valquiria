@@ -57,10 +57,10 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""b22b5441-2942-4dc6-b3cb-c5e60a7d196d"",
+                    ""id"": ""df4995fa-3458-417c-8c14-841b84b7540e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -144,7 +144,7 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4d00eb9f-a4fb-43f3-bcf7-1409fc533949"",
+                    ""id"": ""a0cf27dc-2c4d-4df4-91d8-7b56a3808918"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",

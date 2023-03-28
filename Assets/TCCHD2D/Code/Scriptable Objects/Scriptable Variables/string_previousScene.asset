@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: string_previousScene
   m_EditorClassIdentifier: 
   resetOnExit: 1
-  defaultValue: scn_mainMenu
-  value: scn_mainMenu
+  defaultValue: Main Menu
+  value: Main Menu

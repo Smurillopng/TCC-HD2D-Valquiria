@@ -15573,6 +15573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 832575519}
   - component: {fileID: 832575518}
+  - component: {fileID: 832575520}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -15612,6 +15613,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &832575520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832575517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12648a3e0f5ad441a4385c6de8371ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: {fileID: 832575518}
+  initialExposure: -8
+  colorAdjustments: {fileID: 0}
 --- !u!1 &854530840
 GameObject:
   m_ObjectHideFlags: 0
@@ -50968,8 +50984,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.11037826, y: 0.030872054, z: -0.0034302291, w: 0.99340415}
-  m_LocalPosition: {x: -960.7, y: -139.15997, z: -4}
+  m_LocalRotation: {x: 0.110378176, y: 0.03089633, z: -0.0034329258, w: 0.99340343}
+  m_LocalPosition: {x: -961.1915, y: -138.57025, z: -6.808511}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -97479,8 +97495,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Enemy:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7c80acd9757abe14b895be0d6ccee76e, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 7c80acd9757abe14b895be0d6ccee76e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

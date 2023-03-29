@@ -113,7 +113,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: Flattened_Frame_0
+  - name: spr_inimigo_frame0
     originalName: 
     pivot: {x: 0.7037037, y: 0}
     alignment: 9
@@ -133,7 +133,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 242}
-  - name: Flattened_Frame_1
+  - name: spr_inimigo_frame4
     originalName: 
     pivot: {x: 0.6962025, y: 0}
     alignment: 9
@@ -153,7 +153,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 95, y: 4}
-  - name: Flattened_Frame_2
+  - name: spr_inimigo_frame1
     originalName: 
     pivot: {x: 0.7037037, y: 0}
     alignment: 9
@@ -173,7 +173,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 122}
-  - name: Flattened_Frame_3
+  - name: spr_inimigo_frame3
     originalName: 
     pivot: {x: 0.7108434, y: 0}
     alignment: 9
@@ -193,7 +193,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Flattened_Frame_4
+  - name: spr_inimigo
     originalName: 
     pivot: {x: 0.7037037, y: 0}
     alignment: 9

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18318379, g: 0.22677876, b: 0.2945165, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -127777,6 +127777,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df12885bd2accb24b9339c42d2f5aca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: gameControls
+      Entry: 6
+      Data: 
+    - Name: sceneMap
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[SceneType,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   showConsole: {fileID: 11400000, guid: 17650460fd0eddf47a8766be5f6993d3, type: 2}
   moveValue: {fileID: 11400000, guid: e6f568a8763aad24895fe73b56d77cee, type: 2}
   isRunning: {fileID: 11400000, guid: 465da39f457c289488fe3acdff34e32d, type: 2}
@@ -128342,6 +128374,7 @@ MonoBehaviour:
   direction: {fileID: 11400000, guid: e6f568a8763aad24895fe73b56d77cee, type: 2}
   speed: 1
   runSpeedMultiplier: 1.5
+  animator: {fileID: 0}
   rigidBody: {fileID: 0}
   movementValue: {x: 0, y: 0, z: 0}
 --- !u!65 &1854468424

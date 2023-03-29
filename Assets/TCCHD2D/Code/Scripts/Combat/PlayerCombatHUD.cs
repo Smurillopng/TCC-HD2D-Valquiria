@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 08/03/2023
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -73,6 +74,14 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
 
+    private void OnEnable()
+    {
+        CombatTextEvent += DisplayCombatText;
+        UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
+        UpdateCombatHUDPlayerTp += UpdatePlayerTp;
+        UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
+    }
+    
     private void Start()
     {
         UpdateEnemyHealth();
@@ -216,7 +225,8 @@ public class PlayerCombatHUD : MonoBehaviour
     
     public void DisplayCombatText(string text)
     {
-        StartCoroutine(DisplayCombatTextCoroutine(text));
+        if (combatTextBox != null)
+            StartCoroutine(DisplayCombatTextCoroutine(text));
     }
 
     /// <summary>
@@ -228,5 +238,13 @@ public class PlayerCombatHUD : MonoBehaviour
         combatTextBox.text = text;
         yield return new WaitForSeconds(combatTextTimer);
         combatTextBox.text = "";
+    }
+
+    private void OnDisable()
+    {
+        CombatTextEvent -= DisplayCombatText;
+        UpdateCombatHUDPlayerHp -= UpdatePlayerHealth;
+        UpdateCombatHUDPlayerTp -= UpdatePlayerTp;
+        UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
     }
 }

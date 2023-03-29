@@ -113,309 +113,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: cor da pele_Frame_0
+  - name: Flattened_Frame_0
     originalName: 
-    pivot: {x: 0.29113922, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 95
-      y: 226
-      width: 79
-      height: 94
-    spriteID: 94aa53546467bf349beba14fc8ff6bd2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 95, y: 226}
-  - name: cor da pele_Frame_1
-    originalName: 
-    pivot: {x: 0.29870126, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 182
-      y: 106
-      width: 77
-      height: 94
-    spriteID: 0b3032ffaaba5ca40b12dc1be921de87
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 182, y: 106}
-  - name: cor da pele_Frame_2
-    originalName: 
-    pivot: {x: 0.29113922, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 95
-      y: 122
-      width: 79
-      height: 96
-    spriteID: f63336d1cfa889b4794841dbdfd9b5b2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 95, y: 122}
-  - name: cor da pele_Frame_3
-    originalName: 
-    pivot: {x: 0.2839506, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 182
-      y: 4
-      width: 81
-      height: 94
-    spriteID: e4def298c42979e44b80a36b2e82aa75
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 182, y: 4}
-  - name: cor da pele_Frame_4
-    originalName: 
-    pivot: {x: 0.29113922, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 95
-      y: 328
-      width: 79
-      height: 92
-    spriteID: 3fb842930a14cc941a31d0be070a7abe
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 95, y: 328}
-  - name: cor roupa_Frame_0
-    originalName: 
-    pivot: {x: 0.31999996, y: -0.19565217}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 182
-      y: 410
-      width: 75
-      height: 92
-    spriteID: 64dac969ab242c748a77c167a370b0df
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 182, y: 410}
-  - name: cor roupa_Frame_1
-    originalName: 
-    pivot: {x: 0.3287671, y: -0.19565217}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 271
-      y: 102
-      width: 73
-      height: 92
-    spriteID: 477bc3d48e172a849ad251907ad69134
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 271, y: 102}
-  - name: cor roupa_Frame_2
-    originalName: 
-    pivot: {x: 0.31999996, y: -0.19148937}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 182
-      y: 308
-      width: 75
-      height: 94
-    spriteID: f33a1e55ce0f30a4eb1103aa1dfb5f67
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 182, y: 308}
-  - name: cor roupa_Frame_3
-    originalName: 
-    pivot: {x: 0.31168827, y: -0.19565217}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 182
-      y: 208
-      width: 77
-      height: 92
-    spriteID: b84a19eb51d957649b62ec5977bf47b4
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 182, y: 208}
-  - name: cor roupa_Frame_4
-    originalName: 
-    pivot: {x: 0.31999996, y: -0.2}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 271
-      y: 4
-      width: 75
-      height: 90
-    spriteID: 4000478ea4526244b971498f73b53429
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 271, y: 4}
-  - name: espada_Frame_0
-    originalName: 
-    pivot: {x: 0.12307692, y: -2.4666667}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 95
-      y: 466
-      width: 65
-      height: 30
-    spriteID: 7e96e592cfc6083419a4bc6eacc97630
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 95, y: 466}
-  - name: espada_Frame_1
-    originalName: 
-    pivot: {x: 0.12698412, y: -2.4666667}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 271
-      y: 202
-      width: 63
-      height: 30
-    spriteID: 7db95daa022b28f428601078ce549a5a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 271, y: 202}
-  - name: espada_Frame_2
-    originalName: 
-    pivot: {x: 0.12307692, y: -2.4193547}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 476
-      width: 65
-      height: 31
-    spriteID: 018797541ab01ca40b74bef4bddb70bf
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 476}
-  - name: espada_Frame_3
-    originalName: 
-    pivot: {x: 0.11940298, y: -2.4666667}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 95
-      y: 428
-      width: 67
-      height: 30
-    spriteID: 40fd9ae1883fe4647b2a08e683600930
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 95, y: 428}
-  - name: espada_Frame_4
-    originalName: 
-    pivot: {x: 0.12307692, y: -2.5172412}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 271
-      y: 240
-      width: 65
-      height: 29
-    spriteID: 0bd6d808a8fe08c46bbd5d23a6869b31
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 271, y: 240}
-  - name: sombra_Frame_0
-    originalName: 
-    pivot: {x: 0.29629627, y: 0}
+    pivot: {x: 0.7037037, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -424,7 +124,7 @@ ScriptedImporter:
       y: 242
       width: 81
       height: 110
-    spriteID: 3e5098c09243ab34baa55ad22e40b825
+    spriteID: 63acb0c89d8449b4b9dab69b25806ee3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -433,9 +133,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 242}
-  - name: sombra_Frame_1
+  - name: Flattened_Frame_1
     originalName: 
-    pivot: {x: 0.30379745, y: 0}
+    pivot: {x: 0.6962025, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -444,7 +144,7 @@ ScriptedImporter:
       y: 4
       width: 79
       height: 110
-    spriteID: 4c585870a72d73547862588015d1df30
+    spriteID: 8f937e297a243424dadf6f416d5be0d6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -453,9 +153,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 95, y: 4}
-  - name: sombra_Frame_2
+  - name: Flattened_Frame_2
     originalName: 
-    pivot: {x: 0.29629627, y: 0}
+    pivot: {x: 0.7037037, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -464,7 +164,7 @@ ScriptedImporter:
       y: 122
       width: 81
       height: 112
-    spriteID: 9347fb0fe397e0e4782f8b457592a759
+    spriteID: 83c549b719b7d894bab27976644860e7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -473,9 +173,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 122}
-  - name: sombra_Frame_3
+  - name: Flattened_Frame_3
     originalName: 
-    pivot: {x: 0.28915662, y: 0}
+    pivot: {x: 0.7108434, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -484,7 +184,7 @@ ScriptedImporter:
       y: 4
       width: 83
       height: 110
-    spriteID: 4f4b572e3a556d74db17e78979fefa97
+    spriteID: 0ecfbcf372bcacb468b6e03c9906dd23
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -493,9 +193,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: sombra_Frame_4
+  - name: Flattened_Frame_4
     originalName: 
-    pivot: {x: 0.29629627, y: 0}
+    pivot: {x: 0.7037037, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -504,7 +204,7 @@ ScriptedImporter:
       y: 360
       width: 81
       height: 108
-    spriteID: 7f0a0440be8f3424f89a2129c2377f40
+    spriteID: 37ab1378781139f4bb0b8c083599b527
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -515,213 +215,53 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 360}
   asepriteLayers:
   - layerIndex: 0
-    guid: 259599786
-    name: cores
-    layerFlags: 3
-    layerType: 1
-    cells: []
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 1
-    guid: -210881082
-    name: cor da pele
+    guid: 1882794633
+    name: Flattened
     layerFlags: 3
     layerType: 0
     cells:
-    - name: cor da pele_Frame_0
+    - name: Flattened_Frame_0
       frameIndex: 0
       cellRect:
-        x: 49
-        y: 0
-        width: 79
-        height: 94
-      spriteId: 94aa53546467bf349beba14fc8ff6bd2
-    - name: cor da pele_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 49
-        y: 0
-        width: 77
-        height: 94
-      spriteId: 0b3032ffaaba5ca40b12dc1be921de87
-    - name: cor da pele_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 49
-        y: 0
-        width: 79
-        height: 96
-      spriteId: f63336d1cfa889b4794841dbdfd9b5b2
-    - name: cor da pele_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 49
-        y: 0
-        width: 81
-        height: 94
-      spriteId: e4def298c42979e44b80a36b2e82aa75
-    - name: cor da pele_Frame_4
-      frameIndex: 4
-      cellRect:
-        x: 49
-        y: 0
-        width: 79
-        height: 92
-      spriteId: 3fb842930a14cc941a31d0be070a7abe
-    linkedCells: []
-    parentIndex: 0
-  - layerIndex: 2
-    guid: -1373919811
-    name: cor roupa
-    layerFlags: 3
-    layerType: 0
-    cells:
-    - name: cor roupa_Frame_0
-      frameIndex: 0
-      cellRect:
-        x: 48
-        y: 18
-        width: 75
-        height: 92
-      spriteId: 64dac969ab242c748a77c167a370b0df
-    - name: cor roupa_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 48
-        y: 18
-        width: 73
-        height: 92
-      spriteId: 477bc3d48e172a849ad251907ad69134
-    - name: cor roupa_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 48
-        y: 18
-        width: 75
-        height: 94
-      spriteId: f33a1e55ce0f30a4eb1103aa1dfb5f67
-    - name: cor roupa_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 48
-        y: 18
-        width: 77
-        height: 92
-      spriteId: b84a19eb51d957649b62ec5977bf47b4
-    - name: cor roupa_Frame_4
-      frameIndex: 4
-      cellRect:
-        x: 48
-        y: 18
-        width: 75
-        height: 90
-      spriteId: 4000478ea4526244b971498f73b53429
-    linkedCells: []
-    parentIndex: 0
-  - layerIndex: 3
-    guid: -1160281287
-    name: espada
-    layerFlags: 3
-    layerType: 0
-    cells:
-    - name: espada_Frame_0
-      frameIndex: 0
-      cellRect:
-        x: 64
-        y: 74
-        width: 65
-        height: 30
-      spriteId: 7e96e592cfc6083419a4bc6eacc97630
-    - name: espada_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 64
-        y: 74
-        width: 63
-        height: 30
-      spriteId: 7db95daa022b28f428601078ce549a5a
-    - name: espada_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 64
-        y: 75
-        width: 65
-        height: 31
-      spriteId: 018797541ab01ca40b74bef4bddb70bf
-    - name: espada_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 64
-        y: 74
-        width: 67
-        height: 30
-      spriteId: 40fd9ae1883fe4647b2a08e683600930
-    - name: espada_Frame_4
-      frameIndex: 4
-      cellRect:
-        x: 64
-        y: 73
-        width: 65
-        height: 29
-      spriteId: 0bd6d808a8fe08c46bbd5d23a6869b31
-    linkedCells: []
-    parentIndex: 0
-  - layerIndex: 34
-    guid: -1712140359
-    name: sombras
-    layerFlags: 3
-    layerType: 1
-    cells: []
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 35
-    guid: 1923150877
-    name: sombra
-    layerFlags: 3
-    layerType: 0
-    cells:
-    - name: sombra_Frame_0
-      frameIndex: 0
-      cellRect:
-        x: 48
+        x: 15
         y: 0
         width: 81
         height: 110
-      spriteId: 3e5098c09243ab34baa55ad22e40b825
-    - name: sombra_Frame_1
+      spriteId: 63acb0c89d8449b4b9dab69b25806ee3
+    - name: Flattened_Frame_1
       frameIndex: 1
       cellRect:
-        x: 48
+        x: 17
         y: 0
         width: 79
         height: 110
-      spriteId: 4c585870a72d73547862588015d1df30
-    - name: sombra_Frame_2
+      spriteId: 8f937e297a243424dadf6f416d5be0d6
+    - name: Flattened_Frame_2
       frameIndex: 2
       cellRect:
-        x: 48
+        x: 15
         y: 0
         width: 81
         height: 112
-      spriteId: 9347fb0fe397e0e4782f8b457592a759
-    - name: sombra_Frame_3
+      spriteId: 83c549b719b7d894bab27976644860e7
+    - name: Flattened_Frame_3
       frameIndex: 3
       cellRect:
-        x: 48
+        x: 13
         y: 0
         width: 83
         height: 110
-      spriteId: 4f4b572e3a556d74db17e78979fefa97
-    - name: sombra_Frame_4
+      spriteId: 0ecfbcf372bcacb468b6e03c9906dd23
+    - name: Flattened_Frame_4
       frameIndex: 4
       cellRect:
-        x: 48
+        x: 15
         y: 0
         width: 81
         height: 108
-      spriteId: 7f0a0440be8f3424f89a2129c2377f40
+      spriteId: 37ab1378781139f4bb0b8c083599b527
     linkedCells: []
-    parentIndex: 34
+    parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 

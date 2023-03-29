@@ -483,14 +483,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7601273814979289798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f139f107cabde564ab275f48e707683a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e6a8f318e3899b4c98b6ff5a8a2bb0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canMove: {fileID: 11400000, guid: 35b846d0996288b44a4c12697dd879f5, type: 2}
   isRunning: {fileID: 11400000, guid: 465da39f457c289488fe3acdff34e32d, type: 2}
   direction: {fileID: 11400000, guid: e6f568a8763aad24895fe73b56d77cee, type: 2}
-  speed: 0.5
-  runSpeedMultiplier: 1
+  speed: 1
+  runSpeedMultiplier: 1.5
   animator: {fileID: 1864262430771853414}
   rigidBody: {fileID: 0}
   movementValue: {x: 0, y: 0, z: 0}

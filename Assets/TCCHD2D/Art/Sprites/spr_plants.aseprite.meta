@@ -76,6 +76,7 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     generateModelPrefab: 1
     generateAnimationClips: 1
+    addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
     importHiddenLayers: 0
@@ -85,6 +86,7 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     generateModelPrefab: 1
     generateAnimationClips: 1
+    addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
   platformSettingsDirtyTick: 0
@@ -111,11 +113,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
   - name: spr_plants_Frame_0
-=======
-  - name: Base_0
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     originalName: 
     pivot: {x: 0.625, y: 0}
     alignment: 9
@@ -123,17 +121,10 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
       y: 22
       width: 8
       height: 6
-    spriteID: 84aa61b8ccc90fe4badd990110bf22e3
-=======
-      y: 36
-      width: 14
-      height: 24
-    spriteID: 6776c8f00cdb87a41b04954c4b08b9ef
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+    spriteID: 71f34aacb2509274b9f629e25d53e2e6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,13 +132,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
     uvTransform: {x: 4, y: 22}
   - name: spr_plants_Frame_1
-=======
-    uvTransform: {x: 4, y: 36}
-  - name: Base_1
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     originalName: 
     pivot: {x: 0.5555556, y: 0}
     alignment: 9
@@ -156,15 +142,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
       width: 9
       height: 10
-    spriteID: d7550786778cd3c47bbd741d6f4bb83f
-=======
-      width: 16
-      height: 24
-    spriteID: 50d1924db8341d74cbd7057010e019d0
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+    spriteID: fa89d74ae7e56f7409fc55731decd8d1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -173,30 +153,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
   - name: spr_plants_Frame_2
-=======
-  - name: Base_2
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     originalName: 
     pivot: {x: 0.6666667, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
       x: 34
       y: 4
       width: 6
       height: 11
-    spriteID: f226428b51e49984b92c7a3594fb0215
-=======
-      x: 26
-      y: 36
-      width: 14
-      height: 24
-    spriteID: e9dbae8735bb6e942a2c43b026353a46
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+    spriteID: 8fc8fd3417352c64bbf965c1c8ff8ad7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -204,13 +172,8 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
     uvTransform: {x: 34, y: 4}
   - name: spr_plants_Frame_3
-=======
-    uvTransform: {x: 26, y: 36}
-  - name: Base_3
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     originalName: 
     pivot: {x: 1, y: 0}
     alignment: 9
@@ -219,15 +182,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 21
       y: 4
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
       width: 5
       height: 16
-    spriteID: c7f653eb9d079df4fb91aaea5c98f51e
-=======
-      width: 16
-      height: 24
-    spriteID: 0c18ebf0bac65414caafbe42bb077ba6
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+    spriteID: 9d277017192e89840a438dae0084246e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -238,79 +195,45 @@ ScriptedImporter:
     uvTransform: {x: 21, y: 4}
   asepriteLayers:
   - layerIndex: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
     guid: -115994712
     name: spr_plants
     layerFlags: 0
     layerType: 0
     cells:
     - name: spr_plants_Frame_0
-=======
-    name: Base
-    layerFlags: 3
-    layerType: 0
-    cells:
-    - name: Base_0
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
       frameIndex: 0
       cellRect:
         x: 11
         y: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
         width: 8
         height: 6
-      spriteId: 84aa61b8ccc90fe4badd990110bf22e3
+      spriteId: 71f34aacb2509274b9f629e25d53e2e6
     - name: spr_plants_Frame_1
-=======
-        width: 14
-        height: 24
-      spriteId: 6776c8f00cdb87a41b04954c4b08b9ef
-    - name: Base_1
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
       frameIndex: 1
       cellRect:
         x: 11
         y: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
         width: 9
         height: 10
-      spriteId: d7550786778cd3c47bbd741d6f4bb83f
+      spriteId: fa89d74ae7e56f7409fc55731decd8d1
     - name: spr_plants_Frame_2
-=======
-        width: 16
-        height: 24
-      spriteId: 50d1924db8341d74cbd7057010e019d0
-    - name: Base_2
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
       frameIndex: 2
       cellRect:
         x: 12
         y: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
         width: 6
         height: 11
-      spriteId: f226428b51e49984b92c7a3594fb0215
+      spriteId: 8fc8fd3417352c64bbf965c1c8ff8ad7
     - name: spr_plants_Frame_3
-=======
-        width: 14
-        height: 24
-      spriteId: e9dbae8735bb6e942a2c43b026353a46
-    - name: Base_3
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
       frameIndex: 3
       cellRect:
         x: 11
         y: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_plants.aseprite.meta
         width: 5
         height: 16
-      spriteId: c7f653eb9d079df4fb91aaea5c98f51e
-=======
-        width: 16
-        height: 24
-      spriteId: 0c18ebf0bac65414caafbe42bb077ba6
->>>>>>> teste com o package do teste do Sérgio:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+      spriteId: 9d277017192e89840a438dae0084246e
     linkedCells: []
+    parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 

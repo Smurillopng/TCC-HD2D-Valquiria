@@ -113,53 +113,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
   - name: spr_animals_Frame_0
     originalName: 
     pivot: {x: 0.6666667, y: -0.42105263}
-=======
-  - name: Base_Frame_0
-    originalName: 
-    pivot: {x: 0.5, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 36
-      width: 14
-      height: 24
-    spriteID: a3b8c68ec8547c34989f5321c9425685
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 36}
-  - name: Base_Frame_1
-    originalName: 
-    pivot: {x: 0.4375, y: 0}
->>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
       width: 15
       height: 19
-    spriteID: 7ca52836f0d551e4d952abe73e1ba1a8
-=======
-      width: 16
-      height: 24
-    spriteID: 38871192e8a57dc4c8e5777084b4e732
-<<<<<<< HEAD:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
->>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
-=======
->>>>>>> Teste-Digo:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+    spriteID: 038a40873e25dae4397f297b6b609ea4
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -168,33 +133,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
   - name: spr_animals_Frame_1
-=======
-  - name: Base_Frame_2
->>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     originalName: 
     pivot: {x: 1.4444444, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
       x: 4
       y: 53
       width: 9
       height: 7
-    spriteID: 33b98a2635edec544acadb5c0ed3f6af
-=======
-      x: 26
-      y: 36
-      width: 14
-      height: 24
-    spriteID: 214cd4afe9c653a49990315af850a072
-<<<<<<< HEAD:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
->>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
-=======
->>>>>>> Teste-Digo:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+    spriteID: cc241064f45bc7c4bb7965689b5190ab
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -202,35 +152,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
     uvTransform: {x: 4, y: 53}
   - name: spr_animals_Frame_2
-=======
-    uvTransform: {x: 26, y: 36}
-  - name: Base_Frame_3
->>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
     originalName: 
     pivot: {x: 0.5, y: -0.6428572}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
       x: 4
       y: 31
       width: 10
       height: 14
-    spriteID: 8817f5737a2bbd0428bb3e42dc545006
-=======
-      x: 28
-      y: 4
-      width: 16
-      height: 24
-    spriteID: c01aef26eb506ae4b96a775717084d09
-<<<<<<< HEAD:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
->>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
-=======
->>>>>>> Teste-Digo:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+    spriteID: 24369184761d0a247af0f02570bf4ecf
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -241,7 +175,6 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 31}
   asepriteLayers:
   - layerIndex: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
     guid: -422876117
     name: spr_animals
     layerFlags: 0
@@ -254,32 +187,15 @@ ScriptedImporter:
         y: 8
         width: 15
         height: 19
-      spriteId: 7ca52836f0d551e4d952abe73e1ba1a8
+      spriteId: 038a40873e25dae4397f297b6b609ea4
     - name: spr_animals_Frame_1
-=======
-    guid: 885305061
-    name: Base
-    layerFlags: 3
-    layerType: 0
-    cells:
-    - name: Base_Frame_0
-      frameIndex: 0
-      cellRect:
-        x: 9
-        y: 0
-        width: 14
-        height: 24
-      spriteId: a3b8c68ec8547c34989f5321c9425685
-    - name: Base_Frame_1
->>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
       frameIndex: 1
       cellRect:
         x: 3
         y: 0
-<<<<<<< teste-de-merge:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
         width: 9
         height: 7
-      spriteId: 33b98a2635edec544acadb5c0ed3f6af
+      spriteId: cc241064f45bc7c4bb7965689b5190ab
     - name: spr_animals_Frame_2
       frameIndex: 2
       cellRect:
@@ -287,31 +203,7 @@ ScriptedImporter:
         y: 9
         width: 10
         height: 14
-      spriteId: 8817f5737a2bbd0428bb3e42dc545006
-=======
-        width: 16
-        height: 24
-      spriteId: 38871192e8a57dc4c8e5777084b4e732
-    - name: Base_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 9
-        y: 0
-        width: 14
-        height: 24
-      spriteId: 214cd4afe9c653a49990315af850a072
-    - name: Base_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 7
-        y: 0
-        width: 16
-        height: 24
-      spriteId: c01aef26eb506ae4b96a775717084d09
-<<<<<<< HEAD:Assets/TCCHD2D/Art/Sprites/spr_animals.aseprite.meta
->>>>>>> Rebase:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
-=======
->>>>>>> Teste-Digo:Assets/TCCHD2D/Art/Sprites/spr_mc.aseprite.meta
+      spriteId: 24369184761d0a247af0f02570bf4ecf
     linkedCells: []
     parentIndex: -1
   platformSettings: []

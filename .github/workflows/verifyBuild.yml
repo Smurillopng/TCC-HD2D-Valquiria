@@ -46,14 +46,15 @@ jobs:
 
       - name: Zip build
         run: |
+          PR_NAME=$(echo ${{ github.event.pull_request.title }} | tr ' ' '-')
           pushd build/StandaloneWindows64
-          zip -r ../../StandaloneWindows64.zip .
+          zip -r ../../BuildWindows64-$PR_NAME.zip .
           popd
 
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.TOKEN }}
-          files: StandaloneWindows64.zip
+          files: BuildWindows64-$PR_NAME.zip
           name: Release ${{ github.ref }} ${{ matrix.targetPlatform }}
           tag_name: builds

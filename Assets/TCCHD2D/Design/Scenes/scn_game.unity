@@ -357,10 +357,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 34bc9b0eca89bd14297a2022b88b7745,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 34bc9b0eca89bd14297a2022b88b7745,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 34bc9b0eca89bd14297a2022b88b7745,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 34bc9b0eca89bd14297a2022b88b7745,
+        type: 3}
+      propertyPath: m_StaticShadowCaster
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 34bc9b0eca89bd14297a2022b88b7745,
         type: 3}
       propertyPath: m_Name
       value: LongHouse+Long
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 34bc9b0eca89bd14297a2022b88b7745,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34bc9b0eca89bd14297a2022b88b7745, type: 3}
@@ -68905,7 +68930,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.110431515, y: -0.000000028612668, z: 0.000000003179185, w: 0.9938837}
+  m_LocalRotation: {x: 0.11043152, y: -0.000000026233021, z: 0.00000000291478, w: 0.9938837}
   m_LocalPosition: {x: 0.25000006, y: 2.2499757, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -69131,10 +69156,10 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.9
     m_Bias: 0.001
     m_NormalBias: 0
     m_NearPlane: 0.1
@@ -107691,7 +107716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1452748668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131632,17 +131657,32 @@ PrefabInstance:
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.110431515
+      value: 0.11043152
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000028612668
+      value: -0.000000026233021
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000003179185
+      value: 0.00000000291478
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080997216289527077, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: m_XDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080997216289527077, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: m_YDamping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080997216289527077, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: m_ZDamping
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7246534575480244899, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
@@ -131702,7 +131742,7 @@ PrefabInstance:
     - target: {fileID: 7601273814979289798, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_Name
-      value: pfb_player
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8674347390831194763, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}

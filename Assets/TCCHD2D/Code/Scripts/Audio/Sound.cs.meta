@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< teste-de-merge:Assets/TCCHD2D/Code/Scripts/Audio/Sound.cs.meta
+guid: 12264169133bdbc48a356f319904f62f
+=======
+guid: a664a3e0e59545842aaebcd51b8aa99a
+>>>>>>> Rebase:Assets/TCCHD2D/Code/Scripts/Misc/ChangeScene.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -57,10 +57,10 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""b22b5441-2942-4dc6-b3cb-c5e60a7d196d"",
+                    ""id"": ""df4995fa-3458-417c-8c14-841b84b7540e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -144,7 +144,7 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4d00eb9f-a4fb-43f3-bcf7-1409fc533949"",
+                    ""id"": ""a0cf27dc-2c4d-4df4-91d8-7b56a3808918"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -176,6 +176,15 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AutoComplete"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d862727-b407-47cb-9bd4-4eadc74f5b04"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -198,6 +207,45 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""PC"",
                     ""action"": ""CommandHistory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ae16383-b37c-4ab7-ae25-a2c3c6873a06"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AutoComplete"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Combat"",
+            ""id"": ""2ea20a0e-e1f0-439b-8ea9-17f749fc83de"",
+            ""actions"": [
+                {
+                    ""name"": ""Placeholder"",
+                    ""type"": ""Button"",
+                    ""id"": ""59957dfe-2f09-4a35-97e6-c0cdb0aec100"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1d6014a3-bdd2-45a0-a228-e105de89c6ae"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Placeholder"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -233,6 +281,10 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         m_Console = asset.FindActionMap("Console", throwIfNotFound: true);
         m_Console_ShowConsole = m_Console.FindAction("ShowConsole", throwIfNotFound: true);
         m_Console_CommandHistory = m_Console.FindAction("CommandHistory", throwIfNotFound: true);
+        m_Console_AutoComplete = m_Console.FindAction("AutoComplete", throwIfNotFound: true);
+        // Combat
+        m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
+        m_Combat_Placeholder = m_Combat.FindAction("Placeholder", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -351,12 +403,14 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     private IConsoleActions m_ConsoleActionsCallbackInterface;
     private readonly InputAction m_Console_ShowConsole;
     private readonly InputAction m_Console_CommandHistory;
+    private readonly InputAction m_Console_AutoComplete;
     public struct ConsoleActions
     {
         private @GameControls m_Wrapper;
         public ConsoleActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ShowConsole => m_Wrapper.m_Console_ShowConsole;
         public InputAction @CommandHistory => m_Wrapper.m_Console_CommandHistory;
+        public InputAction @AutoComplete => m_Wrapper.m_Console_AutoComplete;
         public InputActionMap Get() { return m_Wrapper.m_Console; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -372,6 +426,9 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 @CommandHistory.started -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnCommandHistory;
                 @CommandHistory.performed -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnCommandHistory;
                 @CommandHistory.canceled -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnCommandHistory;
+                @AutoComplete.started -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnAutoComplete;
+                @AutoComplete.performed -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnAutoComplete;
+                @AutoComplete.canceled -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnAutoComplete;
             }
             m_Wrapper.m_ConsoleActionsCallbackInterface = instance;
             if (instance != null)
@@ -382,10 +439,46 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 @CommandHistory.started += instance.OnCommandHistory;
                 @CommandHistory.performed += instance.OnCommandHistory;
                 @CommandHistory.canceled += instance.OnCommandHistory;
+                @AutoComplete.started += instance.OnAutoComplete;
+                @AutoComplete.performed += instance.OnAutoComplete;
+                @AutoComplete.canceled += instance.OnAutoComplete;
             }
         }
     }
     public ConsoleActions @Console => new ConsoleActions(this);
+
+    // Combat
+    private readonly InputActionMap m_Combat;
+    private ICombatActions m_CombatActionsCallbackInterface;
+    private readonly InputAction m_Combat_Placeholder;
+    public struct CombatActions
+    {
+        private @GameControls m_Wrapper;
+        public CombatActions(@GameControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Placeholder => m_Wrapper.m_Combat_Placeholder;
+        public InputActionMap Get() { return m_Wrapper.m_Combat; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CombatActions set) { return set.Get(); }
+        public void SetCallbacks(ICombatActions instance)
+        {
+            if (m_Wrapper.m_CombatActionsCallbackInterface != null)
+            {
+                @Placeholder.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnPlaceholder;
+                @Placeholder.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnPlaceholder;
+                @Placeholder.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnPlaceholder;
+            }
+            m_Wrapper.m_CombatActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Placeholder.started += instance.OnPlaceholder;
+                @Placeholder.performed += instance.OnPlaceholder;
+                @Placeholder.canceled += instance.OnPlaceholder;
+            }
+        }
+    }
+    public CombatActions @Combat => new CombatActions(this);
     private int m_PCSchemeIndex = -1;
     public InputControlScheme PCScheme
     {
@@ -406,5 +499,10 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     {
         void OnShowConsole(InputAction.CallbackContext context);
         void OnCommandHistory(InputAction.CallbackContext context);
+        void OnAutoComplete(InputAction.CallbackContext context);
+    }
+    public interface ICombatActions
+    {
+        void OnPlaceholder(InputAction.CallbackContext context);
     }
 }

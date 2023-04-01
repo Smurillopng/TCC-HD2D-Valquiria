@@ -16,42 +16,42 @@ using UnityEngine.SceneManagement;
 public class OptionsMenuManager : MonoBehaviour
 {
     [BoxGroup("Audio Settings")]
-    [SerializeField] 
+    [SerializeField]
     private AudioMixerGroup masterMixer;
-    
+
     [BoxGroup("Audio Settings")]
     [SerializeField]
     private Slider masterVolumeSlider;
-    
+
     [BoxGroup("Audio Settings")]
-    [SerializeField] 
+    [SerializeField]
     private AudioMixerGroup musicMixer;
-    
+
     [BoxGroup("Audio Settings")]
     [SerializeField]
     private Slider musicVolumeSlider;
-    
+
     [BoxGroup("Audio Settings")]
-    [SerializeField] 
+    [SerializeField]
     private AudioMixerGroup sfxMixer;
-    
+
     [BoxGroup("Audio Settings")]
     [SerializeField]
     private Slider sfxVolumeSlider;
-    
+
     [BoxGroup("Graphics Settings")]
-    [SerializeField] 
+    [SerializeField]
     private TMP_Dropdown qualityDropdown;
-    
+
     [BoxGroup("Graphics Settings")]
-    [SerializeField] 
+    [SerializeField]
     private TMP_Dropdown screenDropdown;
-    
+
     [BoxGroup("Graphics Settings")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
-    
+
     [SerializeField] private StringVariable previousScene;
-    
+
     private Resolution[] _resolutions;
 
     private void Start()
@@ -78,7 +78,7 @@ public class OptionsMenuManager : MonoBehaviour
             var option = $"{resolution.width}x{resolution.height} @ {resolution.refreshRate}Hz";
             resolutionOptions.Add(option);
         }
-        
+
         resolutionDropdown.AddOptions(resolutionOptions);
         currentResolutionIndex = resolutionOptions.Count - 1;
         resolutionDropdown.value = currentResolutionIndex;
@@ -104,7 +104,7 @@ public class OptionsMenuManager : MonoBehaviour
         masterMixer.audioMixer.SetFloat("MasterVolume", Mathf.Log10(masterVolumeSlider.value) * 20f);
         PlayerPrefs.SetFloat("MasterVolume", masterVolumeSlider.value);
     }
-    
+
     /// <summary>
     /// Sets the music volume of the game and saves it to PlayerPrefs.
     /// </summary>
@@ -163,7 +163,7 @@ public class OptionsMenuManager : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         PlayerPrefs.SetInt("Resolution", resolutionDropdown.value);
     }
-    
+
     /// <summary>
     /// Returns to the last scene.
     /// </summary>

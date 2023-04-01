@@ -35,10 +35,10 @@
                 {
                     "name": "Interact",
                     "type": "Button",
-                    "id": "b22b5441-2942-4dc6-b3cb-c5e60a7d196d",
+                    "id": "df4995fa-3458-417c-8c14-841b84b7540e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -122,7 +122,7 @@
                 },
                 {
                     "name": "",
-                    "id": "4d00eb9f-a4fb-43f3-bcf7-1409fc533949",
+                    "id": "a0cf27dc-2c4d-4df4-91d8-7b56a3808918",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
@@ -154,6 +154,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AutoComplete",
+                    "type": "Button",
+                    "id": "9d862727-b407-47cb-9bd4-4eadc74f5b04",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -176,6 +185,45 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "CommandHistory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ae16383-b37c-4ab7-ae25-a2c3c6873a06",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AutoComplete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Combat",
+            "id": "2ea20a0e-e1f0-439b-8ea9-17f749fc83de",
+            "actions": [
+                {
+                    "name": "Placeholder",
+                    "type": "Button",
+                    "id": "59957dfe-2f09-4a35-97e6-c0cdb0aec100",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1d6014a3-bdd2-45a0-a228-e105de89c6ae",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Placeholder",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

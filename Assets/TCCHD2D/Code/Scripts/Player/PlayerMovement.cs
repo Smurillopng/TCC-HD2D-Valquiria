@@ -13,28 +13,35 @@ public class PlayerMovement : MonoBehaviour
 {
     // Private variables
     [TitleGroup("Input Variables", Alignment = TitleAlignments.Centered)]
-    [SerializeField, InlineEditor] 
+    [SerializeField, Required, InlineEditor, Tooltip("Bool variable that tells if the player can move or not.")]
     private BoolVariable canMove;
-    
-    [SerializeField, InlineEditor] 
+
+    [SerializeField, Required, InlineEditor, Tooltip("Bool variable that tells if the player is running or not.")]
     private BoolVariable isRunning;
-    
-    [SerializeField, InlineEditor] 
+
+    [SerializeField, Required, InlineEditor, Tooltip("Vector2 variable that tells the player's movement direction values.")]
     private Vector2Variable direction;
-    
+
     [TitleGroup("Movement Variables", Alignment = TitleAlignments.Centered)]
-    [SerializeField, MinValue(0)] 
+    [SerializeField, MinValue(0), Tooltip("Player's movement speed.")]
     private float speed;
-    
-    [SerializeField, MinValue(1)] 
+
+    [SerializeField, MinValue(1), Tooltip("Player's movement speed multiplier when running.")]
     private float runSpeedMultiplier = 1;
-    
+
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField, ReadOnly] 
+    [SerializeField, Required, Tooltip("Animator component of the player.")]
+    private Animator animator;
+
+    [SerializeField, ReadOnly, Tooltip("Rigidbody component of the player. If it doesn't exist, it will be added automatically.")]
     private Rigidbody rigidBody;
 
-    [SerializeField, ReadOnly] 
+    [SerializeField, ReadOnly, Tooltip("The value that will be used to calculate the player's movement.")]
     private Vector3 movementValue;
+
+    private static readonly int SpeedX = Animator.StringToHash("SpeedX");
+    private static readonly int SpeedY = Animator.StringToHash("SpeedY");
+    private static readonly int IsWalking = Animator.StringToHash("IsWalking");
 
     private void Start()
     {
@@ -54,8 +61,15 @@ public class PlayerMovement : MonoBehaviour
     public void Movement()
     {
         if (!canMove.Value) return;
-        if (direction.Value == Vector2.zero) {return;}
+        if (direction.Value == Vector2.zero)
+        {
+            animator.SetBool(IsWalking, false);
+            return;
+        }
         movementValue = new Vector3(direction.Value.x, 0, direction.Value.y).normalized;
+        animator.SetFloat(SpeedX, movementValue.x);
+        animator.SetFloat(SpeedY, movementValue.z);
+        animator.SetBool(IsWalking, true);
         if (isRunning.Value)
             movementValue *= runSpeedMultiplier;
         var newPosition = transform.position + movementValue * speed * Time.fixedDeltaTime;

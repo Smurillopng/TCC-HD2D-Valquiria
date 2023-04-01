@@ -1,14 +1,17 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 19/02/2023
 
+using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Responsible for storing the values of callbacks related to the game controls action map.
 /// </summary>
-public class PlayerControls : MonoBehaviour
+public class PlayerControls : SerializedMonoBehaviour
 {
     // Public variables
     public static PlayerControls Instance { get; private set; }
@@ -25,9 +28,12 @@ public class PlayerControls : MonoBehaviour
 
     [SerializeField, InlineEditor]
     private BoolVariable isRunning;
-    
+
     [SerializeField, InlineEditor]
     private BoolVariable interacted;
+
+    [SerializeField]
+    private Dictionary<string, SceneType> sceneMap = new();
 
     private void Awake()
     {
@@ -40,14 +46,51 @@ public class PlayerControls : MonoBehaviour
 
     private void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         gameControls = new GameControls();
-        gameControls.Default.Walk.performed += OnMove;
-        gameControls.Default.Walk.canceled += OnMoveRelease;
-        gameControls.Default.Run.performed += OnRun;
-        gameControls.Default.Run.canceled += OnRun;
-        gameControls.Default.Interact.performed += OnInteract;
-        gameControls.Default.Interact.canceled += OnInteract;
+
+        var sceneName = SceneManager.GetActiveScene().name;
+        if (sceneMap.TryGetValue(sceneName, out var currentScene))
+        {
+            print($"Current scene: {currentScene}");
+            switch (currentScene)
+            {
+                case SceneType.Menu:
+                    break;
+                case SceneType.Game:
+                    gameControls.Default.Walk.performed += OnMove;
+                    gameControls.Default.Walk.canceled += OnMoveRelease;
+                    gameControls.Default.Run.performed += OnRun;
+                    gameControls.Default.Run.canceled += OnRun;
+                    gameControls.Default.Interact.performed += OnInteract;
+                    gameControls.Default.Interact.canceled += OnInteract;
+                    break;
+                case SceneType.Combat:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        else Debug.LogError($"Scene {sceneName} is not mapped to any SceneType!");
+
         gameControls.Enable();
+    }
+
+    private void OnSceneUnloaded(Scene arg0)
+    {
+        if (gameControls == null) return;
+        gameControls.Default.Walk.performed -= OnMove;
+        gameControls.Default.Walk.canceled -= OnMoveRelease;
+        gameControls.Default.Run.performed -= OnRun;
+        gameControls.Default.Run.canceled -= OnRun;
+        gameControls.Default.Interact.performed -= OnInteract;
+        gameControls.Default.Interact.canceled -= OnInteract;
+        gameControls.Disable();
     }
 
     /// <summary>
@@ -74,7 +117,7 @@ public class PlayerControls : MonoBehaviour
     {
         isRunning.Value = ctx.ReadValueAsButton();
     }
-    
+
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
@@ -85,7 +128,15 @@ public class PlayerControls : MonoBehaviour
 
     private void OnDisable()
     {
-        if (gameControls != null)
-            gameControls.Disable();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        gameControls?.Disable();
     }
+}
+
+public enum SceneType
+{
+    Menu,
+    Game,
+    Combat
 }

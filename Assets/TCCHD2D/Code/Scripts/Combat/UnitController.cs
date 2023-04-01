@@ -12,31 +12,36 @@ using UnityEngine.Playables;
 /// </summary>
 public class UnitController : MonoBehaviour
 {
-    [TitleGroup("Unit Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField, InlineEditor]
+    [BoxGroup("Unit Info")]
+    [SerializeField, InlineEditor, Tooltip("The unit data that this controller controls.")]
     private Unit unit;
-    
-    [TitleGroup("Action Timelines", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
+
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The playable director that controls the animations of this unit.")]
     private PlayableDirector director;
-    
-    [SerializeField]
+
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private PlayableAsset basicAttack;
-    
-    [SerializeField]
+
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The list of PlayableAssets representing the unit's special attacks.")]
     private List<PlayableAsset> specialAttacks = new();
-    
-    [SerializeField]
+
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The PlayableAsset representing the unit's use item action.")]
     private PlayableAsset useItem;
-    
-    [SerializeField]
+
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The PlayableAsset representing the unit's run action.")]
     private PlayableAsset run;
-    
-    [TitleGroup("Unit Floating Numbers", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
+
+    [FoldoutGroup("Unit Floating Numbers")]
+    [SerializeField, Tooltip("The animator that controls the damage text animation.")]
     private Animator damageTextAnimator;
-    
-    [SerializeField]
+
+    [FoldoutGroup("Unit Floating Numbers")]
+    [SerializeField, Tooltip("The text that displays the damage taken by the unit.")]
     private TMP_Text damageText;
 
     private int _damageTakenThisTurn;
@@ -45,47 +50,47 @@ public class UnitController : MonoBehaviour
     /// The <see cref="Unit"/> that this controller controls.
     /// </summary>
     public Unit Unit => unit;
-    
+
     /// <summary>
     /// The <see cref="PlayableDirector"/> that controls the animations of this unit.
     /// </summary>
     public PlayableDirector Director => director;
-    
+
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
     /// </summary>
     public PlayableAsset BasicAttack => basicAttack;
-    
+
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's special attacks.
     /// </summary>
     public List<PlayableAsset> SpecialAttacks => specialAttacks;
-    
+
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's use item action.
     /// </summary>
     public PlayableAsset UseItem => useItem;
-    
+
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's run action.
     /// </summary>
     public PlayableAsset Run => run;
 
-    public void Start()
+    public void Awake()
     {
         // Set the current HP to the maximum
-        if (unit.IsPlayer == false)
+        if (!unit.IsPlayer)
         {
             unit.IsDead = false;
             unit.CurrentHp = unit.MaxHp;
         }
         else
         {
-            if (unit.CurrentHp == unit.MaxHp && unit.IsDead == true)
+            if (unit.CurrentHp == unit.MaxHp && unit.IsDead)
                 unit.IsDead = false;
-            if (unit.IsDead == false && unit.CurrentHp == 0)
+            if (!unit.IsDead && unit.CurrentHp == 0)
                 unit.CurrentHp = unit.MaxHp;
-            if (unit.IsDead == true && unit.CurrentHp == 0)
+            if (unit.IsDead && unit.CurrentHp == 0)
             {
                 unit.CurrentHp = unit.MaxHp;
                 unit.IsDead = false;
@@ -101,6 +106,10 @@ public class UnitController : MonoBehaviour
     {
         // Calculate damage based on strength
         var damage = unit.Attack;
+        Director.Play(basicAttack);
+        
+        if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp)
+            unit.CurrentTp += 10;
 
         // Apply damage to target
         target.TakeDamage(damage);
@@ -117,6 +126,12 @@ public class UnitController : MonoBehaviour
 
         // Subtract damage from health
         unit.CurrentHp -= _damageTakenThisTurn;
+        
+        if (unit.IsPlayer)
+        {
+            unit.CurrentTp += 10;
+            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
+        }
 
         // Check if the unit has died
         if (unit.CurrentHp <= 0)
@@ -135,7 +150,7 @@ public class UnitController : MonoBehaviour
     public void HealSpecialAction(UnitController target)
     {
         // Calculate heal based on strength
-        var heal = unit.Attack;
+        var heal = unit.Luck * 2;
 
         // Apply heal to target
         target.Unit.CurrentHp += heal;
@@ -157,6 +172,12 @@ public class UnitController : MonoBehaviour
     /// <param name="target"></param>
     public void SpecialAction(int index, UnitController target)
     {
+        // AI logic for using an item goes here
+        if (!unit.IsPlayer)
+        {
+            //TODO: AI Logic
+        }
+        
         var damage = unit.Attack;
 
         // Apply damage to target
@@ -169,21 +190,33 @@ public class UnitController : MonoBehaviour
     public void UseItemAction()
     {
         // AI logic for using an item goes here
-        if (unit.IsPlayer == false)
+        if (!unit.IsPlayer)
         {
-            //
+            //TODO: AI Logic
         }
     }
 
     /// <summary>
     /// The logic for the player running away.
     /// </summary>
-    public void RunAction()
+    public bool RunAction()
     {
-        // AI logic for running away goes here
-        if (unit.IsPlayer == false)
+        if (!unit.IsPlayer)
         {
-            //
+            //TODO: AI Logic
+        }
+        
+        var randomChance = Random.Range(0, 100);
+        randomChance += Unit.Luck;
+        randomChance = randomChance > 50 ? 1 : 0;
+        if (randomChance == 1)
+        {
+            //TODO: play run animation
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -193,11 +226,39 @@ public class UnitController : MonoBehaviour
     /// <param name="target"></param>
     public void SelectAction(UnitController target)
     {
+        
+        if (unit.IsPlayer) return;
         // AI logic for selecting an action goes here
-        if (unit.IsPlayer == false)
+        if (unit.CurrentHp > unit.MaxHp/4)
         {
-            Director.Play(basicAttack);
             AttackAction(target);
+            PlayerCombatHUD.CombatTextEvent.Invoke(
+                $"<color=blue>{unit.UnitName}</color> attacked <color=red>{target.Unit.UnitName}</color> for <color=red>{_damageTakenThisTurn}</color> damage!");
+        }
+        else if (unit.CurrentHp < unit.MaxHp / 2)
+        {
+            HealSpecialAction(this);
+            PlayerCombatHUD.CombatTextEvent.Invoke(
+                $"<color=blue>{unit.UnitName}</color> healed for <color=green>{unit.Luck * 2}</color>!");
+            PlayerCombatHUD.UpdateCombatHUDEnemyHp.Invoke();
+        }
+        else
+        {
+            var enemyRan = RunAction();
+            if (enemyRan)
+            {
+                //TODO: give player exp reward
+                //TODO: play run animation
+                //TODO: change scenes
+                PlayerCombatHUD.CombatTextEvent.Invoke(
+                    $"<color=blue>{unit.UnitName}</color> ran away!");
+            }
+            else
+            {
+                //Enemy lost a turn
+                PlayerCombatHUD.CombatTextEvent.Invoke(
+                    $"<color=blue>{unit.UnitName}</color> tried to run away but <color=red>failed</color>");
+            }
         }
     }
 }

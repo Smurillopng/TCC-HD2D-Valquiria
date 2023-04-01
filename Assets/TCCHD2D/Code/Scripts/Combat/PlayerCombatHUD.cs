@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 08/03/2023
 
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,21 +18,18 @@ public class PlayerCombatHUD : MonoBehaviour
 {
     [TitleGroup("Units Info", Alignment = TitleAlignments.Centered)]
     [SerializeField]
-    private GameObject player;
-    
-    [SerializeField]
     private UnitController playerUnitController;
 
     [SerializeField]
     private UnitController enemyUnitController;
-    
+
     [TitleGroup("Player HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Image playerHelthbarFill;
 
     [SerializeField]
     private TMP_Text playerHealthText;
-    
+
     [SerializeField]
     private Image playerTpbarFill;
 
@@ -51,8 +49,8 @@ public class PlayerCombatHUD : MonoBehaviour
     [TitleGroup("Combat Text Box", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private TMP_Text combatTextBox;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private float combatTextTimer;
 
     [TitleGroup("Buttons", Alignment = TitleAlignments.Centered)]
@@ -69,11 +67,27 @@ public class PlayerCombatHUD : MonoBehaviour
     private Button runButton;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField, ReadOnly]
+    [ShowInInspector, ReadOnly]
     public static UnityAction TakenAction;
+    public static UnityAction<string> CombatTextEvent;
+    public static UnityAction UpdateCombatHUDPlayerHp;
+    public static UnityAction UpdateCombatHUDPlayerTp;
+    public static UnityAction UpdateCombatHUDEnemyHp;
 
+    private void OnEnable()
+    {
+        CombatTextEvent += DisplayCombatText;
+        UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
+        UpdateCombatHUDPlayerTp += UpdatePlayerTp;
+        UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
+    }
+    
     private void Start()
     {
+        UpdateEnemyHealth();
+        UpdatePlayerTp();
+        UpdatePlayerHealth();
+
         playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
         playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
         playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
@@ -83,24 +97,37 @@ public class PlayerCombatHUD : MonoBehaviour
         enemyName.text = $"{enemyUnitController.Unit.UnitName}:";
         playerUnitController.Unit.CurrentTp = 0;
         combatTextBox.text = "";
-        UpdatePlayerTp();
+        
+        CombatTextEvent += DisplayCombatText;
+        UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
+        UpdateCombatHUDPlayerTp += UpdatePlayerTp;
+        UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
     }
 
     private void Update()
     {
-        if (playerUnitController.Director.state == PlayState.Playing)
-        {
-            attackButton.interactable = false;
-            specialButton.interactable = false;
-            itemButton.interactable = false;
-            runButton.interactable = false;
-        }
+        if (playerUnitController.Director.state == PlayState.Playing || enemyUnitController.Director.state == PlayState.Playing)
+            DisableButtons(true);
         else
+            DisableButtons(false);
+    }
+
+    private void DisableButtons(bool disabled)
+    {
+        switch (disabled)
         {
-            attackButton.interactable = true;
-            specialButton.interactable = true;
-            itemButton.interactable = true;
-            runButton.interactable = true;
+            case true:
+                attackButton.interactable = false;
+                specialButton.interactable = false;
+                itemButton.interactable = false;
+                runButton.interactable = false;
+                break;
+            case false:
+                attackButton.interactable = true;
+                specialButton.interactable = true;
+                itemButton.interactable = true;
+                runButton.interactable = true;
+                break;
         }
     }
 
@@ -109,11 +136,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void UpdatePlayerHealth()
     {
-        if (playerHealthText != null && playerHelthbarFill != null)
-        {
-            playerHealthText.text = $"{playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
-            playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
-        }
+        if (playerHealthText == null || playerHelthbarFill == null) return;
+        playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
+        playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
     }
 
     /// <summary>
@@ -121,23 +146,19 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void UpdateEnemyHealth()
     {
-        if (enemyHealthText != null && enemyHelthbarFill != null)
-        {
-            enemyHealthText.text = $"{enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
-            enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
-        }
+        if (enemyHealthText == null || enemyHelthbarFill == null) return;
+        enemyHealthText.text = $"{enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
+        enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
     }
-    
+
     /// <summary>
     /// Updates the player's TP bar and text.
     /// </summary>
     public void UpdatePlayerTp()
     {
-        if (playerTpText != null && playerTpbarFill != null)
-        {
-            playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
-            playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
-        }
+        if (playerTpText == null || playerTpbarFill == null) return;
+        playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
+        playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
     }
 
     /// <summary>
@@ -146,12 +167,8 @@ public class PlayerCombatHUD : MonoBehaviour
     public void Attack()
     {
         playerUnitController.AttackAction(enemyUnitController);
-        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp)
-        {
-            playerUnitController.Unit.CurrentTp += 10;
-            UpdatePlayerTp();
-        }
-        StartCoroutine(DisplayCombatText($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{playerUnitController.Unit.Attack}</color> damage</b>"));
+        UpdatePlayerTp();
+        CombatTextEvent.Invoke($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{playerUnitController.Unit.Attack}</color> damage</b>");
         TakenAction.Invoke();
     }
 
@@ -160,9 +177,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void Special()
     {
-        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp/2)
+        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp / 2)
         {
-            StartCoroutine(DisplayCombatText("<color=red>Not enough TP</color>"));
+            CombatTextEvent.Invoke("<color=red>Not enough TP</color>");
         }
         else
         {
@@ -171,7 +188,7 @@ public class PlayerCombatHUD : MonoBehaviour
             UpdatePlayerHealth();
             playerUnitController.Unit.CurrentTp -= 50;
             UpdatePlayerTp();
-            StartCoroutine(DisplayCombatText($"Healed <color=green>{playerUnitController.Unit.Attack}</color> HP"));
+            CombatTextEvent.Invoke($"Healed <color=green>{playerUnitController.Unit.Attack}</color> HP");
             TakenAction.Invoke();
         }
     }
@@ -181,7 +198,7 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void Item()
     {
-        StartCoroutine(DisplayCombatText($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>"));
+        CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
         //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
         TakenAction.Invoke();
     }
@@ -191,31 +208,43 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void Run()
     {
-        var randomChance = UnityEngine.Random.Range(0, 100);
-        randomChance += playerUnitController.Unit.Luck;
-        randomChance = randomChance > 50 ? 1 : 0;
-        if (randomChance == 1)
+        var gotAway = playerUnitController.RunAction();
+
+        if (gotAway)
         {
-            //playerUnitController.UnitDirector.Play(playerUnitController.Run);
             SceneManager.LoadScene("scn_game");
-            StartCoroutine(DisplayCombatText("Run away <color=green>successfully</color>"));
+            CombatTextEvent.Invoke($"<color=green>Ran away</color>");
             TakenAction.Invoke();
         }
         else
         {
-            StartCoroutine(DisplayCombatText("Run away <color=red>unsuccessfully</color>"));
+            CombatTextEvent.Invoke($"<color=red>Failed to run away</color>");
             TakenAction.Invoke();
         }
     }
     
+    public void DisplayCombatText(string text)
+    {
+        if (combatTextBox != null)
+            StartCoroutine(DisplayCombatTextCoroutine(text));
+    }
+
     /// <summary>
     /// Displays combat text in the combat text box for a set amount of time then clears the text.
     /// </summary>
     /// <param name="text"></param>
-    public IEnumerator DisplayCombatText(string text)
+    public IEnumerator DisplayCombatTextCoroutine(string text)
     {
         combatTextBox.text = text;
         yield return new WaitForSeconds(combatTextTimer);
         combatTextBox.text = "";
+    }
+
+    private void OnDisable()
+    {
+        CombatTextEvent -= DisplayCombatText;
+        UpdateCombatHUDPlayerHp -= UpdatePlayerHealth;
+        UpdateCombatHUDPlayerTp -= UpdatePlayerTp;
+        UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
     }
 }

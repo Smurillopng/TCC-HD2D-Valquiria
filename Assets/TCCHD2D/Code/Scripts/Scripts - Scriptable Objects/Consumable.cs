@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 01/04/2023
 
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Consumable Item", menuName = "RPG/New Consumable Item", order = 0)]
@@ -9,9 +10,11 @@ public class Consumable : ScriptableObject, IItem
     [SerializeField] private int itemID;
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemIcon;
+    [SerializeField] private ConsumableTypes effectType;
     [SerializeField] private string itemDescription;
     [SerializeField] private int maxStack;
     [SerializeField] private int itemValue;
+    [SerializeField] private int effectValue;
 
     public int ItemID
     {
@@ -29,6 +32,12 @@ public class Consumable : ScriptableObject, IItem
     {
         get => itemIcon;
         set => itemIcon = value;
+    }
+    
+    public ConsumableTypes EffectType
+    {
+        get => effectType;
+        set => effectType = value;
     }
 
     public string ItemDescription
@@ -48,14 +57,53 @@ public class Consumable : ScriptableObject, IItem
         get => itemValue;
         set => itemValue = value;
     }
+    
+    public int EffectValue
+    {
+        get => effectValue;
+        set => effectValue = value;
+    }
 
     public void Use()
     {
-        Debug.Log("Used");
+        switch (effectType)
+        {
+            case ConsumableTypes.Heal:
+                Heal();
+                break;
+            case ConsumableTypes.Damage:
+                Damage();
+                break;
+            case ConsumableTypes.IncreaseTp:
+                IncreaseTp();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
     
     public void Discard()
     {
         Debug.Log("Discarded");
+    }
+    
+    //In Combat Effects
+    
+    public void Heal()
+    {
+        var target = FindObjectOfType<PlayerCombatHUD>().PlayerUnitController;
+        target.Unit.CurrentHp += EffectValue;
+    }
+    
+    public void Damage()
+    {
+        var target = FindObjectOfType<PlayerCombatHUD>().EnemyUnitController;
+        target.Unit.CurrentHp -= EffectValue;
+    }
+    
+    public void IncreaseTp()
+    {
+        var target = FindObjectOfType<PlayerCombatHUD>().PlayerUnitController;
+        target.Unit.CurrentTp += EffectValue;
     }
 }

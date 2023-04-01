@@ -15,6 +15,8 @@ MonoBehaviour:
   itemID: 2
   itemName: Generic Health Potion
   itemIcon: {fileID: 21300000, guid: d6a44ab95b0def041a7929981a2c23a1, type: 3}
+  effectType: 0
   itemDescription: Generic Consumable Item Test
   maxStack: 3
   itemValue: 10
+  effectValue: 0

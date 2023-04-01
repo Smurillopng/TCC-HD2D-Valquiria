@@ -40,15 +40,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "OpenInventory",
-                    "type": "Button",
-                    "id": "e832e61e-7acf-4b43-8769-fff725598400",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -137,17 +128,6 @@
                     "processors": "",
                     "groups": "PC",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "09ed8aae-1836-4ce7-b6ce-06a15a522d9a",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "PC",
-                    "action": "OpenInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -244,6 +224,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Placeholder",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menus",
+            "id": "10a3839b-069d-4b42-8082-e0c0c796de0b",
+            "actions": [
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "0d420214-07af-4df3-bfe3-0ab560a3bb24",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7e58e535-435f-4454-b03e-3d14b4e4561f",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "OpenInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

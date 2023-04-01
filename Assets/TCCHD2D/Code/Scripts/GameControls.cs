@@ -62,15 +62,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""OpenInventory"",
-                    ""type"": ""Button"",
-                    ""id"": ""e832e61e-7acf-4b43-8769-fff725598400"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -159,17 +150,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""PC"",
                     ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""09ed8aae-1836-4ce7-b6ce-06a15a522d9a"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -270,6 +250,34 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menus"",
+            ""id"": ""10a3839b-069d-4b42-8082-e0c0c796de0b"",
+            ""actions"": [
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""0d420214-07af-4df3-bfe3-0ab560a3bb24"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7e58e535-435f-4454-b03e-3d14b4e4561f"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -297,7 +305,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         m_Default_Run = m_Default.FindAction("Run", throwIfNotFound: true);
         m_Default_Walk = m_Default.FindAction("Walk", throwIfNotFound: true);
         m_Default_Interact = m_Default.FindAction("Interact", throwIfNotFound: true);
-        m_Default_OpenInventory = m_Default.FindAction("OpenInventory", throwIfNotFound: true);
         // Console
         m_Console = asset.FindActionMap("Console", throwIfNotFound: true);
         m_Console_ShowConsole = m_Console.FindAction("ShowConsole", throwIfNotFound: true);
@@ -306,6 +313,9 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         // Combat
         m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
         m_Combat_Placeholder = m_Combat.FindAction("Placeholder", throwIfNotFound: true);
+        // Menus
+        m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
+        m_Menus_OpenInventory = m_Menus.FindAction("OpenInventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -369,7 +379,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Default_Run;
     private readonly InputAction m_Default_Walk;
     private readonly InputAction m_Default_Interact;
-    private readonly InputAction m_Default_OpenInventory;
     public struct DefaultActions
     {
         private @GameControls m_Wrapper;
@@ -378,7 +387,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         public InputAction @Run => m_Wrapper.m_Default_Run;
         public InputAction @Walk => m_Wrapper.m_Default_Walk;
         public InputAction @Interact => m_Wrapper.m_Default_Interact;
-        public InputAction @OpenInventory => m_Wrapper.m_Default_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -400,9 +408,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 @Interact.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteract;
-                @OpenInventory.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnOpenInventory;
-                @OpenInventory.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnOpenInventory;
-                @OpenInventory.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnOpenInventory;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -419,9 +424,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @OpenInventory.started += instance.OnOpenInventory;
-                @OpenInventory.performed += instance.OnOpenInventory;
-                @OpenInventory.canceled += instance.OnOpenInventory;
             }
         }
     }
@@ -508,6 +510,39 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         }
     }
     public CombatActions @Combat => new CombatActions(this);
+
+    // Menus
+    private readonly InputActionMap m_Menus;
+    private IMenusActions m_MenusActionsCallbackInterface;
+    private readonly InputAction m_Menus_OpenInventory;
+    public struct MenusActions
+    {
+        private @GameControls m_Wrapper;
+        public MenusActions(@GameControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenInventory => m_Wrapper.m_Menus_OpenInventory;
+        public InputActionMap Get() { return m_Wrapper.m_Menus; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenusActions set) { return set.Get(); }
+        public void SetCallbacks(IMenusActions instance)
+        {
+            if (m_Wrapper.m_MenusActionsCallbackInterface != null)
+            {
+                @OpenInventory.started -= m_Wrapper.m_MenusActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.performed -= m_Wrapper.m_MenusActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.canceled -= m_Wrapper.m_MenusActionsCallbackInterface.OnOpenInventory;
+            }
+            m_Wrapper.m_MenusActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @OpenInventory.started += instance.OnOpenInventory;
+                @OpenInventory.performed += instance.OnOpenInventory;
+                @OpenInventory.canceled += instance.OnOpenInventory;
+            }
+        }
+    }
+    public MenusActions @Menus => new MenusActions(this);
     private int m_PCSchemeIndex = -1;
     public InputControlScheme PCScheme
     {
@@ -523,7 +558,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnOpenInventory(InputAction.CallbackContext context);
     }
     public interface IConsoleActions
     {
@@ -534,5 +568,9 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     public interface ICombatActions
     {
         void OnPlaceholder(InputAction.CallbackContext context);
+    }
+    public interface IMenusActions
+    {
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
 }

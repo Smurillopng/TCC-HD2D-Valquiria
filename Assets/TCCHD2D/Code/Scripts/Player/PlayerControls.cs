@@ -75,7 +75,7 @@ public class PlayerControls : SerializedMonoBehaviour
                     gameControls.Default.Run.canceled += OnRun;
                     gameControls.Default.Interact.performed += OnInteract;
                     gameControls.Default.Interact.canceled += OnInteract;
-                    gameControls.Default.OpenInventory.performed += OnInventory;
+                    gameControls.Menus.OpenInventory.performed += OnInventory;
                     break;
                 case SceneType.Combat:
                     break;
@@ -97,7 +97,7 @@ public class PlayerControls : SerializedMonoBehaviour
         gameControls.Default.Run.canceled -= OnRun;
         gameControls.Default.Interact.performed -= OnInteract;
         gameControls.Default.Interact.canceled -= OnInteract;
-        gameControls.Default.OpenInventory.performed -= OnInventory;
+        gameControls.Menus.OpenInventory.performed -= OnInventory;
         gameControls.Disable();
     }
 
@@ -145,11 +145,12 @@ public class PlayerControls : SerializedMonoBehaviour
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
         gameControls?.Disable();
     }
-}
-
-public enum SceneType
-{
-    Menu,
-    Game,
-    Combat
+    
+    public void ToggleDefaultControls(bool enable)
+    {
+        if (enable)
+            gameControls.Default.Enable();
+        else
+            gameControls.Default.Disable();
+    }
 }

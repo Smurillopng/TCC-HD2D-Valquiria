@@ -3,6 +3,7 @@
 
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +25,21 @@ public class InventoryManager : SerializedMonoBehaviour
     [SerializeField, Required] private GameObject itemPrefab;
     [SerializeField, Required] private PlayerEquipment playerEquipmentInfo;
     [SerializeField, Required] private BoolVariable isInventoryOpen;
-
+    //
+    [TitleGroup("Player Status", Alignment = TitleAlignments.Centered)] [SerializeField]
+    private Unit playerUnit;
+    [SerializeField]
+    private TMP_Text playerLvl;
+    [SerializeField]
+    private Image playerHelthbarFill;
+    [SerializeField]
+    private TMP_Text playerHealthText;
+    [SerializeField]
+    private Image playerTpbarFill;
+    [SerializeField]
+    private TMP_Text playerTpText;
+    private bool _updatedStatus = false;
+    
     public void AddItem(IItem item)
     {
         Inventory.Add(item);
@@ -64,6 +79,15 @@ public class InventoryManager : SerializedMonoBehaviour
             runeSlot.sprite = playerEquipmentInfo.equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem.ItemIcon;
     }
     
+    public void UpdateStatus()
+    {
+        playerLvl.text = $"Lv. {playerUnit.Level}";
+        playerHealthText.text = $"HP: {playerUnit.CurrentHp} / {playerUnit.MaxHp}";
+        playerHelthbarFill.fillAmount = (float)playerUnit.CurrentHp / playerUnit.MaxHp;
+        playerTpText.text = $"TP: {playerUnit.CurrentTp}%";
+        playerTpbarFill.fillAmount = (float)playerUnit.CurrentTp / playerUnit.MaxTp;
+    }
+    
     public void ShowBagPanel()
     {
         bagPanel.SetActive(true);
@@ -81,5 +105,19 @@ public class InventoryManager : SerializedMonoBehaviour
     public void Update()
     {
         inventoryPanel.SetActive(isInventoryOpen.Value);
+        if (isInventoryOpen.Value)
+        {
+            PlayerControls.Instance.ToggleDefaultControls(false);
+            if (!_updatedStatus)
+            {
+                UpdateStatus();
+                _updatedStatus = true;
+            }
+        }
+        else
+        {
+            PlayerControls.Instance.ToggleDefaultControls(true);
+            _updatedStatus = false;
+        }
     }
 }

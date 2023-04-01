@@ -73,6 +73,9 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDPlayerHp;
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
+    
+    public UnitController PlayerUnitController => playerUnitController;
+    public UnitController EnemyUnitController => enemyUnitController;
 
     private void OnEnable()
     {

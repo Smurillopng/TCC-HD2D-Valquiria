@@ -7,7 +7,7 @@ using UnityEditor;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Unit", menuName = "RPG/Unit")]
+[CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit")]
 public class Unit : ScriptableObject
 {
     [TitleGroup("Appearance", Alignment = TitleAlignments.Centered)]

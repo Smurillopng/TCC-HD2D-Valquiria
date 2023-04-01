@@ -31,6 +31,7 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
+        if (!(Vector3.Distance(transform.position, playerTransform.position) <= interactionRange)) return;
         if (Vector3.Distance(transform.position, playerTransform.position) <= interactionRange)
         {
             onInteractionInRange?.Invoke();

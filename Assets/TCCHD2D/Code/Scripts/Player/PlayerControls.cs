@@ -31,6 +31,12 @@ public class PlayerControls : SerializedMonoBehaviour
 
     [SerializeField, InlineEditor]
     private BoolVariable interacted;
+    
+    [SerializeField, InlineEditor]
+    private BoolVariable isPaused;
+    
+    [SerializeField, InlineEditor]
+    private BoolVariable openInventory;
 
     [SerializeField]
     private Dictionary<string, SceneType> sceneMap = new();
@@ -69,6 +75,7 @@ public class PlayerControls : SerializedMonoBehaviour
                     gameControls.Default.Run.canceled += OnRun;
                     gameControls.Default.Interact.performed += OnInteract;
                     gameControls.Default.Interact.canceled += OnInteract;
+                    gameControls.Default.OpenInventory.performed += OnInventory;
                     break;
                 case SceneType.Combat:
                     break;
@@ -90,6 +97,7 @@ public class PlayerControls : SerializedMonoBehaviour
         gameControls.Default.Run.canceled -= OnRun;
         gameControls.Default.Interact.performed -= OnInteract;
         gameControls.Default.Interact.canceled -= OnInteract;
+        gameControls.Default.OpenInventory.performed -= OnInventory;
         gameControls.Disable();
     }
 
@@ -124,6 +132,11 @@ public class PlayerControls : SerializedMonoBehaviour
             interacted.Value = true;
         else if (ctx.canceled)
             interacted.Value = false;
+    }
+    
+    public void OnInventory(InputAction.CallbackContext ctx)
+    {
+        openInventory.Value = !openInventory.Value;
     }
 
     private void OnDisable()

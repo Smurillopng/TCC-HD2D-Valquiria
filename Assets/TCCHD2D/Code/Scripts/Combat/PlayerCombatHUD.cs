@@ -73,9 +73,10 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDPlayerHp;
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
-    
+
     public UnitController PlayerUnitController => playerUnitController;
     public UnitController EnemyUnitController => enemyUnitController;
+    public TurnManager turnManager;
 
     private void OnEnable()
     {
@@ -84,7 +85,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
     }
-    
+
     private void Start()
     {
         UpdateEnemyHealth();
@@ -100,7 +101,7 @@ public class PlayerCombatHUD : MonoBehaviour
         enemyName.text = $"{enemyUnitController.Unit.UnitName}:";
         playerUnitController.Unit.CurrentTp = 0;
         combatTextBox.text = "";
-        
+
         CombatTextEvent += DisplayCombatText;
         UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
@@ -109,10 +110,10 @@ public class PlayerCombatHUD : MonoBehaviour
 
     private void Update()
     {
-        if (playerUnitController.Director.state == PlayState.Playing || enemyUnitController.Director.state == PlayState.Playing)
-            DisableButtons(true);
-        else
+        if (turnManager.isPlayerTurn)
             DisableButtons(false);
+        else
+            DisableButtons(true);
     }
 
     private void DisableButtons(bool disabled)
@@ -171,7 +172,8 @@ public class PlayerCombatHUD : MonoBehaviour
     {
         playerUnitController.AttackAction(enemyUnitController);
         UpdatePlayerTp();
-        CombatTextEvent.Invoke($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{playerUnitController.Unit.Attack}</color> damage</b>");
+        CombatTextEvent.Invoke($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{enemyUnitController.damageTakenThisTurn}</color> damage</b>");
+        turnManager.isPlayerTurn = false;
         TakenAction.Invoke();
     }
 
@@ -192,6 +194,7 @@ public class PlayerCombatHUD : MonoBehaviour
             playerUnitController.Unit.CurrentTp -= 50;
             UpdatePlayerTp();
             CombatTextEvent.Invoke($"Healed <color=green>{playerUnitController.Unit.Attack}</color> HP");
+            turnManager.isPlayerTurn = false;
             TakenAction.Invoke();
         }
     }
@@ -203,6 +206,7 @@ public class PlayerCombatHUD : MonoBehaviour
     {
         CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
         //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
+        turnManager.isPlayerTurn = false;
         TakenAction.Invoke();
     }
 
@@ -217,15 +221,17 @@ public class PlayerCombatHUD : MonoBehaviour
         {
             SceneManager.LoadScene("scn_game");
             CombatTextEvent.Invoke($"<color=green>Ran away</color>");
+            turnManager.isPlayerTurn = false;
             TakenAction.Invoke();
         }
         else
         {
             CombatTextEvent.Invoke($"<color=red>Failed to run away</color>");
+            turnManager.isPlayerTurn = false;
             TakenAction.Invoke();
         }
     }
-    
+
     public void DisplayCombatText(string text)
     {
         if (combatTextBox != null)

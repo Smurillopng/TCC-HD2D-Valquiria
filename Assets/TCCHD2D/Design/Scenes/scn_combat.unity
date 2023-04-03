@@ -16077,6 +16077,7 @@ MonoBehaviour:
   specialButton: {fileID: 737856164}
   itemButton: {fileID: 1570477438}
   runButton: {fileID: 426683402}
+  turnManager: {fileID: 1058066614}
 --- !u!1 &969630091
 GameObject:
   m_ObjectHideFlags: 0
@@ -16381,6 +16382,8 @@ MonoBehaviour:
   currentUnitIndex: 0
   aiMoved: 0
   playerUnitController: {fileID: 0}
+  isPlayerTurn: 0
+  _combatState: 0
 --- !u!4 &1058066615
 Transform:
   m_ObjectHideFlags: 0
@@ -50984,8 +50987,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.11037826, y: 0.030872054, z: -0.0034302291, w: 0.99340415}
-  m_LocalPosition: {x: -960.7, y: -139.15997, z: -4}
+  m_LocalRotation: {x: 0.110378176, y: 0.030886546, z: -0.003431838, w: 0.99340373}
+  m_LocalPosition: {x: -961.13806, y: -138.63434, z: -6.5029635}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -97936,6 +97939,10 @@ MonoBehaviour:
   run: {fileID: 0}
   damageTextAnimator: {fileID: 191108977}
   damageText: {fileID: 191108978}
+  damageTakenThisTurn: 0
+  attackDamageCalculated: 0
+  defenceCalculated: 0
+  speedCalculated: 0
 --- !u!114 &6120526187047363628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98092,6 +98099,10 @@ MonoBehaviour:
   run: {fileID: 0}
   damageTextAnimator: {fileID: 1703950809}
   damageText: {fileID: 1703950810}
+  damageTakenThisTurn: 0
+  attackDamageCalculated: 0
+  defenceCalculated: 0
+  speedCalculated: 0
 --- !u!114 &7878350319063784938
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,15 +31,17 @@ public class PlayerControls : SerializedMonoBehaviour
 
     [SerializeField, InlineEditor]
     private BoolVariable interacted;
-    
+
     [SerializeField, InlineEditor]
     private BoolVariable isPaused;
-    
+
     [SerializeField, InlineEditor]
     private BoolVariable openInventory;
 
     [SerializeField]
     private Dictionary<string, SceneType> sceneMap = new();
+
+    public Dictionary<string, SceneType> SceneMap => sceneMap;
 
     private void Awake()
     {
@@ -133,7 +135,7 @@ public class PlayerControls : SerializedMonoBehaviour
         else if (ctx.canceled)
             interacted.Value = false;
     }
-    
+
     public void OnInventory(InputAction.CallbackContext ctx)
     {
         openInventory.Value = !openInventory.Value;
@@ -145,7 +147,7 @@ public class PlayerControls : SerializedMonoBehaviour
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
         gameControls?.Disable();
     }
-    
+
     public void ToggleDefaultControls(bool enable)
     {
         if (enable)

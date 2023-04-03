@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: so_equipItem_test
   m_EditorClassIdentifier: 
   itemID: 3
-  slotType: 2
+  slotType: 3
   itemName: GenericLeg
   itemIcon: {fileID: 21300000, guid: b6a96c7c65795c94abf54a62adbf5c38, type: 3}
   itemDescription: Equipment Test
   maxStack: 1
   itemValue: 5
+  statusValue: 3

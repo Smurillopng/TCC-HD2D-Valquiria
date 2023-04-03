@@ -46,8 +46,10 @@ public class TurnManager : MonoBehaviour
     [SerializeField, ReadOnly, Tooltip("The UnitController component of the current player unit")]
     private UnitController playerUnitController;
 
+    public bool isPlayerTurn;
+
+    [SerializeField, ReadOnly] private CombatState _combatState; // The current state of the combat
     private UnitController _currentUnit; // The UnitController component of the current unit
-    private CombatState _combatState; // The current state of the combat
 
     private void Start()
     {
@@ -73,12 +75,26 @@ public class TurnManager : MonoBehaviour
                 }
 
                 // Sort the units by speed, so the fastest goes first
-                units.Sort((a, b) => b.Unit.Speed.CompareTo(a.Unit.Speed));
+                foreach (var unit in units)
+                {
+                    if (unit.Unit.IsPlayer)
+                    {
+                        if (InventoryManager.Instance.EquipmentSlots[2].equipItem != null)
+                            unit.speedCalculated = unit.Unit.Speed + InventoryManager.Instance.EquipmentSlots[2].equipItem.StatusValue;
+                        else
+                            unit.speedCalculated = unit.Unit.Speed;
+                    }
+                    else
+                    {
+                        unit.speedCalculated = unit.Unit.Speed;
+                    }
+                }
+                units = units.OrderByDescending(unit => unit.speedCalculated).ToList();
                 _combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
+                ManageTurns();
                 break;
 
             case CombatState.TurnCheck:
-                CheckGameOver();
                 // Check if the current unit is dead or has already taken a turn
                 if (units[currentUnitIndex].Unit.IsDead || units[currentUnitIndex].Unit.HasTakenTurn)
                 {
@@ -90,6 +106,7 @@ public class TurnManager : MonoBehaviour
                     }
                 }
                 _combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
+                CheckGameOver();
                 ManageTurns();
                 break;
 
@@ -99,6 +116,7 @@ public class TurnManager : MonoBehaviour
                 {
                     _combatState = CombatState.PlayerTurn;
                     onTurnStart.Invoke();
+                    isPlayerTurn = true;
                     // Wait for player input
                 }
                 if (units[currentUnitIndex].Unit.HasTakenTurn)

@@ -13,13 +13,14 @@ public class Equipment : ScriptableObject, IItem
     [SerializeField] private string itemDescription;
     [SerializeField] private int maxStack;
     [SerializeField] private int itemValue;
+    [SerializeField] private int statusValue;
 
     public int ItemID
     {
         get => itemID;
         set => itemID = value;
     }
-    
+
     public EquipmentSlotType SlotType
     {
         get => slotType;
@@ -56,11 +57,17 @@ public class Equipment : ScriptableObject, IItem
         set => itemValue = value;
     }
 
+    public int StatusValue
+    {
+        get => statusValue;
+        set => statusValue = value;
+    }
+
     public void Equip()
     {
         Debug.Log($"Equipped: {itemName}");
     }
-    
+
     public void Unequip()
     {
         Debug.Log($"Unequipped: {itemName}");

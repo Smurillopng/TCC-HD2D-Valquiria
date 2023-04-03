@@ -19,4 +19,4 @@ MonoBehaviour:
   itemDescription: Generic Consumable Item Test
   maxStack: 3
   itemValue: 10
-  effectValue: 0
+  effectValue: 3

@@ -284,6 +284,12 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
 
+    public void UseItem(Consumable item)
+    {
+        item.Use();
+        inventory.Remove(item);
+    }
+
     public void Update()
     {
         if (currentScene != SceneType.Game) return;

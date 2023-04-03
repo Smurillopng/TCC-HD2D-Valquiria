@@ -53,6 +53,16 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     private float combatTextTimer;
 
+    [TitleGroup("Combat Panels", Alignment = TitleAlignments.Centered)]
+    [SerializeField]
+    private GameObject buttonPrefab;
+    [SerializeField]
+    private GameObject optionsPanel;
+    [SerializeField]
+    private GameObject specialPanel;
+    [SerializeField]
+    private GameObject itemPanel;
+
     [TitleGroup("Buttons", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Button attackButton;
@@ -204,10 +214,30 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void Item()
     {
-        CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
+        optionsPanel.SetActive(false);
+        itemPanel.SetActive(true);
+        //instantiate buttons based on items in inventory
+        foreach (Consumable item in InventoryManager.Instance.Inventory)
+        {
+            var button = Instantiate(buttonPrefab, itemPanel.transform);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                InventoryManager.Instance.UseItem(item);
+                UpdatePlayerHealth();
+                UpdatePlayerTp();
+                UpdateEnemyHealth();
+                CombatTextEvent.Invoke($"<b>Used <color=brown>{item.ItemName}</color></b>");
+                turnManager.isPlayerTurn = false;
+                TakenAction.Invoke();
+                itemPanel.SetActive(false);
+                optionsPanel.SetActive(true);
+            });
+        }
+        //CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
         //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
-        turnManager.isPlayerTurn = false;
-        TakenAction.Invoke();
+        //turnManager.isPlayerTurn = false;
+        //TakenAction.Invoke();
     }
 
     /// <summary>

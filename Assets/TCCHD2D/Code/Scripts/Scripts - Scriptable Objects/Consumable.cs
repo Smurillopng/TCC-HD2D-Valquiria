@@ -33,7 +33,7 @@ public class Consumable : ScriptableObject, IItem
         get => itemIcon;
         set => itemIcon = value;
     }
-    
+
     public ConsumableTypes EffectType
     {
         get => effectType;
@@ -57,7 +57,7 @@ public class Consumable : ScriptableObject, IItem
         get => itemValue;
         set => itemValue = value;
     }
-    
+
     public int EffectValue
     {
         get => effectValue;
@@ -81,26 +81,26 @@ public class Consumable : ScriptableObject, IItem
                 throw new ArgumentOutOfRangeException();
         }
     }
-    
+
     public void Discard()
     {
         Debug.Log("Discarded");
     }
-    
+
     //In Combat Effects
-    
+
     public void Heal()
     {
         var target = FindObjectOfType<PlayerCombatHUD>().PlayerUnitController;
         target.Unit.CurrentHp += EffectValue;
     }
-    
+
     public void Damage()
     {
         var target = FindObjectOfType<PlayerCombatHUD>().EnemyUnitController;
         target.Unit.CurrentHp -= EffectValue;
     }
-    
+
     public void IncreaseTp()
     {
         var target = FindObjectOfType<PlayerCombatHUD>().PlayerUnitController;

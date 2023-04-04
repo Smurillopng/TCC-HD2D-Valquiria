@@ -14504,9 +14504,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 948602006}
-        m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
-        m_MethodName: Run
+      - m_Target: {fileID: 6120526187047363627}
+        m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
+        m_MethodName: RunAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15216,13 +15216,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 948602006}
-        m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
-        m_MethodName: Attack
-        m_Mode: 1
+      - m_Target: {fileID: 6120526187047363627}
+        m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
+        m_MethodName: AttackAction
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7878350319063784937}
+          m_ObjectArgumentAssemblyTypeName: UnitController, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -15448,8 +15448,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 948602006}
-        m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
+      - m_Target: {fileID: 6120526187047363627}
+        m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
         m_MethodName: Special
         m_Mode: 1
         m_Arguments:
@@ -16163,8 +16163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956415d1abef18f4cbef130ac135eaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUnitController: {fileID: 6120526187047363627}
-  enemyUnitController: {fileID: 7878350319063784937}
   playerHelthbarFill: {fileID: 123717955}
   playerHealthText: {fileID: 2047905164}
   playerTpbarFill: {fileID: 1773258698}
@@ -16489,7 +16487,6 @@ MonoBehaviour:
         m_CallState: 2
   currentUnitIndex: 0
   aiMoved: 0
-  playerUnitController: {fileID: 0}
   isPlayerTurn: 0
   _combatState: 0
 --- !u!4 &1058066615
@@ -51196,8 +51193,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.110378176, y: 0.030886546, z: -0.003431838, w: 0.99340373}
-  m_LocalPosition: {x: -961.13806, y: -138.63434, z: -6.5029635}
+  m_LocalRotation: {x: 0.11037823, y: 0.030872054, z: -0.0034302282, w: 0.99340415}
+  m_LocalPosition: {x: -960.7, y: -139.15997, z: -4}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:

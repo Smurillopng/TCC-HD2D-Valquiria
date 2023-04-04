@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Controls the behaviour of a unit.
@@ -101,12 +102,23 @@ public class UnitController : MonoBehaviour
             }
         }
     }
+    
+    /// <summary>
+    /// Adds damage text to the combat text box and calls the player unit attack method [<see cref="AttackLogic"/>].
+    /// </summary>
+    public void AttackAction(UnitController target)
+    {
+        AttackLogic(target);
+        PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
+        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Attacked <color=blue>{target.Unit.UnitName}</color> for <color=red>{target.damageTakenThisTurn}</color> damage</b>");
+        PlayerCombatHUD.TakenAction.Invoke();
+    }
 
     /// <summary>
     /// The attack action.
     /// </summary>
     /// <param name="target"></param>
-    public void AttackAction(UnitController target)
+    private void AttackLogic(UnitController target)
     {
         // Calculate damage based on strength
         attackDamageCalculated = unit.Attack;
@@ -154,6 +166,27 @@ public class UnitController : MonoBehaviour
         }
 
         return damageTakenThisTurn;
+    }
+    
+    /// <summary>
+    /// Adds information in the combat text box and calls the player specific special attack method.
+    /// </summary>
+    public void Special()
+    {
+        if (Unit.CurrentTp < Unit.MaxTp / 2)
+        {
+            PlayerCombatHUD.CombatTextEvent.Invoke("<color=red>Not enough TP</color>");
+        }
+        else
+        {
+            //playerUnitController.UnitDirector.Play(playerUnitController.SpecialAttacks[0]);
+            HealSpecialAction(this);
+            PlayerCombatHUD.UpdateCombatHUDPlayerHp.Invoke();
+            Unit.CurrentTp -= 50;
+            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Healed <color=green>{Unit.Attack}</color> HP");
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
     }
 
     /// <summary>
@@ -208,17 +241,32 @@ public class UnitController : MonoBehaviour
             //TODO: AI Logic
         }
     }
+    
+    /// <summary>
+    /// Adds information in the combat text box and calls the player run method [<see cref="RunLogic"/>].
+    /// </summary>
+    public void RunAction()
+    {
+        var gotAway = RunLogic();
+
+        if (gotAway)
+        {
+            SceneManager.LoadScene("scn_game");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=green>Ran away</color>");
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+        else
+        {
+            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>Failed to run away</color>");
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+    }
 
     /// <summary>
     /// The logic for the player running away.
     /// </summary>
-    public bool RunAction()
+    public bool RunLogic()
     {
-        if (!unit.IsPlayer)
-        {
-            //TODO: AI Logic
-        }
-
         var randomChance = Random.Range(0, 100);
         randomChance += Unit.Luck;
         randomChance = randomChance > 50 ? 1 : 0;
@@ -227,10 +275,7 @@ public class UnitController : MonoBehaviour
             //TODO: play run animation
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
     /// <summary>
@@ -244,7 +289,7 @@ public class UnitController : MonoBehaviour
         // AI logic for selecting an action goes here
         if (unit.CurrentHp > unit.MaxHp / 4)
         {
-            AttackAction(target);
+            AttackLogic(target);
             PlayerCombatHUD.CombatTextEvent.Invoke(
                 $"<color=blue>{unit.UnitName}</color> attacked <color=red>{target.Unit.UnitName}</color> for <color=red>{target.damageTakenThisTurn}</color> damage!");
         }
@@ -257,7 +302,7 @@ public class UnitController : MonoBehaviour
         }
         else
         {
-            var enemyRan = RunAction();
+            var enemyRan = RunLogic();
             if (enemyRan)
             {
                 //TODO: give player exp reward

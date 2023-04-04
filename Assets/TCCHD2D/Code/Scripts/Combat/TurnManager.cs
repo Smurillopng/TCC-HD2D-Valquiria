@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 13/03/2023
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,18 +45,25 @@ public class TurnManager : MonoBehaviour
     private bool aiMoved;
     [FoldoutGroup("Debug Info")]
     [SerializeField, ReadOnly, Tooltip("The UnitController component of the current player unit")]
-    private UnitController playerUnitController;
 
     public bool isPlayerTurn;
 
     [SerializeField, ReadOnly] private CombatState _combatState; // The current state of the combat
     private UnitController _currentUnit; // The UnitController component of the current unit
 
-    private void Start()
+    public UnitController PlayerUnitController { get; private set; }
+    public UnitController EnemyUnitController { get; private set; }
+
+    private void Awake()
     {
         _combatState = CombatState.CombatStart;
-        PlayerCombatHUD.TakenAction += TakeAction;
         ManageTurns();
+    }
+
+    private void OnEnable()
+    {
+        PlayerCombatHUD.TakenAction += TakeAction;
+        PlayerCombatHUD.TakenAction += PlayerAction;
     }
 
     private void ManageTurns()
@@ -67,11 +75,12 @@ public class TurnManager : MonoBehaviour
                 foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
                 {
                     units.Add(unitObject.GetComponent<UnitController>());
-                    playerUnitController = unitObject.GetComponent<UnitController>();
+                    PlayerUnitController = unitObject.GetComponent<UnitController>();
                 }
                 foreach (var unitObject in GameObject.FindGameObjectsWithTag("Enemy"))
                 {
                     units.Add(unitObject.GetComponent<UnitController>());
+                    EnemyUnitController = unitObject.GetComponent<UnitController>();
                 }
 
                 // Sort the units by speed, so the fastest goes first
@@ -133,7 +142,7 @@ public class TurnManager : MonoBehaviour
                     onTurnStart.Invoke();
                     // Use the AI system to select an action for the enemy
                     aiMoved = true;
-                    _currentUnit.SelectAction(playerUnitController);
+                    _currentUnit.SelectAction(PlayerUnitController);
                     PlayerCombatHUD.TakenAction.Invoke();
                 }
                 if (units[currentUnitIndex].Unit.HasTakenTurn)
@@ -209,6 +218,12 @@ public class TurnManager : MonoBehaviour
     {
         StartCoroutine(TurnDelay());
     }
+    
+    public void PlayerAction()
+    {
+        if (_combatState == CombatState.PlayerTurn)
+            isPlayerTurn = false;
+    }
 
     /// <summary>
     /// This is a delay to wait for the unit's animation to finish before setting the HasTakenTurn flag.
@@ -229,6 +244,7 @@ public class TurnManager : MonoBehaviour
         foreach (var unit in units)
             unit.Unit.HasTakenTurn = false;
         PlayerCombatHUD.TakenAction -= TakeAction;
+        PlayerCombatHUD.TakenAction -= PlayerAction;
     }
 
     private void OnDestroy()

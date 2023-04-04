@@ -18,6 +18,6 @@ public class ItemUI : MonoBehaviour
         Item = item;
         icon.sprite = item.ItemIcon;
         nameText.text = item.ItemName;
-        quantityText.text = $"x{Item.MaxStack}"; //TODO: trocar para quantidade atual ao invés da máxima
+        quantityText.text = $"x{Item.CurrentStack}";
     }
 }

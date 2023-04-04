@@ -18,5 +18,6 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: b6a96c7c65795c94abf54a62adbf5c38, type: 3}
   itemDescription: Equipment Test
   maxStack: 1
+  currentStack: 0
   itemValue: 5
   statusValue: 3

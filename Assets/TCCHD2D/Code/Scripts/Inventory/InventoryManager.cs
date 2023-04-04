@@ -4,50 +4,15 @@
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using TMPro;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class InventoryManager : SerializedMonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
 
-    [ShowInInspector] public List<IItem> inventory = new();
-    //
-    [SerializeField] private GameObject inventoryPanel;
-    //
-    [SerializeField] private GameObject bagPanel;
-    //
-    [SerializeField] private GameObject equipmentPanel;
-    [SerializeField] private Image headSlot;
-    [SerializeField] private Image chestSlot;
-    [SerializeField] private Image legsSlot;
-    [SerializeField] private Image weaponSlot;
-    [SerializeField] private Image runeSlot;
-    //
-    [SerializeField] private Button bagButton;
-    [SerializeField] private Button equipmentButton;
-    //
-    [SerializeField] private GameObject itemPrefab;
-    [SerializeField] private BoolVariable isInventoryOpen;
-    //
-    [TitleGroup("Player Status", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    private Unit playerUnit;
-    [SerializeField]
-    private TMP_Text playerLvl;
-    [SerializeField]
-    private Image playerHelthbarFill;
-    [SerializeField]
-    private TMP_Text playerHealthText;
-    [SerializeField]
-    private Image playerTpbarFill;
-    [SerializeField]
-    private TMP_Text playerTpText;
+    [ShowInInspector] private List<IItem> inventory = new();
 
     [ShowInInspector]
-    public List<EquipmentSlot> equipmentSlots = new()
+    private List<EquipmentSlot> equipmentSlots = new()
     {
         new EquipmentSlot {slotType = EquipmentSlotType.Head},
         new EquipmentSlot {slotType = EquipmentSlotType.Chest},
@@ -55,9 +20,6 @@ public class InventoryManager : SerializedMonoBehaviour
         new EquipmentSlot {slotType = EquipmentSlotType.Weapon},
         new EquipmentSlot {slotType = EquipmentSlotType.Rune}
     };
-
-    private bool _updatedStatus = false;
-    private SceneType currentScene;
 
     public List<IItem> Inventory => inventory;
     public List<EquipmentSlot> EquipmentSlots => equipmentSlots;
@@ -75,64 +37,17 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void AddConsumableItem(Consumable item)
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        var sceneName = SceneManager.GetActiveScene().name;
-        PlayerControls.Instance.SceneMap.TryGetValue(sceneName, out currentScene);
-
-        if (currentScene == SceneType.Game)
+        if (inventory.Contains(item))
         {
-            inventoryPanel = GameObject.FindWithTag("InventoryPanel");
-            bagPanel = GameObject.FindWithTag("BagPanel");
-            equipmentPanel = GameObject.FindWithTag("EquipmentPanel");
-            headSlot = GameObject.FindWithTag("HeadSlot").GetComponent<Image>();
-            chestSlot = GameObject.FindWithTag("ChestSlot").GetComponent<Image>();
-            legsSlot = GameObject.FindWithTag("LegsSlot").GetComponent<Image>();
-            weaponSlot = GameObject.FindWithTag("WeaponSlot").GetComponent<Image>();
-            runeSlot = GameObject.FindWithTag("RuneSlot").GetComponent<Image>();
-            playerLvl = GameObject.FindWithTag("PlayerLvlTMP").GetComponent<TMP_Text>();
-            playerHelthbarFill = GameObject.FindWithTag("PlayerHealthFill").GetComponent<Image>();
-            playerHealthText = GameObject.FindWithTag("PlayerHealthTMP").GetComponent<TMP_Text>();
-            playerTpbarFill = GameObject.FindWithTag("PlayerTPFill").GetComponent<Image>();
-            playerTpText = GameObject.FindWithTag("PlayerTPTMP").GetComponent<TMP_Text>();
-            bagButton = GameObject.FindWithTag("BagButton").GetComponent<Button>();
-            equipmentButton = GameObject.FindWithTag("EquipmentButton").GetComponent<Button>();
-            bagButton.onClick.AddListener(ShowBagPanel);
-            equipmentButton.onClick.AddListener(ShowEquipmentPanel);
+            item.CurrentStack++;
         }
         else
         {
-            inventoryPanel = null;
-            bagPanel = null;
-            equipmentPanel = null;
-            headSlot = null;
-            chestSlot = null;
-            legsSlot = null;
-            weaponSlot = null;
-            runeSlot = null;
-            playerLvl = null;
-            playerHelthbarFill = null;
-            playerHealthText = null;
-            playerTpbarFill = null;
-            playerTpText = null;
-            bagButton = null;
-            equipmentButton = null;
+            inventory.Add(item);
+            item.CurrentStack++;
         }
-    }
-
-    public void AddConsumableItem(Consumable item)
-    {
-        inventory.Add(item);
     }
     public void AddEquipmentItem(Equipment item)
     {
@@ -147,59 +62,7 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         inventory.Remove(item);
     }
-
-    [Button]
-    public void UpdateBag()
-    {
-        foreach (Transform child in bagPanel.transform)
-        {
-            Destroy(child.gameObject);
-        }
-        foreach (var item in inventory)
-        {
-            var itemObject = Instantiate(itemPrefab, bagPanel.transform);
-            itemObject.GetComponent<ItemUI>().SetItem(item);
-        }
-    }
-
-    [Button]
-    public void UpdateEquipments()
-    {
-        if (equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem != null)
-            headSlot.sprite = equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem.ItemIcon;
-        if (equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem != null)
-            chestSlot.sprite = equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem.ItemIcon;
-        if (equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem != null)
-            legsSlot.sprite = equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem.ItemIcon;
-        if (equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem != null)
-            weaponSlot.sprite = equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem.ItemIcon;
-        if (equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem != null)
-            runeSlot.sprite = equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem.ItemIcon;
-    }
-
-    public void UpdateStatus()
-    {
-        playerLvl.text = $"Lv. {playerUnit.Level}";
-        playerHealthText.text = $"HP: {playerUnit.CurrentHp} / {playerUnit.MaxHp}";
-        playerHelthbarFill.fillAmount = (float)playerUnit.CurrentHp / playerUnit.MaxHp;
-        playerTpText.text = $"TP: {playerUnit.CurrentTp}%";
-        playerTpbarFill.fillAmount = (float)playerUnit.CurrentTp / playerUnit.MaxTp;
-    }
-
-    public void ShowBagPanel()
-    {
-        bagPanel.SetActive(true);
-        UpdateBag();
-        equipmentPanel.SetActive(false);
-    }
-
-    public void ShowEquipmentPanel()
-    {
-        equipmentPanel.SetActive(true);
-        UpdateEquipments();
-        bagPanel.SetActive(false);
-    }
-
+    
     public void Equip(Equipment equipment)
     {
         var slot = equipmentSlots.Find(x => x.slotType == equipment.SlotType);
@@ -287,31 +150,22 @@ public class InventoryManager : SerializedMonoBehaviour
     public void UseItem(Consumable item)
     {
         item.Use();
-        inventory.Remove(item);
-    }
-
-    public void Update()
-    {
-        if (currentScene != SceneType.Game) return;
-        inventoryPanel.SetActive(isInventoryOpen.Value);
-        if (isInventoryOpen.Value)
+        if (item.CurrentStack <= 0)
         {
-            PlayerControls.Instance.ToggleDefaultControls(false);
-            if (!_updatedStatus)
-            {
-                UpdateStatus();
-                _updatedStatus = true;
-            }
+            inventory.Remove(item);
         }
         else
         {
-            PlayerControls.Instance.ToggleDefaultControls(true);
-            _updatedStatus = false;
+            item.CurrentStack--;
+            if (item.CurrentStack <= 0)
+            {
+                inventory.Remove(item);
+            }
         }
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class EquipmentSlot
 {
     public EquipmentSlotType slotType;

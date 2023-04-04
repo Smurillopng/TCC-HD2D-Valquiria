@@ -1,13 +1,10 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 08/03/2023
 
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using UnityEngine.Playables;
 using Sirenix.OdinInspector;
 using TMPro;
 
@@ -16,13 +13,6 @@ using TMPro;
 /// </summary>
 public class PlayerCombatHUD : MonoBehaviour
 {
-    [TitleGroup("Units Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    private UnitController playerUnitController;
-
-    [SerializeField]
-    private UnitController enemyUnitController;
-
     [TitleGroup("Player HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Image playerHelthbarFill;
@@ -84,9 +74,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
 
-    public UnitController PlayerUnitController => playerUnitController;
-    public UnitController EnemyUnitController => enemyUnitController;
-    public TurnManager turnManager;
+    [SerializeField] private TurnManager turnManager;
 
     private void OnEnable()
     {
@@ -102,14 +90,14 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdatePlayerTp();
         UpdatePlayerHealth();
 
-        playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
-        playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
-        playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
-        playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
-        enemyHealthText.text = $"HP: {enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
-        enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
-        enemyName.text = $"{enemyUnitController.Unit.UnitName}:";
-        playerUnitController.Unit.CurrentTp = 0;
+        playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
+        playerHelthbarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
+        playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
+        playerTpbarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
+        enemyHealthText.text = $"HP: {turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
+        enemyHelthbarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
+        enemyName.text = $"{turnManager.EnemyUnitController.Unit.UnitName}:";
+        turnManager.PlayerUnitController.Unit.CurrentTp = 0;
         combatTextBox.text = "";
 
         CombatTextEvent += DisplayCombatText;
@@ -151,8 +139,8 @@ public class PlayerCombatHUD : MonoBehaviour
     public void UpdatePlayerHealth()
     {
         if (playerHealthText == null || playerHelthbarFill == null) return;
-        playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
-        playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
+        playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
+        playerHelthbarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
     }
 
     /// <summary>
@@ -161,8 +149,8 @@ public class PlayerCombatHUD : MonoBehaviour
     public void UpdateEnemyHealth()
     {
         if (enemyHealthText == null || enemyHelthbarFill == null) return;
-        enemyHealthText.text = $"{enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
-        enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
+        enemyHealthText.text = $"{turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
+        enemyHelthbarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
     }
 
     /// <summary>
@@ -171,95 +159,8 @@ public class PlayerCombatHUD : MonoBehaviour
     public void UpdatePlayerTp()
     {
         if (playerTpText == null || playerTpbarFill == null) return;
-        playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
-        playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
-    }
-
-    /// <summary>
-    /// Adds damage text to the combat text box and calls the player unit attack method [<see cref="UnitController.AttackAction"/>].
-    /// </summary>
-    public void Attack()
-    {
-        playerUnitController.AttackAction(enemyUnitController);
-        UpdatePlayerTp();
-        CombatTextEvent.Invoke($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{enemyUnitController.damageTakenThisTurn}</color> damage</b>");
-        turnManager.isPlayerTurn = false;
-        TakenAction.Invoke();
-    }
-
-    /// <summary>
-    /// Adds information in the combat text box and calls the player specific special attack method.
-    /// </summary>
-    public void Special()
-    {
-        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp / 2)
-        {
-            CombatTextEvent.Invoke("<color=red>Not enough TP</color>");
-        }
-        else
-        {
-            //playerUnitController.UnitDirector.Play(playerUnitController.SpecialAttacks[0]);
-            playerUnitController.HealSpecialAction(playerUnitController);
-            UpdatePlayerHealth();
-            playerUnitController.Unit.CurrentTp -= 50;
-            UpdatePlayerTp();
-            CombatTextEvent.Invoke($"Healed <color=green>{playerUnitController.Unit.Attack}</color> HP");
-            turnManager.isPlayerTurn = false;
-            TakenAction.Invoke();
-        }
-    }
-
-    /// <summary>
-    /// Adds information in the combat text box and calls the player specific item method.
-    /// </summary>
-    public void Item()
-    {
-        optionsPanel.SetActive(false);
-        itemPanel.SetActive(true);
-        //instantiate buttons based on items in inventory
-        foreach (Consumable item in InventoryManager.Instance.Inventory)
-        {
-            var button = Instantiate(buttonPrefab, itemPanel.transform);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
-            button.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                InventoryManager.Instance.UseItem(item);
-                UpdatePlayerHealth();
-                UpdatePlayerTp();
-                UpdateEnemyHealth();
-                CombatTextEvent.Invoke($"<b>Used <color=brown>{item.ItemName}</color></b>");
-                turnManager.isPlayerTurn = false;
-                TakenAction.Invoke();
-                itemPanel.SetActive(false);
-                optionsPanel.SetActive(true);
-            });
-        }
-        //CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
-        //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
-        //turnManager.isPlayerTurn = false;
-        //TakenAction.Invoke();
-    }
-
-    /// <summary>
-    /// Adds information in the combat text box and calls the player run method [<see cref="UnitController.RunAction"/>].
-    /// </summary>
-    public void Run()
-    {
-        var gotAway = playerUnitController.RunAction();
-
-        if (gotAway)
-        {
-            SceneManager.LoadScene("scn_game");
-            CombatTextEvent.Invoke($"<color=green>Ran away</color>");
-            turnManager.isPlayerTurn = false;
-            TakenAction.Invoke();
-        }
-        else
-        {
-            CombatTextEvent.Invoke($"<color=red>Failed to run away</color>");
-            turnManager.isPlayerTurn = false;
-            TakenAction.Invoke();
-        }
+        playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
+        playerTpbarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
     }
 
     public void DisplayCombatText(string text)
@@ -285,5 +186,43 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp -= UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp -= UpdatePlayerTp;
         UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
+    }
+    
+    /// <summary>
+    /// Adds information in the combat text box and calls the player specific item method.
+    /// </summary>
+    public void Item()
+    {
+        optionsPanel.SetActive(false);
+        itemPanel.SetActive(true);
+        //instantiate buttons based on items in inventory
+        if (itemPanel.transform.childCount > 0)
+        {
+            foreach (Transform child in itemPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        foreach (Consumable item in InventoryManager.Instance.Inventory)
+        {
+            var button = Instantiate(buttonPrefab, itemPanel.transform);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                InventoryManager.Instance.UseItem(item);
+                UpdatePlayerHealth();
+                UpdatePlayerTp();
+                UpdateEnemyHealth();
+                CombatTextEvent.Invoke($"<b>Used <color=brown>{item.ItemName}</color></b>");
+                turnManager.isPlayerTurn = false;
+                TakenAction.Invoke();
+                itemPanel.SetActive(false);
+                optionsPanel.SetActive(true);
+            });
+        }
+        //CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
+        //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
+        //turnManager.isPlayerTurn = false;
+        //TakenAction.Invoke();
     }
 }

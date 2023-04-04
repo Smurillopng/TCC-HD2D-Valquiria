@@ -10,5 +10,6 @@ public interface IItem
     Sprite ItemIcon { get; set; }
     string ItemDescription { get; set; }
     int MaxStack { get; set; }
+    int CurrentStack { get; set; }
     int ItemValue { get; set; }
 }

@@ -13,6 +13,7 @@ public class Consumable : ScriptableObject, IItem
     [SerializeField] private ConsumableTypes effectType;
     [SerializeField] private string itemDescription;
     [SerializeField] private int maxStack;
+    [SerializeField] private int currentStack;
     [SerializeField] private int itemValue;
     [SerializeField] private int effectValue;
 
@@ -50,6 +51,12 @@ public class Consumable : ScriptableObject, IItem
     {
         get => maxStack;
         set => maxStack = value;
+    }
+    
+    public int CurrentStack
+    {
+        get => currentStack;
+        set => currentStack = value;
     }
 
     public int ItemValue
@@ -91,19 +98,19 @@ public class Consumable : ScriptableObject, IItem
 
     public void Heal()
     {
-        var target = FindObjectOfType<PlayerCombatHUD>().PlayerUnitController;
+        var target = FindObjectOfType<TurnManager>().PlayerUnitController;
         target.Unit.CurrentHp += EffectValue;
     }
 
     public void Damage()
     {
-        var target = FindObjectOfType<PlayerCombatHUD>().EnemyUnitController;
+        var target = FindObjectOfType<TurnManager>().EnemyUnitController;
         target.Unit.CurrentHp -= EffectValue;
     }
 
     public void IncreaseTp()
     {
-        var target = FindObjectOfType<PlayerCombatHUD>().PlayerUnitController;
+        var target = FindObjectOfType<TurnManager>().PlayerUnitController;
         target.Unit.CurrentTp += EffectValue;
     }
 }

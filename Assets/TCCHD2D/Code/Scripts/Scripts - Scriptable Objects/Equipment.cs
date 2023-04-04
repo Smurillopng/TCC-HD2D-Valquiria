@@ -12,6 +12,7 @@ public class Equipment : ScriptableObject, IItem
     [SerializeField] private Sprite itemIcon;
     [SerializeField] private string itemDescription;
     [SerializeField] private int maxStack;
+    [SerializeField] private int currentStack;
     [SerializeField] private int itemValue;
     [SerializeField] private int statusValue;
 
@@ -49,6 +50,12 @@ public class Equipment : ScriptableObject, IItem
     {
         get => maxStack;
         set => maxStack = value;
+    }
+    
+    public int CurrentStack
+    {
+        get => currentStack;
+        set => currentStack = value;
     }
 
     public int ItemValue

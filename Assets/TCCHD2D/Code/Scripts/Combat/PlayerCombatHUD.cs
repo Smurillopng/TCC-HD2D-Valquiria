@@ -2,6 +2,7 @@
 // Date: 08/03/2023
 
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -203,7 +204,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        foreach (Consumable item in InventoryManager.Instance.Inventory)
+        foreach (var item in InventoryManager.Instance.Inventory.OfType<Consumable>())
         {
             var button = Instantiate(buttonPrefab, itemPanel.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;

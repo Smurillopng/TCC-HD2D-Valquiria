@@ -16306,7 +16306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956415d1abef18f4cbef130ac135eaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealthBarFill: {fileID: 123717955}
+  playerHelthbarFill: {fileID: 123717955}
   playerHealthText: {fileID: 2047905164}
   playerTpBarFill: {fileID: 1773258698}
   playerTpText: {fileID: 1477120984}
@@ -16314,32 +16314,16 @@ MonoBehaviour:
   enemyHealthBarFill: {fileID: 1748736403}
   enemyHealthText: {fileID: 1425681689}
   combatTextBox: {fileID: 554069869}
-  combatTextTimer: 1.5
-  buttonPrefab: {fileID: 8481144931693999151, guid: 1e1dc1467dd0fe04984fe873ba459873,
-    type: 3}
-  optionsPanel: {fileID: 1196019710}
-  specialPanel: {fileID: 72953463}
-  itemPanel: {fileID: 1604318727}
+  combatTextTimer: 1
+  buttonPrefab: {fileID: 0}
+  optionsPanel: {fileID: 0}
+  specialPanel: {fileID: 0}
+  itemPanel: {fileID: 0}
   attackButton: {fileID: 626981709}
   specialButton: {fileID: 737856164}
   itemButton: {fileID: 1570477438}
   runButton: {fileID: 426683402}
-  returnButton: {fileID: 2053471411}
-  turnManager: {fileID: 1058066614}
-  specials: {fileID: 948602007}
---- !u!114 &948602007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948602000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 369daf6ccdde4cd4b7f140556c65070d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  specialsList: []
+  turnManager: {fileID: 0}
 --- !u!1 &969630091
 GameObject:
   m_ObjectHideFlags: 0

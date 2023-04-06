@@ -16,13 +16,13 @@ public class PlayerCombatHUD : MonoBehaviour
 {
     [TitleGroup("Player HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
-    private Image playerHelthbarFill;
+    private Image playerHealthBarFill;
 
     [SerializeField]
     private TMP_Text playerHealthText;
 
     [SerializeField]
-    private Image playerTpbarFill;
+    private Image playerTpBarFill;
 
     [SerializeField]
     private TMP_Text playerTpText;
@@ -32,7 +32,7 @@ public class PlayerCombatHUD : MonoBehaviour
     private TMP_Text enemyName;
 
     [SerializeField]
-    private Image enemyHelthbarFill;
+    private Image enemyHealthBarFill;
 
     [SerializeField]
     private TMP_Text enemyHealthText;
@@ -76,6 +76,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDEnemyHp;
 
     [SerializeField] private TurnManager turnManager;
+    private bool _wasPlayerTurn;
 
     private void OnEnable()
     {
@@ -92,11 +93,11 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdatePlayerHealth();
 
         playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
-        playerHelthbarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
+        playerHealthBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
         playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
-        playerTpbarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
+        playerTpBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
         enemyHealthText.text = $"HP: {turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
-        enemyHelthbarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
+        enemyHealthBarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
         enemyName.text = $"{turnManager.EnemyUnitController.Unit.UnitName}:";
         turnManager.PlayerUnitController.Unit.CurrentTp = 0;
         combatTextBox.text = "";
@@ -109,10 +110,9 @@ public class PlayerCombatHUD : MonoBehaviour
 
     private void Update()
     {
-        if (turnManager.isPlayerTurn)
-            DisableButtons(false);
-        else
-            DisableButtons(true);
+        if (_wasPlayerTurn == turnManager.isPlayerTurn) return;
+        _wasPlayerTurn = turnManager.isPlayerTurn;
+        DisableButtons(!turnManager.isPlayerTurn);
     }
 
     private void DisableButtons(bool disabled)
@@ -139,9 +139,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void UpdatePlayerHealth()
     {
-        if (playerHealthText == null || playerHelthbarFill == null) return;
+        if (playerHealthText == null || playerHealthBarFill == null) return;
         playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
-        playerHelthbarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
+        playerHealthBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
     }
 
     /// <summary>
@@ -149,22 +149,22 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void UpdateEnemyHealth()
     {
-        if (enemyHealthText == null || enemyHelthbarFill == null) return;
+        if (enemyHealthText == null || enemyHealthBarFill == null) return;
         enemyHealthText.text = $"{turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
-        enemyHelthbarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
+        enemyHealthBarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
     }
 
     /// <summary>
     /// Updates the player's TP bar and text.
     /// </summary>
-    public void UpdatePlayerTp()
+    private void UpdatePlayerTp()
     {
-        if (playerTpText == null || playerTpbarFill == null) return;
+        if (playerTpText == null || playerTpBarFill == null) return;
         playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
-        playerTpbarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
+        playerTpBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
     }
 
-    public void DisplayCombatText(string text)
+    private void DisplayCombatText(string text)
     {
         if (combatTextBox != null)
             StartCoroutine(DisplayCombatTextCoroutine(text));
@@ -174,7 +174,7 @@ public class PlayerCombatHUD : MonoBehaviour
     /// Displays combat text in the combat text box for a set amount of time then clears the text.
     /// </summary>
     /// <param name="text"></param>
-    public IEnumerator DisplayCombatTextCoroutine(string text)
+    private IEnumerator DisplayCombatTextCoroutine(string text)
     {
         combatTextBox.text = text;
         yield return new WaitForSeconds(combatTextTimer);
@@ -194,9 +194,17 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void Item()
     {
+        var hasItem = InventoryManager.Instance.Inventory.OfType<Consumable>().Any();
+        
+        if (!hasItem)
+        {
+            CombatTextEvent.Invoke("<b>You have no items!</b>");
+            return;
+        }
+        
         optionsPanel.SetActive(false);
         itemPanel.SetActive(true);
-        //instantiate buttons based on items in inventory
+        
         if (itemPanel.transform.childCount > 0)
         {
             foreach (Transform child in itemPanel.transform)
@@ -204,6 +212,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+        
         foreach (var item in InventoryManager.Instance.Inventory.OfType<Consumable>())
         {
             var button = Instantiate(buttonPrefab, itemPanel.transform);
@@ -214,7 +223,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 UpdatePlayerHealth();
                 UpdatePlayerTp();
                 UpdateEnemyHealth();
-                CombatTextEvent.Invoke($"<b>Used <color=brown>{item.ItemName}</color></b>");
+                CombatTextEvent.Invoke($"<b>Used {item.ItemName}!</b>");
                 turnManager.isPlayerTurn = false;
                 TakenAction.Invoke();
                 itemPanel.SetActive(false);

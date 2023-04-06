@@ -54,7 +54,11 @@ public class UnitController : MonoBehaviour
     /// <summary>
     /// The <see cref="Unit"/> that this controller controls.
     /// </summary>
-    public Unit Unit => unit;
+    public Unit Unit
+    {
+        get => unit;
+        set => unit = value;
+    }
 
     /// <summary>
     /// The <see cref="PlayableDirector"/> that controls the animations of this unit.

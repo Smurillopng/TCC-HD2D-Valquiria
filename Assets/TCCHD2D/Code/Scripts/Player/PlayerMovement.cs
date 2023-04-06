@@ -38,10 +38,23 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField, ReadOnly, Tooltip("The value that will be used to calculate the player's movement.")]
     private Vector3 movementValue;
+    
+    public BoolVariable CanMove => canMove;
+    public Vector3 MovementValue
+    {
+        get => movementValue;
+        set => movementValue = value;
+    }
+    public Vector2 Direction
+    {
+        get => direction.Value;
+        set => direction.Value = value;
+    }
 
     private static readonly int SpeedX = Animator.StringToHash("SpeedX");
     private static readonly int SpeedY = Animator.StringToHash("SpeedY");
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+    public Vector3 NewPosition { get; private set; }
 
     private void Start()
     {
@@ -72,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool(IsWalking, true);
         if (isRunning.Value)
             movementValue *= runSpeedMultiplier;
-        var newPosition = transform.position + movementValue * speed * Time.fixedDeltaTime;
-        rigidBody.MovePosition(newPosition);
+        NewPosition = transform.position + movementValue * (speed * Time.fixedDeltaTime);
+        rigidBody.MovePosition(NewPosition);
     }
 }

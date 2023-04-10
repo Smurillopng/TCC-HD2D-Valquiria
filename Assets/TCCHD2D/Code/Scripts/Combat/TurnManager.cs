@@ -166,7 +166,7 @@ public class TurnManager : MonoBehaviour
 
             case CombatState.PlayerWon:
                 Debug.Log("Enemy has been defeated!");
-                Victory();
+                StartCoroutine(Victory());
                 break;
 
             case CombatState.PlayerLost:
@@ -187,12 +187,10 @@ public class TurnManager : MonoBehaviour
         if (!playerAlive)
         {
             _combatState = CombatState.PlayerLost;
-            ManageTurns();
         }
         else if (!enemyAlive)
         {
             _combatState = CombatState.PlayerWon;
-            ManageTurns();
         }
     }
 
@@ -201,9 +199,18 @@ public class TurnManager : MonoBehaviour
         SceneManager.LoadScene("scn_gameOver");
     }
 
-    public void Victory()
+    public IEnumerator Victory()
     {
+        PlayerCombatHUD.CombatTextEvent.Invoke($"{EnemyUnitController.Unit.UnitName} has been defeated! \n You have gained {EnemyUnitController.Unit.ExperienceDrop} experience!");
+        XpReward();
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("scn_game");
+    }
+    
+    public void XpReward()
+    {
+        PlayerUnitController.Unit.Experience += EnemyUnitController.Unit.ExperienceDrop;
+        PlayerUnitController.Unit.CheckLevelUp();
     }
 
     public void NextTurn()

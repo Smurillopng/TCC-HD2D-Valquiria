@@ -12,10 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d458961d4a2d44cca4f0fcac8a363c99, type: 3}
   m_Name: so_enemy_test
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: experienceTable
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  type: 1
   unitName: TestEnemy
-  unitSprite: {fileID: -1206899461658586149, guid: a2051b8b3742acb48bfef712621ab295,
+  unitSprite: {fileID: -3047630783254682023, guid: 993d1cd5b19fdd141b3328f55fa8a55a,
     type: 3}
   level: 1
+  experienceDrop: 2
   experience: 0
   maxHp: 5
   currentHp: 5

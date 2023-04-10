@@ -16171,7 +16171,7 @@ MonoBehaviour:
   enemyHealthBarFill: {fileID: 1748736403}
   enemyHealthText: {fileID: 1425681689}
   combatTextBox: {fileID: 554069869}
-  combatTextTimer: 1
+  combatTextTimer: 1.5
   buttonPrefab: {fileID: 8481144931693999151, guid: 1e1dc1467dd0fe04984fe873ba459873,
     type: 3}
   optionsPanel: {fileID: 1196019710}
@@ -51193,8 +51193,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.110378265, y: 0.030862086, z: -0.00342912, w: 0.99340445}
-  m_LocalPosition: {x: -963.91833, y: -135.29797, z: -22.39067}
+  m_LocalRotation: {x: 0.110378176, y: 0.030886546, z: -0.003431838, w: 0.99340373}
+  m_LocalPosition: {x: -961.13806, y: -138.63434, z: -6.5029635}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:

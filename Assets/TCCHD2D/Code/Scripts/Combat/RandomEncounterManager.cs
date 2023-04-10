@@ -7,17 +7,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-public class RandomEncounterManager : MonoBehaviour
+public class RandomEncounterManager : SerializedMonoBehaviour
 {
+    [TitleGroup("Units", Alignment = TitleAlignments.Centered)]
     public Unit player;
     public List<Unit> enemies; // A list of possible enemies to encounter
-    [Range(0, 63)] public float areaEncounterRate; // The rate of encountering an enemy per second
+    
+    [TitleGroup("Rates", Alignment = TitleAlignments.Centered)]
+    public Dictionary<string, float> areas; // A dictionary of areas and their encounter rates
+    [Range(0, 100)] public float areaEncounterRate; // The rate of encountering an enemy per second
 
+    [TitleGroup("Debug", Alignment = TitleAlignments.Centered)]
+    [SerializeField, ReadOnly] private float minimumEncounterChance;
+    [SerializeField] private bool showEncounterLog;
+
+    private Unit _selectedEnemy;
     private PlayerMovement _playerMovement; // The PlayerMovement component of the player
     private Vector3 _lastPosition; // The last position of the player
-    
-    private Unit _selectedEnemy;
-    [SerializeField, ReadOnly] private float minimumEncounterChance;
 
     private void OnEnable()
     {
@@ -27,24 +33,17 @@ public class RandomEncounterManager : MonoBehaviour
     private void Start()
     {
         _playerMovement = FindObjectOfType<PlayerMovement>(); // Get the PlayerMovement component
+        areaEncounterRate = areas[SceneManager.GetActiveScene().name]; // Get the encounter rate for the current area
         minimumEncounterChance = areaEncounterRate / 100f; // Calculate the minimum encounter chance
     }
 
-    private void Update()
+    public void CheckStep()
     {
-        if (_playerMovement.CanMove.Value) // If the player is moving
+        var randomChance = Random.Range(0f, 1f); // Get a random chance
+        if (showEncounterLog) print($"Encounter chance: <color=blue>{minimumEncounterChance}</color> | Random chance: <color=green>{randomChance}</color>");
+        if (randomChance < minimumEncounterChance)
         {
-            if (_lastPosition != _playerMovement.MovementValue)
-            {
-                // TODO: Check once per step
-                var randomChance = Random.Range(0f, 1f); // Get a random chance
-                print($"Encounter chance: <color=blue>{minimumEncounterChance}</color> | Random chance: <color=green>{randomChance}</color>");
-                if (randomChance < minimumEncounterChance)
-                {
-                        EncounterEnemy(); // Encounter an enemy
-                }
-            }
-            _lastPosition = _playerMovement.MovementValue; // Update the last position
+            EncounterEnemy(); // Encounter an enemy
         }
     }
 

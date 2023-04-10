@@ -304,23 +304,25 @@ public class UnitController : MonoBehaviour
                 $"<color=blue>{unit.UnitName}</color> healed for <color=green>{unit.Luck * 2}</color>!");
             PlayerCombatHUD.UpdateCombatHUDEnemyHp.Invoke();
         }
-        else
-        {
-            var enemyRan = RunLogic();
-            if (enemyRan)
-            {
-                //TODO: give player exp reward
-                //TODO: play run animation
-                //TODO: change scenes
-                PlayerCombatHUD.CombatTextEvent.Invoke(
-                    $"<color=blue>{unit.UnitName}</color> ran away!");
-            }
-            else
-            {
-                //Enemy lost a turn
-                PlayerCombatHUD.CombatTextEvent.Invoke(
-                    $"<color=blue>{unit.UnitName}</color> tried to run away but <color=red>failed</color>");
-            }
-        }
+        
+        // IF ENEMY CAN RUN AWAY
+        // else
+        // {
+        //     var enemyRan = RunLogic();
+        //     if (enemyRan)
+        //     {
+        //         //TODO: give player exp reward
+        //         //TODO: play run animation
+        //         //TODO: change scenes
+        //         PlayerCombatHUD.CombatTextEvent.Invoke(
+        //             $"<color=blue>{unit.UnitName}</color> ran away!");
+        //     }
+        //     else
+        //     {
+        //         //Enemy lost a turn
+        //         PlayerCombatHUD.CombatTextEvent.Invoke(
+        //             $"<color=blue>{unit.UnitName}</color> tried to run away but <color=red>failed</color>");
+        //     }
+        // }
     }
 }

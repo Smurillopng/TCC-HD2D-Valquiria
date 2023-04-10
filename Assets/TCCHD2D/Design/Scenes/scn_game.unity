@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 60127271}
   - component: {fileID: 60127270}
   m_Layer: 5
-  m_Name: TpBarValue
+  m_Name: XpBarValue
   m_TagString: PlayerTPTMP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TP 100%
+  m_text: XP
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -68411,7 +68411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 141504017}
   m_Layer: 5
-  m_Name: Player TpBar
+  m_Name: Player XpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69043,10 +69043,11 @@ MonoBehaviour:
   weaponSlot: {fileID: 874148084}
   runeSlot: {fileID: 224477467}
   playerLvl: {fileID: 938296265}
-  playerHelthbarFill: {fileID: 1361825542}
+  playerHealthBarFill: {fileID: 1361825542}
   playerHealthText: {fileID: 538129251}
-  playerTpbarFill: {fileID: 1304924616}
-  playerTpText: {fileID: 60127270}
+  playerXpBarFill: {fileID: 1304924616}
+  playerXpText: {fileID: 60127270}
+  playerUnit: {fileID: 11400000, guid: 70eef26fa3b670347b3a44c4c0832bc5, type: 2}
   itemPrefab: {fileID: 2940820262390823688, guid: f07bd6c6f6898634295e27b4151d24d3,
     type: 3}
   isInventoryOpen: {fileID: 11400000, guid: 74bbf2897551b8c4c97e5729e8fc2c93, type: 2}
@@ -70929,55 +70930,6 @@ Transform:
   - {fileID: 1464984370}
   m_Father: {fileID: 586688638}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1028500725
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1028500727}
-  - component: {fileID: 1028500726}
-  m_Layer: 0
-  m_Name: Encounters Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1028500726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028500725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ea6c7abeaac4d69ae07cf7288e06790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 70eef26fa3b670347b3a44c4c0832bc5, type: 2}
-  enemies:
-  - {fileID: 11400000, guid: da62801b992689746857559145ca7220, type: 2}
-  areaEncounterRate: 25
-  minimumEncounterChance: 0
---- !u!4 &1028500727
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028500725}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1043913883
 GameObject:
@@ -107376,7 +107328,7 @@ GameObject:
   - component: {fileID: 1304924617}
   - component: {fileID: 1304924616}
   m_Layer: 5
-  m_Name: TpBarFill
+  m_Name: XpBarFill
   m_TagString: PlayerTPFill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107401,7 +107353,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 10}
+  m_SizeDelta: {x: 302.53, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1304924616
 MonoBehaviour:
@@ -107416,7 +107368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3647059, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.78889436, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -107478,7 +107430,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 10}
+  m_SizeDelta: {x: 302.53, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1361825542
 MonoBehaviour:
@@ -131954,6 +131906,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 03bac9115288084498b0ee87401a4375, type: 2}
+    - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: areaEncounterRate
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -132075,7 +132032,7 @@ GameObject:
   - component: {fileID: 1888778461}
   - component: {fileID: 1888778460}
   m_Layer: 5
-  m_Name: TpBarBackground
+  m_Name: XpBarBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132099,7 +132056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1888778460

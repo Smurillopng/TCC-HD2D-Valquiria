@@ -4,7 +4,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-//TODO: Add walking/running/idle animations
+//TODO: Add running animation
 
 /// <summary>
 /// Responsible for calculating player position based on the <see cref="Movement"/> input
@@ -62,6 +62,13 @@ public class PlayerMovement : MonoBehaviour
             rigidBody = gameObject.AddComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        direction.Value = Vector2.zero;
+        movementValue = Vector3.zero;
+        animator.SetBool(IsWalking, false);
+    }
+
     private void FixedUpdate()
     {
         Movement();
@@ -80,9 +87,22 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         movementValue = new Vector3(direction.Value.x, 0, direction.Value.y).normalized;
-        animator.SetFloat(SpeedX, movementValue.x);
-        animator.SetFloat(SpeedY, movementValue.z);
+        
+        if (direction.Value.x != 0 && direction.Value.y != 0)
+        {
+            animator.SetFloat(SpeedX, 0);
+            if (direction.Value.y > 0)
+                animator.SetFloat(SpeedY, 1);
+            else
+                animator.SetFloat(SpeedY, -1);
+        }
+        else
+        {
+            animator.SetFloat(SpeedX, movementValue.x);
+            animator.SetFloat(SpeedY, movementValue.z);
+        }
         animator.SetBool(IsWalking, true);
+        
         if (isRunning.Value)
             movementValue *= runSpeedMultiplier;
         NewPosition = transform.position + movementValue * (speed * Time.fixedDeltaTime);

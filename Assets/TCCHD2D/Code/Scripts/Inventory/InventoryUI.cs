@@ -15,7 +15,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject bagPanel;
     [BoxGroup("Panels")]
     [SerializeField] private GameObject equipmentPanel;
-    
+
     [BoxGroup("Equipment Slots")]
     [SerializeField] private Image headSlot;
     [BoxGroup("Equipment Slots")]
@@ -30,24 +30,26 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Status")]
     [SerializeField] private TMP_Text playerLvl;
     [BoxGroup("Status")]
-    [SerializeField] private Image playerHelthbarFill;
+    [SerializeField] private Image playerHealthBarFill;
     [BoxGroup("Status")]
     [SerializeField] private TMP_Text playerHealthText;
     [BoxGroup("Status")]
-    [SerializeField] private Image playerTpbarFill;
+    [SerializeField] private Image playerXpBarFill;
     [BoxGroup("Status")]
-    [SerializeField] private TMP_Text playerTpText;
-    
-    [BoxGroup("External References")]
+    [SerializeField] private TMP_Text playerXpText;
+
+    [BoxGroup("External References")] 
+    [SerializeField]
+    private Unit playerUnit;
     [SerializeField] private GameObject itemPrefab;
     [BoxGroup("External References")]
     [SerializeField] private BoolVariable isInventoryOpen;
-    
+
     [BoxGroup("Debug")]
     [SerializeField, ReadOnly] private bool updatedStatus;
     [BoxGroup("Debug")]
     [SerializeField, ReadOnly] private InventoryManager inventoryManager;
-    
+
     private void Start()
     {
         inventoryManager = InventoryManager.Instance;
@@ -96,21 +98,21 @@ public class InventoryUI : MonoBehaviour
             runeSlot.sprite = equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem.ItemIcon;
     }
 
-    public void UpdatePlayerStatus(Unit playerUnit)
+    public void UpdatePlayerStatus(Unit unit)
     {
-        playerLvl.text = $"Lv. {playerUnit.Level}";
-        playerHealthText.text = $"HP: {playerUnit.CurrentHp} / {playerUnit.MaxHp}";
-        playerHelthbarFill.fillAmount = (float)playerUnit.CurrentHp / playerUnit.MaxHp;
-        playerTpText.text = $"TP: {playerUnit.CurrentTp}%";
-        playerTpbarFill.fillAmount = (float)playerUnit.CurrentTp / playerUnit.MaxTp;
+        playerLvl.text = $"Lv. {unit.Level}";
+        playerHealthText.text = $"HP: {unit.CurrentHp} / {unit.MaxHp}";
+        playerHealthBarFill.fillAmount = (float)unit.CurrentHp / unit.MaxHp;
+        playerXpText.text = $"XP: {unit.Experience} / {unit.ExperienceTable[unit.Level+1]}";
+        playerXpBarFill.fillAmount = (float)unit.Experience / unit.ExperienceTable[unit.Level+1];
     }
-        
+
     private void ResetPanels()
     {
         bagPanel.SetActive(false);
         equipmentPanel.SetActive(false);
     }
-    
+
     public void Update()
     {
         inventoryPanel.SetActive(isInventoryOpen.Value);
@@ -120,6 +122,7 @@ public class InventoryUI : MonoBehaviour
             if (!updatedStatus)
             {
                 ResetPanels();
+                UpdatePlayerStatus(playerUnit);
                 updatedStatus = true;
             }
         }

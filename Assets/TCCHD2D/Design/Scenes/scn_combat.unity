@@ -16306,6 +16306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956415d1abef18f4cbef130ac135eaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerUnitController: {fileID: 0}
+  enemyUnitController: {fileID: 0}
   playerHelthbarFill: {fileID: 123717955}
   playerHealthText: {fileID: 2047905164}
   playerTpBarFill: {fileID: 1773258698}
@@ -16315,15 +16317,10 @@ MonoBehaviour:
   enemyHealthText: {fileID: 1425681689}
   combatTextBox: {fileID: 554069869}
   combatTextTimer: 1
-  buttonPrefab: {fileID: 0}
-  optionsPanel: {fileID: 0}
-  specialPanel: {fileID: 0}
-  itemPanel: {fileID: 0}
   attackButton: {fileID: 626981709}
   specialButton: {fileID: 737856164}
   itemButton: {fileID: 1570477438}
   runButton: {fileID: 426683402}
-  turnManager: {fileID: 0}
 --- !u!1 &969630091
 GameObject:
   m_ObjectHideFlags: 0
@@ -16632,8 +16629,7 @@ MonoBehaviour:
   sceneChangeDelay: 2
   currentUnitIndex: 0
   aiMoved: 0
-  isPlayerTurn: 0
-  _combatState: 0
+  playerUnitController: {fileID: 0}
 --- !u!4 &1058066615
 Transform:
   m_ObjectHideFlags: 0
@@ -98477,10 +98473,6 @@ MonoBehaviour:
   run: {fileID: 0}
   damageTextAnimator: {fileID: 191108977}
   damageText: {fileID: 191108978}
-  damageTakenThisTurn: 0
-  attackDamageCalculated: 0
-  defenceCalculated: 0
-  speedCalculated: 0
 --- !u!114 &6120526187047363628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98637,10 +98629,6 @@ MonoBehaviour:
   run: {fileID: 0}
   damageTextAnimator: {fileID: 1703950809}
   damageText: {fileID: 1703950810}
-  damageTakenThisTurn: 0
-  attackDamageCalculated: 0
-  defenceCalculated: 0
-  speedCalculated: 0
 --- !u!114 &7878350319063784938
 MonoBehaviour:
   m_ObjectHideFlags: 0

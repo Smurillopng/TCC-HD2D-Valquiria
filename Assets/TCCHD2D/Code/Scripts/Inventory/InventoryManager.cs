@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 public class InventoryManager : SerializedMonoBehaviour
 {
@@ -24,6 +25,10 @@ public class InventoryManager : SerializedMonoBehaviour
     public List<IItem> Inventory => inventory;
     public List<EquipmentSlot> EquipmentSlots => equipmentSlots;
 
+    [TitleGroup("Debug", Alignment = TitleAlignments.Centered)]
+    [SerializeField]
+    private bool resetOnExit;
+
     private void Awake()
     {
         if (Instance == null)
@@ -39,9 +44,13 @@ public class InventoryManager : SerializedMonoBehaviour
 
     public void AddConsumableItem(Consumable item)
     {
-        if (inventory.Contains(item))
+        if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
         {
             item.CurrentStack++;
+        }
+        else if (item.CurrentStack >= item.MaxStack)
+        {
+            print("Inventory is full");
         }
         else
         {
@@ -51,7 +60,32 @@ public class InventoryManager : SerializedMonoBehaviour
     }
     public void AddEquipmentItem(Equipment item)
     {
-        inventory.Add(item);
+        if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
+        {
+            item.CurrentStack++;
+        }
+        else if (item.CurrentStack >= item.MaxStack)
+        {
+            print("Inventory is full");
+        }
+        else
+        {
+            inventory.Add(item);
+            item.CurrentStack++;
+        }
+    }
+    
+    public void AddItem(IItem item)
+    {
+        switch (item)
+        {
+            case Consumable consumable:
+                AddConsumableItem(consumable);
+                break;
+            case Equipment equipment:
+                AddEquipmentItem(equipment);
+                break;
+        }
     }
 
     public void RemoveConsumableItem(Consumable item)
@@ -61,6 +95,19 @@ public class InventoryManager : SerializedMonoBehaviour
     public void RemoveEquipmentItem(Equipment item)
     {
         inventory.Remove(item);
+    }
+    
+    public void RemoveItem(IItem item)
+    {
+        switch (item)
+        {
+            case Consumable consumable:
+                RemoveConsumableItem(consumable);
+                break;
+            case Equipment equipment:
+                RemoveEquipmentItem(equipment);
+                break;
+        }
     }
     
     public void Equip(Equipment equipment)
@@ -162,6 +209,13 @@ public class InventoryManager : SerializedMonoBehaviour
                 inventory.Remove(item);
             }
         }
+    }
+
+    private void OnDisable()
+    {
+        if (!resetOnExit) return;
+        foreach (var item in inventory)
+            item.CurrentStack = 0;
     }
 }
 

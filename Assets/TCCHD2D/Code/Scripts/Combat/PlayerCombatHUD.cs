@@ -17,30 +17,24 @@ public class PlayerCombatHUD : MonoBehaviour
     [TitleGroup("Player HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Image playerHealthBarFill;
-
     [SerializeField]
     private TMP_Text playerHealthText;
-
     [SerializeField]
     private Image playerTpBarFill;
-
     [SerializeField]
     private TMP_Text playerTpText;
 
     [TitleGroup("Enemy HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private TMP_Text enemyName;
-
     [SerializeField]
     private Image enemyHealthBarFill;
-
     [SerializeField]
     private TMP_Text enemyHealthText;
 
     [TitleGroup("Combat Text Box", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private TMP_Text combatTextBox;
-
     [SerializeField]
     private float combatTextTimer;
 
@@ -57,13 +51,10 @@ public class PlayerCombatHUD : MonoBehaviour
     [TitleGroup("Buttons", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Button attackButton;
-
     [SerializeField]
     private Button specialButton;
-
     [SerializeField]
     private Button itemButton;
-
     [SerializeField]
     private Button runButton;
 
@@ -74,6 +65,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDPlayerHp;
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
+    public static UnityAction UpdateCombatHUD;
 
     [SerializeField] private TurnManager turnManager;
     private bool _wasPlayerTurn;
@@ -84,6 +76,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
+        UpdateCombatHUD += UpdateCombatHUDs;
     }
 
     private void Start()
@@ -106,6 +99,13 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
+    }
+    
+    private void UpdateCombatHUDs()
+    {
+        UpdatePlayerHealth();
+        UpdatePlayerTp();
+        UpdateEnemyHealth();
     }
 
     private void Update()
@@ -187,6 +187,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp -= UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp -= UpdatePlayerTp;
         UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
+        UpdateCombatHUD -= UpdateCombatHUDs;
     }
     
     /// <summary>
@@ -232,6 +233,14 @@ public class PlayerCombatHUD : MonoBehaviour
         }
         //CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
         //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
+        //turnManager.isPlayerTurn = false;
+        //TakenAction.Invoke();
+    }
+    
+    public void Special()
+    {
+        CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Special</color> button</b>");
+        //playerUnitController.UnitDirector.Play(playerUnitController.UseSpecial);
         //turnManager.isPlayerTurn = false;
         //TakenAction.Invoke();
     }

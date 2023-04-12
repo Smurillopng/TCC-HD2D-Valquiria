@@ -1,14 +1,14 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 13/03/2023
 
-using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public enum CombatState
 {
@@ -37,6 +37,12 @@ public class TurnManager : MonoBehaviour
     [SerializeField, Tooltip("Event called when a unit's turn ends or is skipped")]
     private UnityEvent onTurnChange;
 
+    [FoldoutGroup("Debug Info")]
+    [SerializeField]
+    private ItemNotification itemNotification;
+    [FoldoutGroup("Debug Info")]
+    [SerializeField]
+    private float sceneChangeDelay;
     [FoldoutGroup("Debug Info")]
     [SerializeField, ReadOnly, Tooltip("The index of the current unit in the units list")]
     private int currentUnitIndex;
@@ -179,7 +185,7 @@ public class TurnManager : MonoBehaviour
         _currentUnit = units[currentUnitIndex];
     }
 
-    public void CheckGameOver()
+    private void CheckGameOver()
     {
         var playerAlive = units.Any(unit => unit.Unit.IsPlayer && !unit.Unit.IsDead);
         var enemyAlive = units.Any(unit => !unit.Unit.IsPlayer && !unit.Unit.IsDead);
@@ -194,23 +200,41 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    private void GameOver()
     {
         SceneManager.LoadScene("scn_gameOver");
     }
 
-    public IEnumerator Victory()
+    private IEnumerator Victory()
     {
-        PlayerCombatHUD.CombatTextEvent.Invoke($"{EnemyUnitController.Unit.UnitName} has been defeated! \n You have gained {EnemyUnitController.Unit.ExperienceDrop} experience!");
         XpReward();
-        yield return new WaitForSeconds(3f);
+        ItemReward();
+        DisplayVictoryText();
+        yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
+        yield return new WaitForSeconds(sceneChangeDelay);
         SceneManager.LoadScene("scn_game");
     }
-    
-    public void XpReward()
+
+    private void XpReward()
     {
         PlayerUnitController.Unit.Experience += EnemyUnitController.Unit.ExperienceDrop;
         PlayerUnitController.Unit.CheckLevelUp();
+    }
+
+    private void ItemReward()
+    {
+        foreach (var item in EnemyUnitController.Unit.ItemDrops.Where(item => item.Value > Random.Range(0, 100)))
+        {
+            itemNotification.AddItemWithNotification(item.Key);
+        }
+    }
+    
+    private void DisplayVictoryText()
+    {
+        var victoryText =
+            $"{EnemyUnitController.Unit.UnitName} has been defeated!\n" +
+            $"You have gained {EnemyUnitController.Unit.ExperienceDrop} experience!";
+        PlayerCombatHUD.CombatTextEvent.Invoke(victoryText);
     }
 
     public void NextTurn()
@@ -221,12 +245,12 @@ public class TurnManager : MonoBehaviour
     /// <summary>
     /// Method to be called when the unit has selected an action.
     /// </summary>
-    public void TakeAction()
+    private void TakeAction()
     {
         StartCoroutine(TurnDelay());
     }
-    
-    public void PlayerAction()
+
+    private void PlayerAction()
     {
         if (_combatState == CombatState.PlayerTurn)
             isPlayerTurn = false;

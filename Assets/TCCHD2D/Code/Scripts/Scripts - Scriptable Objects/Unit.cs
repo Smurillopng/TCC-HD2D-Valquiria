@@ -25,6 +25,9 @@ public class Unit : SerializedScriptableObject
     [SerializeField, MinValue(1)]
     private int level = 1;
     
+    [SerializeField, ShowIf("type", UnitType.Enemy)]
+    private Dictionary<IItem, int> itemDrops;
+    
     [SerializeField, MinValue(0), ShowIf("type", UnitType.Enemy)]
     private int experienceDrop;
 
@@ -80,6 +83,7 @@ public class Unit : SerializedScriptableObject
     public string UnitName => unitName;
     public Sprite UnitSprite => unitSprite;
     public int Level => level;
+    public Dictionary<IItem, int> ItemDrops => itemDrops;
     public int ExperienceDrop => experienceDrop;
     public int Experience
     {

@@ -22,11 +22,7 @@ public class Equipment : ScriptableObject, IItem
         set => itemID = value;
     }
 
-    public EquipmentSlotType SlotType
-    {
-        get => slotType;
-        set => slotType = value;
-    }
+    public EquipmentSlotType SlotType => slotType;
 
     public string ItemName
     {
@@ -64,11 +60,7 @@ public class Equipment : ScriptableObject, IItem
         set => itemValue = value;
     }
 
-    public int StatusValue
-    {
-        get => statusValue;
-        set => statusValue = value;
-    }
+    public int StatusValue => statusValue;
 
     public void Equip()
     {

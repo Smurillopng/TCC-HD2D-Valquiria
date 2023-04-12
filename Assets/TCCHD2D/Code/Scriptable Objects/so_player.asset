@@ -158,12 +158,12 @@ MonoBehaviour:
     type: 3}
   level: 2
   experienceDrop: 0
-  experience: 18
+  experience: 22
   maxHp: 10
   currentHp: 7
   maxTp: 100
-  currentTp: 40
-  attack: 1
+  currentTp: 10
+  attack: 2
   defence: 1
   speed: 2
   luck: 1

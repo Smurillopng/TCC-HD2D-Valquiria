@@ -85,7 +85,7 @@ public class Specials : MonoBehaviour
             PlayerCombatHUD.UpdateCombatHUD.Invoke();
             
             // Standard attack damage calculation
-            var attackDamageCalculated = player.Unit.Attack;
+            var attackDamageCalculated = player.Unit.Attack + player.Unit.Attack;
             if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
                 attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
 
@@ -96,7 +96,7 @@ public class Specials : MonoBehaviour
             player.Unit.CurrentTp -= 40;
 
             // Damage multiplied
-            target.TakeDamage(attackDamageCalculated + player.Unit.Attack);
+            target.TakeDamage(attackDamageCalculated);
             
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
             PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Used <color=purple>Heavy Hit</color> on <color=blue>{target.Unit.UnitName}</color> for <color=red>{target.damageTakenThisTurn}</color> damage</b>");

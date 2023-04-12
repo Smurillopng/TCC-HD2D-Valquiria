@@ -57,6 +57,8 @@ public class PlayerCombatHUD : MonoBehaviour
     private Button itemButton;
     [SerializeField]
     private Button runButton;
+    [SerializeField]
+    private Button returnButton;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [ShowInInspector, ReadOnly]
@@ -216,6 +218,8 @@ public class PlayerCombatHUD : MonoBehaviour
         
         foreach (var item in InventoryManager.Instance.Inventory.OfType<Consumable>())
         {
+            returnButton.gameObject.SetActive(true);
+            returnButton.interactable = true;
             var button = Instantiate(buttonPrefab, itemPanel.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
             button.GetComponent<Button>().onClick.AddListener(() =>
@@ -228,6 +232,8 @@ public class PlayerCombatHUD : MonoBehaviour
                 turnManager.isPlayerTurn = false;
                 TakenAction.Invoke();
                 itemPanel.SetActive(false);
+                returnButton.gameObject.SetActive(false);
+                returnButton.interactable = false;
                 optionsPanel.SetActive(true);
             });
         }
@@ -235,6 +241,15 @@ public class PlayerCombatHUD : MonoBehaviour
         //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
         //turnManager.isPlayerTurn = false;
         //TakenAction.Invoke();
+    }
+    
+    public void Return()
+    {
+        itemPanel.SetActive(false);
+        specialPanel.SetActive(false);
+        optionsPanel.SetActive(true);
+        returnButton.gameObject.SetActive(false);
+        returnButton.interactable = false;
     }
     
     public void Special()

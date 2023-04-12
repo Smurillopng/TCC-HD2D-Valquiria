@@ -105,5 +105,5 @@ MonoBehaviour:
   dexterity: 1
   isPlayer: 0
   resetOnExit: 1
-  isDead: 1
+  isDead: 0
   hasTakenTurn: 0

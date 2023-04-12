@@ -15589,8 +15589,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6120526187047363627}
-        m_TargetAssemblyTypeName: UnitController, Assembly-CSharp
+      - m_Target: {fileID: 948602006}
+        m_TargetAssemblyTypeName: PlayerCombatHUD, Assembly-CSharp
         m_MethodName: Special
         m_Mode: 1
         m_Arguments:
@@ -16202,6 +16202,7 @@ GameObject:
   - component: {fileID: 948602003}
   - component: {fileID: 948602002}
   - component: {fileID: 948602006}
+  - component: {fileID: 948602007}
   m_Layer: 5
   m_Name: Combat Canvas
   m_TagString: CombatUI
@@ -16325,6 +16326,20 @@ MonoBehaviour:
   runButton: {fileID: 426683402}
   returnButton: {fileID: 2053471411}
   turnManager: {fileID: 1058066614}
+  specials: {fileID: 948602007}
+--- !u!114 &948602007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948602000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369daf6ccdde4cd4b7f140556c65070d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specialsList: []
 --- !u!1 &969630091
 GameObject:
   m_ObjectHideFlags: 0
@@ -51392,8 +51407,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.11036752, y: 0.033825807, z: -0.0037584219, w: 0.993308}
-  m_LocalPosition: {x: -961.0779, y: -138.7067, z: -6.1587815}
+  m_LocalRotation: {x: 0.11037825, y: 0.03086627, z: -0.0034295856, w: 0.9934043}
+  m_LocalPosition: {x: -961.1371, y: -138.63556, z: -6.497462}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:

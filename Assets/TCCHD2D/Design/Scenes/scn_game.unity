@@ -68930,7 +68930,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.110431544, y: 0.0000000036056786, z: -4.006311e-10, w: 0.9938837}
+  m_LocalRotation: {x: 0.11043152, y: -0.000000026233021, z: 0.00000000291478, w: 0.9938837}
   m_LocalPosition: {x: 0.25000006, y: 2.2499757, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -131911,6 +131911,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 03bac9115288084498b0ee87401a4375, type: 2}
     - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
+      propertyPath: showEncounterLog
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
       propertyPath: areaEncounterRate
       value: 0.1
       objectReference: {fileID: 0}
@@ -131918,7 +131923,8 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
     - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
@@ -131928,7 +131934,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
       value: '"path":"areas.{\"scn_game\"}","value":{"$id":0,"$type":"System.Single,
-        mscorlib",80}'
+        mscorlib",90}'
       objectReference: {fileID: 0}
     - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
@@ -131943,17 +131949,17 @@ PrefabInstance:
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.110431544
+      value: 0.11043152
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000036056786
+      value: -0.000000026233021
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -4.006311e-10
+      value: 0.00000000291478
       objectReference: {fileID: 0}
     - target: {fileID: 6080997216289527077, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}

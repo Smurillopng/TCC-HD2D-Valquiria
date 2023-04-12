@@ -268,18 +268,9 @@ public class UnitController : MonoBehaviour
 
         if (unit.IsPlayer) return;
         // AI logic for selecting an action goes here
-        if (unit.CurrentHp > unit.MaxHp / 4)
-        {
-            AttackLogic(target);
-            PlayerCombatHUD.CombatTextEvent.Invoke(
-                $"<color=blue>{unit.UnitName}</color> attacked <color=red>{target.Unit.UnitName}</color> for <color=red>{target.damageTakenThisTurn}</color> damage!");
-        }
-        else if (unit.CurrentHp < unit.MaxHp / 2)
-        {
-            HealSpecialAction();
-            PlayerCombatHUD.UpdateCombatHUDEnemyHp.Invoke();
-        }
-        
+        AttackLogic(target);
+        PlayerCombatHUD.CombatTextEvent.Invoke($"<color=blue>{unit.UnitName}</color> attacked <color=red>{target.Unit.UnitName}</color> for <color=red>{target.damageTakenThisTurn}</color> damage!");
+
         // IF ENEMY CAN RUN AWAY
         // else
         // {
@@ -299,56 +290,5 @@ public class UnitController : MonoBehaviour
         //             $"<color=blue>{unit.UnitName}</color> tried to run away but <color=red>failed</color>");
         //     }
         // }
-    }
-    
-    // --- Special Actions ---
-    
-    /// <summary>
-    /// An example of a special action.
-    /// </summary>
-    /// <param name="target"></param>
-    private void HealSpecialAction()
-    {
-        if (Unit.CurrentTp > 20)
-        {
-            // Calculate heal based on luck
-            var heal = unit.Luck * 2;
-
-            // Apply heal to target
-            Unit.CurrentHp += heal;
-        
-            // Animation
-            Director.Play(basicAttack); // TODO: Change to heal animation
-        
-            // HUD Update
-            Unit.CurrentTp -= 20;
-            PlayerCombatHUD.UpdateCombatHUD.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Healed <color=green>{heal}</color> HP");
-            PlayerCombatHUD.TakenAction.Invoke();
-        }
-        else
-        {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>Not enough TP</color>");
-        }
-    }
-    
-    private void HeavyHitSpecialAction(UnitController target)
-    {
-        if (Unit.CurrentTp > 40)
-        {
-            // Standard attack damage calculation
-            attackDamageCalculated = unit.Attack;
-            if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-                attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-
-            // Animation
-            Director.Play(basicAttack); // TODO: Change to heavy hit animation
-
-            // HUD Update
-            Unit.CurrentTp -= 40;
-
-            // Damage multiplied
-            target.TakeDamage(attackDamageCalculated * 2);
-        }
     }
 }

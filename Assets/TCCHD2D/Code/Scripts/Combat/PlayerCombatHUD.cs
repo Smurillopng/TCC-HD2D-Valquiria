@@ -70,7 +70,12 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUD;
 
     [SerializeField] private TurnManager turnManager;
+    [SerializeField] private Specials specials;
     private bool _wasPlayerTurn;
+    
+    public GameObject SpecialPanel => specialPanel;
+    public GameObject OptionsPanel => optionsPanel;
+    public Button ReturnButton => returnButton;
 
     private void OnEnable()
     {
@@ -254,9 +259,27 @@ public class PlayerCombatHUD : MonoBehaviour
     
     public void Special()
     {
-        CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Special</color> button</b>");
-        //playerUnitController.UnitDirector.Play(playerUnitController.UseSpecial);
-        //turnManager.isPlayerTurn = false;
-        //TakenAction.Invoke();
+        optionsPanel.SetActive(false);
+        specialPanel.SetActive(true);
+        
+        if (specialPanel.transform.childCount > 0)
+        {
+            foreach (Transform child in specialPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        
+        foreach (var method in specials.specialsList)
+        {
+            returnButton.gameObject.SetActive(true);
+            returnButton.interactable = true;
+            var button = Instantiate(buttonPrefab, specialPanel.transform);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = method;
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                specials.UseSpecial(method);
+            });
+        }
     }
 }

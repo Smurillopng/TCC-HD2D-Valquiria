@@ -162,7 +162,7 @@ MonoBehaviour:
   maxHp: 10
   currentHp: 7
   maxTp: 100
-  currentTp: 0
+  currentTp: 40
   attack: 1
   defence: 1
   speed: 2

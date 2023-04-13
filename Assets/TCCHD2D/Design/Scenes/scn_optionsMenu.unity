@@ -1711,7 +1711,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1178047627}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 1
@@ -2079,7 +2079,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1178047627}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -2318,7 +2318,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1178047627}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetMasterVolume
         m_Mode: 1
@@ -2656,7 +2656,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1178047627}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetSfxVolume
         m_Mode: 1
@@ -3308,7 +3308,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1178047627}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetFullscreen
         m_Mode: 1
@@ -3714,7 +3714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1178047628}
-  - component: {fileID: 1178047627}
+  - component: {fileID: 1178047629}
   m_Layer: 0
   m_Name: OptionsMenu Manager
   m_TagString: Untagged
@@ -3722,30 +3722,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1178047627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1178047626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cd47e6de0474110b8bd8700d4015b8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterMixer: {fileID: 24300002, guid: b89f2a46917705c4f9f10234ed3568cf, type: 2}
-  masterVolumeSlider: {fileID: 790816096}
-  musicMixer: {fileID: 4158220325237075602, guid: b89f2a46917705c4f9f10234ed3568cf,
-    type: 2}
-  musicVolumeSlider: {fileID: 767871229}
-  sfxMixer: {fileID: -8900435012001161030, guid: b89f2a46917705c4f9f10234ed3568cf,
-    type: 2}
-  sfxVolumeSlider: {fileID: 874215337}
-  qualityDropdown: {fileID: 2104801262}
-  screenDropdown: {fileID: 1101277486}
-  resolutionDropdown: {fileID: 681223380}
-  previousScene: {fileID: 11400000, guid: 8f95ac550c89d34438fe9bc55132be5a, type: 2}
 --- !u!4 &1178047628
 Transform:
   m_ObjectHideFlags: 0
@@ -3761,6 +3737,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1178047629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178047626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292f3aa4481978247a75e7d884e937c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24300002, guid: b89f2a46917705c4f9f10234ed3568cf, type: 2}
+  masterVolumeSlider: {fileID: 790816096}
+  musicMixer: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
+    type: 2}
+  musicVolumeSlider: {fileID: 767871229}
+  sfxMixer: {fileID: 3626674247326135894, guid: b89f2a46917705c4f9f10234ed3568cf,
+    type: 2}
+  sfxVolumeSlider: {fileID: 874215337}
+  qualityDropdown: {fileID: 2104801262}
+  screenDropdown: {fileID: 1101277486}
+  resolutionDropdown: {fileID: 681223380}
+  previousScene: {fileID: 0}
 --- !u!1 &1203601124
 GameObject:
   m_ObjectHideFlags: 0
@@ -6031,7 +6031,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1178047627}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: ReturnToLastScene
         m_Mode: 1
@@ -6817,7 +6817,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1178047627}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetQuality
         m_Mode: 1

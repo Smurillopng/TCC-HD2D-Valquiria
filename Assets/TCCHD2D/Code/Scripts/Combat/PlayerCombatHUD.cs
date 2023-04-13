@@ -1,13 +1,11 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 08/03/2023
 
-using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using UnityEngine.Playables;
 using Sirenix.OdinInspector;
 using TMPro;
 
@@ -16,55 +14,51 @@ using TMPro;
 /// </summary>
 public class PlayerCombatHUD : MonoBehaviour
 {
-    [TitleGroup("Units Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    private UnitController playerUnitController;
-
-    [SerializeField]
-    private UnitController enemyUnitController;
-
     [TitleGroup("Player HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
-    private Image playerHelthbarFill;
-
+    private Image playerHealthBarFill;
     [SerializeField]
     private TMP_Text playerHealthText;
-
     [SerializeField]
-    private Image playerTpbarFill;
-
+    private Image playerTpBarFill;
     [SerializeField]
     private TMP_Text playerTpText;
 
     [TitleGroup("Enemy HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private TMP_Text enemyName;
-
     [SerializeField]
-    private Image enemyHelthbarFill;
-
+    private Image enemyHealthBarFill;
     [SerializeField]
     private TMP_Text enemyHealthText;
 
     [TitleGroup("Combat Text Box", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private TMP_Text combatTextBox;
-
     [SerializeField]
     private float combatTextTimer;
+
+    [TitleGroup("Combat Panels", Alignment = TitleAlignments.Centered)]
+    [SerializeField]
+    private GameObject buttonPrefab;
+    [SerializeField]
+    private GameObject optionsPanel;
+    [SerializeField]
+    private GameObject specialPanel;
+    [SerializeField]
+    private GameObject itemPanel;
 
     [TitleGroup("Buttons", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private Button attackButton;
-
     [SerializeField]
     private Button specialButton;
-
     [SerializeField]
     private Button itemButton;
-
     [SerializeField]
     private Button runButton;
+    [SerializeField]
+    private Button returnButton;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [ShowInInspector, ReadOnly]
@@ -73,6 +67,15 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDPlayerHp;
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
+    public static UnityAction UpdateCombatHUD;
+
+    [SerializeField] private TurnManager turnManager;
+    [SerializeField] private Specials specials;
+    private bool _wasPlayerTurn;
+    
+    public GameObject SpecialPanel => specialPanel;
+    public GameObject OptionsPanel => optionsPanel;
+    public Button ReturnButton => returnButton;
 
     private void OnEnable()
     {
@@ -80,36 +83,43 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
+        UpdateCombatHUD += UpdateCombatHUDs;
     }
-    
+
     private void Start()
     {
         UpdateEnemyHealth();
         UpdatePlayerTp();
         UpdatePlayerHealth();
 
-        playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
-        playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
-        playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
-        playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
-        enemyHealthText.text = $"HP: {enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
-        enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
-        enemyName.text = $"{enemyUnitController.Unit.UnitName}:";
-        playerUnitController.Unit.CurrentTp = 0;
+        playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
+        playerHealthBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
+        playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
+        playerTpBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
+        enemyHealthText.text = $"HP: {turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
+        enemyHealthBarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
+        enemyName.text = $"{turnManager.EnemyUnitController.Unit.UnitName}:";
+        turnManager.PlayerUnitController.Unit.CurrentTp = 0;
         combatTextBox.text = "";
-        
+
         CombatTextEvent += DisplayCombatText;
         UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
     }
+    
+    private void UpdateCombatHUDs()
+    {
+        UpdatePlayerHealth();
+        UpdatePlayerTp();
+        UpdateEnemyHealth();
+    }
 
     private void Update()
     {
-        if (playerUnitController.Director.state == PlayState.Playing || enemyUnitController.Director.state == PlayState.Playing)
-            DisableButtons(true);
-        else
-            DisableButtons(false);
+        if (_wasPlayerTurn == turnManager.isPlayerTurn) return;
+        _wasPlayerTurn = turnManager.isPlayerTurn;
+        DisableButtons(!turnManager.isPlayerTurn);
     }
 
     private void DisableButtons(bool disabled)
@@ -136,9 +146,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void UpdatePlayerHealth()
     {
-        if (playerHealthText == null || playerHelthbarFill == null) return;
-        playerHealthText.text = $"HP: {playerUnitController.Unit.CurrentHp} / {playerUnitController.Unit.MaxHp}";
-        playerHelthbarFill.fillAmount = (float)playerUnitController.Unit.CurrentHp / playerUnitController.Unit.MaxHp;
+        if (playerHealthText == null || playerHealthBarFill == null) return;
+        playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
+        playerHealthBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
     }
 
     /// <summary>
@@ -146,84 +156,22 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     public void UpdateEnemyHealth()
     {
-        if (enemyHealthText == null || enemyHelthbarFill == null) return;
-        enemyHealthText.text = $"{enemyUnitController.Unit.CurrentHp} / {enemyUnitController.Unit.MaxHp}";
-        enemyHelthbarFill.fillAmount = (float)enemyUnitController.Unit.CurrentHp / enemyUnitController.Unit.MaxHp;
+        if (enemyHealthText == null || enemyHealthBarFill == null) return;
+        enemyHealthText.text = $"{turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
+        enemyHealthBarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
     }
 
     /// <summary>
     /// Updates the player's TP bar and text.
     /// </summary>
-    public void UpdatePlayerTp()
+    private void UpdatePlayerTp()
     {
-        if (playerTpText == null || playerTpbarFill == null) return;
-        playerTpText.text = $"TP: {playerUnitController.Unit.CurrentTp}%";
-        playerTpbarFill.fillAmount = (float)playerUnitController.Unit.CurrentTp / playerUnitController.Unit.MaxTp;
+        if (playerTpText == null || playerTpBarFill == null) return;
+        playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
+        playerTpBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
     }
 
-    /// <summary>
-    /// Adds damage text to the combat text box and calls the player unit attack method [<see cref="UnitController.AttackAction"/>].
-    /// </summary>
-    public void Attack()
-    {
-        playerUnitController.AttackAction(enemyUnitController);
-        UpdatePlayerTp();
-        CombatTextEvent.Invoke($"<b>Attacked <color=blue>{enemyUnitController.Unit.UnitName}</color> for <color=red>{playerUnitController.Unit.Attack}</color> damage</b>");
-        TakenAction.Invoke();
-    }
-
-    /// <summary>
-    /// Adds information in the combat text box and calls the player specific special attack method.
-    /// </summary>
-    public void Special()
-    {
-        if (playerUnitController.Unit.CurrentTp < playerUnitController.Unit.MaxTp / 2)
-        {
-            CombatTextEvent.Invoke("<color=red>Not enough TP</color>");
-        }
-        else
-        {
-            //playerUnitController.UnitDirector.Play(playerUnitController.SpecialAttacks[0]);
-            playerUnitController.HealSpecialAction(playerUnitController);
-            UpdatePlayerHealth();
-            playerUnitController.Unit.CurrentTp -= 50;
-            UpdatePlayerTp();
-            CombatTextEvent.Invoke($"Healed <color=green>{playerUnitController.Unit.Attack}</color> HP");
-            TakenAction.Invoke();
-        }
-    }
-
-    /// <summary>
-    /// Adds information in the combat text box and calls the player specific item method.
-    /// </summary>
-    public void Item()
-    {
-        CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
-        //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
-        TakenAction.Invoke();
-    }
-
-    /// <summary>
-    /// Adds information in the combat text box and calls the player run method [<see cref="UnitController.RunAction"/>].
-    /// </summary>
-    public void Run()
-    {
-        var gotAway = playerUnitController.RunAction();
-
-        if (gotAway)
-        {
-            SceneManager.LoadScene("scn_game");
-            CombatTextEvent.Invoke($"<color=green>Ran away</color>");
-            TakenAction.Invoke();
-        }
-        else
-        {
-            CombatTextEvent.Invoke($"<color=red>Failed to run away</color>");
-            TakenAction.Invoke();
-        }
-    }
-    
-    public void DisplayCombatText(string text)
+    private void DisplayCombatText(string text)
     {
         if (combatTextBox != null)
             StartCoroutine(DisplayCombatTextCoroutine(text));
@@ -233,7 +181,7 @@ public class PlayerCombatHUD : MonoBehaviour
     /// Displays combat text in the combat text box for a set amount of time then clears the text.
     /// </summary>
     /// <param name="text"></param>
-    public IEnumerator DisplayCombatTextCoroutine(string text)
+    private IEnumerator DisplayCombatTextCoroutine(string text)
     {
         combatTextBox.text = text;
         yield return new WaitForSeconds(combatTextTimer);
@@ -246,5 +194,92 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp -= UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp -= UpdatePlayerTp;
         UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
+        UpdateCombatHUD -= UpdateCombatHUDs;
+    }
+    
+    /// <summary>
+    /// Adds information in the combat text box and calls the player specific item method.
+    /// </summary>
+    public void Item()
+    {
+        var hasItem = InventoryManager.Instance.Inventory.OfType<Consumable>().Any();
+        
+        if (!hasItem)
+        {
+            CombatTextEvent.Invoke("<b>You have no items!</b>");
+            return;
+        }
+        
+        optionsPanel.SetActive(false);
+        itemPanel.SetActive(true);
+        
+        if (itemPanel.transform.childCount > 0)
+        {
+            foreach (Transform child in itemPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        
+        foreach (var item in InventoryManager.Instance.Inventory.OfType<Consumable>())
+        {
+            returnButton.gameObject.SetActive(true);
+            returnButton.interactable = true;
+            var button = Instantiate(buttonPrefab, itemPanel.transform);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                InventoryManager.Instance.UseItem(item);
+                UpdatePlayerHealth();
+                UpdatePlayerTp();
+                UpdateEnemyHealth();
+                CombatTextEvent.Invoke($"<b>Used {item.ItemName}!</b>");
+                turnManager.isPlayerTurn = false;
+                TakenAction.Invoke();
+                itemPanel.SetActive(false);
+                returnButton.gameObject.SetActive(false);
+                returnButton.interactable = false;
+                optionsPanel.SetActive(true);
+            });
+        }
+        //CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");
+        //playerUnitController.UnitDirector.Play(playerUnitController.UseItem);
+        //turnManager.isPlayerTurn = false;
+        //TakenAction.Invoke();
+    }
+    
+    public void Return()
+    {
+        itemPanel.SetActive(false);
+        specialPanel.SetActive(false);
+        optionsPanel.SetActive(true);
+        returnButton.gameObject.SetActive(false);
+        returnButton.interactable = false;
+    }
+    
+    public void Special()
+    {
+        optionsPanel.SetActive(false);
+        specialPanel.SetActive(true);
+        
+        if (specialPanel.transform.childCount > 0)
+        {
+            foreach (Transform child in specialPanel.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        
+        foreach (var method in specials.specialsList)
+        {
+            returnButton.gameObject.SetActive(true);
+            returnButton.interactable = true;
+            var button = Instantiate(buttonPrefab, specialPanel.transform);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = method;
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                specials.UseSpecial(method);
+            });
+        }
     }
 }

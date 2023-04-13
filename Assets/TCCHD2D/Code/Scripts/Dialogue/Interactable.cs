@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 17/03/2023
 
+using System.Collections;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -29,27 +30,36 @@ public class Interactable : MonoBehaviour
     private bool _hasInteracted;
     public bool CanInteract() => _hasInteracted;
 
-    private void Update()
+    private void Start()
     {
-        if (Vector3.Distance(transform.position, playerTransform.position) <= interactionRange)
+        StartCoroutine(CheckDistance());
+    }
+
+    private IEnumerator CheckDistance()
+    {
+        while (true)
         {
-            onInteractionInRange?.Invoke();
-            switch (interactBool.Value)
+            if ((transform.position - playerTransform.position).sqrMagnitude <= interactionRange * interactionRange)
             {
-                case true:
-                    if (_hasInteracted)
-                        StartInteraction();
-                    break;
-                case false:
-                    _hasInteracted = true;
-                    break;
+                onInteractionInRange?.Invoke();
+                switch (interactBool.Value)
+                {
+                    case true:
+                        if (_hasInteracted)
+                            StartInteraction();
+                        break;
+                    case false:
+                        _hasInteracted = true;
+                        break;
+                }
             }
-        }
-        else
-        {
-            if (!_hasInteracted) return;
-            _hasInteracted = false;
-            onInteractionOffRange?.Invoke();
+            else
+            {
+                if (!_hasInteracted) yield return null;
+                _hasInteracted = false;
+                onInteractionOffRange?.Invoke();
+            }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

@@ -212,6 +212,7 @@ public class TurnManager : MonoBehaviour
         DisplayVictoryText();
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
+        GlobalHelper.Instance.SaveScene();
         SceneManager.LoadScene("scn_game");
     }
 

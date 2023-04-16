@@ -1,8 +1,10 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 19/02/2023
 
+using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //TODO: Add running animation
 
@@ -56,10 +58,15 @@ public class PlayerMovement : MonoBehaviour
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
     public Vector3 NewPosition { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         if (!gameObject.TryGetComponent(out rigidBody))
             rigidBody = gameObject.AddComponent<Rigidbody>();
+        if (GlobalHelper.Instance.SavedScene == "scn_combat")
+        {
+            var reader = QuickSaveReader.Create("GameSave");
+            transform.position = reader.Read<Vector3>("PlayerPosition");
+        }
     }
 
     private void OnEnable()

@@ -2,6 +2,7 @@
 // Date: 06/04/2023
 
 using System.Collections.Generic;
+using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -53,7 +54,11 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         _selectedEnemy = enemies[randomIndex]; // Get the enemy at that index
 
         Debug.Log("You encountered " + _selectedEnemy.name + "!"); // Log the encounter
-        
+
+        GlobalHelper.Instance.SaveScene();
+        var save = QuickSaveWriter.Create("GameSave");
+        save.Write("PlayerPosition", _playerMovement.transform.position);
+        save.Commit();
         SceneManager.LoadScene("scn_combat");
         
         // TODO: Director/Actions

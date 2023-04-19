@@ -69,21 +69,25 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
@@ -112,7 +116,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  multiSpriteImportData:
+  animatedSpriteImportData:
   - name: spr_animals_Frame_0
     originalName: 
     pivot: {x: 0.6666667, y: -0.42105263}
@@ -173,12 +177,14 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 31}
+  spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
     guid: -422876117
     name: spr_animals
     layerFlags: 0
     layerType: 0
+    blendMode: 0
     cells:
     - name: spr_animals_Frame_0
       frameIndex: 0
@@ -209,3 +215,4 @@ ScriptedImporter:
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
+  canvasSize: {x: 32, y: 32}

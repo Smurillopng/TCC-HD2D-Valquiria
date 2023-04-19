@@ -69,21 +69,25 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
@@ -112,8 +116,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  multiSpriteImportData:
-  - name: spr_inimigo_frame0
+  animatedSpriteImportData:
+  - name: Flattened_Frame_0
     originalName: 
     pivot: {x: 0.7037037, y: 0}
     alignment: 9
@@ -133,7 +137,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 242}
-  - name: spr_inimigo_frame4
+  - name: Flattened_Frame_1
     originalName: 
     pivot: {x: 0.6962025, y: 0}
     alignment: 9
@@ -153,7 +157,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 95, y: 4}
-  - name: spr_inimigo_frame1
+  - name: Flattened_Frame_2
     originalName: 
     pivot: {x: 0.7037037, y: 0}
     alignment: 9
@@ -173,7 +177,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 122}
-  - name: spr_inimigo_frame3
+  - name: Flattened_Frame_3
     originalName: 
     pivot: {x: 0.7108434, y: 0}
     alignment: 9
@@ -193,7 +197,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: spr_inimigo
+  - name: Flattened_Frame_4
     originalName: 
     pivot: {x: 0.7037037, y: 0}
     alignment: 9
@@ -213,12 +217,14 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 360}
+  spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
     guid: 1882794633
     name: Flattened
     layerFlags: 3
     layerType: 0
+    blendMode: 0
     cells:
     - name: Flattened_Frame_0
       frameIndex: 0
@@ -265,3 +271,4 @@ ScriptedImporter:
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
+  canvasSize: {x: 144, y: 144}

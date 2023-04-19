@@ -69,21 +69,25 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 0
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
@@ -112,7 +116,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  multiSpriteImportData:
+  animatedSpriteImportData:
   - name: humano_Frame_0
     originalName: 
     pivot: {x: 0.16666667, y: 0}
@@ -233,12 +237,14 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 30, y: 59}
+  spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
     guid: -1502342124
     name: humano
     layerFlags: 3
     layerType: 0
+    blendMode: 0
     cells:
     - name: humano_Frame_0
       frameIndex: 0
@@ -271,6 +277,7 @@ ScriptedImporter:
     name: Flattened
     layerFlags: 3
     layerType: 0
+    blendMode: 0
     cells:
     - name: Flattened_Frame_0
       frameIndex: 0
@@ -301,3 +308,4 @@ ScriptedImporter:
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
+  canvasSize: {x: 32, y: 32}

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-    public class DistanceHider : MonoBehaviour
+public class DistanceHider : MonoBehaviour
     {
             public Transform player;
             public LayerMask layerMask;
             public Camera mainCam;
+            public float alphaStrength = 0.1f;
 
             private HashSet<GameObject> hiddenObjects = new HashSet<GameObject>();
             
@@ -28,7 +29,7 @@ using UnityEngine;
                     var alphaValue = hitRender.material.GetFloat("_alphaValue");
                     if (!hiddenObjects.Contains(hitObject))
                     {
-                        hitRender.material.SetFloat("_alphaValue", 0.1f);
+                        hitRender.material.SetFloat("_alphaValue", alphaStrength);
                         hiddenObjects.Add(hitObject);
                     }
                 }

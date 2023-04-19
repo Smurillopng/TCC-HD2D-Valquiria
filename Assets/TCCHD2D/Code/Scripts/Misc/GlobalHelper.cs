@@ -3,6 +3,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,12 +36,28 @@ public class GlobalHelper : MonoBehaviour
         else
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
         }
     }
     public void DestroyObject(GameObject target)
     {
         Destroy(target);
+    }
+    
+    public void SaveDestroyObject(GameObject target)
+    {
+        Destroy(target);
+        var saveData = QuickSaveWriter.Create("GameSave");
+        saveData.Write($"{target.name}", true);
+        saveData.Commit();
+    }
+    
+    public void CheckSaveData(GameObject target)
+    {
+        var saveData = QuickSaveReader.Create("GameSave");
+        if (saveData.Exists($"{target.name}") && saveData.Read<bool>($"{target.name}"))
+        {
+            Destroy(target);
+        }
     }
     
     public string SaveScene()

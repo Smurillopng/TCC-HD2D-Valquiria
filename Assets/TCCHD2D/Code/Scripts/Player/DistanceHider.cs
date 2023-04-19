@@ -8,7 +8,7 @@ public class DistanceHider : MonoBehaviour
             public Camera mainCam;
             public float alphaStrength = 0.1f;
 
-            private HashSet<GameObject> hiddenObjects = new HashSet<GameObject>();
+            private HashSet<GameObject> hiddenObjects = new();
             
             private void Awake()
             {
@@ -26,10 +26,10 @@ public class DistanceHider : MonoBehaviour
                 {
                     GameObject hitObject = hit.collider.gameObject;
                     var hitRender = hitObject.GetComponent<Renderer>();
-                    var alphaValue = hitRender.material.GetFloat("_alphaValue");
+                    var alphaValue = hitRender.material.GetFloat("_AlphaValue");
                     if (!hiddenObjects.Contains(hitObject))
                     {
-                        hitRender.material.SetFloat("_alphaValue", alphaStrength);
+                        hitRender.material.SetFloat("_AlphaValue", alphaStrength);
                         hiddenObjects.Add(hitObject);
                     }
                 }
@@ -40,8 +40,8 @@ public class DistanceHider : MonoBehaviour
                     if (!Physics.Raycast(mainCam.transform.position, direction, out RaycastHit hitInfo, direction.magnitude, layerMask) || hitInfo.collider.gameObject != obj)
                     {
                         var hitRender = obj.GetComponent<Renderer>();
-                        var alphaValue = hitRender.material.GetFloat("_alphaValue");
-                        hitRender.material.SetFloat("_alphaValue", 1);
+                        var alphaValue = hitRender.material.GetFloat("_AlphaValue");
+                        hitRender.material.SetFloat("_AlphaValue", 1);
                         return true;
                     }
                     return false;

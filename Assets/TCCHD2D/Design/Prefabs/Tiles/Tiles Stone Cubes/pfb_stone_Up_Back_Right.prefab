@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6080222388815057487}
   - component: {fileID: 1134416160934965005}
   - component: {fileID: 4026824184897942893}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pfb_stone_Up_Back_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}

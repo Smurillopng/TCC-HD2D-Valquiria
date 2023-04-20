@@ -69,27 +69,31 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 638176137206073448
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -112,8 +116,8 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  multiSpriteImportData:
-  - name: spr_Liv_face
+  animatedSpriteImportData:
+  - name: spr_liv_face
     originalName: 
     pivot: {x: 0.5929204, y: 0}
     alignment: 9
@@ -124,7 +128,7 @@ ScriptedImporter:
       y: 4
       width: 113
       height: 143
-    spriteID: 988b25dd6168fbf459162943c2847ec2
+    spriteID: ef9ca73b9e01d454ab9eaaa4abceb0f6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -133,23 +137,59 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -334626313
-    name: spr_Liv_face
+    guid: -764313705
+    name: spr_liv_face
     layerFlags: 0
     layerType: 0
+    blendMode: 0
     cells:
-    - name: spr_Liv_face
+    - name: spr_liv_face
       frameIndex: 0
       cellRect:
         x: 5
         y: 0
         width: 113
         height: 143
-      spriteId: 988b25dd6168fbf459162943c2847ec2
+      spriteId: ef9ca73b9e01d454ab9eaaa4abceb0f6
     linkedCells: []
     parentIndex: -1
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
+  canvasSize: {x: 144, y: 144}

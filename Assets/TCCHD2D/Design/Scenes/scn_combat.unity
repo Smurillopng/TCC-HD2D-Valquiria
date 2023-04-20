@@ -16360,9 +16360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956415d1abef18f4cbef130ac135eaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerUnitController: {fileID: 0}
-  enemyUnitController: {fileID: 0}
-  playerHelthbarFill: {fileID: 123717955}
+  playerHealthBarFill: {fileID: 123717955}
   playerHealthText: {fileID: 2047905164}
   playerTpBarFill: {fileID: 1773258698}
   playerTpText: {fileID: 1477120984}
@@ -16371,10 +16369,31 @@ MonoBehaviour:
   enemyHealthText: {fileID: 1425681689}
   combatTextBox: {fileID: 554069869}
   combatTextTimer: 1
+  buttonPrefab: {fileID: 8481144931693999151, guid: 1e1dc1467dd0fe04984fe873ba459873,
+    type: 3}
+  optionsPanel: {fileID: 1196019710}
+  specialPanel: {fileID: 72953463}
+  itemPanel: {fileID: 1604318727}
   attackButton: {fileID: 626981709}
   specialButton: {fileID: 737856164}
   itemButton: {fileID: 1570477438}
   runButton: {fileID: 426683402}
+  returnButton: {fileID: 2053471411}
+  turnManager: {fileID: 1058066614}
+  specials: {fileID: 948602007}
+--- !u!114 &948602007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948602000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369daf6ccdde4cd4b7f140556c65070d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  specialsList: []
 --- !u!1 &969630091
 GameObject:
   m_ObjectHideFlags: 0
@@ -16683,7 +16702,8 @@ MonoBehaviour:
   sceneChangeDelay: 2
   currentUnitIndex: 0
   aiMoved: 0
-  playerUnitController: {fileID: 0}
+  isPlayerTurn: 0
+  _combatState: 0
 --- !u!4 &1058066615
 Transform:
   m_ObjectHideFlags: 0
@@ -51503,8 +51523,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.11037825, y: 0.03086627, z: -0.0034295856, w: 0.9934043}
-  m_LocalPosition: {x: -961.1371, y: -138.63556, z: -6.497462}
+  m_LocalRotation: {x: 0.11037821, y: 0.030878063, z: -0.003430896, w: 0.993404}
+  m_LocalPosition: {x: -961.18097, y: -138.58276, z: -6.7486815}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -98619,6 +98639,10 @@ MonoBehaviour:
   run: {fileID: 0}
   damageTextAnimator: {fileID: 191108977}
   damageText: {fileID: 191108978}
+  damageTakenThisTurn: 0
+  attackDamageCalculated: 0
+  defenceCalculated: 0
+  speedCalculated: 0
 --- !u!114 &6120526187047363628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98775,6 +98799,10 @@ MonoBehaviour:
   run: {fileID: 0}
   damageTextAnimator: {fileID: 1703950809}
   damageText: {fileID: 1703950810}
+  damageTakenThisTurn: 0
+  attackDamageCalculated: 0
+  defenceCalculated: 0
+  speedCalculated: 0
 --- !u!114 &7878350319063784938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98889,13 +98917,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3047630783254682023, guid: 993d1cd5b19fdd141b3328f55fa8a55a,
+  m_Sprite: {fileID: 5470260758971073697, guid: 993d1cd5b19fdd141b3328f55fa8a55a,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.81, y: 1.08}
+  m_Size: {x: 0.13, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -99058,7 +99086,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8797955379927541239, guid: b9e338017d3e8ab4298f11bcf3a17767,
+  m_Sprite: {fileID: 5767901764147009805, guid: b9e338017d3e8ab4298f11bcf3a17767,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

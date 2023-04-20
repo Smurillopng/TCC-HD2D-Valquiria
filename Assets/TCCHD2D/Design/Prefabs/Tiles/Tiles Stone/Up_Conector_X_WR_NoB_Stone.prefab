@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6180963485313412206}
   - component: {fileID: 3314576476492809981}
   - component: {fileID: -257527136136170160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Up_Conector_X_WR_NoB_Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

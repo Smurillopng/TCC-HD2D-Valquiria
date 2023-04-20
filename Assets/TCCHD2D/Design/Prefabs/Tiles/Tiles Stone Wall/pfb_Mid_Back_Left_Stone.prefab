@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5350033108138347987}
   - component: {fileID: 6511946917315937006}
   - component: {fileID: 3451185017074120273}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pfb_Mid_Back_Left_Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

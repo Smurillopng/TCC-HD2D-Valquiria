@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4583207001206022901}
   - component: {fileID: 689545879053674788}
   - component: {fileID: 5438024015402499056}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pfb_Mid_Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

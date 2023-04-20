@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public float rayDistance;
     public float rayDistanceDiagonal;
+    public float slowFactor;
 
     public BoolVariable CanMove => canMove;
     public Vector3 MovementValue
@@ -91,12 +92,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Movement()
     {
-        if (!canMove.Value) return;
-        if (direction.Value == Vector2.zero)
+        if (!canMove.Value || direction.Value == Vector2.zero)
         {
             animator.SetBool(IsWalking, false);
             return;
         }
+
         movementValue = new Vector3(direction.Value.x, 0, direction.Value.y).normalized;
 
         var rayPosition = transform.position;
@@ -104,53 +105,41 @@ public class PlayerMovement : MonoBehaviour
         const float angle = 45 * Mathf.Deg2Rad;
         var dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
 
-        if (Physics.Raycast(rayPosition, dir, rayDistance, groundLayer) && direction.Value.x > 0)
-        {
-            movementValue = Vector3.zero;
-        }
-        else if (Physics.Raycast(rayPosition, -dir, rayDistance, groundLayer) && direction.Value.x < 0)
-        {
-            movementValue = Vector3.zero;
-        }
-        else if (Physics.Raycast(rayPosition, Vector3.forward, rayDistance, groundLayer) && direction.Value.y > 0)
-        {
-            movementValue = Vector3.zero;
-        }
-        else if (Physics.Raycast(rayPosition, Vector3.back, rayDistance, groundLayer) && direction.Value.y < 0)
-        {
-            movementValue = Vector3.zero;
-        }
+        var dirRight = Vector3.right;
+        var dirLeft = Vector3.left;
+        var dirForward = Vector3.forward;
+        var dirBack = Vector3.back;
 
-        // If the player is near a border, it will not be able to move in that direction. to detect that check if the raycast is not hitting anything
-        Ray rightRay = new Ray(rayPosition, new Vector3(Vector3.right.x, -1, Vector3.right.z));
-        Ray leftRay = new Ray(rayPosition, new Vector3(Vector3.left.x, -1, Vector3.left.z));
-        Ray forwardRay = new Ray(rayPosition, new Vector3(Vector3.forward.x, -1, Vector3.forward.z));
-        Ray backRay = new Ray(rayPosition, new Vector3(Vector3.back.x, -1, Vector3.back.z));
+        Ray rightRay = new Ray(rayPosition, new Vector3(dirRight.x, -1, dirRight.z));
+        Ray leftRay = new Ray(rayPosition, new Vector3(dirLeft.x, -1, dirLeft.z));
+        Ray forwardRay = new Ray(rayPosition, new Vector3(dirForward.x, -1, dirForward.z));
+        Ray backRay = new Ray(rayPosition, new Vector3(dirBack.x, -1, dirBack.z));
 
-        if (!Physics.Raycast(rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0)
+        if ((Physics.Raycast(rayPosition, dir, rayDistance, groundLayer) && direction.Value.x > 0)
+            || (!Physics.Raycast(rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0))
         {
-            movementValue = Vector3.zero;
+            movementValue *= slowFactor;
         }
-        else if (!Physics.Raycast(leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0)
+        else if ((Physics.Raycast(rayPosition, -dir, rayDistance, groundLayer) && direction.Value.x < 0)
+            || (!Physics.Raycast(leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0))
         {
-            movementValue = Vector3.zero;
+            movementValue *= slowFactor;
         }
-        else if (!Physics.Raycast(forwardRay, rayDistanceDiagonal, groundLayer) && direction.Value.y > 0)
+        else if ((Physics.Raycast(rayPosition, dirForward, rayDistance, groundLayer) && direction.Value.y > 0)
+            || (!Physics.Raycast(forwardRay, rayDistanceDiagonal, groundLayer) && direction.Value.y > 0))
         {
-            movementValue = Vector3.zero;
+            movementValue *= slowFactor;
         }
-        else if (!Physics.Raycast(backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0)
+        else if ((Physics.Raycast(rayPosition, dirBack, rayDistance, groundLayer) && direction.Value.y < 0)
+            || (!Physics.Raycast(backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0))
         {
-            movementValue = Vector3.zero;
+            movementValue *= slowFactor;
         }
 
         if (direction.Value.x != 0 && direction.Value.y != 0)
         {
             animator.SetFloat(SpeedX, 0);
-            if (direction.Value.y > 0)
-                animator.SetFloat(SpeedY, 1);
-            else
-                animator.SetFloat(SpeedY, -1);
+            animator.SetFloat(SpeedY, direction.Value.y > 0 ? 1 : -1);
         }
         else
         {
@@ -162,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
         if (isRunning.Value)
             movementValue *= runSpeedMultiplier;
 
-        NewPosition = transform.position + movementValue * (speed * Time.fixedDeltaTime);
+        NewPosition = transform.position + (movementValue * (speed * Time.fixedDeltaTime));
         rigidBody.MovePosition(NewPosition);
     }
 

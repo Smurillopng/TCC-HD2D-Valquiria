@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 03ac9a4896895684bb183578ce05aa4a
+guid: 15b2cbb5731fa4b409c1341a580bf622
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,7 +11,7 @@ ScriptedImporter:
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
@@ -113,18 +113,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   multiSpriteImportData:
-  - name: spr_animals_Frame_0
+  - name: spr_Liv_face
     originalName: 
-    pivot: {x: 0.6666667, y: -0.42105263}
+    pivot: {x: 0.5929204, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 15
-      height: 19
-    spriteID: f4fa94e231e9bfe4883d827a926f68d5
+      width: 113
+      height: 143
+    spriteID: 988b25dd6168fbf459162943c2847ec2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -133,77 +133,21 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: spr_animals_Frame_1
-    originalName: 
-    pivot: {x: 1.4444444, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 53
-      width: 9
-      height: 7
-    spriteID: b08381539f00cef41a14ee3953d0a4cf
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 53}
-  - name: spr_animals_Frame_2
-    originalName: 
-    pivot: {x: 0.5, y: -0.6428572}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 31
-      width: 10
-      height: 14
-    spriteID: 7b9ae370c0de702488cb9e86fc39539a
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 31}
   asepriteLayers:
   - layerIndex: 0
-    guid: -422876117
-    name: spr_animals
+    guid: -334626313
+    name: spr_Liv_face
     layerFlags: 0
     layerType: 0
     cells:
-    - name: spr_animals_Frame_0
+    - name: spr_Liv_face
       frameIndex: 0
       cellRect:
-        x: 6
-        y: 8
-        width: 15
-        height: 19
-      spriteId: f4fa94e231e9bfe4883d827a926f68d5
-    - name: spr_animals_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 3
+        x: 5
         y: 0
-        width: 9
-        height: 7
-      spriteId: b08381539f00cef41a14ee3953d0a4cf
-    - name: spr_animals_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 11
-        y: 9
-        width: 10
-        height: 14
-      spriteId: 7b9ae370c0de702488cb9e86fc39539a
+        width: 113
+        height: 143
+      spriteId: 988b25dd6168fbf459162943c2847ec2
     linkedCells: []
     parentIndex: -1
   platformSettings: []

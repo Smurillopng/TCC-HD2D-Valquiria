@@ -115,15 +115,15 @@ ScriptedImporter:
   multiSpriteImportData:
   - name: spr_inimigo_frame0
     originalName: 
-    pivot: {x: 0.7037037, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 242
-      width: 81
-      height: 110
+      y: 4
+      width: 83
+      height: 114
     spriteID: 63acb0c89d8449b4b9dab69b25806ee3
     spriteBone: []
     spriteOutline: []
@@ -132,87 +132,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 242}
-  - name: spr_inimigo_frame4
-    originalName: 
-    pivot: {x: 0.6962025, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 95
-      y: 4
-      width: 79
-      height: 110
-    spriteID: 8f937e297a243424dadf6f416d5be0d6
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 95, y: 4}
-  - name: spr_inimigo_frame1
-    originalName: 
-    pivot: {x: 0.7037037, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 122
-      width: 81
-      height: 112
-    spriteID: 83c549b719b7d894bab27976644860e7
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 122}
-  - name: spr_inimigo_frame3
-    originalName: 
-    pivot: {x: 0.7108434, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 4
-      width: 83
-      height: 110
-    spriteID: 0ecfbcf372bcacb468b6e03c9906dd23
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: spr_inimigo
-    originalName: 
-    pivot: {x: 0.7037037, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 360
-      width: 81
-      height: 108
-    spriteID: 37ab1378781139f4bb0b8c083599b527
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 360}
   asepriteLayers:
   - layerIndex: 0
     guid: 1882794633
@@ -220,46 +140,14 @@ ScriptedImporter:
     layerFlags: 3
     layerType: 0
     cells:
-    - name: Flattened_Frame_0
+    - name: Flattened
       frameIndex: 0
       cellRect:
-        x: 15
-        y: 0
-        width: 81
-        height: 110
-      spriteId: 63acb0c89d8449b4b9dab69b25806ee3
-    - name: Flattened_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 17
-        y: 0
-        width: 79
-        height: 110
-      spriteId: 8f937e297a243424dadf6f416d5be0d6
-    - name: Flattened_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 15
-        y: 0
-        width: 81
-        height: 112
-      spriteId: 83c549b719b7d894bab27976644860e7
-    - name: Flattened_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 13
+        x: 0
         y: 0
         width: 83
-        height: 110
-      spriteId: 0ecfbcf372bcacb468b6e03c9906dd23
-    - name: Flattened_Frame_4
-      frameIndex: 4
-      cellRect:
-        x: 15
-        y: 0
-        width: 81
-        height: 108
-      spriteId: 37ab1378781139f4bb0b8c083599b527
+        height: 114
+      spriteId: 63acb0c89d8449b4b9dab69b25806ee3
     linkedCells: []
     parentIndex: -1
   platformSettings: []

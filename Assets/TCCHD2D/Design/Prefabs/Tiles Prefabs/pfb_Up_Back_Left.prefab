@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1512425473736091047}
   - component: {fileID: 2024656182654345999}
   - component: {fileID: -1912259444453657344}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pfb_Up_Back_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}

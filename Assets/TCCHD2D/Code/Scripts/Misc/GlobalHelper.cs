@@ -1,8 +1,6 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 03/04/2023
 
-using System.Collections;
-using System.Collections.Generic;
 using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,23 +38,26 @@ public class GlobalHelper : MonoBehaviour
     }
     public void DestroyObject(GameObject target)
     {
-        Destroy(target);
+        target.SetActive(false);
     }
     
     public void SaveDestroyObject(GameObject target)
     {
-        Destroy(target);
         var saveData = QuickSaveWriter.Create("GameSave");
         saveData.Write($"{target.name}", true);
         saveData.Commit();
+        target.SetActive(false);
     }
     
     public void CheckSaveData(GameObject target)
     {
-        var saveData = QuickSaveReader.Create("GameSave");
-        if (saveData.Exists($"{target.name}") && saveData.Read<bool>($"{target.name}"))
+        if (QuickSaveReader.Create("GameSave").Exists($"{target.name}"))
         {
-            Destroy(target);
+            var saveData = QuickSaveReader.Create("GameSave");
+            if (saveData.Read<bool>($"{target.name}"))
+            {
+                target.SetActive(false);
+            }
         }
     }
     

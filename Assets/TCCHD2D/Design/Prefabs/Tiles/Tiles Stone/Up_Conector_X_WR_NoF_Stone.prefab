@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3013087995587289893}
   - component: {fileID: 8375068748529278880}
   - component: {fileID: 6565804575154863403}
+  - component: {fileID: 7843681998129535410}
   m_Layer: 0
   m_Name: Up_Conector_X_WR_NoF_Stone
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7843681998129535410
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420828177873239094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24999988, y: 0.24997613, z: 0.25000024}
+  m_Center: {x: 0, y: 0.124987915, z: 0.000000007450581}

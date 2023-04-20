@@ -1,8 +1,10 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 19/02/2023
 
+using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //TODO: Add running animation
 
@@ -38,7 +40,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField, ReadOnly, Tooltip("The value that will be used to calculate the player's movement.")]
     private Vector3 movementValue;
-    
+
+    public LayerMask groundLayer;
+    public float rayDistance;
+    public float rayDistanceDiagonal;
+    public float slowFactor;
+
     public BoolVariable CanMove => canMove;
     public Vector3 MovementValue
     {
@@ -56,10 +63,15 @@ public class PlayerMovement : MonoBehaviour
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
     public Vector3 NewPosition { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         if (!gameObject.TryGetComponent(out rigidBody))
             rigidBody = gameObject.AddComponent<Rigidbody>();
+        if (GlobalHelper.Instance.SavedScene == "scn_combat")
+        {
+            var reader = QuickSaveReader.Create("GameSave");
+            transform.position = reader.Read<Vector3>("PlayerPosition");
+        }
     }
 
     private void OnEnable()
@@ -80,21 +92,54 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     public void Movement()
     {
-        if (!canMove.Value) return;
-        if (direction.Value == Vector2.zero)
+        if (!canMove.Value || direction.Value == Vector2.zero)
         {
             animator.SetBool(IsWalking, false);
             return;
         }
+
         movementValue = new Vector3(direction.Value.x, 0, direction.Value.y).normalized;
-        
+
+        var rayPosition = transform.position;
+        rayPosition.y += 0.2f;
+        const float angle = 45 * Mathf.Deg2Rad;
+        var dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
+
+        var dirRight = Vector3.right;
+        var dirLeft = Vector3.left;
+        var dirForward = Vector3.forward;
+        var dirBack = Vector3.back;
+
+        Ray rightRay = new Ray(rayPosition, new Vector3(dirRight.x, -1, dirRight.z));
+        Ray leftRay = new Ray(rayPosition, new Vector3(dirLeft.x, -1, dirLeft.z));
+        Ray forwardRay = new Ray(rayPosition, new Vector3(dirForward.x, -1, dirForward.z));
+        Ray backRay = new Ray(rayPosition, new Vector3(dirBack.x, -1, dirBack.z));
+
+        if ((Physics.Raycast(rayPosition, dir, rayDistance, groundLayer) && direction.Value.x > 0)
+            || (!Physics.Raycast(rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0))
+        {
+            movementValue *= slowFactor;
+        }
+        else if ((Physics.Raycast(rayPosition, -dir, rayDistance, groundLayer) && direction.Value.x < 0)
+            || (!Physics.Raycast(leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0))
+        {
+            movementValue *= slowFactor;
+        }
+        else if ((Physics.Raycast(rayPosition, dirForward, rayDistance, groundLayer) && direction.Value.y > 0)
+            || (!Physics.Raycast(forwardRay, rayDistanceDiagonal, groundLayer) && direction.Value.y > 0))
+        {
+            movementValue *= slowFactor;
+        }
+        else if ((Physics.Raycast(rayPosition, dirBack, rayDistance, groundLayer) && direction.Value.y < 0)
+            || (!Physics.Raycast(backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0))
+        {
+            movementValue *= slowFactor;
+        }
+
         if (direction.Value.x != 0 && direction.Value.y != 0)
         {
             animator.SetFloat(SpeedX, 0);
-            if (direction.Value.y > 0)
-                animator.SetFloat(SpeedY, 1);
-            else
-                animator.SetFloat(SpeedY, -1);
+            animator.SetFloat(SpeedY, direction.Value.y > 0 ? 1 : -1);
         }
         else
         {
@@ -102,10 +147,22 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat(SpeedY, movementValue.z);
         }
         animator.SetBool(IsWalking, true);
-        
+
         if (isRunning.Value)
             movementValue *= runSpeedMultiplier;
-        NewPosition = transform.position + movementValue * (speed * Time.fixedDeltaTime);
+
+        NewPosition = transform.position + (movementValue * (speed * Time.fixedDeltaTime));
         rigidBody.MovePosition(NewPosition);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        var position = transform.position;
+        position.y += 0.2f;
+        Gizmos.DrawRay(position, new Vector3(Vector3.right.x, -1, Vector3.right.z) * rayDistanceDiagonal);
+        Gizmos.DrawRay(position, new Vector3(Vector3.left.x, -1, Vector3.left.z) * rayDistanceDiagonal);
+        Gizmos.DrawRay(position, new Vector3(Vector3.forward.x, -1, Vector3.forward.z) * rayDistanceDiagonal);
+        Gizmos.DrawRay(position, new Vector3(Vector3.back.x, -1, Vector3.back.z) * rayDistanceDiagonal);
     }
 }

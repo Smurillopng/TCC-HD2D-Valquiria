@@ -69,21 +69,25 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
-    layerImportMode: 0
+    layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
+    fileImportMode: 1
     importHiddenLayers: 0
-    layerImportMode: 0
+    layerImportMode: 1
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
@@ -112,10 +116,10 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  multiSpriteImportData:
-  - name: humano_Frame_0
+  animatedSpriteImportData:
+  - name: spr_objects_Frame_0
     originalName: 
-    pivot: {x: 0.16666667, y: 0}
+    pivot: {x: 0.11111111, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -124,7 +128,7 @@ ScriptedImporter:
       y: 4
       width: 18
       height: 31
-    spriteID: e46283da9bc088142bd9fd74af0f4286
+    spriteID: 9264b86ead1a3c64c8c2e584bc2c70b6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -133,18 +137,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: humano_Frame_1
+  - name: spr_objects_Frame_1
     originalName: 
-    pivot: {x: 0.16666667, y: 0}
+    pivot: {x: 1.625, y: -0.125}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 43
-      width: 18
-      height: 31
-    spriteID: 5773af81beb4a584ebe88b0bbe2a7d19
+      width: 8
+      height: 8
+    spriteID: 29ba9450c9eace94780419985ec57621
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,78 +157,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 43}
-  - name: humano_Frame_2
-    originalName: 
-    pivot: {x: 0.16666667, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 82
-      width: 18
-      height: 31
-    spriteID: 1117203b6b079314297098443fbf8b11
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 82}
-  - name: Flattened_Frame_0
-    originalName: 
-    pivot: {x: 0.11111111, y: 0}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 30
-      y: 4
-      width: 18
-      height: 31
-    spriteID: 5259d2cf9f9b4ad4ab7c5ea1039018f7
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 30, y: 4}
-  - name: Flattened_Frame_1
-    originalName: 
-    pivot: {x: 1.625, y: -0.125}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 30
-      y: 43
-      width: 8
-      height: 8
-    spriteID: 9a559a1e36ae0864abb2423b6d7b90a5
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 30, y: 43}
-  - name: Flattened_Frame_2
+  - name: spr_objects_Frame_2
     originalName: 
     pivot: {x: 1.5, y: -0.16666667}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 30
-      y: 59
+      x: 20
+      y: 43
       width: 8
       height: 6
-    spriteID: c809d2a522299654fa8c12edd5e678ba
+    spriteID: 19819882821155b418c7f00d69df0b90
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -232,72 +176,43 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 30, y: 59}
+    uvTransform: {x: 20, y: 43}
+  spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1502342124
-    name: humano
-    layerFlags: 3
+    guid: 1767880406
+    name: spr_objects
+    layerFlags: 0
     layerType: 0
+    blendMode: 0
     cells:
-    - name: humano_Frame_0
-      frameIndex: 0
-      cellRect:
-        x: 13
-        y: 0
-        width: 18
-        height: 31
-      spriteId: e46283da9bc088142bd9fd74af0f4286
-    - name: humano_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 13
-        y: 0
-        width: 18
-        height: 31
-      spriteId: 5773af81beb4a584ebe88b0bbe2a7d19
-    - name: humano_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 13
-        y: 0
-        width: 18
-        height: 31
-      spriteId: 1117203b6b079314297098443fbf8b11
-    linkedCells: []
-    parentIndex: -1
-  - layerIndex: 1
-    guid: 1882794632
-    name: Flattened
-    layerFlags: 3
-    layerType: 0
-    cells:
-    - name: Flattened_Frame_0
+    - name: spr_objects_Frame_0
       frameIndex: 0
       cellRect:
         x: 14
         y: 0
         width: 18
         height: 31
-      spriteId: 5259d2cf9f9b4ad4ab7c5ea1039018f7
-    - name: Flattened_Frame_1
+      spriteId: 9264b86ead1a3c64c8c2e584bc2c70b6
+    - name: spr_objects_Frame_1
       frameIndex: 1
       cellRect:
         x: 3
         y: 1
         width: 8
         height: 8
-      spriteId: 9a559a1e36ae0864abb2423b6d7b90a5
-    - name: Flattened_Frame_2
+      spriteId: 29ba9450c9eace94780419985ec57621
+    - name: spr_objects_Frame_2
       frameIndex: 2
       cellRect:
         x: 4
         y: 1
         width: 8
         height: 6
-      spriteId: c809d2a522299654fa8c12edd5e678ba
+      spriteId: 19819882821155b418c7f00d69df0b90
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
+  canvasSize: {x: 32, y: 32}

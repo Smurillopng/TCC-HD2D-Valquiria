@@ -232,6 +232,7 @@ public class UnitController : MonoBehaviour
 
         if (gotAway)
         {
+            GlobalHelper.Instance.SaveScene();
             SceneManager.LoadScene("scn_game");
             PlayerCombatHUD.CombatTextEvent.Invoke($"<color=green>Ran away</color>");
             PlayerCombatHUD.TakenAction.Invoke();

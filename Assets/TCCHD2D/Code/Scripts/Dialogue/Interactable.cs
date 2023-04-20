@@ -12,8 +12,7 @@ public class Interactable : MonoBehaviour
     [SerializeField, Range(0.1f, 100f), Tooltip("Distance needed to interact with the object.")]
     private float interactionRange = 3f;
 
-    [FoldoutGroup("Interaction Settings")]
-    [SerializeField, Required]
+    [FoldoutGroup("Interaction Settings")] [SerializeField, Required]
     private Transform playerTransform;
 
     [FoldoutGroup("Interaction Settings")]
@@ -22,8 +21,10 @@ public class Interactable : MonoBehaviour
 
     [FoldoutGroup("Events"), Tooltip("Event called when the player interacts with the object.")]
     public UnityEvent onInteractionStart;
+
     [FoldoutGroup("Events"), Tooltip("Event called when the player is in range of the object.")]
     public UnityEvent onInteractionInRange;
+
     [FoldoutGroup("Events"), Tooltip("Event called when the player is out of range of the object.")]
     public UnityEvent onInteractionOffRange;
 
@@ -59,6 +60,7 @@ public class Interactable : MonoBehaviour
                 _hasInteracted = false;
                 onInteractionOffRange?.Invoke();
             }
+
             yield return new WaitForSeconds(0.1f);
         }
     }

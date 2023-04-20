@@ -135,8 +135,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6080997214863353706}
-  m_LocalRotation: {x: 0.11043153, y: -0.000000004275286, z: 4.7503174e-10, w: 0.9938837}
-  m_LocalPosition: {x: 0, y: 1, z: -4}
+  m_LocalRotation: {x: 0.14578022, y: 0.000000029483948, z: -0.0000000043445896, w: 0.989317}
+  m_LocalPosition: {x: 0, y: 1.305, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 1, z: -4}
+  m_FollowOffset: {x: 0, y: 1.305, z: -4}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -414,15 +414,16 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 995974613191981340, guid: 4322c119eb840e0449d93ec61f47dfc2, type: 3}
+  m_Sprite: {fileID: 4301292652315601437, guid: b9e338017d3e8ab4298f11bcf3a17767,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.18, y: 0.34}
+  m_Size: {x: 0.2, y: 0.33}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1864262430771853414
@@ -495,6 +496,12 @@ MonoBehaviour:
   animator: {fileID: 1864262430771853414}
   rigidBody: {fileID: 0}
   movementValue: {x: 0, y: 0, z: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  rayDistance: 0.2
+  rayDistanceDiagonal: 0.5
+  slowFactor: 0
 --- !u!114 &4909204957000507863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -529,7 +536,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 5
     - Name: 
       Entry: 7
       Data: 
@@ -550,7 +557,43 @@ MonoBehaviour:
       Data: scn_lvl1
     - Name: $v
       Entry: 4
-      Data: 50
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: scn_lvl2
+    - Name: $v
+      Entry: 4
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: scn_lvl3
+    - Name: $v
+      Entry: 4
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 1
+      Data: scn_lvl4
+    - Name: $v
+      Entry: 4
+      Data: 25
     - Name: 
       Entry: 8
       Data: 
@@ -565,6 +608,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da62801b992689746857559145ca7220, type: 2}
   areaEncounterRate: 100
   minimumEncounterChance: 0
+  showEncounterLog: 0
 --- !u!1 &8281553655720426477
 GameObject:
   m_ObjectHideFlags: 0

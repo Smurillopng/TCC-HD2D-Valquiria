@@ -1,27 +1,28 @@
 # Sistemas do Jogo
+
 - [x] Movimentação
-- [ ] Sistema de Diálogos
-- [ ] Sistema de Vida
-- [ ] Sistema de Combate
+- [x] Sistema de Diálogos
+- [x] Sistema de Vida
+- [x] Sistema de Combate
   - Opções:
-    - [ ] Ataque
-    - [ ] Especial
-    - [ ] Item
-    - [ ] Fugir
+    - [x] Ataque
+    - [x] Especial
+    - [x] Item
+    - [x] Fugir
 - [ ] Sistema de Vantagens
-- [ ] Sistema de Inventário
-- [ ] Sistema de Equipamentos
+- [x] Sistema de Inventário
+- [x] Sistema de Equipamentos
   - [ ] Atributos
   - Tipos de Equipamentos
-    - [ ] Armas
-    - [ ] Capacetes
-    - [ ] Peitorais
-    - [ ] Calças
-    - [ ] Runas
+    - [x] Armas
+    - [x] Capacetes
+    - [x] Peitorais
+    - [x] Calças
+    - [x] Runas
 - [ ] Sistema de Status
   - [ ] Fogo
   - [ ] Frio
   - [ ] Sangramento
   - [ ] Atordoamento
   - [ ] Incapacidade
-- [ ] Sistema de Save
+- [/] Sistema de Save

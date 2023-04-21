@@ -93,7 +93,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638176137206073448
+  platformSettingsDirtyTick: 638177032437654025
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -117,7 +117,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: spr_Liv_face
+  - name: spr_liv_face
     originalName: 
     pivot: {x: 0.5929204, y: 0}
     alignment: 9
@@ -128,7 +128,7 @@ ScriptedImporter:
       y: 4
       width: 113
       height: 143
-    spriteID: 1cd45a26997c0314980cdcd9433139e7
+    spriteID: 27525fce02dd5f448b248d8164e91203
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -140,20 +140,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -334626313
-    name: spr_Liv_face
+    guid: -764313705
+    name: spr_liv_face
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_Liv_face
+    - name: spr_liv_face
       frameIndex: 0
       cellRect:
         x: 5
         y: 0
         width: 113
         height: 143
-      spriteId: 1cd45a26997c0314980cdcd9433139e7
+      spriteId: 27525fce02dd5f448b248d8164e91203
     linkedCells: []
     parentIndex: -1
   platformSettings:

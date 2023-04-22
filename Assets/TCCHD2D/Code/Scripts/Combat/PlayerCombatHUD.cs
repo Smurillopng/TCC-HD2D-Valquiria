@@ -88,10 +88,6 @@ public class PlayerCombatHUD : MonoBehaviour
 
     private void Start()
     {
-        UpdateEnemyHealth();
-        UpdatePlayerTp();
-        UpdatePlayerHealth();
-
         playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
         playerHealthBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
         playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
@@ -102,6 +98,10 @@ public class PlayerCombatHUD : MonoBehaviour
         turnManager.PlayerUnitController.Unit.CurrentTp = 0;
         combatTextBox.text = "";
 
+        UpdateEnemyHealth();
+        UpdatePlayerTp();
+        UpdatePlayerHealth();
+        
         CombatTextEvent += DisplayCombatText;
         UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;

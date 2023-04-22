@@ -73,7 +73,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 1
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 6
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -85,7 +85,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 1
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 6
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -93,7 +93,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638177032307303972
+  platformSettingsDirtyTick: 638177066471635533
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,8 +119,8 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Spr_Liv_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -139,8 +139,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 250}
   - name: Spr_Liv_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -159,8 +159,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 292}
   - name: Spr_Liv_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -179,8 +179,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 300}
   - name: Spr_Liv_Frame_3
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -199,8 +199,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 341}
   - name: Spr_Liv_Frame_4
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -219,8 +219,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 382}
   - name: Spr_Liv_Frame_5
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -239,8 +239,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 423}
   - name: Spr_Liv_Frame_6
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -259,8 +259,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 464}
   - name: Spr_Liv_Frame_7
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -279,8 +279,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 44}
   - name: Spr_Liv_Frame_8
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -299,8 +299,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 85}
   - name: Spr_Liv_Frame_9
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -319,8 +319,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 126}
   - name: Spr_Liv_Frame_10
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -339,8 +339,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 128}
   - name: Spr_Liv_Frame_11
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -359,8 +359,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 462}
   - name: Spr_Liv_Frame_12
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -379,8 +379,8 @@ ScriptedImporter:
     uvTransform: {x: 165, y: 4}
   - name: Spr_Liv_Frame_13
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -399,8 +399,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 169}
   - name: Spr_Liv_Frame_14
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -419,8 +419,8 @@ ScriptedImporter:
     uvTransform: {x: 165, y: 46}
   - name: Spr_Liv_Frame_15
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -439,8 +439,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 376}
   - name: Spr_Liv_Frame_16
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -459,8 +459,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 210}
   - name: Spr_Liv_Frame_17
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -479,8 +479,8 @@ ScriptedImporter:
     uvTransform: {x: 165, y: 88}
   - name: Spr_Liv_Frame_18
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -499,8 +499,8 @@ ScriptedImporter:
     uvTransform: {x: 165, y: 130}
   - name: Spr_Liv_Frame_19
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -519,8 +519,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 251}
   - name: Spr_Liv_Frame_20
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -539,8 +539,8 @@ ScriptedImporter:
     uvTransform: {x: 165, y: 172}
   - name: Spr_Liv_Frame_21
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -559,8 +559,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 419}
   - name: Spr_Liv_Frame_22
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -579,8 +579,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 167}
   - name: Spr_Liv_Frame_23
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -599,8 +599,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 208}
   - name: Spr_Liv_Frame_24
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -619,8 +619,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 249}
   - name: Spr_Liv_Frame_25
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -639,8 +639,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 290}
   - name: Spr_Liv_Frame_26
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -659,8 +659,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 331}
   - name: Spr_Liv_Frame_27
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -679,8 +679,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 372}
   - name: Spr_Liv_Frame_28
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -699,8 +699,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 334}
   - name: Spr_Liv_Frame_29
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -719,8 +719,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 136}
   - name: Spr_Liv_Frame_30
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -739,8 +739,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 92}
   - name: Spr_Liv_Frame_31
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -759,8 +759,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 180}
   - name: Spr_Liv_Frame_32
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -779,8 +779,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Spr_Liv_Frame_33
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -799,8 +799,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 48}
   - name: Spr_Liv_Frame_34
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -819,8 +819,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 376}
   - name: Spr_Liv_Frame_35
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -839,8 +839,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 461}
   - name: Spr_Liv_Frame_36
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -859,8 +859,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 4}
   - name: Spr_Liv_Frame_37
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -879,8 +879,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 391}
   - name: Spr_Liv_Frame_38
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -899,8 +899,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 431}
   - name: Spr_Liv_Frame_39
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -919,8 +919,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 471}
   - name: Spr_Liv_Frame_40
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -939,8 +939,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 209}
   - name: Spr_Liv_Frame_41
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -959,8 +959,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 267}
   - name: Spr_Liv_Frame_42
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -979,8 +979,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 90}
   - name: Spr_Liv_Frame_43
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -999,8 +999,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 132}
   - name: Spr_Liv_Frame_44
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1019,8 +1019,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 308}
   - name: Spr_Liv_Frame_45
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1039,8 +1039,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 349}
   - name: Spr_Liv_Frame_46
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1059,8 +1059,8 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 224}
   - name: Spr_Liv_Frame_47
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1079,8 +1079,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 4}
   - name: Spr_Liv_Frame_48
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1099,8 +1099,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 292}
   - name: Spr_Liv_Frame_49
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1119,8 +1119,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 334}
   - name: Spr_Liv_Frame_50
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1139,8 +1139,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 45}
   - name: Spr_Liv_Frame_51
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1159,8 +1159,8 @@ ScriptedImporter:
     uvTransform: {x: 139, y: 86}
   - name: Spr_Liv_Frame_52
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1179,8 +1179,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 418}
   - name: Spr_Liv_Frame_53
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1199,8 +1199,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 174}
   - name: Spr_Liv_Frame_54
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1219,8 +1219,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 413}
   - name: Spr_Liv_Frame_55
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1239,8 +1239,8 @@ ScriptedImporter:
     uvTransform: {x: 82, y: 454}
   - name: Spr_Liv_Frame_56
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1259,8 +1259,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 4}
   - name: Spr_Liv_Frame_57
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1279,8 +1279,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 45}
   - name: Spr_Liv_Frame_58
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1299,8 +1299,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 86}
   - name: Spr_Liv_Frame_59
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1319,8 +1319,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 4}
   - name: Spr_Liv_Frame_60
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1339,8 +1339,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 216}
   - name: Spr_Liv_Frame_61
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1359,8 +1359,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 47}
   - name: Spr_Liv_Frame_62
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1379,8 +1379,8 @@ ScriptedImporter:
     uvTransform: {x: 111, y: 127}
   - name: Spr_Liv_Frame_63
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1399,8 +1399,8 @@ ScriptedImporter:
     uvTransform: {x: 54, y: 258}
   - name: Spr_Liv_Frame_64
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0, y: 0}
+    alignment: 6
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
@@ -1661,7 +1661,7 @@ ScriptedImporter:
     - name: Spr_Liv_Frame_29
       frameIndex: 29
       cellRect:
-        x: 3
+        x: 1
         y: 0
         width: 30
         height: 36
@@ -1669,7 +1669,7 @@ ScriptedImporter:
     - name: Spr_Liv_Frame_30
       frameIndex: 30
       cellRect:
-        x: 5
+        x: 1
         y: 0
         width: 33
         height: 36
@@ -1677,7 +1677,7 @@ ScriptedImporter:
     - name: Spr_Liv_Frame_31
       frameIndex: 31
       cellRect:
-        x: 16
+        x: 12
         y: 0
         width: 22
         height: 36
@@ -1685,7 +1685,7 @@ ScriptedImporter:
     - name: Spr_Liv_Frame_32
       frameIndex: 32
       cellRect:
-        x: 16
+        x: 13
         y: 0
         width: 42
         height: 36
@@ -1693,7 +1693,7 @@ ScriptedImporter:
     - name: Spr_Liv_Frame_33
       frameIndex: 33
       cellRect:
-        x: 16
+        x: 12
         y: 0
         width: 36
         height: 36

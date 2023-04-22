@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7505045379935350561}
   - component: {fileID: 5747631388244007915}
   - component: {fileID: 6341672913403085710}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pfb_ramp_stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

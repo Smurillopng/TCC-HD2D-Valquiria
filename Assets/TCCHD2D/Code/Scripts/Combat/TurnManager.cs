@@ -201,12 +201,10 @@ public class TurnManager : MonoBehaviour
                 break;
 
             case CombatState.PlayerWon:
-                Debug.Log("Enemy has been defeated!");
                 StartCoroutine(Victory());
                 break;
 
             case CombatState.PlayerLost:
-                Debug.Log("Player has been defeated!");
                 GameOver();
                 break;
         }
@@ -262,8 +260,8 @@ public class TurnManager : MonoBehaviour
     private void DisplayVictoryText()
     {
         var victoryText =
-            $"{EnemyUnitController.Unit.UnitName} has been defeated!\n" +
-            $"You have gained {EnemyUnitController.Unit.ExperienceDrop} experience!";
+            $"{EnemyUnitController.Unit.UnitName} foi derrotado!\n" +
+            $"Você ganhou {EnemyUnitController.Unit.ExperienceDrop} pontos de experiência!";
         PlayerCombatHUD.CombatTextEvent.Invoke(victoryText);
     }
 

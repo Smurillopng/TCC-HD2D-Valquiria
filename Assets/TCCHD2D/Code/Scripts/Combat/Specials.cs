@@ -15,18 +15,18 @@ public class Specials : MonoBehaviour
     {
         combatHUD = FindObjectOfType<PlayerCombatHUD>();
         turnManager = FindObjectOfType<TurnManager>();
-        specialsList.Add("Heal");
-        specialsList.Add("Heavy Hit");
+        specialsList.Add("Cura");
+        specialsList.Add("Golpe Pesado");
     }
     
     public void UseSpecial(string specialName)
     {
         switch (specialName)
         {
-            case "Heal":
+            case "Cura":
                 HealSpecialAction();
                 break;
-            case "Heavy Hit":
+            case "Golpe Pesado":
                 HeavyHitSpecialAction();
                 break;
         }
@@ -60,13 +60,13 @@ public class Specials : MonoBehaviour
             // HUD Update
             player.Unit.CurrentTp -= 20;
             PlayerCombatHUD.UpdateCombatHUD.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Healed <color=green>{heal}</color> HP");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Curou <color=green>{heal}</color> HP");
             PlayerCombatHUD.TakenAction.Invoke();
         }
         else
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Not enough <color=red>TP</color>\n" +
-                                                   $"Cost: <color=red>20 TP</color>");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
+                                                   $"Quantidade necessária: <color=red>20 TP</color>");
         }
     }
     
@@ -99,13 +99,13 @@ public class Specials : MonoBehaviour
             target.TakeDamage(attackDamageCalculated);
             
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Used <color=purple>Heavy Hit</color> on <color=blue>{target.Unit.UnitName}</color> for <color=red>{target.damageTakenThisTurn}</color> damage</b>");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Golpe Pesado</color> em <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
             PlayerCombatHUD.TakenAction.Invoke();
         }
         else
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Not enough <color=red>TP</color>\n" +
-                                                   $"Cost: <color=red>40 TP</color>");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
+                                                   $"Quantidade necessária: <color=red>40 TP</color>");
         }
     }
 }

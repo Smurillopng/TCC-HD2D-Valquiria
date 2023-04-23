@@ -116,7 +116,7 @@ public class UnitController : MonoBehaviour
     {
         AttackLogic(target);
         PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Attacked <color=blue>{target.Unit.UnitName}</color> for <color=red>{target.damageTakenThisTurn}</color> damage</b>");
+        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
         PlayerCombatHUD.TakenAction.Invoke();
     }
 
@@ -181,7 +181,7 @@ public class UnitController : MonoBehaviour
     {
         if (Unit.CurrentTp < Unit.MaxTp / 2)
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke("<color=red>Not enough TP</color>");
+            PlayerCombatHUD.CombatTextEvent.Invoke("<color=red>TP insuficiente</color>");
         }
     }
 
@@ -239,12 +239,12 @@ public class UnitController : MonoBehaviour
             var save = QuickSaveWriter.Create("GameSave");
             save.Write("LastScene", SceneManager.GetActiveScene().name);
             save.Commit();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=green>Ran away</color>");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>");
             PlayerCombatHUD.TakenAction.Invoke();
         }
         else
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>Failed to run away</color>");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>");
             PlayerCombatHUD.TakenAction.Invoke();
         }
     }
@@ -275,7 +275,7 @@ public class UnitController : MonoBehaviour
         if (unit.IsPlayer) return;
         // AI logic for selecting an action goes here
         AttackLogic(target);
-        PlayerCombatHUD.CombatTextEvent.Invoke($"<color=blue>{unit.UnitName}</color> attacked <color=red>{target.Unit.UnitName}</color> for <color=red>{target.damageTakenThisTurn}</color> damage!");
+        PlayerCombatHUD.CombatTextEvent.Invoke($"<color=blue>{unit.UnitName}</color> atacou <color=red>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano!");
 
         // IF ENEMY CAN RUN AWAY
         // else

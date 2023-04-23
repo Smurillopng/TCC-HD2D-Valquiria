@@ -46,7 +46,9 @@ public class ItemNotification : MonoBehaviour
         isDisplaying = true;
         var item = itemQueue.Dequeue();
         var panel = Instantiate(panelPrefab, transform);
-        panel.transform.Find("Icon").GetComponent<UnityEngine.UI.Image>().sprite = item.ItemIcon;
+        var panelIcon = panel.transform.Find("Icon").GetComponent<UnityEngine.UI.Image>();
+        panelIcon.sprite = item.ItemIcon;
+        panelIcon.preserveAspect = true;
         panel.transform.Find("Name").GetComponent<TextMeshProUGUI>().text = item.ItemName;
 
         var animator = panel.GetComponent<Animator>();

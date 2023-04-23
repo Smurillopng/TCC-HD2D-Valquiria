@@ -206,7 +206,7 @@ public class PlayerCombatHUD : MonoBehaviour
         
         if (!hasItem)
         {
-            CombatTextEvent.Invoke("<b>You have no items!</b>");
+            CombatTextEvent.Invoke("<b>Sem itens!</b>");
             return;
         }
         
@@ -233,7 +233,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 UpdatePlayerHealth();
                 UpdatePlayerTp();
                 UpdateEnemyHealth();
-                CombatTextEvent.Invoke($"<b>Used {item.ItemName}!</b>");
+                CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>");
                 turnManager.isPlayerTurn = false;
                 TakenAction.Invoke();
                 itemPanel.SetActive(false);

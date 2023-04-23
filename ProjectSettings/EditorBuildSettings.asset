@@ -23,6 +23,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TCCHD2D/Design/Scenes/scn_lvl1.unity
     guid: 790f2d54b128b94458fea50a0f2b9781
+  - enabled: 1
+    path: Assets/TCCHD2D/Design/Scenes/scn_lvl2.unity
+    guid: ec4df5088633b5c488018b9da8a8866b
+  - enabled: 1
+    path: Assets/TCCHD2D/Design/Scenes/scn_lvl3.unity
+    guid: c119ce3dc1a23bb4f970132aaa0045bb
+  - enabled: 1
+    path: Assets/TCCHD2D/Design/Scenes/scn_lvl4.unity
+    guid: 3e527260521231849a3c648d6beef049
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 07ecd0aa6c0d4334e868a06370f06769,
       type: 2}

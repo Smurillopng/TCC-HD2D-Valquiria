@@ -241,6 +241,9 @@ public class TurnManager : MonoBehaviour
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
         SceneManager.LoadScene(QuickSaveReader.Create("GameSave").Read<string>("LastScene"));
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("LastScene", gameObject.scene.name);
+        writer.Commit();
     }
 
     private void XpReward()

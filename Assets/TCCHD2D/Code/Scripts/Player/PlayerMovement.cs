@@ -95,11 +95,14 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (reader.Exists("CurrentScene"))
+        if (reader.Exists("LastScene"))
         {
             if (reader.Exists("ChangingScene") && reader.Read<bool>("ChangingScene").Equals(false))
-                if (SceneManager.GetActiveScene().name != reader.Read<string>("CurrentScene"))
-                    transform.position = reader.Read<Vector3>("PlayerPosition");
+                if (SceneManager.GetActiveScene().name != reader.Read<string>("LastScene"))
+                {
+                    print("chegou aqui");
+                    gameObject.transform.position = reader.Read<Vector3>("PlayerPosition");
+                }
         }
 
         var save = QuickSaveWriter.Create("GameSave");

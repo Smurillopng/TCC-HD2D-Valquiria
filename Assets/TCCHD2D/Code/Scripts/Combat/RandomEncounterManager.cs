@@ -33,11 +33,10 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     [SerializeField, ReadOnly] private float minimumEncounterChance;
     [SerializeField] private bool showEncounterLog;
 
-    private Unit _selectedEnemy;
-    private PlayerMovement _playerMovement; // The PlayerMovement component of the player
-    private Vector3 _lastPosition; // The last position of the player
+    private Unit selectedEnemy;
+    private PlayerMovement playerMovement; // The PlayerMovement component of the player
+    private Vector3 lastPosition; // The last position of the player
     private LiftGammaGain liftGammaGain;
-    private bool isFading;
 
     private void OnEnable()
     {
@@ -46,7 +45,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
 
     private void Start()
     {
-        _playerMovement = FindObjectOfType<PlayerMovement>(); // Get the PlayerMovement component
+        playerMovement = FindObjectOfType<PlayerMovement>(); // Get the PlayerMovement component
         areaEncounterRate = areas[SceneManager.GetActiveScene().name]; // Get the encounter rate for the current area
         minimumEncounterChance = areaEncounterRate / 100f; // Calculate the minimum encounter chance
         volume.profile.TryGet(out liftGammaGain);
@@ -54,7 +53,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         
         if (reader.Read<string>("CurrentScene") == SceneManager.GetActiveScene().name)
         {
-            _playerMovement.CanMove.Value = true;
+            playerMovement.CanMove.Value = true;
         }
     }
 
@@ -71,14 +70,14 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     private void EncounterEnemy()
     {
         var randomIndex = Random.Range(0, enemies.Count); // Get a random index
-        _selectedEnemy = enemies[randomIndex]; // Get the enemy at that index
+        selectedEnemy = enemies[randomIndex]; // Get the enemy at that index
 
-        Debug.Log("You encountered " + _selectedEnemy.name + "!"); // Log the encounter
+        Debug.Log("You encountered " + selectedEnemy.name + "!"); // Log the encounter
         
         var save = QuickSaveWriter.Create("GameSave");
-        save.Write("PlayerPosition", _playerMovement.transform.position);
+        save.Write("PlayerPosition", playerMovement.transform.position);
         save.Write("LastScene", SceneManager.GetActiveScene().name);
-        save.Write("EncounteredEnemy", _selectedEnemy.name);
+        save.Write("EncounteredEnemy", selectedEnemy.name);
         save.Commit();
 
         StartCoroutine(FadeIn(liftGammaGain));
@@ -88,10 +87,9 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     
     private IEnumerator FadeIn(LiftGammaGain lgg)
     {
-        isFading = true;
         float time = 0;
         var defaultLgg = lgg.gamma.value;
-        _playerMovement.CanMove.Value = false;
+        playerMovement.CanMove.Value = false;
         while (time < fadeTime)
         {
             time += Time.deltaTime;
@@ -99,18 +97,17 @@ public class RandomEncounterManager : SerializedMonoBehaviour
             yield return null;
         }
         SceneManager.LoadScene(combatScene);
-        isFading = false;
     }
     
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != combatScene && _playerMovement != null)
+        if (scene.name != combatScene && playerMovement != null)
         {
             // TODO: Fix this
-            _playerMovement.CanMove.Value = true;
-            _playerMovement.MovementValue = Vector3.zero;
-            _playerMovement.Direction = Vector2.zero;
-            _playerMovement.Movement();
+            playerMovement.CanMove.Value = true;
+            playerMovement.MovementValue = Vector3.zero;
+            playerMovement.Direction = Vector2.zero;
+            playerMovement.Movement();
         }
     }
 

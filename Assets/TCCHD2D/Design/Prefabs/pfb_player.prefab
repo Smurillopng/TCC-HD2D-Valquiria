@@ -135,7 +135,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6080997214863353706}
-  m_LocalRotation: {x: 0.14578022, y: 0.000000017022566, z: -0.0000000025083502, w: 0.989317}
+  m_LocalRotation: {x: 0.14578022, y: -0.000000017022566, z: 0.0000000025083502, w: 0.989317}
   m_LocalPosition: {x: 0, y: 1.305, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -393,7 +393,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d7d18844e3141b946805f6d0f9ca904b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -423,7 +423,7 @@ SpriteRenderer:
   m_Size: {x: 0.2, y: 0.33}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &1864262430771853414
@@ -494,13 +494,14 @@ MonoBehaviour:
   speed: 1
   runSpeedMultiplier: 1.5
   animator: {fileID: 1864262430771853414}
+  spawnController: {fileID: 0}
   rigidBody: {fileID: 0}
   movementValue: {x: 0, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   rayDistance: 0.2
-  rayDistanceDiagonal: 0.55
+  rayDistanceDiagonal: 0.6
   slowFactor: 0
 --- !u!114 &4909204957000507863
 MonoBehaviour:
@@ -611,7 +612,7 @@ MonoBehaviour:
   volume: {fileID: 0}
   fadeTime: 0
   minimumEncounterChance: 0
-  showEncounterLog: 0
+  showEncounterLog: 1
 --- !u!1 &8281553655720426477
 GameObject:
   m_ObjectHideFlags: 0

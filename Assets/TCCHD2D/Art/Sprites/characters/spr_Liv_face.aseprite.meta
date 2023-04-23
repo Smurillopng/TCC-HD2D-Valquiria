@@ -117,7 +117,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: spr_liv_face
+  - name: spr_Liv_face
     originalName: 
     pivot: {x: 0.5929204, y: 0}
     alignment: 9
@@ -128,7 +128,7 @@ ScriptedImporter:
       y: 4
       width: 113
       height: 143
-    spriteID: 403910fc0e493e04ca05835ce5f8f030
+    spriteID: e55f973df7ea4da40a0c910354da2280
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -140,20 +140,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -764313705
-    name: spr_liv_face
+    guid: -334626313
+    name: spr_Liv_face
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_liv_face
+    - name: spr_Liv_face
       frameIndex: 0
       cellRect:
         x: 5
         y: 0
         width: 113
         height: 143
-      spriteId: 403910fc0e493e04ca05835ce5f8f030
+      spriteId: e55f973df7ea4da40a0c910354da2280
     linkedCells: []
     parentIndex: -1
   platformSettings:

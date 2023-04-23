@@ -35,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [SerializeField, Required, Tooltip("Animator component of the player.")]
     private Animator animator;
+    
+    [SerializeField]
+    private SpawnController spawnController;
 
     [SerializeField, ReadOnly,
      Tooltip("Rigidbody component of the player. If it doesn't exist, it will be added automatically.")]
@@ -60,8 +63,8 @@ public class PlayerMovement : MonoBehaviour
     {
         get => direction.Value;
         set => direction.Value = value;
-    }
-
+    } 
+    
     private static readonly int SpeedX = Animator.StringToHash("SpeedX");
     private static readonly int SpeedY = Animator.StringToHash("SpeedY");
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
@@ -71,12 +74,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!gameObject.TryGetComponent(out rigidBody))
             rigidBody = gameObject.AddComponent<Rigidbody>();
-        
+
         var reader = QuickSaveReader.Create("GameSave");
-        if (reader.Exists("CurrentScene"))
+        if (reader.Exists("ChangingScene"))
         {
-            if (SceneManager.GetActiveScene().name != reader.Read<string>("CurrentScene"))
-                transform.position = reader.Read<Vector3>("PlayerPosition");
+            if (reader.Exists("SpawnStart") || reader.Exists("SpawnEnd") && reader.Read<bool>("ChangingScene").Equals(true))
+            {
+                var writer = QuickSaveWriter.Create("GameSave");
+                if (reader.Read<bool>("SpawnStart").Equals(true))
+                {
+                    transform.position = spawnController.SpawnStart.position;
+                    writer.Write("ChangingScene", false);
+                    writer.Commit();
+                }
+                else if (reader.Read<bool>("SpawnEnd").Equals(true))
+                {
+                    transform.position = spawnController.SpawnEnd.position;
+                    writer.Write("ChangingScene", false);
+                    writer.Commit();
+                }
+            }
+        }
+        else if (reader.Exists("CurrentScene"))
+        {
+            if (reader.Exists("ChangingScene") && reader.Read<bool>("ChangingScene").Equals(false))
+                if (SceneManager.GetActiveScene().name != reader.Read<string>("CurrentScene"))
+                    transform.position = reader.Read<Vector3>("PlayerPosition");
         }
 
         var save = QuickSaveWriter.Create("GameSave");

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -13,6 +13,8 @@ public class SceneTransitioner : MonoBehaviour
     private Volume volume;
     [SerializeField]
     private float fadeTime;
+    [SerializeField] 
+    private bool spawnStart, spawnEnd;
 
     private LiftGammaGain liftGammaGain;
     private bool isFading;
@@ -54,6 +56,22 @@ public class SceneTransitioner : MonoBehaviour
         }
 
         SceneManager.LoadScene(goToScene);
+        if (spawnStart)
+        {
+            var writer = QuickSaveWriter.Create("GameSave");
+            writer.Write("SpawnStart", true);
+            writer.Write("SpawnEnd", false);
+            writer.Write("ChangingScene", true);
+            writer.Commit();
+        }
+        else if (spawnEnd)
+        {
+            var writer = QuickSaveWriter.Create("GameSave");
+            writer.Write("SpawnStart", false);
+            writer.Write("SpawnEnd", true);
+            writer.Write("ChangingScene", true);
+            writer.Commit();
+        }
         pm.CanMove.Value = true;
         lgg.gamma.value = defaultLgg;
         isFading = false;

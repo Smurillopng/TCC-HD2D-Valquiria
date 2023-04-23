@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
+  m_Name: so_equipItem_test
+  m_EditorClassIdentifier: 
+  itemID: 3
+  slotType: 3
+  itemName: Martelo
+  itemIcon: {fileID: 1960990957491699774, guid: 117e47e4e6824c74a8c7dbe5a775784f,
+    type: 3}
+  itemDescription: Equipment Test
+  maxStack: 1
+  currentStack: 0
+  itemValue: 5
+  statusValue: 1

@@ -21,9 +21,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField, Range(0.01f, 1f), Tooltip("Delay between each character of the dialogue text.")]
     private float charDelay = 0.1f;
 
-    [SerializeField, Required, Tooltip("Audio source that will play the audio clips of the dialogue lines.")]
-    private AudioSource audioSource;
-
     [TitleGroup("Dialogue Data", Alignment = TitleAlignments.Centered)]
     [SerializeField, ReadOnly, Tooltip("Current dialogue data being displayed.")]
     private DialogueData currentDialogueData;
@@ -48,11 +45,6 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += character;
             yield return new WaitForSeconds(charDelay);
         }
-
-        if (!currentLine.PlayAudio) yield break;
-        var audioClip = currentLine.AudioClip;
-        if (audioClip != null) audioSource.PlayOneShot(audioClip);
-        else Debug.LogWarning($"Audio clip {currentLine.AudioClip} not found.");
     }
 
     public void AdvanceDialogue()

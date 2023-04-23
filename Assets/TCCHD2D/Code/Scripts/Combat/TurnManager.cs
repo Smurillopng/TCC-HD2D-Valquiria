@@ -96,7 +96,7 @@ public class TurnManager : MonoBehaviour
                     EnemyUnitController = unitObject.GetComponent<UnitController>();
                 }
 
-                EnemyUnitController.Unit = Resources.Load<Unit>("Scriptable Objects/" + reader.Read<string>("EncounteredEnemy"));
+                EnemyUnitController.Unit = Resources.Load<Unit>("Scriptable Objects/Enemies/" + reader.Read<string>("EncounteredEnemy"));
                 var enemyObject = EnemyUnitController.gameObject;
                 var playerObject = PlayerUnitController.gameObject;
                 enemyObject.GetComponent<SpriteRenderer>().sprite = EnemyUnitController.Unit.UnitSprite;

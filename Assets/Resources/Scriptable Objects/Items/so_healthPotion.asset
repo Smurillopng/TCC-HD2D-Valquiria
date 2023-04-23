@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f7e845936f24d58a175d3d846e813f7, type: 3}
-  m_Name: so_consumableItem_test
+  m_Name: so_healthPotion
   m_EditorClassIdentifier: 
   itemID: 2
   itemName: "Po\xE7\xE3o de Vida"

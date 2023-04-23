@@ -154,22 +154,22 @@ MonoBehaviour:
       Data: 
   type: 0
   unitName: Player
-  unitSprite: {fileID: -9195436482143844776, guid: b9e338017d3e8ab4298f11bcf3a17767,
+  unitSprite: {fileID: 2170638157055769421, guid: b9e338017d3e8ab4298f11bcf3a17767,
     type: 3}
-  level: 2
+  level: 1
   experienceDrop: 0
-  experience: 32
+  experience: 0
   attackAnimation: {fileID: 0}
   maxHp: 10
-  currentHp: 2
+  currentHp: 10
   maxTp: 100
-  currentTp: 40
+  currentTp: 0
   attack: 2
   defence: 1
   speed: 2
   luck: 1
   dexterity: 1
   isPlayer: 1
-  resetOnExit: 0
+  resetOnExit: 1
   isDead: 0
   hasTakenTurn: 0

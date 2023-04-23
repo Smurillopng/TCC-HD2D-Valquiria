@@ -106,6 +106,11 @@ public class Consumable : ScriptableObject, IItem
     {
         var target = FindObjectOfType<TurnManager>().EnemyUnitController;
         target.Unit.CurrentHp -= EffectValue;
+        if (target.Unit.CurrentHp <= 0)
+        {
+            target.Unit.IsDead = true;
+            target.Unit.CurrentHp = 0;
+        }
     }
 
     public void IncreaseTp()

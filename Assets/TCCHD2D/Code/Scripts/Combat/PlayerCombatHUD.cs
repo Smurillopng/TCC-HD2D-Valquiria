@@ -234,7 +234,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 UpdatePlayerTp();
                 UpdateEnemyHealth();
                 CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>");
-                turnManager.isPlayerTurn = false;
+                //turnManager.isPlayerTurn = false;
                 TakenAction.Invoke();
                 itemPanel.SetActive(false);
                 returnButton.gameObject.SetActive(false);

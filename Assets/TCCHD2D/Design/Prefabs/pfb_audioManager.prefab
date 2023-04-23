@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5821962305699935112}
   - component: {fileID: 4939942212483140407}
+  - component: {fileID: 1370159004674346238}
   m_Layer: 0
   m_Name: pfb_audioManager
   m_TagString: Untagged
@@ -65,4 +66,148 @@ MonoBehaviour:
   sourceLimit: 10
   canExpand: 0
   sourceList: []
-  sounds: []
+  sounds:
+  - name: menuMusic
+    clip: {fileID: 8300000, guid: c09f730b0d2655e4692db6bb57cced92, type: 3}
+    tab: 0
+    source: {fileID: 0}
+    position: {fileID: 0}
+    output: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
+      type: 2}
+    usePreDefinedSettings: 0
+    soundSettings: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    mute: 0
+    ignoreEffects: 0
+    ignoreListenerEffects: 0
+    ignoreReverbZone: 0
+    spatialize: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spacialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    rollOffMode: 0
+    minimumDistance: 1
+    maximumDistance: 500
+    onPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    onStop:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: bossMusic
+    clip: {fileID: 8300000, guid: 57510bbeb5761394899a0ee27937f3d0, type: 3}
+    tab: 0
+    source: {fileID: 0}
+    position: {fileID: 0}
+    output: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
+      type: 2}
+    usePreDefinedSettings: 0
+    soundSettings: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    mute: 0
+    ignoreEffects: 0
+    ignoreListenerEffects: 0
+    ignoreReverbZone: 0
+    spatialize: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spacialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    rollOffMode: 0
+    minimumDistance: 1
+    maximumDistance: 500
+    onPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    onStop:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: gameMusic
+    clip: {fileID: 8300000, guid: 5047bbb0833c3f149975a4f4df0f1e5b, type: 3}
+    tab: 0
+    source: {fileID: 0}
+    position: {fileID: 0}
+    output: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
+      type: 2}
+    usePreDefinedSettings: 0
+    soundSettings: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    mute: 0
+    ignoreEffects: 0
+    ignoreListenerEffects: 0
+    ignoreReverbZone: 0
+    spatialize: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spacialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    rollOffMode: 0
+    minimumDistance: 1
+    maximumDistance: 500
+    onPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    onStop:
+      m_PersistentCalls:
+        m_Calls: []
+  - name: combatMusic
+    clip: {fileID: 8300000, guid: 2a2b8b51fad4f454ba155865f2762019, type: 3}
+    tab: 0
+    source: {fileID: 0}
+    position: {fileID: 0}
+    output: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
+      type: 2}
+    usePreDefinedSettings: 0
+    soundSettings: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    mute: 0
+    ignoreEffects: 0
+    ignoreListenerEffects: 0
+    ignoreReverbZone: 0
+    spatialize: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spacialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    rollOffMode: 0
+    minimumDistance: 1
+    maximumDistance: 500
+    onPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    onStop:
+      m_PersistentCalls:
+        m_Calls: []
+--- !u!114 &1370159004674346238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2248914169613157161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb63be847e2a4dc5898c64d5e5b8920a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
         {
             writer.Delete(key);
         }
-
+        writer.Commit();
     }
 
     /// <summary>

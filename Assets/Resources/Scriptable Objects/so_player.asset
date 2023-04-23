@@ -154,15 +154,16 @@ MonoBehaviour:
       Data: 
   type: 0
   unitName: Player
-  unitSprite: {fileID: 5382305708237041370, guid: b9e338017d3e8ab4298f11bcf3a17767,
+  unitSprite: {fileID: -9195436482143844776, guid: b9e338017d3e8ab4298f11bcf3a17767,
     type: 3}
   level: 2
   experienceDrop: 0
-  experience: 28
+  experience: 32
+  attackAnimation: {fileID: 0}
   maxHp: 10
-  currentHp: 4
+  currentHp: 2
   maxTp: 100
-  currentTp: 0
+  currentTp: 40
   attack: 2
   defence: 1
   speed: 2

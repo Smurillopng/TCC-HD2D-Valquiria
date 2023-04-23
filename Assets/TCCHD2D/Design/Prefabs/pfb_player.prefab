@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 4909204957000507863}
   m_Layer: 0
   m_Name: pfb_player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -607,6 +607,9 @@ MonoBehaviour:
   enemies:
   - {fileID: 11400000, guid: da62801b992689746857559145ca7220, type: 2}
   areaEncounterRate: 100
+  combatScene: 
+  volume: {fileID: 0}
+  fadeTime: 0
   minimumEncounterChance: 0
   showEncounterLog: 0
 --- !u!1 &8281553655720426477

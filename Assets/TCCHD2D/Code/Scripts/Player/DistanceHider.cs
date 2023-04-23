@@ -1,14 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class DistanceHider : MonoBehaviour
+public class DistanceHider : SerializedMonoBehaviour
 {
     public Transform player;
     public LayerMask layerMask;
     public Camera mainCam;
     public float alphaStrength = 0.1f;
 
-    private HashSet<GameObject> hiddenObjects = new();
+    [SerializeField]
+    private List<GameObject> hiddenObjects = new();
 
     private void Awake()
     {
@@ -17,36 +20,46 @@ public class DistanceHider : MonoBehaviour
 
     void Update()
     {
-        RaycastHit[] hits;
-        Vector3 direction = player.position - mainCam.transform.position;
-        hits = Physics.RaycastAll(mainCam.transform.position, direction, direction.magnitude, layerMask);
+        var maxHits = 10;
+        var hits = new RaycastHit[maxHits];
+        var camTransform = mainCam.transform;
+        var camTransformPosition = camTransform.position;
+        var direction = player.position - camTransformPosition;
+        var hitCount = Physics.RaycastNonAlloc(camTransformPosition, direction, hits, direction.magnitude, layerMask);
 
-        // Hide newly hit objects
-        foreach (RaycastHit hit in hits)
+        var newlyHiddenObjects = new List<GameObject>(); // List to store newly hidden objects
+
+        for (int i = 0; i < hitCount; i++)
         {
+            var hit = hits[i];
             GameObject hitObject = hit.collider.gameObject;
-            var hitRender = hitObject.GetComponent<Renderer>();
-            var alphaValue = hitRender.material.GetFloat("_AlphaValue");
             if (!hiddenObjects.Contains(hitObject))
             {
+                newlyHiddenObjects.Add(hitObject); // Add object to the list of newly hidden objects
+                var hitRender = hitObject.GetComponent<Renderer>();
                 hitRender.material.SetFloat("_AlphaValue", alphaStrength);
-                hiddenObjects.Add(hitObject);
             }
         }
 
-        // Show objects that are no longer being hit
-        hiddenObjects.RemoveWhere(obj =>
+        // Add newly hidden objects to the list of hidden objects
+        foreach (var obj in newlyHiddenObjects)
         {
-            if (!Physics.Raycast(mainCam.transform.position, direction, out RaycastHit hitInfo, direction.magnitude,
-                    layerMask) || hitInfo.collider.gameObject != obj)
-            {
-                var hitRender = obj.GetComponent<Renderer>();
-                var alphaValue = hitRender.material.GetFloat("_AlphaValue");
-                hitRender.material.SetFloat("_AlphaValue", 1);
-                return true;
-            }
+            hiddenObjects.Add(obj);
+        }
 
-            return false;
-        });
+        // Show objects that are no longer being hit
+        for (int i = hiddenObjects.Count - 1; i >= 0; i--)
+        {
+            var obj = hiddenObjects[i];
+            if (obj != null && !Array.Exists(hits, hit => hit.collider != null && hit.collider.gameObject == obj))
+            {
+                var objRender = obj.GetComponent<Renderer>();
+                if (objRender != null) // Check if objRender is not null
+                {
+                    objRender.material.SetFloat("_AlphaValue", 1.0f); // Show object again by setting alpha value to 1.0f
+                }
+                hiddenObjects.RemoveAt(i); // Remove object from the list of hidden objects
+            }
+        }
     }
 }

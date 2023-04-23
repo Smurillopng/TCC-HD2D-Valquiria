@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 09/03/2023
 
+using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,18 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
         if (sceneName == "Options Menu")
             previousScene.Value = SceneManager.GetActiveScene().name;
+    }
+
+    public void NewGame()
+    {
+        SceneManager.LoadScene("scn_game");
+        var writer = QuickSaveWriter.Create("GameSave");
+        var keys = writer.GetAllKeys();
+        foreach (var key in keys)
+        {
+            writer.Delete(key);
+        }
+
     }
 
     /// <summary>

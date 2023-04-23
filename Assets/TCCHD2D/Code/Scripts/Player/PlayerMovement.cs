@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Required, InlineEditor, Tooltip("Bool variable that tells if the player is running or not.")]
     private BoolVariable isRunning;
 
-    [SerializeField, Required, InlineEditor, Tooltip("Vector2 variable that tells the player's movement direction values.")]
+    [SerializeField, Required, InlineEditor,
+     Tooltip("Vector2 variable that tells the player's movement direction values.")]
     private Vector2Variable direction;
 
     [TitleGroup("Movement Variables", Alignment = TitleAlignments.Centered)]
@@ -35,7 +36,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Required, Tooltip("Animator component of the player.")]
     private Animator animator;
 
-    [SerializeField, ReadOnly, Tooltip("Rigidbody component of the player. If it doesn't exist, it will be added automatically.")]
+    [SerializeField, ReadOnly,
+     Tooltip("Rigidbody component of the player. If it doesn't exist, it will be added automatically.")]
     private Rigidbody rigidBody;
 
     [SerializeField, ReadOnly, Tooltip("The value that will be used to calculate the player's movement.")]
@@ -47,11 +49,13 @@ public class PlayerMovement : MonoBehaviour
     public float slowFactor;
 
     public BoolVariable CanMove => canMove;
+
     public Vector3 MovementValue
     {
         get => movementValue;
         set => movementValue = value;
     }
+
     public Vector2 Direction
     {
         get => direction.Value;
@@ -67,11 +71,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!gameObject.TryGetComponent(out rigidBody))
             rigidBody = gameObject.AddComponent<Rigidbody>();
-        if (GlobalHelper.Instance.SavedScene == "scn_combat")
+        
+        var reader = QuickSaveReader.Create("GameSave");
+        if (reader.Exists("CurrentScene"))
         {
-            var reader = QuickSaveReader.Create("GameSave");
-            transform.position = reader.Read<Vector3>("PlayerPosition");
+            if (SceneManager.GetActiveScene().name != reader.Read<string>("CurrentScene"))
+                transform.position = reader.Read<Vector3>("PlayerPosition");
         }
+
+        var save = QuickSaveWriter.Create("GameSave");
+        save.Write("CurrentScene", SceneManager.GetActiveScene().name);
+        save.Commit();
     }
 
     private void OnEnable()
@@ -121,17 +131,17 @@ public class PlayerMovement : MonoBehaviour
             movementValue *= slowFactor;
         }
         else if ((Physics.Raycast(rayPosition, -dir, rayDistance, groundLayer) && direction.Value.x < 0)
-            || (!Physics.Raycast(leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0))
+                 || (!Physics.Raycast(leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0))
         {
             movementValue *= slowFactor;
         }
         else if ((Physics.Raycast(rayPosition, dirForward, rayDistance, groundLayer) && direction.Value.y > 0)
-            || (!Physics.Raycast(forwardRay, rayDistanceDiagonal, groundLayer) && direction.Value.y > 0))
+                 || (!Physics.Raycast(forwardRay, rayDistanceDiagonal, groundLayer) && direction.Value.y > 0))
         {
             movementValue *= slowFactor;
         }
         else if ((Physics.Raycast(rayPosition, dirBack, rayDistance, groundLayer) && direction.Value.y < 0)
-            || (!Physics.Raycast(backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0))
+                 || (!Physics.Raycast(backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0))
         {
             movementValue *= slowFactor;
         }
@@ -146,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat(SpeedX, movementValue.x);
             animator.SetFloat(SpeedY, movementValue.z);
         }
+
         animator.SetBool(IsWalking, true);
 
         if (isRunning.Value)

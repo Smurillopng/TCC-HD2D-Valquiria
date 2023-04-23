@@ -3,7 +3,6 @@
 
 using CI.QuickSave;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GlobalHelper : MonoBehaviour
 {
@@ -24,8 +23,6 @@ public class GlobalHelper : MonoBehaviour
             return _instance;
         }
     }
-
-    public string SavedScene { get; private set; }
 
     private void Awake()
     {
@@ -59,10 +56,5 @@ public class GlobalHelper : MonoBehaviour
                 target.SetActive(false);
             }
         }
-    }
-    
-    public string SaveScene()
-    {
-        return SavedScene = SceneManager.GetActiveScene().name;
     }
 }

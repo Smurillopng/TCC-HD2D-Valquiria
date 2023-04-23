@@ -2,6 +2,7 @@
 // Date: 13/03/2023
 
 using System.Collections.Generic;
+using CI.QuickSave;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -92,6 +93,7 @@ public class UnitController : MonoBehaviour
         {
             unit.IsDead = false;
             unit.CurrentHp = unit.MaxHp;
+            basicAttack = unit.AttackAnimation;
         }
         else
         {
@@ -232,8 +234,11 @@ public class UnitController : MonoBehaviour
 
         if (gotAway)
         {
-            GlobalHelper.Instance.SaveScene();
-            SceneManager.LoadScene("scn_game");
+            var reader = QuickSaveReader.Create("GameSave");
+            SceneManager.LoadScene(reader.Read<string>("LastScene"));
+            var save = QuickSaveWriter.Create("GameSave");
+            save.Write("LastScene", SceneManager.GetActiveScene().name);
+            save.Commit();
             PlayerCombatHUD.CombatTextEvent.Invoke($"<color=green>Ran away</color>");
             PlayerCombatHUD.TakenAction.Invoke();
         }

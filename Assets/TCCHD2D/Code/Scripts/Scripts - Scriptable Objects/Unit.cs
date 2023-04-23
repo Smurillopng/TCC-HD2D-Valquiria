@@ -7,6 +7,8 @@ using UnityEditor;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 [CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit")]
 public class Unit : SerializedScriptableObject
@@ -36,6 +38,9 @@ public class Unit : SerializedScriptableObject
 
     [SerializeField, ShowIf("type", UnitType.Player)]
     private readonly Dictionary<int,int> experienceTable = new();
+    
+    [SerializeField, ShowIf("type", UnitType.Enemy)]
+    private TimelineAsset attackAnimation;
 
     [SerializeField, MinValue(1)]
     private int maxHp = 1;
@@ -92,6 +97,7 @@ public class Unit : SerializedScriptableObject
     }
 
     public Dictionary<int,int> ExperienceTable => experienceTable;
+    public TimelineAsset AttackAnimation => attackAnimation;
     public int MaxHp => maxHp;
     public int CurrentHp
     {

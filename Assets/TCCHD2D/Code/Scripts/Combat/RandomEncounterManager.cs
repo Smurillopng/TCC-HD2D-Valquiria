@@ -1,10 +1,13 @@
 ﻿// Created by Sérgio Murillo da Costa Faria
 // Date: 06/04/2023
 
+using System.Collections;
 using System.Collections.Generic;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -17,7 +20,15 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     [TitleGroup("Rates", Alignment = TitleAlignments.Centered)]
     public Dictionary<string, float> areas; // A dictionary of areas and their encounter rates
     [Range(0, 100)] public float areaEncounterRate; // The rate of encountering an enemy per second
-
+    
+    [TitleGroup("Transition", Alignment = TitleAlignments.Centered)]
+    [SerializeField]
+    private string combatScene;
+    [SerializeField, Required]
+    private Volume volume;
+    [SerializeField]
+    private float fadeTime;
+    
     [TitleGroup("Debug", Alignment = TitleAlignments.Centered)]
     [SerializeField, ReadOnly] private float minimumEncounterChance;
     [SerializeField] private bool showEncounterLog;
@@ -25,6 +36,8 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     private Unit _selectedEnemy;
     private PlayerMovement _playerMovement; // The PlayerMovement component of the player
     private Vector3 _lastPosition; // The last position of the player
+    private LiftGammaGain liftGammaGain;
+    private bool isFading;
 
     private void OnEnable()
     {
@@ -36,6 +49,13 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         _playerMovement = FindObjectOfType<PlayerMovement>(); // Get the PlayerMovement component
         areaEncounterRate = areas[SceneManager.GetActiveScene().name]; // Get the encounter rate for the current area
         minimumEncounterChance = areaEncounterRate / 100f; // Calculate the minimum encounter chance
+        volume.profile.TryGet(out liftGammaGain);
+        var reader = QuickSaveReader.Create("GameSave");
+        
+        if (reader.Read<string>("CurrentScene") == SceneManager.GetActiveScene().name)
+        {
+            _playerMovement.CanMove.Value = true;
+        }
     }
 
     public void CheckStep()
@@ -54,27 +74,40 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         _selectedEnemy = enemies[randomIndex]; // Get the enemy at that index
 
         Debug.Log("You encountered " + _selectedEnemy.name + "!"); // Log the encounter
-
-        GlobalHelper.Instance.SaveScene();
+        
         var save = QuickSaveWriter.Create("GameSave");
         save.Write("PlayerPosition", _playerMovement.transform.position);
+        save.Write("LastScene", SceneManager.GetActiveScene().name);
+        save.Write("EncounteredEnemy", _selectedEnemy.name);
         save.Commit();
-        SceneManager.LoadScene("scn_combat");
+
+        StartCoroutine(FadeIn(liftGammaGain));
         
         // TODO: Director/Actions
     }
     
+    private IEnumerator FadeIn(LiftGammaGain lgg)
+    {
+        isFading = true;
+        float time = 0;
+        var defaultLgg = lgg.gamma.value;
+        _playerMovement.CanMove.Value = false;
+        while (time < fadeTime)
+        {
+            time += Time.deltaTime;
+            lgg.gamma.value = new Vector4(-1, -1, -1, 0 - time / fadeTime);
+            yield return null;
+        }
+        SceneManager.LoadScene(combatScene);
+        isFading = false;
+    }
+    
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "scn_combat")
-        {
-            var enemyObject = GameObject.FindWithTag("Enemy").GetComponent<UnitController>();
-            enemyObject.Unit = _selectedEnemy;
-        }
-
-        if (scene.name != "scn_combat" && _playerMovement != null)
+        if (scene.name != combatScene && _playerMovement != null)
         {
             // TODO: Fix this
+            _playerMovement.CanMove.Value = true;
             _playerMovement.MovementValue = Vector3.zero;
             _playerMovement.Direction = Vector2.zero;
             _playerMovement.Movement();

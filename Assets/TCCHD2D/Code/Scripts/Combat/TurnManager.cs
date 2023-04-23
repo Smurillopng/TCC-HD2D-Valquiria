@@ -4,10 +4,13 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.Timeline;
 using Random = UnityEngine.Random;
 
 public enum CombatState
@@ -77,6 +80,10 @@ public class TurnManager : MonoBehaviour
         switch (_combatState)
         {
             case CombatState.CombatStart:
+                var save = QuickSaveWriter.Create("GameSave");
+                save.Write("CurrentScene", SceneManager.GetActiveScene().name);
+                save.Commit();
+                var reader = QuickSaveReader.Create("GameSave");
                 // Add all player and enemy units to the list
                 foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
                 {
@@ -88,6 +95,29 @@ public class TurnManager : MonoBehaviour
                     units.Add(unitObject.GetComponent<UnitController>());
                     EnemyUnitController = unitObject.GetComponent<UnitController>();
                 }
+
+                EnemyUnitController.Unit = Resources.Load<Unit>("Scriptable Objects/" + reader.Read<string>("EncounteredEnemy"));
+                var enemyObject = EnemyUnitController.gameObject;
+                var playerObject = PlayerUnitController.gameObject;
+                enemyObject.GetComponent<SpriteRenderer>().sprite = EnemyUnitController.Unit.UnitSprite;
+                var enemyAttackTimeline = EnemyUnitController.Unit.AttackAnimation;
+                var enemyDirector = enemyObject.GetComponent<PlayableDirector>();
+                foreach (var track in enemyAttackTimeline.GetOutputTracks())
+                {
+                    switch (track.name)
+                    {
+                        case "AttackAnimation":
+                            enemyDirector.SetGenericBinding(track, enemyObject.GetComponent<Animator>());
+                            break;
+                        case "MovementAnimation":
+                            enemyDirector.SetGenericBinding(track, enemyObject.GetComponent<Animator>());
+                            break;
+                        case "Signals":
+                            enemyDirector.SetGenericBinding(track, playerObject.GetComponent<SignalReceiver>());
+                            break;
+                    }
+                }
+                enemyDirector.playableAsset = enemyAttackTimeline;
 
                 // Sort the units by speed, so the fastest goes first
                 foreach (var unit in units)
@@ -212,8 +242,7 @@ public class TurnManager : MonoBehaviour
         DisplayVictoryText();
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
-        GlobalHelper.Instance.SaveScene();
-        SceneManager.LoadScene("scn_game");
+        SceneManager.LoadScene(QuickSaveReader.Create("GameSave").Read<string>("LastScene"));
     }
 
     private void XpReward()

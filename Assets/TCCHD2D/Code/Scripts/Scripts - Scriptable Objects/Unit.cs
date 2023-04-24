@@ -158,6 +158,24 @@ public class Unit : SerializedScriptableObject
         if (!experienceTable.ContainsKey(level + 1) || experience < experienceTable[level + 1]) return;
         level++;
         experience = 0;
+        switch (level)
+        {
+            case 2:
+                maxHp += 2;
+                currentHp += 2;
+                luck++;
+                break;
+            case 3:
+                defence++;
+                break;
+            case 4:
+                speed++;
+                attack++;
+                break;
+            case 5:
+                attack = 99;
+                break;
+        }
     }
 }
 

@@ -53,8 +53,11 @@ public class Specials : MonoBehaviour
             var heal = player.Unit.Luck * 2;
 
             // Apply heal to target
-            player.Unit.CurrentHp += heal;
-            
+            if (player.Unit.CurrentHp > player.Unit.MaxHp)
+                player.Unit.CurrentHp += heal;
+            if (player.Unit.CurrentHp < player.Unit.MaxHp)
+                player.Unit.CurrentHp = player.Unit.MaxHp;
+                
             if (player.Unit.IsPlayer)
             {
                 var enemyObject = GameObject.FindWithTag("Enemy");

@@ -233,13 +233,13 @@ public class PlayerCombatHUD : MonoBehaviour
                 UpdatePlayerHealth();
                 UpdatePlayerTp();
                 UpdateEnemyHealth();
-                CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>");
-                //turnManager.isPlayerTurn = false;
-                TakenAction.Invoke();
                 itemPanel.SetActive(false);
                 returnButton.gameObject.SetActive(false);
                 returnButton.interactable = false;
                 optionsPanel.SetActive(true);
+                CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>");
+                //turnManager.isPlayerTurn = false;
+                TakenAction.Invoke();
             });
         }
         //CombatTextEvent.Invoke($"<b>PLACEHOLDER: Pressed <color=brown>Item</color> button</b>");

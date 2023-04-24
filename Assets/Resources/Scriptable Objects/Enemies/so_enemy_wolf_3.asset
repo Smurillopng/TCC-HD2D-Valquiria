@@ -101,7 +101,7 @@ MonoBehaviour:
   currentTp: 0
   attack: 2
   defence: 1
-  speed: 3
+  speed: 1
   luck: 1
   dexterity: 1
   isPlayer: 0

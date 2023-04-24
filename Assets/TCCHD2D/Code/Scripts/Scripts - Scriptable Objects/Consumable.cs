@@ -100,7 +100,10 @@ public class Consumable : ScriptableObject, IItem
     public void Heal()
     {
         var target = FindObjectOfType<TurnManager>().PlayerUnitController;
-        target.Unit.CurrentHp += EffectValue;
+        if (target.Unit.CurrentHp > target.Unit.MaxHp)
+            target.Unit.CurrentHp += EffectValue;
+        if (target.Unit.CurrentHp < target.Unit.MaxHp)
+            target.Unit.CurrentHp = target.Unit.MaxHp;
         UpdateTrack(target);
         target.Director.Play(target.UseItem);
     }

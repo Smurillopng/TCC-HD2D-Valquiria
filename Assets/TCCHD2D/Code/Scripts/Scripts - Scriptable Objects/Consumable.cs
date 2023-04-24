@@ -3,6 +3,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 [CreateAssetMenu(fileName = "New Consumable Item", menuName = "RPG/New Consumable Item", order = 0)]
 public class Consumable : ScriptableObject, IItem
@@ -100,6 +101,8 @@ public class Consumable : ScriptableObject, IItem
     {
         var target = FindObjectOfType<TurnManager>().PlayerUnitController;
         target.Unit.CurrentHp += EffectValue;
+        UpdateTrack(target);
+        target.Director.Play(target.UseItem);
     }
 
     public void Damage()
@@ -111,11 +114,38 @@ public class Consumable : ScriptableObject, IItem
             target.Unit.IsDead = true;
             target.Unit.CurrentHp = 0;
         }
+        UpdateTrack(target);
+        target.Director.Play(target.UseItem);
     }
 
     public void IncreaseTp()
     {
         var target = FindObjectOfType<TurnManager>().PlayerUnitController;
         target.Unit.CurrentTp += EffectValue;
+        UpdateTrack(target);
+        target.Director.Play(target.UseItem);
+    }
+
+    private void UpdateTrack(UnitController target)
+    {
+        if (target.Unit.IsPlayer)
+        {
+            var enemyObject = GameObject.FindWithTag("Enemy");
+            foreach (var track in target.UseItem.GetOutputTracks())
+            {
+                switch (track.name)
+                {
+                    case "AttackAnimation":
+                        target.Director.SetGenericBinding(track, target.gameObject.GetComponentInChildren<Animator>());
+                        break;
+                    case "MovementAnimation":
+                        target.Director.SetGenericBinding(track, target.gameObject.GetComponentInChildren<Animator>());
+                        break;
+                    case "Signals":
+                        target.Director.SetGenericBinding(track, enemyObject.GetComponentInChildren<SignalReceiver>());
+                        break;
+                }
+            }
+        }
     }
 }

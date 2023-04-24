@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.Timeline;
 
 /// <summary>
 /// Controls the behaviour of a unit.
@@ -24,7 +25,7 @@ public class UnitController : MonoBehaviour
 
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
-    private PlayableAsset basicAttack;
+    private TimelineAsset basicAttack;
 
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The list of PlayableAssets representing the unit's special attacks.")]
@@ -32,11 +33,11 @@ public class UnitController : MonoBehaviour
 
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's use item action.")]
-    private PlayableAsset useItem;
+    private TimelineAsset useItem;
 
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's run action.")]
-    private PlayableAsset run;
+    private TimelineAsset run;
 
     [FoldoutGroup("Unit Floating Numbers")]
     [SerializeField, Tooltip("The animator that controls the damage text animation.")]
@@ -69,7 +70,7 @@ public class UnitController : MonoBehaviour
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
     /// </summary>
-    public PlayableAsset BasicAttack => basicAttack;
+    public TimelineAsset BasicAttack => basicAttack;
 
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's special attacks.
@@ -79,12 +80,12 @@ public class UnitController : MonoBehaviour
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's use item action.
     /// </summary>
-    public PlayableAsset UseItem => useItem;
+    public TimelineAsset UseItem => useItem;
 
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's run action.
     /// </summary>
-    public PlayableAsset Run => run;
+    public TimelineAsset Run => run;
 
     public void Awake()
     {
@@ -130,6 +131,25 @@ public class UnitController : MonoBehaviour
         attackDamageCalculated = unit.Attack;
         if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
             attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+        if (unit.IsPlayer)
+        {
+            var enemyObject = GameObject.FindWithTag("Enemy");
+            foreach (var track in basicAttack.GetOutputTracks())
+            {
+                switch (track.name)
+                {
+                    case "AttackAnimation":
+                        director.SetGenericBinding(track, gameObject.GetComponentInChildren<Animator>());
+                        break;
+                    case "MovementAnimation":
+                        director.SetGenericBinding(track, gameObject.GetComponentInChildren<Animator>());
+                        break;
+                    case "Signals":
+                        director.SetGenericBinding(track, enemyObject.GetComponentInChildren<SignalReceiver>());
+                        break;
+                }
+            }
+        }
         Director.Play(basicAttack);
 
         if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp)

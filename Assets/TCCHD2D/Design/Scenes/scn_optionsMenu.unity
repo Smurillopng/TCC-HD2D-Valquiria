@@ -1711,7 +1711,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1178047629}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 1
@@ -2079,7 +2079,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1178047629}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -2318,7 +2318,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1178047629}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetMasterVolume
         m_Mode: 1
@@ -2656,7 +2656,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1178047629}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetSfxVolume
         m_Mode: 1
@@ -3308,7 +3308,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1178047629}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetFullscreen
         m_Mode: 1
@@ -3715,6 +3715,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1178047628}
   - component: {fileID: 1178047629}
+  - component: {fileID: 1178047630}
   m_Layer: 0
   m_Name: OptionsMenu Manager
   m_TagString: Untagged
@@ -3760,7 +3761,20 @@ MonoBehaviour:
   qualityDropdown: {fileID: 2104801262}
   screenDropdown: {fileID: 1101277486}
   resolutionDropdown: {fileID: 681223380}
-  previousScene: {fileID: 0}
+  previousScene: {fileID: 11400000, guid: 8f95ac550c89d34438fe9bc55132be5a, type: 2}
+--- !u!114 &1178047630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178047626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7cebc93785c33244a507ded636de800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previousScene: {fileID: 11400000, guid: 8f95ac550c89d34438fe9bc55132be5a, type: 2}
 --- !u!1 &1203601124
 GameObject:
   m_ObjectHideFlags: 0
@@ -6031,16 +6045,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
-        m_MethodName: ReturnToLastScene
-        m_Mode: 1
+      - m_Target: {fileID: 1178047630}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: scn_mainMenu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1831566298
@@ -6817,7 +6831,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1178047629}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
         m_MethodName: SetQuality
         m_Mode: 1

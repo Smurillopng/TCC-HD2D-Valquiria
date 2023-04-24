@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class Specials : MonoBehaviour
 {
@@ -53,9 +54,29 @@ public class Specials : MonoBehaviour
 
             // Apply heal to target
             player.Unit.CurrentHp += heal;
-        
+            
+            if (player.Unit.IsPlayer)
+            {
+                var enemyObject = GameObject.FindWithTag("Enemy");
+                foreach (var track in player.UseItem.GetOutputTracks())
+                {
+                    switch (track.name)
+                    {
+                        case "AttackAnimation":
+                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
+                            break;
+                        case "MovementAnimation":
+                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
+                            break;
+                        case "Signals":
+                            player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
+                            break;
+                    }
+                }
+            }
             // Animation
-            player.Director.Play(player.BasicAttack); // TODO: Change to heal animation
+            player.Director.playableAsset = player.UseItem;
+            player.Director.Play();
         
             // HUD Update
             player.Unit.CurrentTp -= 20;
@@ -88,6 +109,26 @@ public class Specials : MonoBehaviour
             var attackDamageCalculated = player.Unit.Attack + player.Unit.Attack;
             if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
                 attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+            
+            if (player.Unit.IsPlayer)
+            {
+                var enemyObject = GameObject.FindWithTag("Enemy");
+                foreach (var track in player.BasicAttack.GetOutputTracks())
+                {
+                    switch (track.name)
+                    {
+                        case "AttackAnimation":
+                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
+                            break;
+                        case "MovementAnimation":
+                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
+                            break;
+                        case "Signals":
+                            player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
+                            break;
+                    }
+                }
+            }
 
             // Animation
             player.Director.Play(player.BasicAttack); // TODO: Change to heavy hit animation

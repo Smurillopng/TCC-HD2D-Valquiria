@@ -98672,7 +98672,7 @@ PlayableDirector:
   m_GameObject: {fileID: 4402599576473323655}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -98694,6 +98694,16 @@ PlayableDirector:
     value: {fileID: 7878350319063784938}
   - key: {fileID: 7560097511310151738, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
     value: {fileID: 6120526187047363629}
+  - key: {fileID: -7050264788833170660, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3982217069003214440, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7560097511310151738, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5736568967657122819, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 7994889600021895129}
+  - key: {fileID: 4460905559835601929, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 2b921bf7fc26dd84ca683ec3b5f60c13: {fileID: 1438256429}
@@ -98719,7 +98729,7 @@ MonoBehaviour:
   director: {fileID: 6120526187047363626}
   basicAttack: {fileID: 11400000, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
   specialAttacks: []
-  useItem: {fileID: 0}
+  useItem: {fileID: 11400000, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
   run: {fileID: 0}
   damageTextAnimator: {fileID: 191108977}
   damageText: {fileID: 191108978}

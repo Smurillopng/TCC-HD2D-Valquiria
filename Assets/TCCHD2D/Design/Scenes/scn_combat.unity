@@ -51587,8 +51587,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.11037821, y: 0.030878063, z: -0.003430896, w: 0.993404}
-  m_LocalPosition: {x: -961.18097, y: -138.54907, z: -6.7486815}
+  m_LocalRotation: {x: 0.11037827, y: 0.030872054, z: -0.0034302296, w: 0.99340415}
+  m_LocalPosition: {x: -960.7, y: -139.14001, z: -4}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99064,6 +99064,52 @@ PlayableDirector:
     value: {fileID: 6120526187047363628}
   - key: {fileID: 6943428384790267623, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
     value: {fileID: 7878350319063784941}
+  - key: {fileID: 6132232356488945383, guid: 60788a39c3c84944986306cb5be30167, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4044428671974233655, guid: 60788a39c3c84944986306cb5be30167, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6943428384790267623, guid: 60788a39c3c84944986306cb5be30167, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4739190737564502382, guid: 60788a39c3c84944986306cb5be30167, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8929594008455739226, guid: 60788a39c3c84944986306cb5be30167, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6132232356488945383, guid: 5ae97508ff10eda49ac2f274eb3a556d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4044428671974233655, guid: 5ae97508ff10eda49ac2f274eb3a556d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6943428384790267623, guid: 5ae97508ff10eda49ac2f274eb3a556d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4739190737564502382, guid: 5ae97508ff10eda49ac2f274eb3a556d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8929594008455739226, guid: 5ae97508ff10eda49ac2f274eb3a556d, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7050264788833170660, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3982217069003214440, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7560097511310151738, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5736568967657122819, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4460905559835601929, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7050264788833170660, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3982217069003214440, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7560097511310151738, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5736568967657122819, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4460905559835601929, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6967534002241915866, guid: ae75891c837bbbd4fa54d84f4744b3c0, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4252515123802013510, guid: ae75891c837bbbd4fa54d84f4744b3c0, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7989546571637294328, guid: ae75891c837bbbd4fa54d84f4744b3c0, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 20f1d9a0f04046543a1bc40ca0e3541c: {fileID: 1438256429}

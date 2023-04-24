@@ -52,13 +52,13 @@ MonoBehaviour:
     volume: 0
     mute: 0
   - mixerID: MusicMixer
-    mixerGroup: {fileID: 4158220325237075602, guid: b89f2a46917705c4f9f10234ed3568cf,
+    mixerGroup: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
       type: 2}
     exposedParameterName: MusicVolume
     volume: 0
     mute: 0
   - mixerID: SfxMixer
-    mixerGroup: {fileID: -8900435012001161030, guid: b89f2a46917705c4f9f10234ed3568cf,
+    mixerGroup: {fileID: 3626674247326135894, guid: b89f2a46917705c4f9f10234ed3568cf,
       type: 2}
     exposedParameterName: SfxVolume
     volume: 0
@@ -69,14 +69,14 @@ MonoBehaviour:
   sounds:
   - name: menuMusic
     clip: {fileID: 8300000, guid: c09f730b0d2655e4692db6bb57cced92, type: 3}
-    tab: 0
+    tab: 1
     source: {fileID: 0}
     position: {fileID: 0}
     output: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
       type: 2}
     usePreDefinedSettings: 0
     soundSettings: {fileID: 0}
-    loop: 0
+    loop: 1
     playOnAwake: 0
     mute: 0
     ignoreEffects: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
     ignoreReverbZone: 0
     spatialize: 0
     priority: 128
-    volume: 1
+    volume: 0.2
     pitch: 1
     panStereo: 0
     spacialBlend: 0
@@ -102,14 +102,14 @@ MonoBehaviour:
         m_Calls: []
   - name: bossMusic
     clip: {fileID: 8300000, guid: 57510bbeb5761394899a0ee27937f3d0, type: 3}
-    tab: 0
+    tab: 1
     source: {fileID: 0}
     position: {fileID: 0}
     output: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
       type: 2}
     usePreDefinedSettings: 0
     soundSettings: {fileID: 0}
-    loop: 0
+    loop: 1
     playOnAwake: 0
     mute: 0
     ignoreEffects: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
     ignoreReverbZone: 0
     spatialize: 0
     priority: 128
-    volume: 1
+    volume: 0.2
     pitch: 1
     panStereo: 0
     spacialBlend: 0
@@ -135,14 +135,14 @@ MonoBehaviour:
         m_Calls: []
   - name: gameMusic
     clip: {fileID: 8300000, guid: 5047bbb0833c3f149975a4f4df0f1e5b, type: 3}
-    tab: 0
+    tab: 1
     source: {fileID: 0}
     position: {fileID: 0}
     output: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
       type: 2}
     usePreDefinedSettings: 0
     soundSettings: {fileID: 0}
-    loop: 0
+    loop: 1
     playOnAwake: 0
     mute: 0
     ignoreEffects: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
     ignoreReverbZone: 0
     spatialize: 0
     priority: 128
-    volume: 1
+    volume: 0.2
     pitch: 1
     panStereo: 0
     spacialBlend: 0
@@ -168,14 +168,14 @@ MonoBehaviour:
         m_Calls: []
   - name: combatMusic
     clip: {fileID: 8300000, guid: 2a2b8b51fad4f454ba155865f2762019, type: 3}
-    tab: 0
+    tab: 1
     source: {fileID: 0}
     position: {fileID: 0}
     output: {fileID: 3028564448256263791, guid: b89f2a46917705c4f9f10234ed3568cf,
       type: 2}
     usePreDefinedSettings: 0
     soundSettings: {fileID: 0}
-    loop: 0
+    loop: 1
     playOnAwake: 0
     mute: 0
     ignoreEffects: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
     ignoreReverbZone: 0
     spatialize: 0
     priority: 128
-    volume: 1
+    volume: 0.2
     pitch: 1
     panStereo: 0
     spacialBlend: 0

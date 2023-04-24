@@ -40,6 +40,11 @@ public class ItemNotification : MonoBehaviour
         InventoryManager.Instance.AddItem(item);
         itemQueue.Enqueue(item);
     }
+    
+    public void EquipNotification(Equipment item)
+    {
+        InventoryManager.Instance.Equip(item);
+    }
 
     private void DisplayItem()
     {

@@ -75,13 +75,13 @@ MonoBehaviour:
       Entry: 8
       Data: 
   type: 1
-  unitName: Lobo
+  unitName: Javali
   unitSprite: {fileID: -263163736969218425, guid: 8b257f94bc8f21e49a63c2a565afd379,
     type: 3}
   level: 1
   experienceDrop: 2
   experience: 0
-  attackAnimation: {fileID: 11400000, guid: 60788a39c3c84944986306cb5be30167, type: 2}
+  attackAnimation: {fileID: 11400000, guid: 5ae97508ff10eda49ac2f274eb3a556d, type: 2}
   maxHp: 6
   currentHp: 6
   maxTp: 100

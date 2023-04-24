@@ -88,7 +88,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   type: 1
-  unitName: Lobo
+  unitName: "Lobo Pid\xE3o"
   unitSprite: {fileID: 3170495322863455514, guid: b8ea7feae9943e245967697af34e2ec8,
     type: 3}
   level: 1

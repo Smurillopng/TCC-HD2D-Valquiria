@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 /// <remarks>
 /// Created by Sérgio Murillo da Costa Faria on 19/02/2023.
 /// </remarks>
+[HideMonoScript]
 public class PlayerMovement : MonoBehaviour
 {
     //TODO: Add running animation
@@ -49,14 +50,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     [Tooltip("The layer that represents the ground.")]
     private LayerMask groundLayer;
+    
     [SerializeField]
     [Range(0,1)]
     [Tooltip("The distance of the raycast that detects the horizontal and forward collisions.")]
     private float rayDistance;
+    
     [SerializeField]
     [Range(0,1)]
     [Tooltip("The distance of the raycast that detects the diagonal collisions.")]
     private float rayDistanceDiagonal;
+    
     [SerializeField]
     [Range(0,1)]
     [Tooltip("How much the player will be slowed down when near the edge of a tile.")]
@@ -69,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
     [SerializeField] 
+    [Tooltip("The spawn controller of the game.")]
     private SpawnController spawnController;
 
     [SerializeField]
@@ -103,6 +108,10 @@ public class PlayerMovement : MonoBehaviour
 
     #region === Unity Methods ===========================================================
 
+    /// <summary>
+    /// Called when the script instance is being loaded.
+    /// Initializes the Rigidbody component if it doesn't exist and loads the player's position from the last save file.
+    /// </summary>
     private void Awake()
     {
         if (!gameObject.TryGetComponent(out rigidBody))
@@ -135,7 +144,6 @@ public class PlayerMovement : MonoBehaviour
             if (reader.Exists("ChangingScene") && reader.Read<bool>("ChangingScene").Equals(false))
                 if (SceneManager.GetActiveScene().name != reader.Read<string>("LastScene"))
                 {
-                    print("chegou aqui");
                     gameObject.transform.position = reader.Read<Vector3>("PlayerPosition");
                 }
         }
@@ -145,6 +153,10 @@ public class PlayerMovement : MonoBehaviour
         save.Commit();
     }
 
+    /// <summary>
+    /// Called when the object becomes enabled and active.
+    /// Resets player movement values and sets the IsWalking parameter in the animator to false.
+    /// </summary>
     private void OnEnable()
     {
         direction.Value = Vector2.zero;
@@ -152,11 +164,19 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool(IsWalking, false);
     }
 
+    /// <summary>
+    /// Called every fixed framerate frame.
+    /// Calculates player movement based on input and updates the Rigidbody component.
+    /// </summary>
     private void FixedUpdate()
     {
         Movement();
     }
 
+    /// <summary>
+    /// Draws gizmos in the scene view.
+    /// Draws four diagonal rays from the player position to help visualize the ground detection rays.
+    /// </summary>
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -196,10 +216,10 @@ public class PlayerMovement : MonoBehaviour
         var dirForward = Vector3.forward;
         var dirBack = Vector3.back;
 
-        Ray rightRay = new Ray(rayPosition, new Vector3(dirRight.x, -1, dirRight.z));
-        Ray leftRay = new Ray(rayPosition, new Vector3(dirLeft.x, -1, dirLeft.z));
-        Ray forwardRay = new Ray(rayPosition, new Vector3(dirForward.x, -1, dirForward.z));
-        Ray backRay = new Ray(rayPosition, new Vector3(dirBack.x, -1, dirBack.z));
+        var rightRay = new Ray(rayPosition, new Vector3(dirRight.x, -1, dirRight.z));
+        var leftRay = new Ray(rayPosition, new Vector3(dirLeft.x, -1, dirLeft.z));
+        var forwardRay = new Ray(rayPosition, new Vector3(dirForward.x, -1, dirForward.z));
+        var backRay = new Ray(rayPosition, new Vector3(dirBack.x, -1, dirBack.z));
 
         if ((Physics.Raycast(rayPosition, dir, rayDistance, groundLayer) && direction.Value.x > 0)
             || (!Physics.Raycast(rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0))

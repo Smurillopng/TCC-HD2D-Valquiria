@@ -154,7 +154,7 @@ MonoBehaviour:
       Data: 
   type: 0
   unitName: Player
-  unitSprite: {fileID: 2170638157055769421, guid: b9e338017d3e8ab4298f11bcf3a17767,
+  unitSprite: {fileID: -1929946010733699539, guid: 41260d4750065984b8c24dc5394a17fb,
     type: 3}
   level: 1
   experienceDrop: 0

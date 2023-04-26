@@ -91,7 +91,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.6
+  - time: 0.1
     functionName: CheckStep
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 7ea6c7abeaac4d69ae07cf7288e06790,

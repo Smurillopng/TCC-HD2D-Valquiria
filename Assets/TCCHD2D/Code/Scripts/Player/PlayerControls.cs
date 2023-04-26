@@ -1,6 +1,3 @@
-// Created by Sérgio Murillo da Costa Faria
-// Date: 19/02/2023
-
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -9,40 +6,66 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Responsible for storing the values of callbacks related to the game controls action map.
+/// This class is responsible for storing the values of callbacks related to the game controls action map.
 /// </summary>
+/// <remarks>
+/// Created by Sérgio Murillo da Costa Faria on 19/02/2023.
+/// </remarks>
+[HideMonoScript]
 public class PlayerControls : SerializedMonoBehaviour
 {
-    // Public variables
+    #region === Variables ===============================================================
+    
     public static PlayerControls Instance { get; private set; }
 
-    // Private variables
-    [SerializeField, ReadOnly]
+    [SerializeField]
+    [ReadOnly]
+    [Tooltip("The game controls asset used to create the input actions.")]
     private GameControls gameControls;
 
-    [SerializeField, InlineEditor]
+    [SerializeField]
+    [InlineEditor]
+    [Tooltip("Bool to toggle the console on and off.")]
     private BoolVariable showConsole;
 
-    [SerializeField, InlineEditor]
+    [SerializeField]
+    [InlineEditor]
+    [Tooltip("Bool that reads the current movement input value.")]
     private Vector2Variable moveValue;
 
-    [SerializeField, InlineEditor]
+    [SerializeField]
+    [InlineEditor]
+    [Tooltip("Bool that checks whether or not the player is running.")]
     private BoolVariable isRunning;
 
-    [SerializeField, InlineEditor]
+    [SerializeField]
+    [InlineEditor]
+    [Tooltip("Bool that checks whether or not the player has interacted with something.")]
     private BoolVariable interacted;
 
-    [SerializeField, InlineEditor]
+    [SerializeField]
+    [InlineEditor]
+    [Tooltip("Bool that checks whether or not the game is currently paused.")]
     private BoolVariable isPaused;
 
-    [SerializeField, InlineEditor]
+    [SerializeField]
+    [InlineEditor]
+    [Tooltip("Bool that checks whether or not the player has opened the inventory.")]
     private BoolVariable openInventory;
 
     [SerializeField]
+    [Tooltip("A mapping of scene names to SceneType enums.")]
     private Dictionary<string, SceneType> sceneMap = new();
 
     public Dictionary<string, SceneType> SceneMap => sceneMap;
 
+    #endregion
+
+    #region === Unity Methods ===========================================================
+
+    /// <summary>
+    /// Checks for an existing instance and destroys this object if one exists, otherwise sets this object as the instance and persists it between scenes.
+    /// </summary>
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -52,12 +75,20 @@ public class PlayerControls : SerializedMonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    /// <summary>
+    /// Subscribe to the sceneLoaded and sceneUnloaded events.
+    /// </summary>
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
+    /// <summary>
+    /// Handles initialization of the GameControls asset and subscribing to input events when a scene is loaded.
+    /// </summary>
+    /// <param name="scene">The scene that was loaded.</param>
+    /// <param name="mode">The mode in which the scene was loaded.</param>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         gameControls = new GameControls();
@@ -65,7 +96,6 @@ public class PlayerControls : SerializedMonoBehaviour
         var sceneName = SceneManager.GetActiveScene().name;
         if (sceneMap.TryGetValue(sceneName, out var currentScene))
         {
-            print($"Current scene: {currentScene}");
             switch (currentScene)
             {
                 case SceneType.Menu:
@@ -90,7 +120,11 @@ public class PlayerControls : SerializedMonoBehaviour
         gameControls.Enable();
     }
 
-    private void OnSceneUnloaded(Scene arg0)
+    /// <summary>
+    /// Handles unsubscribing from input events when a scene is unloaded.
+    /// </summary>
+    /// <param name="scene">The scene that was unloaded.</param>
+    private void OnSceneUnloaded(Scene scene)
     {
         if (gameControls == null) return;
         gameControls.Default.Walk.performed -= OnMove;
@@ -104,30 +138,50 @@ public class PlayerControls : SerializedMonoBehaviour
     }
 
     /// <summary>
+    /// Unsubscribe from the sceneLoaded and sceneUnloaded events and disable the GameControls asset.
+    /// </summary>
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        gameControls?.Disable();
+    }
+
+    #endregion
+
+    #region === Methods =================================================================
+
+    /// <summary>
     /// Is called when the "Walk" input of the "GameControls" Input Actions is performed.
     /// </summary>
-    /// <param name="ctx"></param>
+    /// <param name="ctx">The context of the input action callback.</param>
     private void OnMove(InputAction.CallbackContext ctx)
     {
         moveValue.Value = ctx.ReadValue<Vector2>();
     }
+
     /// <summary>
     /// Is called when the "Walk" input of the "GameControls" Input Actions is released.
     /// </summary>
-    /// <param name="ctx"></param>
+    /// <param name="ctx">The context of the input action callback.</param>
     private void OnMoveRelease(InputAction.CallbackContext ctx)
     {
         moveValue.Value = Vector2.zero;
     }
+
     /// <summary>
     /// Is called when the "Run" input of the "GameControls" Input Actions is performed.
     /// </summary>
-    /// <param name="ctx"></param>
+    /// <param name="ctx">The context of the input action callback.</param>
     private void OnRun(InputAction.CallbackContext ctx)
     {
         isRunning.Value = ctx.ReadValueAsButton();
     }
 
+    /// <summary>
+    /// Is called when the "Interact" input of the "GameControls" Input Actions is performed or canceled.
+    /// </summary>
+    /// <param name="ctx">The context of the input action callback.</param>
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
@@ -136,18 +190,19 @@ public class PlayerControls : SerializedMonoBehaviour
             interacted.Value = false;
     }
 
+    /// <summary>
+    /// Is called when the "Open Inventory" input of the "GameControls" Input Actions is performed.
+    /// </summary>
+    /// <param name="ctx">The context of the input action callback.</param>
     public void OnInventory(InputAction.CallbackContext ctx)
     {
         openInventory.Value = !openInventory.Value;
     }
 
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
-        gameControls?.Disable();
-    }
-
+    /// <summary>
+    /// Toggles the default controls of the game.
+    /// </summary>
+    /// <param name="enable">Whether to enable or disable the default controls.</param>
     public void ToggleDefaultControls(bool enable)
     {
         if (enable)
@@ -155,4 +210,6 @@ public class PlayerControls : SerializedMonoBehaviour
         else
             gameControls.Default.Disable();
     }
+
+    #endregion
 }

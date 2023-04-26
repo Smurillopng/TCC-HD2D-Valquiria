@@ -385,16 +385,16 @@ MonoBehaviour:
   direction: {fileID: 11400000, guid: e6f568a8763aad24895fe73b56d77cee, type: 2}
   speed: 1
   runSpeedMultiplier: 1.5
-  animator: {fileID: 1864262430771853414}
-  spawnController: {fileID: 0}
-  rigidBody: {fileID: 0}
-  movementValue: {x: 0, y: 0, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   rayDistance: 0.2
-  rayDistanceDiagonal: 0.6
+  rayDistanceDiagonal: 0.5
   slowFactor: 0
+  animator: {fileID: 1864262430771853414}
+  spawnController: {fileID: 0}
+  rigidBody: {fileID: 0}
+  movementValue: {x: 0, y: 0, z: 0}
 --- !u!114 &4909204957000507863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,93 +415,15 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: areas
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 5
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: scn_game
-    - Name: $v
-      Entry: 4
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: scn_lvl1
-    - Name: $v
-      Entry: 4
-      Data: 25
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: scn_lvl2
-    - Name: $v
-      Entry: 4
-      Data: 25
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: scn_lvl3
-    - Name: $v
-      Entry: 4
-      Data: 25
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 1
-      Data: scn_lvl4
-    - Name: $v
-      Entry: 4
-      Data: 25
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   player: {fileID: 11400000, guid: 70eef26fa3b670347b3a44c4c0832bc5, type: 2}
   enemies:
   - {fileID: 11400000, guid: da62801b992689746857559145ca7220, type: 2}
-  areaEncounterRate: 100
+  areaEncounterRate: 0
+  minimumSteps: 5
   combatScene: 
   volume: {fileID: 0}
-  fadeTime: 0
+  fadeTime: 3
   minimumEncounterChance: 0
-  showEncounterLog: 1
+  currentSteps: 0
+  showEncounterLog: 0

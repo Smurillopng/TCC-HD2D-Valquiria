@@ -1,25 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
+/// <summary>
+/// This class is responsible for detecting objects that are between the player and the camera and hiding them.
+/// </summary>
+/// <remarks>
+/// Created by Sérgio Murillo da Costa Faria on 23/04/2023.
+/// </remarks>
+[HideMonoScript]
 public class DistanceHider : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-    [SerializeField] private LayerMask layerMask;
-    [SerializeField] private Camera mainCam;
-    [SerializeField] private float alphaStrength = 0.1f;
+    #region === Variables ===============================================================
 
-    private readonly HashSet<GameObject> hiddenObjects = new HashSet<GameObject>();
-    private readonly List<Renderer> newlyHiddenRenderers = new List<Renderer>();
+    [SerializeField, Tooltip("The transform of the player.")]
+    private Transform player;
+    [SerializeField, Tooltip("The layers to be considered for object detection.")]
+    private LayerMask layerMask;
+    [SerializeField, Tooltip("The camera that will be used to calculate the distance to the objects.")]
+    private Camera mainCam;
+    [SerializeField, Tooltip("The strength of the alpha applied to the materials of the hidden objects.")]
+    private float alphaStrength = 0.1f;
 
+    // Objects that are currently hidden
+    private readonly HashSet<GameObject> _hiddenObjects = new();
+    // Renderers that were hidden in the current frame
+    private readonly List<Renderer> _newlyHiddenRenderers = new();
+    // Shader property used to set the alpha value of the material
+    private static readonly int AlphaValue = Shader.PropertyToID("_AlphaValue");
+
+    #endregion
+
+    #region === Unity Methods ===========================================================
+
+    /// <summary>
+    /// This method sets the reference to the main camera of the scene.
+    /// </summary>
     private void Awake()
     {
         mainCam = Camera.main;
     }
 
-    void Update()
+    /// <summary>
+    /// This method detects objects that are between the player and the camera and hides them.
+    /// </summary>
+    private void Update()
     {
-        var maxHits = 10;
+        const int maxHits = 10;
         var hits = new RaycastHit[maxHits];
         var camTransform = mainCam.transform;
         var camTransformPosition = camTransform.position;
@@ -28,52 +57,41 @@ public class DistanceHider : MonoBehaviour
 
         var newlyHiddenObjects = new List<GameObject>(); // List to store newly hidden objects
 
-        newlyHiddenRenderers.Clear();
+        _newlyHiddenRenderers.Clear();
 
-        for (int i = 0; i < hitCount; i++)
+        for (var i = 0; i < hitCount; i++)
         {
             var hit = hits[i];
-            GameObject hitObject = hit.collider.gameObject;
-            if (!hiddenObjects.Contains(hitObject))
-            {
-                newlyHiddenObjects.Add(hitObject); // Add object to the list of newly hidden objects
-                if (hitObject.TryGetComponent<Renderer>(out var hitRender))
-                {
-                    hitRender.material.SetFloat("_AlphaValue", alphaStrength);
-                    newlyHiddenRenderers.Add(hitRender);
-                }
-            }
+            var hitObject = hit.collider.gameObject;
+            if (_hiddenObjects.Contains(hitObject)) continue;
+            newlyHiddenObjects.Add(hitObject); // Add object to the list of newly hidden objects
+            if (!hitObject.TryGetComponent<Renderer>(out var hitRender)) continue;
+            hitRender.material.SetFloat(AlphaValue, alphaStrength);
+            _newlyHiddenRenderers.Add(hitRender);
         }
 
         // Add newly hidden objects to the list of hidden objects
-        hiddenObjects.UnionWith(newlyHiddenObjects);
+        _hiddenObjects.UnionWith(newlyHiddenObjects);
 
         // Show objects that are no longer being hit
-        foreach (var renderer in newlyHiddenRenderers)
+        foreach (var matRenderer in _newlyHiddenRenderers.Where(matRenderer => !_hiddenObjects.Contains(matRenderer.gameObject)))
         {
-            if (!hiddenObjects.Contains(renderer.gameObject))
-            {
-                renderer.material.SetFloat("_AlphaValue", 1.0f);
-            }
+            matRenderer.material.SetFloat(AlphaValue, 1.0f);
         }
 
-        hiddenObjects.RemoveWhere(obj =>
+        _hiddenObjects.RemoveWhere(obj =>
         {
-            if (obj == null)
-            {
-                return true;
-            }
-
+            if (obj == null) return true;
+            
             var hit = Array.Exists(hits, hit => hit.collider != null && hit.collider.gameObject == obj);
-            if (!hit)
+            if (hit) return false;
+            if (obj.TryGetComponent<Renderer>(out var objRender))
             {
-                if (obj.TryGetComponent<Renderer>(out var objRender))
-                {
-                    objRender.material.SetFloat("_AlphaValue", 1.0f);
-                }
+                objRender.material.SetFloat(AlphaValue, 1.0f);
             }
-
-            return !hit;
+            return true;
         });
     }
+    
+    #endregion
 }

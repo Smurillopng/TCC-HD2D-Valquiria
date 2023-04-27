@@ -1,18 +1,27 @@
-// Created by Sérgio Murillo da Costa Faria
-// Date: 01/04/2023
-
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+/// <summary>
+/// This class manages the inventory of the player.
+/// </summary>
+/// <remarks>
+/// Created by Sérgio Murillo da Costa Faria on 01/04/2023.
+/// </remarks>
+[HideMonoScript]
 public class InventoryManager : SerializedMonoBehaviour
 {
-    public static InventoryManager Instance { get; private set; }
+    #region === Variables ===============================================================
 
-    [ShowInInspector] private List<IItem> inventory = new();
+    public static InventoryManager Instance { get; private set; } // Singleton
 
     [ShowInInspector]
+    [Tooltip("The inventory list")]
+    private List<IItem> inventory = new();
+
+    [ShowInInspector]
+    [Tooltip("The equipment slots list")]
     private List<EquipmentSlot> equipmentSlots = new()
     {
         new EquipmentSlot {slotType = EquipmentSlotType.Head},
@@ -22,13 +31,28 @@ public class InventoryManager : SerializedMonoBehaviour
         new EquipmentSlot {slotType = EquipmentSlotType.Rune}
     };
 
+    /// <summary>
+    /// Gets the inventory list.
+    /// </summary>
     public List<IItem> Inventory => inventory;
+    /// <summary>
+    /// Gets the equipment slots list.
+    /// </summary>
     public List<EquipmentSlot> EquipmentSlots => equipmentSlots;
 
     [TitleGroup("Debug", Alignment = TitleAlignments.Centered)]
     [SerializeField]
+    [Tooltip("If true, the inventory will reset when the game is exited.")]
     private bool resetOnExit;
 
+    #endregion
+
+    #region === Unity Methods ===========================================================
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// This is where the singleton is created.
+    /// </summary>
     private void Awake()
     {
         if (Instance == null)
@@ -41,7 +65,25 @@ public class InventoryManager : SerializedMonoBehaviour
             Destroy(gameObject);
         }
     }
+    
+    /// <summary>
+    /// Resets the stack count of all items in the inventory to 0 if the resetOnExit flag is set.
+    /// </summary>
+    private void OnDisable()
+    {
+        if (!resetOnExit) return;
+        foreach (var item in inventory)
+            item.CurrentStack = 0;
+    }
 
+    #endregion
+
+    #region === Methods =================================================================
+
+/// <summary>
+    /// Adds a consumable item to the inventory.
+    /// </summary>
+    /// <param name="item">The consumable item to be added.</param>
     public void AddConsumableItem(Consumable item)
     {
         if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
@@ -58,6 +100,11 @@ public class InventoryManager : SerializedMonoBehaviour
             item.CurrentStack++;
         }
     }
+    
+    /// <summary>
+    /// Adds an equipment item to the inventory.
+    /// </summary>
+    /// <param name="item">The equipment item to be added.</param>
     public void AddEquipmentItem(Equipment item)
     {
         if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
@@ -75,6 +122,10 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Adds an item to the inventory.
+    /// </summary>
+    /// <param name="item">The item to be added.</param>
     public void AddItem(IItem item)
     {
         switch (item)
@@ -88,15 +139,28 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Removes a consumable item from the inventory.
+    /// </summary>
+    /// <param name="item">The consumable item to be removed.</param>
     public void RemoveConsumableItem(Consumable item)
     {
         inventory.Remove(item);
     }
+    
+    /// <summary>
+    /// Removes an equipment item from the inventory.
+    /// </summary>
+    /// <param name="item">The equipment item to be removed.</param>
     public void RemoveEquipmentItem(Equipment item)
     {
         inventory.Remove(item);
     }
     
+    /// <summary>
+    /// Removes an item from the inventory.
+    /// </summary>
+    /// <param name="item">The item to be removed.</param>
     public void RemoveItem(IItem item)
     {
         switch (item)
@@ -110,6 +174,10 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Equips the provided equipment into the appropriate equipment slot.
+    /// </summary>
+    /// <param name="equipment">The equipment to be equipped.</param>
     public void Equip(Equipment equipment)
     {
         var slot = equipmentSlots.Find(x => x.slotType == equipment.SlotType);
@@ -152,6 +220,10 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Unequips the provided equipment from its slot.
+    /// </summary>
+    /// <param name="equipment">The equipment to be unequipped.</param>
     public void Unequip(Equipment equipment)
     {
         var slot = equipmentSlots.Find(x => x.slotType == equipment.SlotType);
@@ -194,6 +266,10 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Uses the provided consumable item and removes it from the inventory if it is completely used.
+    /// </summary>
+    /// <param name="item">The consumable item to be used.</param>
     public void UseItem(Consumable item)
     {
         item.Use();
@@ -211,12 +287,7 @@ public class InventoryManager : SerializedMonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        if (!resetOnExit) return;
-        foreach (var item in inventory)
-            item.CurrentStack = 0;
-    }
+    #endregion
 }
 
 [Serializable]

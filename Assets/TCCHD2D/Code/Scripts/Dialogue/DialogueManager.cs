@@ -1,13 +1,19 @@
-// Created by Sérgio Murillo da Costa Faria
-// Date: 17/03/2023
-
 using System.Collections;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// This class is responsible for displaying the dialogue on screen.
+/// </summary>
+/// <remarks>
+/// Created by Sérgio Murillo da Costa Faria on 17/03/2023.
+/// </remarks>
+[HideMonoScript]
 public class DialogueManager : MonoBehaviour
 {
+    #region === Variables ===============================================================
+
     [TitleGroup("Dialogue Manager Settings", Alignment = TitleAlignments.Centered)]
     [SerializeField, Required, Tooltip("Dialogue box that will be displayed on screen.")]
     private GameObject dialogueBox;
@@ -29,12 +35,23 @@ public class DialogueManager : MonoBehaviour
 
     public DialogueData CurrentDialogueData { get => currentDialogueData; set => currentDialogueData = value; }
 
-    public void DisplayDialogue()
+    #endregion
+
+    #region === Methods =================================================================
+
+    /// <summary>
+    /// Displays the current dialogue line.
+    /// </summary>
+    private void DisplayDialogue()
     {
         StopAllCoroutines();
         StartCoroutine(DisplayDialogueCoroutine());
     }
 
+    /// <summary>
+    /// Coroutine that displays the current dialogue line character by character.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator DisplayDialogueCoroutine()
     {
         var currentLine = CurrentDialogueData.DialogueLines[_currentLine];
@@ -47,7 +64,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void AdvanceDialogue()
+    /// <summary>
+    /// Advances the dialogue to the next line or ends the dialogue if there are no more lines.
+    /// </summary>
+    private void AdvanceDialogue()
     {
         if (dialogueText.text != CurrentDialogueData.DialogueLines[_currentLine].Text)
         {
@@ -66,6 +86,10 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts the dialogue with the given dialogue data.
+    /// </summary>
+    /// <param name="dialogueData">ScriptableObject that contains the strings of dialogue</param>
     public void StartDialogue(DialogueData dialogueData)
     {
         if (!dialogueBox.activeSelf)
@@ -79,6 +103,9 @@ public class DialogueManager : MonoBehaviour
         else AdvanceDialogue();
     }
 
+    /// <summary>
+    /// Ends the current dialogue.
+    /// </summary>
     public void EndDialogue()
     {
         speakerName.text = string.Empty;
@@ -86,4 +113,6 @@ public class DialogueManager : MonoBehaviour
         currentDialogueData = null;
         dialogueBox.SetActive(false);
     }
+
+    #endregion
 }

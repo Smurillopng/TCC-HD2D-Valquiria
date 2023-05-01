@@ -74,7 +74,6 @@ public class PlayerControls : SerializedMonoBehaviour
             Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-
     /// <summary>
     /// Subscribe to the sceneLoaded and sceneUnloaded events.
     /// </summary>
@@ -83,7 +82,6 @@ public class PlayerControls : SerializedMonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
-
     /// <summary>
     /// Handles initialization of the GameControls asset and subscribing to input events when a scene is loaded.
     /// </summary>
@@ -119,7 +117,6 @@ public class PlayerControls : SerializedMonoBehaviour
 
         gameControls.Enable();
     }
-
     /// <summary>
     /// Handles unsubscribing from input events when a scene is unloaded.
     /// </summary>
@@ -136,7 +133,6 @@ public class PlayerControls : SerializedMonoBehaviour
         gameControls.Menus.OpenInventory.performed -= OnInventory;
         gameControls.Disable();
     }
-
     /// <summary>
     /// Unsubscribe from the sceneLoaded and sceneUnloaded events and disable the GameControls asset.
     /// </summary>
@@ -159,7 +155,6 @@ public class PlayerControls : SerializedMonoBehaviour
     {
         moveValue.Value = ctx.ReadValue<Vector2>();
     }
-
     /// <summary>
     /// Is called when the "Walk" input of the "GameControls" Input Actions is released.
     /// </summary>
@@ -168,7 +163,6 @@ public class PlayerControls : SerializedMonoBehaviour
     {
         moveValue.Value = Vector2.zero;
     }
-
     /// <summary>
     /// Is called when the "Run" input of the "GameControls" Input Actions is performed.
     /// </summary>
@@ -177,7 +171,6 @@ public class PlayerControls : SerializedMonoBehaviour
     {
         isRunning.Value = ctx.ReadValueAsButton();
     }
-
     /// <summary>
     /// Is called when the "Interact" input of the "GameControls" Input Actions is performed or canceled.
     /// </summary>
@@ -189,7 +182,6 @@ public class PlayerControls : SerializedMonoBehaviour
         else if (ctx.canceled)
             interacted.Value = false;
     }
-
     /// <summary>
     /// Is called when the "Open Inventory" input of the "GameControls" Input Actions is performed.
     /// </summary>
@@ -198,7 +190,6 @@ public class PlayerControls : SerializedMonoBehaviour
     {
         openInventory.Value = !openInventory.Value;
     }
-
     /// <summary>
     /// Toggles the default controls of the game.
     /// </summary>

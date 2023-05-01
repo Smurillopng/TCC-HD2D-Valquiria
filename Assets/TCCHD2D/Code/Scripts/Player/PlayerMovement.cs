@@ -152,7 +152,6 @@ public class PlayerMovement : MonoBehaviour
         save.Write("CurrentScene", SceneManager.GetActiveScene().name);
         save.Commit();
     }
-
     /// <summary>
     /// Called when the object becomes enabled and active.
     /// Resets player movement values and sets the IsWalking parameter in the animator to false.
@@ -163,7 +162,6 @@ public class PlayerMovement : MonoBehaviour
         movementValue = Vector3.zero;
         animator.SetBool(IsWalking, false);
     }
-
     /// <summary>
     /// Called every fixed framerate frame.
     /// Calculates player movement based on input and updates the Rigidbody component.
@@ -172,7 +170,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
     }
-
     /// <summary>
     /// Draws gizmos in the scene view.
     /// Draws four diagonal rays from the player position to help visualize the ground detection rays.

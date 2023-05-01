@@ -82,7 +82,6 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-
     /// <summary>
     /// Called before the first frame update.
     /// Gets the PlayerMovement component, initializes some variables and reads data from a QuickSave file.
@@ -100,7 +99,6 @@ public class RandomEncounterManager : SerializedMonoBehaviour
             _playerMovement.CanMove.Value = true;
         }
     }
-    
     /// <summary>
     /// Called after a new scene has finished loading.
     /// If the current scene is not the combat scene and the PlayerMovement component exists,
@@ -118,7 +116,6 @@ public class RandomEncounterManager : SerializedMonoBehaviour
             _playerMovement.Movement();
         }
     }
-
     /// <summary>
     /// Called when the behaviour becomes disabled.
     /// Unregister the OnSceneLoaded method from being called when a scene is loaded.
@@ -144,7 +141,6 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         EncounterEnemy();
         currentSteps = 0;
     }
-
     /// <summary>
     /// Initiates an encounter with an enemy.
     /// </summary>
@@ -161,7 +157,6 @@ public class RandomEncounterManager : SerializedMonoBehaviour
 
         StartCoroutine(FadeIn(_liftGammaGain));
     }
-    
     /// <summary>
     /// Fades in the scene for combat.
     /// </summary>

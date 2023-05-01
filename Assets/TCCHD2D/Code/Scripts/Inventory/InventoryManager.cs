@@ -65,7 +65,6 @@ public class InventoryManager : SerializedMonoBehaviour
             Destroy(gameObject);
         }
     }
-    
     /// <summary>
     /// Resets the stack count of all items in the inventory to 0 if the resetOnExit flag is set.
     /// </summary>
@@ -80,7 +79,7 @@ public class InventoryManager : SerializedMonoBehaviour
 
     #region === Methods =================================================================
 
-/// <summary>
+    /// <summary>
     /// Adds a consumable item to the inventory.
     /// </summary>
     /// <param name="item">The consumable item to be added.</param>
@@ -100,7 +99,6 @@ public class InventoryManager : SerializedMonoBehaviour
             item.CurrentStack++;
         }
     }
-    
     /// <summary>
     /// Adds an equipment item to the inventory.
     /// </summary>
@@ -121,7 +119,6 @@ public class InventoryManager : SerializedMonoBehaviour
             item.CurrentStack++;
         }
     }
-    
     /// <summary>
     /// Adds an item to the inventory.
     /// </summary>
@@ -138,7 +135,6 @@ public class InventoryManager : SerializedMonoBehaviour
                 break;
         }
     }
-
     /// <summary>
     /// Removes a consumable item from the inventory.
     /// </summary>
@@ -147,7 +143,6 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         inventory.Remove(item);
     }
-    
     /// <summary>
     /// Removes an equipment item from the inventory.
     /// </summary>
@@ -156,7 +151,6 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         inventory.Remove(item);
     }
-    
     /// <summary>
     /// Removes an item from the inventory.
     /// </summary>
@@ -173,7 +167,6 @@ public class InventoryManager : SerializedMonoBehaviour
                 break;
         }
     }
-    
     /// <summary>
     /// Equips the provided equipment into the appropriate equipment slot.
     /// </summary>
@@ -219,7 +212,6 @@ public class InventoryManager : SerializedMonoBehaviour
                 break;
         }
     }
-
     /// <summary>
     /// Unequips the provided equipment from its slot.
     /// </summary>
@@ -265,7 +257,6 @@ public class InventoryManager : SerializedMonoBehaviour
                 break;
         }
     }
-
     /// <summary>
     /// Uses the provided consumable item and removes it from the inventory if it is completely used.
     /// </summary>

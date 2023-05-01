@@ -17,10 +17,13 @@ public class DistanceHider : MonoBehaviour
 
     [SerializeField, Tooltip("The transform of the player.")]
     private Transform player;
+    
     [SerializeField, Tooltip("The layers to be considered for object detection.")]
     private LayerMask layerMask;
+    
     [SerializeField, Tooltip("The camera that will be used to calculate the distance to the objects.")]
     private Camera mainCam;
+    
     [SerializeField, Tooltip("The strength of the alpha applied to the materials of the hidden objects.")]
     private float alphaStrength = 0.1f;
 
@@ -42,7 +45,6 @@ public class DistanceHider : MonoBehaviour
     {
         mainCam = Camera.main;
     }
-
     /// <summary>
     /// This method detects objects that are between the player and the camera and hides them.
     /// </summary>

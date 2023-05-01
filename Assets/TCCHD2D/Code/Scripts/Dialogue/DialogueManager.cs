@@ -47,7 +47,6 @@ public class DialogueManager : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(DisplayDialogueCoroutine());
     }
-
     /// <summary>
     /// Coroutine that displays the current dialogue line character by character.
     /// </summary>
@@ -63,7 +62,6 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(charDelay);
         }
     }
-
     /// <summary>
     /// Advances the dialogue to the next line or ends the dialogue if there are no more lines.
     /// </summary>
@@ -85,7 +83,6 @@ public class DialogueManager : MonoBehaviour
             DisplayDialogue();
         }
     }
-
     /// <summary>
     /// Starts the dialogue with the given dialogue data.
     /// </summary>
@@ -102,7 +99,6 @@ public class DialogueManager : MonoBehaviour
         }
         else AdvanceDialogue();
     }
-
     /// <summary>
     /// Ends the current dialogue.
     /// </summary>

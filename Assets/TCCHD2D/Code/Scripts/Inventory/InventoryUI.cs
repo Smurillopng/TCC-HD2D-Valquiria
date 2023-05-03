@@ -140,6 +140,27 @@ public class InventoryUI : MonoBehaviour
         bagPanel.SetActive(false);
         equipmentPanel.SetActive(false);
     }
+    
+    public void ToggleInventory()
+    {
+        isInventoryOpen.Value = !isInventoryOpen.Value;
+        inventoryPanel.SetActive(isInventoryOpen.Value);
+        if (isInventoryOpen.Value)
+        {
+            PlayerControls.Instance.ToggleDefaultControls(false);
+            if (!updatedStatus)
+            {
+                ResetPanels();
+                UpdatePlayerStatus(playerUnit);
+                updatedStatus = true;
+            }
+        }
+        else
+        {
+            PlayerControls.Instance.ToggleDefaultControls(true);
+            updatedStatus = false;
+        }
+    }
 
     public void Update()
     {

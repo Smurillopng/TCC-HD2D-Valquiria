@@ -161,10 +161,10 @@ MonoBehaviour:
   experience: 0
   attackAnimation: {fileID: 0}
   maxHp: 10
-  currentHp: 10
+  currentHp: 12
   maxTp: 100
   currentTp: 0
-  attack: 2
+  attack: 1
   defence: 1
   speed: 2
   luck: 1

@@ -97,19 +97,20 @@ public class Consumable : ScriptableObject, IItem
 
     //In Combat Effects
 
-    public void Heal()
+    private void Heal()
     {
         var target = FindObjectOfType<TurnManager>().PlayerUnitController;
-        if (target.Unit.CurrentHp > target.Unit.MaxHp)
-            target.Unit.CurrentHp += EffectValue;
         if (target.Unit.CurrentHp < target.Unit.MaxHp)
+            target.Unit.CurrentHp += EffectValue;
+        if (target.Unit.CurrentHp > target.Unit.MaxHp)
             target.Unit.CurrentHp = target.Unit.MaxHp;
         UpdateTrack(target);
         target.Director.Play(target.UseItem);
     }
 
-    public void Damage()
+    private void Damage()
     {
+        var player = FindObjectOfType<TurnManager>().PlayerUnitController;
         var target = FindObjectOfType<TurnManager>().EnemyUnitController;
         target.Unit.CurrentHp -= EffectValue;
         if (target.Unit.CurrentHp <= 0)
@@ -118,10 +119,10 @@ public class Consumable : ScriptableObject, IItem
             target.Unit.CurrentHp = 0;
         }
         UpdateTrack(target);
-        target.Director.Play(target.UseItem);
+        player.Director.Play(player.UseItem);
     }
 
-    public void IncreaseTp()
+    private void IncreaseTp()
     {
         var target = FindObjectOfType<TurnManager>().PlayerUnitController;
         target.Unit.CurrentTp += EffectValue;

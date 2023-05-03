@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Bjorn
   dialogueLines:
-  - text: "Parab\xE9ns voc\xEA chegou ao fim do playtest"
-  - text: "O chef\xE3o estava aqui agora a pouco mas ele teve que sair pra comer"
-  - text: Enquanto isso vou ficar aqui guardando o lugar dele
+  - text: "Parab\xE9ns voc\xEA chegou ao fim do playtest."
+  - text: "O chef\xE3o estava aqui agora a pouco mas ele teve que sair pra comer."
+  - text: Enquanto isso vou ficar aqui guardando o lugar dele.
   - text: :D

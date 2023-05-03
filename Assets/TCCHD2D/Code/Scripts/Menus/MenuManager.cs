@@ -30,10 +30,17 @@ public class MenuManager : MonoBehaviour
         var writer = QuickSaveWriter.Create("GameSave");
         var keys = writer.GetAllKeys();
         foreach (var key in keys)
-        {
             writer.Delete(key);
-        }
         writer.Commit();
+    }
+    
+    public void ContinueGame()
+    {
+        var reader = QuickSaveReader.Create("GameSave");
+        if (reader.Exists("CurrentScene"))
+        {
+            SceneManager.LoadScene(reader.Read<string>("CurrentScene"));
+        }
     }
 
     /// <summary>

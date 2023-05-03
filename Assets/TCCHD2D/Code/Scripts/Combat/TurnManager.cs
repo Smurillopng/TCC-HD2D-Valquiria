@@ -213,6 +213,50 @@ public class TurnManager : MonoBehaviour
         _currentUnit = units[currentUnitIndex];
     }
 
+    public void SetAilments()
+    {
+        switch (_combatState)
+        {
+            case CombatState.PlayerTurn:
+                TriggerAilment(PlayerUnitController);
+                break;
+            case CombatState.EnemyTurn:
+                TriggerAilment(EnemyUnitController);
+                break;
+        }
+    }
+
+    private void TriggerAilment(UnitController target)
+    {
+        var targetAilments = target.gameObject.GetComponent<Ailments>();
+        if (targetAilments.OnFire)
+        {
+            target.TakeDamage(1);
+            PlayerCombatHUD.UpdateCombatHUD();
+            CheckGameOver();
+        }
+        if (targetAilments.Frozen)
+        {
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+        if (targetAilments.Stunned)
+        {
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+        if (targetAilments.Bleeding)
+        {
+            target.TakeDamage(1);
+            PlayerCombatHUD.UpdateCombatHUD();
+             CheckGameOver();
+        }
+        if (targetAilments.Incapacitated)
+        {
+            target.TakeDamage(1);
+            PlayerCombatHUD.UpdateCombatHUD();
+            CheckGameOver();
+        }
+    }
+
     private void CheckGameOver()
     {
         var playerAlive = units.Any(unit => unit.Unit.IsPlayer && !unit.Unit.IsDead);
@@ -240,10 +284,11 @@ public class TurnManager : MonoBehaviour
         DisplayVictoryText();
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
-        SceneManager.LoadScene(QuickSaveReader.Create("GameSave").Read<string>("LastScene"));
+        var lastScene = QuickSaveReader.Create("GameSave").Read<string>("LastScene");
         var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("LastScene", gameObject.scene.name);
+        writer.Write("LastScene", SceneManager.GetActiveScene().name);
         writer.Commit();
+        SceneManager.LoadScene(lastScene);
     }
 
     private void XpReward()

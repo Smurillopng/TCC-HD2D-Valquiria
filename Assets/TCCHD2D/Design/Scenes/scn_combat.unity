@@ -13580,7 +13580,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191108975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.001}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -13659,8 +13659,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16710,7 +16710,19 @@ MonoBehaviour:
   units: []
   onTurnStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1058066614}
+        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
+        m_MethodName: SetAilments
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onTurnChange:
     m_PersistentCalls:
       m_Calls:
@@ -51140,7 +51152,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703950807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.001}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -51219,8 +51231,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -51572,7 +51584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
   m_LocalRotation: {x: 0.11037821, y: 0.030878063, z: -0.003430896, w: 0.993404}
-  m_LocalPosition: {x: -569.7, y: -139.14001, z: -4}
+  m_LocalPosition: {x: -961.18097, y: -138.54907, z: -6.7486815}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -98640,6 +98652,7 @@ GameObject:
   - component: {fileID: 6120526187047363627}
   - component: {fileID: 6120526187047363628}
   - component: {fileID: 6120526187047363629}
+  - component: {fileID: 6120526187047363630}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -98656,7 +98669,7 @@ PlayableDirector:
   m_GameObject: {fileID: 4402599576473323655}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: f2db776eae8ecb642a6cf918e665a812, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -98687,6 +98700,16 @@ PlayableDirector:
   - key: {fileID: 5736568967657122819, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
     value: {fileID: 7994889600021895129}
   - key: {fileID: 4460905559835601929, guid: c21c1f8280c4ede489618116d2009bf7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6132232356488945383, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4044428671974233655, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6943428384790267623, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4739190737564502382, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8929594008455739226, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References:
@@ -98863,6 +98886,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6120526187047363630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402599576473323655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ddb9987a65487492167dfc1bd08c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6969460405494510989
 GameObject:
   m_ObjectHideFlags: 0
@@ -98878,6 +98913,7 @@ GameObject:
   - component: {fileID: 7878350319063784937}
   - component: {fileID: 7878350319063784938}
   - component: {fileID: 7878350319063784941}
+  - component: {fileID: 7878350319063784942}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -98946,7 +98982,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6969460405494510989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.26999998, y: -0.14, z: 0}
+  m_LocalPosition: {x: 0.26999998, y: -0.14, z: 0.0001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99248,6 +99284,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7878350319063784942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969460405494510989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ddb9987a65487492167dfc1bd08c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &7994889600021895129
 Animator:
   serializedVersion: 5

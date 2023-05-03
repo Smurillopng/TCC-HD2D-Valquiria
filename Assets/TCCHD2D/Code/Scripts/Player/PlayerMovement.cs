@@ -116,8 +116,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!gameObject.TryGetComponent(out rigidBody))
             rigidBody = gameObject.AddComponent<Rigidbody>();
-
         var reader = QuickSaveReader.Create("GameSave");
+        if (!reader.Exists("ChangingScene"))
+        {
+            var writer = QuickSaveWriter.Create("GameSave");
+            writer.Write("ChangingScene", false);
+            writer.Commit();
+        }
+        
         if (reader.Exists("ChangingScene"))
         {
             if (reader.Exists("SpawnStart") ||

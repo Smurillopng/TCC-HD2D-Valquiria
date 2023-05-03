@@ -7,7 +7,6 @@ using UnityEditor;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 [CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit")]
@@ -141,7 +140,17 @@ public class Unit : SerializedScriptableObject
     {
         if (state == PlayModeStateChange.ExitingPlayMode && resetOnExit)
         {
+            level = 1;
+            experience = 0;
+            maxHp = 10;
             currentHp = maxHp;
+            maxTp = 100;
+            currentTp = 0;
+            attack = 1;
+            defence = 1;
+            speed = 2;
+            luck = 1;
+            dexterity = 1;
         }
     }
 #else
@@ -149,7 +158,17 @@ public class Unit : SerializedScriptableObject
     {
         if (resetOnExit)
         {
+            level = 1;
+            experience = 0;
+            maxHp = 10;
             currentHp = maxHp;
+            maxTp = 100;
+            currentTp = 0;
+            attack = 1;
+            defence = 1;
+            speed = 2;
+            luck = 1;
+            dexterity = 1;
         }
     }
 #endif

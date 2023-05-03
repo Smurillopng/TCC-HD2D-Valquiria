@@ -53,11 +53,11 @@ public class OptionsMenuManager : MonoBehaviour
     [SerializeField] private StringVariable previousScene;
 
     private Resolution[] _resolutions;
+    private List<Resolution> _filteredResolutions;
 
     private void Start()
     {
         qualityDropdown.ClearOptions();
-        resolutionDropdown.ClearOptions();
 
         // Populate quality dropdown with available quality levels
         var qualityLevels = QualitySettings.names;
@@ -65,22 +65,31 @@ public class OptionsMenuManager : MonoBehaviour
 
         // Populate resolution dropdown with available resolutions
         _resolutions = Screen.resolutions;
-        var resolutionOptions = new List<string>();
+        _filteredResolutions = new List<Resolution>();
+        resolutionDropdown.ClearOptions();
+        var currentRefreshRate = Screen.currentResolution.refreshRate;
         var currentResolutionIndex = 0;
 
-        // Supported aspect ratios and refresh rates
-        float[] aspectRatios = { 16f / 9f, 16f / 10f, 4f / 3f };
-
-        foreach (var resolution in _resolutions)
+        for (var i = 0; i < _resolutions.Length; i++)
         {
-            if (!Array.Exists(aspectRatios,
-                    ratio => Mathf.Approximately(ratio, (float)resolution.width / resolution.height))) continue;
-            var option = $"{resolution.width}x{resolution.height} @ {resolution.refreshRate}Hz";
+            if (_resolutions[i].refreshRate == currentRefreshRate)
+            {
+                _filteredResolutions.Add(_resolutions[i]);
+            }
+        }
+        var resolutionOptions = new List<string>();
+        for (var i = 0; i < _filteredResolutions.Count; i++)
+        {
+            var option = $"{_filteredResolutions[i].width} x {_filteredResolutions[i].height} @ {_filteredResolutions[i].refreshRate}Hz";
             resolutionOptions.Add(option);
+            if (_filteredResolutions[i].width == Screen.width &&
+                _filteredResolutions[i].height == Screen.height)
+            {
+                currentResolutionIndex = i;
+            }
         }
 
         resolutionDropdown.AddOptions(resolutionOptions);
-        currentResolutionIndex = resolutionOptions.Count - 1;
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
@@ -159,7 +168,7 @@ public class OptionsMenuManager : MonoBehaviour
     /// </summary>
     public void SetResolution()
     {
-        var resolution = _resolutions[resolutionDropdown.value];
+        var resolution = _filteredResolutions[resolutionDropdown.value];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         PlayerPrefs.SetInt("Resolution", resolutionDropdown.value);
     }

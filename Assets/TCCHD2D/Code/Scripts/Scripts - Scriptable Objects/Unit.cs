@@ -14,7 +14,7 @@ public class Unit : SerializedScriptableObject
 {
     [TitleGroup("Unit Type", Alignment = TitleAlignments.Centered)]
     [SerializeField] private UnitType type;
-    
+
     [TitleGroup("Appearance", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private string unitName;
@@ -25,10 +25,10 @@ public class Unit : SerializedScriptableObject
     [TitleGroup("Stats", Alignment = TitleAlignments.Centered)]
     [SerializeField, MinValue(1)]
     private int level = 1;
-    
+
     [SerializeField, ShowIf("type", UnitType.Enemy)]
     private Dictionary<IItem, int> itemDrops;
-    
+
     [SerializeField, MinValue(0), ShowIf("type", UnitType.Enemy)]
     private int experienceDrop;
 
@@ -36,8 +36,8 @@ public class Unit : SerializedScriptableObject
     private int experience;
 
     [SerializeField, ShowIf("type", UnitType.Player)]
-    private readonly Dictionary<int,int> experienceTable = new();
-    
+    private readonly Dictionary<int, int> experienceTable = new();
+
     [SerializeField, ShowIf("type", UnitType.Enemy)]
     private TimelineAsset attackAnimation;
 
@@ -95,7 +95,7 @@ public class Unit : SerializedScriptableObject
         set => experience = value;
     }
 
-    public Dictionary<int,int> ExperienceTable => experienceTable;
+    public Dictionary<int, int> ExperienceTable => experienceTable;
     public TimelineAsset AttackAnimation => attackAnimation;
     public int MaxHp => maxHp;
     public int CurrentHp
@@ -148,7 +148,7 @@ public class Unit : SerializedScriptableObject
             currentTp = 0;
             attack = 1;
             defence = 1;
-            speed = 2;
+            speed = 1;
             luck = 1;
             dexterity = 1;
         }
@@ -166,7 +166,7 @@ public class Unit : SerializedScriptableObject
             currentTp = 0;
             attack = 1;
             defence = 1;
-            speed = 2;
+            speed = 1;
             luck = 1;
             dexterity = 1;
         }

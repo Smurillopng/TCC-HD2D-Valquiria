@@ -59,6 +59,7 @@ public class TurnManager : MonoBehaviour
 
     [SerializeField, ReadOnly] private CombatState _combatState; // The current state of the combat
     private UnitController _currentUnit; // The UnitController component of the current unit
+    private int _turnCount; // The current turn number
 
     public UnitController PlayerUnitController { get; private set; }
     public UnitController EnemyUnitController { get; private set; }
@@ -136,7 +137,14 @@ public class TurnManager : MonoBehaviour
                 }
                 units = units.OrderByDescending(unit => unit.speedCalculated).ToList();
                 _combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
-                ManageTurns();
+                if (_turnCount == 0)
+                {
+                    StartCoroutine(FirstTurnDelay());
+                }
+                else
+                {
+                    ManageTurns();
+                }
                 break;
 
             case CombatState.TurnCheck:
@@ -175,6 +183,7 @@ public class TurnManager : MonoBehaviour
                 if (!_currentUnit.Unit.HasTakenTurn && !aiMoved)
                 {
                     _combatState = CombatState.EnemyTurn;
+                    isPlayerTurn = false;
                     onTurnStart.Invoke();
                     // Use the AI system to select an action for the enemy
                     aiMoved = true;
@@ -213,6 +222,13 @@ public class TurnManager : MonoBehaviour
         _currentUnit = units[currentUnitIndex];
     }
 
+    private IEnumerator FirstTurnDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _turnCount++;
+        ManageTurns();
+    }
+
     public void SetAilments()
     {
         switch (_combatState)
@@ -247,7 +263,7 @@ public class TurnManager : MonoBehaviour
         {
             target.TakeDamage(1);
             PlayerCombatHUD.UpdateCombatHUD();
-             CheckGameOver();
+            CheckGameOver();
         }
         if (targetAilments.Incapacitated)
         {
@@ -304,7 +320,7 @@ public class TurnManager : MonoBehaviour
             itemNotification.AddItemWithNotification(item.Key);
         }
     }
-    
+
     private void DisplayVictoryText()
     {
         var victoryText =

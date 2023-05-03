@@ -21,15 +21,15 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The fill image of the player's health bar.")]
     private Image playerHealthBarFill;
-    
+
     [SerializeField]
     [Tooltip("The text displaying the player's current health.")]
     private TMP_Text playerHealthText;
-    
+
     [SerializeField]
     [Tooltip("The fill image of the player's Tp bar.")]
     private Image playerTpBarFill;
-    
+
     [SerializeField]
     [Tooltip("The text displaying the player's current Tp.")]
     private TMP_Text playerTpText;
@@ -38,11 +38,11 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The name text of the enemy.")]
     private TMP_Text enemyName;
-    
+
     [SerializeField]
     [Tooltip("The fill image of the enemy's health bar.")]
     private Image enemyHealthBarFill;
-    
+
     [SerializeField]
     [Tooltip("The text displaying the enemy's current health.")]
     private TMP_Text enemyHealthText;
@@ -51,7 +51,7 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The text box displaying combat information.")]
     private TMP_Text combatTextBox;
-    
+
     [SerializeField]
     [Tooltip("The time duration for displaying combat information in the text box.")]
     private float combatTextTimer;
@@ -60,15 +60,15 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The prefab for combat buttons.")]
     private GameObject buttonPrefab;
-    
+
     [SerializeField]
     [Tooltip("The panel containing combat options.")]
     private GameObject optionsPanel;
-    
+
     [SerializeField]
     [Tooltip("The panel containing special combat options.")]
     private GameObject specialPanel;
-    
+
     [SerializeField]
     [Tooltip("The panel containing item options.")]
     private GameObject itemPanel;
@@ -77,26 +77,26 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The button for attacking the enemy.")]
     private Button attackButton;
-    
+
     [SerializeField]
     [Tooltip("The button for using a special attack on the enemy.")]
     private Button specialButton;
-    
+
     [SerializeField]
     [Tooltip("The button for using an item in combat.")]
     private Button itemButton;
-    
+
     [SerializeField]
     [Tooltip("The button for attempting to run away from combat.")]
     private Button runButton;
-    
+
     [SerializeField]
     [Tooltip("The button for attempting to run away from combat.")]
     private Button returnButton;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [ShowInInspector, ReadOnly]
-    
+
     public static UnityAction TakenAction;
     public static UnityAction<string> CombatTextEvent;
     public static UnityAction UpdateCombatHUDPlayerHp;
@@ -104,16 +104,14 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDEnemyHp;
     public static UnityAction UpdateCombatHUD;
 
-    [SerializeField] 
+    [SerializeField]
     [Tooltip("The manager for controlling turns in combat.")]
     private TurnManager turnManager;
-    
+
     [SerializeField]
     [Tooltip("The collection of special attacks available to the player.")]
     private Specials specials;
-    
-    private bool _wasPlayerTurn; // Flag indicating if the last turn was a player turn.
-    
+
     public GameObject SpecialPanel => specialPanel;
     public GameObject OptionsPanel => optionsPanel;
     public Button ReturnButton => returnButton;
@@ -152,7 +150,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateEnemyHealth();
         UpdatePlayerTp();
         UpdatePlayerHealth();
-        
+
         CombatTextEvent += DisplayCombatText;
         UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
@@ -163,8 +161,6 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (_wasPlayerTurn == turnManager.isPlayerTurn) return;
-        _wasPlayerTurn = turnManager.isPlayerTurn;
         DisableButtons(!turnManager.isPlayerTurn);
     }
     /// <summary>
@@ -266,16 +262,16 @@ public class PlayerCombatHUD : MonoBehaviour
     public void Item()
     {
         var hasItem = InventoryManager.Instance.Inventory.OfType<Consumable>().Any();
-        
+
         if (!hasItem)
         {
             CombatTextEvent.Invoke("<b>Sem itens!</b>");
             return;
         }
-        
+
         optionsPanel.SetActive(false);
         itemPanel.SetActive(true);
-        
+
         if (itemPanel.transform.childCount > 0)
         {
             foreach (Transform child in itemPanel.transform)
@@ -283,7 +279,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        
+
         foreach (var item in InventoryManager.Instance.Inventory.OfType<Consumable>())
         {
             returnButton.gameObject.SetActive(true);
@@ -324,7 +320,7 @@ public class PlayerCombatHUD : MonoBehaviour
     {
         optionsPanel.SetActive(false);
         specialPanel.SetActive(true);
-        
+
         if (specialPanel.transform.childCount > 0)
         {
             foreach (Transform child in specialPanel.transform)
@@ -332,7 +328,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        
+
         foreach (var method in specials.specialsList)
         {
             returnButton.gameObject.SetActive(true);

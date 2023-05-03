@@ -388,8 +388,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  rayDistance: 0.2
-  rayDistanceDiagonal: 0.5
+  rayDistance: 0.25
+  rayDistanceDiagonal: 0.6
   slowFactor: 0.00001
   animator: {fileID: 1864262430771853414}
   spawnController: {fileID: 0}

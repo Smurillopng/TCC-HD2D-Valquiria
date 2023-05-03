@@ -53,7 +53,7 @@ public class Consumable : ScriptableObject, IItem
         get => maxStack;
         set => maxStack = value;
     }
-    
+
     public int CurrentStack
     {
         get => currentStack;
@@ -102,8 +102,6 @@ public class Consumable : ScriptableObject, IItem
         var target = FindObjectOfType<TurnManager>().PlayerUnitController;
         if (target.Unit.CurrentHp < target.Unit.MaxHp)
             target.Unit.CurrentHp += EffectValue;
-        if (target.Unit.CurrentHp > target.Unit.MaxHp)
-            target.Unit.CurrentHp = target.Unit.MaxHp;
         UpdateTrack(target);
         target.Director.Play(target.UseItem);
     }

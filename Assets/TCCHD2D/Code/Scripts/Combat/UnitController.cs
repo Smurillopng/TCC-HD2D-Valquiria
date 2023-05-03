@@ -116,6 +116,10 @@ public class UnitController : MonoBehaviour
     {
         if (unit.IsPlayer && unit.CurrentTp > unit.MaxTp)
             unit.CurrentTp = unit.MaxTp;
+        if (unit.IsPlayer && unit.CurrentHp > unit.MaxHp)
+            unit.CurrentHp = unit.MaxHp;
+        if (!unit.IsPlayer && unit.CurrentHp > unit.MaxHp)
+            unit.CurrentHp = unit.MaxHp;
     }
 
     /// <summary>
@@ -201,7 +205,7 @@ public class UnitController : MonoBehaviour
 
         return damageTakenThisTurn;
     }
-    
+
     /// <summary>
     /// Adds information in the combat text box and calls the player specific special attack method.
     /// </summary>
@@ -252,7 +256,7 @@ public class UnitController : MonoBehaviour
             //TODO: AI Logic
         }
     }
-    
+
     /// <summary>
     /// Adds information in the combat text box and calls the player run method [<see cref="RunLogic"/>].
     /// </summary>

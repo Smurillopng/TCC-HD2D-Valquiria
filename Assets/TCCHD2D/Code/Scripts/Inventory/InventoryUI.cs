@@ -9,43 +9,52 @@ using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
-    [BoxGroup("Panels")] [SerializeField] private GameObject inventoryPanel;
-    [BoxGroup("Panels")] [SerializeField] private GameObject bagPanel;
-    [BoxGroup("Panels")] [SerializeField] private GameObject equipmentPanel;
+    [BoxGroup("Panels")][SerializeField] private GameObject inventoryPanel;
+    [BoxGroup("Panels")][SerializeField] private GameObject bagPanel;
+    [BoxGroup("Panels")][SerializeField] private GameObject equipmentPanel;
 
-    [BoxGroup("Equipment Slots")] [SerializeField]
+    [BoxGroup("Equipment Slots")]
+    [SerializeField]
     private Image headSlot;
 
-    [BoxGroup("Equipment Slots")] [SerializeField]
+    [BoxGroup("Equipment Slots")]
+    [SerializeField]
     private Image chestSlot;
 
-    [BoxGroup("Equipment Slots")] [SerializeField]
+    [BoxGroup("Equipment Slots")]
+    [SerializeField]
     private Image legsSlot;
 
-    [BoxGroup("Equipment Slots")] [SerializeField]
+    [BoxGroup("Equipment Slots")]
+    [SerializeField]
     private Image weaponSlot;
 
-    [BoxGroup("Equipment Slots")] [SerializeField]
+    [BoxGroup("Equipment Slots")]
+    [SerializeField]
     private Image runeSlot;
 
-    [BoxGroup("Status")] [SerializeField] private TMP_Text playerLvl;
-    [BoxGroup("Status")] [SerializeField] private Image playerHealthBarFill;
-    [BoxGroup("Status")] [SerializeField] private TMP_Text playerHealthText;
-    [BoxGroup("Status")] [SerializeField] private Image playerXpBarFill;
-    [BoxGroup("Status")] [SerializeField] private TMP_Text playerXpText;
+    [BoxGroup("Status")][SerializeField] private TMP_Text playerLvl;
+    [BoxGroup("Status")][SerializeField] private Image playerHealthBarFill;
+    [BoxGroup("Status")][SerializeField] private TMP_Text playerHealthText;
+    [BoxGroup("Status")][SerializeField] private Image playerXpBarFill;
+    [BoxGroup("Status")][SerializeField] private TMP_Text playerXpText;
 
-    [BoxGroup("External References")] [SerializeField]
+    [BoxGroup("External References")]
+    [SerializeField]
     private Unit playerUnit;
 
     [SerializeField] private GameObject itemPrefab;
 
-    [BoxGroup("External References")] [SerializeField]
+    [BoxGroup("External References")]
+    [SerializeField]
     private BoolVariable isInventoryOpen;
 
-    [BoxGroup("Debug")] [SerializeField, ReadOnly]
+    [BoxGroup("Debug")]
+    [SerializeField, ReadOnly]
     private bool updatedStatus;
 
-    [BoxGroup("Debug")] [SerializeField, ReadOnly]
+    [BoxGroup("Debug")]
+    [SerializeField, ReadOnly]
     private InventoryManager inventoryManager;
 
     private void Start()
@@ -131,8 +140,8 @@ public class InventoryUI : MonoBehaviour
         playerLvl.text = $"Lv. {unit.Level}";
         playerHealthText.text = $"HP: {unit.CurrentHp} / {unit.MaxHp}";
         playerHealthBarFill.fillAmount = (float)unit.CurrentHp / unit.MaxHp;
-        playerXpText.text = $"XP: {unit.Experience} / {unit.ExperienceTable[unit.Level + 1]}";
-        playerXpBarFill.fillAmount = (float)unit.Experience / unit.ExperienceTable[unit.Level + 1];
+        playerXpText.text = $"XP: {unit.Experience} / {unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience}";
+        playerXpBarFill.fillAmount = (float)unit.Experience / unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience;
     }
 
     private void ResetPanels()
@@ -140,7 +149,7 @@ public class InventoryUI : MonoBehaviour
         bagPanel.SetActive(false);
         equipmentPanel.SetActive(false);
     }
-    
+
     public void ToggleInventory()
     {
         isInventoryOpen.Value = !isInventoryOpen.Value;

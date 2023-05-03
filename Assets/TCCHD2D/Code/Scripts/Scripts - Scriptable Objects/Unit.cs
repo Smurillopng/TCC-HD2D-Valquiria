@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Timeline;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit")]
 public class Unit : SerializedScriptableObject
@@ -34,9 +35,6 @@ public class Unit : SerializedScriptableObject
 
     [SerializeField, MinValue(0), ShowIf("type", UnitType.Player)]
     private int experience;
-
-    [SerializeField, ShowIf("type", UnitType.Player)]
-    private readonly Dictionary<int, int> experienceTable = new();
 
     [SerializeField, ShowIf("type", UnitType.Player)]
     private readonly List<StatsTable> statsTable = new();
@@ -97,7 +95,7 @@ public class Unit : SerializedScriptableObject
         get => experience;
         set => experience = value;
     }
-    public Dictionary<int, int> ExperienceTable => experienceTable;
+    public List<StatsTable> StatsTables => statsTable;
     public TimelineAsset AttackAnimation => attackAnimation;
     public int MaxHp => maxHp;
     public int CurrentHp
@@ -176,7 +174,7 @@ public class Unit : SerializedScriptableObject
 #endif
     public void CheckLevelUp()
     {
-        if (!experienceTable.ContainsKey(level + 1) || experience < experienceTable[level + 1]) return;
+        if (!statsTable.Any(statGroup => statGroup.Level == level + 1) || experience < statsTable.First(statGroup => statGroup.Level == level + 1).Experience) return;
         level++;
         experience = 0;
         foreach (var statGroup in statsTable)
@@ -216,9 +214,10 @@ public class Unit : SerializedScriptableObject
         }
     }
 
-    private struct StatsTable
+    public struct StatsTable
     {
         public int Level;
+        public int Experience;
         public Dictionary<StatType, int> Stats;
     }
 }

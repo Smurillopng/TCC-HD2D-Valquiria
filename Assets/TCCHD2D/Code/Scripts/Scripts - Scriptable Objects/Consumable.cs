@@ -4,6 +4,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Timeline;
+using UnityEngine.VFX;
 
 [CreateAssetMenu(fileName = "New Consumable Item", menuName = "RPG/New Consumable Item", order = 0)]
 public class Consumable : ScriptableObject, IItem
@@ -12,6 +13,8 @@ public class Consumable : ScriptableObject, IItem
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemIcon;
     [SerializeField] private ConsumableTypes effectType;
+
+    [SerializeField] private VisualEffectAsset vfx;
     [SerializeField] private string itemDescription;
     [SerializeField] private int maxStack;
     [SerializeField] private int currentStack;
@@ -145,6 +148,11 @@ public class Consumable : ScriptableObject, IItem
                         break;
                     case "Signals":
                         target.Director.SetGenericBinding(track, enemyObject.GetComponentInChildren<SignalReceiver>());
+                        break;
+                    case "Vfx":
+                        var vfxAsset = target.gameObject.GetComponentInChildren<VisualEffect>();
+                        vfxAsset.visualEffectAsset = vfx;
+                        target.Director.SetGenericBinding(track, vfxAsset);
                         break;
                 }
             }

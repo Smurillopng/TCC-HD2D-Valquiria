@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_sword
   m_EditorClassIdentifier: 
+  itemType: 1
   itemID: 3
   slotType: 3
   itemName: Espada de Cobre

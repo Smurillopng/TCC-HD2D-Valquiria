@@ -12,6 +12,8 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Panels")][SerializeField] private GameObject inventoryPanel;
     [BoxGroup("Panels")][SerializeField] private GameObject bagPanel;
     [BoxGroup("Panels")][SerializeField] private GameObject equipmentPanel;
+    [BoxGroup("Panels")][SerializeField] private GameObject itemDisplayPanel;
+    [BoxGroup("Panels")][SerializeField] private GameObject statusPanel;
 
     [BoxGroup("Equipment Slots")]
     [SerializeField]
@@ -38,6 +40,12 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Status")][SerializeField] private TMP_Text playerHealthText;
     [BoxGroup("Status")][SerializeField] private Image playerXpBarFill;
     [BoxGroup("Status")][SerializeField] private TMP_Text playerXpText;
+    
+    [BoxGroup("Item Display")][SerializeField] private TMP_Text itemName;
+    [BoxGroup("Item Display")][SerializeField] private TMP_Text itemDescription;
+    [BoxGroup("Item Display")][SerializeField] private Image itemIcon;
+    [BoxGroup("Item Display")][SerializeField] private TMP_Text itemQuantity;
+    [BoxGroup("Item Display")][SerializeField] private Button itemUseButton;
 
     [BoxGroup("External References")]
     [SerializeField]
@@ -56,6 +64,8 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Debug")]
     [SerializeField, ReadOnly]
     private InventoryManager inventoryManager;
+    
+    public Unit PlayerUnit => playerUnit;
 
     private void Start()
     {
@@ -68,12 +78,16 @@ public class InventoryUI : MonoBehaviour
         bagPanel.SetActive(true);
         UpdateBag(inventoryManager.Inventory);
         equipmentPanel.SetActive(false);
+        itemDisplayPanel.SetActive(false);
+        statusPanel.SetActive(false);
     }
 
     public void ShowEquipmentPanel()
     {
         inventoryPanel.SetActive(true);
         bagPanel.SetActive(false);
+        itemDisplayPanel.SetActive(false);
+        statusPanel.SetActive(false);
         UpdateEquipments(inventoryManager.EquipmentSlots);
         equipmentPanel.SetActive(true);
     }
@@ -88,7 +102,34 @@ public class InventoryUI : MonoBehaviour
         foreach (var item in inventory)
         {
             var itemObject = Instantiate(itemPrefab, bagPanel.transform);
-            itemObject.GetComponent<ItemUI>().SetItem(item);
+            var uiScript = itemObject.GetComponent<ItemUI>();
+            uiScript.SetItem(item);
+            var useButton = uiScript.useButton;
+            useButton.onClick.RemoveAllListeners();
+            useButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
+            if (item.ItemType == ItemTyping.Consumable)
+            {
+                var consumable = item as Consumable;
+                itemUseButton.onClick.RemoveAllListeners();
+                itemUseButton.onClick.AddListener(() => consumable.Use());
+                itemUseButton.onClick.AddListener(() => ShowBagPanel());
+            }
+            else if (item.ItemType == ItemTyping.Equipment)
+            {
+                var equipment = item as Equipment;
+                if (inventoryManager.EquipmentSlots.Find(x => equipment != null && x.slotType == equipment.SlotType).equipItem != equipment)
+                {
+                    itemUseButton.onClick.RemoveAllListeners();
+                    itemUseButton.onClick.AddListener(() => inventoryManager.Equip(equipment));
+                    itemUseButton.onClick.AddListener(() => ShowBagPanel());
+                }
+                else
+                {
+                    itemUseButton.onClick.RemoveAllListeners();
+                    itemUseButton.onClick.AddListener(() => inventoryManager.Unequip(equipment));
+                    itemUseButton.onClick.AddListener(() => ShowBagPanel());
+                }
+            }
         }
     }
 
@@ -148,6 +189,8 @@ public class InventoryUI : MonoBehaviour
     {
         bagPanel.SetActive(false);
         equipmentPanel.SetActive(false);
+        itemDisplayPanel.SetActive(false);
+        statusPanel.SetActive(true);
     }
 
     public void ToggleInventory()

@@ -3,17 +3,18 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using UnityEngine.VFX;
 
 [CreateAssetMenu(fileName = "New Consumable Item", menuName = "RPG/New Consumable Item", order = 0)]
 public class Consumable : ScriptableObject, IItem
 {
+    [SerializeField] private ItemTyping itemType;
     [SerializeField] private int itemID;
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemIcon;
     [SerializeField] private ConsumableTypes effectType;
-
     [SerializeField] private VisualEffectAsset vfx;
     [SerializeField] private string itemDescription;
     [SerializeField] private int maxStack;
@@ -21,6 +22,11 @@ public class Consumable : ScriptableObject, IItem
     [SerializeField] private int itemValue;
     [SerializeField] private int effectValue;
 
+    public ItemTyping ItemType
+    {
+        get => itemType;
+        set => itemType = value;
+    }
     public int ItemID
     {
         get => itemID;
@@ -102,11 +108,36 @@ public class Consumable : ScriptableObject, IItem
 
     private void Heal()
     {
-        var target = FindObjectOfType<TurnManager>().PlayerUnitController;
-        if (target.Unit.CurrentHp < target.Unit.MaxHp)
-            target.Unit.CurrentHp += EffectValue;
-        UpdateTrack(target);
-        target.Director.Play(target.UseItem);
+        var scene = SceneManager.GetActiveScene().name;
+        if (PlayerControls.Instance.SceneMap.TryGetValue(scene, out var gameValue) && gameValue == SceneType.Game)
+        {
+            var inventory = FindObjectOfType<InventoryUI>();
+            var player = inventory.PlayerUnit;
+            if (player.CurrentHp < player.MaxHp)
+                player.CurrentHp += EffectValue;
+            else if (player.CurrentHp >= player.MaxHp)
+                player.CurrentHp = player.MaxHp;
+            if (CurrentStack <= 0)
+            {
+                InventoryManager.Instance.Inventory.Remove(this);
+            }
+            else
+            {
+                CurrentStack--;
+                if (CurrentStack <= 0)
+                {
+                    InventoryManager.Instance.Inventory.Remove(this);
+                }
+            }
+        }
+        if (PlayerControls.Instance.SceneMap.TryGetValue(scene, out var combatValue) && combatValue == SceneType.Combat)
+        {
+            var target = FindObjectOfType<TurnManager>().PlayerUnitController;
+            if (target.Unit.CurrentHp < target.Unit.MaxHp)
+                target.Unit.CurrentHp += EffectValue;
+            UpdateTrack(target);
+            target.Director.Play(target.UseItem);
+        }
     }
 
     private void Damage()

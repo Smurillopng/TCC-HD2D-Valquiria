@@ -184,27 +184,22 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             case EquipmentSlotType.Head:
                 slot.equipItem = equipment;
-                equipment.Equip();
                 print("Equipped a Head Item");
                 break;
             case EquipmentSlotType.Chest:
                 slot.equipItem = equipment;
-                equipment.Equip();
                 print("Equipped a Chest Item");
                 break;
             case EquipmentSlotType.Legs:
                 slot.equipItem = equipment;
-                equipment.Equip();
                 print("Equipped a Legs Item");
                 break;
             case EquipmentSlotType.Weapon:
                 slot.equipItem = equipment;
-                equipment.Equip();
                 print("Equipped a Weapon Item");
                 break;
             case EquipmentSlotType.Rune:
                 slot.equipItem = equipment;
-                equipment.Equip();
                 print("Equipped a Rune Item");
                 break;
             default:
@@ -229,27 +224,22 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             case EquipmentSlotType.Head:
                 slot.equipItem = null;
-                equipment.Unequip();
                 print("Unequipped a Head Item");
                 break;
             case EquipmentSlotType.Chest:
                 slot.equipItem = null;
-                equipment.Unequip();
                 print("Unequipped a Chest Item");
                 break;
             case EquipmentSlotType.Legs:
                 slot.equipItem = null;
-                equipment.Unequip();
                 print("Unequipped a Legs Item");
                 break;
             case EquipmentSlotType.Weapon:
                 slot.equipItem = null;
-                equipment.Unequip();
                 print("Unequipped a Weapon Item");
                 break;
             case EquipmentSlotType.Rune:
                 slot.equipItem = null;
-                equipment.Unequip();
                 print("Unequipped a Rune Item");
                 break;
             default:

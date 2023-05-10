@@ -107,46 +107,7 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: OnInteractionStartActions
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: OnInteractionInRangeActions
-      Entry: 7
-      Data: 1|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: OnInteractionOffRangeActions
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   interactionType: 0
   interactionRange: 0.4
   playerTransform: {fileID: 0}
@@ -219,6 +180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6026248263818641834}
+  - component: {fileID: 3600914856387851978}
   m_Layer: 0
   m_Name: Chest_Cover
   m_TagString: Untagged
@@ -241,6 +203,19 @@ Transform:
   m_Father: {fileID: 9108790634450603653}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.0000017443739, y: 0.0000120007535, z: 8.141646}
+--- !u!65 &3600914856387851978
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067447628815239311}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.06529928, y: 0.16309357, z: 0.18307303}
+  m_Center: {x: 0.03312413, y: 0.08202171, z: 0.000525365}
 --- !u!1 &6894930103627394662
 GameObject:
   m_ObjectHideFlags: 0

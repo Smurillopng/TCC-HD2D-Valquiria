@@ -38,9 +38,16 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Status")][SerializeField] private TMP_Text playerLvl;
     [BoxGroup("Status")][SerializeField] private Image playerHealthBarFill;
     [BoxGroup("Status")][SerializeField] private TMP_Text playerHealthText;
+    [BoxGroup("Status")][SerializeField] private Image playerTpFill;
+    [BoxGroup("Status")][SerializeField] private TMP_Text playerTpText;
     [BoxGroup("Status")][SerializeField] private Image playerXpBarFill;
     [BoxGroup("Status")][SerializeField] private TMP_Text playerXpText;
-    
+    [BoxGroup("Status")][SerializeField] private TMP_Text playerAttack;
+    [BoxGroup("Status")][SerializeField] private TMP_Text playerDefence;
+    [BoxGroup("Status")][SerializeField] private TMP_Text playerSpeed;
+    [BoxGroup("Status")][SerializeField] private TMP_Text playerLuck;
+    [BoxGroup("Status")][SerializeField] private TMP_Text playerDexterity;
+
     [BoxGroup("Item Display")][SerializeField] private TMP_Text itemName;
     [BoxGroup("Item Display")][SerializeField] private TMP_Text itemDescription;
     [BoxGroup("Item Display")][SerializeField] private Image itemIcon;
@@ -64,7 +71,7 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Debug")]
     [SerializeField, ReadOnly]
     private InventoryManager inventoryManager;
-    
+
     public Unit PlayerUnit => playerUnit;
 
     private void Start()
@@ -87,7 +94,8 @@ public class InventoryUI : MonoBehaviour
         inventoryPanel.SetActive(true);
         bagPanel.SetActive(false);
         itemDisplayPanel.SetActive(false);
-        statusPanel.SetActive(false);
+        statusPanel.SetActive(true);
+        UpdatePlayerStatus(playerUnit);
         UpdateEquipments(inventoryManager.EquipmentSlots);
         equipmentPanel.SetActive(true);
     }
@@ -110,24 +118,35 @@ public class InventoryUI : MonoBehaviour
             if (item.ItemType == ItemTyping.Consumable)
             {
                 var consumable = item as Consumable;
+                if (consumable.EffectType == ConsumableTypes.Damage)
+                {
+                    itemUseButton.onClick.RemoveAllListeners();
+                    itemUseButton.onClick.AddListener(() => itemDescription.text = "Não é possível usar esse item fora de combate.");
+                    return;
+                }
                 itemUseButton.onClick.RemoveAllListeners();
                 itemUseButton.onClick.AddListener(() => consumable.Use());
-                itemUseButton.onClick.AddListener(() => ShowBagPanel());
+                itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
+                itemUseButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
             }
             else if (item.ItemType == ItemTyping.Equipment)
             {
                 var equipment = item as Equipment;
                 if (inventoryManager.EquipmentSlots.Find(x => equipment != null && x.slotType == equipment.SlotType).equipItem != equipment)
                 {
+                    itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Equipar";
                     itemUseButton.onClick.RemoveAllListeners();
                     itemUseButton.onClick.AddListener(() => inventoryManager.Equip(equipment));
-                    itemUseButton.onClick.AddListener(() => ShowBagPanel());
+                    itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
+                    itemUseButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
                 }
                 else
                 {
+                    itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Desequipar";
                     itemUseButton.onClick.RemoveAllListeners();
                     itemUseButton.onClick.AddListener(() => inventoryManager.Unequip(equipment));
-                    itemUseButton.onClick.AddListener(() => ShowBagPanel());
+                    itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
+                    itemUseButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
                 }
             }
         }
@@ -181,8 +200,15 @@ public class InventoryUI : MonoBehaviour
         playerLvl.text = $"Lv. {unit.Level}";
         playerHealthText.text = $"HP: {unit.CurrentHp} / {unit.MaxHp}";
         playerHealthBarFill.fillAmount = (float)unit.CurrentHp / unit.MaxHp;
+        playerTpText.text = $"TP: {unit.CurrentTp} / {unit.MaxTp}";
+        playerTpFill.fillAmount = (float)unit.CurrentTp / unit.MaxTp;
         playerXpText.text = $"XP: {unit.Experience} / {unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience}";
         playerXpBarFill.fillAmount = (float)unit.Experience / unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience;
+        playerAttack.text = $"Ataque: {unit.Attack}";
+        playerDefence.text = $"Defesa: {unit.Defence}";
+        playerSpeed.text = $"Velocidade: {unit.Speed}";
+        playerLuck.text = $"Sorte: {unit.Luck}";
+        playerDexterity.text = $"Destreza: {unit.Dexterity}";
     }
 
     private void ResetPanels()

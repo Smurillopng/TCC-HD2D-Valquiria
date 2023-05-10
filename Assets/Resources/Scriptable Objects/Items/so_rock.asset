@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7e845936f24d58a175d3d846e813f7, type: 3}
   m_Name: so_rock
   m_EditorClassIdentifier: 
+  itemType: 0
   itemID: 2
   itemName: Pedra Pesada
   itemIcon: {fileID: -8134571553919462511, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
   effectType: 1
-  itemDescription: Cura alguns pontos de vida
+  vfx: {fileID: 0}
+  itemDescription: Essa pedra muito pesada causa 3 de dano em quem foi arremesada
   maxStack: 99
   currentStack: 0
   itemValue: 10

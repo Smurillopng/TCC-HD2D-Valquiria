@@ -33,7 +33,7 @@ public class MenuManager : MonoBehaviour
             writer.Delete(key);
         writer.Commit();
     }
-    
+
     public void ContinueGame()
     {
         var reader = QuickSaveReader.Create("GameSave");
@@ -41,6 +41,11 @@ public class MenuManager : MonoBehaviour
         {
             SceneManager.LoadScene(reader.Read<string>("CurrentScene"));
         }
+    }
+
+    public void ExitMessage(GameObject exitPanel)
+    {
+        exitPanel.SetActive(!exitPanel.activeSelf);
     }
 
     /// <summary>

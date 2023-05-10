@@ -144,7 +144,6 @@ public class PlayerCombatHUD : MonoBehaviour
         enemyHealthText.text = $"HP: {turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
         enemyHealthBarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
         enemyName.text = $"{turnManager.EnemyUnitController.Unit.UnitName}:";
-        turnManager.PlayerUnitController.Unit.CurrentTp = 0;
         combatTextBox.text = "";
 
         UpdateEnemyHealth();

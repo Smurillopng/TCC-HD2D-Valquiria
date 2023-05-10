@@ -184,23 +184,18 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             case EquipmentSlotType.Head:
                 slot.equipItem = equipment;
-                print("Equipped a Head Item");
                 break;
             case EquipmentSlotType.Chest:
                 slot.equipItem = equipment;
-                print("Equipped a Chest Item");
                 break;
             case EquipmentSlotType.Legs:
                 slot.equipItem = equipment;
-                print("Equipped a Legs Item");
                 break;
             case EquipmentSlotType.Weapon:
                 slot.equipItem = equipment;
-                print("Equipped a Weapon Item");
                 break;
             case EquipmentSlotType.Rune:
                 slot.equipItem = equipment;
-                print("Equipped a Rune Item");
                 break;
             default:
                 print("Invalid Equipment Slot Type");
@@ -224,23 +219,18 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             case EquipmentSlotType.Head:
                 slot.equipItem = null;
-                print("Unequipped a Head Item");
                 break;
             case EquipmentSlotType.Chest:
                 slot.equipItem = null;
-                print("Unequipped a Chest Item");
                 break;
             case EquipmentSlotType.Legs:
                 slot.equipItem = null;
-                print("Unequipped a Legs Item");
                 break;
             case EquipmentSlotType.Weapon:
                 slot.equipItem = null;
-                print("Unequipped a Weapon Item");
                 break;
             case EquipmentSlotType.Rune:
                 slot.equipItem = null;
-                print("Unequipped a Rune Item");
                 break;
             default:
                 print("Invalid Equipment Slot Type");

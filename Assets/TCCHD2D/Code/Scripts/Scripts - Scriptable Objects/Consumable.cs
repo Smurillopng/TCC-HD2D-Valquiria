@@ -142,24 +142,53 @@ public class Consumable : ScriptableObject, IItem
 
     private void Damage()
     {
-        var player = FindObjectOfType<TurnManager>().PlayerUnitController;
-        var target = FindObjectOfType<TurnManager>().EnemyUnitController;
-        target.Unit.CurrentHp -= EffectValue;
-        if (target.Unit.CurrentHp <= 0)
+        var scene = SceneManager.GetActiveScene().name;
+        if (PlayerControls.Instance.SceneMap.TryGetValue(scene, out var combatValue) && combatValue == SceneType.Combat)
         {
-            target.Unit.IsDead = true;
-            target.Unit.CurrentHp = 0;
+            var player = FindObjectOfType<TurnManager>().PlayerUnitController;
+            var target = FindObjectOfType<TurnManager>().EnemyUnitController;
+            target.Unit.CurrentHp -= EffectValue;
+            if (target.Unit.CurrentHp <= 0)
+            {
+                target.Unit.IsDead = true;
+                target.Unit.CurrentHp = 0;
+            }
+            UpdateTrack(target);
+            player.Director.Play(player.UseItem);
         }
-        UpdateTrack(target);
-        player.Director.Play(player.UseItem);
     }
 
     private void IncreaseTp()
     {
-        var target = FindObjectOfType<TurnManager>().PlayerUnitController;
-        target.Unit.CurrentTp += EffectValue;
-        UpdateTrack(target);
-        target.Director.Play(target.UseItem);
+        var scene = SceneManager.GetActiveScene().name;
+        if (PlayerControls.Instance.SceneMap.TryGetValue(scene, out var gameValue) && gameValue == SceneType.Game)
+        {
+            var inventory = FindObjectOfType<InventoryUI>();
+            var player = inventory.PlayerUnit;
+            if (player.CurrentTp < player.MaxTp)
+                player.CurrentTp += EffectValue;
+            else if (player.CurrentHp >= player.MaxTp)
+                player.CurrentTp = player.MaxTp;
+            if (CurrentStack <= 0)
+            {
+                InventoryManager.Instance.Inventory.Remove(this);
+            }
+            else
+            {
+                CurrentStack--;
+                if (CurrentStack <= 0)
+                {
+                    InventoryManager.Instance.Inventory.Remove(this);
+                }
+            }
+        }
+        if (PlayerControls.Instance.SceneMap.TryGetValue(scene, out var combatValue) && combatValue == SceneType.Combat)
+        {
+            var target = FindObjectOfType<TurnManager>().PlayerUnitController;
+            target.Unit.CurrentTp += EffectValue;
+            UpdateTrack(target);
+            target.Director.Play(target.UseItem);
+        }
     }
 
     private void UpdateTrack(UnitController target)

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 1032184446321484770, guid: b9e338017d3e8ab4298f11bcf3a17767, type: 3}
+  m_Clip: {fileID: -997232745070603059, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: 1032184446321484770, guid: b9e338017d3e8ab4298f11bcf3a17767, type: 3}
+  m_Clip: {fileID: -997232745070603059, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -560,7 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: -3921519252468391754, guid: b9e338017d3e8ab4298f11bcf3a17767, type: 3}
+  m_Clip: {fileID: -9021064916557030631, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -879,7 +879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: -2061327411195044045, guid: b9e338017d3e8ab4298f11bcf3a17767, type: 3}
+  m_Clip: {fileID: -5514433538661089048, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
   m_Name: AnimationPlayableAsset
   m_EditorClassIdentifier: 
-  m_Clip: {fileID: -8233056712428698444, guid: b9e338017d3e8ab4298f11bcf3a17767, type: 3}
+  m_Clip: {fileID: -8695155475551919931, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
   m_Position: {x: 0, y: 0, z: 0}
   m_EulerAngles: {x: 0, y: 0, z: 0}
   m_UseTrackMatchFields: 1

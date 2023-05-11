@@ -8,16 +8,30 @@ using UnityEngine.UI;
 
 public class ItemUI : MonoBehaviour
 {
-    public IItem Item;
     [Required] public Image icon;
     [Required] public TMP_Text nameText;
     [Required] public TMP_Text quantityText;
-    
+    [Required] public Button useButton;
+    public IItem DisplayedItem;
+
     public void SetItem(IItem item)
     {
-        Item = item;
         icon.sprite = item.ItemIcon;
         nameText.text = item.ItemName;
-        quantityText.text = $"x{Item.CurrentStack}";
+        quantityText.text = $"x{item.CurrentStack}";
+    }
+    public void DisplayItem(TMP_Text itemName, TMP_Text itemDescription, Image itemIcon, TMP_Text itemQuantity, GameObject displayPanel, IItem itemToDisplay)
+    {
+        if (itemToDisplay.CurrentStack == 0)
+        {
+            displayPanel.SetActive(false);
+            return;
+        }
+        displayPanel.SetActive(true);
+        itemName.text = itemToDisplay.ItemName;
+        itemDescription.text = itemToDisplay.ItemDescription;
+        itemIcon.sprite = itemToDisplay.ItemIcon;
+        itemQuantity.text = $"x{itemToDisplay.CurrentStack}";
+        DisplayedItem = itemToDisplay;
     }
 }

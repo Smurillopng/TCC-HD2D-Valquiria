@@ -65,7 +65,6 @@ public class InventoryManager : SerializedMonoBehaviour
             Destroy(gameObject);
         }
     }
-    
     /// <summary>
     /// Resets the stack count of all items in the inventory to 0 if the resetOnExit flag is set.
     /// </summary>
@@ -80,7 +79,7 @@ public class InventoryManager : SerializedMonoBehaviour
 
     #region === Methods =================================================================
 
-/// <summary>
+    /// <summary>
     /// Adds a consumable item to the inventory.
     /// </summary>
     /// <param name="item">The consumable item to be added.</param>
@@ -100,7 +99,6 @@ public class InventoryManager : SerializedMonoBehaviour
             item.CurrentStack++;
         }
     }
-    
     /// <summary>
     /// Adds an equipment item to the inventory.
     /// </summary>
@@ -121,7 +119,6 @@ public class InventoryManager : SerializedMonoBehaviour
             item.CurrentStack++;
         }
     }
-    
     /// <summary>
     /// Adds an item to the inventory.
     /// </summary>
@@ -138,7 +135,6 @@ public class InventoryManager : SerializedMonoBehaviour
                 break;
         }
     }
-
     /// <summary>
     /// Removes a consumable item from the inventory.
     /// </summary>
@@ -147,7 +143,6 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         inventory.Remove(item);
     }
-    
     /// <summary>
     /// Removes an equipment item from the inventory.
     /// </summary>
@@ -156,7 +151,6 @@ public class InventoryManager : SerializedMonoBehaviour
     {
         inventory.Remove(item);
     }
-    
     /// <summary>
     /// Removes an item from the inventory.
     /// </summary>
@@ -173,7 +167,6 @@ public class InventoryManager : SerializedMonoBehaviour
                 break;
         }
     }
-    
     /// <summary>
     /// Equips the provided equipment into the appropriate equipment slot.
     /// </summary>
@@ -191,35 +184,24 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             case EquipmentSlotType.Head:
                 slot.equipItem = equipment;
-                equipment.Equip();
-                print("Equipped a Head Item");
                 break;
             case EquipmentSlotType.Chest:
                 slot.equipItem = equipment;
-                equipment.Equip();
-                print("Equipped a Chest Item");
                 break;
             case EquipmentSlotType.Legs:
                 slot.equipItem = equipment;
-                equipment.Equip();
-                print("Equipped a Legs Item");
                 break;
             case EquipmentSlotType.Weapon:
                 slot.equipItem = equipment;
-                equipment.Equip();
-                print("Equipped a Weapon Item");
                 break;
             case EquipmentSlotType.Rune:
                 slot.equipItem = equipment;
-                equipment.Equip();
-                print("Equipped a Rune Item");
                 break;
             default:
                 print("Invalid Equipment Slot Type");
                 break;
         }
     }
-
     /// <summary>
     /// Unequips the provided equipment from its slot.
     /// </summary>
@@ -237,35 +219,24 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             case EquipmentSlotType.Head:
                 slot.equipItem = null;
-                equipment.Unequip();
-                print("Unequipped a Head Item");
                 break;
             case EquipmentSlotType.Chest:
                 slot.equipItem = null;
-                equipment.Unequip();
-                print("Unequipped a Chest Item");
                 break;
             case EquipmentSlotType.Legs:
                 slot.equipItem = null;
-                equipment.Unequip();
-                print("Unequipped a Legs Item");
                 break;
             case EquipmentSlotType.Weapon:
                 slot.equipItem = null;
-                equipment.Unequip();
-                print("Unequipped a Weapon Item");
                 break;
             case EquipmentSlotType.Rune:
                 slot.equipItem = null;
-                equipment.Unequip();
-                print("Unequipped a Rune Item");
                 break;
             default:
                 print("Invalid Equipment Slot Type");
                 break;
         }
     }
-
     /// <summary>
     /// Uses the provided consumable item and removes it from the inventory if it is completely used.
     /// </summary>

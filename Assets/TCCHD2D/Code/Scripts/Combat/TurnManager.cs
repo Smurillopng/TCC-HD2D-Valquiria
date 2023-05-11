@@ -59,6 +59,7 @@ public class TurnManager : MonoBehaviour
 
     [SerializeField, ReadOnly] private CombatState _combatState; // The current state of the combat
     private UnitController _currentUnit; // The UnitController component of the current unit
+    private int _turnCount; // The current turn number
 
     public UnitController PlayerUnitController { get; private set; }
     public UnitController EnemyUnitController { get; private set; }
@@ -136,7 +137,14 @@ public class TurnManager : MonoBehaviour
                 }
                 units = units.OrderByDescending(unit => unit.speedCalculated).ToList();
                 _combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
-                ManageTurns();
+                if (_turnCount == 0)
+                {
+                    StartCoroutine(FirstTurnDelay());
+                }
+                else
+                {
+                    ManageTurns();
+                }
                 break;
 
             case CombatState.TurnCheck:
@@ -175,6 +183,7 @@ public class TurnManager : MonoBehaviour
                 if (!_currentUnit.Unit.HasTakenTurn && !aiMoved)
                 {
                     _combatState = CombatState.EnemyTurn;
+                    isPlayerTurn = false;
                     onTurnStart.Invoke();
                     // Use the AI system to select an action for the enemy
                     aiMoved = true;
@@ -213,6 +222,57 @@ public class TurnManager : MonoBehaviour
         _currentUnit = units[currentUnitIndex];
     }
 
+    private IEnumerator FirstTurnDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _turnCount++;
+        ManageTurns();
+    }
+
+    public void SetAilments()
+    {
+        switch (_combatState)
+        {
+            case CombatState.PlayerTurn:
+                TriggerAilment(PlayerUnitController);
+                break;
+            case CombatState.EnemyTurn:
+                TriggerAilment(EnemyUnitController);
+                break;
+        }
+    }
+
+    private void TriggerAilment(UnitController target)
+    {
+        var targetAilments = target.gameObject.GetComponent<Ailments>();
+        if (targetAilments.OnFire)
+        {
+            target.TakeDamage(1);
+            PlayerCombatHUD.UpdateCombatHUD();
+            CheckGameOver();
+        }
+        if (targetAilments.Frozen)
+        {
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+        if (targetAilments.Stunned)
+        {
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+        if (targetAilments.Bleeding)
+        {
+            target.TakeDamage(1);
+            PlayerCombatHUD.UpdateCombatHUD();
+            CheckGameOver();
+        }
+        if (targetAilments.Incapacitated)
+        {
+            target.TakeDamage(1);
+            PlayerCombatHUD.UpdateCombatHUD();
+            CheckGameOver();
+        }
+    }
+
     private void CheckGameOver()
     {
         var playerAlive = units.Any(unit => unit.Unit.IsPlayer && !unit.Unit.IsDead);
@@ -240,10 +300,11 @@ public class TurnManager : MonoBehaviour
         DisplayVictoryText();
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
-        SceneManager.LoadScene(QuickSaveReader.Create("GameSave").Read<string>("LastScene"));
+        var lastScene = QuickSaveReader.Create("GameSave").Read<string>("LastScene");
         var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("LastScene", gameObject.scene.name);
+        writer.Write("LastScene", SceneManager.GetActiveScene().name);
         writer.Commit();
+        SceneManager.LoadScene(lastScene);
     }
 
     private void XpReward()
@@ -259,7 +320,7 @@ public class TurnManager : MonoBehaviour
             itemNotification.AddItemWithNotification(item.Key);
         }
     }
-    
+
     private void DisplayVictoryText()
     {
         var victoryText =

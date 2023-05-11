@@ -88,7 +88,7 @@ SpriteRenderer:
   m_Size: {x: 0.18, y: 0.34}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &6852532660518632279
@@ -170,6 +170,158 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c5508218f4e894c9d114cf9c8dfc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 5693535061472589955}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: OnInteractionStartActions
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: DialogueEntity, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: StartDialogue
+    - Name: delegateType
+      Entry: 7
+      Data: 3|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 4|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OnInteractionInRangeActions
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 6|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 2
+    - Name: methodName
+      Entry: 1
+      Data: SetIcon
+    - Name: delegateType
+      Entry: 9
+      Data: 3
+    - Name: signature
+      Entry: 7
+      Data: 7|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OnInteractionOffRangeActions
+      Entry: 7
+      Data: 8|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 9|UnityEngine.Events.UnityAction, UnityEngine.CoreModule
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 9
+      Data: 2
+    - Name: methodName
+      Entry: 1
+      Data: ResetIcon
+    - Name: delegateType
+      Entry: 9
+      Data: 3
+    - Name: signature
+      Entry: 7
+      Data: 10|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  interactionType: 0
   interactionRange: 0.5
   playerTransform: {fileID: 0}
   interactBool: {fileID: 11400000, guid: f9cc4a05f35383e48b5f8ca7dabe8534, type: 2}

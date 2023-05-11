@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Equipment Item", menuName = "RPG/New Equipment Item", order = 0)]
 public class Equipment : ScriptableObject, IItem
 {
+    [SerializeField] private ItemTyping itemType;
     [SerializeField] private int itemID;
     [SerializeField] private EquipmentSlotType slotType;
     [SerializeField] private string itemName;
@@ -16,6 +17,11 @@ public class Equipment : ScriptableObject, IItem
     [SerializeField] private int itemValue;
     [SerializeField] private int statusValue;
 
+    public ItemTyping ItemType
+    {
+        get => itemType;
+        set => itemType = value;
+    }
     public int ItemID
     {
         get => itemID;
@@ -61,14 +67,4 @@ public class Equipment : ScriptableObject, IItem
     }
 
     public int StatusValue => statusValue;
-
-    public void Equip()
-    {
-        Debug.Log($"Equipped: {itemName}");
-    }
-
-    public void Unequip()
-    {
-        Debug.Log($"Unequipped: {itemName}");
-    }
 }

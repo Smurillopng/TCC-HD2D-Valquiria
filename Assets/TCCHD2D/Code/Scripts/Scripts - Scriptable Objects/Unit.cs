@@ -7,15 +7,15 @@ using UnityEditor;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit")]
 public class Unit : SerializedScriptableObject
 {
     [TitleGroup("Unit Type", Alignment = TitleAlignments.Centered)]
     [SerializeField] private UnitType type;
-    
+
     [TitleGroup("Appearance", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private string unitName;
@@ -26,10 +26,10 @@ public class Unit : SerializedScriptableObject
     [TitleGroup("Stats", Alignment = TitleAlignments.Centered)]
     [SerializeField, MinValue(1)]
     private int level = 1;
-    
+
     [SerializeField, ShowIf("type", UnitType.Enemy)]
     private Dictionary<IItem, int> itemDrops;
-    
+
     [SerializeField, MinValue(0), ShowIf("type", UnitType.Enemy)]
     private int experienceDrop;
 
@@ -37,8 +37,8 @@ public class Unit : SerializedScriptableObject
     private int experience;
 
     [SerializeField, ShowIf("type", UnitType.Player)]
-    private readonly Dictionary<int,int> experienceTable = new();
-    
+    private readonly List<StatsTable> statsTable = new();
+
     [SerializeField, ShowIf("type", UnitType.Enemy)]
     private TimelineAsset attackAnimation;
 
@@ -95,8 +95,7 @@ public class Unit : SerializedScriptableObject
         get => experience;
         set => experience = value;
     }
-
-    public Dictionary<int,int> ExperienceTable => experienceTable;
+    public List<StatsTable> StatsTables => statsTable;
     public TimelineAsset AttackAnimation => attackAnimation;
     public int MaxHp => maxHp;
     public int CurrentHp
@@ -141,7 +140,17 @@ public class Unit : SerializedScriptableObject
     {
         if (state == PlayModeStateChange.ExitingPlayMode && resetOnExit)
         {
+            level = 1;
+            experience = 0;
+            maxHp = 10;
             currentHp = maxHp;
+            maxTp = 100;
+            currentTp = 0;
+            attack = 1;
+            defence = 1;
+            speed = 1;
+            luck = 1;
+            dexterity = 1;
         }
     }
 #else
@@ -149,33 +158,67 @@ public class Unit : SerializedScriptableObject
     {
         if (resetOnExit)
         {
+            level = 1;
+            experience = 0;
+            maxHp = 10;
             currentHp = maxHp;
+            maxTp = 100;
+            currentTp = 0;
+            attack = 1;
+            defence = 1;
+            speed = 1;
+            luck = 1;
+            dexterity = 1;
         }
     }
 #endif
     public void CheckLevelUp()
     {
-        if (!experienceTable.ContainsKey(level + 1) || experience < experienceTable[level + 1]) return;
+        if (!statsTable.Any(statGroup => statGroup.Level == level + 1) || experience < statsTable.First(statGroup => statGroup.Level == level + 1).Experience) return;
         level++;
         experience = 0;
-        switch (level)
+        foreach (var statGroup in statsTable)
         {
-            case 2:
-                maxHp += 2;
-                currentHp += 2;
-                luck++;
-                break;
-            case 3:
-                defence++;
-                break;
-            case 4:
-                speed++;
-                attack++;
-                break;
-            case 5:
-                attack = 99;
-                break;
+            if (statGroup.Level == level)
+            {
+                foreach (var stat in statGroup.Stats)
+                {
+                    switch (stat.Key)
+                    {
+                        case StatType.MaxHp:
+                            maxHp += stat.Value;
+                            currentHp += stat.Value;
+                            if (currentHp > maxHp) currentHp = maxHp;
+                            break;
+                        case StatType.MaxTp:
+                            maxTp += stat.Value;
+                            break;
+                        case StatType.Attack:
+                            attack += stat.Value;
+                            break;
+                        case StatType.Defence:
+                            defence += stat.Value;
+                            break;
+                        case StatType.Speed:
+                            speed += stat.Value;
+                            break;
+                        case StatType.Luck:
+                            luck += stat.Value;
+                            break;
+                        case StatType.Dexterity:
+                            dexterity += stat.Value;
+                            break;
+                    }
+                }
+            }
         }
+    }
+
+    public struct StatsTable
+    {
+        public int Level;
+        public int Experience;
+        public Dictionary<StatType, int> Stats;
     }
 }
 
@@ -183,4 +226,15 @@ public enum UnitType
 {
     Player,
     Enemy
+}
+public enum StatType
+{
+    MaxHp,
+    CurrentHp,
+    MaxTp,
+    Attack,
+    Defence,
+    Speed,
+    Luck,
+    Dexterity
 }

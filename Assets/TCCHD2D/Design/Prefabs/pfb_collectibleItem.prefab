@@ -46,6 +46,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c5508218f4e894c9d114cf9c8dfc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: OnInteractionStartActions
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OnInteractionInRangeActions
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: OnInteractionOffRangeActions
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
+        UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  interactionType: 0
   interactionRange: 0.2
   playerTransform: {fileID: 0}
   interactBool: {fileID: 11400000, guid: f9cc4a05f35383e48b5f8ca7dabe8534, type: 2}

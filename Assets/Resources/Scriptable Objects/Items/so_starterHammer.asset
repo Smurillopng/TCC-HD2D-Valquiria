@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_starterHammer
   m_EditorClassIdentifier: 
+  itemType: 1
   itemID: 3
   slotType: 3
   itemName: Martelo
   itemIcon: {fileID: 1960990957491699774, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
-  itemDescription: Equipment Test
+  itemDescription: Martelinho da xuxa
   maxStack: 1
   currentStack: 0
   itemValue: 5

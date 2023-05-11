@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 13/03/2023
 
+using System;
 using System.Collections.Generic;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
@@ -9,6 +10,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Controls the behaviour of a unit.
@@ -109,7 +111,17 @@ public class UnitController : MonoBehaviour
             }
         }
     }
-    
+
+    private void Update()
+    {
+        if (unit.IsPlayer && unit.CurrentTp > unit.MaxTp)
+            unit.CurrentTp = unit.MaxTp;
+        if (unit.IsPlayer && unit.CurrentHp > unit.MaxHp)
+            unit.CurrentHp = unit.MaxHp;
+        if (!unit.IsPlayer && unit.CurrentHp > unit.MaxHp)
+            unit.CurrentHp = unit.MaxHp;
+    }
+
     /// <summary>
     /// Adds damage text to the combat text box and calls the player unit attack method [<see cref="AttackLogic"/>].
     /// </summary>
@@ -193,7 +205,7 @@ public class UnitController : MonoBehaviour
 
         return damageTakenThisTurn;
     }
-    
+
     /// <summary>
     /// Adds information in the combat text box and calls the player specific special attack method.
     /// </summary>
@@ -244,7 +256,7 @@ public class UnitController : MonoBehaviour
             //TODO: AI Logic
         }
     }
-    
+
     /// <summary>
     /// Adds information in the combat text box and calls the player run method [<see cref="RunLogic"/>].
     /// </summary>

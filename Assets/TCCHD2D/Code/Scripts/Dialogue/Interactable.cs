@@ -1,13 +1,17 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 17/03/2023
 
-using System.Collections;
+using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Interactable : MonoBehaviour
+public class Interactable : SerializedMonoBehaviour
 {
+    [FoldoutGroup("Interaction Settings")] 
+    [SerializeField, EnumPaging, Tooltip("Type of interaction that the object will have with the player.")]
+    private InteractionType interactionType;
+    
     [FoldoutGroup("Interaction Settings")]
     [SerializeField, Range(0.1f, 100f), Tooltip("Distance needed to interact with the object.")]
     private float interactionRange = 3f;
@@ -27,54 +31,66 @@ public class Interactable : MonoBehaviour
 
     [FoldoutGroup("Events"), Tooltip("Event called when the player is out of range of the object.")]
     public UnityEvent onInteractionOffRange;
-
-    private bool _hasInteracted;
-    public bool CanInteract() => _hasInteracted;
+    
+    private bool _interacted;
+    
+    private enum InteractionState { InRange, OffRange, Interacting }
+    private InteractionState _interactionState;
 
     private void Start()
     {
-        StartCoroutine(CheckDistance());
+        if (interactionType == InteractionType.Item)
+        {
+            var reader = QuickSaveReader.Create("GameSave");
+            if (reader.Exists($"{name}") && reader.Read<bool>($"{name}"))
+                gameObject.SetActive(false);
+        }
     }
 
-    private IEnumerator CheckDistance()
+    private void FixedUpdate()
     {
-        while (true)
+        var inRange = (transform.position - playerTransform.position).sqrMagnitude <= interactionRange * interactionRange;
+        if (inRange)
         {
-            if ((transform.position - playerTransform.position).sqrMagnitude <= interactionRange * interactionRange)
+            switch (interactBool.Value)
             {
-                onInteractionInRange?.Invoke();
-                switch (interactBool.Value)
-                {
-                    case true:
-                        if (_hasInteracted)
-                            StartInteraction();
-                        break;
-                    case false:
-                        _hasInteracted = true;
-                        break;
-                }
+                case true:
+                    if (!_interacted)
+                    {
+                        _interacted = true;
+                        StartInteraction();
+                    }
+                    break;
+                case false:
+                    _interacted = false;
+                    break;
             }
-            else
-            {
-                if (!_hasInteracted) yield return null;
-                _hasInteracted = false;
-                onInteractionOffRange?.Invoke();
-            }
-
-            yield return new WaitForSeconds(0.1f);
+            if (_interactionState == InteractionState.InRange || _interactionState == InteractionState.Interacting) return;
+            _interactionState = InteractionState.InRange;
+            onInteractionInRange?.Invoke();
+        }
+        else
+        {
+            if (_interactionState == InteractionState.OffRange) return;
+            _interactionState = InteractionState.OffRange;
+            onInteractionOffRange?.Invoke();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            _hasInteracted = true;
+        {
+            
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-            _hasInteracted = false;
+        { 
+            
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -85,7 +101,7 @@ public class Interactable : MonoBehaviour
 
     private void StartInteraction()
     {
+        _interactionState = InteractionState.Interacting;
         onInteractionStart?.Invoke();
-        _hasInteracted = false;
     }
 }

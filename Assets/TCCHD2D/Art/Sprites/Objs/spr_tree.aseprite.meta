@@ -117,26 +117,6 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Tronco
-    originalName: 
-    pivot: {x: 0.5500001, y: -0.015503876}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 67
-      y: 4
-      width: 20
-      height: 129
-    spriteID: e0b5fe51c1888da4193276cefe0712fb
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 67, y: 4}
   - name: Leaves
     originalName: 
     pivot: {x: 0.50909096, y: -0.42857146}
@@ -157,25 +137,28 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: Tronco
+    originalName: 
+    pivot: {x: 0.5500001, y: -0.015503876}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 67
+      y: 4
+      width: 20
+      height: 129
+    spriteID: 7785e5a3baf6ed54fb75d1c3685fe8d0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 67, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
-  - layerIndex: 0
-    guid: 830455695
-    name: Tronco
-    layerFlags: 3
-    layerType: 0
-    blendMode: 0
-    cells:
-    - name: Tronco
-      frameIndex: 0
-      cellRect:
-        x: 37
-        y: 2
-        width: 20
-        height: 129
-      spriteId: e0b5fe51c1888da4193276cefe0712fb
-    linkedCells: []
-    parentIndex: -1
   - layerIndex: 1
     guid: -531566001
     name: Leaves
@@ -191,6 +174,23 @@ ScriptedImporter:
         width: 55
         height: 112
       spriteId: fc1ef09cff3661a4da8b124fb5ed7a33
+    linkedCells: []
+    parentIndex: -1
+  - layerIndex: 0
+    guid: 830455695
+    name: Tronco
+    layerFlags: 3
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: Tronco
+      frameIndex: 0
+      cellRect:
+        x: 37
+        y: 2
+        width: 20
+        height: 129
+      spriteId: 7785e5a3baf6ed54fb75d1c3685fe8d0
     linkedCells: []
     parentIndex: -1
   platformSettings:

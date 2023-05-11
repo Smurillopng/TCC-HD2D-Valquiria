@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 7430765}
   - component: {fileID: 7430764}
   m_Layer: 0
-  m_Name: Powerful-Trap-
+  m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

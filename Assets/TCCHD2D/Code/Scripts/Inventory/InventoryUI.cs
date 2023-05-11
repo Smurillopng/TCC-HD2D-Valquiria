@@ -1,11 +1,13 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 04/04/2023
 
+using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -115,30 +117,52 @@ public class InventoryUI : MonoBehaviour
             var useButton = uiScript.useButton;
             useButton.onClick.RemoveAllListeners();
             useButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
-            if (item.ItemType == ItemTyping.Consumable)
+            useButton.onClick.AddListener(() => SelectDisplayAction(item, uiScript));
+        }
+    }
+
+    private void SelectDisplayAction(IItem currentItem, ItemUI script)
+    {
+        if (itemDisplayPanel.activeSelf)
+        {
+            if (currentItem.ItemType == ItemTyping.Consumable)
             {
-                var consumable = item as Consumable;
-                if (consumable.EffectType == ConsumableTypes.Damage)
-                {
-                    itemUseButton.onClick.RemoveAllListeners();
-                    itemUseButton.onClick.AddListener(() => itemDescription.text = "Não é possível usar esse item fora de combate.");
-                    return;
-                }
-                itemUseButton.onClick.RemoveAllListeners();
-                itemUseButton.onClick.AddListener(() => consumable.Use());
-                itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
-                itemUseButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
+                var consumable = currentItem as Consumable;
+                if (consumable != null)
+                    switch (consumable.EffectType)
+                    {
+                        case ConsumableTypes.Damage:
+                            itemUseButton.onClick.RemoveAllListeners();
+                            itemUseButton.onClick.AddListener(() => itemDescription.text = "Não é possível usar esse item fora de combate.");
+                            break;
+                        case ConsumableTypes.Heal:
+                            itemUseButton.onClick.RemoveAllListeners();
+                            itemUseButton.onClick.AddListener(() => consumable.Use());
+                            itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
+                            itemUseButton.onClick.AddListener(() => script.DisplayItem(itemName, itemDescription,
+                                itemIcon, itemQuantity, itemDisplayPanel, currentItem));
+                            break;
+                        case ConsumableTypes.IncreaseTp:
+                            itemUseButton.onClick.RemoveAllListeners();
+                            itemUseButton.onClick.AddListener(() => consumable.Use());
+                            itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
+                            itemUseButton.onClick.AddListener(() => script.DisplayItem(itemName, itemDescription,
+                                itemIcon, itemQuantity, itemDisplayPanel, currentItem));
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
             }
-            else if (item.ItemType == ItemTyping.Equipment)
+            else if (currentItem.ItemType == ItemTyping.Equipment)
             {
-                var equipment = item as Equipment;
+                var equipment = currentItem as Equipment;
                 if (inventoryManager.EquipmentSlots.Find(x => equipment != null && x.slotType == equipment.SlotType).equipItem != equipment)
                 {
                     itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Equipar";
                     itemUseButton.onClick.RemoveAllListeners();
                     itemUseButton.onClick.AddListener(() => inventoryManager.Equip(equipment));
                     itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
-                    itemUseButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
+                    itemUseButton.onClick.AddListener(() => script.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, currentItem));
                 }
                 else
                 {
@@ -146,7 +170,7 @@ public class InventoryUI : MonoBehaviour
                     itemUseButton.onClick.RemoveAllListeners();
                     itemUseButton.onClick.AddListener(() => inventoryManager.Unequip(equipment));
                     itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
-                    itemUseButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
+                    itemUseButton.onClick.AddListener(() => script.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, currentItem));
                 }
             }
         }

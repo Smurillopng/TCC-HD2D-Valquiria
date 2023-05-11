@@ -12,6 +12,7 @@ public class ItemUI : MonoBehaviour
     [Required] public TMP_Text nameText;
     [Required] public TMP_Text quantityText;
     [Required] public Button useButton;
+    public IItem DisplayedItem;
 
     public void SetItem(IItem item)
     {
@@ -31,5 +32,6 @@ public class ItemUI : MonoBehaviour
         itemDescription.text = itemToDisplay.ItemDescription;
         itemIcon.sprite = itemToDisplay.ItemIcon;
         itemQuantity.text = $"x{itemToDisplay.CurrentStack}";
+        DisplayedItem = itemToDisplay;
     }
 }

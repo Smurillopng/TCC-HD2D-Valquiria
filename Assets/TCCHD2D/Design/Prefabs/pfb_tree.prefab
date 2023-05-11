@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 4565834383269186819}
   - component: {fileID: 1356104108485535044}
   - component: {fileID: 6117392842288780491}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tronco
   m_TagString: Untagged
   m_Icon: {fileID: 0}

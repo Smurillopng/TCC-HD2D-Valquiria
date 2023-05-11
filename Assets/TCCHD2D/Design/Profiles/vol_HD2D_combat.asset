@@ -18,10 +18,10 @@ MonoBehaviour:
     m_Value: 1
   gaussianStart:
     m_OverrideState: 1
-    m_Value: 169
+    m_Value: 2.9
   gaussianEnd:
     m_OverrideState: 1
-    m_Value: 269.14
+    m_Value: 37.6
   gaussianMaxRadius:
     m_OverrideState: 1
     m_Value: 1.5
@@ -245,7 +245,7 @@ MonoBehaviour:
     m_Value: 1.5
   scatter:
     m_OverrideState: 1
-    m_Value: 0.6
+    m_Value: 0.69
   clamp:
     m_OverrideState: 1
     m_Value: 65472
@@ -280,10 +280,10 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 0.89167994, y: 0.8536899, z: 1, w: 0}
+    m_Value: {x: 0.94810224, y: 0.99267936, z: 1, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 0.8910637, y: 0.923768, z: 1, w: 0}
+    m_Value: {x: 0.93557435, y: 0.92250687, z: 1, w: 0}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 0.9165365, y: 0.9291866, z: 1, w: 0}
+    m_Value: {x: 0.871026, y: 0.9118381, z: 1, w: 0}

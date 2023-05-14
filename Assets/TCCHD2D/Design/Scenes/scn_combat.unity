@@ -19147,7 +19147,7 @@ PrefabInstance:
     - target: {fileID: 4939942212483140407, guid: 8d3bed0254e20f34eb38598cc637bdad,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4939942212483140407, guid: 8d3bed0254e20f34eb38598cc637bdad,
         type: 3}
@@ -54475,7 +54475,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795146292}
-  m_LocalRotation: {x: 0.110378265, y: 0.030872054, z: -0.0034302294, w: 0.99340415}
+  m_LocalRotation: {x: 0.11037826, y: 0.030872054, z: -0.0034302291, w: 0.99340415}
   m_LocalPosition: {x: -960.7, y: -139.14001, z: -4}
   m_LocalScale: {x: 1.6148024, y: 1.6148022, z: 1.6148022}
   m_ConstrainProportionsScale: 0

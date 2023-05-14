@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12076032, g: 0.18643649, b: 0.3352496, a: 1}
+  m_IndirectSpecularColor: {r: 0.06046638, g: 0.17678827, b: 0.45528623, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -54599,7 +54599,7 @@ PrefabInstance:
     - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: combatScene
-      value: scn_combat
+      value: scn_combatFlorest
       objectReference: {fileID: 0}
     - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
@@ -54622,8 +54622,7 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
@@ -54668,12 +54667,12 @@ PrefabInstance:
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017022566
+      value: -0.000000017022566
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000025083502
+      value: 0.0000000025083502
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
@@ -118155,7 +118154,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182774174}
-  m_LocalRotation: {x: 0.14578022, y: 0.000000017022566, z: -0.0000000025083502, w: 0.989317}
+  m_LocalRotation: {x: 0.14578022, y: -0.000000017022566, z: 0.0000000025083502, w: 0.989317}
   m_LocalPosition: {x: -5.33, y: 1.8049755, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -131738,6 +131737,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c5508218f4e894c9d114cf9c8dfc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  interactionType: 0
   interactionRange: 0.5
   playerTransform: {fileID: 1506451495}
   interactBool: {fileID: 11400000, guid: f9cc4a05f35383e48b5f8ca7dabe8534, type: 2}

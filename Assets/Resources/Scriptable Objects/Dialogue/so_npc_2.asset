@@ -18,3 +18,4 @@ MonoBehaviour:
   - text: Cuidado com a caverna adiante!
   - text: "H\xE1 muitos mist\xE9rios ocultos nas profundezas, voc\xEA pode acabar
       encontrando o que n\xE3o esperava."
+  isNpcDialogue: 1

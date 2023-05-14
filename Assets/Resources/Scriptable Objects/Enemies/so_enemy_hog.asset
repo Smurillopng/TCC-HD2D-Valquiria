@@ -54,17 +54,10 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: experienceTable
+    - Name: statsTable
       Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.Int32,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 2|System.Collections.Generic.List`1[[Unit+StatsTable, Assembly-CSharp]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -82,16 +75,16 @@ MonoBehaviour:
   experienceDrop: 2
   experience: 0
   attackAnimation: {fileID: 11400000, guid: 5ae97508ff10eda49ac2f274eb3a556d, type: 2}
-  maxHp: 10
-  currentHp: 10
+  maxHp: 20
+  currentHp: 0
   maxTp: 100
   currentTp: 0
-  attack: 1
+  attack: 2
   defence: 1
   speed: 1
-  luck: 1
+  luck: 3
   dexterity: 1
   isPlayer: 0
-  resetOnExit: 1
-  isDead: 0
+  resetOnExit: 0
+  isDead: 1
   hasTakenTurn: 0

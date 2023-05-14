@@ -27,3 +27,4 @@ MonoBehaviour:
   - text: "Deixei um presente no b\xE1u l\xF3go a esquerda para voc\xEA come\xE7ar
       bem essa aventura."
   - text: "Boa sorte! Explore o mapa e batalhe com v\xE1rios inimigos :D"
+  isNpcDialogue: 1

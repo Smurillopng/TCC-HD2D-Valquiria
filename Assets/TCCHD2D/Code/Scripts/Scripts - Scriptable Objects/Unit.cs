@@ -142,11 +142,11 @@ public class Unit : SerializedScriptableObject
         {
             level = 1;
             experience = 0;
-            maxHp = 10;
+            maxHp = 20;
             currentHp = maxHp;
             maxTp = 100;
             currentTp = 0;
-            attack = 1;
+            attack = 10;
             defence = 1;
             speed = 1;
             luck = 1;
@@ -160,11 +160,11 @@ public class Unit : SerializedScriptableObject
         {
             level = 1;
             experience = 0;
-            maxHp = 10;
+            maxHp = 20;
             currentHp = maxHp;
             maxTp = 100;
             currentTp = 0;
-            attack = 1;
+            attack = 10;
             defence = 1;
             speed = 1;
             luck = 1;

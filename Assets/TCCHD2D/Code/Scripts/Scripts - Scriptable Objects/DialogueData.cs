@@ -20,7 +20,7 @@ public class DialogueLine
 
     public string Text => text;
 
-    public DialogueLine(string id, string text, bool playAudio, AudioClip audioClip = null)
+    public DialogueLine(string text)
     {
         this.text = text;
     }

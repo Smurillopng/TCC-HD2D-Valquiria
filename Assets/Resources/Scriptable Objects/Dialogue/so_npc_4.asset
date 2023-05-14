@@ -18,3 +18,4 @@ MonoBehaviour:
   - text: "O chef\xE3o estava aqui agora a pouco mas ele teve que sair pra comer."
   - text: Enquanto isso vou ficar aqui guardando o lugar dele.
   - text: :D
+  isNpcDialogue: 1

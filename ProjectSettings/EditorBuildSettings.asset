@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/TCCHD2D/Design/Scenes/scn_combat.unity
     guid: 9a01a908c89f8544eae01e3bedf6df79
   - enabled: 1
+    path: Assets/TCCHD2D/Design/Scenes/scn_combatFlorest.unity
+    guid: e373f464b3bf04e4892075025ac7e701
+  - enabled: 1
+    path: Assets/TCCHD2D/Design/Scenes/scn_combatCave.unity
+    guid: fa49950833cc3bc4e9c4e6f8912eb00a
+  - enabled: 1
     path: Assets/TCCHD2D/Design/Scenes/scn_gameOver.unity
     guid: fce9e9f50e8ccea4a9f9845b9adacbf0
   - enabled: 1
@@ -32,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TCCHD2D/Design/Scenes/scn_lvl4.unity
     guid: 3e527260521231849a3c648d6beef049
+  - enabled: 1
+    path: Assets/TCCHD2D/Design/Scenes/scn_lvl5.unity
+    guid: f986a9b5d1b31904495bef36b08e9234
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 07ecd0aa6c0d4334e868a06370f06769,
       type: 2}

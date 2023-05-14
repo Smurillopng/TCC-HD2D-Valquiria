@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
 using TMPro;
+using UnityEngine.VFX;
 
 /// <summary>
 /// Responsible for controlling the combat UI and the player's combat actions.
@@ -33,6 +34,14 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The text displaying the player's current Tp.")]
     private TMP_Text playerTpText;
+    
+    [SerializeField]
+    [Tooltip("The fill image of the player's charges bar")]
+    private Image playerCharges;
+    
+    [SerializeField]
+    [Tooltip("The vfx for the player charged stance")]
+    private VisualEffect playerChargedVfx;
 
     [TitleGroup("Enemy HUD Elements", Alignment = TitleAlignments.Centered)]
     [SerializeField]
@@ -93,6 +102,10 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The button for attempting to run away from combat.")]
     private Button returnButton;
+    
+    [SerializeField]
+    [Tooltip("The button for charging up the player's basic attack.")]
+    private Button chargeButton;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [ShowInInspector, ReadOnly]
@@ -116,6 +129,8 @@ public class PlayerCombatHUD : MonoBehaviour
     public GameObject OptionsPanel => optionsPanel;
     public Button ReturnButton => returnButton;
 
+    private bool _charging = false;
+
     #endregion
 
     #region === Unity Methods ===========================================================
@@ -130,6 +145,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
         UpdateCombatHUD += UpdateCombatHUDs;
+        TakenAction += UpdateCharges;
     }
     /// <summary>
     /// Initializes the combat HUD.
@@ -141,6 +157,7 @@ public class PlayerCombatHUD : MonoBehaviour
         playerHealthBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
         playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
         playerTpBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
+        playerCharges.fillAmount = 0;
         enemyHealthText.text = $"HP: {turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
         enemyHealthBarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
         enemyName.text = $"{turnManager.EnemyUnitController.Unit.UnitName}:";
@@ -161,6 +178,18 @@ public class PlayerCombatHUD : MonoBehaviour
     private void Update()
     {
         DisableButtons(!turnManager.isPlayerTurn);
+        if (_charging)
+        {
+            specialButton.interactable = false;
+            itemButton.interactable = false;
+            runButton.interactable = false;
+        }
+        if (turnManager.PlayerUnitController.Charges == 0)
+        {
+            playerChargedVfx.Stop();
+            _charging = false;
+        }
+        
     }
     /// <summary>
     /// Removes the methods from the events.
@@ -172,6 +201,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerTp -= UpdatePlayerTp;
         UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
         UpdateCombatHUD -= UpdateCombatHUDs;
+        TakenAction -= UpdateCharges;
     }
 
     #endregion
@@ -187,12 +217,19 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdatePlayerTp();
         UpdateEnemyHealth();
     }
+
+    private void UpdateCharges()
+    {
+        if (playerCharges.fillAmount < 1)
+            playerCharges.fillAmount += 0.25f;
+    }
     /// <summary>
     /// Disables or enables the buttons.
     /// </summary>
     /// <param name="disabled"></param>
     private void DisableButtons(bool disabled)
     {
+        if (_charging) return;
         switch (disabled)
         {
             case true:
@@ -200,12 +237,14 @@ public class PlayerCombatHUD : MonoBehaviour
                 specialButton.interactable = false;
                 itemButton.interactable = false;
                 runButton.interactable = false;
+                chargeButton.interactable = false;
                 break;
             case false:
                 attackButton.interactable = true;
                 specialButton.interactable = true;
                 itemButton.interactable = true;
                 runButton.interactable = true;
+                chargeButton.interactable = playerCharges.fillAmount != 0;
                 break;
         }
     }
@@ -338,6 +377,31 @@ public class PlayerCombatHUD : MonoBehaviour
             {
                 specials.UseSpecial(specialAction);
             });
+        }
+    }
+
+    public void Charge()
+    {
+        if (playerCharges.fillAmount >= 0.25f)
+        {
+            playerCharges.fillAmount -= 0.25f;
+            turnManager.PlayerUnitController.Charges += 1;
+            _charging = true;
+            switch (turnManager.PlayerUnitController.Charges)
+            {
+                case 1:
+                    playerChargedVfx.Play();
+                    break;
+                case 2:
+                    playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 0f, 1f, 1));
+                    break;
+                case 3:
+                    playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 1f, 0f, 1));
+                    break;
+                case 4:
+                    playerChargedVfx.SetVector4("DropColor", new Vector4(1f, 0f, 0f, 1));
+                    break;
+            }
         }
     }
 

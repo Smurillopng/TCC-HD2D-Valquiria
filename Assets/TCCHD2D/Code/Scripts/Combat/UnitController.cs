@@ -50,10 +50,10 @@ public class UnitController : MonoBehaviour
     private TMP_Text damageText;
 
     public int damageTakenThisTurn;
-
     public int attackDamageCalculated;
     public int defenceCalculated;
     public int speedCalculated;
+    public int _charges;
 
     /// <summary>
     /// The <see cref="Unit"/> that this controller controls.
@@ -88,6 +88,11 @@ public class UnitController : MonoBehaviour
     /// The <see cref="PlayableAsset"/> representing the unit's run action.
     /// </summary>
     public TimelineAsset Run => run;
+    public int Charges
+    {
+        get => _charges;
+        set => _charges = value;
+    }
 
     public void Awake()
     {
@@ -143,6 +148,12 @@ public class UnitController : MonoBehaviour
         attackDamageCalculated = unit.Attack;
         if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
             attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+        if (_charges > 0)
+        {
+            _charges++;
+            attackDamageCalculated += _charges;
+            _charges -= _charges;
+        }
         if (unit.IsPlayer)
         {
             var enemyObject = GameObject.FindWithTag("Enemy");

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -64,7 +66,47 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        //Load
+        var itemReader = QuickSaveReader.Create("Inventory");
+        foreach (var key in itemReader.GetAllKeys())
+        {
+            if (inventory.Exists(item => item.ItemName == key))
+                inventory.Find(item => item.ItemName == key).CurrentStack = itemReader.Read<int>(key);
+            else
+            {
+                var possibleConsumables = Resources.LoadAll<Consumable>("Scriptable Objects/Items/");
+                var possibleEquipment = Resources.LoadAll<Equipment>("Scriptable Objects/Items/");
+                if (possibleConsumables.Any(item => item.ItemName == key))
+                {
+                    var item = possibleConsumables.First(item => item.ItemName == key);
+                    item.CurrentStack = itemReader.Read<int>(key);
+                    inventory.Add(item);
+                }
+                else if (possibleEquipment.Any(item => item.ItemName == key))
+                {
+                    var item = possibleEquipment.First(item => item.ItemName == key);
+                    item.CurrentStack = itemReader.Read<int>(key);
+                    inventory.Add(item);
+                }
+            }
+        }
+        var equipmentReader = QuickSaveReader.Create("EquipmentSlots");
+        foreach (var key in equipmentReader.GetAllKeys())
+        {
+            if (equipmentSlots.Exists(slot => slot.slotType.ToString() == key))
+            {
+                var equipSlot = equipmentSlots.Find(slot => slot.slotType.ToString() == key);
+                var possibleEquipment = Resources.LoadAll<Equipment>("Scriptable Objects/Items/");
+                if (possibleEquipment.Any(item => item.ItemName == equipmentReader.Read<string>(key)))
+                {
+                    var item = possibleEquipment.First(item => item.ItemName == equipmentReader.Read<string>(key));
+                    equipSlot.equipItem = item;
+                }
+            }
+        }
     }
+
     /// <summary>
     /// Resets the stack count of all items in the inventory to 0 if the resetOnExit flag is set.
     /// </summary>
@@ -85,9 +127,12 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="item">The consumable item to be added.</param>
     public void AddConsumableItem(Consumable item)
     {
+        var writer = QuickSaveWriter.Create("Inventory");
         if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
         {
             item.CurrentStack++;
+            writer.Write(item.ItemName, item.CurrentStack);
+            writer.Commit();
         }
         else if (item.CurrentStack >= item.MaxStack)
         {
@@ -97,6 +142,8 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             inventory.Add(item);
             item.CurrentStack++;
+            writer.Write(item.ItemName, item.CurrentStack);
+            writer.Commit();
         }
     }
     /// <summary>
@@ -105,9 +152,12 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="item">The equipment item to be added.</param>
     public void AddEquipmentItem(Equipment item)
     {
+        var writer = QuickSaveWriter.Create("Inventory");
         if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
         {
             item.CurrentStack++;
+            writer.Write(item.ItemName, item.CurrentStack);
+            writer.Commit();
         }
         else if (item.CurrentStack >= item.MaxStack)
         {
@@ -117,6 +167,8 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             inventory.Add(item);
             item.CurrentStack++;
+            writer.Write(item.ItemName, item.CurrentStack);
+            writer.Commit();
         }
     }
     /// <summary>
@@ -173,6 +225,7 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="equipment">The equipment to be equipped.</param>
     public void Equip(Equipment equipment)
     {
+        var writer = QuickSaveWriter.Create("EquipmentSlots");
         var slot = equipmentSlots.Find(x => x.slotType == equipment.SlotType);
         if (slot == null) return;
         if (slot.equipItem == equipment)
@@ -184,23 +237,29 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             case EquipmentSlotType.Head:
                 slot.equipItem = equipment;
+                writer.Write(slot.slotType.ToString(), equipment.ItemName);
                 break;
             case EquipmentSlotType.Chest:
                 slot.equipItem = equipment;
+                writer.Write(slot.slotType.ToString(), equipment.ItemName);
                 break;
             case EquipmentSlotType.Legs:
                 slot.equipItem = equipment;
+                writer.Write(slot.slotType.ToString(), equipment.ItemName);
                 break;
             case EquipmentSlotType.Weapon:
                 slot.equipItem = equipment;
+                writer.Write(slot.slotType.ToString(), equipment.ItemName);
                 break;
             case EquipmentSlotType.Rune:
                 slot.equipItem = equipment;
+                writer.Write(slot.slotType.ToString(), equipment.ItemName);
                 break;
             default:
                 print("Invalid Equipment Slot Type");
                 break;
         }
+        writer.Commit();
     }
     /// <summary>
     /// Unequips the provided equipment from its slot.
@@ -208,6 +267,7 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="equipment">The equipment to be unequipped.</param>
     public void Unequip(Equipment equipment)
     {
+        var writer = QuickSaveWriter.Create("EquipmentSlots");
         var slot = equipmentSlots.Find(x => x.slotType == equipment.SlotType);
         if (slot == null) return;
         if (slot.equipItem != equipment)
@@ -219,23 +279,29 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             case EquipmentSlotType.Head:
                 slot.equipItem = null;
+                writer.Write(slot.slotType.ToString(), string.Empty);
                 break;
             case EquipmentSlotType.Chest:
                 slot.equipItem = null;
+                writer.Write(slot.slotType.ToString(), string.Empty);
                 break;
             case EquipmentSlotType.Legs:
                 slot.equipItem = null;
+                writer.Write(slot.slotType.ToString(), string.Empty);
                 break;
             case EquipmentSlotType.Weapon:
                 slot.equipItem = null;
+                writer.Write(slot.slotType.ToString(), string.Empty);
                 break;
             case EquipmentSlotType.Rune:
                 slot.equipItem = null;
+                writer.Write(slot.slotType.ToString(), string.Empty);
                 break;
             default:
                 print("Invalid Equipment Slot Type");
                 break;
         }
+        writer.Commit();
     }
     /// <summary>
     /// Uses the provided consumable item and removes it from the inventory if it is completely used.

@@ -27,11 +27,21 @@ public class MenuManager : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadScene("scn_game");
-        var writer = QuickSaveWriter.Create("GameSave");
-        var keys = writer.GetAllKeys();
+        var saveWriter = QuickSaveWriter.Create("GameSave");
+        var keys = saveWriter.GetAllKeys();
         foreach (var key in keys)
-            writer.Delete(key);
-        writer.Commit();
+            saveWriter.Delete(key);
+        saveWriter.Commit();
+        var inventoryWriter = QuickSaveWriter.Create("Inventory");
+        keys = inventoryWriter.GetAllKeys();
+        foreach (var key in keys)
+            inventoryWriter.Delete(key);
+        inventoryWriter.Commit();
+        var equipmentsWriter = QuickSaveWriter.Create("EquipmentSlots");
+        keys = equipmentsWriter.GetAllKeys();
+        foreach (var key in keys)
+            equipmentsWriter.Delete(key);
+        equipmentsWriter.Commit();
     }
 
     public void ContinueGame()

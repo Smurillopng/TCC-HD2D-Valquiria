@@ -53,6 +53,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaValue: 1
+    - _CircleHeight: 0.5
+    - _CircleWidth: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WindDensity: 1

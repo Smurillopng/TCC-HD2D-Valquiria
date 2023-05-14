@@ -328,15 +328,15 @@ public class PlayerCombatHUD : MonoBehaviour
             }
         }
 
-        foreach (var method in specials.specialsList)
+        foreach (var specialAction in specials.specialsList)
         {
             returnButton.gameObject.SetActive(true);
             returnButton.interactable = true;
             var button = Instantiate(buttonPrefab, specialPanel.transform);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = method;
+            button.GetComponentInChildren<TextMeshProUGUI>().text = specialAction.specialName;
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                specials.UseSpecial(method);
+                specials.UseSpecial(specialAction);
             });
         }
     }

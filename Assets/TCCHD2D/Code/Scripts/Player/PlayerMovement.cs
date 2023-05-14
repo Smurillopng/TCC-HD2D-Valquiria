@@ -1,3 +1,4 @@
+using System;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -154,6 +155,17 @@ public class PlayerMovement : MonoBehaviour
                 }
         }
 
+        if (reader.Exists("ChangingScene") && reader.Read<bool>("ChangingScene").Equals(false))
+        {
+            if (PlayerControls.Instance.SceneMap.TryGetValue(SceneManager.GetActiveScene().name, out var value))
+            {
+                if (value == SceneType.Game)
+                {
+                    gameObject.transform.position = reader.Read<Vector3>("PlayerPosition");
+                }
+            }
+        }
+
         var save = QuickSaveWriter.Create("GameSave");
         save.Write("CurrentScene", SceneManager.GetActiveScene().name);
         save.Commit();
@@ -168,6 +180,14 @@ public class PlayerMovement : MonoBehaviour
         movementValue = Vector3.zero;
         animator.SetBool(IsWalking, false);
     }
+
+    private void OnDisable()
+    {
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("PlayerPosition", transform.position);
+        writer.Commit();
+    }
+
     /// <summary>
     /// Called every fixed framerate frame.
     /// Calculates player movement based on input and updates the Rigidbody component.

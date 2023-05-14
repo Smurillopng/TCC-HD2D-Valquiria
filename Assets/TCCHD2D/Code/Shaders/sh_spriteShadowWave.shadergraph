@@ -26,6 +26,9 @@
             "m_Id": "f35f5e76511345d695cbc05a4e96c68a"
         },
         {
+            "m_Id": "1e1e610da6e84f9c8f2ea006c53ae3de"
+        },
+        {
             "m_Id": "153530781a844921bad7763690f14e58"
         }
     ],
@@ -1119,6 +1122,18 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "1e1e610da6e84f9c8f2ea006c53ae3de",
+    "m_Name": "Alpha Hide",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "8ddd3b45126540fe85a025aa08c212c2"
+        }
+    ]
 }
 
 {
@@ -4747,9 +4762,6 @@
     "m_ChildObjectList": [
         {
             "m_Id": "97f832e3db3744f1aa1394cae928aff4"
-        },
-        {
-            "m_Id": "8ddd3b45126540fe85a025aa08c212c2"
         }
     ]
 }

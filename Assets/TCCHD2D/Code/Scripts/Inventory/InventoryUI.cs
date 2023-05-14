@@ -161,16 +161,14 @@ public class InventoryUI : MonoBehaviour
                     itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Equipar";
                     itemUseButton.onClick.RemoveAllListeners();
                     itemUseButton.onClick.AddListener(() => inventoryManager.Equip(equipment));
-                    itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
-                    itemUseButton.onClick.AddListener(() => script.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, currentItem));
+                    itemUseButton.onClick.AddListener(ShowEquipmentPanel);
                 }
                 else
                 {
                     itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Desequipar";
                     itemUseButton.onClick.RemoveAllListeners();
                     itemUseButton.onClick.AddListener(() => inventoryManager.Unequip(equipment));
-                    itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
-                    itemUseButton.onClick.AddListener(() => script.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, currentItem));
+                    itemUseButton.onClick.AddListener(ShowEquipmentPanel);
                 }
             }
         }
@@ -185,6 +183,11 @@ public class InventoryUI : MonoBehaviour
             headSlot.color = new Color(1, 1, 1, 1);
             headSlot.preserveAspect = true;
         }
+        else
+        {
+            headSlot.sprite = null;
+            headSlot.color = new Color(1, 1, 1, 0);
+        }
 
         if (equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem != null)
         {
@@ -192,6 +195,11 @@ public class InventoryUI : MonoBehaviour
             chestSlot.type = Image.Type.Simple;
             chestSlot.color = new Color(1, 1, 1, 1);
             chestSlot.preserveAspect = true;
+        }
+        else
+        {
+            chestSlot.sprite = null;
+            chestSlot.color = new Color(1, 1, 1, 0);
         }
 
         if (equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem != null)
@@ -201,6 +209,11 @@ public class InventoryUI : MonoBehaviour
             legsSlot.color = new Color(1, 1, 1, 1);
             legsSlot.preserveAspect = true;
         }
+        else
+        {
+            legsSlot.sprite = null;
+            legsSlot.color = new Color(1, 1, 1, 0);
+        }
 
         if (equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem != null)
         {
@@ -209,6 +222,11 @@ public class InventoryUI : MonoBehaviour
             weaponSlot.color = new Color(1, 1, 1, 1);
             weaponSlot.preserveAspect = true;
         }
+        else
+        {
+            weaponSlot.sprite = null;
+            weaponSlot.color = new Color(1, 1, 1, 0);
+        }
 
         if (equipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem != null)
         {
@@ -216,6 +234,11 @@ public class InventoryUI : MonoBehaviour
             runeSlot.type = Image.Type.Simple;
             runeSlot.color = new Color(1, 1, 1, 1);
             runeSlot.preserveAspect = true;
+        }
+        else
+        {
+            runeSlot.sprite = null;
+            runeSlot.color = new Color(1, 1, 1, 0);
         }
     }
 

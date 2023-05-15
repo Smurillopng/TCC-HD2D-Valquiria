@@ -42,6 +42,10 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     private string combatScene;
     
     [SerializeField]
+    [Tooltip("The name of the combat scene")]
+    private CombatScenarios combatScenario;
+
+    [SerializeField]
     [Required]
     [Tooltip("The volume to apply fade effect to")]
     private Volume volume;
@@ -173,6 +177,22 @@ public class RandomEncounterManager : SerializedMonoBehaviour
             yield return null;
         }
         SceneManager.LoadScene(combatScene);
+        SceneManager.sceneLoaded += SetScene;
+    }
+
+    private void SetScene(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.isLoaded && PlayerControls.Instance.SceneMap.TryGetValue(scene.name, out var type))
+        {
+            if (type == SceneType.Combat)
+            {
+                var setter = FindObjectOfType<SetScenario>();
+                foreach (var scenario in setter.scenarios)
+                {
+                    scenario.Value.SetActive(scenario.Key == combatScenario);
+                }
+            }
+        }
     }
 
     #endregion

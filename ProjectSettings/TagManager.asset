@@ -21,6 +21,9 @@ TagManager:
   - PlayerTPTMP
   - BagButton
   - EquipmentButton
+  - CombatVillage
+  - CombatForest
+  - CombatCave
   layers:
   - Default
   - TransparentFX

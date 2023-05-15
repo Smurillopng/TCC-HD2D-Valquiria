@@ -54599,7 +54599,17 @@ PrefabInstance:
     - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: combatScene
-      value: scn_combatFlorest
+      value: scn_combat
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: combatScenario
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
+        type: 3}
+      propertyPath: areaEncounterRate
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4909204957000507863, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}

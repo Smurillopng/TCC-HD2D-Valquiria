@@ -104,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
     private static readonly int SpeedX = Animator.StringToHash("SpeedX");
     private static readonly int SpeedY = Animator.StringToHash("SpeedY");
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+    private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
     #endregion
 
@@ -224,6 +225,7 @@ public class PlayerMovement : MonoBehaviour
         if (!canMove.Value || direction.Value == Vector2.zero)
         {
             animator.SetBool(IsWalking, false);
+            animator.SetBool(IsRunning, false);
             return;
         }
 
@@ -276,10 +278,17 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat(SpeedY, movementValue.z);
         }
 
-        animator.SetBool(IsWalking, true);
-
         if (isRunning.Value)
+        {
             movementValue *= runSpeedMultiplier;
+            animator.SetBool(IsRunning, true);
+        }
+        else
+        {
+            animator.SetBool(IsWalking, true);
+            animator.SetBool(IsRunning, false);
+        }
+
 
         NewPosition = transform.position + (movementValue * (speed * Time.fixedDeltaTime));
         rigidBody.MovePosition(NewPosition);

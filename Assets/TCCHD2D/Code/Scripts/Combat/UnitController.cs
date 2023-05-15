@@ -176,7 +176,12 @@ public class UnitController : MonoBehaviour
         Director.Play(basicAttack);
 
         if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp)
+        {
             unit.CurrentTp += 10;
+            if (unit.CurrentTp > unit.MaxTp)
+                unit.CurrentTp = unit.MaxTp;
+            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
+        }
 
         // Apply damage to target
         target.TakeDamage(attackDamageCalculated);
@@ -201,7 +206,9 @@ public class UnitController : MonoBehaviour
 
         if (unit.IsPlayer)
         {
-            unit.CurrentTp += 10;
+            unit.CurrentTp += 5;
+            if (unit.CurrentTp > unit.MaxTp)
+                unit.CurrentTp = unit.MaxTp;
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
         }
 

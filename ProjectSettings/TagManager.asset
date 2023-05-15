@@ -6,24 +6,6 @@ TagManager:
   tags:
   - Enemy
   - CombatUI
-  - InventoryPanel
-  - BagPanel
-  - EquipmentPanel
-  - HeadSlot
-  - ChestSlot
-  - LegsSlot
-  - WeaponSlot
-  - RuneSlot
-  - PlayerLvlTMP
-  - PlayerHealthFill
-  - PlayerHealthTMP
-  - PlayerTPFill
-  - PlayerTPTMP
-  - BagButton
-  - EquipmentButton
-  - CombatVillage
-  - CombatForest
-  - CombatCave
   layers:
   - Default
   - TransparentFX

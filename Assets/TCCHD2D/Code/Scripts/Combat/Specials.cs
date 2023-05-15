@@ -54,6 +54,8 @@ public class Specials : MonoBehaviour
             // Apply heal to target
             if (player.Unit.CurrentHp < player.Unit.MaxHp)
                 player.Unit.CurrentHp += heal;
+            if (player.Unit.CurrentHp > player.Unit.MaxHp)
+                player.Unit.CurrentHp = player.Unit.MaxHp;
 
             if (player.Unit.IsPlayer)
             {

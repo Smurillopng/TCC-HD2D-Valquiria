@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 2231710529230759750}
   m_Layer: 5
   m_Name: RuneSlot Background
-  m_TagString: HeadSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 5447095134980464450}
   m_Layer: 5
   m_Name: WeaponSlot Background
-  m_TagString: HeadSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 1425473461307661545}
   m_Layer: 5
   m_Name: RuneSlot
-  m_TagString: RuneSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1147,7 +1147,7 @@ GameObject:
   - component: {fileID: 1425473461752661962}
   m_Layer: 5
   m_Name: LegsSlot
-  m_TagString: LegsSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1311,7 +1311,7 @@ GameObject:
   - component: {fileID: 1425473461945592608}
   m_Layer: 5
   m_Name: HeadSlot
-  m_TagString: HeadSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1522,7 +1522,7 @@ GameObject:
   - component: {fileID: 1425473462078379999}
   m_Layer: 5
   m_Name: ChestSlot
-  m_TagString: ChestSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1652,7 +1652,7 @@ GameObject:
   - component: {fileID: 1425473462123938159}
   m_Layer: 5
   m_Name: EquipmentButton
-  m_TagString: EquipmentButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2012,7 +2012,7 @@ GameObject:
   - component: {fileID: 1425473462183562232}
   m_Layer: 5
   m_Name: BagPanel
-  m_TagString: BagPanel
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2114,7 +2114,7 @@ GameObject:
   - component: {fileID: 1425473462222613766}
   m_Layer: 5
   m_Name: WeaponSlot
-  m_TagString: WeaponSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2613,7 +2613,7 @@ GameObject:
   - component: {fileID: 1425473462781601111}
   m_Layer: 5
   m_Name: InventoryPanel
-  m_TagString: InventoryPanel
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3323,7 +3323,7 @@ GameObject:
   - component: {fileID: 1425473462956408989}
   m_Layer: 5
   m_Name: BagButton
-  m_TagString: BagButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3591,7 +3591,7 @@ GameObject:
   - component: {fileID: 1425473463236634558}
   m_Layer: 5
   m_Name: EquipmentPanel
-  m_TagString: EquipmentPanel
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4075,7 +4075,7 @@ GameObject:
   - component: {fileID: 3469642160626932188}
   m_Layer: 5
   m_Name: ChestSlot Background
-  m_TagString: HeadSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4731,7 +4731,7 @@ GameObject:
   - component: {fileID: 1447202858208383572}
   m_Layer: 5
   m_Name: MainMenuButton
-  m_TagString: BagButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5613,7 +5613,7 @@ GameObject:
   - component: {fileID: 421868112306529348}
   m_Layer: 5
   m_Name: LegsSlot Background
-  m_TagString: HeadSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5960,7 +5960,7 @@ GameObject:
   - component: {fileID: 7391618001027518067}
   m_Layer: 5
   m_Name: HeadSlot Background
-  m_TagString: HeadSlot
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6688,7 +6688,7 @@ GameObject:
   - component: {fileID: 3620019502768362281}
   m_Layer: 5
   m_Name: OptionsButton
-  m_TagString: BagButton
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

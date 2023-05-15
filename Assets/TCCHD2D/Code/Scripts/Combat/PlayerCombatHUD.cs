@@ -220,7 +220,7 @@ public class PlayerCombatHUD : MonoBehaviour
 
     private void UpdateCharges()
     {
-        if (playerCharges.fillAmount < 1)
+        if (playerCharges.fillAmount < 1 && turnManager.isPlayerTurn)
             playerCharges.fillAmount += 0.25f;
     }
     /// <summary>
@@ -274,6 +274,8 @@ public class PlayerCombatHUD : MonoBehaviour
         if (playerTpText == null || playerTpBarFill == null) return;
         playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
         playerTpBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
+        if (turnManager.PlayerUnitController.Unit.CurrentTp == turnManager.PlayerUnitController.Unit.MaxTp)
+            playerTpText.text = "TP: MAX";
     }
     /// <summary>
     /// Displays combat text in the combat text box.

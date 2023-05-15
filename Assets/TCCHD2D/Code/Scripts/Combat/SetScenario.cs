@@ -5,9 +5,4 @@ using UnityEngine;
 public class SetScenario : SerializedMonoBehaviour
 {
     public Dictionary<CombatScenarios, GameObject> scenarios;
-
-    private void Start()
-    {
-        
-    }
 }

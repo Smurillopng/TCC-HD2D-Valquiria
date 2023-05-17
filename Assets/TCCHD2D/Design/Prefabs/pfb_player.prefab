@@ -420,10 +420,13 @@ MonoBehaviour:
   enemies:
   - {fileID: 11400000, guid: da62801b992689746857559145ca7220, type: 2}
   areaEncounterRate: 0
-  minimumSteps: 5
-  combatScene: 
+  minimumSteps: 10
+  maximumSteps: 20
+  combatScene: scn_combat
+  combatScenario: 0
   volume: {fileID: 0}
   fadeTime: 3
   minimumEncounterChance: 0
+  randomSteps: 0
   currentSteps: 0
   showEncounterLog: 0

@@ -32,8 +32,9 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     public float areaEncounterRate;
     
     [SerializeField]
-    [Tooltip("The minimum amount of steps to start encountering an enemy")]
-    private int minimumSteps;
+    [MinValue(1)]
+    [Tooltip("The minimum and maximum amount of steps to start encountering an enemy")]
+    private int minimumSteps, maximumSteps;
 
     [TitleGroup("Transition", Alignment = TitleAlignments.Centered)]
     [SerializeField]
@@ -62,6 +63,11 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     
     [SerializeField]
     [ReadOnly]
+    [Tooltip("The random amount of steps to start encountering an enemy")]
+    private int randomSteps;
+    
+    [SerializeField]
+    [ReadOnly]
     [Tooltip("The current amount of steps the player has taken")]
     private int currentSteps;
     
@@ -73,6 +79,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     private PlayerMovement _playerMovement; // The PlayerMovement component of the player
     private Vector3 _lastPosition; // The last position of the player
     private LiftGammaGain _liftGammaGain; // The property responsible for the fade effect
+    private bool _randomized; // Whether the random amount of steps was already generated
 
     #endregion
 
@@ -138,12 +145,18 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     /// </summary>
     public void CheckStep()
     {
+        if (!_randomized)
+        {
+            randomSteps = Random.Range(minimumSteps, maximumSteps);
+            _randomized = true;
+        }
         currentSteps++;
         var randomChance = Random.Range(0f, 1f);
         if (showEncounterLog) print($"Encounter chance: <color=blue>{minimumEncounterChance}</color> | Random chance: <color=green>{randomChance}</color>");
-        if (!(randomChance < minimumEncounterChance) || currentSteps < minimumSteps) return;
+        if (!(randomChance < minimumEncounterChance) || currentSteps < randomSteps) return;
         EncounterEnemy();
         currentSteps = 0;
+        _randomized = false;
     }
     /// <summary>
     /// Initiates an encounter with an enemy.

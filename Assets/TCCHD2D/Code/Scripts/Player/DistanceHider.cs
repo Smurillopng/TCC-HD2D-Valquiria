@@ -68,7 +68,11 @@ public class DistanceHider : MonoBehaviour
             if (_hiddenObjects.Contains(hitObject)) continue;
             newlyHiddenObjects.Add(hitObject); // Add object to the list of newly hidden objects
             if (!hitObject.TryGetComponent<Renderer>(out var hitRender)) continue;
-            hitRender.material.SetFloat(AlphaValue, alphaStrength);
+            foreach (var mat in hitRender.materials)
+            {
+                mat.SetFloat(AlphaValue, alphaStrength);
+
+            }
             _newlyHiddenRenderers.Add(hitRender);
         }
 
@@ -78,7 +82,10 @@ public class DistanceHider : MonoBehaviour
         // Show objects that are no longer being hit
         foreach (var matRenderer in _newlyHiddenRenderers.Where(matRenderer => !_hiddenObjects.Contains(matRenderer.gameObject)))
         {
-            matRenderer.material.SetFloat(AlphaValue, 1.0f);
+            foreach (var mat in matRenderer.materials)
+            {
+                mat.SetFloat(AlphaValue, 1.0f);
+            }
         }
 
         _hiddenObjects.RemoveWhere(obj =>
@@ -89,7 +96,10 @@ public class DistanceHider : MonoBehaviour
             if (hit) return false;
             if (obj.TryGetComponent<Renderer>(out var objRender))
             {
-                objRender.material.SetFloat(AlphaValue, 1.0f);
+                foreach (var mat in objRender.materials)
+                {
+                    mat.SetFloat(AlphaValue, 1.0f);
+                }
             }
             return true;
         });

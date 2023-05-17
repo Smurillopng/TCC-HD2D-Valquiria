@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.060466215, g: 0.17678829, b: 0.45528626, a: 1}
+  m_IndirectSpecularColor: {r: 0.06046638, g: 0.17678827, b: 0.45528623, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30274,7 +30274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1511230621}
   m_Layer: 0
-  m_Name: Scenary
+  m_Name: Scenario Florest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.unity.2d.animation": "7.0.10",
+    "com.unity.2d.animation": "7.0.11",
     "com.unity.2d.aseprite": "1.0.0-pre.4",
     "com.unity.2d.pixel-perfect": "5.0.3",
     "com.unity.2d.psdimporter": "6.0.7",

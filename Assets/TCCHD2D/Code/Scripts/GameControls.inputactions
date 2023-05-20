@@ -169,7 +169,7 @@
                 {
                     "name": "",
                     "id": "0515aa79-74d1-4de4-9fe9-0eb4f5c53d99",
-                    "path": "<Keyboard>/backquote",
+                    "path": "<Keyboard>/home",
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
@@ -251,6 +251,28 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PC",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6ba5f83-8152-47dd-83e5-3a9f2f8da421",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72068ac7-5cff-42c2-8f9c-135074106928",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "OpenInventory",
                     "isComposite": false,
                     "isPartOfComposite": false

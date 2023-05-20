@@ -15,6 +15,7 @@ MonoBehaviour:
   itemType: 1
   itemID: 3
   slotType: 3
+  attackType: 0
   itemName: Espada de Cobre
   itemIcon: {fileID: 3273123673738039861, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}

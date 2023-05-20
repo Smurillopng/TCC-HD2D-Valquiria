@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 01/04/2023
 
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Equipment Item", menuName = "RPG/New Equipment Item", order = 0)]
@@ -9,6 +10,8 @@ public class Equipment : ScriptableObject, IItem
     [SerializeField] private ItemTyping itemType;
     [SerializeField] private int itemID;
     [SerializeField] private EquipmentSlotType slotType;
+    [ShowIf("slotType", EquipmentSlotType.Weapon)]
+    [SerializeField] private AttackType attackType;
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemIcon;
     [SerializeField] private string itemDescription;
@@ -29,6 +32,8 @@ public class Equipment : ScriptableObject, IItem
     }
 
     public EquipmentSlotType SlotType => slotType;
+    
+    public AttackType AttackType => attackType;
 
     public string ItemName
     {

@@ -182,14 +182,12 @@ public class PlayerCombatHUD : MonoBehaviour
         {
             specialButton.interactable = false;
             itemButton.interactable = false;
-            runButton.interactable = false;
         }
         if (turnManager.PlayerUnitController.Charges == 0)
         {
             playerChargedVfx.Stop();
             _charging = false;
         }
-        
     }
     /// <summary>
     /// Removes the methods from the events.
@@ -233,18 +231,18 @@ public class PlayerCombatHUD : MonoBehaviour
         switch (disabled)
         {
             case true:
-                attackButton.interactable = false;
-                specialButton.interactable = false;
-                itemButton.interactable = false;
-                runButton.interactable = false;
-                chargeButton.interactable = false;
+                attackButton.gameObject.SetActive(false);
+                specialButton.gameObject.SetActive(false);
+                itemButton.gameObject.SetActive(false);
+                runButton.gameObject.SetActive(false);
+                chargeButton.gameObject.SetActive(false);
                 break;
             case false:
-                attackButton.interactable = true;
-                specialButton.interactable = true;
-                itemButton.interactable = true;
-                runButton.interactable = true;
-                chargeButton.interactable = playerCharges.fillAmount != 0;
+                attackButton.gameObject.SetActive(true);
+                specialButton.gameObject.SetActive(true);
+                itemButton.gameObject.SetActive(true);
+                runButton.gameObject.SetActive(true);
+                chargeButton.gameObject.SetActive(playerCharges.fillAmount != 0);
                 break;
         }
     }

@@ -88,7 +88,6 @@ public class InventoryUI : MonoBehaviour
         UpdateBag(inventoryManager.Inventory);
         equipmentPanel.SetActive(false);
         itemDisplayPanel.SetActive(false);
-        statusPanel.SetActive(false);
     }
 
     public void ShowEquipmentPanel()
@@ -96,7 +95,6 @@ public class InventoryUI : MonoBehaviour
         inventoryPanel.SetActive(true);
         bagPanel.SetActive(false);
         itemDisplayPanel.SetActive(false);
-        statusPanel.SetActive(true);
         UpdatePlayerStatus(playerUnit);
         UpdateEquipments(inventoryManager.EquipmentSlots);
         equipmentPanel.SetActive(true);
@@ -118,6 +116,43 @@ public class InventoryUI : MonoBehaviour
             useButton.onClick.RemoveAllListeners();
             useButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
             useButton.onClick.AddListener(() => SelectDisplayAction(item, uiScript));
+        }
+    }
+
+    public void DisplayEquipment(GameObject slot)
+    {
+        var image = slot.GetComponent<Image>();
+        if (image.sprite == null) return;
+        var equipments = Resources.LoadAll<Equipment>("Scriptable Objects/Items");
+        foreach (var equipment in equipments)
+        {
+            if (equipment.ItemIcon == image.sprite)
+            {
+                itemName.text = equipment.ItemName;
+                itemDescription.text = equipment.ItemDescription;
+                itemIcon.sprite = equipment.ItemIcon;
+                itemQuantity.text = $"x{equipment.CurrentStack}";
+                itemDisplayPanel.SetActive(true);
+                SelectEquipmentDiaplsyAction(equipment);
+            }
+        }
+    }
+
+    private void SelectEquipmentDiaplsyAction(Equipment equipment)
+    {
+        if (inventoryManager.EquipmentSlots.Find(x => equipment != null && x.slotType == equipment.SlotType).equipItem != equipment)
+        {
+            itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Equipar";
+            itemUseButton.onClick.RemoveAllListeners();
+            itemUseButton.onClick.AddListener(() => inventoryManager.Equip(equipment));
+            itemUseButton.onClick.AddListener(ShowEquipmentPanel);
+        }
+        else
+        {
+            itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Desequipar";
+            itemUseButton.onClick.RemoveAllListeners();
+            itemUseButton.onClick.AddListener(() => inventoryManager.Unequip(equipment));
+            itemUseButton.onClick.AddListener(ShowEquipmentPanel);
         }
     }
 

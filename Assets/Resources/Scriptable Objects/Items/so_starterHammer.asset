@@ -15,6 +15,7 @@ MonoBehaviour:
   itemType: 1
   itemID: 3
   slotType: 3
+  attackType: 1
   itemName: Martelo
   itemIcon: {fileID: 1960990957491699774, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}

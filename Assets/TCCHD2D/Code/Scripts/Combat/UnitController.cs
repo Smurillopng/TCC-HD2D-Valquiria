@@ -24,14 +24,22 @@ public class UnitController : MonoBehaviour
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The playable director that controls the animations of this unit.")]
     private PlayableDirector director;
-
+    
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private TimelineAsset basicAttack;
 
     [FoldoutGroup("Action Timelines")]
-    [SerializeField, Tooltip("The list of PlayableAssets representing the unit's special attacks.")]
-    private List<PlayableAsset> specialAttacks = new();
+    [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
+    private TimelineAsset basicCutAttack;
+    
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
+    private TimelineAsset basicBluntAttack;
+    
+    [FoldoutGroup("Action Timelines")]
+    [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
+    private TimelineAsset basicRangedAttack;
 
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's use item action.")]
@@ -68,16 +76,26 @@ public class UnitController : MonoBehaviour
     /// The <see cref="PlayableDirector"/> that controls the animations of this unit.
     /// </summary>
     public PlayableDirector Director => director;
-
+    
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
     /// </summary>
     public TimelineAsset BasicAttack => basicAttack;
 
     /// <summary>
-    /// The <see cref="PlayableAsset"/> representing the unit's special attacks.
+    /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
     /// </summary>
-    public List<PlayableAsset> SpecialAttacks => specialAttacks;
+    public TimelineAsset BasicCutAttack => basicCutAttack;
+    
+    /// <summary>
+    /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
+    /// </summary>
+    public TimelineAsset BasicBluntAttack => basicBluntAttack;
+    
+    /// <summary>
+    /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
+    /// </summary>
+    public TimelineAsset BasicRangedAttack => basicRangedAttack;
 
     /// <summary>
     /// The <see cref="PlayableAsset"/> representing the unit's use item action.
@@ -173,7 +191,24 @@ public class UnitController : MonoBehaviour
                 }
             }
         }
-        Director.Play(basicAttack);
+        if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
+            switch (InventoryManager.Instance.EquipmentSlots[3].equipItem.AttackType)
+            {
+                case AttackType.Blunt:
+                    Director.Play(basicBluntAttack);
+                    break;
+                case AttackType.Cut:
+                    Director.Play(basicCutAttack);
+                    break;
+                case AttackType.Ranged:
+                    Director.Play(basicRangedAttack);
+                    break;
+                default:
+                    Director.Play(basicAttack);
+                    break;
+            }
+        else
+            Director.Play(basicAttack);
 
         if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp)
         {

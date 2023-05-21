@@ -218,7 +218,7 @@ public class PlayerCombatHUD : MonoBehaviour
 
     private void UpdateCharges()
     {
-        if (playerCharges.fillAmount < 1 && turnManager.isPlayerTurn)
+        if (playerCharges.fillAmount < 1 && turnManager.isPlayerTurn && !_charging)
             playerCharges.fillAmount += 0.25f;
     }
     /// <summary>

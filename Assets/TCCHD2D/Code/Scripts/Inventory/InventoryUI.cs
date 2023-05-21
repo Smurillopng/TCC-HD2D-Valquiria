@@ -7,7 +7,6 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Events;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -49,6 +48,8 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Status")][SerializeField] private TMP_Text playerSpeed;
     [BoxGroup("Status")][SerializeField] private TMP_Text playerLuck;
     [BoxGroup("Status")][SerializeField] private TMP_Text playerDexterity;
+    [BoxGroup("Status")][SerializeField] private GameObject lvlUpAttributesButtons;
+    [BoxGroup("Status")][SerializeField] private TMP_Text attributePointsText;
 
     [BoxGroup("Item Display")][SerializeField] private TMP_Text itemName;
     [BoxGroup("Item Display")][SerializeField] private TMP_Text itemDescription;
@@ -340,5 +341,41 @@ public class InventoryUI : MonoBehaviour
             PlayerControls.Instance.ToggleDefaultControls(true);
             updatedStatus = false;
         }
+        
+        lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
+        attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
+        attributePointsText.text = $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}";
+    }
+    
+    // Lvl Up Methods
+    public void LvlUpAttack()
+    {
+        playerUnit.Attack++;
+        playerUnit.AttributesPoints--;
+        UpdatePlayerStatus(playerUnit);
+    }
+    public void LvlUpDefence()
+    {
+        playerUnit.Defence++;
+        playerUnit.AttributesPoints--;
+        UpdatePlayerStatus(playerUnit);
+    }
+    public void LvlUpSpeed()
+    {
+        playerUnit.Speed++;
+        playerUnit.AttributesPoints--;
+        UpdatePlayerStatus(playerUnit);
+    }
+    public void LvlUpLuck()
+    {
+        playerUnit.Luck++;
+        playerUnit.AttributesPoints--;
+        UpdatePlayerStatus(playerUnit);
+    }
+    public void LvlUpDexterity()
+    {
+        playerUnit.Dexterity++;
+        playerUnit.AttributesPoints--;
+        UpdatePlayerStatus(playerUnit);
     }
 }

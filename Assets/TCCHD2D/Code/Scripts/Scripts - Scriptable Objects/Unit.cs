@@ -68,6 +68,9 @@ public class Unit : SerializedScriptableObject
 
     [SerializeField, MinValue(1)]
     private int dexterity = 1;
+    
+    [SerializeField]
+    private int attributesPoints;
 
     [TitleGroup("Conditions", Alignment = TitleAlignments.Centered)]
     [SerializeField]
@@ -109,18 +112,44 @@ public class Unit : SerializedScriptableObject
         get => currentTp;
         set => currentTp = value;
     }
-    public int Attack => attack;
-    public int Defence => defence;
-    public int Speed => speed;
-    public int Luck => luck;
-    public int Dexterity => dexterity;
+    public int Attack
+    {
+        get => attack;
+        set => attack = value;
+    }
+    public int Defence
+    {
+        get => defence;
+        set => defence = value;
+    }
+    public int Speed
+    {
+        get => speed;
+        set => speed = value;
+    }
+
+    public int Luck
+    {
+        get => luck;
+        set => luck = value;
+    }
+
+    public int Dexterity
+    {
+        get => dexterity;
+        set => dexterity = value;
+    }
+    public int AttributesPoints
+    {
+        get => attributesPoints;
+        set => attributesPoints = value;
+    }
     public bool IsPlayer => isPlayer;
     public bool IsDead
     {
         get => isDead;
         set => isDead = value;
     }
-
     public bool HasTakenTurn
     {
         get => hasTakenTurn;
@@ -177,48 +206,13 @@ public class Unit : SerializedScriptableObject
         if (!statsTable.Any(statGroup => statGroup.Level == level + 1) || experience < statsTable.First(statGroup => statGroup.Level == level + 1).Experience) return;
         level++;
         experience = 0;
-        foreach (var statGroup in statsTable)
-        {
-            if (statGroup.Level == level)
-            {
-                foreach (var stat in statGroup.Stats)
-                {
-                    switch (stat.Key)
-                    {
-                        case StatType.MaxHp:
-                            maxHp += stat.Value;
-                            currentHp += stat.Value;
-                            if (currentHp > maxHp) currentHp = maxHp;
-                            break;
-                        case StatType.MaxTp:
-                            maxTp += stat.Value;
-                            break;
-                        case StatType.Attack:
-                            attack += stat.Value;
-                            break;
-                        case StatType.Defence:
-                            defence += stat.Value;
-                            break;
-                        case StatType.Speed:
-                            speed += stat.Value;
-                            break;
-                        case StatType.Luck:
-                            luck += stat.Value;
-                            break;
-                        case StatType.Dexterity:
-                            dexterity += stat.Value;
-                            break;
-                    }
-                }
-            }
-        }
+        attributesPoints++;
     }
 
     public struct StatsTable
     {
         public int Level;
         public int Experience;
-        public Dictionary<StatType, int> Stats;
     }
 }
 

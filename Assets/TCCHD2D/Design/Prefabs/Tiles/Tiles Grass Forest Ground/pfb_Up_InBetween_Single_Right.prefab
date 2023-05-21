@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1365148201987936159}
   - component: {fileID: 3120933443699378569}
   - component: {fileID: 6979904501946607947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pfb_Up_InBetween_Single_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}

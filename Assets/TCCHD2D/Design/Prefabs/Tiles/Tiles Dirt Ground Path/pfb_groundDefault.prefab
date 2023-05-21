@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8032059451921035068}
   - component: {fileID: 5765893262717896877}
   - component: {fileID: 8005725358325863333}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pfb_groundDefault
   m_TagString: Untagged
   m_Icon: {fileID: 0}

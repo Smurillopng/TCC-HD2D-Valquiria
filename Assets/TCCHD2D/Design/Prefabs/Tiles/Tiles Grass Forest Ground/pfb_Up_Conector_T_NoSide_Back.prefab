@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 839256255416841745}
   - component: {fileID: 2520831445442305891}
   - component: {fileID: 6683651556536680066}
+  - component: {fileID: 3590823308112103185}
   m_Layer: 0
   m_Name: pfb_Up_Conector_T_NoSide_Back
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3590823308112103185
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3340516182317154659}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25000024, y: 0.24999999, z: 0.25000024}
+  m_Center: {x: 0.000000022351742, y: 0.1249756, z: 0.00000011175871}

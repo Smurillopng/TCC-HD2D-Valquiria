@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5903344019984236879}
   - component: {fileID: 1766518003823894216}
   - component: {fileID: 1403214653371021815}
+  - component: {fileID: 5904429439096613704}
   m_Layer: 0
   m_Name: pfb_wall_conect_UP_Sides_T
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5904429439096613704
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460257444165738618}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.041666854, y: 0.25002012, z: 0.25000003}
+  m_Center: {x: -0.10416666, y: 0.12498564, z: -0.00000008195638}

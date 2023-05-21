@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4140621044096486770}
   - component: {fileID: 1238745076743813642}
   - component: {fileID: 2827126124553171419}
+  - component: {fileID: 3438809756031346959}
   m_Layer: 0
   m_Name: pfb_Mid_Cube
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3438809756031346959
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8425470713668851876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25000018, y: 0.25002012, z: 0.25000018}
+  m_Center: {x: 0.000000022351742, y: 0.12498564, z: -0.000000022351742}

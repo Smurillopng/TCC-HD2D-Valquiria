@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 959684744427094468}
   - component: {fileID: 6755106974427468539}
   - component: {fileID: 7420686304424570533}
+  - component: {fileID: 3366639391722987385}
   m_Layer: 0
   m_Name: pfb_Up_Conector_X_WL_NoF
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3366639391722987385
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111287666749292097}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24999988, y: 0.24997613, z: 0.25000024}
+  m_Center: {x: 0, y: 0.124987915, z: 0.000000007450581}

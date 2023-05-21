@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5348640631247020245}
   - component: {fileID: 4745743495178697133}
   - component: {fileID: 3145983274940844806}
+  - component: {fileID: -2253860672596676196}
   m_Layer: 0
   m_Name: pfb_Mid_InBetween_Single_Left
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-2253860672596676196
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5325305363180548395}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25000015, y: 0.2500201, z: 0.25000018}
+  m_Center: {x: 0.000000014901161, y: 0.12501004, z: 0.000000014901161}

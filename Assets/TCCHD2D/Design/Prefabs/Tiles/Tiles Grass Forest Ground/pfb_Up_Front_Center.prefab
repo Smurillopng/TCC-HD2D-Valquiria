@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1781058946644935586}
   - component: {fileID: 2701137036167649662}
   - component: {fileID: 7191125571790712324}
+  - component: {fileID: -342189229598070266}
   m_Layer: 0
   m_Name: pfb_Up_Front_Center
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-342189229598070266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4694529391721172773}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2500001, y: 0.24999999, z: 0.25000012}
+  m_Center: {x: 0, y: 0.1249756, z: 0.000000007450581}

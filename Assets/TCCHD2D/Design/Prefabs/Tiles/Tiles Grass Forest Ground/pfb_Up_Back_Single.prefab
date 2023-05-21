@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4937131070231592924}
   - component: {fileID: 8257396847689704054}
   - component: {fileID: 7786985295413752633}
+  - component: {fileID: -4779084142955940964}
   m_Layer: 0
   m_Name: pfb_Up_Back_Single
   m_TagString: Untagged
@@ -84,3 +85,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-4779084142955940964
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8300592560656713271}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25000018, y: 0.25, z: 0.25000018}
+  m_Center: {x: 0.000000007450581, y: 0.125, z: -0.000000007450581}

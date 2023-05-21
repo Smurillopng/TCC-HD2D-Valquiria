@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6383543309849817268}
   - component: {fileID: 7872043069719225657}
   - component: {fileID: 8950965968331943852}
+  - component: {fileID: -1300123751121938498}
   m_Layer: 0
   m_Name: pfb_Mid_Front_Single
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-1300123751121938498
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8481920893819547599}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25000018, y: 0.2500201, z: 0.25000018}
+  m_Center: {x: -0.000000007450581, y: 0.12501004, z: 0.000000022351742}

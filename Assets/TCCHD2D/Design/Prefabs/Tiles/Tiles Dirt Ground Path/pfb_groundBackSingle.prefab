@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8401262322644980699}
   - component: {fileID: 7463476032788318393}
   - component: {fileID: 6404291512698498856}
+  - component: {fileID: 3450593115747867832}
   m_Layer: 0
   m_Name: pfb_groundBackSingle
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3450593115747867832
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325856644356571241}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2500001, y: 0.000000029802322, z: 0.2500001}
+  m_Center: {x: 0, y: 0.24997559, z: 0.000000014901161}

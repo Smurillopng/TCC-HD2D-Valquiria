@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5026820831110990592}
   - component: {fileID: 1660970987554157937}
   - component: {fileID: 1818660886971851157}
+  - component: {fileID: -8991942659272552117}
   m_Layer: 0
   m_Name: pfb_wall_conect_UP_R
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-8991942659272552117
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5195483354967420534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.041666854, y: 0.25002012, z: 0.24999997}
+  m_Center: {x: -0.10416666, y: 0.12498564, z: -0.00000009685753}

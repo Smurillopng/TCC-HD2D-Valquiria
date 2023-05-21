@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3041058792041316899}
   - component: {fileID: 5958500948684726488}
   - component: {fileID: 5698183692659227174}
+  - component: {fileID: -7119689010593770916}
   m_Layer: 0
   m_Name: pfb_Up_Conector_T_Back
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-7119689010593770916
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107911462601271365}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25000018, y: 0.041440293, z: 0.25000018}
+  m_Center: {x: 0.000000044703484, y: 0.22925547, z: 0.000000074505806}

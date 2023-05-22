@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,6 +81,15 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         inventoryManager = InventoryManager.Instance;
+        var reader = QuickSaveReader.Create("GameSave");
+        if (reader.Exists("PlayerAttack")) playerUnit.Attack = reader.Read<int>("PlayerAttack");
+        if (reader.Exists("PlayerDefense")) playerUnit.Defence = reader.Read<int>("PlayerDefense");
+        if (reader.Exists("PlayerSpeed")) playerUnit.Speed = reader.Read<int>("PlayerSpeed");
+        if (reader.Exists("PlayerLuck")) playerUnit.Luck = reader.Read<int>("PlayerLuck");
+        if (reader.Exists("PlayerDexterity")) playerUnit.Dexterity = reader.Read<int>("PlayerDexterity");
+        if (reader.Exists("Level")) playerUnit.Level = reader.Read<int>("Level");
+        if (reader.Exists("Experience")) playerUnit.Experience = reader.Read<int>("Experience");
+        if (reader.Exists("AttributesPoints")) playerUnit.AttributesPoints = reader.Read<int>("AttributesPoints");
     }
 
     public void ShowBagPanel()
@@ -353,29 +363,49 @@ public class InventoryUI : MonoBehaviour
         playerUnit.Attack++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("PlayerAttack", playerUnit.Attack);
+        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
+        writer.Commit();
     }
     public void LvlUpDefence()
     {
         playerUnit.Defence++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("PlayerDefence", playerUnit.Defence);
+        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
+        writer.Commit();
     }
     public void LvlUpSpeed()
     {
         playerUnit.Speed++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("PlayerSpeed", playerUnit.Speed);
+        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
+        writer.Commit();
     }
     public void LvlUpLuck()
     {
         playerUnit.Luck++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("PlayerLuck", playerUnit.Luck);
+        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
+        writer.Commit();
     }
     public void LvlUpDexterity()
     {
         playerUnit.Dexterity++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("PlayerDexterity", playerUnit.Dexterity);
+        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
+        writer.Commit();
     }
 }

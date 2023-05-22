@@ -9,6 +9,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Timeline;
 using System.Linq;
+using CI.QuickSave;
 
 [CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit")]
 public class Unit : SerializedScriptableObject
@@ -90,7 +91,12 @@ public class Unit : SerializedScriptableObject
     public UnitType Type => type;
     public string UnitName => unitName;
     public Sprite UnitSprite => unitSprite;
-    public int Level => level;
+    public int Level
+    {
+        get => level;
+        set => level = value;
+    }
+
     public Dictionary<IItem, int> ItemDrops => itemDrops;
     public int ExperienceDrop => experienceDrop;
     public int Experience
@@ -207,6 +213,11 @@ public class Unit : SerializedScriptableObject
         level++;
         experience = 0;
         attributesPoints++;
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("Level", level);
+        writer.Write("Experience", experience);
+        writer.Write("AttributesPoints", attributesPoints);
+        writer.Commit();
     }
 
     public struct StatsTable

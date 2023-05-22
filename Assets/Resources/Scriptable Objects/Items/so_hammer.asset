@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
-  m_Name: so_sword
+  m_Name: so_hammer
   m_EditorClassIdentifier: 
   itemType: 1
-  itemID: 0
+  itemID: 3
   slotType: 3
-  attackType: 0
-  itemName: Espada de Ferro
-  itemIcon: {fileID: -3718156322762420807, guid: dfaef4b399d8a2c478d7d878aeb10cff,
+  attackType: 1
+  itemName: Martelo
+  itemIcon: {fileID: 1960990957491699774, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
-  itemDescription: "Uma espada bem feita e aparentemente nova, sua l\xE2mina ainda
-    est\xE1 bem afiada"
+  itemDescription: "Normalmente utilizado para amaciar carne de animais mas seres
+    humanos tam\xE9m s\xE3o animais ..."
   maxStack: 1
   currentStack: 0
-  itemValue: 0
-  statusValue: 5
+  itemValue: 5
+  statusValue: 3

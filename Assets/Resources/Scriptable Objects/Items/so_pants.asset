@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
-  m_Name: so_sword
+  m_Name: so_pants
   m_EditorClassIdentifier: 
   itemType: 1
   itemID: 0
-  slotType: 3
+  slotType: 2
   attackType: 0
-  itemName: Espada de Ferro
-  itemIcon: {fileID: -3718156322762420807, guid: dfaef4b399d8a2c478d7d878aeb10cff,
+  itemName: "Cal\xE7a de Couro"
+  itemIcon: {fileID: 5971562414084494528, guid: 1a2f425b7d15a634e8fadd7882c57042,
     type: 3}
-  itemDescription: "Uma espada bem feita e aparentemente nova, sua l\xE2mina ainda
-    est\xE1 bem afiada"
+  itemDescription: "Cal\xE7a feita com o couro de animais da floresta"
   maxStack: 1
   currentStack: 0
   itemValue: 0
-  statusValue: 5
+  statusValue: 1

@@ -288,10 +288,10 @@ public class InventoryUI : MonoBehaviour
         playerXpText.text = $"XP: {unit.Experience} / {unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience}";
         playerXpBarFill.fillAmount = (float)unit.Experience / unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience;
         playerAttack.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem != null ? $"Ataque: {unit.Attack} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem.StatusValue})" : $"Ataque: {unit.Attack}";
-        playerDefence.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem != null ? $"Defesa: {unit.Defence} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem.StatusValue})" : $"Defesa: {unit.Defence}";
-        playerSpeed.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem != null ? $"Velocidade: {unit.Speed} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem.StatusValue})" : $"Velocidade: {unit.Speed}";
-        playerLuck.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem != null ? $"Sorte: {unit.Luck} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem.StatusValue})" : $"Sorte: {unit.Luck}";
-        playerDexterity.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem != null ? $"Destreza: {unit.Dexterity} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem.StatusValue})" : $"Destreza: {unit.Dexterity}";
+        playerDefence.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem != null ? $"Defesa: {unit.Defence} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem.StatusValue})" : $"Defesa: {unit.Defence}";
+        playerSpeed.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem != null ? $"Velocidade: {unit.Speed} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem.StatusValue})" : $"Velocidade: {unit.Speed}";
+        playerLuck.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem != null ? $"Sorte: {unit.Luck} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem.StatusValue})" : $"Sorte: {unit.Luck}";
+        playerDexterity.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem != null ? $"Destreza: {unit.Dexterity} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem.StatusValue})" : $"Destreza: {unit.Dexterity}";
     }
 
     private void ResetPanels()

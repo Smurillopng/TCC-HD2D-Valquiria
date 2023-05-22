@@ -19,8 +19,8 @@ MonoBehaviour:
     type: 3}
   effectType: 1
   vfx: {fileID: 0}
-  itemDescription: Essa pedra muito pesada causa 3 de dano em quem foi arremesada
+  itemDescription: Essa pedra muito pesada causa dano em quem for arremessada
   maxStack: 99
   currentStack: 0
   itemValue: 10
-  effectValue: 5
+  effectValue: 4

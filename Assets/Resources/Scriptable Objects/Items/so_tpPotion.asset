@@ -19,8 +19,9 @@ MonoBehaviour:
     type: 3}
   effectType: 2
   vfx: {fileID: 0}
-  itemDescription: Aumenta 20 pontos de TP
+  itemDescription: "Essa po\xE7\xE3o revigorante te da mais energia para combater
+    inimigos"
   maxStack: 99
   currentStack: 0
   itemValue: 10
-  effectValue: 20
+  effectValue: 10

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
-  m_Name: so_starterHammer
+  m_Name: so_bronzeSword
   m_EditorClassIdentifier: 
   itemType: 1
   itemID: 3
   slotType: 3
-  attackType: 1
-  itemName: Martelo
-  itemIcon: {fileID: 1960990957491699774, guid: 117e47e4e6824c74a8c7dbe5a775784f,
+  attackType: 0
+  itemName: Espada de Cobre
+  itemIcon: {fileID: 3273123673738039861, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
-  itemDescription: Martelinho da xuxa
+  itemDescription: Uma espada forjada por guerreiros de terras distantes
   maxStack: 1
   currentStack: 0
   itemValue: 5
-  statusValue: 3
+  statusValue: 4

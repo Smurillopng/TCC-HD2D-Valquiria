@@ -11,7 +11,7 @@ using UnityEngine.VFX;
 public class Consumable : ScriptableObject, IItem
 {
     [SerializeField] private ItemTyping itemType;
-    [SerializeField] private int itemID;
+    [SerializeField, HideInInspector] private int itemID; // TODO: caso seja necessário
     [SerializeField] private string itemName;
     [SerializeField] private Sprite itemIcon;
     [SerializeField] private ConsumableTypes effectType;
@@ -19,7 +19,7 @@ public class Consumable : ScriptableObject, IItem
     [SerializeField] private string itemDescription;
     [SerializeField] private int maxStack;
     [SerializeField] private int currentStack;
-    [SerializeField] private int itemValue;
+    [SerializeField, HideInInspector] private int itemValue; // TODO: para quando der para vender
     [SerializeField] private int effectValue;
 
     public ItemTyping ItemType

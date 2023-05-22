@@ -183,6 +183,12 @@ public class PlayerCombatHUD : MonoBehaviour
             specialButton.interactable = false;
             itemButton.interactable = false;
         }
+
+        if (turnManager.isPlayerTurn && !_charging)
+        {
+            specialButton.interactable = true;
+            itemButton.interactable = true;
+        }
         if (turnManager.PlayerUnitController.Charges == 0)
         {
             playerChargedVfx.Stop();

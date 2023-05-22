@@ -13,7 +13,6 @@ public class Tutorial : MonoBehaviour
     private void Awake()
     {
         if (playableDirector == null) playableDirector = GetComponent<PlayableDirector>();
-        playerMovement.enabled = false;
         var reader = QuickSaveReader.Create("GameSave");
         if (reader.Exists("PlayedTutorial"))
         {
@@ -23,6 +22,8 @@ public class Tutorial : MonoBehaviour
         {
             playedTutorial = false;
         }
+
+        playerMovement.enabled = playedTutorial;
         
         if (!playedTutorial)
         {
@@ -41,7 +42,7 @@ public class Tutorial : MonoBehaviour
 
     public void SkipTutorial()
     {
-        playerMovement.enabled = true;
+        playerMovement.enabled = playedTutorial;
         playableDirector.Stop();
         tutorialGameObject.SetActive(false);
     }

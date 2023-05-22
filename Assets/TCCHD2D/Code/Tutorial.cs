@@ -39,13 +39,9 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        playerMovement.enabled = true;
-    }
-
     public void SkipTutorial()
     {
+        playerMovement.enabled = true;
         playableDirector.Stop();
         tutorialGameObject.SetActive(false);
     }

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: trygve
   dialogueLines:
-  - text: Oi liv!
-  - text: Hoje foi uma boa pesca peguei dois peixes um pequeno e um grande!
-  - text: Eu tambem peguei uma arma enferrujada se quiser eu deixei ela no bau.
+  - text: Oi Liv!
+  - text: Hoje foi uma boa pesca, peguei dois peixes, um pequeno e um grande!
+  - text: "Eu tamb\xE9m peguei uma arma enferrujada, se quiser eu deixei ela no ba\xFA."

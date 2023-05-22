@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
-  m_Name: so_dialogue_Ingrid
+  m_Name: so_dialogue_ingrid
   m_EditorClassIdentifier: 
   characterName: Ingrid
   dialogueLines:
-  - text: LIV! Eu tenho que te contar algo rapido!
-  - text: "Eu estava ca\xE7ando pela floresta ate que uma hora um lobo cheio de cicatrizes
-      e forte veio para me atacar!"
-  - text: "Eu corri ate perto de uma caverna onde na entrada eu escutei gritos estranhos
-      veindo no fundo dela e na frente eu encontrei alguns equipamentos daqueles
-      que foram na expedi\xE7ao!"
-  - text: Eu pensei que talvez eles tivessem deixado cair aqui esses itens a um tempo
-      atras, mas aqueles gritos me fizeram ter medo de que talvez eles estivem presos
-      la!
-  - text: "Voce e mais habilidadosa guerreira e ca\xE7adora da vila voce so ficava
-      atras do Bjorn o seu pai!"
-  - text: Por favor! voce pode ir ate a caverna e ver o que pode estar acontecendo?
+  - text: "LIV! Eu tenho que te contar algo r\xE1pido!"
+  - text: "Eu estava ca\xE7ando pela floresta at\xE9 que uma hora um lobo cheio de
+      cicatrizes veio para me atacar!"
+  - text: "Eu corri at\xE9 perto de uma caverna onde na entrada eu escutei gritos
+      estranhos vindos do fundo dela e na frente eu encontrei alguns equipamentos
+      daqueles que foram na expedi\xE7\xE3o!"
+  - text: "Eu pensei que talvez eles tivessem deixado cair aqui esses itens h\xE1
+      um tempo atr\xE1s, mas aqueles gritos me fizeram ter medo de que talvez eles
+      estivem presos la!"
+  - text: "Voc\xEA \xE9 a mais habilidosa guerreira e ca\xE7adora da vila voc\xEA
+      s\xF3 ficava atr\xE1s do Bjorn, seu pai!"
+  - text: "Por favor! voc\xEA pode ir at\xE9 a caverna ver o que pode estar acontecendo?"

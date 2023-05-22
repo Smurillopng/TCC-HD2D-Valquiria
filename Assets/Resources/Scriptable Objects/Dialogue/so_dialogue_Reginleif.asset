@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
-  m_Name: so_dialogue_Reginleif
+  m_Name: so_dialogue_reginleif
   m_EditorClassIdentifier: 
   characterName: Reginleif
   dialogueLines:
-  - text: Eu vi la na floresta.
-  - text: Parecia um homem so que ele esta estranho e se movia de um jeito como se
-      fosse um animal.
-  - text: Eu fiquei assustada depois disso nao deixei mais minha irmazinha brinca
-      muito a fundo na floresta.
+  - text: "Eu vi l\xE1 na floresta."
+  - text: "Parecia um homem s\xF3 que ele estava estranho e se movia como se fosse
+      um animal."
+  - text: "Eu fiquei assustada depois disso n\xE3o deixei mais minha irm\xE3zinha
+      brincar muito a fundo na floresta."

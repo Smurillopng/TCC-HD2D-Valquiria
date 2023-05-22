@@ -174,6 +174,18 @@ public class RandomEncounterManager : SerializedMonoBehaviour
 
         StartCoroutine(FadeIn(_liftGammaGain));
     }
+    public void EncounterFinalBoss()
+    {
+        _selectedEnemy = enemies[0];
+
+        var save = QuickSaveWriter.Create("GameSave");
+        save.Write("PlayerPosition", _playerMovement.transform.position);
+        save.Write("LastScene", SceneManager.GetActiveScene().name);
+        save.Write("EncounteredEnemy", _selectedEnemy.name);
+        save.Commit();
+
+        StartCoroutine(FadeIn(_liftGammaGain));
+    }
     /// <summary>
     /// Fades in the scene for combat.
     /// </summary>

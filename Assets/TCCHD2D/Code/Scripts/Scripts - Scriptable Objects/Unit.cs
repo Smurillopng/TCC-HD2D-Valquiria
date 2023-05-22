@@ -25,9 +25,10 @@ public class Unit : SerializedScriptableObject
     private Sprite unitSprite;
 
     [TitleGroup("Stats", Alignment = TitleAlignments.Centered)]
-    [SerializeField, MinValue(1)]
+    [SerializeField, MinValue(1), ShowIf("type", UnitType.Player)]
     private int level = 1;
 
+    [TitleGroup("Stats", Alignment = TitleAlignments.Centered)]
     [SerializeField, ShowIf("type", UnitType.Enemy)]
     private Dictionary<IItem, int> itemDrops;
 

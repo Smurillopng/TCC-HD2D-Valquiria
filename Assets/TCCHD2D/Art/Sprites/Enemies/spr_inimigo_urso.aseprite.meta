@@ -119,14 +119,14 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: spr_inimigo_urso
     originalName: 
-    pivot: {x: 0.47058827, y: 0}
+    pivot: {x: 0.47761196, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 68
+      width: 67
       height: 71
     spriteID: a1fd8d9eabce07542b7aef46340fca8c
     spriteBone: []
@@ -151,7 +151,7 @@ ScriptedImporter:
       cellRect:
         x: 4
         y: 0
-        width: 68
+        width: 67
         height: 71
       spriteId: a1fd8d9eabce07542b7aef46340fca8c
     linkedCells: []

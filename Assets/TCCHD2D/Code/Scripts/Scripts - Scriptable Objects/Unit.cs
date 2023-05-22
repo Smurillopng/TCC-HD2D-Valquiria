@@ -20,7 +20,7 @@ public class Unit : SerializedScriptableObject
     [SerializeField]
     private string unitName;
 
-    [SerializeField]
+    [SerializeField, PreviewField]
     private Sprite unitSprite;
 
     [TitleGroup("Stats", Alignment = TitleAlignments.Centered)]
@@ -69,7 +69,7 @@ public class Unit : SerializedScriptableObject
     [SerializeField, MinValue(1)]
     private int dexterity = 1;
     
-    [SerializeField]
+    [SerializeField, ShowIf("type", UnitType.Player)]
     private int attributesPoints;
 
     [TitleGroup("Conditions", Alignment = TitleAlignments.Centered)]

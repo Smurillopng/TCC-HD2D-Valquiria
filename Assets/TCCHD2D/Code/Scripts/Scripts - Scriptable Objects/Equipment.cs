@@ -8,16 +8,16 @@ using UnityEngine;
 public class Equipment : ScriptableObject, IItem
 {
     [SerializeField] private ItemTyping itemType;
-    [SerializeField] private int itemID;
+    [SerializeField, HideInInspector] private int itemID; // TODO: Implementar caso seja útil
     [SerializeField] private EquipmentSlotType slotType;
     [ShowIf("slotType", EquipmentSlotType.Weapon)]
     [SerializeField] private AttackType attackType;
     [SerializeField] private string itemName;
-    [SerializeField] private Sprite itemIcon;
-    [SerializeField] private string itemDescription;
+    [SerializeField, PreviewField] private Sprite itemIcon;
+    [SerializeField, TextArea] private string itemDescription;
     [SerializeField] private int maxStack;
     [SerializeField] private int currentStack;
-    [SerializeField] private int itemValue;
+    [SerializeField, HideInInspector] private int itemValue; // TODO: Implementar quando der para comprar e vender
     [SerializeField] private int statusValue;
 
     public ItemTyping ItemType

@@ -137,6 +137,66 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: spr_npc_kid_1_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 41
+      width: 14
+      height: 29
+    spriteID: 154041b77fa04a646b12c0e21ba14deb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 41}
+  - name: spr_npc_kid_1_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 78
+      width: 14
+      height: 29
+    spriteID: 4141dee6c96953e43accb214fa0596bc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 78}
+  - name: spr_npc_kid_1_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 26
+      y: 4
+      width: 14
+      height: 29
+    spriteID: 7313cf3630aaa8047becbc1767aba440
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 26, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -146,7 +206,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_npc_kid_1
+    - name: spr_npc_kid_1_Frame_0
       frameIndex: 0
       cellRect:
         x: 11
@@ -154,6 +214,30 @@ ScriptedImporter:
         width: 14
         height: 29
       spriteId: 627622d5a4d194a4b99528e2f56dd0bb
+    - name: spr_npc_kid_1_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 11
+        y: 1
+        width: 14
+        height: 29
+      spriteId: 154041b77fa04a646b12c0e21ba14deb
+    - name: spr_npc_kid_1_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 11
+        y: 1
+        width: 14
+        height: 29
+      spriteId: 4141dee6c96953e43accb214fa0596bc
+    - name: spr_npc_kid_1_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 11
+        y: 1
+        width: 14
+        height: 29
+      spriteId: 7313cf3630aaa8047becbc1767aba440
     linkedCells: []
     parentIndex: -1
   platformSettings:

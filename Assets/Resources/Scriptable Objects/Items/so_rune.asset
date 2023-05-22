@@ -22,6 +22,6 @@ MonoBehaviour:
   itemDescription: "A runa geb\u014D significa presente quando equipada aumentara
     sua sorte"
   maxStack: 1
-  currentStack: 1
+  currentStack: 0
   itemValue: 0
-  statusValue: 1
+  statusValue: 2

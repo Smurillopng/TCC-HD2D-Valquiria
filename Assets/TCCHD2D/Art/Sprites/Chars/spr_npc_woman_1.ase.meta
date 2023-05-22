@@ -125,7 +125,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 86
       width: 18
       height: 32
     spriteID: c25f68dfde1804744a4a4f41dba00286
@@ -136,7 +136,67 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
+    uvTransform: {x: 4, y: 86}
+  - name: spr_npc_woman_1_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 18
+      height: 33
+    spriteID: 205cdf0b171da534195580293179cb4b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: spr_npc_woman_1_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 45
+      width: 18
+      height: 33
+    spriteID: e7396888982def24f9afdd54f59729ce
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 45}
+  - name: spr_npc_woman_1_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 30
+      y: 4
+      width: 18
+      height: 32
+    spriteID: 5b5529ac06381c146a8a0ff3b95abfa8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 30, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -146,7 +206,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_npc_woman_1
+    - name: spr_npc_woman_1_Frame_0
       frameIndex: 0
       cellRect:
         x: 9
@@ -154,6 +214,30 @@ ScriptedImporter:
         width: 18
         height: 32
       spriteId: c25f68dfde1804744a4a4f41dba00286
+    - name: spr_npc_woman_1_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 9
+        y: 1
+        width: 18
+        height: 33
+      spriteId: 205cdf0b171da534195580293179cb4b
+    - name: spr_npc_woman_1_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 9
+        y: 1
+        width: 18
+        height: 33
+      spriteId: e7396888982def24f9afdd54f59729ce
+    - name: spr_npc_woman_1_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 9
+        y: 2
+        width: 18
+        height: 32
+      spriteId: 5b5529ac06381c146a8a0ff3b95abfa8
     linkedCells: []
     parentIndex: -1
   platformSettings:

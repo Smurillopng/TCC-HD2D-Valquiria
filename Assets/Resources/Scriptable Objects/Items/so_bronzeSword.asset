@@ -21,6 +21,6 @@ MonoBehaviour:
     type: 3}
   itemDescription: Uma espada forjada por guerreiros de terras distantes
   maxStack: 1
-  currentStack: 1
+  currentStack: 0
   itemValue: 5
   statusValue: 3

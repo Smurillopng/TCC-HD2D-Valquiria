@@ -125,7 +125,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 80
       width: 14
       height: 29
     spriteID: ef5177bebcd120143bf2664dd262b92d
@@ -136,7 +136,67 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
+    uvTransform: {x: 4, y: 80}
+  - name: spr_npc_kid_2_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 14
+      height: 30
+    spriteID: d2043aa33641b434ea11603f717297be
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: spr_npc_kid_2_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 42
+      width: 14
+      height: 30
+    spriteID: 3f1ae41a2c7223b45b2e2d9584d658b3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 42}
+  - name: spr_npc_kid_2_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 26
+      y: 4
+      width: 14
+      height: 29
+    spriteID: f9bb2bc72edfdfd47afde4f1fa7c9237
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 26, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -146,7 +206,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_npc_kid_2
+    - name: spr_npc_kid_2_Frame_0
       frameIndex: 0
       cellRect:
         x: 11
@@ -154,6 +214,30 @@ ScriptedImporter:
         width: 14
         height: 29
       spriteId: ef5177bebcd120143bf2664dd262b92d
+    - name: spr_npc_kid_2_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 11
+        y: 1
+        width: 14
+        height: 30
+      spriteId: d2043aa33641b434ea11603f717297be
+    - name: spr_npc_kid_2_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 11
+        y: 1
+        width: 14
+        height: 30
+      spriteId: 3f1ae41a2c7223b45b2e2d9584d658b3
+    - name: spr_npc_kid_2_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 11
+        y: 1
+        width: 14
+        height: 29
+      spriteId: f9bb2bc72edfdfd47afde4f1fa7c9237
     linkedCells: []
     parentIndex: -1
   platformSettings:

@@ -30,66 +30,40 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 49
     - Name: 
       Entry: 7
       Data: Unit+StatsTable, Assembly-CSharp
     - Name: Level
       Entry: 3
       Data: 2
+    - Name: Experience
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 3
+    - Name: Experience
+      Entry: 3
+      Data: 12
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 4
     - Name: Experience
       Entry: 3
       Data: 20
-    - Name: Stats
-      Entry: 7
-      Data: 1|System.Collections.Generic.Dictionary`2[[StatType, Assembly-CSharp],[System.Int32,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 2|System.Collections.Generic.EnumEqualityComparer`1[[StatType, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
-      Entry: 3
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 5
-    - Name: $v
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -98,60 +72,550 @@ MonoBehaviour:
       Data: Unit+StatsTable, Assembly-CSharp
     - Name: Level
       Entry: 3
-      Data: 3
+      Data: 5
     - Name: Experience
       Entry: 3
-      Data: 60
-    - Name: Stats
-      Entry: 7
-      Data: 3|System.Collections.Generic.Dictionary`2[[StatType, Assembly-CSharp],[System.Int32,
-        mscorlib]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 4|System.Collections.Generic.EnumEqualityComparer`1[[StatType, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 3
-    - Name: $v
-      Entry: 3
-      Data: 1
+      Data: 29
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 6
+    - Name: Experience
+      Entry: 3
+      Data: 39
+    - Name: 
+      Entry: 8
       Data: 
-    - Name: $k
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
       Entry: 3
       Data: 7
-    - Name: $v
+    - Name: Experience
       Entry: 3
-      Data: 1
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
     - Name: 
-      Entry: 13
-      Data: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 8
+    - Name: Experience
+      Entry: 3
+      Data: 62
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 9
+    - Name: Experience
+      Entry: 3
+      Data: 75
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 10
+    - Name: Experience
+      Entry: 3
+      Data: 89
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 11
+    - Name: Experience
+      Entry: 3
+      Data: 104
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 12
+    - Name: Experience
+      Entry: 3
+      Data: 120
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 13
+    - Name: Experience
+      Entry: 3
+      Data: 137
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 14
+    - Name: Experience
+      Entry: 3
+      Data: 155
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 15
+    - Name: Experience
+      Entry: 3
+      Data: 174
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 16
+    - Name: Experience
+      Entry: 3
+      Data: 194
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 17
+    - Name: Experience
+      Entry: 3
+      Data: 215
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 18
+    - Name: Experience
+      Entry: 3
+      Data: 237
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 19
+    - Name: Experience
+      Entry: 3
+      Data: 260
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 20
+    - Name: Experience
+      Entry: 3
+      Data: 284
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 21
+    - Name: Experience
+      Entry: 3
+      Data: 309
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 22
+    - Name: Experience
+      Entry: 3
+      Data: 335
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 23
+    - Name: Experience
+      Entry: 3
+      Data: 362
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 24
+    - Name: Experience
+      Entry: 3
+      Data: 390
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 25
+    - Name: Experience
+      Entry: 3
+      Data: 419
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 26
+    - Name: Experience
+      Entry: 3
+      Data: 449
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 27
+    - Name: Experience
+      Entry: 3
+      Data: 480
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 28
+    - Name: Experience
+      Entry: 3
+      Data: 512
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 29
+    - Name: Experience
+      Entry: 3
+      Data: 545
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 30
+    - Name: Experience
+      Entry: 3
+      Data: 579
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 31
+    - Name: Experience
+      Entry: 3
+      Data: 614
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 32
+    - Name: Experience
+      Entry: 3
+      Data: 650
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 33
+    - Name: Experience
+      Entry: 3
+      Data: 687
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 34
+    - Name: Experience
+      Entry: 3
+      Data: 725
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 35
+    - Name: Experience
+      Entry: 3
+      Data: 764
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 36
+    - Name: Experience
+      Entry: 3
+      Data: 804
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 37
+    - Name: Experience
+      Entry: 3
+      Data: 845
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 38
+    - Name: Experience
+      Entry: 3
+      Data: 887
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 39
+    - Name: Experience
+      Entry: 3
+      Data: 930
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 40
+    - Name: Experience
+      Entry: 3
+      Data: 974
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 41
+    - Name: Experience
+      Entry: 3
+      Data: 1019
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 42
+    - Name: Experience
+      Entry: 3
+      Data: 1065
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 43
+    - Name: Experience
+      Entry: 3
+      Data: 1112
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 44
+    - Name: Experience
+      Entry: 3
+      Data: 1160
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 45
+    - Name: Experience
+      Entry: 3
+      Data: 1209
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 46
+    - Name: Experience
+      Entry: 3
+      Data: 1259
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 47
+    - Name: Experience
+      Entry: 3
+      Data: 1310
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 48
+    - Name: Experience
+      Entry: 3
+      Data: 1362
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 49
+    - Name: Experience
+      Entry: 3
+      Data: 1415
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: Unit+StatsTable, Assembly-CSharp
+    - Name: Level
+      Entry: 3
+      Data: 50
+    - Name: Experience
+      Entry: 3
+      Data: 1469
     - Name: 
       Entry: 8
       Data: 
@@ -178,6 +642,7 @@ MonoBehaviour:
   speed: 1
   luck: 1
   dexterity: 1
+  attributesPoints: 0
   isPlayer: 1
   resetOnExit: 1
   isDead: 0

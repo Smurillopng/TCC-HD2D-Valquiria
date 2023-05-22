@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d458961d4a2d44cca4f0fcac8a363c99, type: 3}
+  m_Name: so_enemy_bear_1
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: itemDrops
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[IItem, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[IItem, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: statsTable
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[Unit+StatsTable, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  type: 1
+  unitName: Urso Alpha
+  unitSprite: {fileID: 2610212341419587216, guid: 10e788af203864d4390e34f73c7afeb2,
+    type: 3}
+  level: 1
+  experienceDrop: 0
+  experience: 0
+  attackAnimation: {fileID: 11400000, guid: 60788a39c3c84944986306cb5be30167, type: 2}
+  maxHp: 1
+  currentHp: 0
+  maxTp: 100
+  currentTp: 0
+  attack: 1
+  defence: 1
+  speed: 1
+  luck: 1
+  dexterity: 1
+  attributesPoints: 0
+  isPlayer: 0
+  resetOnExit: 0
+  isDead: 0
+  hasTakenTurn: 0

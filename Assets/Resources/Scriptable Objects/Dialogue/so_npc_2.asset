@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Harald
   dialogueLines:
-  - text: "Ol\xE1 minha jovem. Voc\xEA parece estar procurando por algo."
-  - text: Cuidado com a caverna adiante!
-  - text: "H\xE1 muitos mist\xE9rios ocultos nas profundezas, voc\xEA pode acabar
-      encontrando o que n\xE3o esperava."
-  isNpcDialogue: 1
+  - text: "Ol\xE1 minha jovem."
+  - text: Cuidado adiante!
+  - text: "H\xE1 muitos mist\xE9rios ocultos nas profundezas desse caverna."
+  - text: ' Algo que pode ate enfurecer os deuses!'

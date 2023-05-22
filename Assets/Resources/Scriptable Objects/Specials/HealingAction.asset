@@ -16,4 +16,4 @@ MonoBehaviour:
   specialType: 0
   specialCost: 25
   specialDamage: 0
-  specialHeal: 5
+  specialHeal: 2

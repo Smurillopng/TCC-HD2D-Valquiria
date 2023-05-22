@@ -67,7 +67,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.1
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9
@@ -115,11 +115,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: NorseFont_Bold SDF
+  m_Name: NorseFont_Bold SDF Outline
   m_EditorClassIdentifier: 
-  hashCode: 2102523837
+  hashCode: -1940347139
   material: {fileID: -5893234512884441959}
-  materialHashCode: 817956989
+  materialHashCode: 480525629
   m_Version: 1.1.0
   m_SourceFontFileGUID: 76d4428ff8ec8d34981adefa87c9a602
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 76d4428ff8ec8d34981adefa87c9a602,

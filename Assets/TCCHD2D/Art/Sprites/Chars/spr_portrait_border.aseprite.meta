@@ -1,0 +1,294 @@
+fileFormatVersion: 2
+guid: 25bf87ef685cb994a932f4974dc73a89
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMasterTextureLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: spr_portrait_border
+    originalName: 
+    pivot: {x: 0.5037037, y: -0.0036900367}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 270
+      height: 271
+    spriteID: e4bfe5c4b62b7c74bac47de545b0285b
+    spriteBone: []
+    spriteOutline:
+    - outline:
+      - {x: 135, y: 128.5}
+      - {x: 126, y: 135.5}
+      - {x: 54, y: 135.5}
+      - {x: 42, y: 126.5}
+      - {x: 40, y: 104.5}
+      - {x: 48, y: 60.5}
+      - {x: 43, y: 29.5}
+      - {x: 43, y: -39.5}
+      - {x: -2, y: -47.5}
+      - {x: -25, y: -41.5}
+      - {x: -69, y: -43.5}
+      - {x: -124, y: -40.5}
+      - {x: -135, y: -54.5}
+      - {x: -135, y: -127.5}
+      - {x: -127, y: -135.5}
+      - {x: -64, y: -135.5}
+      - {x: -40, y: -121.5}
+      - {x: -10, y: -135.5}
+      - {x: 135, y: -135.5}
+    - outline:
+      - {x: 0, y: -110.5}
+      - {x: 6, y: -112.5}
+      - {x: 7, y: -111.5}
+      - {x: 11, y: -111.5}
+      - {x: 16, y: -109.5}
+      - {x: 22, y: -103.5}
+      - {x: 24, y: -98.5}
+      - {x: 24, y: -95.5}
+      - {x: 25, y: -94.5}
+      - {x: 25, y: -86.5}
+      - {x: 24, y: -85.5}
+      - {x: 24, y: -81.5}
+      - {x: 22, y: -75.5}
+      - {x: 19, y: -71.5}
+      - {x: 26, y: -72.5}
+      - {x: 24, y: -78.5}
+      - {x: 24, y: -97.5}
+      - {x: 25, y: -103.5}
+      - {x: 27, y: -107.5}
+      - {x: 19, y: -109.5}
+      - {x: 15, y: -111.5}
+      - {x: 5, y: -111.5}
+      - {x: 4, y: -110.5}
+    - outline:
+      - {x: 69, y: -109.5}
+      - {x: 70, y: -110.5}
+      - {x: 66, y: -111.5}
+      - {x: 67, y: -112.5}
+    - outline:
+      - {x: -68, y: -105.5}
+      - {x: -72, y: -106.5}
+      - {x: -73, y: -109.5}
+      - {x: -71, y: -109.5}
+    - outline:
+      - {x: -112, y: -95.5}
+      - {x: -113, y: -99.5}
+      - {x: -111, y: -103.5}
+      - {x: -111, y: -105.5}
+    - outline:
+      - {x: 50, y: -89.5}
+      - {x: 51, y: -90.5}
+      - {x: 50, y: -91.5}
+      - {x: 51, y: -91.5}
+    - outline:
+      - {x: 88, y: -90.5}
+      - {x: 90, y: -88.5}
+      - {x: 92, y: -89.5}
+      - {x: 89, y: -91.5}
+      - {x: 89, y: -90.5}
+    - outline:
+      - {x: -111, y: -69.5}
+      - {x: -107, y: -68.5}
+      - {x: -112, y: -72.5}
+      - {x: -112, y: -75.5}
+      - {x: -111, y: -75.5}
+    - outline:
+      - {x: 60, y: -62.5}
+      - {x: 61, y: -60.5}
+      - {x: 62, y: -59.5}
+      - {x: 72, y: -69.5}
+      - {x: 70, y: -71.5}
+      - {x: 69, y: -70.5}
+    - outline:
+      - {x: 109, y: -69.5}
+      - {x: 112, y: -66.5}
+      - {x: 111, y: -67.5}
+      - {x: 110, y: -70.5}
+      - {x: 110, y: -69.5}
+    - outline:
+      - {x: 72, y: -25.5}
+      - {x: 71, y: -18.5}
+      - {x: 77, y: -22.5}
+      - {x: 84, y: -24.5}
+      - {x: 97, y: -24.5}
+      - {x: 104, y: -21.5}
+      - {x: 109, y: -16.5}
+      - {x: 111, y: -11.5}
+      - {x: 111, y: -9.5}
+      - {x: 112, y: -8.5}
+      - {x: 112, y: -0.5}
+      - {x: 110, y: 1.5}
+      - {x: 110, y: -3.5}
+      - {x: 111, y: -4.5}
+      - {x: 111, y: -16.5}
+      - {x: 110, y: -17.5}
+      - {x: 107, y: -25.5}
+      - {x: 100, y: -24.5}
+      - {x: 81, y: -24.5}
+      - {x: 76, y: -25.5}
+      - {x: 75, y: -26.5}
+      - {x: 72, y: -26.5}
+      - {x: 71, y: -27.5}
+      - {x: 72, y: -27.5}
+    - outline:
+      - {x: 109, y: 70.5}
+      - {x: 110, y: 74.5}
+      - {x: 107, y: 72.5}
+      - {x: 105, y: 67.5}
+    - outline:
+      - {x: 77, y: 112.5}
+      - {x: 74, y: 112.5}
+      - {x: 68, y: 108.5}
+      - {x: 68, y: 106.5}
+      - {x: 69, y: 106.5}
+    - outline:
+      - {x: 98, y: 112.5}
+      - {x: 97, y: 113.5}
+      - {x: 94, y: 112.5}
+      - {x: 105, y: 111.5}
+      - {x: 105, y: 110.5}
+      - {x: 104, y: 111.5}
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0.12
+    uvTransform: {x: 4, y: 4}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: -1761713296
+    name: spr_portrait_border
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: spr_portrait_border
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 1
+        width: 270
+        height: 271
+      spriteId: e4bfe5c4b62b7c74bac47de545b0285b
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 272, y: 272}

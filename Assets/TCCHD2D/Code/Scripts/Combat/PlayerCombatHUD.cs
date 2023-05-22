@@ -227,7 +227,6 @@ public class PlayerCombatHUD : MonoBehaviour
     /// <param name="disabled"></param>
     private void DisableButtons(bool disabled)
     {
-        if (_charging) return;
         switch (disabled)
         {
             case true:

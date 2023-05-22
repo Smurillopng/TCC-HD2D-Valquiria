@@ -24,4 +24,4 @@ MonoBehaviour:
   maxStack: 1
   currentStack: 0
   itemValue: 5
-  statusValue: 3
+  statusValue: 6

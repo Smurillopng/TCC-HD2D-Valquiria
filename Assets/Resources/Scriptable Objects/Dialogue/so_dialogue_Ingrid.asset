@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
+  m_Name: so_dialogue_Ingrid
+  m_EditorClassIdentifier: 
+  characterName: Ingrid
+  dialogueLines:
+  - text: LIV! Eu tenho que te contar algo rapido!
+  - text: "Eu estava ca\xE7ando pela floresta ate que uma hora um lobo cheio de cicatrizes
+      e forte veio para me atacar!"
+  - text: "Eu corri ate perto de uma caverna onde na entrada eu escutei gritos estranhos
+      veindo no fundo dela e na frente eu encontrei alguns equipamentos daqueles
+      que foram na expedi\xE7ao!"
+  - text: Eu pensei que talvez eles tivessem deixado cair aqui esses itens a um tempo
+      atras, mas aqueles gritos me fizeram ter medo de que talvez eles estivem presos
+      la!
+  - text: "Voce e mais habilidadosa guerreira e ca\xE7adora da vila voce so ficava
+      atras do Bjorn o seu pai!"
+  - text: Por favor! voce pode ir ate a caverna e ver o que pode estar acontecendo?

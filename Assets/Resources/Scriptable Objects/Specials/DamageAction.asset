@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialName: "F\xFAria"
   specialType: 1
-  specialCost: 100
+  specialCost: 50
   specialDamage: 10
   specialHeal: 0

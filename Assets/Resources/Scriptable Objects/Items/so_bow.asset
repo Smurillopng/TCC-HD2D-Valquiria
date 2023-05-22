@@ -19,7 +19,7 @@ MonoBehaviour:
   itemName: Arco
   itemIcon: {fileID: -478314535089302105, guid: c54764a8d971e7244a937980be694703,
     type: 3}
-  itemDescription: "Uma arma utilizada para ca\xE7a por in\xFAmeras gera\xE7\xF5es"
+  itemDescription: "Um arco simples dado para crian\xE7as ou iniciante"
   maxStack: 1
   currentStack: 0
   itemValue: 0

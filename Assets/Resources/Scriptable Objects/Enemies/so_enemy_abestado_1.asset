@@ -46,7 +46,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 100
+      Data: 50
     - Name: 
       Entry: 8
       Data: 
@@ -58,7 +58,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 3
-      Data: 100
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -70,7 +70,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 3
-      Data: 100
+      Data: 30
     - Name: 
       Entry: 8
       Data: 
@@ -98,14 +98,14 @@ MonoBehaviour:
   unitSprite: {fileID: 5470260758971073697, guid: 993d1cd5b19fdd141b3328f55fa8a55a,
     type: 3}
   level: 1
-  experienceDrop: 10
+  experienceDrop: 15
   experience: 0
   attackAnimation: {fileID: 11400000, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
   maxHp: 120
   currentHp: 120
   maxTp: 100
   currentTp: 0
-  attack: 5
+  attack: 8
   defence: 5
   speed: 3
   luck: 1

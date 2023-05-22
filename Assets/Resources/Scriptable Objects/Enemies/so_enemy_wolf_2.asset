@@ -57,7 +57,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 3
-      Data: 10
+      Data: 15
     - Name: 
       Entry: 8
       Data: 
@@ -97,6 +97,7 @@ MonoBehaviour:
   speed: 3
   luck: 1
   dexterity: 1
+  attributesPoints: 0
   isPlayer: 0
   resetOnExit: 0
   isDead: 0

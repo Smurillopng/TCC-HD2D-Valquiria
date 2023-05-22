@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf222249ade4ba8acd1afb7cf253029, type: 3}
   m_Name: HealingAction
   m_EditorClassIdentifier: 
-  specialName: Cura Top
+  specialName: "Regenera\xE7\xE3o"
   specialType: 0
-  specialCost: 14
+  specialCost: 50
   specialDamage: 0
   specialHeal: 5

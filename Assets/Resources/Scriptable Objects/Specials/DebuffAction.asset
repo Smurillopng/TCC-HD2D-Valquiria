@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf222249ade4ba8acd1afb7cf253029, type: 3}
   m_Name: DebuffAction
   m_EditorClassIdentifier: 
-  specialName: Martelo Quente
+  specialName: Golpe Flamejante
   specialType: 3
-  specialCost: 1
+  specialCost: 30
   specialDamage: 0
   specialHeal: 0

@@ -331,7 +331,7 @@ public class PlayerCombatHUD : MonoBehaviour
             button.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
             button.GetComponent<Button>().onClick.AddListener(() =>
             {
-                InventoryManager.Instance.UseItem(item);
+                item.Use();
                 UpdatePlayerHealth();
                 UpdatePlayerTp();
                 UpdateEnemyHealth();

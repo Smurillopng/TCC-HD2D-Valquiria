@@ -303,14 +303,30 @@ public class TurnManager : MonoBehaviour
         var lastScene = QuickSaveReader.Create("GameSave").Read<string>("LastScene");
         var writer = QuickSaveWriter.Create("GameSave");
         writer.Write("LastScene", SceneManager.GetActiveScene().name);
+        writer.Write("Experience", PlayerUnitController.Unit.Experience);
         writer.Commit();
         SceneManager.LoadScene(lastScene);
     }
 
     private void XpReward()
     {
-        PlayerUnitController.Unit.Experience += EnemyUnitController.Unit.ExperienceDrop;
-        PlayerUnitController.Unit.CheckLevelUp();
+        if (PlayerUnitController.Unit.Experience + EnemyUnitController.Unit.ExperienceDrop <= PlayerUnitController.Unit
+                .StatsTables.First(statGroup => statGroup.Level == PlayerUnitController.Unit.Level + 1).Experience)
+        {
+            PlayerUnitController.Unit.Experience += EnemyUnitController.Unit.ExperienceDrop;
+            PlayerUnitController.Unit.CheckLevelUp();
+        }
+        else if (PlayerUnitController.Unit.Experience + EnemyUnitController.Unit.ExperienceDrop > PlayerUnitController
+                     .Unit.StatsTables.First(statGroup => statGroup.Level == PlayerUnitController.Unit.Level + 1)
+                     .Experience)
+        {
+            var xpLeft = PlayerUnitController.Unit.Experience + EnemyUnitController.Unit.ExperienceDrop - PlayerUnitController
+                             .Unit.StatsTables.First(statGroup => statGroup.Level == PlayerUnitController.Unit.Level + 1)
+                             .Experience;
+            PlayerUnitController.Unit.Experience += EnemyUnitController.Unit.ExperienceDrop;
+            PlayerUnitController.Unit.CheckLevelUp();
+            PlayerUnitController.Unit.Experience += xpLeft;
+        }
     }
 
     private void ItemReward()

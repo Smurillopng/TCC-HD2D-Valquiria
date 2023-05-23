@@ -2,6 +2,7 @@
 // Date: 01/04/2023
 
 using System;
+using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
@@ -113,9 +114,9 @@ public class Consumable : ScriptableObject, IItem
         {
             var inventory = FindObjectOfType<InventoryUI>();
             var player = inventory.PlayerUnit;
-            if (player.CurrentHp < player.MaxHp)
+            if (player.CurrentHp + EffectValue < player.MaxHp)
                 player.CurrentHp += EffectValue;
-            else if (player.CurrentHp >= player.MaxHp)
+            else if (player.CurrentHp + EffectValue >= player.MaxHp)
                 player.CurrentHp = player.MaxHp;
             if (CurrentStack <= 0)
             {
@@ -133,11 +134,28 @@ public class Consumable : ScriptableObject, IItem
         if (PlayerControls.Instance.SceneMap.TryGetValue(scene, out var combatValue) && combatValue == SceneType.Combat)
         {
             var target = FindObjectOfType<TurnManager>().PlayerUnitController;
-            if (target.Unit.CurrentHp < target.Unit.MaxHp)
+            if (target.Unit.CurrentHp + EffectValue < target.Unit.MaxHp)
                 target.Unit.CurrentHp += EffectValue;
+            else if (target.Unit.CurrentHp + EffectValue >= target.Unit.MaxHp)
+                target.Unit.CurrentHp = target.Unit.MaxHp;
             UpdateTrack(target);
             target.Director.Play(target.UseItem);
+            if (CurrentStack <= 0)
+            {
+                InventoryManager.Instance.Inventory.Remove(this);
+            }
+            else
+            {
+                CurrentStack--;
+                if (CurrentStack <= 0)
+                {
+                    InventoryManager.Instance.Inventory.Remove(this);
+                }
+            }
         }
+        var writer = QuickSaveWriter.Create("Inventory");
+        writer.Write(itemName, currentStack);
+        writer.Commit();
     }
 
     private void Damage()
@@ -155,7 +173,22 @@ public class Consumable : ScriptableObject, IItem
             }
             UpdateTrack(target);
             player.Director.Play(player.UseItem);
+            if (CurrentStack <= 0)
+            {
+                InventoryManager.Instance.Inventory.Remove(this);
+            }
+            else
+            {
+                CurrentStack--;
+                if (CurrentStack <= 0)
+                {
+                    InventoryManager.Instance.Inventory.Remove(this);
+                }
+            }
         }
+        var writer = QuickSaveWriter.Create("Inventory");
+        writer.Write(itemName, currentStack);
+        writer.Commit();
     }
 
     private void IncreaseTp()
@@ -165,9 +198,9 @@ public class Consumable : ScriptableObject, IItem
         {
             var inventory = FindObjectOfType<InventoryUI>();
             var player = inventory.PlayerUnit;
-            if (player.CurrentTp < player.MaxTp)
+            if (player.CurrentTp + EffectValue < player.MaxTp)
                 player.CurrentTp += EffectValue;
-            else if (player.CurrentHp >= player.MaxTp)
+            else if (player.CurrentTp + EffectValue >= player.MaxTp)
                 player.CurrentTp = player.MaxTp;
             if (CurrentStack <= 0)
             {
@@ -185,10 +218,28 @@ public class Consumable : ScriptableObject, IItem
         if (PlayerControls.Instance.SceneMap.TryGetValue(scene, out var combatValue) && combatValue == SceneType.Combat)
         {
             var target = FindObjectOfType<TurnManager>().PlayerUnitController;
-            target.Unit.CurrentTp += EffectValue;
+            if (target.Unit.CurrentTp + EffectValue < target.Unit.MaxTp)
+                target.Unit.CurrentTp += EffectValue;
+            else if (target.Unit.CurrentTp + EffectValue >= target.Unit.MaxTp)
+                target.Unit.CurrentTp = target.Unit.MaxTp;
             UpdateTrack(target);
             target.Director.Play(target.UseItem);
+            if (CurrentStack <= 0)
+            {
+                InventoryManager.Instance.Inventory.Remove(this);
+            }
+            else
+            {
+                CurrentStack--;
+                if (CurrentStack <= 0)
+                {
+                    InventoryManager.Instance.Inventory.Remove(this);
+                }
+            }
         }
+        var writer = QuickSaveWriter.Create("Inventory");
+        writer.Write(itemName, currentStack);
+        writer.Commit();
     }
 
     private void UpdateTrack(UnitController target)

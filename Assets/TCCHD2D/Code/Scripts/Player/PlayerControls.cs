@@ -169,7 +169,8 @@ public class PlayerControls : SerializedMonoBehaviour
     /// <param name="ctx">The context of the input action callback.</param>
     private void OnRun(InputAction.CallbackContext ctx)
     {
-        isRunning.Value = ctx.ReadValueAsButton();
+        if (ctx.performed)
+            isRunning.Value = !isRunning.Value;
     }
     /// <summary>
     /// Is called when the "Interact" input of the "GameControls" Input Actions is performed or canceled.

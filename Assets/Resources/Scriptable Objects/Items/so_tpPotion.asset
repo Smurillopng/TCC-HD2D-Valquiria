@@ -24,4 +24,4 @@ MonoBehaviour:
   maxStack: 99
   currentStack: 0
   itemValue: 10
-  effectValue: 10
+  effectValue: 20

@@ -51,6 +51,13 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Status")][SerializeField] private TMP_Text playerDexterity;
     [BoxGroup("Status")][SerializeField] private GameObject lvlUpAttributesButtons;
     [BoxGroup("Status")][SerializeField] private TMP_Text attributePointsText;
+    
+    [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerHealthBarFill;
+    [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerHealthText;
+    [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerTpFill;
+    [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerTpText;
+    [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerXpBarFill;
+    [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerXpText;
 
     [BoxGroup("Item Display")][SerializeField] private TMP_Text itemName;
     [BoxGroup("Item Display")][SerializeField] private TMP_Text itemDescription;
@@ -144,12 +151,12 @@ public class InventoryUI : MonoBehaviour
                 itemIcon.sprite = equipment.ItemIcon;
                 itemQuantity.text = $"x{equipment.CurrentStack}";
                 itemDisplayPanel.SetActive(true);
-                SelectEquipmentDiaplsyAction(equipment);
+                SelectEquipmentDisplayAction(equipment);
             }
         }
     }
 
-    private void SelectEquipmentDiaplsyAction(Equipment equipment)
+    private void SelectEquipmentDisplayAction(Equipment equipment)
     {
         if (inventoryManager.EquipmentSlots.Find(x => equipment != null && x.slotType == equipment.SlotType).equipItem != equipment)
         {
@@ -187,6 +194,7 @@ public class InventoryUI : MonoBehaviour
                             itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
                             itemUseButton.onClick.AddListener(() => script.DisplayItem(itemName, itemDescription,
                                 itemIcon, itemQuantity, itemDisplayPanel, currentItem));
+                            itemUseButton.onClick.AddListener(() => UpdatePlayerStatus(playerUnit));
                             break;
                         case ConsumableTypes.IncreaseTp:
                             itemUseButton.onClick.RemoveAllListeners();
@@ -194,6 +202,7 @@ public class InventoryUI : MonoBehaviour
                             itemUseButton.onClick.AddListener(() => UpdateBag(inventoryManager.Inventory));
                             itemUseButton.onClick.AddListener(() => script.DisplayItem(itemName, itemDescription,
                                 itemIcon, itemQuantity, itemDisplayPanel, currentItem));
+                            itemUseButton.onClick.AddListener(() => UpdatePlayerStatus(playerUnit));
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
@@ -304,6 +313,16 @@ public class InventoryUI : MonoBehaviour
         playerDexterity.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem != null ? $"Destreza: {unit.Dexterity} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem.StatusValue})" : $"Destreza: {unit.Dexterity}";
     }
 
+    private void UpdateTopLeftBars()
+    {
+        topLeftPlayerHealthText.text = $"HP: {playerUnit.CurrentHp} / {playerUnit.MaxHp}";
+        topLeftPlayerHealthBarFill.fillAmount = (float)playerUnit.CurrentHp / playerUnit.MaxHp;
+        topLeftPlayerTpText.text = $"TP: {playerUnit.CurrentTp} / {playerUnit.MaxTp}";
+        topLeftPlayerTpFill.fillAmount = (float)playerUnit.CurrentTp / playerUnit.MaxTp;
+        topLeftPlayerXpText.text = $"XP: {playerUnit.Experience} / {playerUnit.StatsTables.Find(x => x.Level == playerUnit.Level + 1).Experience}";
+        topLeftPlayerXpBarFill.fillAmount = (float)playerUnit.Experience / playerUnit.StatsTables.Find(x => x.Level == playerUnit.Level + 1).Experience;
+    }
+
     private void ResetPanels()
     {
         bagPanel.SetActive(false);
@@ -355,6 +374,7 @@ public class InventoryUI : MonoBehaviour
         lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.text = $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}";
+        UpdateTopLeftBars();
     }
     
     // Lvl Up Methods

@@ -4,10 +4,16 @@ using UnityEngine.Audio;
 
 namespace MuriPNG.Audio
 {
+    /// <summary>
+    /// This class represents an audio mixer.
+    /// </summary>
+    /// <remarks>
+    /// It contains the mixer ID, the mixer group, the exposed parameter name, the volume, and the mute flag.
+    /// </remarks>
     [Serializable]
     public class Mixer
     {
-        #region Inspector Variables
+        #region === Variables ===============================================================
 
         [Tooltip("Mixer ID")]
         [SerializeField] private string mixerID;
@@ -22,7 +28,7 @@ namespace MuriPNG.Audio
 
         #endregion
 
-        #region Properties
+        #region === Properties ==============================================================
 
         public string MixerID => mixerID;
         public AudioMixerGroup MixerGroup => mixerGroup;
@@ -40,21 +46,36 @@ namespace MuriPNG.Audio
 
         #endregion
 
-        #region Methods
+        #region === Methods =================================================================
 
-        public void SetVolume(float volumeValue) // Change the volume of the mixer
+        /// <summary>Sets the volume of an audio mixer group.</summary>
+        /// <param name="volumeValue">The new volume value.</param>
+        /// <remarks>
+        /// This method sets the volume of an audio mixer group to the specified value. If the mixer group or the audio mixer is null, the method does nothing.
+        /// </remarks>
+        public void SetVolume(float volumeValue)
         {
             volume = volumeValue;
             if (mixerGroup != null && mixerGroup.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, volume);
         }
-
-        public void SetMute(bool muteMixer) // Mute the mixer
+        /// <summary>Sets the mute state of an audio mixer group.</summary>
+        /// <param name="muteMixer">True to mute the mixer, false to unmute it.</param>
+        /// <remarks>
+        /// If the mixer group and audio mixer are not null, sets the exposed parameter of the audio mixer to -80f if muteMixer is true,
+        /// or to the current volume if muteMixer is false.
+        /// </remarks>
+        public void SetMute(bool muteMixer)
         {
             mute = muteMixer;
             if (mixerGroup != null && mixerGroup.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, mute ? -80f : volume);
         }
-
-        public void ApplyMixerSettings() // Update mixer settings
+        /// <summary>Applies the current mixer settings to the audio mixer.</summary>
+        /// <remarks>
+        /// If the mixer group or audio mixer is null, no action is taken.
+        /// The exposed parameter name is used to set the volume of the mixer.
+        /// If the mute flag is set, the volume is set to -80f, otherwise it is set to the current volume.
+        /// </remarks>
+        public void ApplyMixerSettings()
         {
             if (mixerGroup != null && mixerGroup.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, mute ? -80f : volume);
         }

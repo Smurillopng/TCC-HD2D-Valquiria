@@ -8,15 +8,18 @@ using UnityEngine.Events;
 
 public class Interactable : SerializedMonoBehaviour
 {
-    [FoldoutGroup("Interaction Settings")] 
+    #region === Variables ===============================================================
+
+    [FoldoutGroup("Interaction Settings")]
     [SerializeField, EnumPaging, Tooltip("Type of interaction that the object will have with the player.")]
     private InteractionType interactionType;
-    
+
     [FoldoutGroup("Interaction Settings")]
     [SerializeField, Range(0.1f, 100f), Tooltip("Distance needed to interact with the object.")]
     private float interactionRange = 3f;
 
-    [FoldoutGroup("Interaction Settings")] [SerializeField, Required]
+    [FoldoutGroup("Interaction Settings")]
+    [SerializeField, Required]
     private Transform playerTransform;
 
     [FoldoutGroup("Interaction Settings")]
@@ -31,11 +34,15 @@ public class Interactable : SerializedMonoBehaviour
 
     [FoldoutGroup("Events"), Tooltip("Event called when the player is out of range of the object.")]
     public UnityEvent onInteractionOffRange;
-    
+
     private bool _interacted;
-    
+
     private enum InteractionState { InRange, OffRange, Interacting }
     private InteractionState _interactionState;
+
+    #endregion
+
+    #region === Unity Methods ===========================================================
 
     private void Start()
     {
@@ -77,31 +84,21 @@ public class Interactable : SerializedMonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        { 
-            
-        }
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
     }
 
+    #endregion
+
+    #region === Methods =================================================================
+
     private void StartInteraction()
     {
         _interactionState = InteractionState.Interacting;
         onInteractionStart?.Invoke();
     }
+
+    #endregion
 }

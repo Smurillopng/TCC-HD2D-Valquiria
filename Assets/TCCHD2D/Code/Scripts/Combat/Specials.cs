@@ -1,21 +1,40 @@
-﻿// Created by Sérgio Murillo da Costa Faria
-// Date: 12/04/2023
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 
+/// <summary>
+/// This class represents a special action.
+/// </summary>
+/// <remarks>
+/// It contains the special action's name, description, type, cost, heal, damage, and debuff.
+/// </remarks>
 public class Specials : MonoBehaviour
 {
+    #region === Variables ===============================================================
+
     public List<Special> specialsList = new();
     private PlayerCombatHUD combatHUD;
     private TurnManager turnManager;
 
+    #endregion
+
+    #region === Unity Methods ===========================================================
+
+    /// <summary>Initializes the Start method.</summary>
+    /// <remarks>This method finds the PlayerCombatHUD and TurnManager objects in the scene.</remarks>
     private void Start()
     {
         combatHUD = FindObjectOfType<PlayerCombatHUD>();
         turnManager = FindObjectOfType<TurnManager>();
     }
+
+    #endregion
+
+    #region === Methods =================================================================
+
+    /// <summary>Uses a special action based on its type.</summary>
+    /// <param name="specialAction">The special action to use.</param>
+    /// <exception cref="ArgumentException">Thrown when the special action type is not recognized.</exception>
     public void UseSpecial(Special specialAction)
     {
         switch (specialAction.specialType)
@@ -31,12 +50,15 @@ public class Specials : MonoBehaviour
                 break;
         }
     }
-
-    /// <summary>
-    /// An example of a special action.
-    /// </summary>
-    /// <param name="player"></param>
-    private void HealSpecialAction(int cost,int healAmount)
+    /// <summary>Performs a special healing action.</summary>
+    /// <param name="cost">The cost of the action in TP.</param>
+    /// <param name="healAmount">The amount of HP to heal.</param>
+    /// <remarks>
+    /// This method retrieves the player object and checks if the player has enough TP to perform the action.
+    /// If the player has enough TP, the method sets the UI elements and updates the player's HP and TP accordingly.
+    /// The method also plays an animation and displays a combat text message.
+    /// </remarks>
+    private void HealSpecialAction(int cost, int healAmount)
     {
         var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
         if (player.Unit.CurrentTp >= cost)
@@ -93,6 +115,12 @@ public class Specials : MonoBehaviour
         }
     }
 
+    /// <summary>Performs a special action that deals damage to the enemy and consumes TP.</summary>
+    /// <param name="cost">The amount of TP required to perform the action.</param>
+    /// <param name="damageAmount">The amount of damage to be dealt to the enemy.</param>
+    /// <remarks>
+    /// This method retrieves the player and enemy objects, checks if the player has enough TP to perform the action, and if so, plays the attack animation and deals damage to the enemy. If the player doesn't have enough TP, a message is displayed indicating the required amount.
+    /// </remarks>
     private void HeavyHitSpecialAction(int cost, int damageAmount)
     {
         var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
@@ -151,7 +179,9 @@ public class Specials : MonoBehaviour
                                                    $"Quantidade necessária: <color=red>{cost} TP</color>");
         }
     }
-
+    /// <summary>Performs a special attack action, deducting the cost from the player's TP and dealing damage to the enemy.</summary>
+    /// <param name="cost">The cost of the special attack in TP.</param>
+    /// <exception cref="NullReferenceException">Thrown when the player or enemy game object cannot be found.</exception>
     private void FireAttackSpecialAction(int cost)
     {
         var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
@@ -213,4 +243,6 @@ public class Specials : MonoBehaviour
                                                    $"Quantidade necessária: <color=red>{cost} TP</color>");
         }
     }
+
+    #endregion
 }

@@ -8,10 +8,16 @@ namespace MuriPNG.Audio
 {
     public enum SoundTab { SoundInfo, SoundSettings, SoundEvents }
 
+    /// <summary>
+    /// This class represents a sound.
+    /// </summary>
+    /// <remarks>
+    /// It contains the sound ID, the audio clip, the audio source, the reference position, the volume, the pitch, the loop flag, the mute flag, the play on awake flag, the spatial blend, the min distance, the max distance, the rolloff mode, the doppler level, the spread, the priority, the mixer group, the exposed parameter name, the volume curve, the pitch curve, the on play event, the on stop event, the on pause event, the on resume event, the on mute event, and the on unmute event.
+    /// </remarks>
     [Serializable]
     public class Sound
     {
-        #region Inpector Variables
+        #region === Variables ===============================================================
 
         #region Basic Sound Info
 
@@ -146,140 +152,118 @@ namespace MuriPNG.Audio
 
         #endregion
 
-        #region Properties
+        #region === Properties ==============================================================
 
         public string Name
         {
             get => name;
             set => name = value;
         }
-
         public AudioClip Clip
         {
             get => clip;
             set => clip = value;
         }
-
         public AudioSource Source
         {
             get => source;
             set => source = value;
         }
-
         public Transform Position
         {
             get => position;
             set => position = value;
         }
-
         public AudioMixerGroup Output
         {
             get => output;
             set => output = value;
         }
-
         public bool Mute
         {
             get => mute;
             set => mute = value;
         }
-
         public bool IgnoreEffects
         {
             get => ignoreEffects;
             set => ignoreEffects = value;
         }
-
         public bool IgnoreListenerEffects
         {
             get => ignoreListenerEffects;
             set => ignoreListenerEffects = value;
         }
-
         public bool IgnoreReverbZone
         {
             get => ignoreReverbZone;
             set => ignoreReverbZone = value;
         }
-
         public bool PlayOnAwake
         {
             get => playOnAwake;
             set => playOnAwake = value;
         }
-
         public bool Loop
         {
             get => loop;
             set => loop = value;
         }
-
         public bool Spatialize
         {
             get => spatialize;
             set => spatialize = value;
         }
-
         public int Priority
         {
             get => priority;
             set => priority = value;
         }
-
         public float Volume
         {
             get => volume;
             set => volume = value;
         }
-
         public float Pitch
         {
             get => pitch;
             set => pitch = value;
         }
-
         public float PanStereo
         {
             get => panStereo;
             set => panStereo = value;
         }
-
         public float SpacialBlend
         {
             get => spacialBlend;
             set => spacialBlend = value;
         }
-
         public float ReverbZoneMix
         {
             get => reverbZoneMix;
             set => reverbZoneMix = value;
         }
-
         public float DopplerLevel
         {
             get => dopplerLevel;
             set => dopplerLevel = value;
         }
-
         public float Spread
         {
             get => spread;
             set => spread = value;
         }
-
         public AudioRolloffMode RollOffMode
         {
             get => rollOffMode;
             set => rollOffMode = value;
         }
-
         public float MinimumDistance
         {
             get => minimumDistance;
             set => minimumDistance = value;
         }
-
         public float MaximumDistance
         {
             get => maximumDistance;
@@ -288,49 +272,77 @@ namespace MuriPNG.Audio
 
         #endregion
 
-        #region Methods
+        #region === Methods =================================================================
 
+        /// <summary>Plays the audio source.</summary>
+        /// <remarks>
+        /// This method applies the current sound settings before playing the audio source.
+        /// It also invokes the <see cref="onPlay"/> event, if it is not null.
+        /// </remarks>
         public void Play()
         {
             ApplySoundSettings();
             source.Play();
             onPlay?.Invoke();
         }
-
+        /// <summary>Plays the audio clip once.</summary>
+        /// <remarks>
+        /// This method applies the current sound settings before playing the audio clip once.
+        /// After the audio clip is played, the onPlay event is invoked.
+        /// </remarks>
         public void PlayOnce()
         {
             ApplySoundSettings();
             source.PlayOneShot(clip);
             onPlay?.Invoke();
         }
-
+        /// <summary>Plays an audio clip at a specified position in 3D space.</summary>
+        /// <param name="soundPosition">The position in 3D space where the audio clip should be played.</param>
+        /// <remarks>
+        /// This method applies the sound settings to the audio source and plays the audio clip at the specified position.
+        /// It also invokes the onPlay event, if it is not null.
+        /// </remarks>
         public void PlayOnPosition(Vector3 soundPosition)
         {
             ApplySoundSettings();
             AudioSource.PlayClipAtPoint(clip, soundPosition);
             onPlay?.Invoke();
         }
-
+        /// <summary>Plays the audio clip with a specified delay.</summary>
+        /// <param name="delay">The delay in seconds before playing the audio clip.</param>
+        /// <remarks>
+        /// This method applies the current sound settings before playing the audio clip.
+        /// It then plays the audio clip with the specified delay.
+        /// Finally, it invokes the onPlay event if it is not null.
+        /// </remarks>
         public void PlayDelayed(float delay)
         {
             ApplySoundSettings();
             source.PlayDelayed(delay);
             onPlay?.Invoke();
         }
-
+        /// <summary>Stops the source and invokes the onStop event.</summary>
+        /// <remarks>
+        /// This method stops the source and invokes the onStop event, if it is not null.
+        /// </remarks>
         public void Stop()
         {
             source.Stop();
             onStop?.Invoke();
         }
-
+        /// <summary>Plays the audio clip if it exists.</summary>
+        /// <remarks>This method is intended to be used as a callback for a button click event.</remarks>
         [Button("Play Sample")]
         public void PlaySample()
         {
             if (clip != null)
                 Play();
         }
-
+        /// <summary>Applies the sound settings to the audio source.</summary>
+        /// <remarks>
+        /// This method sets the audio clip, output audio mixer group, and position of the audio source.
+        /// It then applies the sound settings to the audio source, either using the pre-defined settings or the custom settings.
+        /// </remarks>
         public void ApplySoundSettings()
         {
             source.clip = clip;

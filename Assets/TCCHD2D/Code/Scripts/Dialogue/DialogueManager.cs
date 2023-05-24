@@ -4,10 +4,10 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// This class is responsible for displaying the dialogue on screen.
+/// Manages the dialogue system.
 /// </summary>
 /// <remarks>
-/// Created by Sérgio Murillo da Costa Faria on 17/03/2023.
+/// This class is used to manage the dialogue system. It is responsible for displaying the dialogue box, displaying the dialogue text, and advancing the dialogue.
 /// </remarks>
 [HideMonoScript]
 public class DialogueManager : MonoBehaviour
@@ -39,18 +39,17 @@ public class DialogueManager : MonoBehaviour
 
     #region === Methods =================================================================
 
-    /// <summary>
-    /// Displays the current dialogue line.
-    /// </summary>
+    /// <summary>Displays a dialogue.</summary>
+    /// <remarks>
+    /// This method stops all coroutines and starts a new coroutine to display the dialogue.
+    /// </remarks>
     private void DisplayDialogue()
     {
         StopAllCoroutines();
         StartCoroutine(DisplayDialogueCoroutine());
     }
-    /// <summary>
-    /// Coroutine that displays the current dialogue line character by character.
-    /// </summary>
-    /// <returns></returns>
+    /// <summary>Displays a dialogue line character by character.</summary>
+    /// <returns>An IEnumerator that can be used to iterate through the characters of the dialogue line.</returns>
     private IEnumerator DisplayDialogueCoroutine()
     {
         var currentLine = CurrentDialogueData.DialogueLines[_currentLine];
@@ -62,9 +61,11 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(charDelay);
         }
     }
-    /// <summary>
-    /// Advances the dialogue to the next line or ends the dialogue if there are no more lines.
-    /// </summary>
+    /// <summary>Advances the dialogue to the next line.</summary>
+    /// <remarks>
+    /// If the current line's text is not yet fully displayed, this method stops all coroutines and immediately displays the full text.
+    /// Otherwise, this method increments the current line index and displays the next line, or ends the dialogue if there are no more lines.
+    /// </remarks>
     private void AdvanceDialogue()
     {
         if (dialogueText.text != CurrentDialogueData.DialogueLines[_currentLine].Text)
@@ -83,10 +84,9 @@ public class DialogueManager : MonoBehaviour
             DisplayDialogue();
         }
     }
-    /// <summary>
-    /// Starts the dialogue with the given dialogue data.
-    /// </summary>
-    /// <param name="dialogueData">ScriptableObject that contains the strings of dialogue</param>
+    /// <summary>Starts a new dialogue.</summary>
+    /// <param name="dialogueData">The data for the dialogue to start.</param>
+    /// <remarks>If the dialogue box is not active, it will be activated. If the dialogue data is different from the current dialogue data, the current line will be set to 0 and the dialogue will be displayed. Otherwise, the dialogue will be advanced.</remarks>
     public void StartDialogue(DialogueData dialogueData)
     {
         if (!dialogueBox.activeSelf)
@@ -99,9 +99,7 @@ public class DialogueManager : MonoBehaviour
         }
         else AdvanceDialogue();
     }
-    /// <summary>
-    /// Ends the current dialogue.
-    /// </summary>
+    /// <summary>Ends the current dialogue by clearing the speaker name and dialogue text, setting the current dialogue data to null, and hiding the dialogue box.</summary>
     public void EndDialogue()
     {
         speakerName.text = string.Empty;

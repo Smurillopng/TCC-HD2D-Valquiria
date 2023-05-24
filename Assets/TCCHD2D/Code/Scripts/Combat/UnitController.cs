@@ -1,6 +1,3 @@
-// Created by Sérgio Murillo da Costa Faria
-// Date: 13/03/2023
-
 using System;
 using System.Collections.Generic;
 using CI.QuickSave;
@@ -15,8 +12,13 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// Controls the behaviour of a unit.
 /// </summary>
+/// <remarks>
+/// This class controls the behaviour of a unit. It contains the unit data, the playable director that controls the animations of the unit, and the playable assets that represent the unit's actions.
+/// </remarks>
 public class UnitController : MonoBehaviour
 {
+    #region === Variables ===============================================================
+
     [BoxGroup("Unit Info")]
     [SerializeField, InlineEditor, Tooltip("The unit data that this controller controls.")]
     private Unit unit;
@@ -24,7 +26,7 @@ public class UnitController : MonoBehaviour
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The playable director that controls the animations of this unit.")]
     private PlayableDirector director;
-    
+
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private TimelineAsset basicAttack;
@@ -32,11 +34,11 @@ public class UnitController : MonoBehaviour
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private TimelineAsset basicCutAttack;
-    
+
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private TimelineAsset basicBluntAttack;
-    
+
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private TimelineAsset basicRangedAttack;
@@ -63,48 +65,21 @@ public class UnitController : MonoBehaviour
     public int speedCalculated;
     public int _charges;
 
-    /// <summary>
-    /// The <see cref="Unit"/> that this controller controls.
-    /// </summary>
+    #endregion
+
+    #region === Properties ==============================================================
+
     public Unit Unit
     {
         get => unit;
         set => unit = value;
     }
-
-    /// <summary>
-    /// The <see cref="PlayableDirector"/> that controls the animations of this unit.
-    /// </summary>
     public PlayableDirector Director => director;
-    
-    /// <summary>
-    /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
-    /// </summary>
     public TimelineAsset BasicAttack => basicAttack;
-
-    /// <summary>
-    /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
-    /// </summary>
     public TimelineAsset BasicCutAttack => basicCutAttack;
-    
-    /// <summary>
-    /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
-    /// </summary>
     public TimelineAsset BasicBluntAttack => basicBluntAttack;
-    
-    /// <summary>
-    /// The <see cref="PlayableAsset"/> representing the unit's basic attack.
-    /// </summary>
     public TimelineAsset BasicRangedAttack => basicRangedAttack;
-
-    /// <summary>
-    /// The <see cref="PlayableAsset"/> representing the unit's use item action.
-    /// </summary>
     public TimelineAsset UseItem => useItem;
-
-    /// <summary>
-    /// The <see cref="PlayableAsset"/> representing the unit's run action.
-    /// </summary>
     public TimelineAsset Run => run;
     public int Charges
     {
@@ -112,9 +87,17 @@ public class UnitController : MonoBehaviour
         set => _charges = value;
     }
 
+    #endregion
+
+    #region === Unity Methods ===========================================================
+
+    /// <summary>Initializes the unit's state when it wakes up.</summary>
+    /// <remarks>
+    /// If the unit is not a player, it sets its state to alive with full health and the basic attack animation.
+    /// If the unit is a player, it checks its current health and death status and updates them accordingly.
+    /// </remarks>
     public void Awake()
     {
-        // Set the current HP to the maximum
         if (!unit.IsPlayer)
         {
             unit.IsDead = false;
@@ -134,7 +117,12 @@ public class UnitController : MonoBehaviour
             }
         }
     }
-
+    /// <summary>Updates the current health and TP of a unit if they exceed their maximum values.</summary>
+    /// <remarks>
+    /// If the unit is a player and their current TP exceeds their maximum TP, their current TP is set to their maximum TP.
+    /// If the unit is a player and their current health exceeds their maximum health, their current health is set to their maximum health.
+    /// If the unit is not a player and their current health exceeds their maximum health, their current health is set to their maximum health.
+    /// </remarks>
     private void Update()
     {
         if (unit.IsPlayer && unit.CurrentTp > unit.MaxTp)
@@ -145,9 +133,13 @@ public class UnitController : MonoBehaviour
             unit.CurrentHp = unit.MaxHp;
     }
 
-    /// <summary>
-    /// Adds damage text to the combat text box and calls the player unit attack method [<see cref="AttackLogic"/>].
-    /// </summary>
+    #endregion
+
+    #region === Methods =================================================================
+
+    /// <summary>Performs an attack action on a target unit.</summary>
+    /// <param name="target">The unit controller representing the target of the attack.</param>
+    /// <remarks>Updates the combat HUD to reflect the attack action.</remarks>
     public void AttackAction(UnitController target)
     {
         AttackLogic(target);
@@ -155,14 +147,16 @@ public class UnitController : MonoBehaviour
         PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
         PlayerCombatHUD.TakenAction.Invoke();
     }
-
-    /// <summary>
-    /// The attack action.
-    /// </summary>
-    /// <param name="target"></param>
+    /// <summary>Executes the attack logic on a target unit.</summary>
+    /// <param name="target">The target unit to attack.</param>
+    /// <remarks>
+    /// This method calculates the attack damage based on the unit's attack stat and any equipped weapon.
+    /// If the unit has charges, the attack damage is increased by the number of charges and the charges are reset to 0.
+    /// If the unit is a player, it sets up the animation and signal bindings for the basic attack.
+    /// If the player has a weapon equipped, it plays the appropriate attack animation based on the weapon's attack type.
+    /// If the player's TP is less than the maximum TP, it increases the TP by 10 and updates the player's TP
     private void AttackLogic(UnitController target)
     {
-        // Calculate damage based on strength
         attackDamageCalculated = unit.Attack;
         if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
             attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
@@ -217,15 +211,11 @@ public class UnitController : MonoBehaviour
                 unit.CurrentTp = unit.MaxTp;
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
         }
-
-        // Apply damage to target
         target.TakeDamage(attackDamageCalculated);
     }
-
-    /// <summary>
-    /// Responsible for handling the damage taken by the unit.
-    /// </summary>
-    /// <param name="damage"></param>
+    /// <summary>Reduces the unit's health by the given amount of damage, taking into account the unit's defense and equipment.</summary>
+    /// <param name="damage">The amount of damage to be taken.</param>
+    /// <returns>The amount of damage taken after defense and equipment have been taken into account.</returns>
     public int TakeDamage(int damage)
     {
         defenceCalculated = unit.Defence;
@@ -246,73 +236,29 @@ public class UnitController : MonoBehaviour
                 unit.CurrentTp = unit.MaxTp;
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
         }
-
         // Check if the unit has died
         if (unit.CurrentHp <= 0)
         {
             unit.IsDead = true;
             unit.CurrentHp = 0;
             // TODO: Play death animation
-            // TODO: End the combat
         }
-
         return damageTakenThisTurn;
     }
-
-    /// <summary>
-    /// Adds information in the combat text box and calls the player specific special attack method.
-    /// </summary>
-    public void Special()
-    {
-        if (Unit.CurrentTp < Unit.MaxTp / 2)
-        {
-            PlayerCombatHUD.CombatTextEvent.Invoke("<color=red>TP insuficiente</color>");
-        }
-    }
-
-    /// <summary>
-    /// Responsible for displaying the damage text animation.
-    /// </summary>
+    /// <summary>Displays the damage taken by a unit as text.</summary>
+    /// <remarks>
+    /// The damage taken is displayed using an animator that triggers a specific animation depending on whether the unit is a player or an enemy.
+    /// </remarks>
     public void DisplayDamageText()
     {
         damageText.text = damageTakenThisTurn.ToString();
         damageTextAnimator.SetTrigger(unit.IsPlayer ? "PlayerTookDamage" : "EnemyTookDamage");
     }
-
-    /// <summary>
-    /// The action for the player to open the special attack menu and select an action.
-    /// </summary>
-    /// <param name="index"></param>
-    /// <param name="target"></param>
-    public void SpecialAction(int index, UnitController target)
-    {
-        // AI logic for using an item goes here
-        if (!unit.IsPlayer)
-        {
-            //TODO: AI Logic
-        }
-
-        var damage = unit.Attack;
-
-        // Apply damage to target
-        target.TakeDamage(damage);
-    }
-
-    /// <summary>
-    /// The logic for the player using an item.
-    /// </summary>
-    public void UseItemAction()
-    {
-        // AI logic for using an item goes here
-        if (!unit.IsPlayer)
-        {
-            //TODO: AI Logic
-        }
-    }
-
-    /// <summary>
-    /// Adds information in the combat text box and calls the player run method [<see cref="RunLogic"/>].
-    /// </summary>
+    /// <summary>Runs the logic for a player's escape attempt and updates the game state accordingly.</summary>
+    /// <remarks>
+    /// If the player successfully escapes, the game will load the last scene visited and update the game save file with the name of the current scene.
+    /// If the player fails to escape, the game will display a message indicating the failure.
+    /// </remarks>
     public void RunAction()
     {
         var gotAway = RunLogic();
@@ -333,10 +279,8 @@ public class UnitController : MonoBehaviour
             PlayerCombatHUD.TakenAction.Invoke();
         }
     }
-
-    /// <summary>
-    /// The logic for the player running away.
-    /// </summary>
+    /// <summary>Runs a logic that involves a random chance and a unit's luck.</summary>
+    /// <returns>True if the random chance plus the unit's luck is greater than 50, false otherwise.</returns>
     public bool RunLogic()
     {
         var randomChance = Random.Range(0, 100);
@@ -349,14 +293,11 @@ public class UnitController : MonoBehaviour
         }
         return false;
     }
-
-    /// <summary>
-    /// The AI logic for selecting an action.
-    /// </summary>
-    /// <param name="target"></param>
+    /// <summary>Selects an action for the unit to perform on the target.</summary>
+    /// <param name="target">The target unit.</param>
+    /// <remarks>If the unit is a player, no action is taken. Otherwise, the unit attacks the target and displays the damage dealt in the player combat HUD.</remarks>
     public void SelectAction(UnitController target)
     {
-
         if (unit.IsPlayer) return;
         // AI logic for selecting an action goes here
         AttackLogic(target);
@@ -382,4 +323,6 @@ public class UnitController : MonoBehaviour
         //     }
         // }
     }
+
+    #endregion
 }

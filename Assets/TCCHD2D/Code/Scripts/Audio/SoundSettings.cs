@@ -2,6 +2,12 @@ using UnityEngine;
 
 namespace MuriPNG.Audio
 {
+    /// <summary>
+    /// This class represents the settings of an audio clip.
+    /// </summary>
+    /// <remarks>
+    /// It contains the loop flag, the play on awake flag, the mute flag, the ignore effects flag, the ignore listener effects flag, the ignore reverb zone flag, the spatialize flag, the priority, the volume, the pitch, the pan stereo, the spacial blend, the reverb zone mix, the doppler level, the spread, the roll off mode, the minimum distance, and the maximum distance.
+    /// </remarks>
     [CreateAssetMenu(fileName = "Sound Settings", menuName = "Sound Manager/Create new Sound Settings")]
     public class SoundSettings : ScriptableObject
     {

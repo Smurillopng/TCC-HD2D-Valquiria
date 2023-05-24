@@ -12,7 +12,9 @@ using Random = UnityEngine.Random;
 /// This class manages the random enemy encounters for the player.
 /// </summary>
 /// <remarks>
-/// Created by Sérgio Murillo da Costa Faria on 06/04/2023.
+/// This class manages the random enemy encounters for the player. It is responsible for generating a random amount of steps to start encountering an enemy,
+/// calculating the minimum encounter chance, generating a random number to check if an enemy will be encountered, selecting a random enemy from a list of possible enemies,
+/// and loading the combat scene.
 /// </remarks>
 [HideMonoScript]
 public class RandomEncounterManager : SerializedMonoBehaviour
@@ -22,15 +24,15 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     [TitleGroup("Units", Alignment = TitleAlignments.Centered)]
     [Tooltip("The player unit")]
     public Unit player;
-    
+
     [Tooltip("A list of possible enemies to encounter")]
     public List<Unit> enemies;
-        
+
     [TitleGroup("Rates", Alignment = TitleAlignments.Centered)]
     [Range(0, 100)]
     [Tooltip("The rate of encountering an enemy event called in the walking animation")]
     public float areaEncounterRate;
-    
+
     [SerializeField]
     [MinValue(1)]
     [Tooltip("The minimum and maximum amount of steps to start encountering an enemy")]
@@ -41,7 +43,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     [ValidateInput("ValidateScene", "The combat scene must exist in the build settings")]
     [Tooltip("The name of the combat scene")]
     private string combatScene;
-    
+
     [SerializeField]
     [Tooltip("The name of the combat scene")]
     private CombatScenarios combatScenario;
@@ -50,31 +52,31 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     [Required]
     [Tooltip("The volume to apply fade effect to")]
     private Volume volume;
-    
+
     [SerializeField]
     [Tooltip("The duration of the fade-in effect")]
     private float fadeTime;
-        
+
     [TitleGroup("Debug", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     [ReadOnly]
     [Tooltip("The minimum encounter chance in this area")]
     private float minimumEncounterChance;
-    
+
     [SerializeField]
     [ReadOnly]
     [Tooltip("The random amount of steps to start encountering an enemy")]
     private int randomSteps;
-    
+
     [SerializeField]
     [ReadOnly]
     [Tooltip("The current amount of steps the player has taken")]
     private int currentSteps;
-    
+
     [SerializeField]
     [Tooltip("Whether to show the encounter chance log in the console")]
     private bool showEncounterLog;
-    
+
     private Unit _selectedEnemy; // The encountered enemy
     private PlayerMovement _playerMovement; // The PlayerMovement component of the player
     private Vector3 _lastPosition; // The last position of the player
@@ -85,18 +87,16 @@ public class RandomEncounterManager : SerializedMonoBehaviour
 
     #region === Unity Methods ===========================================================
 
-    /// <summary>
-    /// Called when the script instance is being loaded.
-    /// Register the OnSceneLoaded method to be called when a scene is loaded.
-    /// </summary>
+    /// <summary>Subscribe to the sceneLoaded event.</summary>
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    /// <summary>
-    /// Called before the first frame update.
-    /// Gets the PlayerMovement component, initializes some variables and reads data from a QuickSave file.
-    /// </summary>
+    /// <summary>Starts the game.</summary>
+    /// <remarks>
+    /// This method initializes the player movement, sets the current steps to 0, calculates the minimum encounter chance based on the area encounter rate, and retrieves the lift gamma gain from the volume profile.
+    /// It also attempts to read the current scene from the QuickSaveReader and enables player movement if the saved scene matches the current scene.
+    /// </remarks>
     private void Start()
     {
         _playerMovement = FindObjectOfType<PlayerMovement>(); // Get the PlayerMovement component
@@ -104,19 +104,19 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         minimumEncounterChance = areaEncounterRate / 100f; // Calculate the minimum encounter chance
         volume.profile.TryGet(out _liftGammaGain);
         var reader = QuickSaveReader.Create("GameSave");
-        
+
         if (reader.Read<string>("CurrentScene") == SceneManager.GetActiveScene().name)
         {
             _playerMovement.CanMove.Value = true;
         }
     }
-    /// <summary>
-    /// Called after a new scene has finished loading.
-    /// If the current scene is not the combat scene and the PlayerMovement component exists,
-    /// resets the movement of the player to zero and enables movement.
-    /// </summary>
-    /// <param name="scene">The loaded scene.</param>
-    /// <param name="mode">The scene loading mode.</param>
+    /// <summary>Callback function that is called when a scene is loaded.</summary>
+    /// <param name="scene">The scene that was loaded.</param>
+    /// <param name="mode">The mode used to load the scene.</param>
+    /// <remarks>
+    /// If the loaded scene is not the combat scene and the player movement component is not null, 
+    /// the player's movement is enabled and reset to zero, and the player's movement function is called.
+    /// </remarks>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name != combatScene && _playerMovement != null)
@@ -127,10 +127,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
             _playerMovement.Movement();
         }
     }
-    /// <summary>
-    /// Called when the behaviour becomes disabled.
-    /// Unregister the OnSceneLoaded method from being called when a scene is loaded.
-    /// </summary>
+    /// <summary>Unsubscribes the OnSceneLoaded method from the SceneManager's sceneLoaded event.</summary>
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -140,9 +137,10 @@ public class RandomEncounterManager : SerializedMonoBehaviour
 
     #region === Methods =================================================================
 
-    /// <summary>
-    /// Checks the number of steps taken and decides whether to initiate an encounter with an enemy.
-    /// </summary>
+    /// <summary>Checks if the player has taken a step and triggers an enemy encounter if the conditions are met.</summary>
+    /// <remarks>
+    /// The function checks if the number of steps taken by the player is greater than or equal to a random number of steps between the minimum and maximum steps allowed. If the random chance of encountering an enemy is less than the minimum encounter chance and the current number of steps is greater than or equal to the random number of steps, an enemy encounter is triggered. The function also resets the current number of steps and the randomized flag.
+    /// </remarks>
     public void CheckStep()
     {
         if (!_randomized)
@@ -158,9 +156,11 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         currentSteps = 0;
         _randomized = false;
     }
-    /// <summary>
-    /// Initiates an encounter with an enemy.
-    /// </summary>
+    /// <summary>Encounters a random enemy.</summary>
+    /// <remarks>
+    /// Selects a random enemy from the list of enemies and saves the player's position, the last scene, and the encountered enemy to a QuickSave.
+    /// Then, starts a coroutine to fade in the screen.
+    /// </remarks>
     private void EncounterEnemy()
     {
         var randomIndex = Random.Range(0, enemies.Count);
@@ -174,6 +174,12 @@ public class RandomEncounterManager : SerializedMonoBehaviour
 
         StartCoroutine(FadeIn(_liftGammaGain));
     }
+    /// <summary>Encounters the final boss, saves the game, and fades in the screen.</summary>
+    /// <remarks>
+    /// Sets the selected enemy to the first enemy in the enemies array.
+    /// Creates a QuickSaveWriter object named "GameSave" and writes the player's position, the name of the last scene, and the name of the selected enemy to it.
+    /// Fades in the screen by starting a coroutine that gradually increases the gamma gain of the lift.
+    /// </remarks>
     public void EncounterFinalBoss()
     {
         _selectedEnemy = enemies[0];
@@ -186,11 +192,14 @@ public class RandomEncounterManager : SerializedMonoBehaviour
 
         StartCoroutine(FadeIn(_liftGammaGain));
     }
-    /// <summary>
-    /// Fades in the scene for combat.
-    /// </summary>
-    /// <param name="lgg">The LiftGammaGain object used for fading.</param>
-    /// <returns>An IEnumerator object for the coroutine.</returns>
+    /// <summary>Fades in the screen using the LiftGammaGain effect.</summary>
+    /// <param name="lgg">The LiftGammaGain effect to use for the fade.</param>
+    /// <returns>An IEnumerator that performs the fade.</returns>
+    /// <remarks>
+    /// The screen is faded in by gradually decreasing the gamma value of the LiftGammaGain effect over time.
+    /// Once the fade is complete, the combat scene is loaded and the SetScene method is registered as a callback
+    /// for the SceneManager.sceneLoaded event.
+    /// </remarks>
     private IEnumerator FadeIn(LiftGammaGain lgg)
     {
         float time = 0;
@@ -205,6 +214,12 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         SceneManager.sceneLoaded += SetScene;
     }
 
+    /// <summary>Sets the current scene and performs any necessary actions based on the scene type.</summary>
+    /// <param name="scene">The scene to set.</param>
+    /// <param name="mode">The mode to load the scene in.</param>
+    /// <remarks>
+    /// If the scene is already loaded and is a combat scene, this method will activate the scenario corresponding to the current combat scenario.
+    /// </remarks>
     private void SetScene(Scene scene, LoadSceneMode mode)
     {
         if (scene.isLoaded && PlayerControls.Instance.SceneMap.TryGetValue(scene.name, out var type))
@@ -221,24 +236,24 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     }
 
     #endregion
-    
+
     #region === Validation Methods ======================================================
-    
-        /// <summary>
-        /// Validates whether the given scene name exists in the build settings.
-        /// </summary>
-        /// <param name="value">The scene name to validate.</param>
-        /// <returns>True if the scene name exists in the build settings, false otherwise.</returns>
-        private bool ValidateScene(string value)
+
+    /// <summary>
+    /// Validates whether the given scene name exists in the build settings.
+    /// </summary>
+    /// <param name="value">The scene name to validate.</param>
+    /// <returns>True if the scene name exists in the build settings, false otherwise.</returns>
+    private bool ValidateScene(string value)
+    {
+        for (var i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            for (var i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-            {
-                var scenePath = SceneUtility.GetScenePathByBuildIndex(i);
-                var sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
-                if (sceneName == value) return true;
-            }
-            return false;
+            var scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+            var sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+            if (sceneName == value) return true;
         }
-        
+        return false;
+    }
+
     #endregion
 }

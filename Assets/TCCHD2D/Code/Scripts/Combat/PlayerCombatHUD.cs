@@ -11,7 +11,7 @@ using UnityEngine.VFX;
 /// Responsible for controlling the combat UI and the player's combat actions.
 /// </summary>
 /// <remarks>
-/// Created by Sérgio Murillo da Costa Faria on 08/03/2023.
+/// This class contains the player's health bar, the player's Tp bar, the player's charges bar, the player's charged stance vfx, the enemy's health bar, the enemy's name, the player's attack button, the player's defend button, the player's item button, the player's flee button, the player's attack button text, the player's defend button text, the player's item button text, the player's flee button text, the player's attack button event, the player's defend button event, the player's item button event, the player's flee button event, the player's attack button text event, the player's defend button text event, the player's item button text event, the player's flee button text event, the player's attack button text, the player's defend button text, the player's item button text, and the player's flee button text.
 /// </remarks>
 [HideMonoScript]
 public class PlayerCombatHUD : MonoBehaviour
@@ -34,11 +34,11 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The text displaying the player's current Tp.")]
     private TMP_Text playerTpText;
-    
+
     [SerializeField]
     [Tooltip("The fill image of the player's charges bar")]
     private Image playerCharges;
-    
+
     [SerializeField]
     [Tooltip("The vfx for the player charged stance")]
     private VisualEffect playerChargedVfx;
@@ -102,7 +102,7 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The button for attempting to run away from combat.")]
     private Button returnButton;
-    
+
     [SerializeField]
     [Tooltip("The button for charging up the player's basic attack.")]
     private Button chargeButton;
@@ -135,9 +135,7 @@ public class PlayerCombatHUD : MonoBehaviour
 
     #region === Unity Methods ===========================================================
 
-    /// <summary>
-    /// Adds the methods to the events.
-    /// </summary>
+    /// <summary>Enables the various event handlers for the combat HUD.</summary>
     private void OnEnable()
     {
         CombatTextEvent += DisplayCombatText;
@@ -147,10 +145,8 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUD += UpdateCombatHUDs;
         TakenAction += UpdateCharges;
     }
-    /// <summary>
-    /// Initializes the combat HUD.
-    /// Updates the combat HUD to display the player's and enemy's health and Tp.
-    /// </summary>
+    /// <summary>Updates the combat HUD with the current player and enemy health, TP, and charges.</summary>
+    /// <remarks>Also subscribes to various events to update the HUD as the combat progresses.</remarks>
     private void Start()
     {
         playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
@@ -172,9 +168,12 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
     }
-    /// <summary>
-    /// Updates the buttons to be disabled if it is not the player's turn.
-    /// </summary>
+    /// <summary>Updates the UI elements based on the current state of the game.</summary>
+    /// <remarks>
+    /// Disables the buttons if it's not the player's turn or if the player is charging a special attack.
+    /// Enables the buttons if it's the player's turn and they're not charging a special attack.
+    /// Stops the player charged VFX if the player has no charges left.
+    /// </remarks>
     private void Update()
     {
         DisableButtons(!turnManager.isPlayerTurn);
@@ -195,9 +194,7 @@ public class PlayerCombatHUD : MonoBehaviour
             _charging = false;
         }
     }
-    /// <summary>
-    /// Removes the methods from the events.
-    /// </summary>
+    /// <summary>Unsubscribes from events when the script is disabled.</summary>
     private void OnDisable()
     {
         CombatTextEvent -= DisplayCombatText;
@@ -212,25 +209,30 @@ public class PlayerCombatHUD : MonoBehaviour
 
     #region === Methods =================================================================
 
-    /// <summary>
-    /// Updates the player's and enemy's health and Tp.
-    /// </summary>
+    /// <summary>Updates the combat HUDs for the player and enemy.</summary>
+    /// <remarks>
+    /// This method updates the player's health and TP, as well as the enemy's health.
+    /// </remarks>
     private void UpdateCombatHUDs()
     {
         UpdatePlayerHealth();
         UpdatePlayerTp();
         UpdateEnemyHealth();
     }
-
+    /// <summary>Updates the player's charges if the player's turn has started and the player is not currently charging.</summary>
+    /// <remarks>Increments the fill amount of the player's charges by 0.25f if it is less than 1.</remarks>
     private void UpdateCharges()
     {
         if (playerCharges.fillAmount < 1 && turnManager.isPlayerTurn && !_charging)
             playerCharges.fillAmount += 0.25f;
     }
-    /// <summary>
-    /// Disables or enables the buttons.
-    /// </summary>
-    /// <param name="disabled"></param>
+    /// <summary>Disables or enables the buttons for the player's actions.</summary>
+    /// <param name="disabled">True to disable the buttons, false to enable them.</param>
+    /// <remarks>
+    /// When the buttons are disabled, the attack, special, item, run, and charge buttons are hidden.
+    /// When the buttons are enabled, the attack, special, and item buttons are shown, as well as the run button.
+    /// The charge button is shown only if the player has charges remaining.
+    /// </remarks>
     private void DisableButtons(bool disabled)
     {
         switch (disabled)
@@ -251,27 +253,33 @@ public class PlayerCombatHUD : MonoBehaviour
                 break;
         }
     }
-    /// <summary>
-    /// Updates the player's health bar and text.
-    /// </summary>
+    /// <summary>Updates the player's health UI.</summary>
+    /// <remarks>
+    /// This method updates the player's health text and health bar fill based on the current and maximum health of the player's unit.
+    /// </remarks>
     public void UpdatePlayerHealth()
     {
         if (playerHealthText == null || playerHealthBarFill == null) return;
         playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
         playerHealthBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
     }
-    /// <summary>
-    /// Updates the enemy's health bar and text.
-    /// </summary>
+    /// <summary>Updates the enemy's health text and health bar fill.</summary>
+    /// <remarks>
+    /// If either the enemyHealthText or enemyHealthBarFill is null, this method does nothing.
+    /// </remarks>
     public void UpdateEnemyHealth()
     {
         if (enemyHealthText == null || enemyHealthBarFill == null) return;
         enemyHealthText.text = $"{turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
         enemyHealthBarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
     }
-    /// <summary>
-    /// Updates the player's TP bar and text.
-    /// </summary>
+    /// <summary>Updates the player's TP text and bar fill.</summary>
+    /// <remarks>
+    /// If either the player TP text or bar fill is null, this method does nothing.
+    /// The player's TP text is updated to display the current TP percentage.
+    /// The player's TP bar fill is updated to reflect the current TP percentage.
+    /// If the player's TP is at its maximum, the player TP text is updated to display "TP: MAX".
+    /// </remarks>
     private void UpdatePlayerTp()
     {
         if (playerTpText == null || playerTpBarFill == null) return;
@@ -280,28 +288,33 @@ public class PlayerCombatHUD : MonoBehaviour
         if (turnManager.PlayerUnitController.Unit.CurrentTp == turnManager.PlayerUnitController.Unit.MaxTp)
             playerTpText.text = "TP: MAX";
     }
-    /// <summary>
-    /// Displays combat text in the combat text box.
-    /// </summary>
-    /// <param name="text"></param>
+    /// <summary>Displays combat text in the combat text box.</summary>
+    /// <param name="text">The text to display.</param>
+    /// <remarks>
+    /// If the combat text box is null, the text will not be displayed.
+    /// </remarks>
     private void DisplayCombatText(string text)
     {
         if (combatTextBox != null)
             StartCoroutine(DisplayCombatTextCoroutine(text));
     }
-    /// <summary>
-    /// Displays combat text in the combat text box for a set amount of time then clears the text.
-    /// </summary>
-    /// <param name="text"></param>
+    /// <summary>Displays combat text for a set amount of time.</summary>
+    /// <param name="text">The text to display.</param>
+    /// <returns>An IEnumerator that waits for a set amount of time before clearing the text.</returns>
     private IEnumerator DisplayCombatTextCoroutine(string text)
     {
         combatTextBox.text = text;
         yield return new WaitForSeconds(combatTextTimer);
         combatTextBox.text = "";
     }
-    /// <summary>
-    /// Adds information in the combat text box and calls the player specific item method.
-    /// </summary>
+    /// <summary>Displays the player's inventory of consumable items and allows the player to use them.</summary>
+    /// <remarks>
+    /// If the player has no consumable items, a message is displayed and the method returns.
+    /// Otherwise, the options panel is hidden and the item panel is shown.
+    /// If the item panel already has child objects, they are destroyed.
+    /// For each consumable item in the player's inventory, a button is instantiated in the item panel.
+    /// When the button is clicked, the item is used, the player and enemy health and TP are updated, the item panel is hidden,
+    /// the return button is hidden and disabled, the options panel is shown, and a message is displayed indicating that the item was used
     public void Item()
     {
         var hasItem = InventoryManager.Instance.Inventory.OfType<Consumable>().Any();
@@ -345,9 +358,8 @@ public class PlayerCombatHUD : MonoBehaviour
             });
         }
     }
-    /// <summary>
-    /// Goes back to the options panel.
-    /// </summary>
+    /// <summary>Hides the item and special panels and shows the options panel. Disables the return button.</summary>
+    /// <remarks>This method is typically called when the user wants to return to the options panel after viewing an item or special panel.</remarks>
     public void Return()
     {
         itemPanel.SetActive(false);
@@ -356,9 +368,12 @@ public class PlayerCombatHUD : MonoBehaviour
         returnButton.gameObject.SetActive(false);
         returnButton.interactable = false;
     }
-    /// <summary>
-    /// Shows the player's special attacks options.
-    /// </summary>
+    /// <summary>Displays the special panel and populates it with buttons for each special action.</summary>
+    /// <remarks>
+    /// This method sets the options panel to inactive and the special panel to active. It then destroys any existing child objects
+    /// in the special panel and creates a new button for each special action in the specials list. Each button is given the name of
+    /// the corresponding special action and is set up to call the UseSpecial method of the specials object when clicked.
+    /// </remarks>
     public void Special()
     {
         optionsPanel.SetActive(false);
@@ -378,13 +393,14 @@ public class PlayerCombatHUD : MonoBehaviour
             returnButton.interactable = true;
             var button = Instantiate(buttonPrefab, specialPanel.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = specialAction.specialName;
-            button.GetComponent<Button>().onClick.AddListener(() =>
-            {
-                specials.UseSpecial(specialAction);
-            });
+            button.GetComponent<Button>().onClick.AddListener(() => specials.UseSpecial(specialAction));
         }
     }
-
+    /// <summary>Charges the player's unit.</summary>
+    /// <remarks>
+    /// If the player has at least 0.25 charges, the player's charges are decreased by 0.25 and the player's unit is charged.
+    /// The charging effect is updated based on the number of charges the player has.
+    /// </remarks>
     public void Charge()
     {
         if (playerCharges.fillAmount >= 0.25f)

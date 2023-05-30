@@ -1336,7 +1336,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1178047629}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
-        m_MethodName: SetMasterVolume
+        m_MethodName: SetMusicVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4128,7 +4128,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1178047629}
         m_TargetAssemblyTypeName: OptionsMenuManager, Assembly-CSharp
-        m_MethodName: SetMasterVolume
+        m_MethodName: SetSfxVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

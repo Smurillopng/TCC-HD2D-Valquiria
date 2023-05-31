@@ -90,7 +90,7 @@ public class InventoryUI : MonoBehaviour
         inventoryManager = InventoryManager.Instance;
         var reader = QuickSaveReader.Create("GameSave");
         if (reader.Exists("PlayerAttack")) playerUnit.Attack = reader.Read<int>("PlayerAttack");
-        if (reader.Exists("PlayerDefense")) playerUnit.Defence = reader.Read<int>("PlayerDefense");
+        if (reader.Exists("PlayerDefence")) playerUnit.Defence = reader.Read<int>("PlayerDefence");
         if (reader.Exists("PlayerSpeed")) playerUnit.Speed = reader.Read<int>("PlayerSpeed");
         if (reader.Exists("PlayerLuck")) playerUnit.Luck = reader.Read<int>("PlayerLuck");
         if (reader.Exists("PlayerDexterity")) playerUnit.Dexterity = reader.Read<int>("PlayerDexterity");

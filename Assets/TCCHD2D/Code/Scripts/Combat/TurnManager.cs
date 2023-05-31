@@ -160,6 +160,9 @@ public class TurnManager : MonoBehaviour
                         case "MovementAnimation":
                             enemyDirector.SetGenericBinding(track, enemyObject.GetComponent<Animator>());
                             break;
+                        case "Audio Track":
+                            enemyDirector.SetGenericBinding(track,enemyObject.GetComponent<AudioSource>());
+                            break;
                         case "Signals":
                             enemyDirector.SetGenericBinding(track, playerObject.GetComponent<SignalReceiver>());
                             break;

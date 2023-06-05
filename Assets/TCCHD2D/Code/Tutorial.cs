@@ -48,8 +48,10 @@ public class Tutorial : MonoBehaviour
 
     private IEnumerator WaitInput(DialogueData dialogueData)
     {
+        dialogueManager.StartDialogue(dialogueData);
         var currentLine = dialogueData.DialogueLines[0];
         var currentLineIndex = 0;
+        director.Pause();
         while (true)
         {
             gameControls.Tutorial.Enable();
@@ -66,11 +68,13 @@ public class Tutorial : MonoBehaviour
             }
             if (currentLineIndex == dialogueData.DialogueLines.Length)
             {
+                
                 break;
             }
             yield return null;
         }
         gameControls.Tutorial.Disable();
         dialogueData.HasPlayed = true;
+        director.Resume();
     }
 }

@@ -62,10 +62,6 @@ public class PlayerMovement : MonoBehaviour
     private float rayDistanceDiagonal;
 
     [SerializeField]
-    [Tooltip("A")]
-    private Vector3 rayAngle;
-    
-    [SerializeField]
     [Range(0,1)]
     [Tooltip("How much the player will be slowed down when near the edge of a tile.")]
     private float slowFactor;
@@ -234,7 +230,7 @@ public class PlayerMovement : MonoBehaviour
 
         movementValue = new Vector3(direction.Value.x, 0, direction.Value.y).normalized;
 
-        var rayPosition = transform.position + rayAngle;
+        var rayPosition = transform.position;
         rayPosition.y += 0.2f;
         const float angle = 45 * Mathf.Deg2Rad;
         var dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));

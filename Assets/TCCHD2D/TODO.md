@@ -12,17 +12,17 @@
 - [ ] Sistema de Vantagens
 - [x] Sistema de Inventário
 - [x] Sistema de Equipamentos
-  - [ ] Atributos
+  - [x] Atributos
   - Tipos de Equipamentos
     - [x] Armas
     - [x] Capacetes
     - [x] Peitorais
     - [x] Calças
     - [x] Runas
-- [ ] Sistema de Status
-  - [ ] Fogo
+- [x] Sistema de Status
+  - [x] Fogo
   - [ ] Frio
   - [ ] Sangramento
   - [ ] Atordoamento
   - [ ] Incapacidade
-- [/] Sistema de Save
+- [x] Sistema de Save

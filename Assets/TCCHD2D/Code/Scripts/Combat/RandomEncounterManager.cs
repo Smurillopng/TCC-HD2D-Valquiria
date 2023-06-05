@@ -235,6 +235,12 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         }
     }
 
+    [Button]
+    private void UpdateEncounterChance()
+    {
+        minimumEncounterChance = areaEncounterRate / 100f; // Calculate the minimum encounter chance
+    }
+
     #endregion
 
     #region === Validation Methods ======================================================

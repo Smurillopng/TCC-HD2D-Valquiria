@@ -1,49 +1,76 @@
-using System;
-using CI.QuickSave;
+﻿using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 
 public class Tutorial : MonoBehaviour
 {
-    public bool playedTutorial;
-    public PlayableDirector playableDirector;
-    public PlayerMovement playerMovement;
-    public GameObject tutorialGameObject;
-    
+    public DialogueManager dialogueManager;
+    public PlayableDirector director;
+    public TMP_Text dialogueText;
+    public GameControls gameControls;
+    public TMP_Text tutorialText;
+
     private void Awake()
     {
-        if (playableDirector == null) playableDirector = GetComponent<PlayableDirector>();
-        var reader = QuickSaveReader.Create("GameSave");
-        if (reader.Exists("PlayedTutorial"))
-        {
-            playedTutorial = reader.Read<bool>("PlayedTutorial");
-        }
-        else
-        {
-            playedTutorial = false;
-        }
-
-        playerMovement.enabled = playedTutorial;
-        
-        if (!playedTutorial)
-        {
-            playableDirector.Play();
-            playedTutorial = true;
-            var writer = QuickSaveWriter.Create("GameSave");
-            writer.Write("PlayedTutorial", playedTutorial);
-            writer.Commit();
-        }
-        else
-        {
-            playableDirector.Stop();
-            tutorialGameObject.SetActive(false);
-        }
+        gameControls = new GameControls();
     }
 
-    public void SkipTutorial()
+    public void PlayDialogue(DialogueData dialogueData)
     {
-        playerMovement.enabled = playedTutorial;
-        playableDirector.Stop();
-        tutorialGameObject.SetActive(false);
+        dialogueManager.StartDialogue(dialogueData);
+        StartCoroutine(WaitText(dialogueData));
+    }
+
+    private IEnumerator WaitText(DialogueData dialogueData)
+    {
+        foreach (var text in dialogueData.DialogueLines)
+        {
+            while (dialogueText.text != text.Text)
+            {
+                director.Pause();
+                yield return null;
+            }
+            while (dialogueText.text == text.Text)
+            {
+                yield return null;
+            }
+        }
+        director.Resume();
+    }
+
+    public void PlayerDialogueInput(DialogueData dialogueData)
+    {
+        if (dialogueData.IsTutorial && !dialogueData.HasPlayed)
+            StartCoroutine(WaitInput(dialogueData));
+    }
+
+    private IEnumerator WaitInput(DialogueData dialogueData)
+    {
+        var currentLine = dialogueData.DialogueLines[0];
+        var currentLineIndex = 0;
+        while (true)
+        {
+            gameControls.Tutorial.Enable();
+            if (gameControls.Tutorial.AdvanceDialogue.triggered)
+            {
+                print(currentLineIndex);
+                if (tutorialText.text == currentLine.Text)
+                {
+                    currentLineIndex++;
+                    if (currentLineIndex != dialogueData.DialogueLines.Length)
+                        currentLine = dialogueData.DialogueLines[currentLineIndex];
+                }
+                dialogueManager.StartDialogue(dialogueData);
+            }
+            if (currentLineIndex == dialogueData.DialogueLines.Length)
+            {
+                break;
+            }
+            yield return null;
+        }
+        gameControls.Tutorial.Disable();
+        dialogueData.HasPlayed = true;
     }
 }

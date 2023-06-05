@@ -108,5 +108,13 @@ public class DialogueManager : MonoBehaviour
         dialogueBox.SetActive(false);
     }
 
+    public void TutorialDialoguePlayer()
+    {
+        if (currentDialogueData != null)
+        {
+            AdvanceDialogue();
+        }
+    }
+
     #endregion
 }

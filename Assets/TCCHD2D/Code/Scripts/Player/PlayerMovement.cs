@@ -1,4 +1,3 @@
-using System;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -61,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
     [Range(0,1)]
     [Tooltip("The distance of the raycast that detects the diagonal collisions.")]
     private float rayDistanceDiagonal;
+
+    [SerializeField]
+    [Tooltip("A")]
+    private Vector3 rayAngle;
     
     [SerializeField]
     [Range(0,1)]
@@ -231,7 +234,7 @@ public class PlayerMovement : MonoBehaviour
 
         movementValue = new Vector3(direction.Value.x, 0, direction.Value.y).normalized;
 
-        var rayPosition = transform.position;
+        var rayPosition = transform.position + rayAngle;
         rayPosition.y += 0.2f;
         const float angle = 45 * Mathf.Deg2Rad;
         var dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));

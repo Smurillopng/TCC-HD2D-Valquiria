@@ -19,12 +19,12 @@ public class Tutorial : MonoBehaviour
     private void Start()
     {
         gameControls = new GameControls();
-        playerMovement.CanMove.Value = false;
     }
     
     public void StartTutorial()
     {
         director.Play();
+        playerMovement.CanMove.Value = false;
     }
 
     public void PlayDialogue(DialogueData dialogueData)

@@ -94,7 +94,7 @@ public class Interactable : SerializedMonoBehaviour
 
     #region === Methods =================================================================
 
-    private void StartInteraction()
+    public void StartInteraction()
     {
         _interactionState = InteractionState.Interacting;
         onInteractionStart?.Invoke();

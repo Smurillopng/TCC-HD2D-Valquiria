@@ -10,10 +10,14 @@ public class Tutorial : MonoBehaviour
     public PlayableDirector director;
     public TMP_Text dialogueText;
     public GameControls gameControls;
+    public PlayerMovement playerMovement;
+    public GameObject tutorialObject;
+    public GameObject skipButton;
 
-    private void Awake()
+    private void Start()
     {
         gameControls = new GameControls();
+        playerMovement.CanMove.Value = false;
     }
     
     public void StartTutorial()
@@ -24,6 +28,7 @@ public class Tutorial : MonoBehaviour
     public void PlayDialogue(DialogueData dialogueData)
     {
         dialogueManager.StartDialogue(dialogueData);
+        skipButton.SetActive(false);
         StartCoroutine(WaitText(dialogueData));
     }
 
@@ -41,6 +46,7 @@ public class Tutorial : MonoBehaviour
                 yield return null;
             }
         }
+        skipButton.SetActive(true);
         director.Resume();
     }
 
@@ -86,5 +92,7 @@ public class Tutorial : MonoBehaviour
     {
         gameControls.Tutorial.Disable();
         director.Stop();
+        playerMovement.CanMove.Value = true;
+        tutorialObject.SetActive(false);
     }
 }

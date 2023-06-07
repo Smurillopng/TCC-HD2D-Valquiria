@@ -7,6 +7,7 @@ public class MainMenuUI : MonoBehaviour
 {
     public Image pressButtonImg;
     public GameObject buttonsContainer;
+    public GameObject continueButton;
     public float time = 1f;
     public float length = 1f;
     public bool anyButtonPressed;

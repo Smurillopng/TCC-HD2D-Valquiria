@@ -13,6 +13,8 @@ public class Tutorial : MonoBehaviour
     public PlayerMovement playerMovement;
     public GameObject tutorialObject;
     public GameObject skipButton;
+    public Transform startPosition;
+    public GameObject bjorn, player;
 
     private void Start()
     {
@@ -91,6 +93,8 @@ public class Tutorial : MonoBehaviour
     public void SkipTutorial()
     {
         gameControls.Tutorial.Disable();
+        player.transform.position = startPosition.position;
+        Destroy(bjorn);
         director.Stop();
         playerMovement.CanMove.Value = true;
         tutorialObject.SetActive(false);

@@ -10,11 +10,15 @@ public class Tutorial : MonoBehaviour
     public PlayableDirector director;
     public TMP_Text dialogueText;
     public GameControls gameControls;
-    public TMP_Text tutorialText;
 
     private void Awake()
     {
         gameControls = new GameControls();
+    }
+    
+    public void StartTutorial()
+    {
+        director.Play();
     }
 
     public void PlayDialogue(DialogueData dialogueData)
@@ -58,7 +62,7 @@ public class Tutorial : MonoBehaviour
             if (gameControls.Tutorial.AdvanceDialogue.triggered)
             {
                 print(currentLineIndex);
-                if (tutorialText.text == currentLine.Text)
+                if (dialogueText.text == currentLine.Text)
                 {
                     currentLineIndex++;
                     if (currentLineIndex != dialogueData.DialogueLines.Length)
@@ -76,5 +80,11 @@ public class Tutorial : MonoBehaviour
         gameControls.Tutorial.Disable();
         dialogueData.HasPlayed = true;
         director.Resume();
+    }
+
+    public void SkipTutorial()
+    {
+        gameControls.Tutorial.Disable();
+        director.Stop();
     }
 }

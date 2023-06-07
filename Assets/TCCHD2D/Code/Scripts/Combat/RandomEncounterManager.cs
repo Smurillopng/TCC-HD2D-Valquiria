@@ -180,9 +180,9 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     /// Creates a QuickSaveWriter object named "GameSave" and writes the player's position, the name of the last scene, and the name of the selected enemy to it.
     /// Fades in the screen by starting a coroutine that gradually increases the gamma gain of the lift.
     /// </remarks>
-    public void EncounterFinalBoss()
+    public void SpecificEncounter(Unit enemy)
     {
-        _selectedEnemy = enemies[0];
+        _selectedEnemy = enemy;
 
         var save = QuickSaveWriter.Create("GameSave");
         save.Write("PlayerPosition", _playerMovement.transform.position);

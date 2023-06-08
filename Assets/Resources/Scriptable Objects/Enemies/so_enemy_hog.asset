@@ -80,7 +80,7 @@ MonoBehaviour:
   maxTp: 100
   currentTp: 0
   attack: 2
-  defence: 1
+  defence: 2
   speed: 1
   luck: 3
   dexterity: 1

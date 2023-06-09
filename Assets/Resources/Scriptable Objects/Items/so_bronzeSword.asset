@@ -19,8 +19,9 @@ MonoBehaviour:
   itemName: Espada de Cobre
   itemIcon: {fileID: 3273123673738039861, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
-  itemDescription: Uma espada forjada por guerreiros de terras distantes
+  itemDescription: Uma espada forjada por guerreiros de terras distantes. Aumenta
+    +2 de ataque
   maxStack: 1
   currentStack: 0
   itemValue: 5
-  statusValue: 3
+  statusValue: 2

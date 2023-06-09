@@ -20,7 +20,7 @@ MonoBehaviour:
   itemIcon: {fileID: 1960990957491699774, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
   itemDescription: "Normalmente utilizado para amaciar carne de animais mas seres
-    humanos tam\xE9m s\xE3o animais ..."
+    humanos tam\xE9m s\xE3o animais ... Aumenta +6 de ataque"
   maxStack: 1
   currentStack: 0
   itemValue: 5

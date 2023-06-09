@@ -119,15 +119,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: spr_inimigo_hograven
     originalName: 
-    pivot: {x: 0.4965035, y: 0}
+    pivot: {x: 0.50442475, y: -0.0088495575}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 143
-      height: 143
+      width: 113
+      height: 113
     spriteID: 59fdb0223ffa8654ca1ebfc8a30c2310
     spriteBone: []
     spriteOutline: []
@@ -149,14 +149,14 @@ ScriptedImporter:
     - name: spr_inimigo_hograven
       frameIndex: 0
       cellRect:
-        x: 1
-        y: 0
-        width: 143
-        height: 143
+        x: 0
+        y: 1
+        width: 113
+        height: 113
       spriteId: 59fdb0223ffa8654ca1ebfc8a30c2310
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 144, y: 144}
+  canvasSize: {x: 114, y: 114}

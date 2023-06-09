@@ -15,5 +15,5 @@ MonoBehaviour:
   specialName: Golpe Flamejante
   specialType: 3
   specialCost: 40
-  specialDamage: 0
+  specialDamage: 10
   specialHeal: 0

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Liv
   dialogueLines:
-  - text: Opa pai baum
-  - text: Vam treina sim
+  - text: Certo!
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

@@ -77,6 +77,10 @@ public class Unit : SerializedScriptableObject
     [TitleGroup("Conditions", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private bool isPlayer;
+    
+    [TitleGroup("Conditions", Alignment = TitleAlignments.Centered)]
+    [SerializeField]
+    private bool isDangerous;
 
     [TitleGroup("Save Settings", Alignment = TitleAlignments.Centered)]
     [SerializeField]
@@ -152,6 +156,7 @@ public class Unit : SerializedScriptableObject
         set => attributesPoints = value;
     }
     public bool IsPlayer => isPlayer;
+    public bool IsDangerous => isDangerous;
     public bool IsDead
     {
         get => isDead;

@@ -579,8 +579,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<sprite=2> PARAB\xC9NS !!! <sprite=3>\n<sprite=5> VOC\xCA CHEGOU NO FIM
-    DO PLAYTEST 2 <sprite=9>\n<sprite=7> VOC\xCA \xC9 MUITO POGGERS <sprite=1>\n<sprite=6>"
+  m_text: "Voc\xEA chegou no final desta vers\xE3o\nObrigado por jogar"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 495ec4ba226fe7d4abfa5124ca8bccdb, type: 2}
   m_sharedMaterial: {fileID: -5893234512884441959, guid: 495ec4ba226fe7d4abfa5124ca8bccdb,

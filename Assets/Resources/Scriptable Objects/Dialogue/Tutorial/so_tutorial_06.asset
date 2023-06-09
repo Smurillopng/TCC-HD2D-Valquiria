@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Liv
   dialogueLines:
-  - text: Obrigada!
-  - text: Usarei sim
+  - text: "Agrade\xE7o pela po\xE7\xE3o Sigrid."
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

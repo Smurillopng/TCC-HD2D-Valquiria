@@ -287,7 +287,7 @@ public class UnitController : MonoBehaviour
     public bool RunLogic()
     {
         var randomChance = Random.Range(0, 100);
-        randomChance += Unit.Luck;
+        randomChance += Unit.Luck + Unit.Dexterity;
         randomChance = randomChance > 50 ? 1 : 0;
         if (randomChance == 1)
         {

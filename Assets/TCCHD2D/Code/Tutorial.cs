@@ -34,6 +34,7 @@ public class Tutorial : MonoBehaviour
         {
             director2.Play();
         }
+        playerMovement.enabled = false;
     }
 
     public void StartTutorial()
@@ -47,6 +48,13 @@ public class Tutorial : MonoBehaviour
         dialogueManager.StartDialogue(dialogueData);
         skipButton.SetActive(false);
         StartCoroutine(WaitText(dialogueData));
+    }
+    
+    public void PlayDialogue2(DialogueData dialogueData)
+    {
+        dialogueManager.StartDialogue(dialogueData);
+        skipButton.SetActive(false);
+        StartCoroutine(WaitText2(dialogueData));
     }
 
     private IEnumerator WaitText(DialogueData dialogueData)
@@ -66,11 +74,35 @@ public class Tutorial : MonoBehaviour
         skipButton.SetActive(true);
         director.Resume();
     }
+    
+    private IEnumerator WaitText2(DialogueData dialogueData)
+    {
+        foreach (var text in dialogueData.DialogueLines)
+        {
+            while (dialogueText.text != text.Text)
+            {
+                director2.Pause();
+                yield return null;
+            }
+            while (dialogueText.text == text.Text)
+            {
+                yield return null;
+            }
+        }
+        skipButton.SetActive(true);
+        director2.Resume();
+    }
 
     public void PlayerDialogueInput(DialogueData dialogueData)
     {
         if (dialogueData.IsTutorial && !dialogueData.HasPlayed)
             StartCoroutine(WaitInput(dialogueData));
+    }
+    
+    public void PlayerDialogueInput2(DialogueData dialogueData)
+    {
+        if (dialogueData.IsTutorial && !dialogueData.HasPlayed)
+            StartCoroutine(WaitInput2(dialogueData));
     }
 
     private IEnumerator WaitInput(DialogueData dialogueData)
@@ -102,6 +134,37 @@ public class Tutorial : MonoBehaviour
         gameControls.Tutorial.Disable();
         dialogueData.HasPlayed = true;
         director.Resume();
+    }
+    
+    private IEnumerator WaitInput2(DialogueData dialogueData)
+    {
+        dialogueManager.StartDialogue(dialogueData);
+        var currentLine = dialogueData.DialogueLines[0];
+        var currentLineIndex = 0;
+        director2.Pause();
+        while (true)
+        {
+            gameControls.Tutorial.Enable();
+            if (gameControls.Tutorial.AdvanceDialogue.triggered)
+            {
+                if (dialogueText.text == currentLine.Text)
+                {
+                    currentLineIndex++;
+                    if (currentLineIndex != dialogueData.DialogueLines.Length)
+                        currentLine = dialogueData.DialogueLines[currentLineIndex];
+                }
+                dialogueManager.StartDialogue(dialogueData);
+            }
+            if (currentLineIndex == dialogueData.DialogueLines.Length)
+            {
+                
+                break;
+            }
+            yield return null;
+        }
+        gameControls.Tutorial.Disable();
+        dialogueData.HasPlayed = true;
+        director2.Resume();
     }
 
     public void SkipTutorial()

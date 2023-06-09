@@ -248,7 +248,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 attackButton.gameObject.SetActive(true);
                 specialButton.gameObject.SetActive(true);
                 itemButton.gameObject.SetActive(true);
-                runButton.gameObject.SetActive(true);
+                if (!turnManager.EnemyUnitController.Unit.IsDangerous) runButton.gameObject.SetActive(true);
                 chargeButton.gameObject.SetActive(playerCharges.fillAmount != 0);
                 break;
         }

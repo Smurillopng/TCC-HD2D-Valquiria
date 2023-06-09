@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Bjorn
   dialogueLines:
-  - text: Oi Liv.
-  - text: Tudo baum
-  - text: Vam treina!
+  - text: "Ent\xE3o voc\xEA estava ai Liv"
+  - text: Venha!
+  - text: "Vamos logo come\xE7ar seu treinamento"
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

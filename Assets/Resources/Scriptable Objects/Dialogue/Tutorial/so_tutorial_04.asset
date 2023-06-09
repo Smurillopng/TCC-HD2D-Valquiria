@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Liv
   dialogueLines:
-  - text: Valeu
-  - text: Vou usar sim
+  - text: Meuto obrigado por ter cuidado dela, Trygve
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

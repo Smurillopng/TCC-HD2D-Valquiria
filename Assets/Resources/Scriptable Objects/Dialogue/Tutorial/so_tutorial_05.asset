@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Sigrid
   dialogueLines:
-  - text: Ei Liv
-  - text: Vai treinar?
-  - text: "Pegue essa po\xE7\xE3o de energia para ajudar no seu treino"
+  - text: Liv! Liv!
+  - text: "Eu estava treinando criar po\xE7\xF5es com minha irm\xE3"
+  - text: "Criei esta junto com ela, leve-a com voc\xEA"
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

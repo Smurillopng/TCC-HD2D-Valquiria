@@ -2494,6 +2494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pressButtonImg: {fileID: 2117750496}
   buttonsContainer: {fileID: 889117222}
+  continueButton: {fileID: 1850860878}
   time: 3
   length: 0.5
   anyButtonPressed: 0

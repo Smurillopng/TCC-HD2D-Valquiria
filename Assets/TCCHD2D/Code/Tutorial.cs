@@ -10,16 +10,27 @@ public class Tutorial : MonoBehaviour
     public PlayableDirector director;
     public TMP_Text dialogueText;
     public GameControls gameControls;
-    public TMP_Text tutorialText;
+    public PlayerMovement playerMovement;
+    public GameObject tutorialObject;
+    public GameObject skipButton;
+    public Transform startPosition;
+    public GameObject bjorn, player;
 
-    private void Awake()
+    private void Start()
     {
         gameControls = new GameControls();
+    }
+    
+    public void StartTutorial()
+    {
+        director.Play();
+        playerMovement.CanMove.Value = false;
     }
 
     public void PlayDialogue(DialogueData dialogueData)
     {
         dialogueManager.StartDialogue(dialogueData);
+        skipButton.SetActive(false);
         StartCoroutine(WaitText(dialogueData));
     }
 
@@ -37,6 +48,7 @@ public class Tutorial : MonoBehaviour
                 yield return null;
             }
         }
+        skipButton.SetActive(true);
         director.Resume();
     }
 
@@ -58,7 +70,7 @@ public class Tutorial : MonoBehaviour
             if (gameControls.Tutorial.AdvanceDialogue.triggered)
             {
                 print(currentLineIndex);
-                if (tutorialText.text == currentLine.Text)
+                if (dialogueText.text == currentLine.Text)
                 {
                     currentLineIndex++;
                     if (currentLineIndex != dialogueData.DialogueLines.Length)
@@ -76,5 +88,15 @@ public class Tutorial : MonoBehaviour
         gameControls.Tutorial.Disable();
         dialogueData.HasPlayed = true;
         director.Resume();
+    }
+
+    public void SkipTutorial()
+    {
+        gameControls.Tutorial.Disable();
+        player.transform.position = startPosition.position;
+        Destroy(bjorn);
+        director.Stop();
+        playerMovement.CanMove.Value = true;
+        tutorialObject.SetActive(false);
     }
 }

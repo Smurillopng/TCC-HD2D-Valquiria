@@ -46,6 +46,10 @@ public class OptionsMenuManager : MonoBehaviour
     [BoxGroup("Graphics Settings")]
     [SerializeField]
     private TMP_Dropdown screenDropdown;
+    
+    [BoxGroup("Graphics Settings")]
+    [SerializeField]
+    private TMP_Dropdown fpsDropdown;
 
     [BoxGroup("Graphics Settings")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
@@ -96,6 +100,7 @@ public class OptionsMenuManager : MonoBehaviour
         // Set initial values for quality, fullscreen, volume, and resolution
         qualityDropdown.value = PlayerPrefs.GetInt("Quality", 3);
         screenDropdown.value = PlayerPrefs.GetInt("Fullscreen", 0);
+        fpsDropdown.value = PlayerPrefs.GetInt("Fps", 0);
         masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume", 1f);
         musicVolumeSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
         sfxVolumeSlider.value = PlayerPrefs.GetFloat("SfxVolume", 1f);
@@ -139,6 +144,26 @@ public class OptionsMenuManager : MonoBehaviour
     {
         QualitySettings.SetQualityLevel(qualityDropdown.value);
         PlayerPrefs.SetInt("Quality", qualityDropdown.value);
+    }
+
+    public void SetFps()
+    {
+        QualitySettings.vSyncCount = 0;
+        switch (fpsDropdown.value)
+        {
+            case 0:
+                Application.targetFrameRate = 60;
+                PlayerPrefs.SetInt("Fps", 0);
+                break;
+            case 1:
+                Application.targetFrameRate = 30;
+                PlayerPrefs.SetInt("Fps", 1);
+                break;
+            case 2:
+                Application.targetFrameRate = -1;
+                PlayerPrefs.SetInt("Fps", 2);
+                break;
+        }
     }
 
     /// <summary>

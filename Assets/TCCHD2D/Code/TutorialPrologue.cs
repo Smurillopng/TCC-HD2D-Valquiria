@@ -9,6 +9,7 @@ public class TutorialPrologue : MonoBehaviour
     public PlayableDirector playableDirector;
     public PlayerMovement playerMovement;
     public GameObject tutorialGameObject;
+    public Tutorial tutorial;
 
     private void Awake()
     {
@@ -45,5 +46,6 @@ public class TutorialPrologue : MonoBehaviour
         playerMovement.enabled = playedTutorial;
         playableDirector.Stop();
         tutorialGameObject.SetActive(false);
+        tutorial.StartTutorial();
     }
 }

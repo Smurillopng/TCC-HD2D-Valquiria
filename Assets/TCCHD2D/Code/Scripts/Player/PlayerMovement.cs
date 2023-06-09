@@ -105,6 +105,13 @@ public class PlayerMovement : MonoBehaviour
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
+    private Ray _rightRay, _leftRay, _forwardRay, _backRay;
+
+    private Vector3 _dirRight = Vector3.right,
+        _dirLeft = Vector3.left,
+        _dirForward = Vector3.forward,
+        _dirBack = Vector3.back;
+
     #endregion
 
     #region === Unity Methods ===========================================================
@@ -235,33 +242,28 @@ public class PlayerMovement : MonoBehaviour
         const float angle = 45 * Mathf.Deg2Rad;
         var dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
 
-        var dirRight = Vector3.right;
-        var dirLeft = Vector3.left;
-        var dirForward = Vector3.forward;
-        var dirBack = Vector3.back;
-
-        var rightRay = new Ray(rayPosition, new Vector3(dirRight.x, -1, dirRight.z));
-        var leftRay = new Ray(rayPosition, new Vector3(dirLeft.x, -1, dirLeft.z));
-        var forwardRay = new Ray(rayPosition, new Vector3(dirForward.x, -1, dirForward.z));
-        var backRay = new Ray(rayPosition, new Vector3(dirBack.x, -1, dirBack.z));
+        _rightRay = new Ray(rayPosition, new Vector3(_dirRight.x, -1, _dirRight.z));
+        _leftRay = new Ray(rayPosition, new Vector3(_dirLeft.x, -1, _dirLeft.z));
+        _forwardRay = new Ray(rayPosition, new Vector3(_dirForward.x, -1, _dirForward.z));
+        _backRay = new Ray(rayPosition, new Vector3(_dirBack.x, -1, _dirBack.z));
 
         if ((Physics.Raycast(rayPosition, dir, rayDistance, groundLayer) && direction.Value.x > 0)
-            || (!Physics.Raycast(rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0))
+            || (!Physics.Raycast(_rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0))
         {
             movementValue *= slowFactor;
         }
         else if ((Physics.Raycast(rayPosition, -dir, rayDistance, groundLayer) && direction.Value.x < 0)
-                 || (!Physics.Raycast(leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0))
+                 || (!Physics.Raycast(_leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0))
         {
             movementValue *= slowFactor;
         }
-        else if ((Physics.Raycast(rayPosition, dirForward, rayDistance, groundLayer) && direction.Value.y > 0)
-                 || (!Physics.Raycast(forwardRay, rayDistanceDiagonal, groundLayer) && direction.Value.y > 0))
+        else if ((Physics.Raycast(rayPosition, _dirForward, rayDistance, groundLayer) && direction.Value.y > 0)
+                 || (!Physics.Raycast(_forwardRay, rayDistanceDiagonal, groundLayer) && direction.Value.y > 0))
         {
             movementValue *= slowFactor;
         }
-        else if ((Physics.Raycast(rayPosition, dirBack, rayDistance, groundLayer) && direction.Value.y < 0)
-                 || (!Physics.Raycast(backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0))
+        else if ((Physics.Raycast(rayPosition, _dirBack, rayDistance, groundLayer) && direction.Value.y < 0)
+                 || (!Physics.Raycast(_backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0))
         {
             movementValue *= slowFactor;
         }

@@ -82,6 +82,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     private Vector3 _lastPosition; // The last position of the player
     private LiftGammaGain _liftGammaGain; // The property responsible for the fade effect
     private bool _randomized; // Whether the random amount of steps was already generated
+    private Tutorial _tutorial; // The Tutorial component of the player
 
     #endregion
 
@@ -109,6 +110,8 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         {
             _playerMovement.CanMove.Value = true;
         }
+        if (SceneManager.GetActiveScene().name.Equals("scn_game"))
+            _tutorial = FindObjectOfType<Tutorial>();
     }
     /// <summary>Callback function that is called when a scene is loaded.</summary>
     /// <param name="scene">The scene that was loaded.</param>
@@ -191,6 +194,34 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         save.Commit();
 
         StartCoroutine(FadeIn(_liftGammaGain));
+    }
+
+    public void TutorialEncounter(Unit enemy)
+    {
+        _selectedEnemy = enemy;
+
+        var save = QuickSaveWriter.Create("GameSave");
+        save.Write("PlayerPosition", _playerMovement.transform.position);
+        save.Write("LastScene", SceneManager.GetActiveScene().name);
+        save.Write("EncounteredEnemy", _selectedEnemy.name);
+        save.Commit();
+
+        _tutorial.combatTutorialLoaded = true;
+        _tutorial.director.Pause();
+        StartCoroutine(FadeInTutorial(_liftGammaGain));
+    }
+    private IEnumerator FadeInTutorial(LiftGammaGain lgg)
+    {
+        float time = 0;
+        _playerMovement.CanMove.Value = false;
+        while (time < fadeTime)
+        {
+            time += Time.deltaTime;
+            lgg.gamma.value = new Vector4(-1, -1, -1, 0 - time / fadeTime);
+            yield return null;
+        }
+        SceneManager.LoadScene("scn_combat_tutorial");
+        SceneManager.sceneLoaded += SetScene;
     }
     /// <summary>Fades in the screen using the LiftGammaGain effect.</summary>
     /// <param name="lgg">The LiftGammaGain effect to use for the fade.</param>

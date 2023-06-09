@@ -225,6 +225,9 @@ public class UnitController : MonoBehaviour
             defenceCalculated += InventoryManager.Instance.EquipmentSlots[1].equipItem.StatusValue;
         // Calculate damage taken based on defense
         damageTakenThisTurn = Mathf.Max(1, damage - defenceCalculated);
+        
+        if (damage == 0)
+            damageTakenThisTurn = 0;
 
         // Subtract damage from health
         unit.CurrentHp -= damageTakenThisTurn;
@@ -322,6 +325,28 @@ public class UnitController : MonoBehaviour
         //             $"<color=blue>{unit.UnitName}</color> tried to run away but <color=red>failed</color>");
         //     }
         // }
+        
+    }
+    // tutorial
+    public void RunActionTutorial()
+    {
+        var reader = QuickSaveReader.Create("GameSave");
+        SceneManager.LoadScene(reader.Read<string>("LastScene"));
+        var save = QuickSaveWriter.Create("GameSave");
+        save.Write("LastScene", SceneManager.GetActiveScene().name);
+        save.Commit();
+        PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino");
+        PlayerCombatHUD.TakenAction.Invoke();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if (arg0.name.Equals("scn_game"))
+        {
+            var tutorial = FindObjectOfType<Tutorial>();
+            tutorial.combatTutorialLoaded = true;
+        }
     }
 
     #endregion

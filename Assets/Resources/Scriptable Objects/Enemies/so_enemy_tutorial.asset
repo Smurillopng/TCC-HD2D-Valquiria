@@ -66,7 +66,7 @@ MonoBehaviour:
   currentHp: 999
   maxTp: 100
   currentTp: 0
-  attack: 1
+  attack: 0
   defence: 1
   speed: 1
   luck: 1

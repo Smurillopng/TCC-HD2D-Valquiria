@@ -3,11 +3,13 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
     public DialogueManager dialogueManager;
     public PlayableDirector director;
+    public PlayableDirector director2;
     public TMP_Text dialogueText;
     public GameControls gameControls;
     public PlayerMovement playerMovement;
@@ -15,16 +17,27 @@ public class Tutorial : MonoBehaviour
     public GameObject skipButton;
     public Transform startPosition;
     public GameObject bjorn, player;
+    
+    public bool combatTutorialLoaded;
 
     private void Start()
     {
         gameControls = new GameControls();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if (arg0.name.Equals("scn_game") && combatTutorialLoaded)
+        {
+            director2.Play();
+        }
+    }
+
     public void StartTutorial()
     {
         director.Play();
-        playerMovement.CanMove.Value = false;
+        playerMovement.enabled = false;
     }
 
     public void PlayDialogue(DialogueData dialogueData)
@@ -69,7 +82,6 @@ public class Tutorial : MonoBehaviour
             gameControls.Tutorial.Enable();
             if (gameControls.Tutorial.AdvanceDialogue.triggered)
             {
-                print(currentLineIndex);
                 if (dialogueText.text == currentLine.Text)
                 {
                     currentLineIndex++;
@@ -96,7 +108,7 @@ public class Tutorial : MonoBehaviour
         player.transform.position = startPosition.position;
         Destroy(bjorn);
         director.Stop();
-        playerMovement.CanMove.Value = true;
+        playerMovement.enabled = true;
         tutorialObject.SetActive(false);
     }
 }

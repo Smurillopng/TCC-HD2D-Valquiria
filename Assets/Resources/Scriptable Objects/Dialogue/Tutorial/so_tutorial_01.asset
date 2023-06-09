@@ -19,3 +19,4 @@ MonoBehaviour:
   - text: Vam treina!
   isTutorial: 1
   hasPlayed: 0
+  resetOnExit: 1

@@ -18,3 +18,4 @@ MonoBehaviour:
   - text: Vam treina sim
   isTutorial: 1
   hasPlayed: 0
+  resetOnExit: 1

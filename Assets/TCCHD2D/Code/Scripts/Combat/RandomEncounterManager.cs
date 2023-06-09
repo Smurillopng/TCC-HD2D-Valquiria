@@ -205,8 +205,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         save.Write("LastScene", SceneManager.GetActiveScene().name);
         save.Write("EncounteredEnemy", _selectedEnemy.name);
         save.Commit();
-
-        _tutorial.combatTutorialLoaded = true;
+        
         _tutorial.director.Pause();
         StartCoroutine(FadeInTutorial(_liftGammaGain));
     }

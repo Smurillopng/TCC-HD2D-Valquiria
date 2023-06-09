@@ -43,7 +43,6 @@ public class TutorialPrologue : MonoBehaviour
 
     public void SkipTutorial()
     {
-        playerMovement.enabled = playedTutorial;
         playableDirector.Stop();
         tutorialGameObject.SetActive(false);
         tutorial.StartTutorial();

@@ -337,16 +337,7 @@ public class UnitController : MonoBehaviour
         save.Commit();
         PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino");
         PlayerCombatHUD.TakenAction.Invoke();
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if (arg0.name.Equals("scn_game"))
-        {
-            var tutorial = FindObjectOfType<Tutorial>();
-            tutorial.combatTutorialLoaded = true;
-        }
+        unit.Experience = 1;
     }
 
     #endregion

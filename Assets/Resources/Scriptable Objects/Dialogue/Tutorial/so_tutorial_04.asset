@@ -18,3 +18,4 @@ MonoBehaviour:
   - text: Vou usar sim
   isTutorial: 1
   hasPlayed: 0
+  resetOnExit: 1

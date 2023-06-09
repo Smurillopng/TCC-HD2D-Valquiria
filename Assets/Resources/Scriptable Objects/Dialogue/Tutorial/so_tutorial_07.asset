@@ -18,3 +18,4 @@ MonoBehaviour:
   - text: "D\xEA o seu melhor"
   isTutorial: 1
   hasPlayed: 0
+  resetOnExit: 1

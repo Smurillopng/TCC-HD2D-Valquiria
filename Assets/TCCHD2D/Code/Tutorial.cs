@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using CI.QuickSave;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -18,17 +17,20 @@ public class Tutorial : MonoBehaviour
     public Transform startPosition;
     public GameObject bjorn, player;
     
-    public bool combatTutorialLoaded;
+    private bool _finishedTutorial;
 
     private void Start()
     {
+        var reader = QuickSaveReader.Create("GameSave");
+        _finishedTutorial = reader.Exists("FinishedTutorial") && reader.Read<bool>("FinishedTutorial");
+        if (_finishedTutorial.Equals(true))
+        {
+            tutorialObject.SetActive(false);
+            return;
+        }
         gameControls = new GameControls();
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if (arg0.name.Equals("scn_game") && combatTutorialLoaded)
+        var playerUnit = player.GetComponent<RandomEncounterManager>();
+        if (playerUnit.player.Experience == 1)
         {
             director2.Play();
         }
@@ -109,6 +111,10 @@ public class Tutorial : MonoBehaviour
         Destroy(bjorn);
         director.Stop();
         playerMovement.enabled = true;
+        _finishedTutorial = true;
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("FinishedTutorial", _finishedTutorial);
+        writer.Commit();
         tutorialObject.SetActive(false);
     }
 }

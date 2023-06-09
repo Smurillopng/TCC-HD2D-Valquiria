@@ -626,7 +626,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   type: 0
-  unitName: Player
+  unitName: Liv
   unitSprite: {fileID: -1929946010733699539, guid: 41260d4750065984b8c24dc5394a17fb,
     type: 3}
   level: 1
@@ -642,8 +642,9 @@ MonoBehaviour:
   speed: 1
   luck: 1
   dexterity: 1
-  attributesPoints: 0
+  attributesPoints: 1
   isPlayer: 1
+  isDangerous: 0
   resetOnExit: 1
   isDead: 0
   hasTakenTurn: 0

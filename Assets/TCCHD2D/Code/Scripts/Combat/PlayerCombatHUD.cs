@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.VFX;
 
 /// <summary>
@@ -378,6 +380,7 @@ public class PlayerCombatHUD : MonoBehaviour
     {
         optionsPanel.SetActive(false);
         specialPanel.SetActive(true);
+        List<Button> specialButtons = new List<Button>();
 
         if (specialPanel.transform.childCount > 0)
         {
@@ -394,6 +397,15 @@ public class PlayerCombatHUD : MonoBehaviour
             var button = Instantiate(buttonPrefab, specialPanel.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = specialAction.specialName;
             button.GetComponent<Button>().onClick.AddListener(() => specials.UseSpecial(specialAction));
+            button.AddComponent<EventTrigger>();
+            var trigger = button.GetComponent<EventTrigger>();
+            var entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerEnter;
+            entry.callback.AddListener(_ => {
+                // Add code here to show the text when the mouse hovers over the button
+                combatTextBox.text = $"{specialAction.specialDescription}\n[ Custo de TP: {specialAction.specialCost} ]";
+            });
+            trigger.triggers.Add(entry);
         }
     }
     /// <summary>Charges the player's unit.</summary>

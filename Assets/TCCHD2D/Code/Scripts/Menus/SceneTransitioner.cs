@@ -15,13 +15,17 @@ public class SceneTransitioner : MonoBehaviour
     private float fadeTime;
     [SerializeField] 
     private bool spawnStart, spawnEnd;
+    [SerializeField]
+    private GameObject uiController;
 
-    private LiftGammaGain liftGammaGain;
-    private bool isFading;
+    private LiftGammaGain _liftGammaGain;
+    private bool _isFading;
 
     private void Awake()
     {
-         volume.profile.TryGet(out liftGammaGain);
+         volume.profile.TryGet(out _liftGammaGain);
+         if (!_isFading)
+             StartCoroutine(FadeOut(_liftGammaGain, FindObjectOfType<PlayerMovement>()));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,19 +39,19 @@ public class SceneTransitioner : MonoBehaviour
 
     public void LoadFade(string sceneName, PlayerMovement playerMove)
     {
-        if (!isFading)
+        if (!_isFading)
         {
             goToScene = sceneName;
-            StartCoroutine(FadeIn(liftGammaGain, playerMove));
+            StartCoroutine(FadeIn(_liftGammaGain, playerMove));
         }
     }
 
     private IEnumerator FadeIn(LiftGammaGain lgg, PlayerMovement pm)
     {
-        isFading = true;
+        _isFading = true;
         float time = 0;
-        var defaultLgg = lgg.gamma.value;
         pm.CanMove.Value = false;
+        uiController.SetActive(false);
         while (time < fadeTime)
         {
             time += Time.deltaTime;
@@ -72,8 +76,23 @@ public class SceneTransitioner : MonoBehaviour
             writer.Write("ChangingScene", true);
             writer.Commit();
         }
+        
+        _isFading = false;
+    }
+
+    private IEnumerator FadeOut(LiftGammaGain lgg, PlayerMovement pm)
+    {
+        float time = 0;
+        Vector4 defaultGamma = new Vector4(-1, -1, -1, 0);
+        lgg.gamma.value = new Vector4(-1, -1, -1, -1);
+        pm.CanMove.Value = false;
+        while (time < fadeTime)
+        {
+            time += Time.deltaTime;
+            lgg.gamma.value = Vector4.Lerp(new Vector4(-1, -1, -1, -1), defaultGamma, time / fadeTime);
+            yield return null;
+        }
         pm.CanMove.Value = true;
-        lgg.gamma.value = defaultLgg;
-        isFading = false;
+        uiController.SetActive(true);
     }
 }

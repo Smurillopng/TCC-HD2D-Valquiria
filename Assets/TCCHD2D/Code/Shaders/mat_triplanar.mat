@@ -35,14 +35,22 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _2ndTexture:
-        m_Texture: {fileID: 2800000, guid: e3645503298e0f44599dfdb4c2e84d0b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
+        m_Texture: {fileID: 2800000, guid: a56447f419f36d040bebd4c8deab1a2f, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 4, y: 4}
     - _MainNormal:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: e3645503298e0f44599dfdb4c2e84d0b, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 4, y: 4}
+    - _SideTexture:
+        m_Texture: {fileID: 2800000, guid: e3645503298e0f44599dfdb4c2e84d0b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopTexture:
         m_Texture: {fileID: 2800000, guid: 8f568d3019db6064aa2d59587f4bc6fa, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -60,9 +68,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _2ndTextureHeightBlend: 2.35
+    - _2ndTextureHeightBlend: 0
+    - _Blend: 0.7
+    - _BlendTop: 0.19
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Tilling: 4
+    - _Tilling: -5.87
     m_Colors: []
   m_BuildTextureStacks: []

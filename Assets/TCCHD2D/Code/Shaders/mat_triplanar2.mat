@@ -48,12 +48,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _AO: 1
-    - _Blend_Sharpness: 4.6
-    - _Blend_Sharpness_top: 1.3
+    - _Blend_Sharpness: 4
+    - _Blend_Sharpness_top: 1.54
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Smoothness: 0
-    - _Tilling: 2.5
+    - _Tilling: 4
     m_Colors: []
   m_BuildTextureStacks: []
 --- !u!114 &1669859427733252257

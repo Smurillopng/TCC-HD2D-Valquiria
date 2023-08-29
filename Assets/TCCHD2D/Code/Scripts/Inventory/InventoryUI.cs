@@ -51,6 +51,7 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Status")][SerializeField] private TMP_Text playerDexterity;
     [BoxGroup("Status")][SerializeField] private GameObject lvlUpAttributesButtons;
     [BoxGroup("Status")][SerializeField] private TMP_Text attributePointsText;
+    [BoxGroup("Status")][SerializeField] private TMP_Text availableAttributePointsText;
     
     [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerHealthBarFill;
     [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerHealthText;
@@ -371,6 +372,7 @@ public class InventoryUI : MonoBehaviour
             updatedStatus = false;
         }
         
+        availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}": string.Empty;
         lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.text = $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}";

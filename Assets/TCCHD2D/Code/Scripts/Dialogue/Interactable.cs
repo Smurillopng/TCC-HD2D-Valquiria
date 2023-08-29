@@ -25,6 +25,9 @@ public class Interactable : SerializedMonoBehaviour
     [FoldoutGroup("Interaction Settings")]
     [SerializeField, InlineEditor, Required, Tooltip("Bool variable that will be used to interact with the object.")]
     private BoolVariable interactBool;
+    
+    [FoldoutGroup("Events"), Tooltip("Event called when the player interacts with the object.")]
+    public UnityEvent onAwake;
 
     [FoldoutGroup("Events"), Tooltip("Event called when the player interacts with the object.")]
     public UnityEvent onInteractionStart;
@@ -46,6 +49,7 @@ public class Interactable : SerializedMonoBehaviour
 
     private void Start()
     {
+        onAwake?.Invoke();
         if (interactionType == InteractionType.Item)
         {
             var reader = QuickSaveReader.Create("GameSave");

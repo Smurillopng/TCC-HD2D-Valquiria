@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4143497911491572914}
   - component: {fileID: 3660153027114266121}
+  - component: {fileID: 4987398978153062547}
   m_Layer: 0
   m_Name: pfb_collectibleChest
   m_TagString: Untagged
@@ -55,6 +56,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &4987398978153062547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3660153027114266120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6806360fbdf14b31b068f2eb38379572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chestItem: {fileID: 5727123342812104454}
 --- !u!1 &5727123342812104454
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +79,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5727123342812104455}
   - component: {fileID: 5727123342812104452}
-  - component: {fileID: 209380004466426536}
   m_Layer: 0
   m_Name: ColletableItem
   m_TagString: Untagged
@@ -116,7 +129,7 @@ MonoBehaviour:
   onAwake:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 209380004466426536}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChestHelper, Assembly-CSharp
         m_MethodName: CheckSave
         m_Mode: 1
@@ -175,18 +188,6 @@ MonoBehaviour:
   onInteractionOffRange:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &209380004466426536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5727123342812104454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6806360fbdf14b31b068f2eb38379572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6067447628815239311
 GameObject:
   m_ObjectHideFlags: 0

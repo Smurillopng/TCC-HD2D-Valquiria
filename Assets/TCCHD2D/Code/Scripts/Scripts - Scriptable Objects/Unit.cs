@@ -9,7 +9,6 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Timeline;
 using System.Linq;
-using CI.QuickSave;
 
 [CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit")]
 public class Unit : SerializedScriptableObject
@@ -192,6 +191,7 @@ public class Unit : SerializedScriptableObject
             speed = 1;
             luck = 1;
             dexterity = 1;
+            attributesPoints = 0;
         }
     }
 #else
@@ -210,6 +210,7 @@ public class Unit : SerializedScriptableObject
             speed = 1;
             luck = 1;
             dexterity = 1;
+            attributesPoints = 0;
         }
     }
 #endif
@@ -217,13 +218,7 @@ public class Unit : SerializedScriptableObject
     {
         if (!statsTable.Any(statGroup => statGroup.Level == level + 1) || experience < statsTable.First(statGroup => statGroup.Level == level + 1).Experience) return;
         level++;
-        experience = 0;
         attributesPoints++;
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("Level", level);
-        writer.Write("Experience", experience);
-        writer.Write("AttributesPoints", attributesPoints);
-        writer.Commit();
     }
 
     public struct StatsTable

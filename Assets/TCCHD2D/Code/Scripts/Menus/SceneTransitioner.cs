@@ -62,7 +62,7 @@ public class SceneTransitioner : MonoBehaviour
         SceneManager.LoadScene(goToScene);
         if (spawnStart)
         {
-            var writer = QuickSaveWriter.Create("GameSave");
+            var writer = QuickSaveWriter.Create("GameInfo");
             writer.Write("SpawnStart", true);
             writer.Write("SpawnEnd", false);
             writer.Write("ChangingScene", true);
@@ -70,7 +70,7 @@ public class SceneTransitioner : MonoBehaviour
         }
         else if (spawnEnd)
         {
-            var writer = QuickSaveWriter.Create("GameSave");
+            var writer = QuickSaveWriter.Create("GameInfo");
             writer.Write("SpawnStart", false);
             writer.Write("SpawnEnd", true);
             writer.Write("ChangingScene", true);

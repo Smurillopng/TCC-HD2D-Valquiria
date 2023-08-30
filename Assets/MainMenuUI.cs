@@ -23,14 +23,7 @@ public class MainMenuUI : MonoBehaviour
             var writer = QuickSaveWriter.Create("GameSave");
             writer.Commit();
             var reader = QuickSaveReader.Create("GameSave");
-            if (reader.Exists("ChangingScene"))
-            {
-                continueButton.SetActive(true);
-            }
-            else
-            {
-                continueButton.SetActive(false);
-            }
+            continueButton.SetActive(reader.Exists("CurrentScene"));
             return;
         }
         WaitingForInput();

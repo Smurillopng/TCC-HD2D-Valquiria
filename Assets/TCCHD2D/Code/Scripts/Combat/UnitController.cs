@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -268,11 +266,8 @@ public class UnitController : MonoBehaviour
 
         if (gotAway)
         {
-            var reader = QuickSaveReader.Create("GameSave");
+            var reader = QuickSaveReader.Create("GameInfo");
             SceneManager.LoadScene(reader.Read<string>("LastScene"));
-            var save = QuickSaveWriter.Create("GameSave");
-            save.Write("LastScene", SceneManager.GetActiveScene().name);
-            save.Commit();
             PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>");
             PlayerCombatHUD.TakenAction.Invoke();
         }
@@ -330,11 +325,8 @@ public class UnitController : MonoBehaviour
     // tutorial
     public void RunActionTutorial()
     {
-        var reader = QuickSaveReader.Create("GameSave");
+        var reader = QuickSaveReader.Create("GameInfo");
         SceneManager.LoadScene(reader.Read<string>("LastScene"));
-        var save = QuickSaveWriter.Create("GameSave");
-        save.Write("LastScene", SceneManager.GetActiveScene().name);
-        save.Commit();
         PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino");
         PlayerCombatHUD.TakenAction.Invoke();
         unit.Experience = 1;

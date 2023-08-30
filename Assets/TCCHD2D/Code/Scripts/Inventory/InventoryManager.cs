@@ -68,7 +68,7 @@ public class InventoryManager : SerializedMonoBehaviour
         }
         
         //Load
-        var itemReader = QuickSaveReader.Create("Inventory");
+        var itemReader = QuickSaveReader.Create("GameSave");
         foreach (var key in itemReader.GetAllKeys())
         {
             if (inventory.Exists(item => item.ItemName == key))
@@ -91,7 +91,7 @@ public class InventoryManager : SerializedMonoBehaviour
                 }
             }
         }
-        var equipmentReader = QuickSaveReader.Create("EquipmentSlots");
+        var equipmentReader = QuickSaveReader.Create("GameSave");
         foreach (var key in equipmentReader.GetAllKeys())
         {
             if (equipmentSlots.Exists(slot => slot.slotType.ToString() == key))
@@ -127,7 +127,7 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="item">The consumable item to be added.</param>
     public void AddConsumableItem(Consumable item)
     {
-        var writer = QuickSaveWriter.Create("Inventory");
+        var writer = QuickSaveWriter.Create("InventoryInfo");
         if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
         {
             item.CurrentStack++;
@@ -152,7 +152,7 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="item">The equipment item to be added.</param>
     public void AddEquipmentItem(Equipment item)
     {
-        var writer = QuickSaveWriter.Create("Inventory");
+        var writer = QuickSaveWriter.Create("InventoryInfo");
         if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
         {
             item.CurrentStack++;
@@ -225,7 +225,7 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="equipment">The equipment to be equipped.</param>
     public void Equip(Equipment equipment)
     {
-        var writer = QuickSaveWriter.Create("EquipmentSlots");
+        var writer = QuickSaveWriter.Create("InventoryInfo");
         var slot = equipmentSlots.Find(x => x.slotType == equipment.SlotType);
         if (slot == null) return;
         if (slot.equipItem == equipment)
@@ -267,7 +267,7 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="equipment">The equipment to be unequipped.</param>
     public void Unequip(Equipment equipment)
     {
-        var writer = QuickSaveWriter.Create("EquipmentSlots");
+        var writer = QuickSaveWriter.Create("InventoryInfo");
         var slot = equipmentSlots.Find(x => x.slotType == equipment.SlotType);
         if (slot == null) return;
         if (slot.equipItem != equipment)

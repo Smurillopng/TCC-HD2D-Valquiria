@@ -1,7 +1,6 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 09/03/2023
 
-using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;

@@ -153,7 +153,7 @@ public class Consumable : ScriptableObject, IItem
                 }
             }
         }
-        var writer = QuickSaveWriter.Create("Inventory");
+        var writer = QuickSaveWriter.Create("InventoryInfo");
         writer.Write(itemName, currentStack);
         writer.Commit();
     }
@@ -186,7 +186,7 @@ public class Consumable : ScriptableObject, IItem
                 }
             }
         }
-        var writer = QuickSaveWriter.Create("Inventory");
+        var writer = QuickSaveWriter.Create("InventoryInfo");
         writer.Write(itemName, currentStack);
         writer.Commit();
     }
@@ -237,7 +237,7 @@ public class Consumable : ScriptableObject, IItem
                 }
             }
         }
-        var writer = QuickSaveWriter.Create("Inventory");
+        var writer = QuickSaveWriter.Create("InventoryInfo");
         writer.Write(itemName, currentStack);
         writer.Commit();
     }

@@ -128,10 +128,7 @@ public class TurnManager : MonoBehaviour
         switch (_combatState)
         {
             case CombatState.CombatStart:
-                var save = QuickSaveWriter.Create("GameSave");
-                save.Write("CurrentScene", SceneManager.GetActiveScene().name);
-                save.Commit();
-                var reader = QuickSaveReader.Create("GameSave");
+                var reader = QuickSaveReader.Create("GameInfo");
                 // Add all (player and enemy) units to the list
                 foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
                 {
@@ -372,11 +369,7 @@ public class TurnManager : MonoBehaviour
         DisplayVictoryText();
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
-        var lastScene = QuickSaveReader.Create("GameSave").Read<string>("LastScene");
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("LastScene", SceneManager.GetActiveScene().name);
-        writer.Write("Experience", PlayerUnitController.Unit.Experience);
-        writer.Commit();
+        var lastScene = QuickSaveReader.Create("GameInfo").Read<string>("LastScene");
         SceneManager.LoadScene(lastScene);
     }
     /// <summary>Calculates and applies the experience reward for defeating an enemy unit.</summary>
@@ -402,6 +395,7 @@ public class TurnManager : MonoBehaviour
                              .Experience;
             PlayerUnitController.Unit.Experience += EnemyUnitController.Unit.ExperienceDrop;
             PlayerUnitController.Unit.CheckLevelUp();
+            PlayerUnitController.Unit.Experience = 0;
             PlayerUnitController.Unit.Experience += xpLeft;
         }
     }

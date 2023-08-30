@@ -642,7 +642,7 @@ MonoBehaviour:
   speed: 1
   luck: 1
   dexterity: 1
-  attributesPoints: 1
+  attributesPoints: 0
   isPlayer: 1
   isDangerous: 0
   resetOnExit: 1

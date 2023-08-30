@@ -124,12 +124,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!gameObject.TryGetComponent(out rigidBody))
             rigidBody = gameObject.AddComponent<Rigidbody>();
-        var reader = QuickSaveReader.Create("GameSave");
+        var reader = QuickSaveReader.Create("GameInfo");
         if (!reader.Exists("ChangingScene"))
         {
-            var writer = QuickSaveWriter.Create("GameSave");
+            var writer = QuickSaveWriter.Create("GameInfo");
             writer.Write("ChangingScene", false);
             writer.Commit();
+            var saveReader = QuickSaveReader.Create("GameSave");
+            if (saveReader.Exists("PlayerPosition"))
+                transform.position = saveReader.Read<Vector3>("PlayerPosition");
         }
         
         if (reader.Exists("ChangingScene"))
@@ -137,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
             if (reader.Exists("SpawnStart") ||
                 reader.Exists("SpawnEnd") && reader.Read<bool>("ChangingScene").Equals(true))
             {
-                var writer = QuickSaveWriter.Create("GameSave");
+                var writer = QuickSaveWriter.Create("GameInfo");
                 if (reader.Read<bool>("SpawnStart").Equals(true))
                 {
                     transform.position = spawnController.SpawnStart.position;
@@ -173,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        var save = QuickSaveWriter.Create("GameSave");
+        var save = QuickSaveWriter.Create("GameInfo");
         save.Write("CurrentScene", SceneManager.GetActiveScene().name);
         save.Commit();
     }
@@ -190,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        var writer = QuickSaveWriter.Create("GameSave");
+        var writer = QuickSaveWriter.Create("GameInfo");
         writer.Write("PlayerPosition", transform.position);
         writer.Commit();
     }

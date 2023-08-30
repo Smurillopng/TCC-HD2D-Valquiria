@@ -40,7 +40,7 @@ public class GlobalHelper : MonoBehaviour
     
     public void SaveDestroyObject(GameObject target)
     {
-        var saveData = QuickSaveWriter.Create("GameSave");
+        var saveData = QuickSaveWriter.Create("ItemInfo");
         saveData.Write($"{target.name}", true);
         saveData.Commit();
         target.SetActive(false);
@@ -48,9 +48,9 @@ public class GlobalHelper : MonoBehaviour
     
     public void CheckSaveData(GameObject target)
     {
-        if (QuickSaveReader.Create("GameSave").Exists($"{target.name}"))
+        if (QuickSaveReader.Create("ItemInfo").Exists($"{target.name}"))
         {
-            var saveData = QuickSaveReader.Create("GameSave");
+            var saveData = QuickSaveReader.Create("ItemInfo");
             if (saveData.Read<bool>($"{target.name}"))
             {
                 target.SetActive(false);

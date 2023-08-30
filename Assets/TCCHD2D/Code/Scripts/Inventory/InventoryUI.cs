@@ -68,9 +68,15 @@ public class InventoryUI : MonoBehaviour
 
     [BoxGroup("External References")]
     [SerializeField]
+    private Button autoHealButton;
+    
+    [BoxGroup("External References")]
+    [SerializeField]
     private Unit playerUnit;
 
-    [SerializeField] private GameObject itemPrefab;
+    [BoxGroup("External References")]
+    [SerializeField] 
+    private GameObject itemPrefab;
 
     [BoxGroup("External References")]
     [SerializeField]
@@ -98,6 +104,10 @@ public class InventoryUI : MonoBehaviour
         if (reader.Exists("Level")) playerUnit.Level = reader.Read<int>("Level");
         if (reader.Exists("Experience")) playerUnit.Experience = reader.Read<int>("Experience");
         if (reader.Exists("AttributesPoints")) playerUnit.AttributesPoints = reader.Read<int>("AttributesPoints");
+        if (reader.Exists("PlayerMaxHealth")) playerUnit.MaxHp = reader.Read<int>("PlayerMaxHealth");
+        if (reader.Exists("PlayerCurrentHealth")) playerUnit.CurrentHp = reader.Read<int>("PlayerCurrentHealth");
+        if (reader.Exists("PlayerMaxTp")) playerUnit.MaxTp = reader.Read<int>("PlayerMaxTp");
+        if (reader.Exists("PlayerCurrentTp")) playerUnit.CurrentTp = reader.Read<int>("PlayerCurrentTp");
     }
 
     public void ShowBagPanel()
@@ -372,6 +382,7 @@ public class InventoryUI : MonoBehaviour
             updatedStatus = false;
         }
         
+        if (autoHealButton.gameObject.activeSelf) autoHealButton.interactable = playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp;
         availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}": string.Empty;
         lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
@@ -385,49 +396,43 @@ public class InventoryUI : MonoBehaviour
         playerUnit.Attack++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerAttack", playerUnit.Attack);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
     }
     public void LvlUpDefence()
     {
         playerUnit.Defence++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerDefence", playerUnit.Defence);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
     }
     public void LvlUpSpeed()
     {
         playerUnit.Speed++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerSpeed", playerUnit.Speed);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
     }
     public void LvlUpLuck()
     {
         playerUnit.Luck++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerLuck", playerUnit.Luck);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
     }
     public void LvlUpDexterity()
     {
         playerUnit.Dexterity++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerDexterity", playerUnit.Dexterity);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
+    }
+
+    public void AutoHeal()
+    {
+        if (playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp)
+            while (playerUnit.CurrentTp >= 10)
+            {
+                playerUnit.CurrentTp -= 10;
+                playerUnit.CurrentHp += 1;
+                if (playerUnit.CurrentHp <= playerUnit.MaxHp) continue;
+                playerUnit.CurrentHp = playerUnit.MaxHp;
+                break;
+            }
+        UpdatePlayerStatus(playerUnit);
     }
 }

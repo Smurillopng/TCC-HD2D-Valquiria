@@ -1,3 +1,4 @@
+using System.Collections;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -63,6 +64,8 @@ public class UnitController : MonoBehaviour
     public int defenceCalculated;
     public int speedCalculated;
     public int charges;
+    
+    private int _ongoingChargeAttacks = 0;
     
 
     #endregion
@@ -131,6 +134,10 @@ public class UnitController : MonoBehaviour
             unit.CurrentHp = unit.MaxHp;
         if (!unit.IsPlayer && unit.CurrentHp > unit.MaxHp)
             unit.CurrentHp = unit.MaxHp;
+        if (charges <= 0)
+        {
+            StopCoroutine(ChargeAttackCoroutine(null)); // Stop the coroutine
+        }
     }
 
     #endregion
@@ -144,8 +151,6 @@ public class UnitController : MonoBehaviour
     {
         AttackLogic(target);
         PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
-        PlayerCombatHUD.TakenAction.Invoke();
     }
     /// <summary>Executes the attack logic on a target unit.</summary>
     /// <param name="target">The target unit to attack.</param>
@@ -155,17 +160,49 @@ public class UnitController : MonoBehaviour
     /// If the unit is a player, it sets up the animation and signal bindings for the basic attack.
     /// If the player has a weapon equipped, it plays the appropriate attack animation based on the weapon's attack type.
     /// If the player's TP is less than the maximum TP, it increases the TP by 10 and updates the player's TP
+    /// </remarks>
     private void AttackLogic(UnitController target)
     {
+        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
         attackDamageCalculated = unit.Attack;
         if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
             attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+        CalcDamage(target);
         if (charges > 0)
         {
-            charges++;
-            attackDamageCalculated += charges;
-            charges -= charges;
+            StartCoroutine(ChargeAttackCoroutine(target));
         }
+        else
+        {
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+        if (_ongoingChargeAttacks > 0)
+        {
+            StartCoroutine(WaitForChargeAttacksToFinish());
+        }
+    }
+    
+    private IEnumerator ChargeAttackCoroutine(UnitController target)
+    {
+        _ongoingChargeAttacks++; // Increment the counter
+        while (charges > 0)
+        {
+            charges--;
+            var animationDuration = (float)Director.duration;
+            yield return new WaitForSeconds(animationDuration); // Wait for the animation to finish
+            CalcDamage(target);
+        }
+        _ongoingChargeAttacks--; // Decrement the counter
+    }
+    
+    private IEnumerator WaitForChargeAttacksToFinish()
+    {
+        yield return new WaitWhile(() => _ongoingChargeAttacks > 0); // Wait until all ongoing charge attacks finish
+        PlayerCombatHUD.TakenAction.Invoke();
+    }
+
+    public void CalcDamage(UnitController target)
+    {
         if (unit.IsPlayer)
         {
             var enemyObject = GameObject.FindWithTag("Enemy");

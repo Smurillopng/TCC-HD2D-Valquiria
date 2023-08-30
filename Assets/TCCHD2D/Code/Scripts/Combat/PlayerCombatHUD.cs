@@ -131,7 +131,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public GameObject OptionsPanel => optionsPanel;
     public Button ReturnButton => returnButton;
 
-    private bool _charging = false;
+    private bool _charging;
 
     #endregion
 

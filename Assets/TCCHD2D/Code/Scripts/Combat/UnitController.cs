@@ -57,11 +57,13 @@ public class UnitController : MonoBehaviour
     [SerializeField, Tooltip("The text that displays the damage taken by the unit.")]
     private TMP_Text damageText;
 
+    public float damageVariation;
     public int damageTakenThisTurn;
     public int attackDamageCalculated;
     public int defenceCalculated;
     public int speedCalculated;
-    public int _charges;
+    public int charges;
+    
 
     #endregion
 
@@ -81,8 +83,8 @@ public class UnitController : MonoBehaviour
     public TimelineAsset Run => run;
     public int Charges
     {
-        get => _charges;
-        set => _charges = value;
+        get => charges;
+        set => charges = value;
     }
 
     #endregion
@@ -158,11 +160,11 @@ public class UnitController : MonoBehaviour
         attackDamageCalculated = unit.Attack;
         if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
             attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-        if (_charges > 0)
+        if (charges > 0)
         {
-            _charges++;
-            attackDamageCalculated += _charges;
-            _charges -= _charges;
+            charges++;
+            attackDamageCalculated += charges;
+            charges -= charges;
         }
         if (unit.IsPlayer)
         {
@@ -209,7 +211,8 @@ public class UnitController : MonoBehaviour
                 unit.CurrentTp = unit.MaxTp;
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
         }
-        target.TakeDamage(attackDamageCalculated);
+        var randomFactor = Random.Range(1f - damageVariation, 1f + damageVariation);
+        target.TakeDamage(Mathf.RoundToInt(attackDamageCalculated * randomFactor));
     }
     /// <summary>Reduces the unit's health by the given amount of damage, taking into account the unit's defense and equipment.</summary>
     /// <param name="damage">The amount of damage to be taken.</param>

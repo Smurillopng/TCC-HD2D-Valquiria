@@ -68,9 +68,15 @@ public class InventoryUI : MonoBehaviour
 
     [BoxGroup("External References")]
     [SerializeField]
+    private Button autoHealButton;
+    
+    [BoxGroup("External References")]
+    [SerializeField]
     private Unit playerUnit;
 
-    [SerializeField] private GameObject itemPrefab;
+    [BoxGroup("External References")]
+    [SerializeField] 
+    private GameObject itemPrefab;
 
     [BoxGroup("External References")]
     [SerializeField]
@@ -372,6 +378,7 @@ public class InventoryUI : MonoBehaviour
             updatedStatus = false;
         }
         
+        if (autoHealButton.gameObject.activeSelf) autoHealButton.interactable = playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp;
         availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}": string.Empty;
         lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
@@ -408,6 +415,20 @@ public class InventoryUI : MonoBehaviour
     {
         playerUnit.Dexterity++;
         playerUnit.AttributesPoints--;
+        UpdatePlayerStatus(playerUnit);
+    }
+
+    public void AutoHeal()
+    {
+        if (playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp)
+            while (playerUnit.CurrentTp >= 10)
+            {
+                playerUnit.CurrentTp -= 10;
+                playerUnit.CurrentHp += 1;
+                if (playerUnit.CurrentHp <= playerUnit.MaxHp) continue;
+                playerUnit.CurrentHp = playerUnit.MaxHp;
+                break;
+            }
         UpdatePlayerStatus(playerUnit);
     }
 }

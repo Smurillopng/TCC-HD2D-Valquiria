@@ -34,6 +34,10 @@ public class SavePoint : MonoBehaviour
         save.Write("PlayerLuck", playerUnit.Luck);
         save.Write("PlayerDexterity", playerUnit.Dexterity);
         save.Write("AttributesPoints", playerUnit.AttributesPoints);
+        save.Write("PlayerMaxHealth", playerUnit.MaxHp);
+        save.Write("PlayerCurrentHealth", playerUnit.CurrentHp);
+        save.Write("PlayerMaxTp", playerUnit.MaxTp);
+        save.Write("PlayerCurrentTp", playerUnit.CurrentTp);
         save.Write("PlayerPosition", _playerMovement.transform.position);
         save.Write("CurrentScene", SceneManager.GetActiveScene().name);
         

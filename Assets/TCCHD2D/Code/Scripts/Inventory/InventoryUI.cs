@@ -104,6 +104,10 @@ public class InventoryUI : MonoBehaviour
         if (reader.Exists("Level")) playerUnit.Level = reader.Read<int>("Level");
         if (reader.Exists("Experience")) playerUnit.Experience = reader.Read<int>("Experience");
         if (reader.Exists("AttributesPoints")) playerUnit.AttributesPoints = reader.Read<int>("AttributesPoints");
+        if (reader.Exists("PlayerMaxHealth")) playerUnit.MaxHp = reader.Read<int>("PlayerMaxHealth");
+        if (reader.Exists("PlayerCurrentHealth")) playerUnit.CurrentHp = reader.Read<int>("PlayerCurrentHealth");
+        if (reader.Exists("PlayerMaxTp")) playerUnit.MaxTp = reader.Read<int>("PlayerMaxTp");
+        if (reader.Exists("PlayerCurrentTp")) playerUnit.CurrentTp = reader.Read<int>("PlayerCurrentTp");
     }
 
     public void ShowBagPanel()

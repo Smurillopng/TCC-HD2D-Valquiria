@@ -81,13 +81,13 @@ public class InventoryManager : SerializedMonoBehaviour
                 {
                     var item = possibleConsumables.First(item => item.ItemName == key);
                     item.CurrentStack = itemReader.Read<int>(key);
-                    inventory.Add(item);
+                    if (item.CurrentStack > 0 ) inventory.Add(item);
                 }
                 else if (possibleEquipment.Any(item => item.ItemName == key))
                 {
                     var item = possibleEquipment.First(item => item.ItemName == key);
                     item.CurrentStack = itemReader.Read<int>(key);
-                    inventory.Add(item);
+                    if (item.CurrentStack > 0 ) inventory.Add(item);
                 }
             }
         }

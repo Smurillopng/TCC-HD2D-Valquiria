@@ -110,13 +110,23 @@ public class Unit : SerializedScriptableObject
     }
     public List<StatsTable> StatsTables => statsTable;
     public TimelineAsset AttackAnimation => attackAnimation;
-    public int MaxHp => maxHp;
+    public int MaxHp
+    {
+        get => maxHp;
+        set => maxHp = value;
+    }
+
     public int CurrentHp
     {
         get => currentHp;
         set => currentHp = value;
     }
-    public int MaxTp => maxTp;
+    public int MaxTp
+    {
+        get => maxTp;
+        set => maxTp = value;
+    }
+
     public int CurrentTp
     {
         get => currentTp;
@@ -219,6 +229,7 @@ public class Unit : SerializedScriptableObject
         if (!statsTable.Any(statGroup => statGroup.Level == level + 1) || experience < statsTable.First(statGroup => statGroup.Level == level + 1).Experience) return;
         level++;
         attributesPoints++;
+        maxHp += 2;
     }
 
     public struct StatsTable

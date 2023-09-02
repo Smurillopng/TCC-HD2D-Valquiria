@@ -39,7 +39,7 @@ public class PlayerCombatHUD : MonoBehaviour
 
     [SerializeField]
     [Tooltip("The fill image of the player's charges bar")]
-    private Image playerCharges;
+    public Image playerCharges;
 
     [SerializeField]
     [Tooltip("The vfx for the player charged stance")]
@@ -118,6 +118,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
     public static UnityAction UpdateCombatHUD;
+    public static UnityAction<bool> ForceDisableButtons;
 
     [SerializeField]
     [Tooltip("The manager for controlling turns in combat.")]
@@ -146,6 +147,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
         UpdateCombatHUD += UpdateCombatHUDs;
         TakenAction += UpdateCharges;
+        ForceDisableButtons += DisableButtons;
     }
     /// <summary>Updates the combat HUD with the current player and enemy health, TP, and charges.</summary>
     /// <remarks>Also subscribes to various events to update the HUD as the combat progresses.</remarks>
@@ -178,7 +180,6 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </remarks>
     private void Update()
     {
-        DisableButtons(!turnManager.isPlayerTurn);
         if (_charging)
         {
             specialButton.interactable = false;
@@ -205,6 +206,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
         UpdateCombatHUD -= UpdateCombatHUDs;
         TakenAction -= UpdateCharges;
+        ForceDisableButtons -= DisableButtons;
     }
 
     #endregion
@@ -223,7 +225,7 @@ public class PlayerCombatHUD : MonoBehaviour
     }
     /// <summary>Updates the player's charges if the player's turn has started and the player is not currently charging.</summary>
     /// <remarks>Increments the fill amount of the player's charges by 0.25f if it is less than 1.</remarks>
-    private void UpdateCharges()
+    public void UpdateCharges()
     {
         if (playerCharges.fillAmount < 1 && turnManager.isPlayerTurn && !_charging)
             playerCharges.fillAmount += 0.25f;
@@ -357,6 +359,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>");
                 //turnManager.isPlayerTurn = false;
                 TakenAction.Invoke();
+                ForceDisableButtons.Invoke(true);
             });
         }
     }

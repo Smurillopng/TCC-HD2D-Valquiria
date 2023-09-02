@@ -107,6 +107,7 @@ public class Specials : MonoBehaviour
             PlayerCombatHUD.UpdateCombatHUD.Invoke();
             PlayerCombatHUD.CombatTextEvent.Invoke($"Curou <color=green>{heal}</color> HP");
             PlayerCombatHUD.TakenAction.Invoke();
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
@@ -172,6 +173,7 @@ public class Specials : MonoBehaviour
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
             PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Golpe Pesado</color> em <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
             PlayerCombatHUD.TakenAction.Invoke();
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
@@ -236,6 +238,7 @@ public class Specials : MonoBehaviour
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
             PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Ataque Fulminante</color> em <color=blue>{enemy.Unit.UnitName}</color> causando <color=red>{enemy.damageTakenThisTurn}</color> de dano</b>");
             PlayerCombatHUD.TakenAction.Invoke();
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {

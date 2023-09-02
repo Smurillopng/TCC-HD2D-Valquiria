@@ -217,6 +217,7 @@ public class TurnManager : MonoBehaviour
                     _combatState = CombatState.PlayerTurn;
                     onTurnStart.Invoke();
                     isPlayerTurn = true;
+                    PlayerCombatHUD.ForceDisableButtons.Invoke(false);
                     // Wait for player input
                 }
                 if (units[currentUnitIndex].Unit.HasTakenTurn)

@@ -91,10 +91,15 @@ public class InventoryUI : MonoBehaviour
     private InventoryManager inventoryManager;
 
     public Unit PlayerUnit => playerUnit;
+    
+    private bool _gameStarted;
 
     private void Start()
     {
         inventoryManager = InventoryManager.Instance;
+        if (QuickSaveReader.Create("GameInfo").Exists("GameStarted"))
+            _gameStarted = QuickSaveReader.Create("GameInfo").Read<bool>("GameStarted");
+        if (_gameStarted) return;
         var reader = QuickSaveReader.Create("GameSave");
         if (reader.Exists("PlayerAttack")) playerUnit.Attack = reader.Read<int>("PlayerAttack");
         if (reader.Exists("PlayerDefence")) playerUnit.Defence = reader.Read<int>("PlayerDefence");
@@ -108,6 +113,8 @@ public class InventoryUI : MonoBehaviour
         if (reader.Exists("PlayerCurrentHealth")) playerUnit.CurrentHp = reader.Read<int>("PlayerCurrentHealth");
         if (reader.Exists("PlayerMaxTp")) playerUnit.MaxTp = reader.Read<int>("PlayerMaxTp");
         if (reader.Exists("PlayerCurrentTp")) playerUnit.CurrentTp = reader.Read<int>("PlayerCurrentTp");
+        _gameStarted = true;
+        QuickSaveWriter.Create("GameInfo").Write("GameStarted", _gameStarted).Commit();
     }
 
     public void ShowBagPanel()

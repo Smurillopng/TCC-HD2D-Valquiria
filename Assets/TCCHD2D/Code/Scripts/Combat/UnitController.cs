@@ -65,8 +65,8 @@ public class UnitController : MonoBehaviour
     public int speedCalculated;
     public int charges;
     
-    private int _ongoingChargeAttacks = 0;
-    
+    private int _ongoingChargeAttacks;
+    private PlayerCombatHUD _playerCombatHUD;
 
     #endregion
 
@@ -101,6 +101,7 @@ public class UnitController : MonoBehaviour
     /// </remarks>
     public void Awake()
     {
+        if (_playerCombatHUD == null) _playerCombatHUD = FindObjectOfType<PlayerCombatHUD>();
         if (!unit.IsPlayer)
         {
             unit.IsDead = false;
@@ -199,10 +200,12 @@ public class UnitController : MonoBehaviour
     {
         yield return new WaitWhile(() => _ongoingChargeAttacks > 0); // Wait until all ongoing charge attacks finish
         PlayerCombatHUD.TakenAction.Invoke();
+        _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
     }
 
     public void CalcDamage(UnitController target)
     {
+        PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         if (unit.IsPlayer)
         {
             var enemyObject = GameObject.FindWithTag("Enemy");
@@ -241,7 +244,7 @@ public class UnitController : MonoBehaviour
         else
             Director.Play(basicAttack);
 
-        if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp)
+        if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp && charges <= 0)
         {
             unit.CurrentTp += 10;
             if (unit.CurrentTp > unit.MaxTp)
@@ -310,11 +313,14 @@ public class UnitController : MonoBehaviour
             SceneManager.LoadScene(reader.Read<string>("LastScene"));
             PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>");
             PlayerCombatHUD.TakenAction.Invoke();
+            _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
             PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>");
             PlayerCombatHUD.TakenAction.Invoke();
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
     }
     /// <summary>Runs a logic that involves a random chance and a unit's luck.</summary>

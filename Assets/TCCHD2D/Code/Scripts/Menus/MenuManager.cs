@@ -21,6 +21,7 @@ public class MenuManager : MonoBehaviour
     {
         if (sceneName == "scn_optionsMenu")
             previousScene.Value = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
     }
 
     public void NewGame()

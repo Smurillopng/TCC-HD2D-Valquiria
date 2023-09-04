@@ -432,7 +432,7 @@ public class InventoryUI : MonoBehaviour
     public void AutoHeal()
     {
         if (playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp)
-            while (playerUnit.CurrentTp >= 10)
+            while (playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp)
             {
                 playerUnit.CurrentTp -= 10;
                 playerUnit.CurrentHp += 1;

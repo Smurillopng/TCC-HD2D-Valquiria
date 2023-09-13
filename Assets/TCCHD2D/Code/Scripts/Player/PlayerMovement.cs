@@ -12,8 +12,6 @@ using UnityEngine.SceneManagement;
 [HideMonoScript]
 public class PlayerMovement : MonoBehaviour
 {
-    //TODO: Add running animation
-
     #region === Variables ===============================================================
 
     [TitleGroup("Input Variables", Alignment = TitleAlignments.Centered)]
@@ -61,11 +59,6 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The distance of the raycast that detects the diagonal collisions.")]
     private float rayDistanceDiagonal;
 
-    [SerializeField]
-    [Range(0,1)]
-    [Tooltip("How much the player will be slowed down when near the edge of a tile.")]
-    private float slowFactor;
-
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     [Required]
@@ -107,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Ray _rightRay, _leftRay, _forwardRay, _backRay;
 
-    private Vector3 _dirRight = Vector3.right,
+    private readonly Vector3 _dirRight = Vector3.right,
         _dirLeft = Vector3.left,
         _dirForward = Vector3.forward,
         _dirBack = Vector3.back;
@@ -253,22 +246,22 @@ public class PlayerMovement : MonoBehaviour
         if ((Physics.Raycast(rayPosition, dir, rayDistance, groundLayer) && direction.Value.x > 0)
             || (!Physics.Raycast(_rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0))
         {
-            movementValue *= slowFactor;
+            movementValue = new Vector3(0, 0, direction.Value.y);
         }
         else if ((Physics.Raycast(rayPosition, -dir, rayDistance, groundLayer) && direction.Value.x < 0)
                  || (!Physics.Raycast(_leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0))
         {
-            movementValue *= slowFactor;
+            movementValue = new Vector3(0, 0, direction.Value.y);
         }
         else if ((Physics.Raycast(rayPosition, _dirForward, rayDistance, groundLayer) && direction.Value.y > 0)
                  || (!Physics.Raycast(_forwardRay, rayDistanceDiagonal, groundLayer) && direction.Value.y > 0))
         {
-            movementValue *= slowFactor;
+            movementValue = new Vector3(direction.Value.x, 0, 0);
         }
         else if ((Physics.Raycast(rayPosition, _dirBack, rayDistance, groundLayer) && direction.Value.y < 0)
                  || (!Physics.Raycast(_backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0))
         {
-            movementValue *= slowFactor;
+            movementValue = new Vector3(direction.Value.x, 0, 0);
         }
 
         if (direction.Value.x != 0 && direction.Value.y != 0)

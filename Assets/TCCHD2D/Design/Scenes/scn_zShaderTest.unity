@@ -996,9 +996,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mat: {fileID: 2100000, guid: b0d35499e79747942bc22f07bec70176, type: 2}
-  min: 2
-  max: 5
+  min: -1800
+  max: 1800
   current: 0
+  speedTransition: 1000
 --- !u!114 &844703911
 MonoBehaviour:
   m_ObjectHideFlags: 0

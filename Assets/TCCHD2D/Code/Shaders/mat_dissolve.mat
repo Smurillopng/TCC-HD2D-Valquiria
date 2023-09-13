@@ -52,9 +52,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Cutoff_Height: 2
+    - _Cutoff_Height: -1800
     - _Noise_Scale: 50
-    - _Noise_Strength: 0.08
+    - _Noise_Strength: 250
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

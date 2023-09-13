@@ -6,12 +6,25 @@ public class SceneTransition : MonoBehaviour
 {
     public Material mat;
 
-    public float min, max, current;
+    public float min, max, current, speedTransition, acelerationValue;
+    
+    float aceleration = 1f;
 
     bool pressed = false;
 
+    private void Start()
+    {
+        pressed = true;
+        current = max;
+    }
+
     private void Update()
     {
+        if(current != max && current != min)
+        {
+            aceleration = aceleration * acelerationValue;
+        }
+        
         // Aumentar o valor quando a tecla de espaço for pressionada
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -20,7 +33,8 @@ public class SceneTransition : MonoBehaviour
         
         if (pressed == true)
         {
-            current += 1f * Time.deltaTime;
+            current += speedTransition * Time.deltaTime * aceleration;
+            
         }
         
         // Diminuir o valor quando outra tecla for pressionada
@@ -31,16 +45,18 @@ public class SceneTransition : MonoBehaviour
         
         if (pressed == false)
         {
-            current -= 1f * Time.deltaTime;
+            current -= speedTransition * Time.deltaTime * aceleration;
         }
 
         if(current > max)
         {
             current = max;
+            aceleration = 1;
         }
         if(current < min)
         {
             current = min;
+            aceleration = 1;
         }
 
 

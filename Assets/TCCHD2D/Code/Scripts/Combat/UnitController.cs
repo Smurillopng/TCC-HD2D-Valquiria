@@ -164,23 +164,18 @@ public class UnitController : MonoBehaviour
     /// </remarks>
     private void AttackLogic(UnitController target)
     {
-        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
         attackDamageCalculated = unit.Attack;
         if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
             attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
         CalcDamage(target);
+        
         if (charges > 0)
-        {
             StartCoroutine(ChargeAttackCoroutine(target));
-        }
         else
-        {
             PlayerCombatHUD.TakenAction.Invoke();
-        }
+        
         if (_ongoingChargeAttacks > 0)
-        {
             StartCoroutine(WaitForChargeAttacksToFinish());
-        }
     }
     
     private IEnumerator ChargeAttackCoroutine(UnitController target)
@@ -192,6 +187,7 @@ public class UnitController : MonoBehaviour
             var animationDuration = (float)Director.duration;
             yield return new WaitForSeconds(animationDuration); // Wait for the animation to finish
             CalcDamage(target);
+            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
         }
         _ongoingChargeAttacks--; // Decrement the counter
     }
@@ -252,7 +248,9 @@ public class UnitController : MonoBehaviour
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
         }
         var randomFactor = Random.Range(1f - damageVariation, 1f + damageVariation);
-        target.TakeDamage(Mathf.RoundToInt(attackDamageCalculated * randomFactor));
+        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * randomFactor);
+        target.TakeDamage(calculatedDamage);
+        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
     }
     /// <summary>Reduces the unit's health by the given amount of damage, taking into account the unit's defense and equipment.</summary>
     /// <param name="damage">The amount of damage to be taken.</param>

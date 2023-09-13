@@ -83,7 +83,7 @@ namespace MuriPNG.Audio
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             if (sound.Source.isPlaying) return;
-            sound?.Play();
+            sound.Play();
         }
         /// <summary>Plays a sound clip at a specified volume.</summary>
         /// <param name="clipName">The name of the sound clip to play.</param>
@@ -94,7 +94,7 @@ namespace MuriPNG.Audio
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             sound.Volume = volume;
-            sound?.Play();
+            sound.Play();
         }
         /// <summary>Plays a sound clip once.</summary>
         /// <param name="clipName">The name of the sound clip to play.</param>
@@ -129,13 +129,13 @@ namespace MuriPNG.Audio
         /// <param name="clipName">The name of the sound clip to play.</param>
         /// <param name="fromSeconds">The start time of the clip, in seconds.</param>
         /// <param name="toSeconds">The end time of the clip, in seconds.</param>
-        /// <exception cref="NullReferenceException">Thrown when the sound clip is not found.</exception>
+        /// <exception cref="System.NullReferenceException">Thrown when the sound clip is not found.</exception>
         public void PlaySoundInterval(string clipName, float fromSeconds, float toSeconds)
         {
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             sound.Source.time = fromSeconds;
-            sound?.Play();
+            sound.Play();
             sound.Source.SetScheduledEndTime(AudioSettings.dspTime + (toSeconds - fromSeconds));
         }
         /// <summary>Plays a sound with an intro.</summary>
@@ -165,7 +165,7 @@ namespace MuriPNG.Audio
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             sound.Pitch = Random.Range(0.1f, 3f);
-            sound?.Play();
+            sound.Play();
         }
         /// <summary>Plays a sound with a random pitch.</summary>
         /// <param name="clipName">The name of the sound clip to play.</param>
@@ -177,7 +177,7 @@ namespace MuriPNG.Audio
             CheckAvailableSources();
             var sound = SearchSound(clipName);
             sound.Pitch = Random.Range(minimumPitch, maximumPitch);
-            sound?.Play();
+            sound.Play();
         }
         /// <summary>Stops the sound with the specified name.</summary>
         /// <param name="clipName">The name of the sound to stop.</param>
@@ -192,7 +192,7 @@ namespace MuriPNG.Audio
         public void StopAllSounds()
         {
             foreach (var source in sourceList.Where(audioSource => audioSource.isPlaying))
-                source?.Stop();
+                source.Stop();
         }
         /// <summary>Sets the volume of a specified mixer.</summary>
         /// <param name="mixerName">The name of the mixer to set the volume for.</param>

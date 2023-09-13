@@ -1394,6 +1394,7 @@ MonoBehaviour:
   enemyName: {fileID: 6130109675300411991}
   enemyHealthBarFill: {fileID: 6130109674816381841}
   enemyHealthText: {fileID: 6130109675818719003}
+  combatTextBoxImg: {fileID: 6130109674790692588}
   combatTextBox: {fileID: 6130109673860257135}
   combatTextTimer: 1
   buttonPrefab: {fileID: 8481144931693999151, guid: 1e1dc1467dd0fe04984fe873ba459873,

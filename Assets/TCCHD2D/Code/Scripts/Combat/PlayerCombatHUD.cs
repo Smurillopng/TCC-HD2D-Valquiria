@@ -237,9 +237,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// When the buttons are enabled, the attack, special, and item buttons are shown, as well as the run button.
     /// The charge button is shown only if the player has charges remaining.
     /// </remarks>
-    private void DisableButtons(bool disabled)
+    private void DisableButtons(bool disabled) 
     {
-        switch (disabled)
+        switch (disabled) 
         {
             case true:
                 attackButton.gameObject.SetActive(false);

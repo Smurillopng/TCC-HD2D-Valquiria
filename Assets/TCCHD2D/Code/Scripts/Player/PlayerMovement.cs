@@ -43,19 +43,19 @@ public class PlayerMovement : MonoBehaviour
     [MinValue(1)]
     [Tooltip("Player's movement speed multiplier when running.")]
     private float runSpeedMultiplier = 1;
-    
+
     [TitleGroup("Detection", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     [Tooltip("The layer that represents the ground.")]
     private LayerMask groundLayer;
-    
+
     [SerializeField]
-    [Range(0,1)]
+    [Range(0, 1)]
     [Tooltip("The distance of the raycast that detects the horizontal and forward collisions.")]
     private float rayDistance;
-    
+
     [SerializeField]
-    [Range(0,1)]
+    [Range(0, 1)]
     [Tooltip("The distance of the raycast that detects the diagonal collisions.")]
     private float rayDistanceDiagonal;
 
@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Animator component of the player.")]
     private Animator animator;
 
-    [SerializeField] 
+    [SerializeField]
     [Tooltip("The spawn controller of the game.")]
     private SpawnController spawnController;
 
@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         set => movementValue = value;
     }
 
-    public Vector2 Direction
+    public Vector2 Direction 
     {
         get => direction.Value;
         set => direction.Value = value;
@@ -127,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
             if (saveReader.Exists("PlayerPosition"))
                 transform.position = saveReader.Read<Vector3>("PlayerPosition");
         }
-        
+
         if (reader.Exists("ChangingScene"))
         {
             if (reader.Exists("SpawnStart") ||
@@ -288,7 +288,9 @@ public class PlayerMovement : MonoBehaviour
 
 
         NewPosition = transform.position + (movementValue * (speed * Time.fixedDeltaTime));
-        rigidBody.MovePosition(NewPosition);
+        var smoothedPosition = Vector3.Lerp(transform.position, NewPosition, 0.5f);
+        var smoothedNewPosition = Vector3.Lerp(smoothedPosition, NewPosition, 0.5f);
+        rigidBody.MovePosition(smoothedNewPosition);
     }
 
     #endregion

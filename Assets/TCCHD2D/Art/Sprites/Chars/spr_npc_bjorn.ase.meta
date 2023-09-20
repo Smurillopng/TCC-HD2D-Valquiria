@@ -160,8 +160,8 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
-      width: 18
+      y: 176
+      width: 48
       height: 34
     spriteID: 8ce29a60aa8466b4492c5743139c362c
     spriteBone: []
@@ -171,7 +171,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 4, y: 176}
   - name: spr_npc_bjorn_Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -180,8 +180,8 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 46
-      width: 18
+      y: 218
+      width: 48
       height: 34
     spriteID: 841fa74065606e84ba151a5f6d3aa83d
     spriteBone: []
@@ -191,7 +191,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 46}
+    uvTransform: {x: 4, y: 218}
   - name: spr_npc_bjorn_Frame_2
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -200,8 +200,8 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 88
-      width: 18
+      y: 260
+      width: 48
       height: 34
     spriteID: b07bb790a0f43b74a8063ccf9e17a460
     spriteBone: []
@@ -211,7 +211,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 88}
+    uvTransform: {x: 4, y: 260}
   - name: spr_npc_bjorn_Frame_3
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -219,9 +219,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 56
-      y: 4
-      width: 16
+      x: 4
+      y: 302
+      width: 48
       height: 34
     spriteID: 5686317cf32b7624498220b850eef161
     spriteBone: []
@@ -231,7 +231,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 56, y: 4}
+    uvTransform: {x: 4, y: 302}
   - name: spr_npc_bjorn_Frame_4
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -240,8 +240,8 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 130
-      width: 18
+      y: 344
+      width: 48
       height: 34
     spriteID: ce7c6d23310fb5a408b5000f90cf01dd
     spriteBone: []
@@ -251,7 +251,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 130}
+    uvTransform: {x: 4, y: 344}
   - name: spr_npc_bjorn_Frame_5
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -260,8 +260,8 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 172
-      width: 18
+      y: 386
+      width: 48
       height: 34
     spriteID: 5f3c418c0f556b14fbfbff644b011927
     spriteBone: []
@@ -271,7 +271,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 172}
+    uvTransform: {x: 4, y: 386}
   - name: spr_npc_bjorn_Frame_6
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -279,9 +279,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 56
-      y: 46
-      width: 16
+      x: 4
+      y: 428
+      width: 48
       height: 34
     spriteID: f19deeae7e774da42a74d343e16039db
     spriteBone: []
@@ -291,7 +291,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 56, y: 46}
+    uvTransform: {x: 4, y: 428}
   - name: spr_npc_bjorn_Frame_7
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -300,8 +300,8 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 214
-      width: 18
+      y: 470
+      width: 48
       height: 34
     spriteID: a51f253775d61f247b6fd0989d182982
     spriteBone: []
@@ -311,7 +311,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 214}
+    uvTransform: {x: 4, y: 470}
   - name: spr_npc_bjorn_Frame_8
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -319,9 +319,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 30
+      x: 60
       y: 4
-      width: 18
+      width: 48
       height: 34
     spriteID: d4c934375c093fb4397bdd60ac8d4c4f
     spriteBone: []
@@ -331,7 +331,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 30, y: 4}
+    uvTransform: {x: 60, y: 4}
   - name: spr_npc_bjorn_Frame_9
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -339,9 +339,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 56
-      y: 172
-      width: 16
+      x: 116
+      y: 4
+      width: 48
       height: 33
     spriteID: b705aad66fc67664a8f0f80ea6619739
     spriteBone: []
@@ -351,7 +351,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 56, y: 172}
+    uvTransform: {x: 116, y: 4}
   - name: spr_npc_bjorn_Frame_10
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -359,9 +359,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 80
-      y: 86
-      width: 14
+      x: 4
+      y: 4
+      width: 48
       height: 35
     spriteID: 3edbc2b54b61b9d4f9baad90d253bfc0
     spriteBone: []
@@ -371,7 +371,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 80, y: 86}
+    uvTransform: {x: 4, y: 4}
   - name: spr_npc_bjorn_Frame_11
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -379,9 +379,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 103
-      y: 4
-      width: 13
+      x: 60
+      y: 46
+      width: 48
       height: 34
     spriteID: 28d4b0db00d819b46b21538353a7b915
     spriteBone: []
@@ -391,7 +391,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 103, y: 4}
+    uvTransform: {x: 60, y: 46}
   - name: spr_npc_bjorn_Frame_12
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -399,9 +399,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 80
-      y: 4
-      width: 15
+      x: 116
+      y: 45
+      width: 48
       height: 33
     spriteID: 9887a8fa154e3ee4d90abb88725bee78
     spriteBone: []
@@ -411,7 +411,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 80, y: 4}
+    uvTransform: {x: 116, y: 45}
   - name: spr_npc_bjorn_Frame_13
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -419,9 +419,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 103
-      y: 46
-      width: 13
+      x: 60
+      y: 88
+      width: 48
       height: 34
     spriteID: 8790a00978241ee47999ad15842f8603
     spriteBone: []
@@ -431,7 +431,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 103, y: 46}
+    uvTransform: {x: 60, y: 88}
   - name: spr_npc_bjorn_Frame_14
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -439,9 +439,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 80
-      y: 129
-      width: 14
+      x: 4
+      y: 47
+      width: 48
       height: 35
     spriteID: 7ac72240f94d68b4f93ee103841fb833
     spriteBone: []
@@ -451,7 +451,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 80, y: 129}
+    uvTransform: {x: 4, y: 47}
   - name: spr_npc_bjorn_Frame_15
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -459,9 +459,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 56
-      y: 88
-      width: 16
+      x: 60
+      y: 130
+      width: 48
       height: 34
     spriteID: 45fc9be3a565bff4f8f2af7fc38e2d84
     spriteBone: []
@@ -471,7 +471,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 56, y: 88}
+    uvTransform: {x: 60, y: 130}
   - name: spr_npc_bjorn_Frame_16
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -479,9 +479,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 30
-      y: 46
-      width: 18
+      x: 60
+      y: 172
+      width: 48
       height: 34
     spriteID: a7de0394504008d4081cc439fa6fd52d
     spriteBone: []
@@ -491,7 +491,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 30, y: 46}
+    uvTransform: {x: 60, y: 172}
   - name: spr_npc_bjorn_Frame_17
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -499,9 +499,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 30
-      y: 88
-      width: 18
+      x: 60
+      y: 214
+      width: 48
       height: 34
     spriteID: 56a9e890e2fd9d64db0d0f881516a50b
     spriteBone: []
@@ -511,7 +511,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 30, y: 88}
+    uvTransform: {x: 60, y: 214}
   - name: spr_npc_bjorn_Frame_18
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -519,9 +519,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 56
-      y: 130
-      width: 16
+      x: 60
+      y: 256
+      width: 48
       height: 34
     spriteID: 4e7e73a2a96e56d4d95d8c2bb3f76d39
     spriteBone: []
@@ -531,7 +531,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 56, y: 130}
+    uvTransform: {x: 60, y: 256}
   - name: spr_npc_bjorn_Frame_19
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -539,9 +539,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 30
-      y: 130
-      width: 18
+      x: 60
+      y: 298
+      width: 48
       height: 34
     spriteID: ef2327d4ac562614281fad9e05ea0d66
     spriteBone: []
@@ -551,7 +551,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 30, y: 130}
+    uvTransform: {x: 60, y: 298}
   - name: spr_npc_bjorn_Frame_20
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -559,9 +559,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 30
-      y: 172
-      width: 18
+      x: 60
+      y: 340
+      width: 48
       height: 34
     spriteID: 9d4814fd0cf69b449a7ae2a1cd2a30b5
     spriteBone: []
@@ -571,7 +571,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 30, y: 172}
+    uvTransform: {x: 60, y: 340}
   - name: spr_npc_bjorn_Frame_21
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -579,9 +579,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 56
-      y: 213
-      width: 16
+      x: 116
+      y: 86
+      width: 48
       height: 33
     spriteID: 06af7708d64dce047b4cc7c52b48120d
     spriteBone: []
@@ -591,7 +591,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 56, y: 213}
+    uvTransform: {x: 116, y: 86}
   - name: spr_npc_bjorn_Frame_22
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -599,9 +599,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 80
-      y: 172
-      width: 14
+      x: 4
+      y: 90
+      width: 48
       height: 35
     spriteID: a748e6937e5913d4aa10445a65769969
     spriteBone: []
@@ -611,7 +611,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 80, y: 172}
+    uvTransform: {x: 4, y: 90}
   - name: spr_npc_bjorn_Frame_23
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -619,9 +619,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 103
-      y: 88
-      width: 13
+      x: 60
+      y: 382
+      width: 48
       height: 34
     spriteID: efd59be00d1d10443931a40b723b3ed8
     spriteBone: []
@@ -631,7 +631,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 103, y: 88}
+    uvTransform: {x: 60, y: 382}
   - name: spr_npc_bjorn_Frame_24
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -639,9 +639,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 80
-      y: 45
-      width: 15
+      x: 116
+      y: 127
+      width: 48
       height: 33
     spriteID: 982b82fbec4a95e4da954fdb2e83ad5b
     spriteBone: []
@@ -651,7 +651,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 80, y: 45}
+    uvTransform: {x: 116, y: 127}
   - name: spr_npc_bjorn_Frame_25
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -659,9 +659,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 103
-      y: 130
-      width: 13
+      x: 60
+      y: 424
+      width: 48
       height: 34
     spriteID: 578bcde1fd1e42847826bef2d58de87e
     spriteBone: []
@@ -671,7 +671,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 103, y: 130}
+    uvTransform: {x: 60, y: 424}
   - name: spr_npc_bjorn_Frame_26
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -679,9 +679,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 80
-      y: 215
-      width: 14
+      x: 4
+      y: 133
+      width: 48
       height: 35
     spriteID: 3537722080aae2645aafbc13376b3a7d
     spriteBone: []
@@ -691,7 +691,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 80, y: 215}
+    uvTransform: {x: 4, y: 133}
   - name: spr_npc_bjorn_Frame_27
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -699,9 +699,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 30
-      y: 214
-      width: 18
+      x: 60
+      y: 466
+      width: 48
       height: 34
     spriteID: 5382a043c34919e4a8ff0fda914fa34d
     spriteBone: []
@@ -711,7 +711,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 30, y: 214}
+    uvTransform: {x: 60, y: 466}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -724,225 +724,225 @@ ScriptedImporter:
     - name: spr_npc_bjorn_Frame_0
       frameIndex: 0
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: 8ce29a60aa8466b4492c5743139c362c
     - name: spr_npc_bjorn_Frame_1
       frameIndex: 1
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: 841fa74065606e84ba151a5f6d3aa83d
     - name: spr_npc_bjorn_Frame_2
       frameIndex: 2
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: b07bb790a0f43b74a8063ccf9e17a460
     - name: spr_npc_bjorn_Frame_3
       frameIndex: 3
       cellRect:
-        x: 10
+        x: -13
         y: 2
-        width: 16
+        width: 48
         height: 34
       spriteId: 5686317cf32b7624498220b850eef161
     - name: spr_npc_bjorn_Frame_4
       frameIndex: 4
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: ce7c6d23310fb5a408b5000f90cf01dd
     - name: spr_npc_bjorn_Frame_5
       frameIndex: 5
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: 5f3c418c0f556b14fbfbff644b011927
     - name: spr_npc_bjorn_Frame_6
       frameIndex: 6
       cellRect:
-        x: 10
+        x: -13
         y: 2
-        width: 16
+        width: 48
         height: 34
       spriteId: f19deeae7e774da42a74d343e16039db
     - name: spr_npc_bjorn_Frame_7
       frameIndex: 7
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: a51f253775d61f247b6fd0989d182982
     - name: spr_npc_bjorn_Frame_8
       frameIndex: 8
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: d4c934375c093fb4397bdd60ac8d4c4f
     - name: spr_npc_bjorn_Frame_9
       frameIndex: 9
       cellRect:
-        x: 9
+        x: -13
         y: 3
-        width: 16
+        width: 48
         height: 33
       spriteId: b705aad66fc67664a8f0f80ea6619739
     - name: spr_npc_bjorn_Frame_10
       frameIndex: 10
       cellRect:
-        x: 10
+        x: -13
         y: 1
-        width: 14
+        width: 48
         height: 35
       spriteId: 3edbc2b54b61b9d4f9baad90d253bfc0
     - name: spr_npc_bjorn_Frame_11
       frameIndex: 11
       cellRect:
-        x: 10
+        x: -13
         y: 2
-        width: 13
+        width: 48
         height: 34
       spriteId: 28d4b0db00d819b46b21538353a7b915
     - name: spr_npc_bjorn_Frame_12
       frameIndex: 12
       cellRect:
-        x: 9
+        x: -13
         y: 3
-        width: 15
+        width: 48
         height: 33
       spriteId: 9887a8fa154e3ee4d90abb88725bee78
     - name: spr_npc_bjorn_Frame_13
       frameIndex: 13
       cellRect:
-        x: 10
+        x: -13
         y: 2
-        width: 13
+        width: 48
         height: 34
       spriteId: 8790a00978241ee47999ad15842f8603
     - name: spr_npc_bjorn_Frame_14
       frameIndex: 14
       cellRect:
-        x: 10
+        x: -13
         y: 1
-        width: 14
+        width: 48
         height: 35
       spriteId: 7ac72240f94d68b4f93ee103841fb833
     - name: spr_npc_bjorn_Frame_15
       frameIndex: 15
       cellRect:
-        x: 10
+        x: -13
         y: 2
-        width: 16
+        width: 48
         height: 34
       spriteId: 45fc9be3a565bff4f8f2af7fc38e2d84
     - name: spr_npc_bjorn_Frame_16
       frameIndex: 16
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: a7de0394504008d4081cc439fa6fd52d
     - name: spr_npc_bjorn_Frame_17
       frameIndex: 17
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: 56a9e890e2fd9d64db0d0f881516a50b
     - name: spr_npc_bjorn_Frame_18
       frameIndex: 18
       cellRect:
-        x: 10
+        x: -13
         y: 2
-        width: 16
+        width: 48
         height: 34
       spriteId: 4e7e73a2a96e56d4d95d8c2bb3f76d39
     - name: spr_npc_bjorn_Frame_19
       frameIndex: 19
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: ef2327d4ac562614281fad9e05ea0d66
     - name: spr_npc_bjorn_Frame_20
       frameIndex: 20
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: 9d4814fd0cf69b449a7ae2a1cd2a30b5
     - name: spr_npc_bjorn_Frame_21
       frameIndex: 21
       cellRect:
-        x: 5
+        x: -13
         y: 3
-        width: 16
+        width: 48
         height: 33
       spriteId: 06af7708d64dce047b4cc7c52b48120d
     - name: spr_npc_bjorn_Frame_22
       frameIndex: 22
       cellRect:
-        x: 6
+        x: -13
         y: 1
-        width: 14
+        width: 48
         height: 35
       spriteId: a748e6937e5913d4aa10445a65769969
     - name: spr_npc_bjorn_Frame_23
       frameIndex: 23
       cellRect:
-        x: 7
+        x: -13
         y: 2
-        width: 13
+        width: 48
         height: 34
       spriteId: efd59be00d1d10443931a40b723b3ed8
     - name: spr_npc_bjorn_Frame_24
       frameIndex: 24
       cellRect:
-        x: 6
+        x: -13
         y: 3
-        width: 15
+        width: 48
         height: 33
       spriteId: 982b82fbec4a95e4da954fdb2e83ad5b
     - name: spr_npc_bjorn_Frame_25
       frameIndex: 25
       cellRect:
-        x: 7
+        x: -13
         y: 2
-        width: 13
+        width: 48
         height: 34
       spriteId: 578bcde1fd1e42847826bef2d58de87e
     - name: spr_npc_bjorn_Frame_26
       frameIndex: 26
       cellRect:
-        x: 6
+        x: -13
         y: 1
-        width: 14
+        width: 48
         height: 35
       spriteId: 3537722080aae2645aafbc13376b3a7d
     - name: spr_npc_bjorn_Frame_27
       frameIndex: 27
       cellRect:
-        x: 9
+        x: -13
         y: 2
-        width: 18
+        width: 48
         height: 34
       spriteId: 5382a043c34919e4a8ff0fda914fa34d
     linkedCells: []

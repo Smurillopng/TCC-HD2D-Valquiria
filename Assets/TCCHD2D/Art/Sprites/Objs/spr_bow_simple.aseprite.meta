@@ -119,16 +119,36 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: spr_bow_simple
     originalName: 
-    pivot: {x: 0.3, y: 0}
+    pivot: {x: 0.6818182, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 35
+      y: 4
+      width: 22
+      height: 32
+    spriteID: 333e391ecccc8054c838a74be7fa7ac3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 35, y: 4}
+  - name: spr_bow_simple_Frame_1
+    originalName: 
+    pivot: {x: 0.6956522, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 10
+      width: 23
       height: 32
-    spriteID: 333e391ecccc8054c838a74be7fa7ac3
+    spriteID: 4192e46ac6edffc45bb154ced9467640
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,14 +166,22 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_bow_simple
+    - name: spr_bow_simple_Frame_0
       frameIndex: 0
       cellRect:
-        x: 13
+        x: 1
         y: 0
-        width: 10
+        width: 22
         height: 32
       spriteId: 333e391ecccc8054c838a74be7fa7ac3
+    - name: spr_bow_simple_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 0
+        y: 0
+        width: 23
+        height: 32
+      spriteId: 4192e46ac6edffc45bb154ced9467640
     linkedCells: []
     parentIndex: -1
   platformSettings: []

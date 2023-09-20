@@ -18,7 +18,7 @@ public class SceneTransition : MonoBehaviour
 
     private void Start()
     {
-        playerBar.DOMoveX(-196.0001f, 0).SetEase(Ease.OutQuad);
+        playerBar.DOAnchorPosX(-196.0001f, 0).SetEase(Ease.OutQuad);
 
         minimap.DOAnchorPosX(180.0001f, 0).SetEase(Ease.OutQuad);
 
@@ -55,7 +55,10 @@ public class SceneTransition : MonoBehaviour
         
         if (pressed == false)
         {
-            BotaUI();
+            if(current == min)
+            {
+                BotaUI();
+            }
             current -= speedTransition * Time.deltaTime * aceleration;
         }
 
@@ -77,14 +80,14 @@ public class SceneTransition : MonoBehaviour
     
     void TiraUI()
     {
-        playerBar.DOMoveX(-196.0001f, 1).SetEase(Ease.OutQuad);
+        playerBar.DOAnchorPosX(-196.0001f, 1).SetEase(Ease.OutQuad);
 
         minimap.DOAnchorPosX(180.0001f, 1).SetEase(Ease.OutQuad);
     }
 
     void BotaUI()
     {
-        playerBar.DOMoveX(196.0001f, 1).SetEase(Ease.OutQuad);
+        playerBar.DOAnchorPosX(196.0001f, 1).SetEase(Ease.OutQuad);
 
         minimap.DOAnchorPosX(-180.0001f, 1).SetEase(Ease.OutQuad);
 

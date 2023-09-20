@@ -59,7 +59,7 @@ Material:
     - _Tilling: 4
     m_Colors:
     - _: {r: 0, g: 0, b: 0, a: 0}
-    - _PlayerPosition: {r: 0.5, g: 0.4524534, b: 4.2064066, a: 0}
+    - _PlayerPosition: {r: 0.5, g: 0.4524535, b: 4.2064056, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1669859427733252257
 MonoBehaviour:

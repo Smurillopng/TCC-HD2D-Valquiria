@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
+  m_Name: so_chestIron
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemID: 0
+  slotType: 1
+  attackType: 0
+  itemName: cota de malha
+  itemIcon: {fileID: 5104152301845180453, guid: 2621d847bc908e247a1ad803059396d0,
+    type: 3}
+  itemDescription: Uma malha de ferro.
+  maxStack: 1
+  currentStack: 0
+  itemValue: 0
+  statusValue: 4

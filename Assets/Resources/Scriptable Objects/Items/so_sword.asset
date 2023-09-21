@@ -20,7 +20,7 @@ MonoBehaviour:
   itemIcon: {fileID: -3718156322762420807, guid: dfaef4b399d8a2c478d7d878aeb10cff,
     type: 3}
   itemDescription: "Uma espada bem feita e aparentemente nova, sua l\xE2mina ainda
-    est\xE1 bem afiada"
+    est\xE1 bem afiada. Aumenta +4 de ataque"
   maxStack: 1
   currentStack: 0
   itemValue: 0

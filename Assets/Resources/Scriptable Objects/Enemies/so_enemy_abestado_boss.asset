@@ -95,7 +95,7 @@ MonoBehaviour:
       Data: 
   type: 1
   unitName: Abestado Guerreiro Enfurecido
-  unitSprite: {fileID: 5470260758971073697, guid: 993d1cd5b19fdd141b3328f55fa8a55a,
+  unitSprite: {fileID: -6479328336528819745, guid: 2f319ae647dc0b64080538d78ba84c08,
     type: 3}
   level: 1
   experienceDrop: 15

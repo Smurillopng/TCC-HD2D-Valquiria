@@ -119,7 +119,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: spr_sword_simple
     originalName: 
-    pivot: {x: 0.5, y: -0.4117647}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -127,7 +127,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 32
-      height: 17
+      height: 32
     spriteID: d1616e0007e00e549898e10ca915f0c0
     spriteBone: []
     spriteOutline: []
@@ -137,6 +137,46 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: spr_sword_simple_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 44
+      width: 32
+      height: 32
+    spriteID: 8c81893911e1fed42bd1085584a5fbec
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 44}
+  - name: spr_sword_simple_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 84
+      width: 32
+      height: 32
+    spriteID: 053c7bee8d62640448e7349cee01140e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 84}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -146,14 +186,30 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_sword_simple
+    - name: spr_sword_simple_Frame_0
       frameIndex: 0
       cellRect:
         x: 0
-        y: 7
+        y: 0
         width: 32
-        height: 17
+        height: 32
       spriteId: d1616e0007e00e549898e10ca915f0c0
+    - name: spr_sword_simple_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      spriteId: 8c81893911e1fed42bd1085584a5fbec
+    - name: spr_sword_simple_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      spriteId: 053c7bee8d62640448e7349cee01140e
     linkedCells: []
     parentIndex: -1
   platformSettings: []

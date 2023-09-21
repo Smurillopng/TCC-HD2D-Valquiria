@@ -137,6 +137,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: spr_bow_simple_Frame_1
+    originalName: 
+    pivot: {x: 0.3, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 22
+      y: 4
+      width: 10
+      height: 32
+    spriteID: 168cfe3568428db49a3e23a063346976
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 22, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -146,7 +166,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_bow_simple
+    - name: spr_bow_simple_Frame_0
       frameIndex: 0
       cellRect:
         x: 13
@@ -154,6 +174,14 @@ ScriptedImporter:
         width: 10
         height: 32
       spriteId: 333e391ecccc8054c838a74be7fa7ac3
+    - name: spr_bow_simple_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 13
+        y: 0
+        width: 10
+        height: 32
+      spriteId: 168cfe3568428db49a3e23a063346976
     linkedCells: []
     parentIndex: -1
   platformSettings: []

@@ -137,6 +137,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: spr_pants_leather_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 32
+      y: 4
+      width: 20
+      height: 32
+    spriteID: 745b6412f0a7bf7489ac5f06a9066177
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 32, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -146,7 +166,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_pants_leather
+    - name: spr_pants_leather_Frame_0
       frameIndex: 0
       cellRect:
         x: 6
@@ -154,6 +174,14 @@ ScriptedImporter:
         width: 20
         height: 32
       spriteId: 05f5fcde4a26ba14eb679dfb8fcdb8f2
+    - name: spr_pants_leather_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 6
+        y: 0
+        width: 20
+        height: 32
+      spriteId: 745b6412f0a7bf7489ac5f06a9066177
     linkedCells: []
     parentIndex: -1
   platformSettings: []

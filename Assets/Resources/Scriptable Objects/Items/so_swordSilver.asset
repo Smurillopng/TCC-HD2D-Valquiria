@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
+  m_Name: so_swordSilver
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemID: 3
+  slotType: 3
+  attackType: 0
+  itemName: Espada deprata
+  itemIcon: {fileID: -1762573424784624767, guid: dfaef4b399d8a2c478d7d878aeb10cff,
+    type: 3}
+  itemDescription: Uma espada forjada de prata por um antigo ferreiro. Aumenta +6
+    de ataque
+  maxStack: 1
+  currentStack: 0
+  itemValue: 5
+  statusValue: 6

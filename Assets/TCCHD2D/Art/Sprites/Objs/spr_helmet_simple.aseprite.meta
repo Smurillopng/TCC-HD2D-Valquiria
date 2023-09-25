@@ -117,7 +117,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: spr_helmet_simple
+  - name: spr_helmet_simple_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -128,7 +128,7 @@ ScriptedImporter:
       y: 4
       width: 32
       height: 32
-    spriteID: f9c8cd7ad2e23344785863c64732f69c
+    spriteID: 4861511f2e64c9f4983e52f5e8bddac1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,7 +148,7 @@ ScriptedImporter:
       y: 44
       width: 32
       height: 32
-    spriteID: 0d0925661a34ae64b84d9f84424d84fe
+    spriteID: 61fc7979ca34ed041b9c8b1d16955f40
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -168,7 +168,7 @@ ScriptedImporter:
       y: 84
       width: 32
       height: 32
-    spriteID: c052b55d10ec8cd409c82811b10701ef
+    spriteID: fffc466eb47e119428be1f4eba08930b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -193,7 +193,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: f9c8cd7ad2e23344785863c64732f69c
+      spriteId: 4861511f2e64c9f4983e52f5e8bddac1
     - name: spr_helmet_simple_Frame_1
       frameIndex: 1
       cellRect:
@@ -201,7 +201,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: 0d0925661a34ae64b84d9f84424d84fe
+      spriteId: 61fc7979ca34ed041b9c8b1d16955f40
     - name: spr_helmet_simple_Frame_2
       frameIndex: 2
       cellRect:
@@ -209,7 +209,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: c052b55d10ec8cd409c82811b10701ef
+      spriteId: fffc466eb47e119428be1f4eba08930b
     linkedCells: []
     parentIndex: -1
   platformSettings: []

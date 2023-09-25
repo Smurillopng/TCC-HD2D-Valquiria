@@ -128,7 +128,7 @@ ScriptedImporter:
       y: 4
       width: 29
       height: 28
-    spriteID: e86f46f3ecabb684baa5a16e913c7d1a
+    spriteID: 12c9b23bb6e5ae6498408a93ad408579
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,7 +148,7 @@ ScriptedImporter:
       y: 40
       width: 29
       height: 28
-    spriteID: 9b9d547938c06a842807a864e229bed2
+    spriteID: cfa9812de34fec845970b164fa296d5e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -173,7 +173,7 @@ ScriptedImporter:
         y: 1
         width: 29
         height: 28
-      spriteId: e86f46f3ecabb684baa5a16e913c7d1a
+      spriteId: 12c9b23bb6e5ae6498408a93ad408579
     - name: spr_hammer_simple_Frame_1
       frameIndex: 1
       cellRect:
@@ -181,7 +181,7 @@ ScriptedImporter:
         y: 1
         width: 29
         height: 28
-      spriteId: 9b9d547938c06a842807a864e229bed2
+      spriteId: cfa9812de34fec845970b164fa296d5e
     linkedCells: []
     parentIndex: -1
   platformSettings: []

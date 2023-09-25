@@ -117,7 +117,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: spr_armor_leather
+  - name: spr_armor_leather_Frame_0
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -128,7 +128,7 @@ ScriptedImporter:
       y: 43
       width: 26
       height: 32
-    spriteID: 5812d012de88619479095ff520740269
+    spriteID: 07369c391cd4cb14c8af9a7aa68175fe
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,7 +148,7 @@ ScriptedImporter:
       y: 4
       width: 28
       height: 31
-    spriteID: 542b3d4c93fd57c44b8ac1b05f1366f3
+    spriteID: ab460b52f7e139d458fb5ab4a89c8153
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -173,7 +173,7 @@ ScriptedImporter:
         y: 0
         width: 26
         height: 32
-      spriteId: 5812d012de88619479095ff520740269
+      spriteId: 07369c391cd4cb14c8af9a7aa68175fe
     - name: spr_armor_leather_Frame_1
       frameIndex: 1
       cellRect:
@@ -181,7 +181,7 @@ ScriptedImporter:
         y: 0
         width: 28
         height: 31
-      spriteId: 542b3d4c93fd57c44b8ac1b05f1366f3
+      spriteId: ab460b52f7e139d458fb5ab4a89c8153
     linkedCells: []
     parentIndex: -1
   platformSettings: []

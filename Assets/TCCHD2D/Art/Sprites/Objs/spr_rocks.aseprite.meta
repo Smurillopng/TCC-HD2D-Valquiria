@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 052f91fea041a70469fbeb63b5d7f788
+guid: b3e2976e65a099b4ab27ea07e2b2f434
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,18 +117,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: spr_rune_gift_Frame_0
+  - name: spr_rocks_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5357143, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 32
+      width: 28
       height: 32
-    spriteID: c4e5d0d6840b76340ace65ead97f53b3
+    spriteID: aeba02c56599e6f468b5c4882e48fb00
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -137,18 +137,38 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: spr_rune_gift_Frame_1
+  - name: spr_rocks_Frame_1
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.625, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 84
+      width: 24
+      height: 32
+    spriteID: a09f3a622b931c14692e77cc9e08301f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 84}
+  - name: spr_rocks_Frame_2
+    originalName: 
+    pivot: {x: 0.5357143, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 44
-      width: 32
+      width: 28
       height: 32
-    spriteID: 04c5585df0d29764bad83bdf670d44a4
+    spriteID: 9a7a23fda7326984abae272e153e97ed
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -157,31 +177,67 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 44}
+  - name: spr_rocks_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 40
+      y: 4
+      width: 18
+      height: 32
+    spriteID: 75ef3b5de3687614ea88ff6b20e55043
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 40, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1112497773
-    name: spr_rune_gift
+    guid: 236681596
+    name: spr_rocks
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_rune_gift_Frame_0
+    - name: spr_rocks_Frame_0
       frameIndex: 0
       cellRect:
-        x: 0
+        x: 1
         y: 0
-        width: 32
+        width: 28
         height: 32
-      spriteId: c4e5d0d6840b76340ace65ead97f53b3
-    - name: spr_rune_gift_Frame_1
+      spriteId: aeba02c56599e6f468b5c4882e48fb00
+    - name: spr_rocks_Frame_1
       frameIndex: 1
       cellRect:
-        x: 0
+        x: 1
         y: 0
-        width: 32
+        width: 24
         height: 32
-      spriteId: 04c5585df0d29764bad83bdf670d44a4
+      spriteId: a09f3a622b931c14692e77cc9e08301f
+    - name: spr_rocks_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 1
+        y: 0
+        width: 28
+        height: 32
+      spriteId: 9a7a23fda7326984abae272e153e97ed
+    - name: spr_rocks_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 7
+        y: 0
+        width: 18
+        height: 32
+      spriteId: 75ef3b5de3687614ea88ff6b20e55043
     linkedCells: []
     parentIndex: -1
   platformSettings: []

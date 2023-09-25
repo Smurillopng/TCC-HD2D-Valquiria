@@ -95,7 +95,7 @@ MonoBehaviour:
       Data: 
   type: 1
   unitName: Abestado Atirador
-  unitSprite: {fileID: -5584082305617587024, guid: aca748e33c644ac4c8d0b2ec008a123d,
+  unitSprite: {fileID: -6140681502614135989, guid: aca748e33c644ac4c8d0b2ec008a123d,
     type: 3}
   level: 1
   experienceDrop: 20

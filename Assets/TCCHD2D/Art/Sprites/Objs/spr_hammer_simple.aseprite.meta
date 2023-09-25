@@ -119,14 +119,14 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: spr_hammer_simple_Frame_0
     originalName: 
-    pivot: {x: 0.55172414, y: -0.035714287}
+    pivot: {x: 0.5357143, y: -0.035714287}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 29
+      width: 28
       height: 28
     spriteID: 12c9b23bb6e5ae6498408a93ad408579
     spriteBone: []
@@ -139,14 +139,14 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: spr_hammer_simple_Frame_1
     originalName: 
-    pivot: {x: 0.55172414, y: -0.035714287}
+    pivot: {x: 0.5357143, y: -0.035714287}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 40
-      width: 29
+      width: 28
       height: 28
     spriteID: cfa9812de34fec845970b164fa296d5e
     spriteBone: []
@@ -169,17 +169,17 @@ ScriptedImporter:
     - name: spr_hammer_simple_Frame_0
       frameIndex: 0
       cellRect:
-        x: 0
+        x: 1
         y: 1
-        width: 29
+        width: 28
         height: 28
       spriteId: 12c9b23bb6e5ae6498408a93ad408579
     - name: spr_hammer_simple_Frame_1
       frameIndex: 1
       cellRect:
-        x: 0
+        x: 1
         y: 1
-        width: 29
+        width: 28
         height: 28
       spriteId: cfa9812de34fec845970b164fa296d5e
     linkedCells: []

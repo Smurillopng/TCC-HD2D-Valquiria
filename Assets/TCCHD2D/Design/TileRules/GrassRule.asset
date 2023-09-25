@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GrassRule
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 515f2f4d397a8e8488865903b399af23, type: 3}
-  m_DefaultGameObject: {fileID: 5977781692386520061, guid: 5e4eebcdd76a13547b693bd19c87b04d,
+  m_DefaultGameObject: {fileID: 4075974981096743079, guid: 410493817f7e0d3449fe50396e818391,
     type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:

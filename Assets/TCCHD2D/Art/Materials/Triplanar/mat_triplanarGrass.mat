@@ -54,12 +54,12 @@ Material:
     - _Opacity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Size: 0
+    - _Size: 1
     - _Smoothness: 0
     - _Tilling: 4
     m_Colors:
     - _: {r: 0, g: 0, b: 0, a: 0}
-    - _PlayerPosition: {r: 0.5, g: 0.4524535, b: 4.2064056, a: 0}
+    - _PlayerPosition: {r: 0.4818576, g: 0.45313004, b: 4.198973, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1669859427733252257
 MonoBehaviour:

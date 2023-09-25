@@ -11,6 +11,7 @@ public class SeeThroughObject : MonoBehaviour
     public Material groundMat;
     public Camera camera;
     public LayerMask mask;
+    public List<GameObject> listaTerreno = new List<GameObject>();
 
     // Update is called once per frame
     void Update()
@@ -18,15 +19,38 @@ public class SeeThroughObject : MonoBehaviour
         var dir = camera.transform.position - transform.position;
         var ray = new Ray(transform.position, dir.normalized);
 
-        float dist = Vector3.Distance(transform.position, camera.transform.position);
+        //float dist = Vector3.Distance(transform.position, camera.transform.position);
 
-        if (Physics.Raycast(ray, dist, mask))
+        //if (Physics.Raycast(ray, dist, mask))
+        //{
+        //    groundMat.SetFloat(SizeID, 1);
+        //}
+        //else
+        //{
+        //    groundMat.SetFloat(SizeID, 0);
+        //}
+        
+        if(Physics.Raycast(ray, out var hit, mask))
         {
-            groundMat.SetFloat(SizeID, 1);
+            var terra = hit.collider.gameObject;
+
+            var father = terra.GetComponentInParent<Transform>();
+
+            if (father.position.y < transform.position.y) return;
+            
+            listaTerreno.Add(terra);
+            
         }
-        else
+        
+        
+
+        foreach(var terra in listaTerreno) 
         {
-            groundMat.SetFloat(SizeID, 0);
+            var mat = groundMat;
+        
+            mat.SetFloat(SizeID, 1);
+
+            terra.GetComponent<Renderer>().material = mat;
         }
 
         var view = camera.WorldToViewportPoint(transform.position);

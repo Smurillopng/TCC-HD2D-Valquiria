@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 0
   itemID: 2
   itemName: "Po\xE7\xE3o de TP"
-  itemIcon: {fileID: -1659978854769298064, guid: 987a3ee179b7727418f7ea496d9e5d99,
+  itemIcon: {fileID: -3520770975769160378, guid: 987a3ee179b7727418f7ea496d9e5d99,
     type: 3}
   effectType: 2
   vfx: {fileID: 0}

@@ -17,7 +17,7 @@ MonoBehaviour:
   slotType: 2
   attackType: 0
   itemName: "Cal\xE7a de Couro"
-  itemIcon: {fileID: 5971562414084494528, guid: 1a2f425b7d15a634e8fadd7882c57042,
+  itemIcon: {fileID: 3925444170300180161, guid: 1a2f425b7d15a634e8fadd7882c57042,
     type: 3}
   itemDescription: "Cal\xE7a feita com o couro de animais da floresta"
   maxStack: 1

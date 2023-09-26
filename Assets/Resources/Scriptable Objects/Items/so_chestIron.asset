@@ -17,7 +17,7 @@ MonoBehaviour:
   slotType: 1
   attackType: 0
   itemName: cota de malha
-  itemIcon: {fileID: 5104152301845180453, guid: 2621d847bc908e247a1ad803059396d0,
+  itemIcon: {fileID: -2688558570510602250, guid: 2621d847bc908e247a1ad803059396d0,
     type: 3}
   itemDescription: Uma malha de ferro.
   maxStack: 1

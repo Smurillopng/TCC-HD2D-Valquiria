@@ -17,7 +17,7 @@ MonoBehaviour:
   slotType: 3
   attackType: 0
   itemName: Espada deprata
-  itemIcon: {fileID: -1762573424784624767, guid: dfaef4b399d8a2c478d7d878aeb10cff,
+  itemIcon: {fileID: 1943784594541857895, guid: dfaef4b399d8a2c478d7d878aeb10cff,
     type: 3}
   itemDescription: Uma espada forjada de prata por um antigo ferreiro. Aumenta +6
     de ataque

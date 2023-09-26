@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 0
   itemID: 2
   itemName: "Po\xE7\xE3o de Vida"
-  itemIcon: {fileID: -7893989686528035105, guid: 987a3ee179b7727418f7ea496d9e5d99,
+  itemIcon: {fileID: -5300972888968223334, guid: 987a3ee179b7727418f7ea496d9e5d99,
     type: 3}
   effectType: 0
   vfx: {fileID: 8926484042661614526, guid: 43d4642013285894b9da21f246fffb7b, type: 3}

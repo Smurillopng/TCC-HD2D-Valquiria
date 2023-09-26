@@ -17,7 +17,7 @@ MonoBehaviour:
   slotType: 3
   attackType: 2
   itemName: "Arco do ca\xE7ador"
-  itemIcon: {fileID: 8943172736062078392, guid: c54764a8d971e7244a937980be694703,
+  itemIcon: {fileID: 2026126408643383960, guid: c54764a8d971e7244a937980be694703,
     type: 3}
   itemDescription: "Um arco de ca\xE7a para arqueiros mais experientes. Aumenta +6
     de ataque"

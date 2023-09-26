@@ -15,7 +15,7 @@ MonoBehaviour:
   itemType: 0
   itemID: 2
   itemName: machado de arremesso
-  itemIcon: {fileID: -7554635191055846187, guid: 117e47e4e6824c74a8c7dbe5a775784f,
+  itemIcon: {fileID: 7603757967652125121, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
   effectType: 1
   vfx: {fileID: 0}

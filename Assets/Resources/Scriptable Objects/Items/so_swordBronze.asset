@@ -17,7 +17,7 @@ MonoBehaviour:
   slotType: 3
   attackType: 0
   itemName: Espada de Cobre
-  itemIcon: {fileID: -3219556118789292752, guid: dfaef4b399d8a2c478d7d878aeb10cff,
+  itemIcon: {fileID: -5566181938308581267, guid: dfaef4b399d8a2c478d7d878aeb10cff,
     type: 3}
   itemDescription: Uma espada forjada por guerreiros de terras distantes. Aumenta
     +2 de ataque. Aumenta +2 de ataque

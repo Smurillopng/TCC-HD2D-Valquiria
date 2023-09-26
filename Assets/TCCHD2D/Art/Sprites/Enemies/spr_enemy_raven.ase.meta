@@ -119,7 +119,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: spr_enemy_raven
     originalName: 
-    pivot: {x: 0.5, y: -0.16666669}
+    pivot: {x: 0.5, y: -0.19230771}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -127,7 +127,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 72
-      height: 60
+      height: 52
     spriteID: e01f0345b659dbb4592e4a500e5175c9
     spriteBone: []
     spriteOutline: []
@@ -152,7 +152,7 @@ ScriptedImporter:
         x: 0
         y: 10
         width: 72
-        height: 60
+        height: 52
       spriteId: e01f0345b659dbb4592e4a500e5175c9
     linkedCells: []
     parentIndex: -1

@@ -17,7 +17,7 @@ MonoBehaviour:
   slotType: 2
   attackType: 0
   itemName: "Cal\xE7a de Couro"
-  itemIcon: {fileID: 4484892895902840793, guid: 1a2f425b7d15a634e8fadd7882c57042,
+  itemIcon: {fileID: 4779812269504871434, guid: 1a2f425b7d15a634e8fadd7882c57042,
     type: 3}
   itemDescription: "Cal\xE7a leve para ajudar na velocidade e um cintur\xE3o de couro
     negro para proteger"

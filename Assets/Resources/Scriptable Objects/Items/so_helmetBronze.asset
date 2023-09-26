@@ -17,7 +17,7 @@ MonoBehaviour:
   slotType: 0
   attackType: 0
   itemName: Capacete de Bronze
-  itemIcon: {fileID: 1662145118291324630, guid: 955b77d6192512446a19ea4daa010f8f,
+  itemIcon: {fileID: 2857183015838398721, guid: 955b77d6192512446a19ea4daa010f8f,
     type: 3}
   itemDescription: Pertence a um guerreiro de uma terra distante
   maxStack: 1

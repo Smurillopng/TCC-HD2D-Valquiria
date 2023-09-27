@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using CI.QuickSave;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -17,48 +19,69 @@ public class SceneTransitioner : MonoBehaviour
     private bool spawnStart, spawnEnd;
     [SerializeField]
     private GameObject uiController;
-
-    private LiftGammaGain _liftGammaGain;
-    private bool _isFading;
+    
+    private static bool _isFading;
+    private PlayerMovement _pm;
+    // ---
+    public RectTransform playerBar, minimap;
+    public Material mat;
+    public float min, max, current, speedTransition, acelerationValue;
+    
+    private float _aceleration = 1f;
+    private static readonly int CutoffHeight = Shader.PropertyToID("_Cutoff_Height");
 
     private void Awake()
     {
-         volume.profile.TryGet(out _liftGammaGain);
-         if (!_isFading)
-             StartCoroutine(FadeOut(_liftGammaGain, FindObjectOfType<PlayerMovement>()));
+        playerBar.anchoredPosition = new Vector2(-196.0001f, playerBar.anchoredPosition.y);
+        minimap.anchoredPosition = new Vector2(180.0001f, minimap.anchoredPosition.y);
+
+        _pm = FindObjectOfType<PlayerMovement>();
+        StartCoroutine(TransitionOut());
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            var player = other.GetComponent<PlayerMovement>();
-            LoadFade(goToScene, player);
-        }
+        if (!other.CompareTag("Player")) return;
+        var player = other.GetComponent<PlayerMovement>();
+        LoadFade(goToScene, player);
     }
 
-    public void LoadFade(string sceneName, PlayerMovement playerMove)
+    private void LoadFade(string sceneName, PlayerMovement playerMove)
     {
-        if (!_isFading)
-        {
-            goToScene = sceneName;
-            StartCoroutine(FadeIn(_liftGammaGain, playerMove));
-        }
+        if (_isFading) return;
+        goToScene = sceneName;
+        StartCoroutine(TransitionIn());
     }
 
-    private IEnumerator FadeIn(LiftGammaGain lgg, PlayerMovement pm)
+    private IEnumerator TransitionIn()
     {
+        current = min;
         _isFading = true;
-        float time = 0;
-        pm.CanMove.Value = false;
-        uiController.SetActive(false);
-        while (time < fadeTime)
+        _pm.CanMove.Value = false;
+        TiraUI();
+        yield return new WaitUntil(() => Math.Abs(playerBar.anchoredPosition.x - (-196.0001f)) < 0.01);
+        
+        while (current < max)
         {
-            time += Time.deltaTime;
-            lgg.gamma.value = new Vector4(-1, -1, -1, 0 - time / fadeTime);
+            if(Math.Abs(current - max) > 0.01 && Math.Abs(current - min) > 0.01)
+                _aceleration = acelerationValue;
+            
+            current += speedTransition * _aceleration * Time.deltaTime;
+            var progress = Mathf.Clamp01((current - min) / (max - min));
+            var targetHeight = Mathf.Lerp(min, max, progress);
+            mat.SetFloat(CutoffHeight, targetHeight);
+            
             yield return null;
+            
+            if (current >= max)
+            {
+                current = max;
+                _aceleration = 1;
+            }
         }
-
+        
+        yield return new WaitUntil(() => Math.Abs(current - max) < 0.01);
+        
         SceneManager.LoadScene(goToScene);
         if (spawnStart)
         {
@@ -80,19 +103,46 @@ public class SceneTransitioner : MonoBehaviour
         _isFading = false;
     }
 
-    private IEnumerator FadeOut(LiftGammaGain lgg, PlayerMovement pm)
+    private IEnumerator TransitionOut()
     {
-        float time = 0;
-        Vector4 defaultGamma = new Vector4(-1, -1, -1, 0);
-        lgg.gamma.value = new Vector4(-1, -1, -1, -1);
-        pm.CanMove.Value = false;
-        while (time < fadeTime)
+        current = max;
+        mat.SetFloat(CutoffHeight, current);
+        _isFading = true;
+        _pm.CanMove.Value = false;
+        
+        while (current > min)
         {
-            time += Time.deltaTime;
-            lgg.gamma.value = Vector4.Lerp(new Vector4(-1, -1, -1, -1), defaultGamma, time / fadeTime);
+            if(Math.Abs(current - max) > 0.01 && Math.Abs(current - min) > 0.01)
+                _aceleration = acelerationValue;
+            
+            current -= speedTransition * Time.deltaTime * _aceleration;
+            var progress = Mathf.Clamp01((current - min) / (max - min));
+            var targetHeight = Mathf.Lerp(min, max, progress);
+            mat.SetFloat(CutoffHeight, targetHeight);
+            
             yield return null;
+            
+            if (current <= min)
+            {
+                current = min;
+                _aceleration = 1;
+            }
         }
-        pm.CanMove.Value = true;
-        uiController.SetActive(true);
+        BotaUI();
+        yield return new WaitUntil(() => Math.Abs(playerBar.anchoredPosition.x - 196.0001f) < 0.01);
+        _pm.CanMove.Value = true;
+        _isFading = false;
+    }
+    
+    private void TiraUI()
+    {
+        playerBar.DOAnchorPosX(-196.0001f, 1).SetEase(Ease.OutQuad);
+        minimap.DOAnchorPosX(180.0001f, 1).SetEase(Ease.OutQuad);
+    }
+
+    private void BotaUI()
+    {
+        playerBar.DOAnchorPosX(196.0001f, 1).SetEase(Ease.OutQuad);
+        minimap.DOAnchorPosX(-180.0001f, 1).SetEase(Ease.OutQuad);
     }
 }

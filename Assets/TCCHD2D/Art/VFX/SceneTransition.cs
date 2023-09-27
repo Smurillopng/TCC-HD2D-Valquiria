@@ -1,28 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using DG.Tweening;
 
 public class SceneTransition : MonoBehaviour
 {
     public RectTransform playerBar, minimap;
-    public CanvasGroup playerGroup, minimapGroup;
-
     public Material mat;
-
     public float min, max, current, speedTransition, acelerationValue;
     
-    float aceleration = 1f;
-
-    bool pressed = false;
+    private float _aceleration = 1f;
+    private bool _pressed;
+    private static readonly int CutoffHeight = Shader.PropertyToID("_Cutoff_Height");
 
     private void Start()
     {
         playerBar.DOAnchorPosX(-196.0001f, 0).SetEase(Ease.OutQuad);
-
         minimap.DOAnchorPosX(180.0001f, 0).SetEase(Ease.OutQuad);
 
-        pressed = true;
+        _pressed = true;
         current = max;
     }
 
@@ -30,67 +25,59 @@ public class SceneTransition : MonoBehaviour
     {
         if(current != max && current != min)
         {
-            aceleration = aceleration * acelerationValue;
+            _aceleration *= acelerationValue;
         }
         
-        // Aumentar o valor quando a tecla de espa�o for pressionada
+        // Aumentar o valor quando a tecla de espaço for pressionada
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            pressed = true;
+            _pressed = true;
         }
         
-        if (pressed == true)
+        if (_pressed)
         {
-            
             TiraUI();
-            current += speedTransition * Time.deltaTime * aceleration;
-            
+            current += speedTransition * Time.deltaTime * _aceleration;
         }
         
         // Diminuir o valor quando outra tecla for pressionada
         if (Input.GetKeyDown(KeyCode.LeftArrow)) // Por exemplo, o bot�o Shift esquerdo
         {
-            pressed = false;
+            _pressed = false;
         }
         
-        if (pressed == false)
+        if (_pressed == false)
         {
-            if(current == min)
+            if(Math.Abs(current - min) < 0.01)
             {
                 BotaUI();
             }
-            current -= speedTransition * Time.deltaTime * aceleration;
+            current -= speedTransition * Time.deltaTime * _aceleration;
         }
 
         if(current > max)
         {
             current = max;
-            aceleration = 1;
+            _aceleration = 1;
         }
         if(current < min)
         {
             current = min;
-            aceleration = 1;
+            _aceleration = 1;
         }
-
-
         // Aplique o valor ao material
-        mat.SetFloat("_Cutoff_Height", current);
+        mat.SetFloat(CutoffHeight, current);
     }
-    
-    void TiraUI()
+
+    private void TiraUI()
     {
         playerBar.DOAnchorPosX(-196.0001f, 1).SetEase(Ease.OutQuad);
-
         minimap.DOAnchorPosX(180.0001f, 1).SetEase(Ease.OutQuad);
     }
 
-    void BotaUI()
+    private void BotaUI()
     {
         playerBar.DOAnchorPosX(196.0001f, 1).SetEase(Ease.OutQuad);
-
         minimap.DOAnchorPosX(-180.0001f, 1).SetEase(Ease.OutQuad);
-
-        
     }
 }

@@ -117,7 +117,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: spr_bow_simple
+  - name: spr_bow_simple_Frame_0
     originalName: 
     pivot: {x: 0.3, y: 0}
     alignment: 9
@@ -128,7 +128,7 @@ ScriptedImporter:
       y: 4
       width: 10
       height: 32
-    spriteID: 333e391ecccc8054c838a74be7fa7ac3
+    spriteID: 9fde5f7a9c24b514e9bcdfc668239a52
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -137,6 +137,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: spr_bow_simple_Frame_1
+    originalName: 
+    pivot: {x: 0.3, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 22
+      y: 4
+      width: 10
+      height: 32
+    spriteID: cedcce7485a977f45935661fc95ddc2a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 22, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -146,14 +166,22 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: spr_bow_simple
+    - name: spr_bow_simple_Frame_0
       frameIndex: 0
       cellRect:
         x: 13
         y: 0
         width: 10
         height: 32
-      spriteId: 333e391ecccc8054c838a74be7fa7ac3
+      spriteId: 9fde5f7a9c24b514e9bcdfc668239a52
+    - name: spr_bow_simple_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 13
+        y: 0
+        width: 10
+        height: 32
+      spriteId: cedcce7485a977f45935661fc95ddc2a
     linkedCells: []
     parentIndex: -1
   platformSettings: []

@@ -15,16 +15,19 @@ public class Interactable : SerializedMonoBehaviour
     private InteractionType interactionType;
 
     [FoldoutGroup("Interaction Settings")]
-    [SerializeField, Range(0.1f, 100f), Tooltip("Distance needed to interact with the object.")]
-    private float interactionRange = 3f;
+    [SerializeField, Range(0.1f, 2f), Tooltip("Distance needed to interact with the object.")]
+    private float interactionRange = 1f;
 
     [FoldoutGroup("Interaction Settings")]
-    [SerializeField, Required]
+    [SerializeField]
     private Transform playerTransform;
 
     [FoldoutGroup("Interaction Settings")]
     [SerializeField, InlineEditor, Required, Tooltip("Bool variable that will be used to interact with the object.")]
     private BoolVariable interactBool;
+    
+    [FoldoutGroup("Events"), Tooltip("Event called when the player interacts with the object.")]
+    public UnityEvent onAwake;
 
     [FoldoutGroup("Events"), Tooltip("Event called when the player interacts with the object.")]
     public UnityEvent onInteractionStart;
@@ -46,10 +49,15 @@ public class Interactable : SerializedMonoBehaviour
 
     private void Start()
     {
+        if (playerTransform == null) playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        onAwake?.Invoke();
         if (interactionType == InteractionType.Item)
         {
-            var reader = QuickSaveReader.Create("GameSave");
-            if (reader.Exists($"{name}") && reader.Read<bool>($"{name}"))
+            var readerSave = QuickSaveReader.Create("GameSave");
+            if (readerSave.Exists($"{name}") && readerSave.Read<bool>($"{name}"))
+                gameObject.SetActive(false);
+            var readerInfo = QuickSaveReader.Create("ItemInfo");
+            if (readerInfo.Exists($"{name}") && readerInfo.Read<bool>($"{name}"))
                 gameObject.SetActive(false);
         }
     }

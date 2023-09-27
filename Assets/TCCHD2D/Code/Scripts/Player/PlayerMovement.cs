@@ -12,8 +12,6 @@ using UnityEngine.SceneManagement;
 [HideMonoScript]
 public class PlayerMovement : MonoBehaviour
 {
-    //TODO: Add running animation
-
     #region === Variables ===============================================================
 
     [TitleGroup("Input Variables", Alignment = TitleAlignments.Centered)]
@@ -45,26 +43,21 @@ public class PlayerMovement : MonoBehaviour
     [MinValue(1)]
     [Tooltip("Player's movement speed multiplier when running.")]
     private float runSpeedMultiplier = 1;
-    
+
     [TitleGroup("Detection", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     [Tooltip("The layer that represents the ground.")]
     private LayerMask groundLayer;
-    
-    [SerializeField]
-    [Range(0,1)]
-    [Tooltip("The distance of the raycast that detects the horizontal and forward collisions.")]
-    private float rayDistance;
-    
-    [SerializeField]
-    [Range(0,1)]
-    [Tooltip("The distance of the raycast that detects the diagonal collisions.")]
-    private float rayDistanceDiagonal;
 
     [SerializeField]
-    [Range(0,1)]
-    [Tooltip("How much the player will be slowed down when near the edge of a tile.")]
-    private float slowFactor;
+    [Range(0, 1)]
+    [Tooltip("The distance of the raycast that detects the horizontal and forward collisions.")]
+    private float rayDistance;
+
+    [SerializeField]
+    [Range(0, 1)]
+    [Tooltip("The distance of the raycast that detects the diagonal collisions.")]
+    private float rayDistanceDiagonal;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [SerializeField]
@@ -72,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("Animator component of the player.")]
     private Animator animator;
 
-    [SerializeField] 
+    [SerializeField]
     [Tooltip("The spawn controller of the game.")]
     private SpawnController spawnController;
 
@@ -94,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         set => movementValue = value;
     }
 
-    public Vector2 Direction
+    public Vector2 Direction 
     {
         get => direction.Value;
         set => direction.Value = value;
@@ -107,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Ray _rightRay, _leftRay, _forwardRay, _backRay;
 
-    private Vector3 _dirRight = Vector3.right,
+    private readonly Vector3 _dirRight = Vector3.right,
         _dirLeft = Vector3.left,
         _dirForward = Vector3.forward,
         _dirBack = Vector3.back;
@@ -124,20 +117,23 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!gameObject.TryGetComponent(out rigidBody))
             rigidBody = gameObject.AddComponent<Rigidbody>();
-        var reader = QuickSaveReader.Create("GameSave");
+        var reader = QuickSaveReader.Create("GameInfo");
         if (!reader.Exists("ChangingScene"))
         {
-            var writer = QuickSaveWriter.Create("GameSave");
+            var writer = QuickSaveWriter.Create("GameInfo");
             writer.Write("ChangingScene", false);
             writer.Commit();
+            var saveReader = QuickSaveReader.Create("GameSave");
+            if (saveReader.Exists("PlayerPosition"))
+                transform.position = saveReader.Read<Vector3>("PlayerPosition");
         }
-        
+
         if (reader.Exists("ChangingScene"))
         {
             if (reader.Exists("SpawnStart") ||
                 reader.Exists("SpawnEnd") && reader.Read<bool>("ChangingScene").Equals(true))
             {
-                var writer = QuickSaveWriter.Create("GameSave");
+                var writer = QuickSaveWriter.Create("GameInfo");
                 if (reader.Read<bool>("SpawnStart").Equals(true))
                 {
                     transform.position = spawnController.SpawnStart.position;
@@ -173,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        var save = QuickSaveWriter.Create("GameSave");
+        var save = QuickSaveWriter.Create("GameInfo");
         save.Write("CurrentScene", SceneManager.GetActiveScene().name);
         save.Commit();
     }
@@ -190,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        var writer = QuickSaveWriter.Create("GameSave");
+        var writer = QuickSaveWriter.Create("GameInfo");
         writer.Write("PlayerPosition", transform.position);
         writer.Commit();
     }
@@ -250,22 +246,22 @@ public class PlayerMovement : MonoBehaviour
         if ((Physics.Raycast(rayPosition, dir, rayDistance, groundLayer) && direction.Value.x > 0)
             || (!Physics.Raycast(_rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0))
         {
-            movementValue *= slowFactor;
+            movementValue = new Vector3(0, 0, direction.Value.y);
         }
         else if ((Physics.Raycast(rayPosition, -dir, rayDistance, groundLayer) && direction.Value.x < 0)
                  || (!Physics.Raycast(_leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0))
         {
-            movementValue *= slowFactor;
+            movementValue = new Vector3(0, 0, direction.Value.y);
         }
         else if ((Physics.Raycast(rayPosition, _dirForward, rayDistance, groundLayer) && direction.Value.y > 0)
                  || (!Physics.Raycast(_forwardRay, rayDistanceDiagonal, groundLayer) && direction.Value.y > 0))
         {
-            movementValue *= slowFactor;
+            movementValue = new Vector3(direction.Value.x, 0, 0);
         }
         else if ((Physics.Raycast(rayPosition, _dirBack, rayDistance, groundLayer) && direction.Value.y < 0)
                  || (!Physics.Raycast(_backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0))
         {
-            movementValue *= slowFactor;
+            movementValue = new Vector3(direction.Value.x, 0, 0);
         }
 
         if (direction.Value.x != 0 && direction.Value.y != 0)
@@ -292,7 +288,9 @@ public class PlayerMovement : MonoBehaviour
 
 
         NewPosition = transform.position + (movementValue * (speed * Time.fixedDeltaTime));
-        rigidBody.MovePosition(NewPosition);
+        var smoothedPosition = Vector3.Lerp(transform.position, NewPosition, 0.5f);
+        var smoothedNewPosition = Vector3.Lerp(smoothedPosition, NewPosition, 0.5f);
+        rigidBody.MovePosition(smoothedNewPosition);
     }
 
     #endregion

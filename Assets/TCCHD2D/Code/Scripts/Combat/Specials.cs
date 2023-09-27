@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
 
@@ -13,8 +14,8 @@ public class Specials : MonoBehaviour
     #region === Variables ===============================================================
 
     public List<Special> specialsList = new();
-    private PlayerCombatHUD combatHUD;
-    private TurnManager turnManager;
+    private PlayerCombatHUD _combatHUD;
+    private TurnManager _turnManager;
 
     #endregion
 
@@ -24,8 +25,8 @@ public class Specials : MonoBehaviour
     /// <remarks>This method finds the PlayerCombatHUD and TurnManager objects in the scene.</remarks>
     private void Start()
     {
-        combatHUD = FindObjectOfType<PlayerCombatHUD>();
-        turnManager = FindObjectOfType<TurnManager>();
+        _combatHUD = FindObjectOfType<PlayerCombatHUD>();
+        _turnManager = FindObjectOfType<TurnManager>();
     }
 
     #endregion
@@ -63,11 +64,11 @@ public class Specials : MonoBehaviour
         var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
         if (player.Unit.CurrentTp >= cost)
         {
-            turnManager.isPlayerTurn = false;
-            combatHUD.SpecialPanel.SetActive(false);
-            combatHUD.ReturnButton.gameObject.SetActive(false);
-            combatHUD.ReturnButton.interactable = false;
-            combatHUD.OptionsPanel.SetActive(true);
+            _turnManager.isPlayerTurn = false;
+            _combatHUD.SpecialPanel.SetActive(false);
+            _combatHUD.ReturnButton.gameObject.SetActive(false);
+            _combatHUD.ReturnButton.interactable = false;
+            _combatHUD.OptionsPanel.SetActive(true);
             PlayerCombatHUD.UpdateCombatHUD.Invoke();
 
             // Calculate heal based on luck
@@ -107,6 +108,7 @@ public class Specials : MonoBehaviour
             PlayerCombatHUD.UpdateCombatHUD.Invoke();
             PlayerCombatHUD.CombatTextEvent.Invoke($"Curou <color=green>{heal}</color> HP");
             PlayerCombatHUD.TakenAction.Invoke();
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
@@ -128,11 +130,11 @@ public class Specials : MonoBehaviour
 
         if (player.Unit.CurrentTp >= cost)
         {
-            turnManager.isPlayerTurn = false;
-            combatHUD.SpecialPanel.SetActive(false);
-            combatHUD.ReturnButton.gameObject.SetActive(false);
-            combatHUD.ReturnButton.interactable = false;
-            combatHUD.OptionsPanel.SetActive(true);
+            _turnManager.isPlayerTurn = false;
+            _combatHUD.SpecialPanel.SetActive(false);
+            _combatHUD.ReturnButton.gameObject.SetActive(false);
+            _combatHUD.ReturnButton.interactable = false;
+            _combatHUD.OptionsPanel.SetActive(true);
             PlayerCombatHUD.UpdateCombatHUD.Invoke();
 
             // Standard attack damage calculation
@@ -172,6 +174,7 @@ public class Specials : MonoBehaviour
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
             PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Golpe Pesado</color> em <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
             PlayerCombatHUD.TakenAction.Invoke();
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
@@ -191,11 +194,11 @@ public class Specials : MonoBehaviour
 
         if (player.Unit.CurrentTp >= cost)
         {
-            turnManager.isPlayerTurn = false;
-            combatHUD.SpecialPanel.SetActive(false);
-            combatHUD.ReturnButton.gameObject.SetActive(false);
-            combatHUD.ReturnButton.interactable = false;
-            combatHUD.OptionsPanel.SetActive(true);
+            _turnManager.isPlayerTurn = false;
+            _combatHUD.SpecialPanel.SetActive(false);
+            _combatHUD.ReturnButton.gameObject.SetActive(false);
+            _combatHUD.ReturnButton.interactable = false;
+            _combatHUD.OptionsPanel.SetActive(true);
             PlayerCombatHUD.UpdateCombatHUD.Invoke();
 
             // Standard attack damage calculation
@@ -236,6 +239,7 @@ public class Specials : MonoBehaviour
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
             PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Ataque Fulminante</color> em <color=blue>{enemy.Unit.UnitName}</color> causando <color=red>{enemy.damageTakenThisTurn}</color> de dano</b>");
             PlayerCombatHUD.TakenAction.Invoke();
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {

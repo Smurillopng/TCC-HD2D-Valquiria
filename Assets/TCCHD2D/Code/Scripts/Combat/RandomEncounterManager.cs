@@ -96,7 +96,6 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     /// <summary>Starts the game.</summary>
     /// <remarks>
     /// This method initializes the player movement, sets the current steps to 0, calculates the minimum encounter chance based on the area encounter rate, and retrieves the lift gamma gain from the volume profile.
-    /// It also attempts to read the current scene from the QuickSaveReader and enables player movement if the saved scene matches the current scene.
     /// </remarks>
     private void Start()
     {
@@ -104,12 +103,9 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         currentSteps = 0; // Set the current steps to 0
         minimumEncounterChance = areaEncounterRate / 100f; // Calculate the minimum encounter chance
         volume.profile.TryGet(out _liftGammaGain);
-        var reader = QuickSaveReader.Create("GameSave");
-
-        if (reader.Read<string>("CurrentScene") == SceneManager.GetActiveScene().name)
-        {
-            _playerMovement.CanMove.Value = true;
-        }
+        
+        _playerMovement.CanMove.Value = true;
+        
         if (SceneManager.GetActiveScene().name.Equals("scn_game"))
             _tutorial = FindObjectOfType<Tutorial>();
     }
@@ -161,7 +157,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     }
     /// <summary>Encounters a random enemy.</summary>
     /// <remarks>
-    /// Selects a random enemy from the list of enemies and saves the player's position, the last scene, and the encountered enemy to a QuickSave.
+    /// Selects a random enemy from the list of enemies.
     /// Then, starts a coroutine to fade in the screen.
     /// </remarks>
     private void EncounterEnemy()
@@ -169,38 +165,37 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         var randomIndex = Random.Range(0, enemies.Count);
         _selectedEnemy = enemies[randomIndex];
 
-        var save = QuickSaveWriter.Create("GameSave");
+        var save = QuickSaveWriter.Create("GameInfo");
         save.Write("PlayerPosition", _playerMovement.transform.position);
         save.Write("LastScene", SceneManager.GetActiveScene().name);
         save.Write("EncounteredEnemy", _selectedEnemy.name);
         save.Commit();
-
-        StartCoroutine(FadeIn(_liftGammaGain));
+        
+        StartCoroutine(FadeInToCombat(_liftGammaGain));
     }
     /// <summary>Encounters the final boss, saves the game, and fades in the screen.</summary>
     /// <remarks>
     /// Sets the selected enemy to the first enemy in the enemies array.
-    /// Creates a QuickSaveWriter object named "GameSave" and writes the player's position, the name of the last scene, and the name of the selected enemy to it.
     /// Fades in the screen by starting a coroutine that gradually increases the gamma gain of the lift.
     /// </remarks>
     public void SpecificEncounter(Unit enemy)
     {
         _selectedEnemy = enemy;
 
-        var save = QuickSaveWriter.Create("GameSave");
+        var save = QuickSaveWriter.Create("GameInfo");
         save.Write("PlayerPosition", _playerMovement.transform.position);
         save.Write("LastScene", SceneManager.GetActiveScene().name);
         save.Write("EncounteredEnemy", _selectedEnemy.name);
         save.Commit();
 
-        StartCoroutine(FadeIn(_liftGammaGain));
+        StartCoroutine(FadeInToCombat(_liftGammaGain));
     }
 
     public void TutorialEncounter(Unit enemy)
     {
         _selectedEnemy = enemy;
 
-        var save = QuickSaveWriter.Create("GameSave");
+        var save = QuickSaveWriter.Create("GameInfo");
         save.Write("PlayerPosition", _playerMovement.transform.position);
         save.Write("LastScene", SceneManager.GetActiveScene().name);
         save.Write("EncounteredEnemy", _selectedEnemy.name);
@@ -230,7 +225,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     /// Once the fade is complete, the combat scene is loaded and the SetScene method is registered as a callback
     /// for the SceneManager.sceneLoaded event.
     /// </remarks>
-    private IEnumerator FadeIn(LiftGammaGain lgg)
+    private IEnumerator FadeInToCombat(LiftGammaGain lgg)
     {
         float time = 0;
         _playerMovement.CanMove.Value = false;

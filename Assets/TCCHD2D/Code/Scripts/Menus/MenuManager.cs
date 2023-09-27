@@ -32,25 +32,45 @@ public class MenuManager : MonoBehaviour
         foreach (var key in keys)
             saveWriter.Delete(key);
         saveWriter.Commit();
-        var inventoryWriter = QuickSaveWriter.Create("Inventory");
-        keys = inventoryWriter.GetAllKeys();
-        foreach (var key in keys)
-            inventoryWriter.Delete(key);
-        inventoryWriter.Commit();
-        var equipmentsWriter = QuickSaveWriter.Create("EquipmentSlots");
-        keys = equipmentsWriter.GetAllKeys();
-        foreach (var key in keys)
-            equipmentsWriter.Delete(key);
-        equipmentsWriter.Commit();
+        
+        var infoWriter = QuickSaveWriter.Create("GameInfo");
+        var infoKeys = infoWriter.GetAllKeys();
+        foreach (var key in infoKeys)
+            infoWriter.Delete(key);
+        infoWriter.Commit();
+        infoWriter = QuickSaveWriter.Create("ItemInfo");
+        infoKeys = infoWriter.GetAllKeys();
+        foreach (var key in infoKeys)
+            infoWriter.Delete(key);
+        infoWriter.Commit();
+        infoWriter = QuickSaveWriter.Create("InventoryInfo");
+        infoKeys = infoWriter.GetAllKeys();
+        foreach (var key in infoKeys)
+            infoWriter.Delete(key);
+        infoWriter.Commit();
     }
 
     public void ContinueGame()
     {
         var reader = QuickSaveReader.Create("GameSave");
-        if (reader.Exists("CurrentScene"))
-        {
-            SceneManager.LoadScene(reader.Read<string>("CurrentScene"));
-        }
+        
+        var infoWriter = QuickSaveWriter.Create("GameInfo");
+        var infoKeys = infoWriter.GetAllKeys();
+        foreach (var key in infoKeys)
+            infoWriter.Delete(key);
+        infoWriter.Commit();
+        infoWriter = QuickSaveWriter.Create("ItemInfo");
+        infoKeys = infoWriter.GetAllKeys();
+        foreach (var key in infoKeys)
+            infoWriter.Delete(key);
+        infoWriter.Commit();
+        infoWriter = QuickSaveWriter.Create("InventoryInfo");
+        infoKeys = infoWriter.GetAllKeys();
+        foreach (var key in infoKeys)
+            infoWriter.Delete(key);
+        infoWriter.Commit();
+        
+        SceneManager.LoadScene(reader.Read<string>("CurrentScene"));
     }
 
     public void ExitMessage(GameObject exitPanel)

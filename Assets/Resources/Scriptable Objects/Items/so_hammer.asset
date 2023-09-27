@@ -17,7 +17,7 @@ MonoBehaviour:
   slotType: 3
   attackType: 1
   itemName: Martelo
-  itemIcon: {fileID: 1960990957491699774, guid: 117e47e4e6824c74a8c7dbe5a775784f,
+  itemIcon: {fileID: 2733489640717710059, guid: bfdd675a2a598724f863d988a9ebb8ed,
     type: 3}
   itemDescription: "Normalmente utilizado para amaciar carne de animais mas seres
     humanos tam\xE9m s\xE3o animais ... Aumenta +6 de ataque"

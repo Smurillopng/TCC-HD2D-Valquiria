@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - CombatUI
+  - PlayerTPFill
+  - PlayerTPTMP
+  - PlayerHealthTMP
+  - PlayerLvlTMP
+  - PlayerHealthFill
   layers:
   - Default
   - TransparentFX
@@ -14,7 +19,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Lightless
   - 
   - 
   - 

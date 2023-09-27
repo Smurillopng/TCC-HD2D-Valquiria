@@ -892,7 +892,7 @@ ScriptedImporter:
     - name: spr_npc_bjorn_Frame_21
       frameIndex: 21
       cellRect:
-        x: 5
+        x: 11
         y: 3
         width: 16
         height: 33
@@ -900,7 +900,7 @@ ScriptedImporter:
     - name: spr_npc_bjorn_Frame_22
       frameIndex: 22
       cellRect:
-        x: 6
+        x: 12
         y: 1
         width: 14
         height: 35
@@ -908,7 +908,7 @@ ScriptedImporter:
     - name: spr_npc_bjorn_Frame_23
       frameIndex: 23
       cellRect:
-        x: 7
+        x: 13
         y: 2
         width: 13
         height: 34
@@ -916,7 +916,7 @@ ScriptedImporter:
     - name: spr_npc_bjorn_Frame_24
       frameIndex: 24
       cellRect:
-        x: 6
+        x: 12
         y: 3
         width: 15
         height: 33
@@ -924,7 +924,7 @@ ScriptedImporter:
     - name: spr_npc_bjorn_Frame_25
       frameIndex: 25
       cellRect:
-        x: 7
+        x: 13
         y: 2
         width: 13
         height: 34
@@ -932,7 +932,7 @@ ScriptedImporter:
     - name: spr_npc_bjorn_Frame_26
       frameIndex: 26
       cellRect:
-        x: 6
+        x: 12
         y: 1
         width: 14
         height: 35

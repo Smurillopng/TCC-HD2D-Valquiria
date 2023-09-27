@@ -8,6 +8,8 @@ public class Special : ScriptableObject
     public int specialCost;
     public int specialDamage;
     public int specialHeal;
+    [TextArea]
+    public string specialDescription;
 }
 
 public enum SpecialType

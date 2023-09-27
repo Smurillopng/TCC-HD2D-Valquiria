@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace MuriPNG.Audio
 {
@@ -139,14 +140,16 @@ namespace MuriPNG.Audio
 
         #region Sound Events
 
+        [FormerlySerializedAs("onPlay")]
         [Space(2)]
         [Tooltip("Event called when the sound starts playing.")]
         [FoldoutGroup("Sound/Sound Events", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundEvents), SerializeField] private UnityEvent onPlay;
+        [ShowIf("tab", SoundTab.SoundEvents), SerializeField] private UnityEvent play;
 
+        [FormerlySerializedAs("onStop")]
         [Tooltip("Event called when the sound stops playing.")]
         [FoldoutGroup("Sound/Sound Events", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundEvents), SerializeField] private UnityEvent onStop;
+        [ShowIf("tab", SoundTab.SoundEvents), SerializeField] private UnityEvent stop;
 
         #endregion
 
@@ -277,13 +280,13 @@ namespace MuriPNG.Audio
         /// <summary>Plays the audio source.</summary>
         /// <remarks>
         /// This method applies the current sound settings before playing the audio source.
-        /// It also invokes the <see cref="onPlay"/> event, if it is not null.
+        /// It also invokes the <see cref="play"/> event, if it is not null.
         /// </remarks>
         public void Play()
         {
             ApplySoundSettings();
             source.Play();
-            onPlay?.Invoke();
+            play?.Invoke();
         }
         /// <summary>Plays the audio clip once.</summary>
         /// <remarks>
@@ -294,7 +297,7 @@ namespace MuriPNG.Audio
         {
             ApplySoundSettings();
             source.PlayOneShot(clip);
-            onPlay?.Invoke();
+            play?.Invoke();
         }
         /// <summary>Plays an audio clip at a specified position in 3D space.</summary>
         /// <param name="soundPosition">The position in 3D space where the audio clip should be played.</param>
@@ -306,7 +309,7 @@ namespace MuriPNG.Audio
         {
             ApplySoundSettings();
             AudioSource.PlayClipAtPoint(clip, soundPosition);
-            onPlay?.Invoke();
+            play?.Invoke();
         }
         /// <summary>Plays the audio clip with a specified delay.</summary>
         /// <param name="delay">The delay in seconds before playing the audio clip.</param>
@@ -319,7 +322,7 @@ namespace MuriPNG.Audio
         {
             ApplySoundSettings();
             source.PlayDelayed(delay);
-            onPlay?.Invoke();
+            play?.Invoke();
         }
         /// <summary>Stops the source and invokes the onStop event.</summary>
         /// <remarks>
@@ -328,7 +331,7 @@ namespace MuriPNG.Audio
         public void Stop()
         {
             source.Stop();
-            onStop?.Invoke();
+            stop?.Invoke();
         }
         /// <summary>Plays the audio clip if it exists.</summary>
         /// <remarks>This method is intended to be used as a callback for a button click event.</remarks>

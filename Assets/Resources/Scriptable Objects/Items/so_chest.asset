@@ -17,7 +17,7 @@ MonoBehaviour:
   slotType: 1
   attackType: 0
   itemName: Peitoral de Couro
-  itemIcon: {fileID: 510199777372408879, guid: 2621d847bc908e247a1ad803059396d0, type: 3}
+  itemIcon: {fileID: 423021285807762473, guid: 2621d847bc908e247a1ad803059396d0, type: 3}
   itemDescription: Peitoral feito com o couro de animais da floresta
   maxStack: 1
   currentStack: 0

@@ -17,3 +17,4 @@ MonoBehaviour:
   specialCost: 50
   specialDamage: 10
   specialHeal: 0
+  specialDescription: Um ataque poderoso e devastador

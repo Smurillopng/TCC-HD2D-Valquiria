@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.VFX;
 
 /// <summary>
@@ -37,7 +39,7 @@ public class PlayerCombatHUD : MonoBehaviour
 
     [SerializeField]
     [Tooltip("The fill image of the player's charges bar")]
-    private Image playerCharges;
+    public Image playerCharges;
 
     [SerializeField]
     [Tooltip("The vfx for the player charged stance")]
@@ -116,6 +118,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
     public static UnityAction UpdateCombatHUD;
+    public static UnityAction<bool> ForceDisableButtons;
 
     [SerializeField]
     [Tooltip("The manager for controlling turns in combat.")]
@@ -129,7 +132,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public GameObject OptionsPanel => optionsPanel;
     public Button ReturnButton => returnButton;
 
-    private bool _charging = false;
+    private bool _charging;
 
     #endregion
 
@@ -144,6 +147,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
         UpdateCombatHUD += UpdateCombatHUDs;
         TakenAction += UpdateCharges;
+        ForceDisableButtons += DisableButtons;
     }
     /// <summary>Updates the combat HUD with the current player and enemy health, TP, and charges.</summary>
     /// <remarks>Also subscribes to various events to update the HUD as the combat progresses.</remarks>
@@ -176,7 +180,6 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </remarks>
     private void Update()
     {
-        DisableButtons(!turnManager.isPlayerTurn);
         if (_charging)
         {
             specialButton.interactable = false;
@@ -203,6 +206,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
         UpdateCombatHUD -= UpdateCombatHUDs;
         TakenAction -= UpdateCharges;
+        ForceDisableButtons -= DisableButtons;
     }
 
     #endregion
@@ -221,7 +225,7 @@ public class PlayerCombatHUD : MonoBehaviour
     }
     /// <summary>Updates the player's charges if the player's turn has started and the player is not currently charging.</summary>
     /// <remarks>Increments the fill amount of the player's charges by 0.25f if it is less than 1.</remarks>
-    private void UpdateCharges()
+    public void UpdateCharges()
     {
         if (playerCharges.fillAmount < 1 && turnManager.isPlayerTurn && !_charging)
             playerCharges.fillAmount += 0.25f;
@@ -233,9 +237,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// When the buttons are enabled, the attack, special, and item buttons are shown, as well as the run button.
     /// The charge button is shown only if the player has charges remaining.
     /// </remarks>
-    private void DisableButtons(bool disabled)
+    private void DisableButtons(bool disabled) 
     {
-        switch (disabled)
+        switch (disabled) 
         {
             case true:
                 attackButton.gameObject.SetActive(false);
@@ -355,6 +359,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>");
                 //turnManager.isPlayerTurn = false;
                 TakenAction.Invoke();
+                ForceDisableButtons.Invoke(true);
             });
         }
     }
@@ -378,6 +383,7 @@ public class PlayerCombatHUD : MonoBehaviour
     {
         optionsPanel.SetActive(false);
         specialPanel.SetActive(true);
+        List<Button> specialButtons = new List<Button>();
 
         if (specialPanel.transform.childCount > 0)
         {
@@ -394,6 +400,15 @@ public class PlayerCombatHUD : MonoBehaviour
             var button = Instantiate(buttonPrefab, specialPanel.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = specialAction.specialName;
             button.GetComponent<Button>().onClick.AddListener(() => specials.UseSpecial(specialAction));
+            button.AddComponent<EventTrigger>();
+            var trigger = button.GetComponent<EventTrigger>();
+            var entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerEnter;
+            entry.callback.AddListener(_ => {
+                // Add code here to show the text when the mouse hovers over the button
+                combatTextBox.text = $"{specialAction.specialDescription}\n[ Custo de TP: {specialAction.specialCost} ]";
+            });
+            trigger.triggers.Add(entry);
         }
     }
     /// <summary>Charges the player's unit.</summary>

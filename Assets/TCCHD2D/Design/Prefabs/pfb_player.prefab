@@ -73,7 +73,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!114 &2374121206985510489
@@ -498,9 +498,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  rayDistance: 0.25
+  rayDistance: 0.15
   rayDistanceDiagonal: 0.64
-  slowFactor: 0.00001
   animator: {fileID: 1864262430771853414}
   spawnController: {fileID: 0}
   rigidBody: {fileID: 0}

@@ -51,6 +51,7 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Status")][SerializeField] private TMP_Text playerDexterity;
     [BoxGroup("Status")][SerializeField] private GameObject lvlUpAttributesButtons;
     [BoxGroup("Status")][SerializeField] private TMP_Text attributePointsText;
+    [BoxGroup("Status")][SerializeField] private TMP_Text availableAttributePointsText;
     
     [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerHealthBarFill;
     [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerHealthText;
@@ -67,9 +68,15 @@ public class InventoryUI : MonoBehaviour
 
     [BoxGroup("External References")]
     [SerializeField]
+    private Button autoHealButton;
+    
+    [BoxGroup("External References")]
+    [SerializeField]
     private Unit playerUnit;
 
-    [SerializeField] private GameObject itemPrefab;
+    [BoxGroup("External References")]
+    [SerializeField] 
+    private GameObject itemPrefab;
 
     [BoxGroup("External References")]
     [SerializeField]
@@ -84,10 +91,15 @@ public class InventoryUI : MonoBehaviour
     private InventoryManager inventoryManager;
 
     public Unit PlayerUnit => playerUnit;
+    
+    private bool _gameStarted;
 
     private void Start()
     {
         inventoryManager = InventoryManager.Instance;
+        if (QuickSaveReader.Create("GameInfo").Exists("GameStarted"))
+            _gameStarted = QuickSaveReader.Create("GameInfo").Read<bool>("GameStarted");
+        if (_gameStarted) return;
         var reader = QuickSaveReader.Create("GameSave");
         if (reader.Exists("PlayerAttack")) playerUnit.Attack = reader.Read<int>("PlayerAttack");
         if (reader.Exists("PlayerDefence")) playerUnit.Defence = reader.Read<int>("PlayerDefence");
@@ -97,6 +109,12 @@ public class InventoryUI : MonoBehaviour
         if (reader.Exists("Level")) playerUnit.Level = reader.Read<int>("Level");
         if (reader.Exists("Experience")) playerUnit.Experience = reader.Read<int>("Experience");
         if (reader.Exists("AttributesPoints")) playerUnit.AttributesPoints = reader.Read<int>("AttributesPoints");
+        if (reader.Exists("PlayerMaxHealth")) playerUnit.MaxHp = reader.Read<int>("PlayerMaxHealth");
+        if (reader.Exists("PlayerCurrentHealth")) playerUnit.CurrentHp = reader.Read<int>("PlayerCurrentHealth");
+        if (reader.Exists("PlayerMaxTp")) playerUnit.MaxTp = reader.Read<int>("PlayerMaxTp");
+        if (reader.Exists("PlayerCurrentTp")) playerUnit.CurrentTp = reader.Read<int>("PlayerCurrentTp");
+        _gameStarted = true;
+        QuickSaveWriter.Create("GameInfo").Write("GameStarted", _gameStarted).Commit();
     }
 
     public void ShowBagPanel()
@@ -306,11 +324,11 @@ public class InventoryUI : MonoBehaviour
         playerTpFill.fillAmount = (float)unit.CurrentTp / unit.MaxTp;
         playerXpText.text = $"XP: {unit.Experience} / {unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience}";
         playerXpBarFill.fillAmount = (float)unit.Experience / unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience;
-        playerAttack.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem != null ? $"Ataque: {unit.Attack} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem.StatusValue})" : $"Ataque: {unit.Attack}";
-        playerDefence.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem != null ? $"Defesa: {unit.Defence} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem.StatusValue})" : $"Defesa: {unit.Defence}";
-        playerSpeed.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem != null ? $"Velocidade: {unit.Speed} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem.StatusValue})" : $"Velocidade: {unit.Speed}";
-        playerLuck.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem != null ? $"Sorte: {unit.Luck} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem.StatusValue})" : $"Sorte: {unit.Luck}";
-        playerDexterity.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem != null ? $"Destreza: {unit.Dexterity} (+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem.StatusValue})" : $"Destreza: {unit.Dexterity}";
+        playerAttack.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem != null ? $"Ataque: {unit.Attack} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem.StatusValue})" : $"Ataque: {unit.Attack}</color>";
+        playerDefence.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem != null ? $"Defesa: {unit.Defence} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem.StatusValue})" : $"Defesa: {unit.Defence}</color>";
+        playerSpeed.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem != null ? $"Velocidade: {unit.Speed} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem.StatusValue})" : $"Velocidade: {unit.Speed}</color>";
+        playerLuck.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem != null ? $"Sorte: {unit.Luck} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem.StatusValue})" : $"Sorte: {unit.Luck}</color>";
+        playerDexterity.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem != null ? $"Destreza: {unit.Dexterity} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem.StatusValue})" : $"Destreza: {unit.Dexterity}</color>";
     }
 
     private void UpdateTopLeftBars()
@@ -371,6 +389,8 @@ public class InventoryUI : MonoBehaviour
             updatedStatus = false;
         }
         
+        if (autoHealButton.gameObject.activeSelf) autoHealButton.interactable = playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp;
+        availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}": string.Empty;
         lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.text = $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}";
@@ -383,49 +403,43 @@ public class InventoryUI : MonoBehaviour
         playerUnit.Attack++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerAttack", playerUnit.Attack);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
     }
     public void LvlUpDefence()
     {
         playerUnit.Defence++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerDefence", playerUnit.Defence);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
     }
     public void LvlUpSpeed()
     {
         playerUnit.Speed++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerSpeed", playerUnit.Speed);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
     }
     public void LvlUpLuck()
     {
         playerUnit.Luck++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerLuck", playerUnit.Luck);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
     }
     public void LvlUpDexterity()
     {
         playerUnit.Dexterity++;
         playerUnit.AttributesPoints--;
         UpdatePlayerStatus(playerUnit);
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("PlayerDexterity", playerUnit.Dexterity);
-        writer.Write("AttributesPoints", playerUnit.AttributesPoints);
-        writer.Commit();
+    }
+
+    public void AutoHeal()
+    {
+        if (playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp)
+            while (playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp)
+            {
+                playerUnit.CurrentTp -= 10;
+                playerUnit.CurrentHp += 1;
+                if (playerUnit.CurrentHp <= playerUnit.MaxHp) continue;
+                playerUnit.CurrentHp = playerUnit.MaxHp;
+                break;
+            }
+        UpdatePlayerStatus(playerUnit);
     }
 }

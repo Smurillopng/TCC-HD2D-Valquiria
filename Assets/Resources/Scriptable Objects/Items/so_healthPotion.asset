@@ -15,12 +15,12 @@ MonoBehaviour:
   itemType: 0
   itemID: 2
   itemName: "Po\xE7\xE3o de Vida"
-  itemIcon: {fileID: -2767447577060174401, guid: 117e47e4e6824c74a8c7dbe5a775784f,
+  itemIcon: {fileID: -4498254844864185666, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
   effectType: 0
   vfx: {fileID: 8926484042661614526, guid: 43d4642013285894b9da21f246fffb7b, type: 3}
-  itemDescription: "Uma po\xE7\xE3o de ervas comum nessa regi\xE3o.recupera +10 de
-    vida"
+  itemDescription: "Uma po\xE7\xE3o de ervas comum nessa regi\xE3o, recupera +10
+    de vida"
   maxStack: 99
   currentStack: 0
   itemValue: 10

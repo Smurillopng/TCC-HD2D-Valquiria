@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using System.Collections;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -59,11 +58,15 @@ public class UnitController : MonoBehaviour
     [SerializeField, Tooltip("The text that displays the damage taken by the unit.")]
     private TMP_Text damageText;
 
+    public float damageVariation;
     public int damageTakenThisTurn;
     public int attackDamageCalculated;
     public int defenceCalculated;
     public int speedCalculated;
-    public int _charges;
+    public int charges;
+    
+    private int _ongoingChargeAttacks;
+    private PlayerCombatHUD _playerCombatHUD;
 
     #endregion
 
@@ -83,8 +86,8 @@ public class UnitController : MonoBehaviour
     public TimelineAsset Run => run;
     public int Charges
     {
-        get => _charges;
-        set => _charges = value;
+        get => charges;
+        set => charges = value;
     }
 
     #endregion
@@ -98,6 +101,7 @@ public class UnitController : MonoBehaviour
     /// </remarks>
     public void Awake()
     {
+        if (_playerCombatHUD == null) _playerCombatHUD = FindObjectOfType<PlayerCombatHUD>();
         if (!unit.IsPlayer)
         {
             unit.IsDead = false;
@@ -131,6 +135,10 @@ public class UnitController : MonoBehaviour
             unit.CurrentHp = unit.MaxHp;
         if (!unit.IsPlayer && unit.CurrentHp > unit.MaxHp)
             unit.CurrentHp = unit.MaxHp;
+        if (charges <= 0)
+        {
+            StopCoroutine(ChargeAttackCoroutine(null)); // Stop the coroutine
+        }
     }
 
     #endregion
@@ -144,8 +152,6 @@ public class UnitController : MonoBehaviour
     {
         AttackLogic(target);
         PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
-        PlayerCombatHUD.TakenAction.Invoke();
     }
     /// <summary>Executes the attack logic on a target unit.</summary>
     /// <param name="target">The target unit to attack.</param>
@@ -155,17 +161,47 @@ public class UnitController : MonoBehaviour
     /// If the unit is a player, it sets up the animation and signal bindings for the basic attack.
     /// If the player has a weapon equipped, it plays the appropriate attack animation based on the weapon's attack type.
     /// If the player's TP is less than the maximum TP, it increases the TP by 10 and updates the player's TP
+    /// </remarks>
     private void AttackLogic(UnitController target)
     {
         attackDamageCalculated = unit.Attack;
         if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
             attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-        if (_charges > 0)
+        CalcDamage(target);
+        
+        if (charges > 0)
+            StartCoroutine(ChargeAttackCoroutine(target));
+        else
+            PlayerCombatHUD.TakenAction.Invoke();
+        
+        if (_ongoingChargeAttacks > 0)
+            StartCoroutine(WaitForChargeAttacksToFinish());
+    }
+    
+    private IEnumerator ChargeAttackCoroutine(UnitController target)
+    {
+        _ongoingChargeAttacks++; // Increment the counter
+        while (charges > 0)
         {
-            _charges++;
-            attackDamageCalculated += _charges;
-            _charges -= _charges;
+            charges--;
+            var animationDuration = (float)Director.duration;
+            yield return new WaitForSeconds(animationDuration); // Wait for the animation to finish
+            CalcDamage(target);
+            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
         }
+        _ongoingChargeAttacks--; // Decrement the counter
+    }
+    
+    private IEnumerator WaitForChargeAttacksToFinish()
+    {
+        yield return new WaitWhile(() => _ongoingChargeAttacks > 0); // Wait until all ongoing charge attacks finish
+        PlayerCombatHUD.TakenAction.Invoke();
+        _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
+    }
+
+    public void CalcDamage(UnitController target)
+    {
+        PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         if (unit.IsPlayer)
         {
             var enemyObject = GameObject.FindWithTag("Enemy");
@@ -204,14 +240,17 @@ public class UnitController : MonoBehaviour
         else
             Director.Play(basicAttack);
 
-        if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp)
+        if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp && charges <= 0)
         {
             unit.CurrentTp += 10;
             if (unit.CurrentTp > unit.MaxTp)
                 unit.CurrentTp = unit.MaxTp;
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
         }
-        target.TakeDamage(attackDamageCalculated);
+        var randomFactor = Random.Range(1f - damageVariation, 1f + damageVariation);
+        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * randomFactor);
+        target.TakeDamage(calculatedDamage);
+        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
     }
     /// <summary>Reduces the unit's health by the given amount of damage, taking into account the unit's defense and equipment.</summary>
     /// <param name="damage">The amount of damage to be taken.</param>
@@ -268,18 +307,18 @@ public class UnitController : MonoBehaviour
 
         if (gotAway)
         {
-            var reader = QuickSaveReader.Create("GameSave");
+            var reader = QuickSaveReader.Create("GameInfo");
             SceneManager.LoadScene(reader.Read<string>("LastScene"));
-            var save = QuickSaveWriter.Create("GameSave");
-            save.Write("LastScene", SceneManager.GetActiveScene().name);
-            save.Commit();
             PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>");
             PlayerCombatHUD.TakenAction.Invoke();
+            _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
             PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>");
             PlayerCombatHUD.TakenAction.Invoke();
+            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
     }
     /// <summary>Runs a logic that involves a random chance and a unit's luck.</summary>
@@ -330,11 +369,8 @@ public class UnitController : MonoBehaviour
     // tutorial
     public void RunActionTutorial()
     {
-        var reader = QuickSaveReader.Create("GameSave");
+        var reader = QuickSaveReader.Create("GameInfo");
         SceneManager.LoadScene(reader.Read<string>("LastScene"));
-        var save = QuickSaveWriter.Create("GameSave");
-        save.Write("LastScene", SceneManager.GetActiveScene().name);
-        save.Commit();
         PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino");
         PlayerCombatHUD.TakenAction.Invoke();
         unit.Experience = 1;

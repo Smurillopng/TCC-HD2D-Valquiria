@@ -11,7 +11,7 @@ ScriptedImporter:
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
@@ -93,7 +93,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638180951639020271
+  platformSettingsDirtyTick: 0
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -128,7 +128,7 @@ ScriptedImporter:
       y: 4
       width: 15
       height: 19
-    spriteID: f4fa94e231e9bfe4883d827a926f68d5
+    spriteID: 406c9d89649649747a35ff203d248384
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,16 +139,16 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: spr_animals_Frame_1
     originalName: 
-    pivot: {x: 1.4444444, y: 0}
+    pivot: {x: 0.5, y: -0.6428572}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 53
-      width: 9
-      height: 7
-    spriteID: b08381539f00cef41a14ee3953d0a4cf
+      x: 27
+      y: 4
+      width: 10
+      height: 14
+    spriteID: 95aec3d50eb609c439bb6160a838cc91
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -156,19 +156,139 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 53}
+    uvTransform: {x: 27, y: 4}
   - name: spr_animals_Frame_2
     originalName: 
-    pivot: {x: 0.5, y: -0.6428572}
+    pivot: {x: 1.4444444, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 43
+      y: 31
+      width: 9
+      height: 7
+    spriteID: f5781f45dbd172e47b8593936dbcae11
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 43, y: 31}
+  - name: spr_animals_Frame_3
+    originalName: 
+    pivot: {x: 1.4444444, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 46
+      width: 9
+      height: 7
+    spriteID: 4043325333898a842843e7bfed4e3090
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 46}
+  - name: spr_animals_Frame_4
+    originalName: 
+    pivot: {x: 1.0833334, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 45
+      y: 4
+      width: 12
+      height: 7
+    spriteID: a814daff6afdfbf42bb15166d10aef5e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 45, y: 4}
+  - name: spr_animals_Frame_5
+    originalName: 
+    pivot: {x: 1, y: -0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 24
+      y: 31
+      width: 11
+      height: 6
+    spriteID: bc379439b30c8874f99bcabf6fd61cfb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 24, y: 31}
+  - name: spr_animals_Frame_6
+    originalName: 
+    pivot: {x: 1.2222222, y: -0.2857143}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 21
+      y: 46
+      width: 9
+      height: 7
+    spriteID: d0eb828844bf82243b88d368aee29398
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 21, y: 46}
+  - name: spr_animals_Frame_7
+    originalName: 
+    pivot: {x: 1.2222222, y: -0.2857143}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 38
+      y: 46
+      width: 9
+      height: 7
+    spriteID: 014b641e3e0026d4bbf53aacfc6bab83
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 38, y: 46}
+  - name: spr_animals_Frame_8
+    originalName: 
+    pivot: {x: 1, y: -0.14285715}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 31
-      width: 10
-      height: 14
-    spriteID: 7b9ae370c0de702488cb9e86fc39539a
+      width: 12
+      height: 7
+    spriteID: d889b8b2f0e724a478bb9a83083036e3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -193,92 +313,74 @@ ScriptedImporter:
         y: 8
         width: 15
         height: 19
-      spriteId: f4fa94e231e9bfe4883d827a926f68d5
+      spriteId: 406c9d89649649747a35ff203d248384
     - name: spr_animals_Frame_1
       frameIndex: 1
-      cellRect:
-        x: 3
-        y: 0
-        width: 9
-        height: 7
-      spriteId: b08381539f00cef41a14ee3953d0a4cf
-    - name: spr_animals_Frame_2
-      frameIndex: 2
       cellRect:
         x: 11
         y: 9
         width: 10
         height: 14
-      spriteId: 7b9ae370c0de702488cb9e86fc39539a
+      spriteId: 95aec3d50eb609c439bb6160a838cc91
+    - name: spr_animals_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 3
+        y: 0
+        width: 9
+        height: 7
+      spriteId: f5781f45dbd172e47b8593936dbcae11
+    - name: spr_animals_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 3
+        y: 0
+        width: 9
+        height: 7
+      spriteId: 4043325333898a842843e7bfed4e3090
+    - name: spr_animals_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 3
+        y: 0
+        width: 12
+        height: 7
+      spriteId: a814daff6afdfbf42bb15166d10aef5e
+    - name: spr_animals_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 5
+        y: 3
+        width: 11
+        height: 6
+      spriteId: bc379439b30c8874f99bcabf6fd61cfb
+    - name: spr_animals_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 5
+        y: 2
+        width: 9
+        height: 7
+      spriteId: d0eb828844bf82243b88d368aee29398
+    - name: spr_animals_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 5
+        y: 2
+        width: 9
+        height: 7
+      spriteId: 014b641e3e0026d4bbf53aacfc6bab83
+    - name: spr_animals_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 4
+        y: 1
+        width: 12
+        height: 7
+      spriteId: d889b8b2f0e724a478bb9a83083036e3
     linkedCells: []
     parentIndex: -1
-  platformSettings:
-  - name: DefaultTexturePlatform
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Server
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Android
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: WebGL
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Windows Store Apps
-    overridden: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 32, y: 32}

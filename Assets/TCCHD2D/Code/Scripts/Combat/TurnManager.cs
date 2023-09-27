@@ -65,7 +65,7 @@ public class TurnManager : MonoBehaviour
 
     public bool isPlayerTurn;
 
-    [SerializeField, ReadOnly] private CombatState _combatState; // The current state of the combat
+    [SerializeField, ReadOnly] private CombatState combatState; // The current state of the combat
     private UnitController _currentUnit; // The UnitController component of the current unit
     private int _turnCount; // The current turn number
 
@@ -82,7 +82,7 @@ public class TurnManager : MonoBehaviour
     /// </remarks>
     private void Awake()
     {
-        _combatState = CombatState.CombatStart;
+        combatState = CombatState.CombatStart;
         ManageTurns();
     }
     /// <summary>Enables the event handlers for taking player actions.</summary>
@@ -125,13 +125,10 @@ public class TurnManager : MonoBehaviour
     /// </remarks>
     private void ManageTurns()
     {
-        switch (_combatState)
+        switch (combatState)
         {
             case CombatState.CombatStart:
-                var save = QuickSaveWriter.Create("GameSave");
-                save.Write("CurrentScene", SceneManager.GetActiveScene().name);
-                save.Commit();
-                var reader = QuickSaveReader.Create("GameSave");
+                var reader = QuickSaveReader.Create("GameInfo");
                 // Add all (player and enemy) units to the list
                 foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
                 {
@@ -186,7 +183,7 @@ public class TurnManager : MonoBehaviour
                     }
                 }
                 units = units.OrderByDescending(unit => unit.speedCalculated).ToList();
-                _combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
+                combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
                 if (_turnCount == 0)
                 {
                     StartCoroutine(FirstTurnDelay());
@@ -208,7 +205,7 @@ public class TurnManager : MonoBehaviour
                         currentUnitIndex = 0;
                     }
                 }
-                _combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
+                combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
                 CheckGameOver();
                 ManageTurns();
                 break;
@@ -217,9 +214,10 @@ public class TurnManager : MonoBehaviour
                 _currentUnit = units[currentUnitIndex];
                 if (_currentUnit.Unit.IsPlayer && !_currentUnit.Unit.HasTakenTurn)
                 {
-                    _combatState = CombatState.PlayerTurn;
+                    combatState = CombatState.PlayerTurn;
                     onTurnStart.Invoke();
                     isPlayerTurn = true;
+                    PlayerCombatHUD.ForceDisableButtons.Invoke(false);
                     // Wait for player input
                 }
                 if (units[currentUnitIndex].Unit.HasTakenTurn)
@@ -232,7 +230,7 @@ public class TurnManager : MonoBehaviour
                 _currentUnit = units[currentUnitIndex];
                 if (!_currentUnit.Unit.HasTakenTurn && !aiMoved)
                 {
-                    _combatState = CombatState.EnemyTurn;
+                    combatState = CombatState.EnemyTurn;
                     isPlayerTurn = false;
                     onTurnStart.Invoke();
                     // Use the AI system to select an action for the enemy
@@ -255,7 +253,7 @@ public class TurnManager : MonoBehaviour
                         unit.Unit.HasTakenTurn = false;
                     currentUnitIndex = 0;
                 }
-                _combatState = CombatState.TurnCheck;
+                combatState = CombatState.TurnCheck;
                 ManageTurns();
                 break;
 
@@ -285,7 +283,7 @@ public class TurnManager : MonoBehaviour
     /// </remarks>
     public void SetAilments()
     {
-        switch (_combatState)
+        switch (combatState)
         {
             case CombatState.PlayerTurn:
                 TriggerAilment(PlayerUnitController);
@@ -341,11 +339,11 @@ public class TurnManager : MonoBehaviour
 
         if (!playerAlive)
         {
-            _combatState = CombatState.PlayerLost;
+            combatState = CombatState.PlayerLost;
         }
         else if (!enemyAlive)
         {
-            _combatState = CombatState.PlayerWon;
+            combatState = CombatState.PlayerWon;
         }
     }
     /// <summary>Loads the "scn_gameOver" scene, indicating that the game is over.</summary>
@@ -372,11 +370,7 @@ public class TurnManager : MonoBehaviour
         DisplayVictoryText();
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
-        var lastScene = QuickSaveReader.Create("GameSave").Read<string>("LastScene");
-        var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("LastScene", SceneManager.GetActiveScene().name);
-        writer.Write("Experience", PlayerUnitController.Unit.Experience);
-        writer.Commit();
+        var lastScene = QuickSaveReader.Create("GameInfo").Read<string>("LastScene");
         SceneManager.LoadScene(lastScene);
     }
     /// <summary>Calculates and applies the experience reward for defeating an enemy unit.</summary>
@@ -402,6 +396,7 @@ public class TurnManager : MonoBehaviour
                              .Experience;
             PlayerUnitController.Unit.Experience += EnemyUnitController.Unit.ExperienceDrop;
             PlayerUnitController.Unit.CheckLevelUp();
+            PlayerUnitController.Unit.Experience = 0;
             PlayerUnitController.Unit.Experience += xpLeft;
         }
     }
@@ -441,7 +436,7 @@ public class TurnManager : MonoBehaviour
     /// </remarks>
     private void PlayerAction()
     {
-        if (_combatState == CombatState.PlayerTurn)
+        if (combatState == CombatState.PlayerTurn)
             isPlayerTurn = false;
     }
     /// <summary>Delays the turn for a specified duration and updates the game state.</summary>
@@ -453,7 +448,7 @@ public class TurnManager : MonoBehaviour
         if (!units[currentUnitIndex].Unit.IsPlayer)
             aiMoved = false;
         yield return new WaitForSeconds(0.5f);
-        _combatState = CombatState.TurnEnd;
+        combatState = CombatState.TurnEnd;
         onTurnChange.Invoke();
     }
 

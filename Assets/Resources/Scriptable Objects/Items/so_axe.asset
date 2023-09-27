@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f7e845936f24d58a175d3d846e813f7, type: 3}
+  m_Name: so_axe
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemID: 2
+  itemName: machado de arremesso
+  itemIcon: {fileID: 7603757967652125121, guid: 117e47e4e6824c74a8c7dbe5a775784f,
+    type: 3}
+  effectType: 1
+  vfx: {fileID: 0}
+  itemDescription: 'um machado de arremesso para jogar nos inimigos. Dano: 10'
+  maxStack: 99
+  currentStack: 0
+  itemValue: 10
+  effectValue: 10

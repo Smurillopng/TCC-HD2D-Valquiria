@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
-  m_Name: so_helmet
+  m_Name: so_swordBronze
   m_EditorClassIdentifier: 
   itemType: 1
-  itemID: 0
-  slotType: 0
+  itemID: 3
+  slotType: 3
   attackType: 0
-  itemName: Capacete de Bronze
-  itemIcon: {fileID: 1662145118291324630, guid: 955b77d6192512446a19ea4daa010f8f,
+  itemName: Espada de Cobre
+  itemIcon: {fileID: -5566181938308581267, guid: dfaef4b399d8a2c478d7d878aeb10cff,
     type: 3}
-  itemDescription: Pertence a um guerreiro de uma terra distante
+  itemDescription: Uma espada forjada por guerreiros de terras distantes. Aumenta
+    +2 de ataque. Aumenta +2 de ataque
   maxStack: 1
   currentStack: 0
-  itemValue: 0
+  itemValue: 5
   statusValue: 2

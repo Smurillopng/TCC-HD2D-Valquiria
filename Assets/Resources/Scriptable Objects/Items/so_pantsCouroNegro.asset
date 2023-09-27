@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
+  m_Name: so_pantsCouroNegro
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemID: 0
+  slotType: 2
+  attackType: 0
+  itemName: "Cal\xE7a de Couro"
+  itemIcon: {fileID: 4779812269504871434, guid: 1a2f425b7d15a634e8fadd7882c57042,
+    type: 3}
+  itemDescription: "Cal\xE7a leve para ajudar na velocidade e um cintur\xE3o de couro
+    negro para proteger"
+  maxStack: 1
+  currentStack: 0
+  itemValue: 0
+  statusValue: 4

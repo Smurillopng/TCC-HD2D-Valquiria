@@ -15,11 +15,11 @@ MonoBehaviour:
   itemType: 0
   itemID: 2
   itemName: Pedra Pesada
-  itemIcon: {fileID: -8134571553919462511, guid: 117e47e4e6824c74a8c7dbe5a775784f,
+  itemIcon: {fileID: -8089839015586339301, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
   effectType: 1
   vfx: {fileID: 0}
-  itemDescription: Essa pedra muito pesada causa dano em quem for arremessada
+  itemDescription: 'Essa pedra muito pesada para jogar nos inimigos. Dano: 5'
   maxStack: 99
   currentStack: 0
   itemValue: 10

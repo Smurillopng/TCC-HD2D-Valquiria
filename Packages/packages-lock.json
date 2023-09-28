@@ -1,13 +1,13 @@
 {
   "dependencies": {
-    "com.singularitygroup.hotreload": {
-      "version": "file:com.singularitygroup.hotreload",
+    "com.kyrylokuzyk.primetween": {
+      "version": "file:../Assets/Plugins/PrimeTween/internal/com.kyrylokuzyk.primetween.tgz",
       "depth": 0,
-      "source": "embedded",
+      "source": "local-tarball",
       "dependencies": {}
     },
     "com.unity.2d.animation": {
-      "version": "7.0.11",
+      "version": "7.0.12",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -92,7 +92,7 @@
       "dependencies": {}
     },
     "com.unity.2d.tilemap.extras": {
-      "version": "2.2.6",
+      "version": "2.2.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {

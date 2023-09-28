@@ -156,8 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: e38c90a909f74a14e999f7d350b66248, type: 2}
-  dialogueBox: {fileID: 0}
-  dialogueText: {fileID: 0}
   dialogueManager: {fileID: 0}
   spriteRenderer: {fileID: 5693535063126932755}
   defaultIcon: {fileID: 21300000, guid: 947aebc22aed76f46885d617a273ae93, type: 3}
@@ -186,6 +184,9 @@ MonoBehaviour:
   interactionRange: 0.5
   playerTransform: {fileID: 0}
   interactBool: {fileID: 11400000, guid: f9cc4a05f35383e48b5f8ca7dabe8534, type: 2}
+  onAwake:
+    m_PersistentCalls:
+      m_Calls: []
   onInteractionStart:
     m_PersistentCalls:
       m_Calls:
@@ -581,6 +582,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 1969240757900968859}
   m_maskType: 0

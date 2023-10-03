@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9185514376097058260}
   - component: {fileID: 1735595575303850379}
   - component: {fileID: 6374397308275155619}
+  - component: {fileID: 6964444786136466913}
   m_Layer: 7
   m_Name: Torch Light
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4991367554992647271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.239, z: -0.023}
+  m_LocalPosition: {x: 0, y: 0.4, z: -0.023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,6 +116,27 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!114 &6964444786136466913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4991367554992647271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 771e8d9df56a951478341aa44e9ca883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 8490969858232018557}
+  _spriteRenderer: {fileID: 946024732785334943}
+  _pointLight: {fileID: 1735595575303850379}
+  baseIntensity: 1
+  intensityFluctuation: 5
+  flickerSpeed: 0.01
+  baseColor: {r: 1, g: 0.72156864, b: 0, a: 1}
+  colorIntensity: 0.05
+  playerColorIntensity: 2.5
 --- !u!1001 &987560346487330038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,7 +164,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d7d18844e3141b946805f6d0f9ca904b, type: 2}
+      objectReference: {fileID: 2100000, guid: 38de11869e2cf3640937b85b1a6cf1c9, type: 2}
     - target: {fileID: 1474065153881555637, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_Layer
@@ -277,12 +299,12 @@ PrefabInstance:
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017022566
+      value: 0.000000017022566
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000025083502
+      value: -0.0000000025083502
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
@@ -376,9 +398,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5b80279cceae2e44851743e79d2436c, type: 3}
+--- !u!212 &946024732785334943 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 41782113695223401, guid: c5b80279cceae2e44851743e79d2436c,
+    type: 3}
+  m_PrefabInstance: {fileID: 987560346487330038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7576277412279066197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7246534575480244899, guid: c5b80279cceae2e44851743e79d2436c,
     type: 3}
   m_PrefabInstance: {fileID: 987560346487330038}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8490969858232018557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8674347390831194763, guid: c5b80279cceae2e44851743e79d2436c,
+    type: 3}
+  m_PrefabInstance: {fileID: 987560346487330038}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e6a8f318e3899b4c98b6ff5a8a2bb0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

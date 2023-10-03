@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acf222249ade4ba8acd1afb7cf253029, type: 3}
-  m_Name: DebuffAction
+  m_Name: FuryAction
   m_EditorClassIdentifier: 
-  specialName: Golpe Flamejante
-  specialType: 3
-  specialCost: 40
+  specialName: "F\xFAria"
+  specialType: 1
+  specialCost: 50
   specialDamage: 10
   specialHeal: 0
-  specialDescription: Um golpe capaz de deixar o inimigo em chamas
+  specialDescription: Um ataque poderoso e devastador

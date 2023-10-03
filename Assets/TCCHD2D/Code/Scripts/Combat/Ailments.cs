@@ -1,5 +1,14 @@
 ﻿using UnityEngine;
 
+public enum AilmentType
+{
+    OnFire,
+    Frozen,
+    Bleeding,
+    Stunned,
+    Incapacitated
+}
+
 /// <summary>
 /// This class represents the ailments of an object.
 /// </summary>
@@ -16,39 +25,37 @@ public class Ailments : MonoBehaviour
     public bool Stunned { get; private set; }
     public bool Incapacitated { get; private set; }
 
+    public int turnsLeft;
+
     #endregion
 
     #region === Methods =================================================================
 
-    /// <summary>Sets the OnFire property to the specified value.</summary>
-    /// <param name="value">The value to set the OnFire property to.</param>
-    public void SetOnFire(bool value)
+    public void SetAilment(AilmentType ailmentType, bool value, int duration)
     {
-        OnFire = value;
-    }
-    /// <summary>Sets the frozen state of an object.</summary>
-    /// <param name="value">The value to set the frozen state to.</param>
-    public void SetFrozen(bool value)
-    {
-        Frozen = value;
-    }
-    /// <summary>Sets the bleeding property of an object.</summary>
-    /// <param name="value">The value to set the bleeding property to.</param>
-    public void SetBleeding(bool value)
-    {
-        Bleeding = value;
-    }
-    /// <summary>Sets the stunned state of an object.</summary>
-    /// <param name="value">The value to set the stunned state to.</param>
-    public void SetStunned(bool value)
-    {
-        Stunned = value;
-    }
-    /// <summary>Sets the incapacitated status of an object.</summary>
-    /// <param name="value">The new incapacitated status.</param>
-    public void SetIncapacitated(bool value)
-    {
-        Incapacitated = value;
+        switch (ailmentType)
+        {
+            case AilmentType.OnFire:
+                OnFire = value;
+                turnsLeft = duration;
+                break;
+            case AilmentType.Frozen:
+                Frozen = value;
+                turnsLeft = duration;
+                break;
+            case AilmentType.Bleeding:
+                Bleeding = value;
+                turnsLeft = duration;
+                break;
+            case AilmentType.Stunned:
+                Stunned = value;
+                turnsLeft = duration;
+                break;
+            case AilmentType.Incapacitated:
+                Incapacitated = value;
+                turnsLeft = duration;
+                break;
+        }
     }
 
     #endregion

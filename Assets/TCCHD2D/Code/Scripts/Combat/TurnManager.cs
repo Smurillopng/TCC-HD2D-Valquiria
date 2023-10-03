@@ -326,7 +326,7 @@ public class TurnManager : MonoBehaviour
         if (targetAilments.OnFire)
         {
             AilmentCountdown(targetAilments);
-            target.TakeDamage(3);
+            target.TakeRawDamage(3);
             PlayerCombatHUD.UpdateCombatHUD();
             if (target.Unit.IsDead)
                 target.Unit.HasTakenTurn = true;
@@ -347,7 +347,7 @@ public class TurnManager : MonoBehaviour
         if (targetAilments.Bleeding)
         {
             AilmentCountdown(targetAilments);
-            target.TakeDamage(2);
+            target.TakeRawDamage(2);
             PlayerCombatHUD.UpdateCombatHUD();
             if (target.Unit.IsDead)
                 target.Unit.HasTakenTurn = true;
@@ -356,7 +356,7 @@ public class TurnManager : MonoBehaviour
         if (targetAilments.Incapacitated)
         {
             AilmentCountdown(targetAilments);
-            target.TakeDamage(1);
+            target.TakeRawDamage(1);
             if (target.Unit.IsDead)
                 target.Unit.HasTakenTurn = true;
             PlayerCombatHUD.UpdateCombatHUD();

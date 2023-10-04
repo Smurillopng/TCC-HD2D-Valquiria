@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_spriteShadowPlayer_cave
-  m_Shader: {fileID: -6465566751694194690, guid: c474aa7d7648d914abe06c4ae2c09fa9,
+  m_Shader: {fileID: -6465566751694194690, guid: f8bc53988f942144987310fa9fa3903a,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -34,6 +34,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _EmissionMask:
+        m_Texture: {fileID: 2800000, guid: 887a12d88aacc754dad11f009fcea8e1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -57,5 +61,6 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Emission: {r: 0.6320754, g: 0.40440974, b: 0, a: 1}
+    - _Emission: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 1}
+    - _GlowColor: {r: 1, g: 0.7119312, b: 0.15566039, a: 1}
   m_BuildTextureStacks: []

@@ -170,7 +170,7 @@ MonoBehaviour:
   intensityFluctuation: 5
   flickerSpeed: 0.01
   baseColor: {r: 1, g: 0.72156864, b: 0, a: 1}
-  colorIntensity: 0.05
+  colorIntensity: 0.015
   playerColorIntensity: 2.5
 --- !u!1 &5449379627806901877
 GameObject:
@@ -559,12 +559,12 @@ PrefabInstance:
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016963163
+      value: -0.000000016963163
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000028828169
+      value: 0.0000000028828169
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}

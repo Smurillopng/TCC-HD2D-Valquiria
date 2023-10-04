@@ -24,7 +24,7 @@ Material:
     m_Floats:
     - _AlphaCutoff: 0.5
     - _CameraDepthFadeOffset: 0
-    - _CameraDepthFadeRange: 0
+    - _CameraDepthFadeRange: 15
     - _CombinedNoiseRemap: 0
     - _SimpleNoiseAmount: 0.25
     - _SimpleNoiseRemap: 0

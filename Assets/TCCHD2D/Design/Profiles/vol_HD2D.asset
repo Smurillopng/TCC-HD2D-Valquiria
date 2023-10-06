@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01700fd266d6914ababb731e09af2eb, type: 3}
   m_Name: DepthOfField
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   mode:
     m_OverrideState: 1
     m_Value: 2
@@ -30,13 +30,13 @@ MonoBehaviour:
     m_Value: 1
   focusDistance:
     m_OverrideState: 1
-    m_Value: 4.55
+    m_Value: 15
   aperture:
     m_OverrideState: 1
-    m_Value: 20.6
+    m_Value: 1
   focalLength:
     m_OverrideState: 1
-    m_Value: 250
+    m_Value: 42
   bladeCount:
     m_OverrideState: 1
     m_Value: 9
@@ -46,6 +46,34 @@ MonoBehaviour:
   bladeRotation:
     m_OverrideState: 1
     m_Value: 0
+--- !u!114 &-194920697162636674
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  postExposure:
+    m_OverrideState: 0
+    m_Value: 0
+  contrast:
+    m_OverrideState: 1
+    m_Value: 7
+  colorFilter:
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 0.8198746, b: 0.4575472, a: 1}
+  hueShift:
+    m_OverrideState: 0
+    m_Value: -14
+  saturation:
+    m_OverrideState: 1
+    m_Value: 20
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +92,7 @@ MonoBehaviour:
   - {fileID: 4617433197739088176}
   - {fileID: 1472901670844609560}
   - {fileID: 1885098250959124874}
+  - {fileID: -194920697162636674}
 --- !u!114 &1472901670844609560
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -82,7 +111,7 @@ MonoBehaviour:
     m_Value: 3
   intensity:
     m_OverrideState: 1
-    m_Value: 0.1
+    m_Value: 0.15
   response:
     m_OverrideState: 1
     m_Value: 0.3
@@ -154,29 +183,29 @@ MonoBehaviour:
   active: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 2.5
   intensity:
     m_OverrideState: 1
-    m_Value: 3
+    m_Value: 5
   scatter:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.6
   clamp:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 65472
   tint:
-    m_OverrideState: 1
-    m_Value: {r: 0.84313726, g: 0.6627451, b: 0.8901961, a: 1}
+    m_OverrideState: 0
+    m_Value: {r: 1, g: 0.71237, b: 0, a: 1}
   highQualityFiltering:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   skipIterations:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 16
   dirtTexture:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {fileID: 0}
     dimension: 1
   dirtIntensity:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0

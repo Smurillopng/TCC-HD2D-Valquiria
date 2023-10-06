@@ -89,7 +89,7 @@ MonoBehaviour:
   experience: 0
   attackAnimation: {fileID: 11400000, guid: 60788a39c3c84944986306cb5be30167, type: 2}
   maxHp: 40
-  currentHp: 0
+  currentHp: 29
   maxTp: 100
   currentTp: 0
   attack: 4
@@ -99,6 +99,7 @@ MonoBehaviour:
   dexterity: 2
   attributesPoints: 0
   isPlayer: 0
+  isDangerous: 0
   resetOnExit: 0
-  isDead: 1
+  isDead: 0
   hasTakenTurn: 0

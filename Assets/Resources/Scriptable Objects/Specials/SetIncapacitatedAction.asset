@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf222249ade4ba8acd1afb7cf253029, type: 3}
+  m_Name: SetIncapacitatedAction
+  m_EditorClassIdentifier: 
+  specialName: Debilitar
+  specialType: 3
+  specialAilment: 4
+  turnsToLast: 1
+  specialCost: 3
+  specialDamage: 0
+  specialHeal: 0
+  specialDescription: "Ap\xF3s ser atingido por esse golpe seu inimigo fica incapacitado"

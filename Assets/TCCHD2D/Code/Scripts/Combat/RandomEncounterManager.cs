@@ -83,6 +83,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     private LiftGammaGain _liftGammaGain; // The property responsible for the fade effect
     private bool _randomized; // Whether the random amount of steps was already generated
     private Tutorial _tutorial; // The Tutorial component of the player
+    private SceneTransitioner _transitioner;
 
     #endregion
 
@@ -100,12 +101,13 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     private void Start()
     {
         _playerMovement = FindObjectOfType<PlayerMovement>(); // Get the PlayerMovement component
+        _transitioner = FindObjectOfType<SceneTransitioner>();
         currentSteps = 0; // Set the current steps to 0
         minimumEncounterChance = areaEncounterRate / 100f; // Calculate the minimum encounter chance
         volume.profile.TryGet(out _liftGammaGain);
-        
+
         _playerMovement.CanMove.Value = true;
-        
+
         if (SceneManager.GetActiveScene().name.Equals("scn_game"))
             _tutorial = FindObjectOfType<Tutorial>();
     }
@@ -170,8 +172,9 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         save.Write("LastScene", SceneManager.GetActiveScene().name);
         save.Write("EncounteredEnemy", _selectedEnemy.name);
         save.Commit();
-        
-        StartCoroutine(FadeInToCombat(_liftGammaGain));
+
+        StartCoroutine(_transitioner.TransitionTo(combatScene));
+        SceneManager.sceneLoaded += SetScene;
     }
     /// <summary>Encounters the final boss, saves the game, and fades in the screen.</summary>
     /// <remarks>
@@ -188,7 +191,8 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         save.Write("EncounteredEnemy", _selectedEnemy.name);
         save.Commit();
 
-        StartCoroutine(FadeInToCombat(_liftGammaGain));
+        StartCoroutine(_transitioner.TransitionTo(combatScene));
+        SceneManager.sceneLoaded += SetScene;
     }
 
     public void TutorialEncounter(Unit enemy)
@@ -200,44 +204,12 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         save.Write("LastScene", SceneManager.GetActiveScene().name);
         save.Write("EncounteredEnemy", _selectedEnemy.name);
         save.Commit();
-        
+
         _tutorial.director.Pause();
-        StartCoroutine(FadeInTutorial(_liftGammaGain));
-    }
-    private IEnumerator FadeInTutorial(LiftGammaGain lgg)
-    {
-        float time = 0;
-        _playerMovement.CanMove.Value = false;
-        while (time < fadeTime)
-        {
-            time += Time.deltaTime;
-            lgg.gamma.value = new Vector4(-1, -1, -1, 0 - time / fadeTime);
-            yield return null;
-        }
-        SceneManager.LoadScene("scn_combat_tutorial");
+        StartCoroutine(_transitioner.TransitionTo("scn_combat_tutorial"));
         SceneManager.sceneLoaded += SetScene;
     }
-    /// <summary>Fades in the screen using the LiftGammaGain effect.</summary>
-    /// <param name="lgg">The LiftGammaGain effect to use for the fade.</param>
-    /// <returns>An IEnumerator that performs the fade.</returns>
-    /// <remarks>
-    /// The screen is faded in by gradually decreasing the gamma value of the LiftGammaGain effect over time.
-    /// Once the fade is complete, the combat scene is loaded and the SetScene method is registered as a callback
-    /// for the SceneManager.sceneLoaded event.
-    /// </remarks>
-    private IEnumerator FadeInToCombat(LiftGammaGain lgg)
-    {
-        float time = 0;
-        _playerMovement.CanMove.Value = false;
-        while (time < fadeTime)
-        {
-            time += Time.deltaTime;
-            lgg.gamma.value = new Vector4(-1, -1, -1, 0 - time / fadeTime);
-            yield return null;
-        }
-        SceneManager.LoadScene(combatScene);
-        SceneManager.sceneLoaded += SetScene;
-    }
+
 
     /// <summary>Sets the current scene and performs any necessary actions based on the scene type.</summary>
     /// <param name="scene">The scene to set.</param>

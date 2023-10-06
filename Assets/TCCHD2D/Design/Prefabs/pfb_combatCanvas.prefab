@@ -1394,7 +1394,6 @@ MonoBehaviour:
   enemyName: {fileID: 6130109675300411991}
   enemyHealthBarFill: {fileID: 6130109674816381841}
   enemyHealthText: {fileID: 6130109675818719003}
-  combatTextBoxImg: {fileID: 6130109674790692588}
   combatTextBox: {fileID: 6130109673860257135}
   combatTextTimer: 1
   buttonPrefab: {fileID: 8481144931693999151, guid: 1e1dc1467dd0fe04984fe873ba459873,
@@ -1426,6 +1425,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d8fd28c9b6f1fdd4a9c1aae1f5629475, type: 2}
   - {fileID: 11400000, guid: fac6f9ce4b7b9ea41be4d02ba5f610e6, type: 2}
   - {fileID: 11400000, guid: 3a36b395087ed2148845b702585281f0, type: 2}
+  - {fileID: 11400000, guid: befea4e052dd5e044b22677ae457ad76, type: 2}
+  - {fileID: 11400000, guid: 28454b56e1a419648a25a6a7e4e3d069, type: 2}
+  - {fileID: 11400000, guid: 4dbeb6fa4685bc54985785a02e459b5c, type: 2}
+  - {fileID: 11400000, guid: 4c9c5dd956a070644a0f916ec42bf431, type: 2}
 --- !u!114 &5972228759280521184
 MonoBehaviour:
   m_ObjectHideFlags: 0

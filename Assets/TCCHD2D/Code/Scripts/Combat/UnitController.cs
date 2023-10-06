@@ -64,7 +64,7 @@ public class UnitController : MonoBehaviour
     public int defenceCalculated;
     public int speedCalculated;
     public int charges;
-    
+
     private int _ongoingChargeAttacks;
     private PlayerCombatHUD _playerCombatHUD;
 
@@ -168,16 +168,16 @@ public class UnitController : MonoBehaviour
         if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
             attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
         CalcDamage(target);
-        
+
         if (charges > 0)
             StartCoroutine(ChargeAttackCoroutine(target));
         else
             PlayerCombatHUD.TakenAction.Invoke();
-        
+
         if (_ongoingChargeAttacks > 0)
             StartCoroutine(WaitForChargeAttacksToFinish());
     }
-    
+
     private IEnumerator ChargeAttackCoroutine(UnitController target)
     {
         _ongoingChargeAttacks++; // Increment the counter
@@ -191,7 +191,7 @@ public class UnitController : MonoBehaviour
         }
         _ongoingChargeAttacks--; // Decrement the counter
     }
-    
+
     private IEnumerator WaitForChargeAttacksToFinish()
     {
         yield return new WaitWhile(() => _ongoingChargeAttacks > 0); // Wait until all ongoing charge attacks finish
@@ -264,7 +264,7 @@ public class UnitController : MonoBehaviour
             defenceCalculated += InventoryManager.Instance.EquipmentSlots[1].equipItem.StatusValue;
         // Calculate damage taken based on defense
         damageTakenThisTurn = Mathf.Max(1, damage - defenceCalculated);
-        
+
         if (damage == 0)
             damageTakenThisTurn = 0;
 
@@ -278,6 +278,26 @@ public class UnitController : MonoBehaviour
                 unit.CurrentTp = unit.MaxTp;
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
         }
+        // Check if the unit has died
+        if (unit.CurrentHp <= 0)
+        {
+            unit.IsDead = true;
+            unit.CurrentHp = 0;
+            // TODO: Play death animation
+        }
+        return damageTakenThisTurn;
+    }
+
+    public int TakeRawDamage(int damage)
+    {
+        damageTakenThisTurn = damage;
+
+        if (damage == 0)
+            damageTakenThisTurn = 0;
+
+        // Subtract damage from health
+        unit.CurrentHp -= damageTakenThisTurn;
+
         // Check if the unit has died
         if (unit.CurrentHp <= 0)
         {
@@ -364,7 +384,7 @@ public class UnitController : MonoBehaviour
         //             $"<color=blue>{unit.UnitName}</color> tried to run away but <color=red>failed</color>");
         //     }
         // }
-        
+
     }
     // tutorial
     public void RunActionTutorial()

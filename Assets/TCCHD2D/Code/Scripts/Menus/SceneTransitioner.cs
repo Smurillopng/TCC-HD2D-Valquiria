@@ -1,65 +1,80 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using CI.QuickSave;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using PrimeTween;
+using Sirenix.OdinInspector;
 
 public class SceneTransitioner : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, BoxGroup("Scene Related")]
     private string goToScene;
-    [SerializeField]
-    private Volume volume;
-    [SerializeField]
-    private float fadeTime;
-    [SerializeField] 
+    [SerializeField, BoxGroup("Scene Related")]
     private bool spawnStart, spawnEnd;
-    [SerializeField]
-    private GameObject uiController;
+    [SerializeField, BoxGroup("Transition Related")]
+    private RectTransform playerBar, minimap;
+    [SerializeField, BoxGroup("Transition Related")]
+    private Material mat;
+    [SerializeField, BoxGroup("Transition Values")]
+    private float min, max, speedTransition, acelerationValue;
+    [SerializeField, BoxGroup("Transition Values")]
+    private float tweenTime = 1f;
 
-    private LiftGammaGain _liftGammaGain;
-    private bool _isFading;
+    [SerializeField, ReadOnly, BoxGroup("Debug")]
+    private float current;
+    [SerializeField, ReadOnly, BoxGroup("Debug")]
+    private PlayerMovement _pm;
+    [SerializeField, ReadOnly, BoxGroup("Debug")]
+    private float _aceleration = 1f;
+
+    private static readonly int CutoffHeight = Shader.PropertyToID("_Cutoff_Height");
 
     private void Awake()
     {
-         volume.profile.TryGet(out _liftGammaGain);
-         if (!_isFading)
-             StartCoroutine(FadeOut(_liftGammaGain, FindObjectOfType<PlayerMovement>()));
+        playerBar.anchoredPosition = new Vector2(-196.0001f, playerBar.anchoredPosition.y);
+        minimap.anchoredPosition = new Vector2(180.0001f, minimap.anchoredPosition.y);
+
+        _pm = FindObjectOfType<PlayerMovement>();
+        StartCoroutine(TransitionOut());
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            var player = other.GetComponent<PlayerMovement>();
-            LoadFade(goToScene, player);
-        }
+        if (!other.CompareTag("Player")) return;
+        StartCoroutine(TransitionIn(goToScene));
     }
 
-    public void LoadFade(string sceneName, PlayerMovement playerMove)
+    private IEnumerator TransitionIn(string scene)
     {
-        if (!_isFading)
-        {
-            goToScene = sceneName;
-            StartCoroutine(FadeIn(_liftGammaGain, playerMove));
-        }
-    }
+        _pm.CanMove.Value = false;
+        current = min;
+        TiraUI();
+        yield return new WaitUntil(() => Math.Abs(playerBar.anchoredPosition.x - (-196.0001f)) < 0.01);
 
-    private IEnumerator FadeIn(LiftGammaGain lgg, PlayerMovement pm)
-    {
-        _isFading = true;
-        float time = 0;
-        pm.CanMove.Value = false;
-        uiController.SetActive(false);
-        while (time < fadeTime)
+        while (current < max)
         {
-            time += Time.deltaTime;
-            lgg.gamma.value = new Vector4(-1, -1, -1, 0 - time / fadeTime);
+            if (Math.Abs(current - max) > 0.01 && Math.Abs(current - min) > 0.01)
+                _aceleration = acelerationValue;
+
+            current += speedTransition * _aceleration * Time.deltaTime;
+            var progress = Mathf.Clamp01((current - min) / (max - min));
+            var targetHeight = Mathf.Lerp(min, max, progress);
+            mat.SetFloat(CutoffHeight, targetHeight);
+
             yield return null;
+
+            if (current >= max)
+            {
+                current = max;
+                _aceleration = 1;
+            }
         }
 
-        SceneManager.LoadScene(goToScene);
+        yield return new WaitUntil(() => Math.Abs(current - max) < 0.01);
+
+        SceneManager.LoadScene(scene);
         if (spawnStart)
         {
             var writer = QuickSaveWriter.Create("GameInfo");
@@ -76,23 +91,81 @@ public class SceneTransitioner : MonoBehaviour
             writer.Write("ChangingScene", true);
             writer.Commit();
         }
-        
-        _isFading = false;
+
+        _pm.CanMove.Value = true;
     }
 
-    private IEnumerator FadeOut(LiftGammaGain lgg, PlayerMovement pm)
+    private IEnumerator TransitionOut()
     {
-        float time = 0;
-        Vector4 defaultGamma = new Vector4(-1, -1, -1, 0);
-        lgg.gamma.value = new Vector4(-1, -1, -1, -1);
-        pm.CanMove.Value = false;
-        while (time < fadeTime)
+        current = max;
+        mat.SetFloat(CutoffHeight, current);
+
+        while (current > min)
         {
-            time += Time.deltaTime;
-            lgg.gamma.value = Vector4.Lerp(new Vector4(-1, -1, -1, -1), defaultGamma, time / fadeTime);
+            _pm.CanMove.Value = false;
+            if (Math.Abs(current - max) > 0.01 && Math.Abs(current - min) > 0.01)
+                _aceleration = acelerationValue;
+
+            current -= speedTransition * Time.deltaTime * _aceleration;
+            var progress = Mathf.Clamp01((current - min) / (max - min));
+            var targetHeight = Mathf.Lerp(min, max, progress);
+            mat.SetFloat(CutoffHeight, targetHeight);
+
             yield return null;
+
+            if (current <= min)
+            {
+                current = min;
+                _aceleration = 1;
+            }
         }
-        pm.CanMove.Value = true;
-        uiController.SetActive(true);
+        BotaUI();
+        yield return new WaitUntil(() => Math.Abs(current - min) < 0.01);
+        _pm.CanMove.Value = true;
+    }
+
+    public IEnumerator TransitionTo(string scene)
+    {
+        _pm.CanMove.Value = false;
+        current = min;
+        TiraUI();
+        yield return new WaitUntil(() => Math.Abs(playerBar.anchoredPosition.x - (-196.0001f)) < 0.01);
+
+        while (current < max)
+        {
+            if (Math.Abs(current - max) > 0.01 && Math.Abs(current - min) > 0.01)
+                _aceleration = acelerationValue;
+
+            current += speedTransition * _aceleration * Time.deltaTime;
+            var progress = Mathf.Clamp01((current - min) / (max - min));
+            var targetHeight = Mathf.Lerp(min, max, progress);
+            mat.SetFloat(CutoffHeight, targetHeight);
+
+            yield return null;
+
+            if (current >= max)
+            {
+                current = max;
+                _aceleration = 1;
+            }
+        }
+
+        yield return new WaitUntil(() => Math.Abs(current - max) < 0.01);
+
+        SceneManager.LoadScene(scene);
+
+        _pm.CanMove.Value = true;
+    }
+
+    private void TiraUI()
+    {
+        Tween.UIAnchoredPositionX(playerBar, -196.0001f, tweenTime, Ease.OutQuad);
+        Tween.UIAnchoredPositionX(minimap, 180.0001f, tweenTime, Ease.OutQuad);
+    }
+
+    private void BotaUI()
+    {
+        Tween.UIAnchoredPositionX(playerBar, 196.0001f, tweenTime, Ease.OutQuad);
+        Tween.UIAnchoredPositionX(minimap, -180.0001f, tweenTime, Ease.OutQuad);
     }
 }

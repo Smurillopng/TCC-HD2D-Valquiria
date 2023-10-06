@@ -65,6 +65,14 @@ MonoBehaviour:
   spawnStart: 0
   spawnEnd: 0
   uiController: {fileID: 0}
+  playerBar: {fileID: 0}
+  minimap: {fileID: 0}
+  mat: {fileID: 2100000, guid: b0d35499e79747942bc22f07bec70176, type: 2}
+  min: -1800
+  max: 1800
+  current: 0
+  speedTransition: 1000
+  acelerationValue: 1.02
 --- !u!1 &7536793742887484799
 GameObject:
   m_ObjectHideFlags: 0

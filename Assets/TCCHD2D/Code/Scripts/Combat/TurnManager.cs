@@ -128,139 +128,23 @@ public class TurnManager : MonoBehaviour
         switch (combatState)
         {
             case CombatState.CombatStart:
-                var reader = QuickSaveReader.Create("GameInfo");
-                // Add all (player and enemy) units to the list
-                foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
-                {
-                    units.Add(unitObject.GetComponent<UnitController>());
-                    PlayerUnitController = unitObject.GetComponent<UnitController>();
-                }
-                foreach (var unitObject in GameObject.FindGameObjectsWithTag("Enemy"))
-                {
-                    units.Add(unitObject.GetComponent<UnitController>());
-                    EnemyUnitController = unitObject.GetComponent<UnitController>();
-                }
-
-                EnemyUnitController.Unit = Resources.Load<Unit>("Scriptable Objects/Enemies/" + reader.Read<string>("EncounteredEnemy"));
-                var enemyObject = EnemyUnitController.gameObject;
-                var playerObject = PlayerUnitController.gameObject;
-                enemyObject.GetComponent<SpriteRenderer>().sprite = EnemyUnitController.Unit.UnitSprite;
-                var enemyAttackTimeline = EnemyUnitController.Unit.AttackAnimation;
-                var enemyDirector = enemyObject.GetComponent<PlayableDirector>();
-                foreach (var track in enemyAttackTimeline.GetOutputTracks())
-                {
-                    switch (track.name)
-                    {
-                        case "AttackAnimation":
-                            enemyDirector.SetGenericBinding(track, enemyObject.GetComponent<Animator>());
-                            break;
-                        case "MovementAnimation":
-                            enemyDirector.SetGenericBinding(track, enemyObject.GetComponent<Animator>());
-                            break;
-                        case "Audio Track":
-                            enemyDirector.SetGenericBinding(track,enemyObject.GetComponent<AudioSource>());
-                            break;
-                        case "Signals":
-                            enemyDirector.SetGenericBinding(track, playerObject.GetComponent<SignalReceiver>());
-                            break;
-                    }
-                }
-                enemyDirector.playableAsset = enemyAttackTimeline;
-
-                // Sort the units by speed, so the fastest goes first
-                foreach (var unit in units)
-                {
-                    if (unit.Unit.IsPlayer)
-                    {
-                        if (InventoryManager.Instance.EquipmentSlots[2].equipItem != null)
-                            unit.speedCalculated = unit.Unit.Speed + InventoryManager.Instance.EquipmentSlots[2].equipItem.StatusValue;
-                        else
-                            unit.speedCalculated = unit.Unit.Speed;
-                    }
-                    else
-                    {
-                        unit.speedCalculated = unit.Unit.Speed;
-                    }
-                }
-                units = units.OrderByDescending(unit => unit.speedCalculated).ToList();
-                combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
-                if (_turnCount == 0)
-                {
-                    StartCoroutine(FirstTurnDelay());
-                }
-                else
-                {
-                    ManageTurns();
-                }
+                SetEncounter();
                 break;
-
             case CombatState.TurnCheck:
-                // Check if the current unit is dead or has already taken a turn
-                if (units[currentUnitIndex].Unit.IsDead || units[currentUnitIndex].Unit.HasTakenTurn)
-                {
-                    currentUnitIndex++;
-                    if (currentUnitIndex >= units.Count)
-                    {
-                        // If we've reached the end of the list, start over from the beginning
-                        currentUnitIndex = 0;
-                    }
-                }
-                combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
-                CheckGameOver();
-                ManageTurns();
+                CheckTurn();
                 break;
-
             case CombatState.PlayerTurn:
-                _currentUnit = units[currentUnitIndex];
-                if (_currentUnit.Unit.IsPlayer && !_currentUnit.Unit.HasTakenTurn)
-                {
-                    combatState = CombatState.PlayerTurn;
-                    onTurnStart.Invoke();
-                    isPlayerTurn = true;
-                    PlayerCombatHUD.ForceDisableButtons.Invoke(false);
-                    // Wait for player input
-                }
-                if (units[currentUnitIndex].Unit.HasTakenTurn)
-                {
-                    PlayerCombatHUD.TakenAction.Invoke();
-                }
+                HandlePlayerTurn();
                 break;
-
             case CombatState.EnemyTurn:
-                _currentUnit = units[currentUnitIndex];
-                if (!_currentUnit.Unit.HasTakenTurn && !aiMoved)
-                {
-                    combatState = CombatState.EnemyTurn;
-                    isPlayerTurn = false;
-                    onTurnStart.Invoke();
-                    // Use the AI system to select an action for the enemy
-                    aiMoved = true;
-                    _currentUnit.SelectAction(PlayerUnitController);
-                    PlayerCombatHUD.TakenAction.Invoke();
-                }
-                if (units[currentUnitIndex].Unit.HasTakenTurn)
-                {
-                    PlayerCombatHUD.TakenAction.Invoke();
-                }
+                HandleEnemyTurn();
                 break;
-
             case CombatState.TurnEnd:
-                // Check if all units have taken a turn
-                if (units.All(unit => unit.Unit.HasTakenTurn))
-                {
-                    // Reset the turn flags for all units and start over from the beginning
-                    foreach (var unit in units)
-                        unit.Unit.HasTakenTurn = false;
-                    currentUnitIndex = 0;
-                }
-                combatState = CombatState.TurnCheck;
-                ManageTurns();
+                EndTurn();
                 break;
-
             case CombatState.PlayerWon:
                 StartCoroutine(Victory());
                 break;
-
             case CombatState.PlayerLost:
                 GameOver();
                 break;
@@ -268,6 +152,141 @@ public class TurnManager : MonoBehaviour
         // Set the current unit and wait for input
         _currentUnit = units[currentUnitIndex];
     }
+
+    private void SetEncounter()
+    {
+        var reader = QuickSaveReader.Create("GameInfo");
+        // Add all (player and enemy) units to the list
+        foreach (var unitObject in GameObject.FindGameObjectsWithTag("Player"))
+        {
+            units.Add(unitObject.GetComponent<UnitController>());
+            PlayerUnitController = unitObject.GetComponent<UnitController>();
+        }
+        foreach (var unitObject in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            units.Add(unitObject.GetComponent<UnitController>());
+            EnemyUnitController = unitObject.GetComponent<UnitController>();
+        }
+
+        EnemyUnitController.Unit = Resources.Load<Unit>("Scriptable Objects/Enemies/" + reader.Read<string>("EncounteredEnemy"));
+        var enemyObject = EnemyUnitController.gameObject;
+        var playerObject = PlayerUnitController.gameObject;
+        enemyObject.GetComponent<SpriteRenderer>().sprite = EnemyUnitController.Unit.UnitSprite;
+        var enemyAttackTimeline = EnemyUnitController.Unit.AttackAnimation;
+        var enemyDirector = enemyObject.GetComponent<PlayableDirector>();
+        foreach (var track in enemyAttackTimeline.GetOutputTracks())
+        {
+            switch (track.name)
+            {
+                case "AttackAnimation":
+                    enemyDirector.SetGenericBinding(track, enemyObject.GetComponent<Animator>());
+                    break;
+                case "MovementAnimation":
+                    enemyDirector.SetGenericBinding(track, enemyObject.GetComponent<Animator>());
+                    break;
+                case "Audio Track":
+                    enemyDirector.SetGenericBinding(track, enemyObject.GetComponent<AudioSource>());
+                    break;
+                case "Signals":
+                    enemyDirector.SetGenericBinding(track, playerObject.GetComponent<SignalReceiver>());
+                    break;
+            }
+        }
+        enemyDirector.playableAsset = enemyAttackTimeline;
+
+        // Sort the units by speed, so the fastest goes first
+        foreach (var unit in units)
+        {
+            if (unit.Unit.IsPlayer)
+            {
+                if (InventoryManager.Instance.EquipmentSlots[2].equipItem != null)
+                    unit.speedCalculated = unit.Unit.Speed + InventoryManager.Instance.EquipmentSlots[2].equipItem.StatusValue;
+                else
+                    unit.speedCalculated = unit.Unit.Speed;
+            }
+            else
+            {
+                unit.speedCalculated = unit.Unit.Speed;
+            }
+        }
+        units = units.OrderByDescending(unit => unit.speedCalculated).ToList();
+        combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
+        if (_turnCount == 0)
+        {
+            StartCoroutine(FirstTurnDelay());
+        }
+        else
+        {
+            ManageTurns();
+        }
+    }
+
+    private void CheckTurn()
+    {
+        if (units[currentUnitIndex].Unit.IsDead || units[currentUnitIndex].Unit.HasTakenTurn)
+        {
+            currentUnitIndex++;
+            if (currentUnitIndex >= units.Count)
+            {
+                // If we've reached the end of the list, start over from the beginning
+                currentUnitIndex = 0;
+            }
+        }
+        combatState = units[currentUnitIndex].Unit.IsPlayer ? CombatState.PlayerTurn : CombatState.EnemyTurn;
+        CheckGameOver();
+        ManageTurns();
+    }
+
+    private void HandlePlayerTurn()
+    {
+        _currentUnit = units[currentUnitIndex];
+        onTurnStart.Invoke();
+        if (_currentUnit.Unit.IsPlayer && !_currentUnit.Unit.HasTakenTurn)
+        {
+            combatState = CombatState.PlayerTurn;
+            isPlayerTurn = true;
+            PlayerCombatHUD.ForceDisableButtons.Invoke(false);
+            // Wait for player input
+        }
+        if (units[currentUnitIndex].Unit.HasTakenTurn)
+        {
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+    }
+
+    private void HandleEnemyTurn()
+    {
+        _currentUnit = units[currentUnitIndex];
+        onTurnStart.Invoke();
+        if (!_currentUnit.Unit.HasTakenTurn && !aiMoved)
+        {
+            combatState = CombatState.EnemyTurn;
+            isPlayerTurn = false;
+            // Use the AI system to select an action for the enemy
+            aiMoved = true;
+            _currentUnit.SelectAction(PlayerUnitController);
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+        if (units[currentUnitIndex].Unit.HasTakenTurn)
+        {
+            PlayerCombatHUD.TakenAction.Invoke();
+        }
+    }
+
+    private void EndTurn()
+    {
+        // Check if all units have taken a turn
+        if (units.All(unit => unit.Unit.HasTakenTurn))
+        {
+            // Reset the turn flags for all units and start over from the beginning
+            foreach (var unit in units)
+                unit.Unit.HasTakenTurn = false;
+            currentUnitIndex = 0;
+        }
+        combatState = CombatState.TurnCheck;
+        ManageTurns();
+    }
+
     /// <summary>Delays the first turn by half a second.</summary>
     /// <returns>An IEnumerator that waits for half a second before incrementing the turn count and managing turns.</returns>
     private IEnumerator FirstTurnDelay()
@@ -301,31 +320,67 @@ public class TurnManager : MonoBehaviour
     private void TriggerAilment(UnitController target)
     {
         var targetAilments = target.gameObject.GetComponent<Ailments>();
+
+        if (targetAilments == null)
+            return;
         if (targetAilments.OnFire)
         {
-            target.TakeDamage(1);
+            AilmentCountdown(targetAilments);
+            target.TakeRawDamage(3);
             PlayerCombatHUD.UpdateCombatHUD();
+            if (target.Unit.IsDead)
+                target.Unit.HasTakenTurn = true;
             CheckGameOver();
         }
         if (targetAilments.Frozen)
         {
-            PlayerCombatHUD.TakenAction.Invoke();
+            AilmentCountdown(targetAilments);
+            PlayerCombatHUD.CombatTextEvent.Invoke($"{target.Unit.UnitName} está congelado!");
+            target.Unit.HasTakenTurn = true;
         }
         if (targetAilments.Stunned)
         {
-            PlayerCombatHUD.TakenAction.Invoke();
+            AilmentCountdown(targetAilments);
+            PlayerCombatHUD.CombatTextEvent.Invoke($"{target.Unit.UnitName} está atordoado!");
+            target.Unit.HasTakenTurn = true;
         }
         if (targetAilments.Bleeding)
         {
-            target.TakeDamage(1);
+            AilmentCountdown(targetAilments);
+            target.TakeRawDamage(2);
             PlayerCombatHUD.UpdateCombatHUD();
+            if (target.Unit.IsDead)
+                target.Unit.HasTakenTurn = true;
             CheckGameOver();
         }
         if (targetAilments.Incapacitated)
         {
-            target.TakeDamage(1);
+            AilmentCountdown(targetAilments);
+            target.TakeRawDamage(1);
+            if (target.Unit.IsDead)
+                target.Unit.HasTakenTurn = true;
             PlayerCombatHUD.UpdateCombatHUD();
             CheckGameOver();
+        }
+    }
+
+    private void AilmentCountdown(Ailments ailment)
+    {
+        if (ailment.turnsLeft != 0)
+            ailment.turnsLeft--;
+        if (ailment.turnsLeft == 0)
+        {
+            if (ailment.OnFire)
+                ailment.SetAilment(AilmentType.OnFire, false, 0);
+            if (ailment.Frozen)
+                ailment.SetAilment(AilmentType.Frozen, false, 0);
+            if (ailment.Bleeding)
+                ailment.SetAilment(AilmentType.Bleeding, false, 0);
+            if (ailment.Stunned)
+                ailment.SetAilment(AilmentType.Stunned, false, 0);
+            if (ailment.Incapacitated)
+                ailment.SetAilment(AilmentType.Incapacitated, false, 0);
+            return;
         }
     }
     /// <summary>Checks if the game is over and updates the combat state accordingly.</summary>

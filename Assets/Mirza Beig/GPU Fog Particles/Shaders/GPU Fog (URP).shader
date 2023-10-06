@@ -1423,7 +1423,7 @@ Shader "Mirza Beig/GPU Fog (URP)"
 	
 	}
 	
-	CustomEditor "UnityEditor.ShaderGraph.PBRMasterGUI"
+	CustomEditor "UnityEditor.ShaderGraph.GenericShaderGraphMaterialGUI"
 	Fallback "Hidden/InternalErrorShader"
 	
 }

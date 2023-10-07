@@ -365,12 +365,12 @@ GameObject:
   - component: {fileID: 6263463542041411548}
   - component: {fileID: 1107752174064038896}
   m_Layer: 5
-  m_Name: Discharge
+  m_Name: DischargeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8757029316216430449
 RectTransform:
   m_ObjectHideFlags: 0
@@ -385,7 +385,7 @@ RectTransform:
   m_Children:
   - {fileID: 7803900501814650658}
   m_Father: {fileID: 6130109673991134094}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -1356,8 +1356,8 @@ RectTransform:
   - {fileID: 6130109674790692591}
   - {fileID: 5245172993534592464}
   - {fileID: 6130109673995617425}
-  - {fileID: 6130109674643911431}
   - {fileID: 8757029316216430449}
+  - {fileID: 6130109674643911431}
   m_Father: {fileID: 6130109674003676823}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1422,7 +1422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6130109673995617425
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2089,7 +2089,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6130109673991134094}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}

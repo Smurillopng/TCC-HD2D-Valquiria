@@ -66,6 +66,10 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Item Display")][SerializeField] private TMP_Text itemQuantity;
     [BoxGroup("Item Display")][SerializeField] private Button itemUseButton;
 
+    [BoxGroup("Item Scroll")][SerializeField] private RectTransform bagRectTransform;
+    [BoxGroup("Item Scroll")][SerializeField] private ScrollRect bagScrollRect;
+    [BoxGroup("Item Scroll")][SerializeField] private float scrollOffset;
+
     [BoxGroup("External References")]
     [SerializeField]
     private Button autoHealButton;
@@ -138,6 +142,7 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateBag(List<IItem> inventory)
     {
+        var totalHeight = 0f;
         foreach (Transform child in bagPanel.transform)
         {
             Destroy(child.gameObject);
@@ -147,12 +152,17 @@ public class InventoryUI : MonoBehaviour
         {
             var itemObject = Instantiate(itemPrefab, bagPanel.transform);
             var uiScript = itemObject.GetComponent<ItemUI>();
+            var buttonHeight = itemObject.GetComponent<RectTransform>().rect.height;
             uiScript.SetItem(item);
             var useButton = uiScript.useButton;
             useButton.onClick.RemoveAllListeners();
             useButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
             useButton.onClick.AddListener(() => SelectDisplayAction(item, uiScript));
+            totalHeight += buttonHeight;
         }
+
+        bagRectTransform.sizeDelta = new Vector2(0,totalHeight - scrollOffset);
+        bagScrollRect.verticalNormalizedPosition = 1;
     }
 
     public void DisplayEquipment(GameObject slot)
@@ -343,7 +353,8 @@ public class InventoryUI : MonoBehaviour
 
     private void ResetPanels()
     {
-        bagPanel.SetActive(false);
+        bagPanel.SetActive(true);
+        UpdateBag(inventoryManager.Inventory);
         equipmentPanel.SetActive(false);
         itemDisplayPanel.SetActive(false);
         statusPanel.SetActive(true);

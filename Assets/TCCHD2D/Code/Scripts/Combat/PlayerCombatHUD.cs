@@ -63,6 +63,11 @@ public class PlayerCombatHUD : MonoBehaviour
     [Tooltip("The text box displaying combat information.")]
     private TMP_Text combatTextBox;
 
+    [TitleGroup("Combat Text Box", Alignment = TitleAlignments.Centered)]
+    [SerializeField]
+    [Tooltip("The text box displaying combat information.")]
+    private GameObject textBoxObject;
+
     [SerializeField]
     [Tooltip("The time duration for displaying combat information in the text box.")]
     private float combatTextTimer;
@@ -108,6 +113,10 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The button for charging up the player's basic attack.")]
     private Button chargeButton;
+
+    [SerializeField]
+    [Tooltip("The button for discharging the player's basic attack.")]
+    private Button dischargeButton;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [ShowInInspector, ReadOnly]
@@ -167,10 +176,8 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdatePlayerTp();
         UpdatePlayerHealth();
 
-        CombatTextEvent += DisplayCombatText;
-        UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
-        UpdateCombatHUDPlayerTp += UpdatePlayerTp;
-        UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
+        textBoxObject.SetActive(false);
+        chargeButton.gameObject.SetActive(false);
     }
     /// <summary>Updates the UI elements based on the current state of the game.</summary>
     /// <remarks>
@@ -196,6 +203,16 @@ public class PlayerCombatHUD : MonoBehaviour
             playerChargedVfx.Stop();
             _charging = false;
         }
+
+        if (playerCharges.fillAmount < 0.25f)
+            chargeButton.interactable = false;
+        else
+            chargeButton.interactable = true;
+
+        if (turnManager.PlayerUnitController.Charges > 0)
+            dischargeButton.interactable = true;
+        else
+            dischargeButton.interactable = false;
     }
     /// <summary>Unsubscribes from events when the script is disabled.</summary>
     private void OnDisable()
@@ -247,6 +264,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 itemButton.gameObject.SetActive(false);
                 runButton.gameObject.SetActive(false);
                 chargeButton.gameObject.SetActive(false);
+                dischargeButton.gameObject.SetActive(false);
                 break;
             case false:
                 attackButton.gameObject.SetActive(true);
@@ -254,6 +272,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 itemButton.gameObject.SetActive(true);
                 if (!turnManager.EnemyUnitController.Unit.IsDangerous) runButton.gameObject.SetActive(true);
                 chargeButton.gameObject.SetActive(playerCharges.fillAmount != 0);
+                dischargeButton.gameObject.SetActive(playerCharges.fillAmount != 0);
                 break;
         }
     }
@@ -299,17 +318,18 @@ public class PlayerCombatHUD : MonoBehaviour
     /// </remarks>
     private void DisplayCombatText(string text)
     {
-        if (combatTextBox != null)
-            StartCoroutine(DisplayCombatTextCoroutine(text));
+        StartCoroutine(DisplayCombatTextCoroutine(text));
     }
     /// <summary>Displays combat text for a set amount of time.</summary>
     /// <param name="text">The text to display.</param>
     /// <returns>An IEnumerator that waits for a set amount of time before clearing the text.</returns>
     private IEnumerator DisplayCombatTextCoroutine(string text)
     {
+        textBoxObject.SetActive(true);
         combatTextBox.text = text;
         yield return new WaitForSeconds(combatTextTimer);
         combatTextBox.text = "";
+        textBoxObject.SetActive(false);
     }
     /// <summary>Displays the player's inventory of consumable items and allows the player to use them.</summary>
     /// <remarks>
@@ -402,13 +422,20 @@ public class PlayerCombatHUD : MonoBehaviour
             button.GetComponent<Button>().onClick.AddListener(() => specials.UseSpecial(specialAction));
             button.AddComponent<EventTrigger>();
             var trigger = button.GetComponent<EventTrigger>();
-            var entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerEnter;
+            var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
             entry.callback.AddListener(_ => {
                 // Add code here to show the text when the mouse hovers over the button
+                textBoxObject.SetActive(true);
                 combatTextBox.text = $"{specialAction.specialDescription}\n[ Custo de TP: {specialAction.specialCost} ]";
             });
+            var entry2 = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            entry2.callback.AddListener(_ => {
+                // Add code here to hide the text when the mouse stops hovering over the button
+                textBoxObject.SetActive(false);
+                combatTextBox.text = "";
+            });
             trigger.triggers.Add(entry);
+            trigger.triggers.Add(entry2);
         }
     }
     /// <summary>Charges the player's unit.</summary>
@@ -438,6 +465,34 @@ public class PlayerCombatHUD : MonoBehaviour
                     playerChargedVfx.SetVector4("DropColor", new Vector4(1f, 0f, 0f, 1));
                     break;
             }
+        }
+    }
+
+    public void Discharge()
+    {
+        if (turnManager.PlayerUnitController.Charges > 0)
+        {
+            turnManager.PlayerUnitController.Charges -= 1;
+            playerCharges.fillAmount += 0.25f;
+            switch (turnManager.PlayerUnitController.Charges)
+            {
+                case 0:
+                    playerChargedVfx.Stop();
+                    break;
+                case 1:
+                    playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 0f, 1f, 1));
+                    break;
+                case 2:
+                    playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 1f, 0f, 1));
+                    break;
+                case 3:
+                    playerChargedVfx.SetVector4("DropColor", new Vector4(1f, 0f, 0f, 1));
+                    break;
+            }
+        }
+        else if (turnManager.PlayerUnitController.Charges == 0)
+        {
+            _charging = false;
         }
     }
 

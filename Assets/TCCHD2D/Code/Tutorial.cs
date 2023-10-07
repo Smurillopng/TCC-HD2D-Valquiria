@@ -26,6 +26,7 @@ public class Tutorial : MonoBehaviour
         if (_finishedTutorial.Equals(true))
         {
             tutorialObject.SetActive(false);
+            bjorn.SetActive(false);
             return;
         }
         gameControls = new GameControls();

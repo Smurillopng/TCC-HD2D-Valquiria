@@ -1563,6 +1563,7 @@ MonoBehaviour:
   equipmentPanel: {fileID: 1425473463236634552}
   itemDisplayPanel: {fileID: 1606908589308107484}
   statusPanel: {fileID: 1425473463315950125}
+  exitPanel: {fileID: 5159615410777860897}
   headSlot: {fileID: 1425473461945592608}
   chestSlot: {fileID: 1425473462078379999}
   legsSlot: {fileID: 1425473461752661962}
@@ -3367,11 +3368,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6527110988836292466}
+  - {fileID: 3236562664127567839}
   - {fileID: 1425473463236634553}
   - {fileID: 1425473463315950098}
   - {fileID: 2693222053378576364}
   - {fileID: 5862111681935809662}
-  - {fileID: 3236562664127567839}
   m_Father: {fileID: 1425473462784963213}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4373,7 +4374,7 @@ RectTransform:
   - {fileID: 5942656145812165886}
   - {fileID: 2462249875755093625}
   m_Father: {fileID: 1425473462781601110}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4453,7 +4454,7 @@ RectTransform:
   - {fileID: 9100875205176112854}
   - {fileID: 5086957474796967394}
   m_Father: {fileID: 1425473462781601110}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4780,7 +4781,7 @@ RectTransform:
   m_Children:
   - {fileID: 7154119515643584403}
   m_Father: {fileID: 1425473462781601110}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7597,7 +7598,7 @@ RectTransform:
   m_Children:
   - {fileID: 4690294438501583864}
   m_Father: {fileID: 1425473462781601110}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10182,7 +10183,7 @@ RectTransform:
   m_Children:
   - {fileID: 4993532527412845362}
   m_Father: {fileID: 1425473462781601110}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

@@ -16,6 +16,7 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Panels")][SerializeField] private GameObject equipmentPanel;
     [BoxGroup("Panels")][SerializeField] private GameObject itemDisplayPanel;
     [BoxGroup("Panels")][SerializeField] private GameObject statusPanel;
+    [BoxGroup("Panels")][SerializeField] private GameObject exitPanel;
 
     [BoxGroup("Equipment Slots")]
     [SerializeField]
@@ -73,13 +74,13 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("External References")]
     [SerializeField]
     private Button autoHealButton;
-    
+
     [BoxGroup("External References")]
     [SerializeField]
     private Unit playerUnit;
 
     [BoxGroup("External References")]
-    [SerializeField] 
+    [SerializeField]
     private GameObject itemPrefab;
 
     [BoxGroup("External References")]
@@ -358,6 +359,7 @@ public class InventoryUI : MonoBehaviour
         equipmentPanel.SetActive(false);
         itemDisplayPanel.SetActive(false);
         statusPanel.SetActive(true);
+        exitPanel.SetActive(false);
     }
 
     public void ToggleInventory()

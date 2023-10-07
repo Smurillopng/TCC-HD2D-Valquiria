@@ -364,9 +364,12 @@ public class PlayerCombatHUD : MonoBehaviour
         {
             returnButton.gameObject.SetActive(true);
             returnButton.interactable = true;
-            var button = Instantiate(buttonPrefab, itemPanel.transform);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
-            button.GetComponent<Button>().onClick.AddListener(() =>
+            var buttonObject = Instantiate(buttonPrefab, itemPanel.transform);
+            buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
+            var button = buttonObject.GetComponent<Button>();
+            buttonObject.AddComponent<EventTrigger>();
+            var trigger = buttonObject.GetComponent<EventTrigger>();
+            button.onClick.AddListener(() =>
             {
                 item.Use();
                 UpdatePlayerHealth();
@@ -381,6 +384,20 @@ public class PlayerCombatHUD : MonoBehaviour
                 TakenAction.Invoke();
                 ForceDisableButtons.Invoke(true);
             });
+            var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            entry.callback.AddListener(_ => {
+                // Add code here to show the text when the mouse hovers over the button
+                textBoxObject.SetActive(true);
+                combatTextBox.text = $"{item.ItemDescription}";
+            });
+            var entry2 = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            entry2.callback.AddListener(_ => {
+                // Add code here to hide the text when the mouse stops hovering over the button
+                textBoxObject.SetActive(false);
+                combatTextBox.text = "";
+            });
+            trigger.triggers.Add(entry);
+            trigger.triggers.Add(entry2);
         }
     }
     /// <summary>Hides the item and special panels and shows the options panel. Disables the return button.</summary>

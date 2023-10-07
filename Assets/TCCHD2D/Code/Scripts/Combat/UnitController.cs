@@ -187,7 +187,6 @@ public class UnitController : MonoBehaviour
             var animationDuration = (float)Director.duration;
             yield return new WaitForSeconds(animationDuration); // Wait for the animation to finish
             CalcDamage(target);
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
         }
         _ongoingChargeAttacks--; // Decrement the counter
     }
@@ -250,7 +249,6 @@ public class UnitController : MonoBehaviour
         var randomFactor = Random.Range(1f - damageVariation, 1f + damageVariation);
         var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * randomFactor);
         target.TakeDamage(calculatedDamage);
-        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
     }
     /// <summary>Reduces the unit's health by the given amount of damage, taking into account the unit's defense and equipment.</summary>
     /// <param name="damage">The amount of damage to be taken.</param>
@@ -363,28 +361,6 @@ public class UnitController : MonoBehaviour
         if (unit.IsPlayer) return;
         // AI logic for selecting an action goes here
         AttackLogic(target);
-        PlayerCombatHUD.CombatTextEvent.Invoke($"<color=blue>{unit.UnitName}</color> atacou <color=red>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano!");
-
-        // IF ENEMY CAN RUN AWAY
-        // else
-        // {
-        //     var enemyRan = RunLogic();
-        //     if (enemyRan)
-        //     {
-        //         //TODO: give player exp reward
-        //         //TODO: play run animation
-        //         //TODO: change scenes
-        //         PlayerCombatHUD.CombatTextEvent.Invoke(
-        //             $"<color=blue>{unit.UnitName}</color> ran away!");
-        //     }
-        //     else
-        //     {
-        //         //Enemy lost a turn
-        //         PlayerCombatHUD.CombatTextEvent.Invoke(
-        //             $"<color=blue>{unit.UnitName}</color> tried to run away but <color=red>failed</color>");
-        //     }
-        // }
-
     }
     // tutorial
     public void RunActionTutorial()

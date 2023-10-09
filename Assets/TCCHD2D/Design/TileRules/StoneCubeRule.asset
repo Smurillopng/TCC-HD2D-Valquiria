@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StoneCubeRule
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 182f2ac5c17e73f42a5b617e54b3805d, type: 3}
-  m_DefaultGameObject: {fileID: 90678348602996552, guid: 87ea8874dfd509e4ab343d7ae9c4f97c,
+  m_DefaultGameObject: {fileID: 6662937454801707098, guid: 3a999d628d59c9f4f85f0be521fd4b4c,
     type: 3}
   m_DefaultColliderType: 1
   m_TilingRules:

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e40115761225c342b045eb9f42a3278, type: 3}
-  m_Name: GroundRule
+  m_Name: StoneGroundRule
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: 21300000, guid: 40ef9307175bcfd448ea7305056aef0b, type: 3}
   m_DefaultGameObject: {fileID: 2793318720532916204, guid: 283bf10069b27114f99ad8ad9f1f5276,

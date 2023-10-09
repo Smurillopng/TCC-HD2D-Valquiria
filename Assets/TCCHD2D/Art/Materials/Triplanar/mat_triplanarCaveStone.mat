@@ -48,13 +48,18 @@ Material:
     m_Ints: []
     m_Floats:
     - _AO: 1
+    - _AlphaMaskSmoothness: 0.5
     - _Blend_Sharpness: 4
     - _Blend_Sharpness_top: 1.54
+    - _Opacity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Size: 1
     - _Smoothness: 0
     - _Tilling: 4
-    m_Colors: []
+    m_Colors:
+    - _: {r: 0, g: 0, b: 0, a: 0}
+    - _PlayerPosition: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1669859427733252257
 MonoBehaviour:

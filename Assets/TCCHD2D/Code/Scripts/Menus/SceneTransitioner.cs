@@ -29,6 +29,7 @@ public class SceneTransitioner : MonoBehaviour
     [SerializeField, ReadOnly, BoxGroup("Debug")]
     private float _aceleration = 1f;
 
+    public static bool currentlyTransitioning;
     private static readonly int CutoffHeight = Shader.PropertyToID("_Cutoff_Height");
 
     private void Awake()
@@ -48,6 +49,7 @@ public class SceneTransitioner : MonoBehaviour
 
     private IEnumerator TransitionIn(string scene)
     {
+        currentlyTransitioning = true;
         _pm.CanMove.Value = false;
         current = min;
         TiraUI();
@@ -93,10 +95,12 @@ public class SceneTransitioner : MonoBehaviour
         }
 
         _pm.CanMove.Value = true;
+        currentlyTransitioning = false;
     }
 
     private IEnumerator TransitionOut()
     {
+        currentlyTransitioning = true;
         current = max;
         mat.SetFloat(CutoffHeight, current);
 
@@ -122,10 +126,12 @@ public class SceneTransitioner : MonoBehaviour
         BotaUI();
         yield return new WaitUntil(() => Math.Abs(current - min) < 0.01);
         _pm.CanMove.Value = true;
+        currentlyTransitioning = false;
     }
 
     public IEnumerator TransitionTo(string scene)
     {
+        currentlyTransitioning = true;
         _pm.CanMove.Value = false;
         current = min;
         TiraUI();
@@ -155,6 +161,7 @@ public class SceneTransitioner : MonoBehaviour
         SceneManager.LoadScene(scene);
 
         _pm.CanMove.Value = true;
+        currentlyTransitioning = false;
     }
 
     private void TiraUI()

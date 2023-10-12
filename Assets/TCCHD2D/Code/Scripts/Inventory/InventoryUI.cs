@@ -53,7 +53,7 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Status")][SerializeField] private GameObject lvlUpAttributesButtons;
     [BoxGroup("Status")][SerializeField] private TMP_Text attributePointsText;
     [BoxGroup("Status")][SerializeField] private TMP_Text availableAttributePointsText;
-    
+
     [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerHealthBarFill;
     [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerHealthText;
     [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerTpFill;
@@ -96,7 +96,7 @@ public class InventoryUI : MonoBehaviour
     private InventoryManager inventoryManager;
 
     public Unit PlayerUnit => playerUnit;
-    
+
     private bool _gameStarted;
 
     private void Start()
@@ -162,7 +162,7 @@ public class InventoryUI : MonoBehaviour
             totalHeight += buttonHeight;
         }
 
-        bagRectTransform.sizeDelta = new Vector2(0,totalHeight - scrollOffset);
+        bagRectTransform.sizeDelta = new Vector2(0, totalHeight - scrollOffset);
         bagScrollRect.verticalNormalizedPosition = 1;
     }
 
@@ -385,31 +385,39 @@ public class InventoryUI : MonoBehaviour
 
     public void Update()
     {
-        inventoryPanel.SetActive(isInventoryOpen.Value);
-        if (isInventoryOpen.Value)
+        if (!SceneTransitioner.currentlyTransitioning)
         {
-            PlayerControls.Instance.ToggleDefaultControls(false);
-            if (!updatedStatus)
+            inventoryPanel.SetActive(isInventoryOpen.Value);
+            if (isInventoryOpen.Value)
             {
-                ResetPanels();
-                UpdatePlayerStatus(playerUnit);
-                updatedStatus = true;
+                PlayerControls.Instance.ToggleDefaultControls(false);
+                if (!updatedStatus)
+                {
+                    ResetPanels();
+                    UpdatePlayerStatus(playerUnit);
+                    updatedStatus = true;
+                }
+            }
+            else
+            {
+                PlayerControls.Instance.ToggleDefaultControls(true);
+                updatedStatus = false;
             }
         }
         else
         {
-            PlayerControls.Instance.ToggleDefaultControls(true);
+            inventoryPanel.SetActive(false);
             updatedStatus = false;
         }
-        
+
         if (autoHealButton.gameObject.activeSelf) autoHealButton.interactable = playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp;
-        availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}": string.Empty;
+        availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}" : string.Empty;
         lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.text = $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}";
         UpdateTopLeftBars();
     }
-    
+
     // Lvl Up Methods
     public void LvlUpAttack()
     {

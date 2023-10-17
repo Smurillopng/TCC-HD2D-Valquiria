@@ -16,6 +16,9 @@ public class Specials : MonoBehaviour
     public List<Special> specialsList = new();
     private PlayerCombatHUD _combatHUD;
     private TurnManager _turnManager;
+    private UnitController _player;
+    private UnitController _enemy;
+    private Ailments _enemyAilments;
 
     #endregion
 
@@ -27,6 +30,9 @@ public class Specials : MonoBehaviour
     {
         _combatHUD = FindObjectOfType<PlayerCombatHUD>();
         _turnManager = FindObjectOfType<TurnManager>();
+        _player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
+        _enemy = GameObject.FindWithTag("Enemy").GetComponent<UnitController>();
+        _enemyAilments = _enemy.gameObject.GetComponent<Ailments>();
     }
 
     #endregion
@@ -50,24 +56,110 @@ public class Specials : MonoBehaviour
                 switch (specialAction.specialAilment)
                 {
                     case AilmentType.OnFire:
-                        FireAttackSpecialAction(specialAction.specialCost, specialAction);
+                        SpecialAction(specialAction.specialCost, specialAction, AilmentType.OnFire);
                         break;
                     case AilmentType.Stunned:
-                        StunAttackSpecialAction(specialAction.specialCost, specialAction);
+                        SpecialAction(specialAction.specialCost, specialAction, AilmentType.Stunned);
                         break;
                     case AilmentType.Frozen:
-                        FrozenAttackSpecialAction(specialAction.specialCost, specialAction);
+                        SpecialAction(specialAction.specialCost, specialAction, AilmentType.Frozen);
                         break;
                     case AilmentType.Bleeding:
-                        BleedingAttackSpecialAction(specialAction.specialCost, specialAction);
+                        SpecialAction(specialAction.specialCost, specialAction, AilmentType.Bleeding);
                         break;
                     case AilmentType.Incapacitated:
-                        IncapacitateAttackSpecialAction(specialAction.specialCost, specialAction);
+                        SpecialAction(specialAction.specialCost, specialAction, AilmentType.Incapacitated);
                         break;
                 }
                 break;
         }
     }
+
+    private void InsufficientTP(int cost)
+    {
+        PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
+                                                       $"Quantidade necessária: <color=red>{cost} TP</color>", 2f);
+    }
+    private void SetBindings()
+    {
+        if (_player.Unit.IsPlayer)
+        {
+            var enemyObject = GameObject.FindWithTag("Enemy");
+            foreach (var track in _player.BasicAttack.GetOutputTracks())
+            {
+                switch (track.name)
+                {
+                    case "AttackAnimation":
+                        _player.Director.SetGenericBinding(track, _player.gameObject.GetComponentInChildren<Animator>());
+                        break;
+                    case "MovementAnimation":
+                        _player.Director.SetGenericBinding(track, _player.gameObject.GetComponentInChildren<Animator>());
+                        break;
+                    case "Signals":
+                        _player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
+                        break;
+                }
+            }
+        }
+    }
+    private void ExecuteLogic(AilmentType ailment, int cost, Special specialAction, Ailments enemyAilments, int attackDamageCalculated)
+    {
+        // Animation
+        _player.Director.Play(_player.BasicAttack);
+
+        // HUD Update
+        _player.Unit.CurrentTp -= cost;
+
+        // Damage multiplied
+        _enemy.TakeDamage(attackDamageCalculated);
+        _enemyAilments.SetAilment(ailment, true, specialAction.turnsToLast);
+
+        PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
+        PlayerCombatHUD.TakenAction.Invoke();
+        PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+    }
+    private void ExecuteLogic(int cost, int attackDamageCalculated)
+    {
+        // Animation
+        _player.Director.Play(_player.BasicAttack);
+
+        // HUD Update
+        _player.Unit.CurrentTp -= cost;
+
+        // Damage multiplied
+        _enemy.TakeDamage(attackDamageCalculated);
+
+        PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
+        PlayerCombatHUD.TakenAction.Invoke();
+        PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+    }
+    private void UpdateHUD()
+    {
+        _turnManager.isPlayerTurn = false;
+        _combatHUD.SpecialPanel.SetActive(false);
+        _combatHUD.ReturnButton.gameObject.SetActive(false);
+        _combatHUD.ReturnButton.interactable = false;
+        _combatHUD.OptionsPanel.SetActive(true);
+        PlayerCombatHUD.UpdateCombatHUD.Invoke();
+    }
+    private void SpecialAction(int cost, Special specialAction, AilmentType ailmentType)
+    {
+        if (_player.Unit.CurrentTp >= cost)
+        {
+            UpdateHUD();
+            // Standard attack damage calculation
+            var attackDamageCalculated = _player.Unit.Attack;
+            if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
+                attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+            SetBindings();
+            ExecuteLogic(ailmentType, cost, specialAction, _enemyAilments, attackDamageCalculated);
+        }
+        else
+        {
+            InsufficientTP(cost);
+        }
+    }
+
     /// <summary>Performs a special healing action.</summary>
     /// <param name="cost">The cost of the action in TP.</param>
     /// <param name="healAmount">The amount of HP to heal.</param>
@@ -78,59 +170,35 @@ public class Specials : MonoBehaviour
     /// </remarks>
     private void HealSpecialAction(int cost, int healAmount)
     {
-        var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
-        if (player.Unit.CurrentTp >= cost)
+        if (_player.Unit.CurrentTp >= cost)
         {
-            _turnManager.isPlayerTurn = false;
-            _combatHUD.SpecialPanel.SetActive(false);
-            _combatHUD.ReturnButton.gameObject.SetActive(false);
-            _combatHUD.ReturnButton.interactable = false;
-            _combatHUD.OptionsPanel.SetActive(true);
-            PlayerCombatHUD.UpdateCombatHUD.Invoke();
+            UpdateHUD();
 
             // Calculate heal based on luck
-            var heal = player.Unit.Luck + healAmount;
+            var heal = _player.Unit.Luck + healAmount;
 
             // Apply heal to target
-            if (player.Unit.CurrentHp < player.Unit.MaxHp)
-                player.Unit.CurrentHp += heal;
-            if (player.Unit.CurrentHp > player.Unit.MaxHp)
-                player.Unit.CurrentHp = player.Unit.MaxHp;
+            if (_player.Unit.CurrentHp < _player.Unit.MaxHp)
+                _player.Unit.CurrentHp += heal;
+            if (_player.Unit.CurrentHp > _player.Unit.MaxHp)
+                _player.Unit.CurrentHp = _player.Unit.MaxHp;
 
-            if (player.Unit.IsPlayer)
-            {
-                var enemyObject = GameObject.FindWithTag("Enemy");
-                foreach (var track in player.UseItem.GetOutputTracks())
-                {
-                    switch (track.name)
-                    {
-                        case "AttackAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "MovementAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "Signals":
-                            player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
-                            break;
-                    }
-                }
-            }
+            SetBindings();
+
             // Animation
-            player.Director.playableAsset = player.UseItem;
-            player.Director.Play();
+            _player.Director.playableAsset = _player.UseItem;
+            _player.Director.Play();
 
             // HUD Update
-            player.Unit.CurrentTp -= cost;
+            _player.Unit.CurrentTp -= cost;
             PlayerCombatHUD.UpdateCombatHUD.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Curou <color=green>{heal}</color> HP");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Curou <color=green>{heal}</color> HP", 3f);
             PlayerCombatHUD.TakenAction.Invoke();
             PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
-                                                   $"Quantidade necessária: <color=red>{cost} TP</color>");
+            InsufficientTP(cost);
         }
     }
 
@@ -142,380 +210,20 @@ public class Specials : MonoBehaviour
     /// </remarks>
     private void HeavyHitSpecialAction(int cost, int damageAmount)
     {
-        var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
-        var target = GameObject.FindWithTag("Enemy").GetComponent<UnitController>();
-
-        if (player.Unit.CurrentTp >= cost)
+        if (_player.Unit.CurrentTp >= cost)
         {
-            _turnManager.isPlayerTurn = false;
-            _combatHUD.SpecialPanel.SetActive(false);
-            _combatHUD.ReturnButton.gameObject.SetActive(false);
-            _combatHUD.ReturnButton.interactable = false;
-            _combatHUD.OptionsPanel.SetActive(true);
-            PlayerCombatHUD.UpdateCombatHUD.Invoke();
-
+            UpdateHUD();
             // Standard attack damage calculation
-            var attackDamageCalculated = player.Unit.Attack + damageAmount;
+            var attackDamageCalculated = _player.Unit.Attack + damageAmount;
             if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
                 attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-
-            if (player.Unit.IsPlayer)
-            {
-                var enemyObject = GameObject.FindWithTag("Enemy");
-                foreach (var track in player.BasicAttack.GetOutputTracks())
-                {
-                    switch (track.name)
-                    {
-                        case "AttackAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "MovementAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "Signals":
-                            player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
-                            break;
-                    }
-                }
-            }
-
-            // Animation
-            player.Director.Play(player.BasicAttack); // TODO: Change to heavy hit animation
-
-            // HUD Update
-            player.Unit.CurrentTp -= cost;
-
-            // Damage multiplied
-            target.TakeDamage(attackDamageCalculated);
-
-            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Golpe Pesado</color> em <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
-            PlayerCombatHUD.TakenAction.Invoke();
-            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+            SetBindings();
+            ExecuteLogic(cost, attackDamageCalculated);
         }
         else
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
-                                                   $"Quantidade necessária: <color=red>{cost} TP</color>");
+            InsufficientTP(cost);
         }
     }
-    /// <summary>Performs a special attack action, deducting the cost from the player's TP and dealing damage to the enemy.</summary>
-    /// <param name="cost">The cost of the special attack in TP.</param>
-    /// <exception cref="NullReferenceException">Thrown when the player or enemy game object cannot be found.</exception>
-    private void FireAttackSpecialAction(int cost, Special specialAction)
-    {
-        var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
-        var enemy = GameObject.FindWithTag("Enemy").GetComponent<UnitController>();
-        var playerAilments = player.gameObject.GetComponent<Ailments>();
-        var enemyAilments = enemy.gameObject.GetComponent<Ailments>();
-
-        if (player.Unit.CurrentTp >= cost)
-        {
-            _turnManager.isPlayerTurn = false;
-            _combatHUD.SpecialPanel.SetActive(false);
-            _combatHUD.ReturnButton.gameObject.SetActive(false);
-            _combatHUD.ReturnButton.interactable = false;
-            _combatHUD.OptionsPanel.SetActive(true);
-            PlayerCombatHUD.UpdateCombatHUD.Invoke();
-
-            // Standard attack damage calculation
-            var attackDamageCalculated = player.Unit.Attack;
-            if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-                attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-
-            if (player.Unit.IsPlayer)
-            {
-                var enemyObject = GameObject.FindWithTag("Enemy");
-                foreach (var track in player.BasicAttack.GetOutputTracks())
-                {
-                    switch (track.name)
-                    {
-                        case "AttackAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "MovementAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "Signals":
-                            player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
-                            break;
-                    }
-                }
-            }
-
-            // Animation
-            player.Director.Play(player.BasicAttack); // TODO: Change to heavy hit animation
-
-            // HUD Update
-            player.Unit.CurrentTp -= cost;
-
-            // Damage multiplied
-            enemy.TakeDamage(attackDamageCalculated);
-            enemyAilments.SetAilment(AilmentType.OnFire, true, specialAction.turnsToLast);
-
-            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Ataque Fulminante</color> em <color=blue>{enemy.Unit.UnitName}</color> causando <color=red>{enemy.damageTakenThisTurn}</color> de dano</b>");
-            PlayerCombatHUD.TakenAction.Invoke();
-            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
-        }
-        else
-        {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
-                                                   $"Quantidade necessária: <color=red>{cost} TP</color>");
-        }
-    }
-
-    private void StunAttackSpecialAction(int cost, Special specialAction)
-    {
-        var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
-        var enemy = GameObject.FindWithTag("Enemy").GetComponent<UnitController>();
-        var playerAilments = player.gameObject.GetComponent<Ailments>();
-        var enemyAilments = enemy.gameObject.GetComponent<Ailments>();
-
-        if (player.Unit.CurrentTp >= cost)
-        {
-            _turnManager.isPlayerTurn = false;
-            _combatHUD.SpecialPanel.SetActive(false);
-            _combatHUD.ReturnButton.gameObject.SetActive(false);
-            _combatHUD.ReturnButton.interactable = false;
-            _combatHUD.OptionsPanel.SetActive(true);
-            PlayerCombatHUD.UpdateCombatHUD.Invoke();
-
-            // Standard attack damage calculation
-            var attackDamageCalculated = player.Unit.Attack;
-            if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-                attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-
-            if (player.Unit.IsPlayer)
-            {
-                var enemyObject = GameObject.FindWithTag("Enemy");
-                foreach (var track in player.BasicAttack.GetOutputTracks())
-                {
-                    switch (track.name)
-                    {
-                        case "AttackAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "MovementAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "Signals":
-                            player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
-                            break;
-                    }
-                }
-            }
-
-            // Animation
-            player.Director.Play(player.BasicAttack); // TODO: Change to heavy hit animation
-
-            // HUD Update
-            player.Unit.CurrentTp -= cost;
-
-            // Damage multiplied
-            enemy.TakeDamage(attackDamageCalculated);
-            enemyAilments.SetAilment(AilmentType.Stunned, true, specialAction.turnsToLast);
-
-            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Ataque Fulminante</color> em <color=blue>{enemy.Unit.UnitName}</color> causando <color=red>{enemy.damageTakenThisTurn}</color> de dano</b>");
-            PlayerCombatHUD.TakenAction.Invoke();
-            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
-        }
-        else
-        {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
-                                                   $"Quantidade necessária: <color=red>{cost} TP</color>");
-        }
-    }
-
-    private void FrozenAttackSpecialAction(int cost, Special specialAction)
-    {
-        var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
-        var enemy = GameObject.FindWithTag("Enemy").GetComponent<UnitController>();
-        var playerAilments = player.gameObject.GetComponent<Ailments>();
-        var enemyAilments = enemy.gameObject.GetComponent<Ailments>();
-
-        if (player.Unit.CurrentTp >= cost)
-        {
-            _turnManager.isPlayerTurn = false;
-            _combatHUD.SpecialPanel.SetActive(false);
-            _combatHUD.ReturnButton.gameObject.SetActive(false);
-            _combatHUD.ReturnButton.interactable = false;
-            _combatHUD.OptionsPanel.SetActive(true);
-            PlayerCombatHUD.UpdateCombatHUD.Invoke();
-
-            // Standard attack damage calculation
-            var attackDamageCalculated = player.Unit.Attack;
-            if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-                attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-
-            if (player.Unit.IsPlayer)
-            {
-                var enemyObject = GameObject.FindWithTag("Enemy");
-                foreach (var track in player.BasicAttack.GetOutputTracks())
-                {
-                    switch (track.name)
-                    {
-                        case "AttackAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "MovementAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "Signals":
-                            player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
-                            break;
-                    }
-                }
-            }
-
-            // Animation
-            player.Director.Play(player.BasicAttack); // TODO: Change to heavy hit animation
-
-            // HUD Update
-            player.Unit.CurrentTp -= cost;
-
-            // Damage multiplied
-            enemy.TakeDamage(attackDamageCalculated);
-            enemyAilments.SetAilment(AilmentType.Frozen, true, specialAction.turnsToLast);
-
-            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Ataque Fulminante</color> em <color=blue>{enemy.Unit.UnitName}</color> causando <color=red>{enemy.damageTakenThisTurn}</color> de dano</b>");
-            PlayerCombatHUD.TakenAction.Invoke();
-            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
-        }
-        else
-        {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
-                                                   $"Quantidade necessária: <color=red>{cost} TP</color>");
-        }
-    }
-
-    private void BleedingAttackSpecialAction(int cost, Special specialAction)
-    {
-        var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
-        var enemy = GameObject.FindWithTag("Enemy").GetComponent<UnitController>();
-        var playerAilments = player.gameObject.GetComponent<Ailments>();
-        var enemyAilments = enemy.gameObject.GetComponent<Ailments>();
-
-        if (player.Unit.CurrentTp >= cost)
-        {
-            _turnManager.isPlayerTurn = false;
-            _combatHUD.SpecialPanel.SetActive(false);
-            _combatHUD.ReturnButton.gameObject.SetActive(false);
-            _combatHUD.ReturnButton.interactable = false;
-            _combatHUD.OptionsPanel.SetActive(true);
-            PlayerCombatHUD.UpdateCombatHUD.Invoke();
-
-            // Standard attack damage calculation
-            var attackDamageCalculated = player.Unit.Attack;
-            if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-                attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-
-            if (player.Unit.IsPlayer)
-            {
-                var enemyObject = GameObject.FindWithTag("Enemy");
-                foreach (var track in player.BasicAttack.GetOutputTracks())
-                {
-                    switch (track.name)
-                    {
-                        case "AttackAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "MovementAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "Signals":
-                            player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
-                            break;
-                    }
-                }
-            }
-
-            // Animation
-            player.Director.Play(player.BasicAttack); // TODO: Change to heavy hit animation
-
-            // HUD Update
-            player.Unit.CurrentTp -= cost;
-
-            // Damage multiplied
-            enemy.TakeDamage(attackDamageCalculated);
-            enemyAilments.SetAilment(AilmentType.Bleeding, true, specialAction.turnsToLast);
-
-            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Ataque Fulminante</color> em <color=blue>{enemy.Unit.UnitName}</color> causando <color=red>{enemy.damageTakenThisTurn}</color> de dano</b>");
-            PlayerCombatHUD.TakenAction.Invoke();
-            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
-        }
-        else
-        {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
-                                                   $"Quantidade necessária: <color=red>{cost} TP</color>");
-        }
-    }
-
-    private void IncapacitateAttackSpecialAction(int cost, Special specialAction)
-    {
-        var player = GameObject.FindWithTag("Player").GetComponent<UnitController>();
-        var enemy = GameObject.FindWithTag("Enemy").GetComponent<UnitController>();
-        var playerAilments = player.gameObject.GetComponent<Ailments>();
-        var enemyAilments = enemy.gameObject.GetComponent<Ailments>();
-
-        if (player.Unit.CurrentTp >= cost)
-        {
-            _turnManager.isPlayerTurn = false;
-            _combatHUD.SpecialPanel.SetActive(false);
-            _combatHUD.ReturnButton.gameObject.SetActive(false);
-            _combatHUD.ReturnButton.interactable = false;
-            _combatHUD.OptionsPanel.SetActive(true);
-            PlayerCombatHUD.UpdateCombatHUD.Invoke();
-
-            // Standard attack damage calculation
-            var attackDamageCalculated = player.Unit.Attack;
-            if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-                attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-
-            if (player.Unit.IsPlayer)
-            {
-                var enemyObject = GameObject.FindWithTag("Enemy");
-                foreach (var track in player.BasicAttack.GetOutputTracks())
-                {
-                    switch (track.name)
-                    {
-                        case "AttackAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "MovementAnimation":
-                            player.Director.SetGenericBinding(track, player.gameObject.GetComponentInChildren<Animator>());
-                            break;
-                        case "Signals":
-                            player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
-                            break;
-                    }
-                }
-            }
-
-            // Animation
-            player.Director.Play(player.BasicAttack); // TODO: Change to heavy hit animation
-
-            // HUD Update
-            player.Unit.CurrentTp -= cost;
-
-            // Damage multiplied
-            enemy.TakeDamage(attackDamageCalculated);
-            enemyAilments.SetAilment(AilmentType.Incapacitated, true, specialAction.turnsToLast);
-
-            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Usou <color=purple>Ataque Fulminante</color> em <color=blue>{enemy.Unit.UnitName}</color> causando <color=red>{enemy.damageTakenThisTurn}</color> de dano</b>");
-            PlayerCombatHUD.TakenAction.Invoke();
-            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
-        }
-        else
-        {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
-                                                   $"Quantidade necessária: <color=red>{cost} TP</color>");
-        }
-    }
-
     #endregion
 }

@@ -58,7 +58,6 @@ public class UnitController : MonoBehaviour
     [SerializeField, Tooltip("The text that displays the damage taken by the unit.")]
     private TMP_Text damageText;
 
-    public float damageVariation;
     public int damageTakenThisTurn;
     public int attackDamageCalculated;
     public int defenceCalculated;
@@ -66,6 +65,7 @@ public class UnitController : MonoBehaviour
     public int charges;
 
     private int _ongoingChargeAttacks;
+    private bool _criticalHit;
     private PlayerCombatHUD _playerCombatHUD;
 
     #endregion
@@ -140,7 +140,6 @@ public class UnitController : MonoBehaviour
             StopCoroutine(ChargeAttackCoroutine(null)); // Stop the coroutine
         }
     }
-
     #endregion
 
     #region === Methods =================================================================
@@ -198,8 +197,25 @@ public class UnitController : MonoBehaviour
         _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
     }
 
+    public IEnumerator CritNumbers(UnitController target)
+    {
+        yield return new WaitUntil(() => target.damageTextAnimator.GetCurrentAnimatorClipInfo(0) != null);
+        target.damageText.color = Color.red;
+        target.damageText.outlineColor = Color.yellow;
+        target.damageText.fontSize += 50;
+        yield return new WaitForSeconds(target.damageTextAnimator.GetCurrentAnimatorStateInfo(0).length * 3);
+        target.damageText.color = Color.black;
+        target.damageText.outlineColor = Color.white;
+        target.damageText.fontSize -= 50;
+    }
+
     public void CalcDamage(UnitController target)
     {
+        var randomFactor = Random.Range(0f, 1f);
+        var criticalHitChance = (unit.Luck / 100f) + randomFactor;
+        _criticalHit = criticalHitChance >= 0.9f;
+
+
         PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         if (unit.IsPlayer)
         {
@@ -246,8 +262,19 @@ public class UnitController : MonoBehaviour
                 unit.CurrentTp = unit.MaxTp;
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
         }
-        var randomFactor = Random.Range(1f - damageVariation, 1f + damageVariation);
-        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * randomFactor);
+
+        var randomFactorDam = Random.Range(0.85f, 1f);
+        var math = ((unit.Level * 1) + 2) / 5 + randomFactorDam;
+        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated + math);
+        if (_criticalHit)
+        {
+            math = ((unit.Level * 2) + 2) / 5 + randomFactorDam;
+            if (math < 1.5) math = 1.5f;
+            if (math > 2) math = 2;
+            calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * math);
+            StartCoroutine(CritNumbers(target));
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Acerto <color=red>Crítico!</color>", 3f);
+        }
         target.TakeDamage(calculatedDamage);
     }
     /// <summary>Reduces the unit's health by the given amount of damage, taking into account the unit's defense and equipment.</summary>
@@ -327,14 +354,14 @@ public class UnitController : MonoBehaviour
         {
             var reader = QuickSaveReader.Create("GameInfo");
             SceneManager.LoadScene(reader.Read<string>("LastScene"));
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>", 5f);
             PlayerCombatHUD.TakenAction.Invoke();
             _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
             PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>", 4f);
             PlayerCombatHUD.TakenAction.Invoke();
             PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
@@ -367,7 +394,7 @@ public class UnitController : MonoBehaviour
     {
         var reader = QuickSaveReader.Create("GameInfo");
         SceneManager.LoadScene(reader.Read<string>("LastScene"));
-        PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino");
+        PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino", 5f);
         PlayerCombatHUD.TakenAction.Invoke();
         unit.Experience = 1;
     }

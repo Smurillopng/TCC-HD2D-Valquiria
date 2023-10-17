@@ -122,7 +122,7 @@ public class PlayerCombatHUD : MonoBehaviour
     [ShowInInspector, ReadOnly]
 
     public static UnityAction TakenAction;
-    public static UnityAction<string> CombatTextEvent;
+    public static UnityAction<string, float> CombatTextEvent;
     public static UnityAction UpdateCombatHUDPlayerHp;
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
@@ -254,9 +254,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// When the buttons are enabled, the attack, special, and item buttons are shown, as well as the run button.
     /// The charge button is shown only if the player has charges remaining.
     /// </remarks>
-    private void DisableButtons(bool disabled) 
+    private void DisableButtons(bool disabled)
     {
-        switch (disabled) 
+        switch (disabled)
         {
             case true:
                 attackButton.gameObject.SetActive(false);
@@ -316,18 +316,18 @@ public class PlayerCombatHUD : MonoBehaviour
     /// <remarks>
     /// If the combat text box is null, the text will not be displayed.
     /// </remarks>
-    private void DisplayCombatText(string text)
+    private void DisplayCombatText(string text, float duration)
     {
-        StartCoroutine(DisplayCombatTextCoroutine(text));
+        StartCoroutine(DisplayCombatTextCoroutine(text, duration));
     }
     /// <summary>Displays combat text for a set amount of time.</summary>
     /// <param name="text">The text to display.</param>
     /// <returns>An IEnumerator that waits for a set amount of time before clearing the text.</returns>
-    private IEnumerator DisplayCombatTextCoroutine(string text)
+    private IEnumerator DisplayCombatTextCoroutine(string text, float duration)
     {
         textBoxObject.SetActive(true);
         combatTextBox.text = text;
-        yield return new WaitForSeconds(combatTextTimer);
+        yield return new WaitForSeconds(duration);
         combatTextBox.text = "";
         textBoxObject.SetActive(false);
     }
@@ -345,7 +345,7 @@ public class PlayerCombatHUD : MonoBehaviour
 
         if (!hasItem)
         {
-            CombatTextEvent.Invoke("<b>Sem itens!</b>");
+            CombatTextEvent.Invoke("<b>Sem itens!</b>", 2f);
             return;
         }
 
@@ -379,19 +379,21 @@ public class PlayerCombatHUD : MonoBehaviour
                 returnButton.gameObject.SetActive(false);
                 returnButton.interactable = false;
                 optionsPanel.SetActive(true);
-                CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>");
+                CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>", 2f);
                 //turnManager.isPlayerTurn = false;
                 TakenAction.Invoke();
                 ForceDisableButtons.Invoke(true);
             });
             var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
-            entry.callback.AddListener(_ => {
+            entry.callback.AddListener(_ =>
+            {
                 // Add code here to show the text when the mouse hovers over the button
                 textBoxObject.SetActive(true);
                 combatTextBox.text = $"{item.ItemDescription}";
             });
             var entry2 = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
-            entry2.callback.AddListener(_ => {
+            entry2.callback.AddListener(_ =>
+            {
                 // Add code here to hide the text when the mouse stops hovering over the button
                 textBoxObject.SetActive(false);
                 combatTextBox.text = "";
@@ -437,16 +439,19 @@ public class PlayerCombatHUD : MonoBehaviour
             var button = Instantiate(buttonPrefab, specialPanel.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = specialAction.specialName;
             button.GetComponent<Button>().onClick.AddListener(() => specials.UseSpecial(specialAction));
+            button.GetComponent<Button>().onClick.AddListener(() => textBoxObject.SetActive(false));
             button.AddComponent<EventTrigger>();
             var trigger = button.GetComponent<EventTrigger>();
             var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
-            entry.callback.AddListener(_ => {
+            entry.callback.AddListener(_ =>
+            {
                 // Add code here to show the text when the mouse hovers over the button
                 textBoxObject.SetActive(true);
                 combatTextBox.text = $"{specialAction.specialDescription}\n[ Custo de TP: {specialAction.specialCost} ]";
             });
             var entry2 = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
-            entry2.callback.AddListener(_ => {
+            entry2.callback.AddListener(_ =>
+            {
                 // Add code here to hide the text when the mouse stops hovering over the button
                 textBoxObject.SetActive(false);
                 combatTextBox.text = "";

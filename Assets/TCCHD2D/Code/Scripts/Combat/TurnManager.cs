@@ -398,7 +398,6 @@ public class TurnManager : MonoBehaviour
     {
         XpReward();
         ItemReward();
-        DisplayVictoryText();
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
         var lastScene = QuickSaveReader.Create("GameInfo").Read<string>("LastScene");
@@ -412,6 +411,7 @@ public class TurnManager : MonoBehaviour
     /// </remarks>
     private void XpReward()
     {
+        PlayerCombatHUD.UpdateExperience.Invoke();
         if (PlayerUnitController.Unit.Experience + EnemyUnitController.Unit.ExperienceDrop <= PlayerUnitController.Unit
                 .StatsTables.First(statGroup => statGroup.Level == PlayerUnitController.Unit.Level + 1).Experience)
         {
@@ -439,15 +439,6 @@ public class TurnManager : MonoBehaviour
         {
             itemNotification.AddItemWithNotification(item.Key);
         }
-    }
-    /// <summary>Displays the victory text on the player's combat HUD.</summary>
-    /// <remarks>The victory text includes the name of the defeated enemy unit and the amount of experience points gained by the player.</remarks>
-    private void DisplayVictoryText()
-    {
-        var victoryText =
-            $"{EnemyUnitController.Unit.UnitName} foi derrotado!\n" +
-            $"Você ganhou {EnemyUnitController.Unit.ExperienceDrop} pontos de experiência!";
-        PlayerCombatHUD.CombatTextEvent.Invoke(victoryText, 5f);
     }
     /// <summary>Advances the game to the next turn.</summary>
     /// <remarks>This method calls the ManageTurns() method to handle the logic for advancing to the next turn.</remarks>

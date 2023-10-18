@@ -36,6 +36,15 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The text displaying the player's current Tp.")]
     private TMP_Text playerTpText;
+    
+    [SerializeField]
+    private GameObject experienceBar;
+    
+    [SerializeField]
+    private Image experienceBarFill;
+    
+    [SerializeField]
+    private TMP_Text experienceBarText;
 
     [SerializeField]
     [Tooltip("The fill image of the player's charges bar")]
@@ -67,10 +76,6 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The text box displaying combat information.")]
     private GameObject textBoxObject;
-
-    [SerializeField]
-    [Tooltip("The time duration for displaying combat information in the text box.")]
-    private float combatTextTimer;
 
     [TitleGroup("Combat Panels", Alignment = TitleAlignments.Centered)]
     [SerializeField]
@@ -136,6 +141,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction UpdateCombatHUDEnemyHp;
     public static UnityAction UpdateCombatHUD;
     public static UnityAction<bool> ForceDisableButtons;
+    public static UnityAction UpdateExperience;
 
     [SerializeField]
     [Tooltip("The manager for controlling turns in combat.")]
@@ -162,6 +168,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
+        UpdateExperience += UpdateXp;
         UpdateCombatHUD += UpdateCombatHUDs;
         TakenAction += UpdateCharges;
         ForceDisableButtons += DisableButtons;
@@ -229,6 +236,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp -= UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp -= UpdatePlayerTp;
         UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
+        UpdateExperience -= UpdateXp;
         UpdateCombatHUD -= UpdateCombatHUDs;
         TakenAction -= UpdateCharges;
         ForceDisableButtons -= DisableButtons;
@@ -247,6 +255,70 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdatePlayerHealth();
         UpdatePlayerTp();
         UpdateEnemyHealth();
+    }
+    private static IEnumerator UpdateHealth(UnitController unit, TMP_Text text, Image fillImage)
+    {
+        text.text = $"HP: {unit.Unit.CurrentHp} / {unit.Unit.MaxHp}";
+        if (fillImage.fillAmount != (float)unit.Unit.CurrentHp / unit.Unit.MaxHp)
+        {
+            var fillAmount = fillImage.fillAmount;
+            var targetFillAmount = (float)unit.Unit.CurrentHp / unit.Unit.MaxHp;
+            var time = 0f;
+            while (time < 1f)
+            {
+                time += Time.deltaTime;
+                fillImage.fillAmount = Mathf.Lerp(fillAmount, targetFillAmount, time);
+                yield return null;
+            }
+        }
+    }
+    private static IEnumerator UpdateTP(UnitController unit, TMP_Text text, Image fillImage)
+    {
+        text.text = $"TP: {unit.Unit.CurrentTp}%";
+        if (fillImage.fillAmount != (float)unit.Unit.CurrentHp / unit.Unit.MaxHp)
+        {
+            var fillAmount = fillImage.fillAmount;
+            var targetFillAmount = (float)unit.Unit.CurrentTp / unit.Unit.MaxTp;
+            var time = 0f;
+            while (time < 1f)
+            {
+                time += Time.deltaTime;
+                fillImage.fillAmount = Mathf.Lerp(fillAmount, targetFillAmount, time);
+                yield return null;
+            }
+            if (unit.Unit.CurrentTp == unit.Unit.MaxTp)
+                text.text = "TP: MAX";
+        }
+    }
+
+    private IEnumerator UpdateXpCorroutine()
+    {
+        experienceBar.SetActive(true);
+        experienceBarFill.fillAmount = turnManager.PlayerUnitController.Unit.Experience / turnManager.PlayerUnitController.Unit.StatsTables.First(statGroup => statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1).Experience;
+        if (experienceBarFill.fillAmount != turnManager.PlayerUnitController.Unit.Experience +
+            turnManager.EnemyUnitController.Unit.ExperienceDrop)
+        {
+            var fillAmount = experienceBarFill.fillAmount;
+            var targetFillAmount = (float)turnManager.PlayerUnitController.Unit.Experience +
+                                   turnManager.EnemyUnitController.Unit.ExperienceDrop / turnManager.PlayerUnitController.Unit.StatsTables.First(statGroup => statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1).Experience;
+            experienceBarText.text = turnManager.PlayerUnitController.Unit.Experience + turnManager.EnemyUnitController.Unit.ExperienceDrop >
+                                     turnManager.PlayerUnitController
+                                         .Unit.StatsTables.First(statGroup =>
+                                             statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1)
+                                         .Experience ? $"Aumento de Nível => {turnManager.PlayerUnitController.Unit.Level + 1}\n+{turnManager.EnemyUnitController.Unit.ExperienceDrop} XP" : $"+{turnManager.EnemyUnitController.Unit.ExperienceDrop} XP";
+            var time = 0f;
+            while (time < 5f)
+            {
+                time += Time.deltaTime;
+                experienceBarFill.fillAmount = Mathf.Lerp(fillAmount, targetFillAmount, time);
+                yield return null;
+            }
+        }
+    }
+
+    private void UpdateXp()
+    {
+        StartCoroutine(UpdateXpCorroutine());
     }
     /// <summary>Updates the player's charges if the player's turn has started and the player is not currently charging.</summary>
     /// <remarks>Increments the fill amount of the player's charges by 0.25f if it is less than 1.</remarks>
@@ -291,8 +363,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public void UpdatePlayerHealth()
     {
         if (playerHealthText == null || playerHealthBarFill == null) return;
-        playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
-        playerHealthBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
+        StartCoroutine(UpdateHealth(turnManager.PlayerUnitController, playerHealthText, playerHealthBarFill));
     }
     /// <summary>Updates the enemy's health text and health bar fill.</summary>
     /// <remarks>
@@ -301,8 +372,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public void UpdateEnemyHealth()
     {
         if (enemyHealthText == null || enemyHealthBarFill == null) return;
-        enemyHealthText.text = $"{turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
-        enemyHealthBarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
+        StartCoroutine(UpdateHealth(turnManager.EnemyUnitController, enemyHealthText, enemyHealthBarFill));
     }
     /// <summary>Updates the player's TP text and bar fill.</summary>
     /// <remarks>
@@ -314,10 +384,7 @@ public class PlayerCombatHUD : MonoBehaviour
     private void UpdatePlayerTp()
     {
         if (playerTpText == null || playerTpBarFill == null) return;
-        playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
-        playerTpBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
-        if (turnManager.PlayerUnitController.Unit.CurrentTp == turnManager.PlayerUnitController.Unit.MaxTp)
-            playerTpText.text = "TP: MAX";
+        StartCoroutine(UpdateTP(turnManager.PlayerUnitController, playerTpText, playerTpBarFill));
     }
     /// <summary>Displays combat text in the combat text box.</summary>
     /// <param name="text">The text to display.</param>

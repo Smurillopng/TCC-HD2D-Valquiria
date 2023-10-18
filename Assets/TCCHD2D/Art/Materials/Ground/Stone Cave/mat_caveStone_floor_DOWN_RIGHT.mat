@@ -65,12 +65,48 @@ Material:
         m_Texture: {fileID: 2800000, guid: 2d5c64a678ab3d84fa466f712d204e34, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GroundDown:
+        m_Texture: {fileID: 2800000, guid: 9d0e190ef083d754dbb258970ec6b502, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GroundLeft:
+        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GroundRight:
+        m_Texture: {fileID: 2800000, guid: 231af175f101e9442b57c8610cc42ade, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GroundTop:
+        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: bec78a4b408dace4c8117df10f9f2cec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalGround:
+        m_Texture: {fileID: 2800000, guid: e6c01d3ecdfbc124cb82aa40c280571f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalGroundDown:
+        m_Texture: {fileID: 2800000, guid: 1ea5db8bdd359524fafdf011cf5253d6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalGroundLeft:
+        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalGroundRight:
+        m_Texture: {fileID: 2800000, guid: e5986e2bcef0dd84d91f46d631d03363, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalGroundTop:
+        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -83,6 +119,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularGround:
+        m_Texture: {fileID: 2800000, guid: 8b3ca2a50e28c1b4c88350689f74f856, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularGroundDown:
+        m_Texture: {fileID: 2800000, guid: f15a38fc597fa0b4f97a25a411215c9a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularGroundLeft:
+        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularGroundRight:
+        m_Texture: {fileID: 2800000, guid: bea6ce89db389e0419ef84f657525bd4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularGroundTop:
+        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _T_Down:
@@ -135,12 +191,13 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _NormalStrength: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smooth: 0
+    - _Smooth: 18
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -149,10 +206,12 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - _: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - __1: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3180305243838713211
 MonoBehaviour:

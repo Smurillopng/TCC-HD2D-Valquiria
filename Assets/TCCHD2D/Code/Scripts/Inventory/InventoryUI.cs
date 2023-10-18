@@ -344,6 +344,7 @@ public class InventoryUI : MonoBehaviour
 
     private void UpdateTopLeftBars()
     {
+        if (topLeftPlayerHealthBarFill.fillAmount == (float)playerUnit.CurrentHp / playerUnit.MaxHp || topLeftPlayerTpFill.fillAmount == (float)playerUnit.CurrentTp / playerUnit.MaxTp || topLeftPlayerXpBarFill.fillAmount == (float)playerUnit.Experience / playerUnit.StatsTables.Find(x => x.Level == playerUnit.Level + 1).Experience) return;
         topLeftPlayerHealthText.text = $"HP: {playerUnit.CurrentHp} / {playerUnit.MaxHp}";
         topLeftPlayerHealthBarFill.fillAmount = (float)playerUnit.CurrentHp / playerUnit.MaxHp;
         topLeftPlayerTpText.text = $"TP: {playerUnit.CurrentTp} / {playerUnit.MaxTp}";

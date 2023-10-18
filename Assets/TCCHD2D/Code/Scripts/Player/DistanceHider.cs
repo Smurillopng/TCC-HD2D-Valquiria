@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -29,9 +28,9 @@ public class DistanceHider : MonoBehaviour
 
     // Objects that are currently hidden
     private readonly HashSet<GameObject> _hiddenObjects = new();
-    // Renderers that were hidden in the current frame
     private readonly List<Renderer> _newlyHiddenRenderers = new();
-    // Shader property used to set the alpha value of the material
+    private readonly List<GameObject> _newlyHiddenObjects = new();
+    private readonly List<Renderer> _toRemove = new();
     private static readonly int AlphaValue = Shader.PropertyToID("_AlphaValue");
 
     #endregion
@@ -48,6 +47,7 @@ public class DistanceHider : MonoBehaviour
     /// <summary>
     /// This method detects objects that are between the player and the camera and hides them.
     /// </summary>
+
     private void Update()
     {
         const int maxHits = 10;
@@ -57,42 +57,46 @@ public class DistanceHider : MonoBehaviour
         var direction = player.position - camTransformPosition;
         var hitCount = Physics.RaycastNonAlloc(camTransformPosition, direction, hits, direction.magnitude, layerMask);
 
-        var newlyHiddenObjects = new List<GameObject>(); // List to store newly hidden objects
-
-        _newlyHiddenRenderers.Clear();
+        _newlyHiddenObjects.Clear();
 
         for (var i = 0; i < hitCount; i++)
         {
             var hit = hits[i];
             var hitObject = hit.collider.gameObject;
             if (_hiddenObjects.Contains(hitObject)) continue;
-            newlyHiddenObjects.Add(hitObject); // Add object to the list of newly hidden objects
+            _newlyHiddenObjects.Add(hitObject);
             if (!hitObject.TryGetComponent<Renderer>(out var hitRender)) continue;
             foreach (var mat in hitRender.materials)
             {
                 mat.SetFloat(AlphaValue, alphaStrength);
-
             }
             _newlyHiddenRenderers.Add(hitRender);
         }
 
-        // Add newly hidden objects to the list of hidden objects
-        _hiddenObjects.UnionWith(newlyHiddenObjects);
+        _hiddenObjects.UnionWith(_newlyHiddenObjects);
 
-        // Show objects that are no longer being hit
-        foreach (var matRenderer in _newlyHiddenRenderers.Where(matRenderer => !_hiddenObjects.Contains(matRenderer.gameObject)))
+        _toRemove.Clear();
+        foreach (var matRenderer in _newlyHiddenRenderers)
         {
-            foreach (var mat in matRenderer.materials)
+            if (!_hiddenObjects.Contains(matRenderer.gameObject))
             {
-                mat.SetFloat(AlphaValue, 1.0f);
+                foreach (var mat in matRenderer.materials)
+                {
+                    mat.SetFloat(AlphaValue, 1.0f);
+                }
+                _toRemove.Add(matRenderer);
             }
+        }
+        foreach (var itemRenderer in _toRemove)
+        {
+            _newlyHiddenRenderers.Remove(itemRenderer);
         }
 
         _hiddenObjects.RemoveWhere(obj =>
         {
-            if (obj == null) return true;
-            
-            var hit = Array.Exists(hits, hit => hit.collider != null && hit.collider.gameObject == obj);
+            if (obj.Equals(null)) return true;
+
+            var hit = Array.Exists(hits, hit => !hit.collider.Equals(null) && hit.collider.gameObject == obj);
             if (hit) return false;
             if (obj.TryGetComponent<Renderer>(out var objRender))
             {

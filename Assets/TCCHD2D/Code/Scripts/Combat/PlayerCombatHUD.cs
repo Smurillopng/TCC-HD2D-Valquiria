@@ -86,8 +86,16 @@ public class PlayerCombatHUD : MonoBehaviour
     private GameObject specialPanel;
 
     [SerializeField]
+    [Tooltip("The panel containing special combat options.")]
+    private GameObject specialPanelContainer;
+
+    [SerializeField]
     [Tooltip("The panel containing item options.")]
     private GameObject itemPanel;
+
+    [SerializeField]
+    [Tooltip("The panel containing item options.")]
+    private GameObject itemPanelContainer;
 
     [TitleGroup("Buttons", Alignment = TitleAlignments.Centered)]
     [SerializeField]
@@ -352,9 +360,9 @@ public class PlayerCombatHUD : MonoBehaviour
         optionsPanel.SetActive(false);
         itemPanel.SetActive(true);
 
-        if (itemPanel.transform.childCount > 0)
+        if (itemPanelContainer.transform.childCount > 0)
         {
-            foreach (Transform child in itemPanel.transform)
+            foreach (Transform child in itemPanelContainer.transform)
             {
                 Destroy(child.gameObject);
             }
@@ -364,7 +372,7 @@ public class PlayerCombatHUD : MonoBehaviour
         {
             returnButton.gameObject.SetActive(true);
             returnButton.interactable = true;
-            var buttonObject = Instantiate(buttonPrefab, itemPanel.transform);
+            var buttonObject = Instantiate(buttonPrefab, itemPanelContainer.transform);
             buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
             var button = buttonObject.GetComponent<Button>();
             buttonObject.AddComponent<EventTrigger>();
@@ -424,9 +432,9 @@ public class PlayerCombatHUD : MonoBehaviour
         specialPanel.SetActive(true);
         List<Button> specialButtons = new List<Button>();
 
-        if (specialPanel.transform.childCount > 0)
+        if (specialPanelContainer.transform.childCount > 0)
         {
-            foreach (Transform child in specialPanel.transform)
+            foreach (Transform child in specialPanelContainer.transform)
             {
                 Destroy(child.gameObject);
             }
@@ -436,7 +444,7 @@ public class PlayerCombatHUD : MonoBehaviour
         {
             returnButton.gameObject.SetActive(true);
             returnButton.interactable = true;
-            var button = Instantiate(buttonPrefab, specialPanel.transform);
+            var button = Instantiate(buttonPrefab, specialPanelContainer.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = specialAction.specialName;
             button.GetComponent<Button>().onClick.AddListener(() => specials.UseSpecial(specialAction));
             button.GetComponent<Button>().onClick.AddListener(() => textBoxObject.SetActive(false));

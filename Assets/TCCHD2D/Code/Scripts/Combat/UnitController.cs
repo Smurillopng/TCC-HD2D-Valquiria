@@ -65,7 +65,7 @@ public class UnitController : MonoBehaviour
     public int charges;
 
     private int _ongoingChargeAttacks;
-    private bool _criticalHit;
+    private bool _criticalHit, _isCoroutineRunning;
     private PlayerCombatHUD _playerCombatHUD;
 
     #endregion
@@ -135,9 +135,11 @@ public class UnitController : MonoBehaviour
             unit.CurrentHp = unit.MaxHp;
         if (!unit.IsPlayer && unit.CurrentHp > unit.MaxHp)
             unit.CurrentHp = unit.MaxHp;
-        if (charges <= 0)
+        if (charges <= 0 && _isCoroutineRunning)
         {
+            //stop the coroutine only if it is running
             StopCoroutine(ChargeAttackCoroutine(null)); // Stop the coroutine
+            _isCoroutineRunning = false;
         }
     }
     #endregion
@@ -179,6 +181,7 @@ public class UnitController : MonoBehaviour
 
     private IEnumerator ChargeAttackCoroutine(UnitController target)
     {
+        _isCoroutineRunning = true;
         _ongoingChargeAttacks++; // Increment the counter
         while (charges > 0)
         {

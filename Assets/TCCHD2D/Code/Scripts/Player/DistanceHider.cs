@@ -96,7 +96,7 @@ public class DistanceHider : MonoBehaviour
         {
             if (obj.Equals(null)) return true;
 
-            var hit = Array.Exists(hits, hit => !hit.collider.Equals(null) && hit.collider.gameObject == obj);
+            var hit = Array.Exists(hits, hit => hit.collider != null && hit.collider.gameObject == obj);
             if (hit) return false;
             if (obj.TryGetComponent<Renderer>(out var objRender))
             {
@@ -108,6 +108,7 @@ public class DistanceHider : MonoBehaviour
             return true;
         });
     }
+
     
     #endregion
 }

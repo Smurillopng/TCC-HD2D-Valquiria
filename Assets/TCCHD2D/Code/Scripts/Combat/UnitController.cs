@@ -67,6 +67,7 @@ public class UnitController : MonoBehaviour
     private int _ongoingChargeAttacks;
     private bool _criticalHit, _isCoroutineRunning;
     private PlayerCombatHUD _playerCombatHUD;
+    private SceneTransitioner _sceneTransitioner;
 
     #endregion
 
@@ -102,11 +103,13 @@ public class UnitController : MonoBehaviour
     public void Awake()
     {
         if (_playerCombatHUD == null) _playerCombatHUD = FindObjectOfType<PlayerCombatHUD>();
+        if (_sceneTransitioner == null) _sceneTransitioner = FindObjectOfType<SceneTransitioner>();
         if (!unit.IsPlayer)
         {
             unit.IsDead = false;
             unit.CurrentHp = unit.MaxHp;
             basicAttack = unit.AttackAnimation;
+            // TODO instanciar inimigo ao invés disso
         }
         else
         {
@@ -416,7 +419,7 @@ public class UnitController : MonoBehaviour
         if (gotAway)
         {
             var reader = QuickSaveReader.Create("GameInfo");
-            SceneManager.LoadScene(reader.Read<string>("LastScene"));
+            _sceneTransitioner.StartCoroutine(_sceneTransitioner.TransitionTo(reader.Read<string>("LastScene")));
             PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>", 5f);
             PlayerCombatHUD.TakenAction.Invoke();
             _playerCombatHUD.playerCharges.fillAmount -= 0.25f;

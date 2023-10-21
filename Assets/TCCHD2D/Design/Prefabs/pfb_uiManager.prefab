@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 8363076174180495067}
   - component: {fileID: 4476144393616403698}
   - component: {fileID: 5237719129627790199}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Outer Bars Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1523,7 +1523,7 @@ GameObject:
   - component: {fileID: 1425473461704900296}
   - component: {fileID: 1425473461704900299}
   - component: {fileID: 3086405269988674482}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: pfb_uiManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3472,9 +3472,9 @@ Canvas:
   m_GameObject: {fileID: 1425473462784963209}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5560,7 +5560,7 @@ GameObject:
   - component: {fileID: 5963287732450872031}
   - component: {fileID: 1996210761340479664}
   - component: {fileID: 3660268622570630495}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Available AT Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}

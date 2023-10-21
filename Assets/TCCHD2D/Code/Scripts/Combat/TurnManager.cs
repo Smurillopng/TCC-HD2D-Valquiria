@@ -55,6 +55,9 @@ public class TurnManager : MonoBehaviour
     [SerializeField]
     private float sceneChangeDelay;
     [FoldoutGroup("Debug Info")]
+    [SerializeField]
+    private SceneTransitioner sceneTransitioner;
+    [FoldoutGroup("Debug Info")]
     [SerializeField, ReadOnly, Tooltip("The index of the current unit in the units list")]
     private int currentUnitIndex;
     [FoldoutGroup("Debug Info")]
@@ -294,7 +297,7 @@ public class TurnManager : MonoBehaviour
     /// <returns>An IEnumerator that waits for half a second before incrementing the turn count and managing turns.</returns>
     private IEnumerator FirstTurnDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitUntil(() => SceneTransitioner.currentlyTransitioning == false);
         _turnCount++;
         ManageTurns();
     }
@@ -380,7 +383,7 @@ public class TurnManager : MonoBehaviour
     /// <summary>Loads the "scn_gameOver" scene, indicating that the game is over.</summary>
     private void GameOver()
     {
-        SceneManager.LoadScene("scn_gameOver");
+        sceneTransitioner.StartCoroutine(sceneTransitioner.TransitionTo("scn_gameOver"));
     }
     /// <summary>Performs the actions necessary for a victory.</summary>
     /// <returns>An IEnumerator that can be used to wait for the victory actions to complete.</returns>
@@ -401,7 +404,7 @@ public class TurnManager : MonoBehaviour
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
         var lastScene = QuickSaveReader.Create("GameInfo").Read<string>("LastScene");
-        SceneManager.LoadScene(lastScene);
+        sceneTransitioner.StartCoroutine(sceneTransitioner.TransitionTo(lastScene));
     }
     /// <summary>Calculates and applies the experience reward for defeating an enemy unit.</summary>
     /// <remarks>

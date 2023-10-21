@@ -420,7 +420,6 @@ public class UnitController : MonoBehaviour
     public void DisplayHealText()
     {
         damageText.text = $"+{PlayerCombatHUD._usedItemValue}";
-        Debug.Log(PlayerCombatHUD._usedItemValue);
         damageTextAnimator.SetTrigger("PlayerHealed");
         StartCoroutine(HealingNumbers(this));
     }

@@ -58,7 +58,6 @@ public class UnitController : MonoBehaviour
     [SerializeField, Tooltip("The text that displays the damage taken by the unit.")]
     private TMP_Text damageText;
 
-    public float damageVariation;
     public int damageTakenThisTurn;
     public int attackDamageCalculated;
     public int defenceCalculated;
@@ -66,7 +65,9 @@ public class UnitController : MonoBehaviour
     public int charges;
 
     private int _ongoingChargeAttacks;
+    private bool _criticalHit, _isCoroutineRunning;
     private PlayerCombatHUD _playerCombatHUD;
+    private SceneTransitioner _sceneTransitioner;
 
     #endregion
 
@@ -102,11 +103,13 @@ public class UnitController : MonoBehaviour
     public void Awake()
     {
         if (_playerCombatHUD == null) _playerCombatHUD = FindObjectOfType<PlayerCombatHUD>();
+        if (_sceneTransitioner == null) _sceneTransitioner = FindObjectOfType<SceneTransitioner>();
         if (!unit.IsPlayer)
         {
             unit.IsDead = false;
             unit.CurrentHp = unit.MaxHp;
             basicAttack = unit.AttackAnimation;
+            // TODO instanciar inimigo ao invés disso
         }
         else
         {
@@ -135,12 +138,13 @@ public class UnitController : MonoBehaviour
             unit.CurrentHp = unit.MaxHp;
         if (!unit.IsPlayer && unit.CurrentHp > unit.MaxHp)
             unit.CurrentHp = unit.MaxHp;
-        if (charges <= 0)
+        if (charges <= 0 && _isCoroutineRunning)
         {
+            //stop the coroutine only if it is running
             StopCoroutine(ChargeAttackCoroutine(null)); // Stop the coroutine
+            _isCoroutineRunning = false;
         }
     }
-
     #endregion
 
     #region === Methods =================================================================
@@ -180,6 +184,7 @@ public class UnitController : MonoBehaviour
 
     private IEnumerator ChargeAttackCoroutine(UnitController target)
     {
+        _isCoroutineRunning = true;
         _ongoingChargeAttacks++; // Increment the counter
         while (charges > 0)
         {
@@ -187,7 +192,6 @@ public class UnitController : MonoBehaviour
             var animationDuration = (float)Director.duration;
             yield return new WaitForSeconds(animationDuration); // Wait for the animation to finish
             CalcDamage(target);
-            PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
         }
         _ongoingChargeAttacks--; // Decrement the counter
     }
@@ -199,9 +203,64 @@ public class UnitController : MonoBehaviour
         _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
     }
 
+    public IEnumerator CritNumbers(UnitController target)
+    {
+        yield return new WaitUntil(() => target.damageTextAnimator.GetCurrentAnimatorClipInfo(0) != null);
+        target.damageText.color = Color.red;
+        target.damageText.outlineColor = Color.yellow;
+        target.damageText.fontSize += 50;
+        yield return new WaitForSeconds(target.damageTextAnimator.GetCurrentAnimatorStateInfo(0).length * 3);
+        target.damageText.color = Color.black;
+        target.damageText.outlineColor = Color.white;
+        target.damageText.fontSize -= 50;
+    }
+    public IEnumerator HealingNumbers(UnitController target)
+    {
+        yield return new WaitUntil(() => target.damageTextAnimator.GetCurrentAnimatorClipInfo(0) != null);
+        target.damageText.color = Color.green;
+        target.damageText.outlineColor = Color.magenta;
+        target.damageText.fontSize += 20;
+        yield return new WaitForSeconds(target.damageTextAnimator.GetCurrentAnimatorStateInfo(0).length * 2);
+        target.damageText.color = Color.black;
+        target.damageText.outlineColor = Color.white;
+        target.damageText.fontSize -= 20;
+    }
+
     public void CalcDamage(UnitController target)
     {
+        var randomFactor = Random.Range(0f, 1f);
+        var criticalHitChance = (unit.Luck / 100f) + randomFactor;
+        _criticalHit = criticalHitChance >= 0.9f;
+
+
         PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+        CalcAnimation();
+
+        if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp && charges <= 0)
+        {
+            unit.CurrentTp += 10;
+            if (unit.CurrentTp > unit.MaxTp)
+                unit.CurrentTp = unit.MaxTp;
+            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
+        }
+
+        var randomFactorDam = Random.Range(0.85f, 1f);
+        var math = ((unit.Level * 1) + 2) / 5 + randomFactorDam;
+        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated + math);
+        if (_criticalHit)
+        {
+            math = ((unit.Level * 2) + 2) / 5 + randomFactorDam;
+            if (math < 1.5) math = 1.5f;
+            if (math > 2) math = 2;
+            calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * math);
+            StartCoroutine(CritNumbers(target));
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Acerto <color=red>Crítico!</color>", 3f);
+        }
+        target.TakeDamage(calculatedDamage);
+    }
+
+    private void CalcAnimation()
+    {
         if (unit.IsPlayer)
         {
             var enemyObject = GameObject.FindWithTag("Enemy");
@@ -221,36 +280,61 @@ public class UnitController : MonoBehaviour
                 }
             }
         }
-        if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-            switch (InventoryManager.Instance.EquipmentSlots[3].equipItem.AttackType)
-            {
-                case AttackType.Blunt:
-                    Director.Play(basicBluntAttack);
-                    break;
-                case AttackType.Cut:
-                    Director.Play(basicCutAttack);
-                    break;
-                case AttackType.Ranged:
-                    Director.Play(basicRangedAttack);
-                    break;
-                default:
-                    Director.Play(basicAttack);
-                    break;
-            }
-        else
-            Director.Play(basicAttack);
-
-        if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp && charges <= 0)
+        if (_ongoingChargeAttacks <= 0)
         {
-            unit.CurrentTp += 10;
-            if (unit.CurrentTp > unit.MaxTp)
-                unit.CurrentTp = unit.MaxTp;
-            PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
+            if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
+                switch (InventoryManager.Instance.EquipmentSlots[3].equipItem.AttackType)
+                {
+                    case AttackType.Blunt:
+                        Director.Play(basicBluntAttack);
+                        break;
+                    case AttackType.Cut:
+                        Director.Play(basicCutAttack);
+                        break;
+                    case AttackType.Ranged:
+                        Director.Play(basicRangedAttack);
+                        break;
+                    default:
+                        Director.Play(basicAttack);
+                        break;
+                }
+            else
+                Director.Play(basicAttack);
         }
-        var randomFactor = Random.Range(1f - damageVariation, 1f + damageVariation);
-        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * randomFactor);
-        target.TakeDamage(calculatedDamage);
-        PlayerCombatHUD.CombatTextEvent.Invoke($"<b>Atacou <color=blue>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano</b>");
+        else
+        {
+            if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
+                switch (InventoryManager.Instance.EquipmentSlots[3].equipItem.AttackType)
+                {
+                    case AttackType.Blunt:
+                        Director.time = 0.54f;
+                        Director.Play(basicBluntAttack);
+                        break;
+                    case AttackType.Cut:
+                        Director.time = 0.56f;
+                        Director.Play(basicCutAttack);
+                        break;
+                    case AttackType.Ranged:
+                        Director.time = 0.43f;
+                        Director.Play(basicRangedAttack);
+                        break;
+                    default:
+                        Director.Play(basicAttack);
+                        Director.Evaluate();
+                        break;
+                }
+            else
+            {
+                Director.time = 0.56f;
+                Director.Play(basicAttack);
+            }
+        }
+    }
+
+    public void OngoingAttackSignal()
+    {
+        if (_ongoingChargeAttacks > 0)
+            Director.Pause();
     }
     /// <summary>Reduces the unit's health by the given amount of damage, taking into account the unit's defense and equipment.</summary>
     /// <param name="damage">The amount of damage to be taken.</param>
@@ -283,9 +367,26 @@ public class UnitController : MonoBehaviour
         {
             unit.IsDead = true;
             unit.CurrentHp = 0;
-            // TODO: Play death animation
         }
         return damageTakenThisTurn;
+    }
+    public void KillUnit()
+    {
+        StartCoroutine(Dissolve());
+    }
+    private IEnumerator Dissolve()
+    {
+        var renderer = GetComponent<SpriteRenderer>();
+        var material = renderer.material;
+        material.SetInt("_Is_Dead", unit.IsDead ? 1 : 0);
+        var dissolveAmount = 1f;
+        while (dissolveAmount >= 0)
+        {
+            dissolveAmount -= Time.deltaTime * 0.5f;
+            material.SetFloat("_Cutoff_Height", dissolveAmount);
+            yield return null;
+        }
+        gameObject.SetActive(false);
     }
 
     public int TakeRawDamage(int damage)
@@ -316,6 +417,12 @@ public class UnitController : MonoBehaviour
         damageText.text = damageTakenThisTurn.ToString();
         damageTextAnimator.SetTrigger(unit.IsPlayer ? "PlayerTookDamage" : "EnemyTookDamage");
     }
+    public void DisplayHealText()
+    {
+        damageText.text = $"+{PlayerCombatHUD._usedItemValue}";
+        damageTextAnimator.SetTrigger("PlayerHealed");
+        StartCoroutine(HealingNumbers(this));
+    }
     /// <summary>Runs the logic for a player's escape attempt and updates the game state accordingly.</summary>
     /// <remarks>
     /// If the player successfully escapes, the game will load the last scene visited and update the game save file with the name of the current scene.
@@ -328,15 +435,15 @@ public class UnitController : MonoBehaviour
         if (gotAway)
         {
             var reader = QuickSaveReader.Create("GameInfo");
-            SceneManager.LoadScene(reader.Read<string>("LastScene"));
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>");
+            _sceneTransitioner.StartCoroutine(_sceneTransitioner.TransitionTo(reader.Read<string>("LastScene")));
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>", 5f);
             PlayerCombatHUD.TakenAction.Invoke();
             _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
             PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>", 4f);
             PlayerCombatHUD.TakenAction.Invoke();
             PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
@@ -363,35 +470,13 @@ public class UnitController : MonoBehaviour
         if (unit.IsPlayer) return;
         // AI logic for selecting an action goes here
         AttackLogic(target);
-        PlayerCombatHUD.CombatTextEvent.Invoke($"<color=blue>{unit.UnitName}</color> atacou <color=red>{target.Unit.UnitName}</color> causando <color=red>{target.damageTakenThisTurn}</color> de dano!");
-
-        // IF ENEMY CAN RUN AWAY
-        // else
-        // {
-        //     var enemyRan = RunLogic();
-        //     if (enemyRan)
-        //     {
-        //         //TODO: give player exp reward
-        //         //TODO: play run animation
-        //         //TODO: change scenes
-        //         PlayerCombatHUD.CombatTextEvent.Invoke(
-        //             $"<color=blue>{unit.UnitName}</color> ran away!");
-        //     }
-        //     else
-        //     {
-        //         //Enemy lost a turn
-        //         PlayerCombatHUD.CombatTextEvent.Invoke(
-        //             $"<color=blue>{unit.UnitName}</color> tried to run away but <color=red>failed</color>");
-        //     }
-        // }
-
     }
     // tutorial
     public void RunActionTutorial()
     {
         var reader = QuickSaveReader.Create("GameInfo");
         SceneManager.LoadScene(reader.Read<string>("LastScene"));
-        PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino");
+        PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino", 5f);
         PlayerCombatHUD.TakenAction.Invoke();
         unit.Experience = 1;
     }

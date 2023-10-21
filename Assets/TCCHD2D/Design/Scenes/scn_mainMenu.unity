@@ -548,14 +548,12 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
@@ -2445,6 +2443,7 @@ GameObject:
   - component: {fileID: 2124367090}
   - component: {fileID: 2124367091}
   - component: {fileID: 2124367092}
+  - component: {fileID: 2124367093}
   m_Layer: 0
   m_Name: MainMenu Manager
   m_TagString: Untagged
@@ -2498,3 +2497,15 @@ MonoBehaviour:
   time: 3
   length: 0.5
   anyButtonPressed: 0
+--- !u!114 &2124367093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124367089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dfc27d222eb42847b680b99b03beee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

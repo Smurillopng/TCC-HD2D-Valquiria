@@ -66,11 +66,11 @@ MonoBehaviour:
   currentHp: 99999
   maxTp: 100
   currentTp: 0
-  attack: 1
-  defence: 1
-  speed: 1
-  luck: 1
-  dexterity: 1
+  attack: 0
+  defence: 0
+  speed: 0
+  luck: 0
+  dexterity: 0
   attributesPoints: 0
   isPlayer: 0
   isDangerous: 0

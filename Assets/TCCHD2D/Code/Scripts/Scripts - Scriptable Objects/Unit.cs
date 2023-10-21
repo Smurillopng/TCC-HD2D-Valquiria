@@ -69,14 +69,14 @@ public class Unit : SerializedScriptableObject
 
     [SerializeField, MinValue(1)]
     private int dexterity = 1;
-    
+
     [SerializeField, ShowIf("type", UnitType.Player)]
     private int attributesPoints;
 
     [TitleGroup("Conditions", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private bool isPlayer;
-    
+
     [TitleGroup("Conditions", Alignment = TitleAlignments.Centered)]
     [SerializeField]
     private bool isDangerous;

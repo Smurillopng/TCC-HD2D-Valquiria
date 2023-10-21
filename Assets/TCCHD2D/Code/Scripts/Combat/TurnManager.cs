@@ -55,6 +55,9 @@ public class TurnManager : MonoBehaviour
     [SerializeField]
     private float sceneChangeDelay;
     [FoldoutGroup("Debug Info")]
+    [SerializeField]
+    private SceneTransitioner sceneTransitioner;
+    [FoldoutGroup("Debug Info")]
     [SerializeField, ReadOnly, Tooltip("The index of the current unit in the units list")]
     private int currentUnitIndex;
     [FoldoutGroup("Debug Info")]
@@ -71,6 +74,7 @@ public class TurnManager : MonoBehaviour
 
     public UnitController PlayerUnitController { get; private set; }
     public UnitController EnemyUnitController { get; private set; }
+    private Ailments _playerAilments, _enemyAilments;
 
     #endregion
 
@@ -168,7 +172,9 @@ public class TurnManager : MonoBehaviour
             EnemyUnitController = unitObject.GetComponent<UnitController>();
         }
 
-        EnemyUnitController.Unit = Resources.Load<Unit>("Scriptable Objects/Enemies/" + reader.Read<string>("EncounteredEnemy"));
+        var soClone = Resources.Load<Unit>("Scriptable Objects/Enemies/" + reader.Read<string>("EncounteredEnemy"));
+        soClone = Instantiate(soClone);
+        EnemyUnitController.Unit = soClone;
         var enemyObject = EnemyUnitController.gameObject;
         var playerObject = PlayerUnitController.gameObject;
         enemyObject.GetComponent<SpriteRenderer>().sprite = EnemyUnitController.Unit.UnitSprite;
@@ -194,6 +200,8 @@ public class TurnManager : MonoBehaviour
         }
         enemyDirector.playableAsset = enemyAttackTimeline;
 
+        _playerAilments = PlayerUnitController.gameObject.GetComponent<Ailments>();
+        _enemyAilments = EnemyUnitController.gameObject.GetComponent<Ailments>();
         // Sort the units by speed, so the fastest goes first
         foreach (var unit in units)
         {
@@ -291,7 +299,7 @@ public class TurnManager : MonoBehaviour
     /// <returns>An IEnumerator that waits for half a second before incrementing the turn count and managing turns.</returns>
     private IEnumerator FirstTurnDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitUntil(() => SceneTransitioner.currentlyTransitioning == false);
         _turnCount++;
         ManageTurns();
     }
@@ -305,10 +313,10 @@ public class TurnManager : MonoBehaviour
         switch (combatState)
         {
             case CombatState.PlayerTurn:
-                TriggerAilment(PlayerUnitController);
+                TriggerAilment(PlayerUnitController, _playerAilments);
                 break;
             case CombatState.EnemyTurn:
-                TriggerAilment(EnemyUnitController);
+                TriggerAilment(EnemyUnitController, _enemyAilments);
                 break;
         }
     }
@@ -317,71 +325,44 @@ public class TurnManager : MonoBehaviour
     /// <remarks>
     /// If the target is on fire, it takes 1 damage and the player's combat HUD is updated. If the target is bleeding or incapacitated, it takes 1 damage and the player's combat HUD is updated. If the target is frozen or stunned, the player's combat HUD is updated.
     /// </remarks>
-    private void TriggerAilment(UnitController target)
+    private void TriggerAilment(UnitController target, Ailments targetAilments)
     {
-        var targetAilments = target.gameObject.GetComponent<Ailments>();
-
-        if (targetAilments == null)
-            return;
-        if (targetAilments.OnFire)
+        if (targetAilments.HasAilment(AilmentType.OnFire))
         {
-            AilmentCountdown(targetAilments);
-            target.TakeRawDamage(3);
+            target.TakeRawDamage(Mathf.RoundToInt(target.Unit.MaxHp / 16));
             PlayerCombatHUD.UpdateCombatHUD();
             if (target.Unit.IsDead)
                 target.Unit.HasTakenTurn = true;
             CheckGameOver();
         }
-        if (targetAilments.Frozen)
+        if (targetAilments.HasAilment(AilmentType.Frozen))
         {
-            AilmentCountdown(targetAilments);
-            PlayerCombatHUD.CombatTextEvent.Invoke($"{target.Unit.UnitName} está congelado!");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"{target.Unit.UnitName} está congelado!", 3f);
+            target.TakeRawDamage(1);
             target.Unit.HasTakenTurn = true;
         }
-        if (targetAilments.Stunned)
+        if (targetAilments.HasAilment(AilmentType.Stunned))
         {
-            AilmentCountdown(targetAilments);
-            PlayerCombatHUD.CombatTextEvent.Invoke($"{target.Unit.UnitName} está atordoado!");
+            PlayerCombatHUD.CombatTextEvent.Invoke($"{target.Unit.UnitName} está atordoado!", 3f);
             target.Unit.HasTakenTurn = true;
         }
-        if (targetAilments.Bleeding)
+        if (targetAilments.HasAilment(AilmentType.Bleeding))
         {
-            AilmentCountdown(targetAilments);
-            target.TakeRawDamage(2);
+            if (target.Unit.CurrentHp > Mathf.RoundToInt(target.Unit.MaxHp / 10))
+                target.TakeRawDamage(Mathf.RoundToInt(target.Unit.MaxHp / 10));
             PlayerCombatHUD.UpdateCombatHUD();
-            if (target.Unit.IsDead)
-                target.Unit.HasTakenTurn = true;
-            CheckGameOver();
         }
-        if (targetAilments.Incapacitated)
+        if (targetAilments.HasAilment(AilmentType.Incapacitated))
         {
-            AilmentCountdown(targetAilments);
+            // TODO explorar mais possibilidades
             target.TakeRawDamage(1);
             if (target.Unit.IsDead)
                 target.Unit.HasTakenTurn = true;
             PlayerCombatHUD.UpdateCombatHUD();
             CheckGameOver();
         }
-    }
 
-    private void AilmentCountdown(Ailments ailment)
-    {
-        if (ailment.turnsLeft != 0)
-            ailment.turnsLeft--;
-        if (ailment.turnsLeft == 0)
-        {
-            if (ailment.OnFire)
-                ailment.SetAilment(AilmentType.OnFire, false, 0);
-            if (ailment.Frozen)
-                ailment.SetAilment(AilmentType.Frozen, false, 0);
-            if (ailment.Bleeding)
-                ailment.SetAilment(AilmentType.Bleeding, false, 0);
-            if (ailment.Stunned)
-                ailment.SetAilment(AilmentType.Stunned, false, 0);
-            if (ailment.Incapacitated)
-                ailment.SetAilment(AilmentType.Incapacitated, false, 0);
-            return;
-        }
+        targetAilments.DecrementTurnsLeft();
     }
     /// <summary>Checks if the game is over and updates the combat state accordingly.</summary>
     /// <remarks>
@@ -404,7 +385,7 @@ public class TurnManager : MonoBehaviour
     /// <summary>Loads the "scn_gameOver" scene, indicating that the game is over.</summary>
     private void GameOver()
     {
-        SceneManager.LoadScene("scn_gameOver");
+        sceneTransitioner.StartCoroutine(sceneTransitioner.TransitionTo("scn_gameOver"));
     }
     /// <summary>Performs the actions necessary for a victory.</summary>
     /// <returns>An IEnumerator that can be used to wait for the victory actions to complete.</returns>
@@ -422,11 +403,12 @@ public class TurnManager : MonoBehaviour
     {
         XpReward();
         ItemReward();
-        DisplayVictoryText();
+        EnemyUnitController.KillUnit();
+        yield return new WaitUntil(() => EnemyUnitController.gameObject.activeSelf == false);
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
         var lastScene = QuickSaveReader.Create("GameInfo").Read<string>("LastScene");
-        SceneManager.LoadScene(lastScene);
+        sceneTransitioner.StartCoroutine(sceneTransitioner.TransitionTo(lastScene));
     }
     /// <summary>Calculates and applies the experience reward for defeating an enemy unit.</summary>
     /// <remarks>
@@ -436,6 +418,7 @@ public class TurnManager : MonoBehaviour
     /// </remarks>
     private void XpReward()
     {
+        PlayerCombatHUD.UpdateExperience.Invoke();
         if (PlayerUnitController.Unit.Experience + EnemyUnitController.Unit.ExperienceDrop <= PlayerUnitController.Unit
                 .StatsTables.First(statGroup => statGroup.Level == PlayerUnitController.Unit.Level + 1).Experience)
         {
@@ -463,15 +446,6 @@ public class TurnManager : MonoBehaviour
         {
             itemNotification.AddItemWithNotification(item.Key);
         }
-    }
-    /// <summary>Displays the victory text on the player's combat HUD.</summary>
-    /// <remarks>The victory text includes the name of the defeated enemy unit and the amount of experience points gained by the player.</remarks>
-    private void DisplayVictoryText()
-    {
-        var victoryText =
-            $"{EnemyUnitController.Unit.UnitName} foi derrotado!\n" +
-            $"Você ganhou {EnemyUnitController.Unit.ExperienceDrop} pontos de experiência!";
-        PlayerCombatHUD.CombatTextEvent.Invoke(victoryText);
     }
     /// <summary>Advances the game to the next turn.</summary>
     /// <remarks>This method calls the ManageTurns() method to handle the logic for advancing to the next turn.</remarks>

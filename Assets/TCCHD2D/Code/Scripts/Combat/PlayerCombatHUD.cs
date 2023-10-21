@@ -38,6 +38,15 @@ public class PlayerCombatHUD : MonoBehaviour
     private TMP_Text playerTpText;
 
     [SerializeField]
+    private GameObject experienceBar;
+
+    [SerializeField]
+    private Image experienceBarFill;
+
+    [SerializeField]
+    private TMP_Text experienceBarText;
+
+    [SerializeField]
     [Tooltip("The fill image of the player's charges bar")]
     public Image playerCharges;
 
@@ -63,9 +72,10 @@ public class PlayerCombatHUD : MonoBehaviour
     [Tooltip("The text box displaying combat information.")]
     private TMP_Text combatTextBox;
 
+    [TitleGroup("Combat Text Box", Alignment = TitleAlignments.Centered)]
     [SerializeField]
-    [Tooltip("The time duration for displaying combat information in the text box.")]
-    private float combatTextTimer;
+    [Tooltip("The text box displaying combat information.")]
+    private GameObject textBoxObject;
 
     [TitleGroup("Combat Panels", Alignment = TitleAlignments.Centered)]
     [SerializeField]
@@ -81,8 +91,16 @@ public class PlayerCombatHUD : MonoBehaviour
     private GameObject specialPanel;
 
     [SerializeField]
+    [Tooltip("The panel containing special combat options.")]
+    private GameObject specialPanelContainer;
+
+    [SerializeField]
     [Tooltip("The panel containing item options.")]
     private GameObject itemPanel;
+
+    [SerializeField]
+    [Tooltip("The panel containing item options.")]
+    private GameObject itemPanelContainer;
 
     [TitleGroup("Buttons", Alignment = TitleAlignments.Centered)]
     [SerializeField]
@@ -109,16 +127,21 @@ public class PlayerCombatHUD : MonoBehaviour
     [Tooltip("The button for charging up the player's basic attack.")]
     private Button chargeButton;
 
+    [SerializeField]
+    [Tooltip("The button for discharging the player's basic attack.")]
+    private Button dischargeButton;
+
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
     [ShowInInspector, ReadOnly]
 
     public static UnityAction TakenAction;
-    public static UnityAction<string> CombatTextEvent;
+    public static UnityAction<string, float> CombatTextEvent;
     public static UnityAction UpdateCombatHUDPlayerHp;
     public static UnityAction UpdateCombatHUDPlayerTp;
     public static UnityAction UpdateCombatHUDEnemyHp;
     public static UnityAction UpdateCombatHUD;
     public static UnityAction<bool> ForceDisableButtons;
+    public static UnityAction UpdateExperience;
 
     [SerializeField]
     [Tooltip("The manager for controlling turns in combat.")]
@@ -133,6 +156,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public Button ReturnButton => returnButton;
 
     private bool _charging;
+    public static int _usedItemValue;
 
     #endregion
 
@@ -145,6 +169,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp += UpdatePlayerTp;
         UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
+        UpdateExperience += UpdateXp;
         UpdateCombatHUD += UpdateCombatHUDs;
         TakenAction += UpdateCharges;
         ForceDisableButtons += DisableButtons;
@@ -167,10 +192,8 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdatePlayerTp();
         UpdatePlayerHealth();
 
-        CombatTextEvent += DisplayCombatText;
-        UpdateCombatHUDPlayerHp += UpdatePlayerHealth;
-        UpdateCombatHUDPlayerTp += UpdatePlayerTp;
-        UpdateCombatHUDEnemyHp += UpdateEnemyHealth;
+        textBoxObject.SetActive(false);
+        chargeButton.gameObject.SetActive(false);
     }
     /// <summary>Updates the UI elements based on the current state of the game.</summary>
     /// <remarks>
@@ -196,6 +219,16 @@ public class PlayerCombatHUD : MonoBehaviour
             playerChargedVfx.Stop();
             _charging = false;
         }
+
+        if (playerCharges.fillAmount < 0.25f)
+            chargeButton.interactable = false;
+        else
+            chargeButton.interactable = true;
+
+        if (turnManager.PlayerUnitController.Charges > 0)
+            dischargeButton.interactable = true;
+        else
+            dischargeButton.interactable = false;
     }
     /// <summary>Unsubscribes from events when the script is disabled.</summary>
     private void OnDisable()
@@ -204,6 +237,7 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdateCombatHUDPlayerHp -= UpdatePlayerHealth;
         UpdateCombatHUDPlayerTp -= UpdatePlayerTp;
         UpdateCombatHUDEnemyHp -= UpdateEnemyHealth;
+        UpdateExperience -= UpdateXp;
         UpdateCombatHUD -= UpdateCombatHUDs;
         TakenAction -= UpdateCharges;
         ForceDisableButtons -= DisableButtons;
@@ -223,6 +257,70 @@ public class PlayerCombatHUD : MonoBehaviour
         UpdatePlayerTp();
         UpdateEnemyHealth();
     }
+    private static IEnumerator UpdateHealth(UnitController unit, TMP_Text text, Image fillImage)
+    {
+        text.text = $"HP: {unit.Unit.CurrentHp} / {unit.Unit.MaxHp}";
+        if (fillImage.fillAmount != (float)unit.Unit.CurrentHp / unit.Unit.MaxHp)
+        {
+            var fillAmount = fillImage.fillAmount;
+            var targetFillAmount = (float)unit.Unit.CurrentHp / unit.Unit.MaxHp;
+            var time = 0f;
+            while (time < 1f)
+            {
+                time += Time.deltaTime;
+                fillImage.fillAmount = Mathf.Lerp(fillAmount, targetFillAmount, time);
+                yield return null;
+            }
+        }
+    }
+    private static IEnumerator UpdateTP(UnitController unit, TMP_Text text, Image fillImage)
+    {
+        text.text = $"TP: {unit.Unit.CurrentTp}%";
+        if (fillImage.fillAmount != (float)unit.Unit.CurrentHp / unit.Unit.MaxHp)
+        {
+            var fillAmount = fillImage.fillAmount;
+            var targetFillAmount = (float)unit.Unit.CurrentTp / unit.Unit.MaxTp;
+            var time = 0f;
+            while (time < 1f)
+            {
+                time += Time.deltaTime;
+                fillImage.fillAmount = Mathf.Lerp(fillAmount, targetFillAmount, time);
+                yield return null;
+            }
+            if (unit.Unit.CurrentTp == unit.Unit.MaxTp)
+                text.text = "TP: MAX";
+        }
+    }
+
+    private IEnumerator UpdateXpCorroutine()
+    {
+        experienceBar.SetActive(true);
+        experienceBarFill.fillAmount = turnManager.PlayerUnitController.Unit.Experience / turnManager.PlayerUnitController.Unit.StatsTables.First(statGroup => statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1).Experience;
+        if (experienceBarFill.fillAmount != turnManager.PlayerUnitController.Unit.Experience +
+            turnManager.EnemyUnitController.Unit.ExperienceDrop)
+        {
+            var fillAmount = experienceBarFill.fillAmount;
+            var targetFillAmount = (float)turnManager.PlayerUnitController.Unit.Experience +
+                                   turnManager.EnemyUnitController.Unit.ExperienceDrop / turnManager.PlayerUnitController.Unit.StatsTables.First(statGroup => statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1).Experience;
+            experienceBarText.text = turnManager.PlayerUnitController.Unit.Experience + turnManager.EnemyUnitController.Unit.ExperienceDrop >
+                                     turnManager.PlayerUnitController
+                                         .Unit.StatsTables.First(statGroup =>
+                                             statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1)
+                                         .Experience ? $"Aumento de Nível => {turnManager.PlayerUnitController.Unit.Level + 1}\n+{turnManager.EnemyUnitController.Unit.ExperienceDrop} XP" : $"+{turnManager.EnemyUnitController.Unit.ExperienceDrop} XP";
+            var time = 0f;
+            while (time < 5f)
+            {
+                time += Time.deltaTime;
+                experienceBarFill.fillAmount = Mathf.Lerp(fillAmount, targetFillAmount, time);
+                yield return null;
+            }
+        }
+    }
+
+    private void UpdateXp()
+    {
+        StartCoroutine(UpdateXpCorroutine());
+    }
     /// <summary>Updates the player's charges if the player's turn has started and the player is not currently charging.</summary>
     /// <remarks>Increments the fill amount of the player's charges by 0.25f if it is less than 1.</remarks>
     public void UpdateCharges()
@@ -237,9 +335,9 @@ public class PlayerCombatHUD : MonoBehaviour
     /// When the buttons are enabled, the attack, special, and item buttons are shown, as well as the run button.
     /// The charge button is shown only if the player has charges remaining.
     /// </remarks>
-    private void DisableButtons(bool disabled) 
+    private void DisableButtons(bool disabled)
     {
-        switch (disabled) 
+        switch (disabled)
         {
             case true:
                 attackButton.gameObject.SetActive(false);
@@ -247,6 +345,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 itemButton.gameObject.SetActive(false);
                 runButton.gameObject.SetActive(false);
                 chargeButton.gameObject.SetActive(false);
+                dischargeButton.gameObject.SetActive(false);
                 break;
             case false:
                 attackButton.gameObject.SetActive(true);
@@ -254,6 +353,7 @@ public class PlayerCombatHUD : MonoBehaviour
                 itemButton.gameObject.SetActive(true);
                 if (!turnManager.EnemyUnitController.Unit.IsDangerous) runButton.gameObject.SetActive(true);
                 chargeButton.gameObject.SetActive(playerCharges.fillAmount != 0);
+                dischargeButton.gameObject.SetActive(playerCharges.fillAmount != 0);
                 break;
         }
     }
@@ -264,8 +364,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public void UpdatePlayerHealth()
     {
         if (playerHealthText == null || playerHealthBarFill == null) return;
-        playerHealthText.text = $"HP: {turnManager.PlayerUnitController.Unit.CurrentHp} / {turnManager.PlayerUnitController.Unit.MaxHp}";
-        playerHealthBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentHp / turnManager.PlayerUnitController.Unit.MaxHp;
+        StartCoroutine(UpdateHealth(turnManager.PlayerUnitController, playerHealthText, playerHealthBarFill));
     }
     /// <summary>Updates the enemy's health text and health bar fill.</summary>
     /// <remarks>
@@ -274,8 +373,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public void UpdateEnemyHealth()
     {
         if (enemyHealthText == null || enemyHealthBarFill == null) return;
-        enemyHealthText.text = $"{turnManager.EnemyUnitController.Unit.CurrentHp} / {turnManager.EnemyUnitController.Unit.MaxHp}";
-        enemyHealthBarFill.fillAmount = (float)turnManager.EnemyUnitController.Unit.CurrentHp / turnManager.EnemyUnitController.Unit.MaxHp;
+        StartCoroutine(UpdateHealth(turnManager.EnemyUnitController, enemyHealthText, enemyHealthBarFill));
     }
     /// <summary>Updates the player's TP text and bar fill.</summary>
     /// <remarks>
@@ -287,29 +385,27 @@ public class PlayerCombatHUD : MonoBehaviour
     private void UpdatePlayerTp()
     {
         if (playerTpText == null || playerTpBarFill == null) return;
-        playerTpText.text = $"TP: {turnManager.PlayerUnitController.Unit.CurrentTp}%";
-        playerTpBarFill.fillAmount = (float)turnManager.PlayerUnitController.Unit.CurrentTp / turnManager.PlayerUnitController.Unit.MaxTp;
-        if (turnManager.PlayerUnitController.Unit.CurrentTp == turnManager.PlayerUnitController.Unit.MaxTp)
-            playerTpText.text = "TP: MAX";
+        StartCoroutine(UpdateTP(turnManager.PlayerUnitController, playerTpText, playerTpBarFill));
     }
     /// <summary>Displays combat text in the combat text box.</summary>
     /// <param name="text">The text to display.</param>
     /// <remarks>
     /// If the combat text box is null, the text will not be displayed.
     /// </remarks>
-    private void DisplayCombatText(string text)
+    private void DisplayCombatText(string text, float duration)
     {
-        if (combatTextBox != null)
-            StartCoroutine(DisplayCombatTextCoroutine(text));
+        StartCoroutine(DisplayCombatTextCoroutine(text, duration));
     }
     /// <summary>Displays combat text for a set amount of time.</summary>
     /// <param name="text">The text to display.</param>
     /// <returns>An IEnumerator that waits for a set amount of time before clearing the text.</returns>
-    private IEnumerator DisplayCombatTextCoroutine(string text)
+    private IEnumerator DisplayCombatTextCoroutine(string text, float duration)
     {
+        textBoxObject.SetActive(true);
         combatTextBox.text = text;
-        yield return new WaitForSeconds(combatTextTimer);
+        yield return new WaitForSeconds(duration);
         combatTextBox.text = "";
+        textBoxObject.SetActive(false);
     }
     /// <summary>Displays the player's inventory of consumable items and allows the player to use them.</summary>
     /// <remarks>
@@ -325,16 +421,16 @@ public class PlayerCombatHUD : MonoBehaviour
 
         if (!hasItem)
         {
-            CombatTextEvent.Invoke("<b>Sem itens!</b>");
+            CombatTextEvent.Invoke("<b>Sem itens!</b>", 2f);
             return;
         }
 
         optionsPanel.SetActive(false);
         itemPanel.SetActive(true);
 
-        if (itemPanel.transform.childCount > 0)
+        if (itemPanelContainer.transform.childCount > 0)
         {
-            foreach (Transform child in itemPanel.transform)
+            foreach (Transform child in itemPanelContainer.transform)
             {
                 Destroy(child.gameObject);
             }
@@ -344,11 +440,15 @@ public class PlayerCombatHUD : MonoBehaviour
         {
             returnButton.gameObject.SetActive(true);
             returnButton.interactable = true;
-            var button = Instantiate(buttonPrefab, itemPanel.transform);
-            button.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
-            button.GetComponent<Button>().onClick.AddListener(() =>
+            var buttonObject = Instantiate(buttonPrefab, itemPanelContainer.transform);
+            buttonObject.GetComponentInChildren<TextMeshProUGUI>().text = item.ItemName;
+            var button = buttonObject.GetComponent<Button>();
+            buttonObject.AddComponent<EventTrigger>();
+            var trigger = buttonObject.GetComponent<EventTrigger>();
+            button.onClick.AddListener(() =>
             {
                 item.Use();
+                _usedItemValue = item.EffectValue;
                 UpdatePlayerHealth();
                 UpdatePlayerTp();
                 UpdateEnemyHealth();
@@ -356,11 +456,27 @@ public class PlayerCombatHUD : MonoBehaviour
                 returnButton.gameObject.SetActive(false);
                 returnButton.interactable = false;
                 optionsPanel.SetActive(true);
-                CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>");
+                CombatTextEvent.Invoke($"<b>Usou {item.ItemName}!</b>", 2f);
                 //turnManager.isPlayerTurn = false;
                 TakenAction.Invoke();
                 ForceDisableButtons.Invoke(true);
             });
+            var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            entry.callback.AddListener(_ =>
+            {
+                // Add code here to show the text when the mouse hovers over the button
+                textBoxObject.SetActive(true);
+                combatTextBox.text = $"{item.ItemDescription}";
+            });
+            var entry2 = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            entry2.callback.AddListener(_ =>
+            {
+                // Add code here to hide the text when the mouse stops hovering over the button
+                textBoxObject.SetActive(false);
+                combatTextBox.text = "";
+            });
+            trigger.triggers.Add(entry);
+            trigger.triggers.Add(entry2);
         }
     }
     /// <summary>Hides the item and special panels and shows the options panel. Disables the return button.</summary>
@@ -385,9 +501,9 @@ public class PlayerCombatHUD : MonoBehaviour
         specialPanel.SetActive(true);
         List<Button> specialButtons = new List<Button>();
 
-        if (specialPanel.transform.childCount > 0)
+        if (specialPanelContainer.transform.childCount > 0)
         {
-            foreach (Transform child in specialPanel.transform)
+            foreach (Transform child in specialPanelContainer.transform)
             {
                 Destroy(child.gameObject);
             }
@@ -397,18 +513,32 @@ public class PlayerCombatHUD : MonoBehaviour
         {
             returnButton.gameObject.SetActive(true);
             returnButton.interactable = true;
-            var button = Instantiate(buttonPrefab, specialPanel.transform);
+            var button = Instantiate(buttonPrefab, specialPanelContainer.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = specialAction.specialName;
-            button.GetComponent<Button>().onClick.AddListener(() => specials.UseSpecial(specialAction));
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                specials.UseSpecial(specialAction);
+                _usedItemValue = specialAction.specialHeal;
+                textBoxObject.SetActive(false);
+            });
             button.AddComponent<EventTrigger>();
             var trigger = button.GetComponent<EventTrigger>();
-            var entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerEnter;
-            entry.callback.AddListener(_ => {
+            var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };
+            entry.callback.AddListener(_ =>
+            {
                 // Add code here to show the text when the mouse hovers over the button
+                textBoxObject.SetActive(true);
                 combatTextBox.text = $"{specialAction.specialDescription}\n[ Custo de TP: {specialAction.specialCost} ]";
             });
+            var entry2 = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            entry2.callback.AddListener(_ =>
+            {
+                // Add code here to hide the text when the mouse stops hovering over the button
+                textBoxObject.SetActive(false);
+                combatTextBox.text = "";
+            });
             trigger.triggers.Add(entry);
+            trigger.triggers.Add(entry2);
         }
     }
     /// <summary>Charges the player's unit.</summary>
@@ -438,6 +568,34 @@ public class PlayerCombatHUD : MonoBehaviour
                     playerChargedVfx.SetVector4("DropColor", new Vector4(1f, 0f, 0f, 1));
                     break;
             }
+        }
+    }
+
+    public void Discharge()
+    {
+        if (turnManager.PlayerUnitController.Charges > 0)
+        {
+            turnManager.PlayerUnitController.Charges -= 1;
+            playerCharges.fillAmount += 0.25f;
+            switch (turnManager.PlayerUnitController.Charges)
+            {
+                case 0:
+                    playerChargedVfx.Stop();
+                    break;
+                case 1:
+                    playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 0f, 1f, 1));
+                    break;
+                case 2:
+                    playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 1f, 0f, 1));
+                    break;
+                case 3:
+                    playerChargedVfx.SetVector4("DropColor", new Vector4(1f, 0f, 0f, 1));
+                    break;
+            }
+        }
+        else if (turnManager.PlayerUnitController.Charges == 0)
+        {
+            _charging = false;
         }
     }
 

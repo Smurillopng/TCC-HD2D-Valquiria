@@ -61,10 +61,14 @@ namespace MuriPNG.Audio
         /// <remarks>This method is typically called once per frame.</remarks>
         private void Update()
         {
-            foreach (var source in sourceList.Where(audioSource => audioSource.clip != null && !audioSource.isPlaying))
+            for (int i = 0; i < sourceList.Count; i++)
             {
-                source.clip = null;
-                source.outputAudioMixerGroup = null;
+                var source = sourceList[i];
+                if (source.clip != null && !source.isPlaying)
+                {
+                    source.clip = null;
+                    source.outputAudioMixerGroup = null;
+                }
             }
         }
 

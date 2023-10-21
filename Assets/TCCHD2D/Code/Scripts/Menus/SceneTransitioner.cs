@@ -29,14 +29,18 @@ public class SceneTransitioner : MonoBehaviour
     [SerializeField, ReadOnly, BoxGroup("Debug")]
     private float _aceleration = 1f;
 
+    public static bool currentlyTransitioning;
     private static readonly int CutoffHeight = Shader.PropertyToID("_Cutoff_Height");
 
     private void Awake()
     {
-        playerBar.anchoredPosition = new Vector2(-196.0001f, playerBar.anchoredPosition.y);
-        minimap.anchoredPosition = new Vector2(180.0001f, minimap.anchoredPosition.y);
+        if (playerBar != null)
+        {
+            playerBar.anchoredPosition = new Vector2(-196.0001f, playerBar.anchoredPosition.y);
+            minimap.anchoredPosition = new Vector2(180.0001f, minimap.anchoredPosition.y);
+            _pm = FindObjectOfType<PlayerMovement>();
+        }
 
-        _pm = FindObjectOfType<PlayerMovement>();
         StartCoroutine(TransitionOut());
     }
 
@@ -48,6 +52,7 @@ public class SceneTransitioner : MonoBehaviour
 
     private IEnumerator TransitionIn(string scene)
     {
+        currentlyTransitioning = true;
         _pm.CanMove.Value = false;
         current = min;
         TiraUI();
@@ -93,16 +98,18 @@ public class SceneTransitioner : MonoBehaviour
         }
 
         _pm.CanMove.Value = true;
+        currentlyTransitioning = false;
     }
 
     private IEnumerator TransitionOut()
     {
+        currentlyTransitioning = true;
         current = max;
         mat.SetFloat(CutoffHeight, current);
 
         while (current > min)
         {
-            _pm.CanMove.Value = false;
+            if (_pm != null) _pm.CanMove.Value = false;
             if (Math.Abs(current - max) > 0.01 && Math.Abs(current - min) > 0.01)
                 _aceleration = acelerationValue;
 
@@ -119,17 +126,22 @@ public class SceneTransitioner : MonoBehaviour
                 _aceleration = 1;
             }
         }
-        BotaUI();
+        if (playerBar != null) BotaUI();
         yield return new WaitUntil(() => Math.Abs(current - min) < 0.01);
-        _pm.CanMove.Value = true;
+        if (_pm != null) _pm.CanMove.Value = true;
+        currentlyTransitioning = false;
     }
 
     public IEnumerator TransitionTo(string scene)
     {
-        _pm.CanMove.Value = false;
+        currentlyTransitioning = true;
+        if (_pm != null) _pm.CanMove.Value = false;
         current = min;
-        TiraUI();
-        yield return new WaitUntil(() => Math.Abs(playerBar.anchoredPosition.x - (-196.0001f)) < 0.01);
+        if (playerBar != null)
+        {
+            TiraUI();
+            yield return new WaitUntil(() => Math.Abs(playerBar.anchoredPosition.x - (-196.0001f)) < 0.01);
+        }
 
         while (current < max)
         {
@@ -154,7 +166,8 @@ public class SceneTransitioner : MonoBehaviour
 
         SceneManager.LoadScene(scene);
 
-        _pm.CanMove.Value = true;
+        if (_pm != null) _pm.CanMove.Value = true;
+        currentlyTransitioning = false;
     }
 
     private void TiraUI()

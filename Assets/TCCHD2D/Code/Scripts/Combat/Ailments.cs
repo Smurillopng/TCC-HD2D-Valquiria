@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 public enum AilmentType
 {
@@ -6,7 +8,14 @@ public enum AilmentType
     Frozen,
     Bleeding,
     Stunned,
-    Incapacitated
+    Incapacitated,
+    None
+}
+
+public class Ailment
+{
+    public bool isActive;
+    public int turnsLeft;
 }
 
 /// <summary>
@@ -19,13 +28,16 @@ public class Ailments : MonoBehaviour
 {
     #region === Properties ==============================================================
 
-    public bool OnFire { get; private set; }
-    public bool Frozen { get; private set; }
-    public bool Bleeding { get; private set; }
-    public bool Stunned { get; private set; }
-    public bool Incapacitated { get; private set; }
-
-    public int turnsLeft;
+    [ShowInInspector, ReadOnly]
+    private Dictionary<AilmentType, Ailment> _ailments = new()
+    {
+        { AilmentType.OnFire, new Ailment() },
+        { AilmentType.Frozen, new Ailment() },
+        { AilmentType.Bleeding, new Ailment() },
+        { AilmentType.Stunned, new Ailment() },
+        { AilmentType.Incapacitated, new Ailment() }
+    };
+    public Dictionary<AilmentType, Ailment> AilmentsDictionary => _ailments;
 
     #endregion
 
@@ -33,28 +45,33 @@ public class Ailments : MonoBehaviour
 
     public void SetAilment(AilmentType ailmentType, bool value, int duration)
     {
-        switch (ailmentType)
+        _ailments[ailmentType].isActive = value;
+        _ailments[ailmentType].turnsLeft = duration;
+    }
+
+    public bool HasAilment(AilmentType ailmentType)
+    {
+        return _ailments[ailmentType].isActive;
+    }
+
+    public int GetTurnsLeft(AilmentType ailmentType)
+    {
+        return _ailments[ailmentType].turnsLeft;
+    }
+
+    public void DecrementTurnsLeft()
+    {
+        foreach (var ailment in _ailments)
         {
-            case AilmentType.OnFire:
-                OnFire = value;
-                turnsLeft = duration;
-                break;
-            case AilmentType.Frozen:
-                Frozen = value;
-                turnsLeft = duration;
-                break;
-            case AilmentType.Bleeding:
-                Bleeding = value;
-                turnsLeft = duration;
-                break;
-            case AilmentType.Stunned:
-                Stunned = value;
-                turnsLeft = duration;
-                break;
-            case AilmentType.Incapacitated:
-                Incapacitated = value;
-                turnsLeft = duration;
-                break;
+            if (ailment.Value.isActive)
+            {
+                ailment.Value.turnsLeft--;
+            }
+            if (ailment.Value.turnsLeft <= 0)
+            {
+                ailment.Value.turnsLeft = 0;
+                ailment.Value.isActive = false;
+            }
         }
     }
 

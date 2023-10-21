@@ -89,7 +89,7 @@ MonoBehaviour:
   experience: 0
   attackAnimation: {fileID: 11400000, guid: 8d4d4cc446c53344e851946797338249, type: 2}
   maxHp: 65
-  currentHp: 0
+  currentHp: 65
   maxTp: 100
   currentTp: 0
   attack: 4

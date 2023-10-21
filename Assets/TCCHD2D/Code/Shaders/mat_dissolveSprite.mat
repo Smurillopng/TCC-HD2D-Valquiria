@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_dissolve
+  m_Name: mat_dissolveSprite
   m_Shader: {fileID: -6465566751694194690, guid: 638892aa2512e2e4681d910a2cdd4732,
     type: 3}
   m_ValidKeywords: []

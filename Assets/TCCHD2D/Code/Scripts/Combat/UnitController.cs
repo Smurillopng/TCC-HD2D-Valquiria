@@ -367,9 +367,26 @@ public class UnitController : MonoBehaviour
         {
             unit.IsDead = true;
             unit.CurrentHp = 0;
-            // TODO: Play death animation
         }
         return damageTakenThisTurn;
+    }
+    public void KillUnit()
+    {
+        StartCoroutine(Dissolve());
+    }
+    private IEnumerator Dissolve()
+    {
+        var renderer = GetComponent<SpriteRenderer>();
+        var material = renderer.material;
+        material.SetInt("_Is_Dead", unit.IsDead ? 1 : 0);
+        var dissolveAmount = 1f;
+        while (dissolveAmount >= 0)
+        {
+            dissolveAmount -= Time.deltaTime * 0.5f;
+            material.SetFloat("_Cutoff_Height", dissolveAmount);
+            yield return null;
+        }
+        gameObject.SetActive(false);
     }
 
     public int TakeRawDamage(int damage)

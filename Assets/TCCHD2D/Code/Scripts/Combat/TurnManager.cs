@@ -401,6 +401,8 @@ public class TurnManager : MonoBehaviour
     {
         XpReward();
         ItemReward();
+        EnemyUnitController.KillUnit();
+        yield return new WaitUntil(() => EnemyUnitController.gameObject.activeSelf == false);
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
         var lastScene = QuickSaveReader.Create("GameInfo").Read<string>("LastScene");

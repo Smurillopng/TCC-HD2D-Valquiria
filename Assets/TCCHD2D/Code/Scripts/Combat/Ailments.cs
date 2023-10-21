@@ -1,4 +1,22 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
+
+public enum AilmentType
+{
+    OnFire,
+    Frozen,
+    Bleeding,
+    Stunned,
+    Incapacitated,
+    None
+}
+
+public class Ailment
+{
+    public bool isActive;
+    public int turnsLeft;
+}
 
 /// <summary>
 /// This class represents the ailments of an object.
@@ -10,45 +28,51 @@ public class Ailments : MonoBehaviour
 {
     #region === Properties ==============================================================
 
-    public bool OnFire { get; private set; }
-    public bool Frozen { get; private set; }
-    public bool Bleeding { get; private set; }
-    public bool Stunned { get; private set; }
-    public bool Incapacitated { get; private set; }
+    [ShowInInspector, ReadOnly]
+    private Dictionary<AilmentType, Ailment> _ailments = new()
+    {
+        { AilmentType.OnFire, new Ailment() },
+        { AilmentType.Frozen, new Ailment() },
+        { AilmentType.Bleeding, new Ailment() },
+        { AilmentType.Stunned, new Ailment() },
+        { AilmentType.Incapacitated, new Ailment() }
+    };
+    public Dictionary<AilmentType, Ailment> AilmentsDictionary => _ailments;
 
     #endregion
 
     #region === Methods =================================================================
 
-    /// <summary>Sets the OnFire property to the specified value.</summary>
-    /// <param name="value">The value to set the OnFire property to.</param>
-    public void SetOnFire(bool value)
+    public void SetAilment(AilmentType ailmentType, bool value, int duration)
     {
-        OnFire = value;
+        _ailments[ailmentType].isActive = value;
+        _ailments[ailmentType].turnsLeft = duration;
     }
-    /// <summary>Sets the frozen state of an object.</summary>
-    /// <param name="value">The value to set the frozen state to.</param>
-    public void SetFrozen(bool value)
+
+    public bool HasAilment(AilmentType ailmentType)
     {
-        Frozen = value;
+        return _ailments[ailmentType].isActive;
     }
-    /// <summary>Sets the bleeding property of an object.</summary>
-    /// <param name="value">The value to set the bleeding property to.</param>
-    public void SetBleeding(bool value)
+
+    public int GetTurnsLeft(AilmentType ailmentType)
     {
-        Bleeding = value;
+        return _ailments[ailmentType].turnsLeft;
     }
-    /// <summary>Sets the stunned state of an object.</summary>
-    /// <param name="value">The value to set the stunned state to.</param>
-    public void SetStunned(bool value)
+
+    public void DecrementTurnsLeft()
     {
-        Stunned = value;
-    }
-    /// <summary>Sets the incapacitated status of an object.</summary>
-    /// <param name="value">The new incapacitated status.</param>
-    public void SetIncapacitated(bool value)
-    {
-        Incapacitated = value;
+        foreach (var ailment in _ailments)
+        {
+            if (ailment.Value.isActive)
+            {
+                ailment.Value.turnsLeft--;
+            }
+            if (ailment.Value.turnsLeft <= 0)
+            {
+                ailment.Value.turnsLeft = 0;
+                ailment.Value.isActive = false;
+            }
+        }
     }
 
     #endregion

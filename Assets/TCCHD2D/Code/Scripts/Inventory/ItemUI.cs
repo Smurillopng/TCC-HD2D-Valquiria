@@ -12,13 +12,22 @@ public class ItemUI : MonoBehaviour
     [Required] public TMP_Text nameText;
     [Required] public TMP_Text quantityText;
     [Required] public Button useButton;
+    [Required] public Image div;
     public IItem DisplayedItem;
+
+    private void Awake()
+    {
+        icon.maskable = true;
+        nameText.maskable = true;
+        quantityText.maskable = true;
+        div.maskable = true;
+    }
 
     public void SetItem(IItem item)
     {
         icon.sprite = item.ItemIcon;
         nameText.text = item.ItemName;
-        quantityText.text = $"x{item.CurrentStack}";
+        quantityText.text = $"{item.CurrentStack}x";
     }
     public void DisplayItem(TMP_Text itemName, TMP_Text itemDescription, Image itemIcon, TMP_Text itemQuantity, GameObject displayPanel, IItem itemToDisplay)
     {
@@ -31,7 +40,7 @@ public class ItemUI : MonoBehaviour
         itemName.text = itemToDisplay.ItemName;
         itemDescription.text = itemToDisplay.ItemDescription;
         itemIcon.sprite = itemToDisplay.ItemIcon;
-        itemQuantity.text = $"x{itemToDisplay.CurrentStack}";
+        itemQuantity.text = $"{itemToDisplay.CurrentStack}x";
         DisplayedItem = itemToDisplay;
     }
 }

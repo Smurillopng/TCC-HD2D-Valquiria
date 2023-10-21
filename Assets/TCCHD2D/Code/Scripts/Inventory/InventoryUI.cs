@@ -16,6 +16,7 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Panels")][SerializeField] private GameObject equipmentPanel;
     [BoxGroup("Panels")][SerializeField] private GameObject itemDisplayPanel;
     [BoxGroup("Panels")][SerializeField] private GameObject statusPanel;
+    [BoxGroup("Panels")][SerializeField] private GameObject exitPanel;
 
     [BoxGroup("Equipment Slots")]
     [SerializeField]
@@ -52,7 +53,7 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Status")][SerializeField] private GameObject lvlUpAttributesButtons;
     [BoxGroup("Status")][SerializeField] private TMP_Text attributePointsText;
     [BoxGroup("Status")][SerializeField] private TMP_Text availableAttributePointsText;
-    
+
     [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerHealthBarFill;
     [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerHealthText;
     [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerTpFill;
@@ -66,16 +67,20 @@ public class InventoryUI : MonoBehaviour
     [BoxGroup("Item Display")][SerializeField] private TMP_Text itemQuantity;
     [BoxGroup("Item Display")][SerializeField] private Button itemUseButton;
 
+    [BoxGroup("Item Scroll")][SerializeField] private RectTransform bagRectTransform;
+    [BoxGroup("Item Scroll")][SerializeField] private ScrollRect bagScrollRect;
+    [BoxGroup("Item Scroll")][SerializeField] private float scrollOffset;
+
     [BoxGroup("External References")]
     [SerializeField]
     private Button autoHealButton;
-    
+
     [BoxGroup("External References")]
     [SerializeField]
     private Unit playerUnit;
 
     [BoxGroup("External References")]
-    [SerializeField] 
+    [SerializeField]
     private GameObject itemPrefab;
 
     [BoxGroup("External References")]
@@ -91,7 +96,7 @@ public class InventoryUI : MonoBehaviour
     private InventoryManager inventoryManager;
 
     public Unit PlayerUnit => playerUnit;
-    
+
     private bool _gameStarted;
 
     private void Start()
@@ -138,6 +143,7 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateBag(List<IItem> inventory)
     {
+        var totalHeight = 0f;
         foreach (Transform child in bagPanel.transform)
         {
             Destroy(child.gameObject);
@@ -147,12 +153,17 @@ public class InventoryUI : MonoBehaviour
         {
             var itemObject = Instantiate(itemPrefab, bagPanel.transform);
             var uiScript = itemObject.GetComponent<ItemUI>();
+            var buttonHeight = itemObject.GetComponent<RectTransform>().rect.height;
             uiScript.SetItem(item);
             var useButton = uiScript.useButton;
             useButton.onClick.RemoveAllListeners();
             useButton.onClick.AddListener(() => uiScript.DisplayItem(itemName, itemDescription, itemIcon, itemQuantity, itemDisplayPanel, item));
             useButton.onClick.AddListener(() => SelectDisplayAction(item, uiScript));
+            totalHeight += buttonHeight;
         }
+
+        bagRectTransform.sizeDelta = new Vector2(0, totalHeight - scrollOffset);
+        bagScrollRect.verticalNormalizedPosition = 1;
     }
 
     public void DisplayEquipment(GameObject slot)
@@ -343,10 +354,12 @@ public class InventoryUI : MonoBehaviour
 
     private void ResetPanels()
     {
-        bagPanel.SetActive(false);
+        bagPanel.SetActive(true);
+        UpdateBag(inventoryManager.Inventory);
         equipmentPanel.SetActive(false);
         itemDisplayPanel.SetActive(false);
         statusPanel.SetActive(true);
+        exitPanel.SetActive(false);
     }
 
     public void ToggleInventory()
@@ -372,31 +385,39 @@ public class InventoryUI : MonoBehaviour
 
     public void Update()
     {
-        inventoryPanel.SetActive(isInventoryOpen.Value);
-        if (isInventoryOpen.Value)
+        if (!SceneTransitioner.currentlyTransitioning)
         {
-            PlayerControls.Instance.ToggleDefaultControls(false);
-            if (!updatedStatus)
+            inventoryPanel.SetActive(isInventoryOpen.Value);
+            if (isInventoryOpen.Value)
             {
-                ResetPanels();
-                UpdatePlayerStatus(playerUnit);
-                updatedStatus = true;
+                PlayerControls.Instance.ToggleDefaultControls(false);
+                if (!updatedStatus)
+                {
+                    ResetPanels();
+                    UpdatePlayerStatus(playerUnit);
+                    updatedStatus = true;
+                }
+            }
+            else
+            {
+                PlayerControls.Instance.ToggleDefaultControls(true);
+                updatedStatus = false;
             }
         }
         else
         {
-            PlayerControls.Instance.ToggleDefaultControls(true);
+            inventoryPanel.SetActive(false);
             updatedStatus = false;
         }
-        
+
         if (autoHealButton.gameObject.activeSelf) autoHealButton.interactable = playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp;
-        availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}": string.Empty;
+        availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}" : string.Empty;
         lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
         attributePointsText.text = $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}";
         UpdateTopLeftBars();
     }
-    
+
     // Lvl Up Methods
     public void LvlUpAttack()
     {

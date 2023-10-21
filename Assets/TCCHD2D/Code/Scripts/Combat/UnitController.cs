@@ -220,43 +220,7 @@ public class UnitController : MonoBehaviour
 
 
         PlayerCombatHUD.ForceDisableButtons.Invoke(true);
-        if (unit.IsPlayer)
-        {
-            var enemyObject = GameObject.FindWithTag("Enemy");
-            foreach (var track in basicAttack.GetOutputTracks())
-            {
-                switch (track.name)
-                {
-                    case "AttackAnimation":
-                        director.SetGenericBinding(track, gameObject.GetComponentInChildren<Animator>());
-                        break;
-                    case "MovementAnimation":
-                        director.SetGenericBinding(track, gameObject.GetComponentInChildren<Animator>());
-                        break;
-                    case "Signals":
-                        director.SetGenericBinding(track, enemyObject.GetComponentInChildren<SignalReceiver>());
-                        break;
-                }
-            }
-        }
-        if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-            switch (InventoryManager.Instance.EquipmentSlots[3].equipItem.AttackType)
-            {
-                case AttackType.Blunt:
-                    Director.Play(basicBluntAttack);
-                    break;
-                case AttackType.Cut:
-                    Director.Play(basicCutAttack);
-                    break;
-                case AttackType.Ranged:
-                    Director.Play(basicRangedAttack);
-                    break;
-                default:
-                    Director.Play(basicAttack);
-                    break;
-            }
-        else
-            Director.Play(basicAttack);
+        CalcAnimation();
 
         if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp && charges <= 0)
         {
@@ -279,6 +243,84 @@ public class UnitController : MonoBehaviour
             PlayerCombatHUD.CombatTextEvent.Invoke($"Acerto <color=red>Crítico!</color>", 3f);
         }
         target.TakeDamage(calculatedDamage);
+    }
+
+    private void CalcAnimation()
+    {
+        if (unit.IsPlayer)
+        {
+            var enemyObject = GameObject.FindWithTag("Enemy");
+            foreach (var track in basicAttack.GetOutputTracks())
+            {
+                switch (track.name)
+                {
+                    case "AttackAnimation":
+                        director.SetGenericBinding(track, gameObject.GetComponentInChildren<Animator>());
+                        break;
+                    case "MovementAnimation":
+                        director.SetGenericBinding(track, gameObject.GetComponentInChildren<Animator>());
+                        break;
+                    case "Signals":
+                        director.SetGenericBinding(track, enemyObject.GetComponentInChildren<SignalReceiver>());
+                        break;
+                }
+            }
+        }
+        if (_ongoingChargeAttacks <= 0)
+        {
+            if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
+                switch (InventoryManager.Instance.EquipmentSlots[3].equipItem.AttackType)
+                {
+                    case AttackType.Blunt:
+                        Director.Play(basicBluntAttack);
+                        break;
+                    case AttackType.Cut:
+                        Director.Play(basicCutAttack);
+                        break;
+                    case AttackType.Ranged:
+                        Director.Play(basicRangedAttack);
+                        break;
+                    default:
+                        Director.Play(basicAttack);
+                        break;
+                }
+            else
+                Director.Play(basicAttack);
+        }
+        else
+        {
+            if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
+                switch (InventoryManager.Instance.EquipmentSlots[3].equipItem.AttackType)
+                {
+                    case AttackType.Blunt:
+                        Director.time = 0.54f;
+                        Director.Play(basicBluntAttack);
+                        break;
+                    case AttackType.Cut:
+                        Director.time = 0.56f;
+                        Director.Play(basicCutAttack);
+                        break;
+                    case AttackType.Ranged:
+                        Director.time = 0.43f;
+                        Director.Play(basicRangedAttack);
+                        break;
+                    default:
+                        Director.Play(basicAttack);
+                        Director.Evaluate();
+                        break;
+                }
+            else
+            {
+                Director.time = 0.56f;
+                Director.Play(basicAttack);
+            }
+        }
+    }
+
+    public void OngoingAttackSignal()
+    {
+        if (_ongoingChargeAttacks > 0)
+            Director.Pause();
     }
     /// <summary>Reduces the unit's health by the given amount of damage, taking into account the unit's defense and equipment.</summary>
     /// <param name="damage">The amount of damage to be taken.</param>

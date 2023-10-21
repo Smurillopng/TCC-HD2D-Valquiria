@@ -260,6 +260,9 @@ public class Consumable : ScriptableObject, IItem
                     case "Signals":
                         target.Director.SetGenericBinding(track, enemyObject.GetComponentInChildren<SignalReceiver>());
                         break;
+                    case "Healing":
+                        target.Director.SetGenericBinding(track, target.gameObject.GetComponentInChildren<SignalReceiver>());
+                        break;
                     case "Vfx":
                         var vfxAsset = target.gameObject.GetComponentInChildren<VisualEffect>();
                         vfxAsset.visualEffectAsset = vfx;

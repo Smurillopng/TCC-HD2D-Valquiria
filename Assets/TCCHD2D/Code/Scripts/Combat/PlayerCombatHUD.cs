@@ -36,13 +36,13 @@ public class PlayerCombatHUD : MonoBehaviour
     [SerializeField]
     [Tooltip("The text displaying the player's current Tp.")]
     private TMP_Text playerTpText;
-    
+
     [SerializeField]
     private GameObject experienceBar;
-    
+
     [SerializeField]
     private Image experienceBarFill;
-    
+
     [SerializeField]
     private TMP_Text experienceBarText;
 
@@ -156,6 +156,7 @@ public class PlayerCombatHUD : MonoBehaviour
     public Button ReturnButton => returnButton;
 
     private bool _charging;
+    public static int _usedItemValue;
 
     #endregion
 
@@ -447,6 +448,7 @@ public class PlayerCombatHUD : MonoBehaviour
             button.onClick.AddListener(() =>
             {
                 item.Use();
+                _usedItemValue = item.EffectValue;
                 UpdatePlayerHealth();
                 UpdatePlayerTp();
                 UpdateEnemyHealth();
@@ -513,8 +515,12 @@ public class PlayerCombatHUD : MonoBehaviour
             returnButton.interactable = true;
             var button = Instantiate(buttonPrefab, specialPanelContainer.transform);
             button.GetComponentInChildren<TextMeshProUGUI>().text = specialAction.specialName;
-            button.GetComponent<Button>().onClick.AddListener(() => specials.UseSpecial(specialAction));
-            button.GetComponent<Button>().onClick.AddListener(() => textBoxObject.SetActive(false));
+            button.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                specials.UseSpecial(specialAction);
+                _usedItemValue = specialAction.specialHeal;
+                textBoxObject.SetActive(false);
+            });
             button.AddComponent<EventTrigger>();
             var trigger = button.GetComponent<EventTrigger>();
             var entry = new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter };

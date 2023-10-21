@@ -80,12 +80,12 @@ public class Specials : MonoBehaviour
         PlayerCombatHUD.CombatTextEvent.Invoke($"<color=red>TP Insuficiente</color>\n" +
                                                        $"Quantidade necessária: <color=red>{cost} TP</color>", 2f);
     }
-    private void SetBindings()
+    private void SetBindings(TimelineAsset timeline)
     {
         if (_player.Unit.IsPlayer)
         {
             var enemyObject = GameObject.FindWithTag("Enemy");
-            foreach (var track in _player.BasicAttack.GetOutputTracks())
+            foreach (var track in timeline.GetOutputTracks())
             {
                 switch (track.name)
                 {
@@ -96,7 +96,10 @@ public class Specials : MonoBehaviour
                         _player.Director.SetGenericBinding(track, _player.gameObject.GetComponentInChildren<Animator>());
                         break;
                     case "Signals":
-                        _player.Director.SetGenericBinding(track, enemyObject.GetComponent<SignalReceiver>());
+                        _player.Director.SetGenericBinding(track, enemyObject.GetComponentInChildren<SignalReceiver>());
+                        break;
+                    case "Healing":
+                        _player.Director.SetGenericBinding(track, _player.gameObject.GetComponentInChildren<SignalReceiver>());
                         break;
                 }
             }
@@ -151,7 +154,7 @@ public class Specials : MonoBehaviour
             var attackDamageCalculated = _player.Unit.Attack;
             if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
                 attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-            SetBindings();
+            SetBindings(_player.BasicAttack);
             ExecuteLogic(ailmentType, cost, specialAction, _enemyAilments, attackDamageCalculated);
         }
         else
@@ -183,7 +186,7 @@ public class Specials : MonoBehaviour
             if (_player.Unit.CurrentHp > _player.Unit.MaxHp)
                 _player.Unit.CurrentHp = _player.Unit.MaxHp;
 
-            SetBindings();
+            SetBindings(_player.UseItem);
 
             // Animation
             _player.Director.playableAsset = _player.UseItem;
@@ -217,7 +220,7 @@ public class Specials : MonoBehaviour
             var attackDamageCalculated = _player.Unit.Attack + damageAmount;
             if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
                 attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
-            SetBindings();
+            SetBindings(_player.BasicAttack);
             ExecuteLogic(cost, attackDamageCalculated);
         }
         else

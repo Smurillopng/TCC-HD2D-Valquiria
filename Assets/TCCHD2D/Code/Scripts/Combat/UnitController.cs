@@ -211,6 +211,17 @@ public class UnitController : MonoBehaviour
         target.damageText.outlineColor = Color.white;
         target.damageText.fontSize -= 50;
     }
+    public IEnumerator HealingNumbers(UnitController target)
+    {
+        yield return new WaitUntil(() => target.damageTextAnimator.GetCurrentAnimatorClipInfo(0) != null);
+        target.damageText.color = Color.green;
+        target.damageText.outlineColor = Color.magenta;
+        target.damageText.fontSize += 20;
+        yield return new WaitForSeconds(target.damageTextAnimator.GetCurrentAnimatorStateInfo(0).length * 2);
+        target.damageText.color = Color.black;
+        target.damageText.outlineColor = Color.white;
+        target.damageText.fontSize -= 20;
+    }
 
     public void CalcDamage(UnitController target)
     {
@@ -385,6 +396,13 @@ public class UnitController : MonoBehaviour
     {
         damageText.text = damageTakenThisTurn.ToString();
         damageTextAnimator.SetTrigger(unit.IsPlayer ? "PlayerTookDamage" : "EnemyTookDamage");
+    }
+    public void DisplayHealText()
+    {
+        damageText.text = $"+{PlayerCombatHUD._usedItemValue}";
+        Debug.Log(PlayerCombatHUD._usedItemValue);
+        damageTextAnimator.SetTrigger("PlayerHealed");
+        StartCoroutine(HealingNumbers(this));
     }
     /// <summary>Runs the logic for a player's escape attempt and updates the game state accordingly.</summary>
     /// <remarks>

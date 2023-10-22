@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -49,6 +50,15 @@ public class UnitController : MonoBehaviour
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's run action.")]
     private TimelineAsset run;
+    [FoldoutGroup("Vfx's")]
+    [SerializeField]
+    private VisualEffect hitVfx;
+    [FoldoutGroup("Vfx's")]
+    [SerializeField]
+    private VisualEffect swordAttackVfx;
+    [FoldoutGroup("Vfx's")]
+    [SerializeField]
+    private VisualEffect hammerAttackVfx;
 
     [FoldoutGroup("Unit Floating Numbers")]
     [SerializeField, Tooltip("The animator that controls the damage text animation.")]
@@ -85,6 +95,7 @@ public class UnitController : MonoBehaviour
     public TimelineAsset BasicRangedAttack => basicRangedAttack;
     public TimelineAsset UseItem => useItem;
     public TimelineAsset Run => run;
+    public VisualEffect HitVfx => hitVfx;
     public int Charges
     {
         get => charges;
@@ -276,6 +287,28 @@ public class UnitController : MonoBehaviour
                         break;
                     case "Signals":
                         director.SetGenericBinding(track, enemyObject.GetComponentInChildren<SignalReceiver>());
+                        break;
+                    case "AttackVfx":
+                        if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
+                            switch (InventoryManager.Instance.EquipmentSlots[3].equipItem.AttackType)
+                            {
+                                case AttackType.Blunt:
+                                    director.SetGenericBinding(track, hammerAttackVfx);
+                                    break;
+                                case AttackType.Cut:
+                                    director.SetGenericBinding(track, swordAttackVfx);
+                                    break;
+                                default:
+                                    director.SetGenericBinding(track, swordAttackVfx);
+                                    break;
+                            }
+                        else
+                        {
+                            director.SetGenericBinding(track, swordAttackVfx);
+                        }
+                        break;
+                    case "HitVfx":
+                        director.SetGenericBinding(track, enemyObject.GetComponent<UnitController>().HitVfx);
                         break;
                 }
             }

@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationBehavior:
     onClipEnter:
-      m_Name: OnPlay
+      m_Name: Trigger
     onClipExit:
       m_Name: OnStop
     clipEnterEventAttributes: []
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06feb0f61bc2b4a42bb1ffdb00b4aa3b, type: 3}
-  m_Name: Visual Effect Activation Track (1)
+  m_Name: HitVfx
   m_EditorClassIdentifier: 
   m_Version: 3
   m_AnimClip: {fileID: 0}

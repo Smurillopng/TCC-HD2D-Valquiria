@@ -11,6 +11,7 @@ TagManager:
   - PlayerHealthTMP
   - PlayerLvlTMP
   - PlayerHealthFill
+  - HitVfx
   layers:
   - Default
   - TransparentFX

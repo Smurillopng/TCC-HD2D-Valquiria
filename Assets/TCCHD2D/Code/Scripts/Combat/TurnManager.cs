@@ -196,6 +196,9 @@ public class TurnManager : MonoBehaviour
                 case "Signals":
                     enemyDirector.SetGenericBinding(track, playerObject.GetComponent<SignalReceiver>());
                     break;
+                case "HitVfx":
+                    enemyDirector.SetGenericBinding(track, playerObject.GetComponent<UnitController>().HitVfx);
+                    break;
             }
         }
         enemyDirector.playableAsset = enemyAttackTimeline;

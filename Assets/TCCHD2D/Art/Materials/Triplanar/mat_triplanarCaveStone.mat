@@ -21,12 +21,36 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _NormalSide1:
+        m_Texture: {fileID: 2800000, guid: dde3d3787d3f07b4a95ab44f38a78a9d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalSide2:
+        m_Texture: {fileID: 2800000, guid: dde3d3787d3f07b4a95ab44f38a78a9d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalTop:
+        m_Texture: {fileID: 2800000, guid: dde3d3787d3f07b4a95ab44f38a78a9d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Side1:
         m_Texture: {fileID: 2800000, guid: 3effa535fe61a4c4594c56552d7093a3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Side2:
         m_Texture: {fileID: 2800000, guid: 3effa535fe61a4c4594c56552d7093a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularSide1:
+        m_Texture: {fileID: 2800000, guid: 273677dc1d69b6d4c854ff81db6eb5e4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularSide2:
+        m_Texture: {fileID: 2800000, guid: 273677dc1d69b6d4c854ff81db6eb5e4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularTop:
+        m_Texture: {fileID: 2800000, guid: 273677dc1d69b6d4c854ff81db6eb5e4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Top:
@@ -48,13 +72,21 @@ Material:
     m_Ints: []
     m_Floats:
     - _AO: 1
+    - _AlphaMaskSmoothness: 0.5
     - _Blend_Sharpness: 4
     - _Blend_Sharpness_top: 1.54
+    - _NormalStrength: 0.5
+    - _Opacity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0
-    - _Tilling: 4
-    m_Colors: []
+    - _Size: 1
+    - _Smoothness: 18
+    - _Tilling: 3.99745
+    m_Colors:
+    - _: {r: 0, g: 0, b: 0, a: 0}
+    - _PlayerPosition: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - __1: {r: 0, g: 0, b: 0, a: 0}
+    - __2: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1669859427733252257
 MonoBehaviour:

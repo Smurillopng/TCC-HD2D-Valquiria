@@ -12,11 +12,10 @@ public class Tutorial : MonoBehaviour
     public TMP_Text dialogueText;
     public GameControls gameControls;
     public PlayerMovement playerMovement;
-    public GameObject tutorialObject;
-    public GameObject skipButton;
+    public GameObject[] tutorialObjects;
     public Transform startPosition;
     public GameObject bjorn, player;
-    
+
     private bool _finishedTutorial;
 
     private void Start()
@@ -25,7 +24,8 @@ public class Tutorial : MonoBehaviour
         _finishedTutorial = reader.Exists("FinishedTutorial") && reader.Read<bool>("FinishedTutorial");
         if (_finishedTutorial.Equals(true))
         {
-            tutorialObject.SetActive(false);
+            foreach (var tutorialObject in tutorialObjects)
+                tutorialObject.SetActive(false);
             bjorn.SetActive(false);
             return;
         }
@@ -47,14 +47,12 @@ public class Tutorial : MonoBehaviour
     public void PlayDialogue(DialogueData dialogueData)
     {
         dialogueManager.StartDialogue(dialogueData);
-        skipButton.SetActive(false);
         StartCoroutine(WaitText(dialogueData));
     }
-    
+
     public void PlayDialogue2(DialogueData dialogueData)
     {
         dialogueManager.StartDialogue(dialogueData);
-        skipButton.SetActive(false);
         StartCoroutine(WaitText2(dialogueData));
     }
 
@@ -72,10 +70,9 @@ public class Tutorial : MonoBehaviour
                 yield return null;
             }
         }
-        skipButton.SetActive(true);
         director.Resume();
     }
-    
+
     private IEnumerator WaitText2(DialogueData dialogueData)
     {
         foreach (var text in dialogueData.DialogueLines)
@@ -90,7 +87,6 @@ public class Tutorial : MonoBehaviour
                 yield return null;
             }
         }
-        skipButton.SetActive(true);
         director2.Resume();
     }
 
@@ -99,7 +95,7 @@ public class Tutorial : MonoBehaviour
         if (dialogueData.IsTutorial && !dialogueData.HasPlayed)
             StartCoroutine(WaitInput(dialogueData));
     }
-    
+
     public void PlayerDialogueInput2(DialogueData dialogueData)
     {
         if (dialogueData.IsTutorial && !dialogueData.HasPlayed)
@@ -127,7 +123,7 @@ public class Tutorial : MonoBehaviour
             }
             if (currentLineIndex == dialogueData.DialogueLines.Length)
             {
-                
+
                 break;
             }
             yield return null;
@@ -136,7 +132,7 @@ public class Tutorial : MonoBehaviour
         dialogueData.HasPlayed = true;
         director.Resume();
     }
-    
+
     private IEnumerator WaitInput2(DialogueData dialogueData)
     {
         dialogueManager.StartDialogue(dialogueData);
@@ -158,7 +154,7 @@ public class Tutorial : MonoBehaviour
             }
             if (currentLineIndex == dialogueData.DialogueLines.Length)
             {
-                
+
                 break;
             }
             yield return null;
@@ -174,11 +170,13 @@ public class Tutorial : MonoBehaviour
         player.transform.position = startPosition.position;
         Destroy(bjorn);
         director.Stop();
+        director2.Stop();
         playerMovement.enabled = true;
         _finishedTutorial = true;
         var writer = QuickSaveWriter.Create("GameSave");
         writer.Write("FinishedTutorial", _finishedTutorial);
         writer.Commit();
-        tutorialObject.SetActive(false);
+        foreach (var tutorialObject in tutorialObjects)
+            tutorialObject.SetActive(false);
     }
 }

@@ -10,7 +10,7 @@ public class MainMenuUI : MonoBehaviour
     public float time = 1f;
     public float length = 1f;
     public bool anyButtonPressed;
-    
+
     private void Update()
     {
         if (anyButtonPressed)
@@ -39,5 +39,16 @@ public class MainMenuUI : MonoBehaviour
         {
             anyButtonPressed = true;
         }
+    }
+
+    public void HideButtons()
+    {
+        pressButtonImg.gameObject.SetActive(false);
+        buttonsContainer.SetActive(false);
+    }
+
+    public void ShowButtons()
+    {
+        buttonsContainer.SetActive(true);
     }
 }

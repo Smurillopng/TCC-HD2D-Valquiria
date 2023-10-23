@@ -59,11 +59,11 @@ MonoBehaviour:
   unitSprite: {fileID: 7987107396893427850, guid: fd0c50c37af59a34e9b9306cc76267fe,
     type: 3}
   level: 1
-  experienceDrop: 2
+  experienceDrop: 1
   experience: 0
   attackAnimation: {fileID: 11400000, guid: 5ae97508ff10eda49ac2f274eb3a556d, type: 2}
-  maxHp: 99999
-  currentHp: 99999
+  maxHp: 10
+  currentHp: 10
   maxTp: 100
   currentTp: 0
   attack: 0

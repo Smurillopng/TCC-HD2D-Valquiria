@@ -461,24 +461,35 @@ public class UnitController : MonoBehaviour
     /// If the player successfully escapes, the game will load the last scene visited and update the game save file with the name of the current scene.
     /// If the player fails to escape, the game will display a message indicating the failure.
     /// </remarks>
-    public void RunAction()
+    public void RunAction(UnitController target)
     {
-        var gotAway = RunLogic();
-
-        if (gotAway)
+        if (target.Unit.Attack.Equals(0))
         {
+            if (unit.Experience.Equals(0)) unit.Experience = 1;
             var reader = QuickSaveReader.Create("GameInfo");
             _sceneTransitioner.StartCoroutine(_sceneTransitioner.TransitionTo(reader.Read<string>("LastScene")));
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>", 5f);
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino", 5f);
             PlayerCombatHUD.TakenAction.Invoke();
-            _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
             PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>", 4f);
-            PlayerCombatHUD.TakenAction.Invoke();
-            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+            var gotAway = RunLogic();
+
+            if (gotAway)
+            {
+                var reader = QuickSaveReader.Create("GameInfo");
+                _sceneTransitioner.StartCoroutine(_sceneTransitioner.TransitionTo(reader.Read<string>("LastScene")));
+                PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>", 5f);
+                PlayerCombatHUD.TakenAction.Invoke();
+                PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+            }
+            else
+            {
+                PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>", 4f);
+                PlayerCombatHUD.TakenAction.Invoke();
+                PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+            }
         }
     }
     /// <summary>Runs a logic that involves a random chance and a unit's luck.</summary>
@@ -511,7 +522,7 @@ public class UnitController : MonoBehaviour
         SceneManager.LoadScene(reader.Read<string>("LastScene"));
         PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino", 5f);
         PlayerCombatHUD.TakenAction.Invoke();
-        unit.Experience = 1;
+
     }
 
     #endregion

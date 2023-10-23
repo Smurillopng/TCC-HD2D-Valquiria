@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField, Required] private StringVariable previousScene;
+    [SerializeField] private GameObject confirmPanel;
 
     /// <summary>
     /// Loads the scene with the given name and saves the previous scene name if the scene to be loaded is the options menu.
@@ -24,6 +25,21 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void ConfirmTutorial()
+    {
+        confirmPanel.SetActive(!confirmPanel.activeSelf);
+    }
+
+    public void ConfirmTutorialYes()
+    {
+        confirmPanel.SetActive(false);
+        NewGame();
+        var writer = QuickSaveWriter.Create("GameSave");
+        writer.Write("FinishedTutorial", true);
+        writer.Write("PlayedTutorial", true);
+        writer.Commit();
+    }
+
     public void NewGame()
     {
         SceneManager.LoadScene("scn_game");
@@ -32,7 +48,7 @@ public class MenuManager : MonoBehaviour
         foreach (var key in keys)
             saveWriter.Delete(key);
         saveWriter.Commit();
-        
+
         var infoWriter = QuickSaveWriter.Create("GameInfo");
         var infoKeys = infoWriter.GetAllKeys();
         foreach (var key in infoKeys)
@@ -53,7 +69,7 @@ public class MenuManager : MonoBehaviour
     public void ContinueGame()
     {
         var reader = QuickSaveReader.Create("GameSave");
-        
+
         var infoWriter = QuickSaveWriter.Create("GameInfo");
         var infoKeys = infoWriter.GetAllKeys();
         foreach (var key in infoKeys)
@@ -69,7 +85,7 @@ public class MenuManager : MonoBehaviour
         foreach (var key in infoKeys)
             infoWriter.Delete(key);
         infoWriter.Commit();
-        
+
         SceneManager.LoadScene(reader.Read<string>("CurrentScene"));
     }
 

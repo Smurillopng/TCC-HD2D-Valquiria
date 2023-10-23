@@ -54,50 +54,14 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: OnInteractionStartActions
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: OnInteractionInRangeActions
-      Entry: 7
-      Data: 1|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: OnInteractionOffRangeActions
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[UnityEngine.Events.UnityAction,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   interactionType: 0
   interactionRange: 0.2
   playerTransform: {fileID: 0}
   interactBool: {fileID: 11400000, guid: f9cc4a05f35383e48b5f8ca7dabe8534, type: 2}
+  onAwake:
+    m_PersistentCalls:
+      m_Calls: []
   onInteractionStart:
     m_PersistentCalls:
       m_Calls: []
@@ -141,7 +105,10 @@ VisualEffect:
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 2800000, guid: 540579e5e16919c4fa872234a9ce9155, type: 3}
+        m_Name: GlowTexture
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &337070256566352209

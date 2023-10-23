@@ -52,7 +52,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Cutoff_Height: 567.5567
+    - _Cutoff_Height: -1800
     - _Noise_Scale: 50
     - _Noise_Strength: 250
     - _QueueControl: 0

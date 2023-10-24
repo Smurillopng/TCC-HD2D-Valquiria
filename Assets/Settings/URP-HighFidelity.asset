@@ -27,7 +27,7 @@ MonoBehaviour:
   m_SupportsHDR: 1
   m_MSAA: 8
   m_RenderScale: 2
-  m_UpscalingFilter: 2
+  m_UpscalingFilter: 0
   m_FsrOverrideSharpness: 1
   m_FsrSharpness: 1
   m_MainLightRenderingMode: 1

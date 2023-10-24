@@ -16,7 +16,7 @@ public class SavePoint : MonoBehaviour
     public void SaveGame()
     {
         var save = QuickSaveWriter.Create("GameSave");
-        
+
         var inventoryInfoReader = QuickSaveReader.Create("InventoryInfo");
         var inventoryInfoKeys = inventoryInfoReader.GetAllKeys();
         foreach (var key in inventoryInfoKeys)
@@ -25,7 +25,7 @@ public class SavePoint : MonoBehaviour
         var itemInfoKeys = itemInfoReader.GetAllKeys();
         foreach (var key in itemInfoKeys)
             save.Write(key, itemInfoReader.Read<bool>(key));
-        
+
         save.Write("Level", playerUnit.Level);
         save.Write("Experience", playerUnit.Experience);
         save.Write("PlayerAttack", playerUnit.Attack);
@@ -40,7 +40,24 @@ public class SavePoint : MonoBehaviour
         save.Write("PlayerCurrentTp", playerUnit.CurrentTp);
         save.Write("PlayerPosition", _playerMovement.transform.position);
         save.Write("CurrentScene", SceneManager.GetActiveScene().name);
-        
+
+        var fastTravelReader = QuickSaveReader.Create("GameInfo");
+        var fastTravelKeys = fastTravelReader.GetAllKeys();
+        foreach (var key in fastTravelKeys)
+        {
+            if (key.Contains("ft:"))
+            {
+                if (key.Contains("scene"))
+                    save.Write(key, fastTravelReader.Read<string>(key));
+                else if (key.Contains("position"))
+                    save.Write(key, fastTravelReader.Read<Vector3>(key));
+                else if (key.Contains("discovered"))
+                    save.Write(key, fastTravelReader.Read<bool>(key));
+                else
+                    save.Write(key, fastTravelReader.Read<string>(key));
+            }
+        }
+
         save.Commit();
     }
 }

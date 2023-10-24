@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
         set => movementValue = value;
     }
 
-    public Vector2 Direction 
+    public Vector2 Direction
     {
         get => direction.Value;
         set => direction.Value = value;
@@ -118,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         if (!gameObject.TryGetComponent(out rigidBody))
             rigidBody = gameObject.AddComponent<Rigidbody>();
         var reader = QuickSaveReader.Create("GameInfo");
+
         if (!reader.Exists("ChangingScene"))
         {
             var writer = QuickSaveWriter.Create("GameInfo");

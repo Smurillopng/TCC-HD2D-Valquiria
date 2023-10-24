@@ -257,13 +257,16 @@ public class UnitController : MonoBehaviour
 
         var randomFactorDam = Random.Range(0.85f, 1f);
         var math = ((unit.Level * 1) + 2) / 5 + randomFactorDam;
-        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated + math);
+        var randomIncDec = Mathf.RoundToInt(Random.Range(-3, 4));
+        var randomBool = Random.Range(0, 2);
+        if (!_criticalHit) randomIncDec = randomBool == 0 ? randomIncDec : -randomIncDec;
+        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated + math + randomIncDec);
         if (_criticalHit)
         {
             math = ((unit.Level * 2) + 2) / 5 + randomFactorDam;
             if (math < 1.5) math = 1.5f;
             if (math > 2) math = 2;
-            calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * math);
+            calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * math + randomIncDec);
             StartCoroutine(CritNumbers(target));
             PlayerCombatHUD.CombatTextEvent.Invoke($"Acerto <color=red>Crítico!</color>", 3f);
         }

@@ -18,7 +18,8 @@ MonoBehaviour:
   attackType: 0
   itemName: Peitoral de Couro
   itemIcon: {fileID: 423021285807762473, guid: 2621d847bc908e247a1ad803059396d0, type: 3}
-  itemDescription: Peitoral feito com o couro de animais da floresta
+  itemDescription: "Peitoral feito com o couro de javalis ca\xE7ados na floresta
+    de Frigga."
   maxStack: 1
   currentStack: 0
   itemValue: 0

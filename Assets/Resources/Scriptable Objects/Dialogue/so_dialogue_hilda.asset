@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Hilda
   dialogueLines:
-  - text: "Ol\xE1 Liv, como tem estado?"
+  - text: "Ol\xE1, Liv, como tem estado?"
   - text: Esteve pensando em seu pai?
-  - text: "Faz sentido! ja faz quase 1 ano que ele e os outros homens da vila sairam
+  - text: "Faz sentido! J\xE1 faz um bom tempo que ele e os seus guerreiros sa\xEDram
       em expedi\xE7\xE3o."
   - text: "HAHAHA! Mas n\xE3o se desanime, voc\xEA como primog\xEAnita do chefe da
       vila tem que se manter sempre de cabe\xE7a erguida."
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 0

@@ -15,8 +15,8 @@ MonoBehaviour:
   characterName: Sigrid
   dialogueLines:
   - text: Liv! Liv!
-  - text: "Eu estava treinando criar po\xE7\xF5es com minha irm\xE3"
-  - text: "Criei esta junto com ela, leve-a com voc\xEA"
+  - text: "Eu estava criando po\xE7\xF5es com minha irm\xE3."
+  - text: "Criei esta junto com ela, leve-a com voc\xEA!"
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

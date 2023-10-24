@@ -15,10 +15,12 @@ MonoBehaviour:
   characterName: Aslaug
   dialogueLines:
   - text: "Ol\xE1, garotinha \xE9 um prazer conhece-la."
-  - text: Eu sou Aslaug uma velha senhora que vive sozinha nessa cabana.
+  - text: Me chamo Aslaug, e vivo sozinha nessa cabana.
   - text: "N\xE3o fique com pena de mim. Eu gosto do local, o \xFAnico problema s\xE3o
       os animais que est\xE3o ficando mais agressivos."
-  - text: "Eu sou uma mestra em fazer po\xE7\xF5es e te digo, eles n\xE3o ficaram
-      assim naturalmente! algu\xE9m est\xE1 dando algo para esses animais."
+  - text: "Eu vivo aqui j\xE1 fazem anos e te digo uma coisa, eles n\xE3o ficaram
+      assim naturalmente! Algu\xE9m est\xE1 fazendo algo para esses animais ficarem
+      assim."
   isTutorial: 1
   hasPlayed: 0
+  resetOnExit: 0

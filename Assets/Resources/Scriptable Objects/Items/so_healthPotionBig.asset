@@ -19,8 +19,8 @@ MonoBehaviour:
     type: 3}
   effectType: 0
   vfx: {fileID: 8926484042661614526, guid: 43d4642013285894b9da21f246fffb7b, type: 3}
-  itemDescription: "Uma po\xE7\xE3o de ervas comum nessa regi\xE3o so que muito grande.recupera
-    +25 de vida"
+  itemDescription: "Uma po\xE7\xE3o de ervas comum nessa regi\xE3o, s\xF3 que muito
+    grande. Recupera +25 de vida"
   maxStack: 99
   currentStack: 0
   itemValue: 10

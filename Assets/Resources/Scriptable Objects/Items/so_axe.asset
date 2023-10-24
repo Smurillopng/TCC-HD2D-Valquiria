@@ -19,7 +19,7 @@ MonoBehaviour:
     type: 3}
   effectType: 1
   vfx: {fileID: 0}
-  itemDescription: 'um machado de arremesso para jogar nos inimigos. Dano: 10'
+  itemDescription: 'Um machado de arremesso para jogar nos inimigos. Dano: 10'
   maxStack: 99
   currentStack: 0
   itemValue: 10

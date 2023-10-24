@@ -19,8 +19,8 @@ MonoBehaviour:
   itemName: Arco
   itemIcon: {fileID: 4789025182271690568, guid: c54764a8d971e7244a937980be694703,
     type: 3}
-  itemDescription: "Um arco simples dado para crian\xE7as ou iniciante. Aumenta +4
-    de ataque"
+  itemDescription: "Um arco simples dado para crian\xE7as ou iniciantes. Aumenta
+    +4 de ataque"
   maxStack: 1
   currentStack: 0
   itemValue: 0

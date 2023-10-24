@@ -19,7 +19,7 @@ MonoBehaviour:
     type: 3}
   effectType: 1
   vfx: {fileID: 0}
-  itemDescription: "uma pequena bomba de m\xE3o para jogar nos inimigos. Dano: 20"
+  itemDescription: "Uma pequena bomba de m\xE3o para jogar nos inimigos. Dano: 20"
   maxStack: 99
   currentStack: 0
   itemValue: 10

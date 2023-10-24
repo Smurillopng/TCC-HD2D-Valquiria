@@ -19,9 +19,9 @@ MonoBehaviour:
     type: 3}
   effectType: 2
   vfx: {fileID: 0}
-  itemDescription: "Essa po\xE7\xE3o grande revigorante te da mais energia para combater
-    inimigos. Recupera +30 de TP"
+  itemDescription: "Essa po\xE7\xE3o grande revigorante te d\xE1 mais energia para
+    combater inimigos. Recupera +40 de TP"
   maxStack: 99
   currentStack: 0
   itemValue: 10
-  effectValue: 30
+  effectValue: 40

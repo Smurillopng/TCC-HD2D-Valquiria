@@ -19,7 +19,8 @@ MonoBehaviour:
     type: 3}
   effectType: 1
   vfx: {fileID: 0}
-  itemDescription: 'Uma pedra muito pesada para jogar nos inimigos. Dano: 5'
+  itemDescription: 'Uma pedra encontrada pelo caminho durante sua jornada para jogar
+    nos inimigos. Dano: 5'
   maxStack: 99
   currentStack: 0
   itemValue: 10

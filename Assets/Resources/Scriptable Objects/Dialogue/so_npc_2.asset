@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Harald
   dialogueLines:
-  - text: "Ol\xE1 minha jovem."
+  - text: "Ol\xE1, minha jovem."
   - text: Cuidado adiante!
   - text: "H\xE1 muitos mist\xE9rios ocultos nas profundezas desse caverna."
-  - text: ' Algo que pode ate enfurecer os deuses!'
+  - text: " Algo que pode enfurecer at\xE9 os deuses!"
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 0

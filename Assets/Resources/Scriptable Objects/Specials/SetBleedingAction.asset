@@ -16,7 +16,7 @@ MonoBehaviour:
   specialType: 3
   specialAilment: 2
   turnsToLast: 2
-  specialCost: 4
+  specialCost: 30
   specialDamage: 2
   specialHeal: 0
   specialDescription: "Golpe que causa um corte profundo fazendo o advers\xE1rio

@@ -75,12 +75,12 @@ MonoBehaviour:
   experienceDrop: 10
   experience: 0
   attackAnimation: {fileID: 11400000, guid: eb91439faf1c0c24992b91e54214dc2d, type: 2}
-  maxHp: 20
-  currentHp: 20
+  maxHp: 40
+  currentHp: 40
   maxTp: 100
   currentTp: 0
   attack: 2
-  defence: 2
+  defence: 5
   speed: 1
   luck: 3
   dexterity: 1

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Bjorn
   dialogueLines:
-  - text: Certo, agora golpeie este boneco de treinamento
+  - text: Certo, agora golpeie este boneco de treinamento.
   - text: "N\xE3o esque\xE7a de carregar o poder das runas em seus ataques para aumentar
-      sua for\xE7a"
+      sua for\xE7a."
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

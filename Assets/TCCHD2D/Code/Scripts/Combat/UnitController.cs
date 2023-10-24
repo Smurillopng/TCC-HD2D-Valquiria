@@ -463,7 +463,7 @@ public class UnitController : MonoBehaviour
     /// </remarks>
     public void RunAction(UnitController target)
     {
-        if (target.Unit.Attack.Equals(0))
+        if (target.Unit.Attack.Equals(0)) // tutorial
         {
             if (unit.Experience.Equals(0)) unit.Experience = 1;
             var reader = QuickSaveReader.Create("GameInfo");
@@ -501,7 +501,7 @@ public class UnitController : MonoBehaviour
         randomChance = randomChance > 50 ? 1 : 0;
         if (randomChance == 1)
         {
-            //TODO: play run animation
+            if (run != null) Director.Play(run);
             return true;
         }
         return false;
@@ -515,15 +515,5 @@ public class UnitController : MonoBehaviour
         // AI logic for selecting an action goes here
         AttackLogic(target);
     }
-    // tutorial
-    public void RunActionTutorial()
-    {
-        var reader = QuickSaveReader.Create("GameInfo");
-        SceneManager.LoadScene(reader.Read<string>("LastScene"));
-        PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino", 5f);
-        PlayerCombatHUD.TakenAction.Invoke();
-
-    }
-
     #endregion
 }

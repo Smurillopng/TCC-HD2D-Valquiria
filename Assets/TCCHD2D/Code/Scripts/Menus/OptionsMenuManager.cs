@@ -45,7 +45,7 @@ public class OptionsMenuManager : MonoBehaviour
     [BoxGroup("Graphics Settings")]
     [SerializeField]
     private TMP_Dropdown screenDropdown;
-    
+
     [BoxGroup("Graphics Settings")]
     [SerializeField]
     private TMP_Dropdown fpsDropdown;
@@ -202,6 +202,6 @@ public class OptionsMenuManager : MonoBehaviour
     /// </summary>
     public void ReturnToLastScene()
     {
-        SceneManager.LoadScene(previousScene.Value);
+        SceneManager.UnloadSceneAsync("scn_optionsMenu");
     }
 }

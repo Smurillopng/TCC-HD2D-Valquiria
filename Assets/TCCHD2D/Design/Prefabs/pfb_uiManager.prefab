@@ -3392,7 +3392,7 @@ RectTransform:
   - {fileID: 2693222053378576364}
   - {fileID: 5862111681935809662}
   m_Father: {fileID: 1425473462784963213}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3471,8 +3471,8 @@ RectTransform:
   - {fileID: 1425473462785421191}
   - {fileID: 8363076174180495067}
   - {fileID: 7656867631819187122}
-  - {fileID: 1425473462781601110}
   - {fileID: 7116647679850568501}
+  - {fileID: 1425473462781601110}
   - {fileID: 1425473462090949281}
   m_Father: {fileID: 1425473461704900296}
   m_RootOrder: 0
@@ -5811,7 +5811,7 @@ RectTransform:
   - {fileID: 5055695305060322164}
   - {fileID: 8419895988286024489}
   m_Father: {fileID: 1425473462784963213}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -11237,8 +11237,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3086405269988674482}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: LoadOptions
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -202,6 +202,7 @@ public class Unit : SerializedScriptableObject
             luck = 1;
             dexterity = 1;
             attributesPoints = 0;
+            isDead = false;
         }
     }
 #else
@@ -221,6 +222,7 @@ public class Unit : SerializedScriptableObject
             luck = 1;
             dexterity = 1;
             attributesPoints = 0;
+            isDead = false;
         }
     }
 #endif

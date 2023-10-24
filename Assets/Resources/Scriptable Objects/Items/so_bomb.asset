@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   itemID: 2
-  itemName: "bomba de m\xE3o"
+  itemName: "Bomba de m\xE3o"
   itemIcon: {fileID: 2133776664999080902, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
   effectType: 1
@@ -23,4 +23,4 @@ MonoBehaviour:
   maxStack: 99
   currentStack: 0
   itemValue: 10
-  effectValue: 20
+  effectValue: 30

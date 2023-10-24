@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialName: "Regenera\xE7\xE3o"
   specialType: 0
-  specialCost: 25
+  specialAilment: 0
+  turnsToLast: 0
+  specialCost: 20
   specialDamage: 0
   specialHeal: 2
   specialDescription: Cura vida topper

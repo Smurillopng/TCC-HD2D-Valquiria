@@ -16,12 +16,12 @@ MonoBehaviour:
   itemID: 0
   slotType: 3
   attackType: 2
-  itemName: Arco
+  itemName: Arco de iniciante
   itemIcon: {fileID: 4789025182271690568, guid: c54764a8d971e7244a937980be694703,
     type: 3}
   itemDescription: "Um arco simples dado para crian\xE7as ou iniciantes. Aumenta
-    +4 de ataque"
+    +5 de ataque"
   maxStack: 1
   currentStack: 0
   itemValue: 0
-  statusValue: 4
+  statusValue: 5

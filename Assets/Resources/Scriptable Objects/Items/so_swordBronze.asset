@@ -20,8 +20,8 @@ MonoBehaviour:
   itemIcon: {fileID: -5566181938308581267, guid: dfaef4b399d8a2c478d7d878aeb10cff,
     type: 3}
   itemDescription: Uma espada forjada por guerreiros de terras distantes. Aumenta
-    +6 de ataque.
+    +4 de ataque.
   maxStack: 1
   currentStack: 0
   itemValue: 5
-  statusValue: 6
+  statusValue: 4

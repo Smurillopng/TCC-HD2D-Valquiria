@@ -19,9 +19,9 @@ MonoBehaviour:
   itemName: "Arco do ca\xE7ador"
   itemIcon: {fileID: 2026126408643383960, guid: c54764a8d971e7244a937980be694703,
     type: 3}
-  itemDescription: "Um arco de ca\xE7a para arqueiros mais experientes. Aumenta +6
+  itemDescription: "Um arco de ca\xE7a para arqueiros mais experientes. Aumenta +8
     de ataque"
   maxStack: 1
   currentStack: 0
   itemValue: 0
-  statusValue: 6
+  statusValue: 8

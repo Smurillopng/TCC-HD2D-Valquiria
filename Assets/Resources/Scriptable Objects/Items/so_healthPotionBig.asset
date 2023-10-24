@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   itemID: 2
-  itemName: "Po\xE7\xE3o de Vida"
+  itemName: "Po\xE7\xE3o de Vida grande"
   itemIcon: {fileID: -5300972888968223334, guid: 987a3ee179b7727418f7ea496d9e5d99,
     type: 3}
   effectType: 0

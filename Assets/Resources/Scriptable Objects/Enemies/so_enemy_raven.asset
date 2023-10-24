@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: so_enemy_raven
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 0101090000006900740065006d00440072006f00700073002f000000000164000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e00440069006300740069006f006e00610072007900600032005b005b0049004900740065006d002c00200041007300730065006d0062006c0079002d004300530068006100720070005d002c005b00530079007300740065006d002e0049006e007400330032002c0020006d00730063006f0072006c00690062005d005d002c0020006d00730063006f0072006c00690062000000000001010800000063006f006d00700061007200650072002f010000000157000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004f0062006a0065006300740045007100750061006c0069007400790043006f006d0070006100720065007200600031005b005b0049004900740065006d002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c0020006d00730063006f0072006c00690062000100000005060200000000000000042e0b010200000024006b0000000000170102000000240076001900000005042e0b010200000024006b0001000000170102000000240076001900000005070501010a000000730074006100740073005400610062006c0065002f02000000014f000000530079007300740065006d002e0043006f006c006c0065006300740069006f006e0073002e00470065006e0065007200690063002e004c00690073007400600031005b005b0055006e00690074002b00530074006100740073005400610062006c0065002c00200041007300730065006d0062006c0079002d004300530068006100720070005d005d002c0020006d00730063006f0072006c0069006200020000000600000000000000000705
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 0ea991b6914b857428588b2b3d4fd5c7, type: 2}
     - {fileID: 11400000, guid: 36bc8c0e04964c541bf618b6dc1fd986, type: 2}
@@ -22,23 +22,79 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: itemDrops
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[IItem, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[IItem, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 25
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: statsTable
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[Unit+StatsTable, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   type: 1
   unitName: Corvos
-  unitSprite: {fileID: -1930893176488914482, guid: 20c4a6cceb1d26442b3dedf17eebe3b1,
-    type: 3}
+  unitSprite: {fileID: 21300000, guid: 9773077a77b8da24eb0bd6fc868e9b50, type: 3}
   level: 1
-  experienceDrop: 10
+  experienceDrop: 13
   experience: 0
   attackAnimation: {fileID: 11400000, guid: 8d4d4cc446c53344e851946797338249, type: 2}
-  maxHp: 20
-  currentHp: 20
+  maxHp: 30
+  currentHp: 30
   maxTp: 100
   currentTp: 0
   attack: 3
   defence: 1
   speed: 8
-  luck: 99
+  luck: 80
   dexterity: 1
   attributesPoints: 0
   isPlayer: 0

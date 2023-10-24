@@ -202,6 +202,6 @@ public class OptionsMenuManager : MonoBehaviour
     /// </summary>
     public void ReturnToLastScene()
     {
-        SceneManager.UnloadSceneAsync("scn_optionsMenu");
+        SceneManager.LoadScene(previousScene.Value);
     }
 }

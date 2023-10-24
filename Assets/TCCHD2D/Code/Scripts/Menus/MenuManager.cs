@@ -25,12 +25,6 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void LoadOptions()
-    {
-        previousScene.Value = SceneManager.GetActiveScene().name;
-        SceneManager.LoadSceneAsync("scn_optionsMenu", LoadSceneMode.Additive);
-    }
-
     public void ConfirmTutorial()
     {
         confirmPanel.SetActive(!confirmPanel.activeSelf);

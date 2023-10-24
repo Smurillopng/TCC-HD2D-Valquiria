@@ -232,6 +232,7 @@ public class Unit : SerializedScriptableObject
         level++;
         attributesPoints++;
         maxHp += 2;
+        currentHp = maxHp;
     }
 
     public struct StatsTable

@@ -67,7 +67,7 @@ MonoBehaviour:
   mat: {fileID: 2100000, guid: b0d35499e79747942bc22f07bec70176, type: 2}
   min: -1800
   max: 1800
-  speedTransition: 2000
+  speedTransition: 2500
   acelerationValue: 1.02
   tweenTime: 1
   current: 0

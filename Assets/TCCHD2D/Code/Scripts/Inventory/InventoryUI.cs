@@ -212,6 +212,8 @@ public class InventoryUI : MonoBehaviour
             {
                 var consumable = currentItem as Consumable;
                 if (consumable != null)
+                {
+                    itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Usar";
                     switch (consumable.EffectType)
                     {
                         case ConsumableTypes.Damage:
@@ -237,6 +239,7 @@ public class InventoryUI : MonoBehaviour
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+                }
             }
             else if (currentItem.ItemType == ItemTyping.Equipment)
             {

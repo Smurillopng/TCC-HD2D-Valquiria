@@ -104,10 +104,10 @@ MonoBehaviour:
   currentHp: 30
   maxTp: 100
   currentTp: 0
-  attack: 5
+  attack: 3
   defence: 1
   speed: 8
-  luck: 80
+  luck: 10
   dexterity: 7
   attributesPoints: 0
   isPlayer: 0

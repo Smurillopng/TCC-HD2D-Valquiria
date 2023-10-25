@@ -74,6 +74,7 @@ public class TurnManager : MonoBehaviour
 
     public UnitController PlayerUnitController { get; private set; }
     public UnitController EnemyUnitController { get; private set; }
+    public static UnityAction onDeath;
     private Ailments _playerAilments, _enemyAilments;
 
     #endregion
@@ -389,6 +390,7 @@ public class TurnManager : MonoBehaviour
     private void GameOver()
     {
         sceneTransitioner.StartCoroutine(sceneTransitioner.TransitionTo("scn_gameOver"));
+        onDeath.Invoke();
     }
     /// <summary>Performs the actions necessary for a victory.</summary>
     /// <returns>An IEnumerator that can be used to wait for the victory actions to complete.</returns>

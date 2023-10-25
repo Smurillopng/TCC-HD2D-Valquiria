@@ -115,6 +115,7 @@ public class UnitController : MonoBehaviour
     {
         if (_playerCombatHUD == null) _playerCombatHUD = FindObjectOfType<PlayerCombatHUD>();
         if (_sceneTransitioner == null) _sceneTransitioner = FindObjectOfType<SceneTransitioner>();
+        TurnManager.onDeath += SetDead;
         if (!unit.IsPlayer)
         {
             unit.IsDead = false;
@@ -410,6 +411,10 @@ public class UnitController : MonoBehaviour
     {
         StartCoroutine(Dissolve());
     }
+    private void SetDead()
+    {
+        unit.IsDead = false;
+    }
     private IEnumerator Dissolve()
     {
         var renderer = GetComponent<SpriteRenderer>();
@@ -517,6 +522,11 @@ public class UnitController : MonoBehaviour
         if (unit.IsPlayer) return;
         // AI logic for selecting an action goes here
         AttackLogic(target);
+    }
+
+    private void OnDisable()
+    {
+        TurnManager.onDeath -= SetDead;
     }
     #endregion
 }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
+  m_Name: so_tip_status
+  m_EditorClassIdentifier: 
+  characterName: 
+  dialogueLines:
+  - text: 'A Liv possui 5 status que ela pode aumentar:'
+  - text: 'Ataque: aumenta o dano dos seus golpes.'
+  - text: "Defesa: faz voc\xEA sofrer menos dano de ataques inimigos."
+  - text: "Velocidade: se sua velocidade for maior do que a do inimigo, faz com que
+      voc\xEA tenha prefer\xEAncia durante a rodada."
+  - text: "Sorte: aumenta a chance de cr\xEDtico dos seus golpes."
+  - text: 'Destreza: aumenta a propabilidade de fuga das batalhas.'
+  isTutorial: 1
+  hasPlayed: 0
+  resetOnExit: 1

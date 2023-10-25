@@ -18,6 +18,9 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 0ea991b6914b857428588b2b3d4fd5c7, type: 2}
     - {fileID: 11400000, guid: 3d63ebeb5ed374345b9b069ef44dbacb, type: 2}
+    - {fileID: 11400000, guid: f055cbd13f609284f87c1f1f8b872fb5, type: 2}
+    - {fileID: 11400000, guid: 89f454fed765df548bc41eabba8df102, type: 2}
+    - {fileID: 11400000, guid: 3119ced51a1dfac418d7420b15fc8dd5, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -36,7 +39,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 5
     - Name: 
       Entry: 7
       Data: 
@@ -45,7 +48,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 40
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -58,6 +61,42 @@ MonoBehaviour:
     - Name: $v
       Entry: 3
       Data: 30
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 15
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 3
+      Data: 15
     - Name: 
       Entry: 8
       Data: 
@@ -85,7 +124,7 @@ MonoBehaviour:
   unitSprite: {fileID: 6008706663345991552, guid: d6f2111ca9d406141bbab4a2868a39ae,
     type: 3}
   level: 1
-  experienceDrop: 20
+  experienceDrop: 23
   experience: 0
   attackAnimation: {fileID: 11400000, guid: 60788a39c3c84944986306cb5be30167, type: 2}
   maxHp: 60

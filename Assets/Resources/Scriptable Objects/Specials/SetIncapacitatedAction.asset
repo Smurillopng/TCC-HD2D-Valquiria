@@ -19,4 +19,4 @@ MonoBehaviour:
   specialCost: 30
   specialDamage: 10
   specialHeal: 0
-  specialDescription: "Ap\xF3s ser atingido por esse golpe seu inimigo fica incapacitado"
+  specialDescription: "Ap\xF3s ser atingido por esse golpe seu inimigo fica incapacitado."

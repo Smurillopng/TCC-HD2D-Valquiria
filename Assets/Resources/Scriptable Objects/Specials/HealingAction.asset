@@ -18,5 +18,6 @@ MonoBehaviour:
   turnsToLast: 0
   specialCost: 20
   specialDamage: 0
-  specialHeal: 2
-  specialDescription: Cura vida topper
+  specialHeal: 3
+  specialDescription: "Canaliza uma runa de regenera\xE7\xE3o para regenerar +3 de
+    vida."

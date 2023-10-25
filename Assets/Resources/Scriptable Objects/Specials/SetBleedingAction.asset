@@ -15,9 +15,9 @@ MonoBehaviour:
   specialName: Corte Profundo
   specialType: 3
   specialAilment: 2
-  turnsToLast: 10
+  turnsToLast: 100
   specialCost: 30
   specialDamage: 2
   specialHeal: 0
   specialDescription: "Golpe que causa um corte profundo fazendo o advers\xE1rio
-    sangrar"
+    sangrar."

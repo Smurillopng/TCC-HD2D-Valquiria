@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: d2e899f588401934fba761da89161a3d
+  m_OcclusionCullingData: {fileID: 36300000, guid: f3461491069d38d49aff1c43a04de2f0,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -134,6 +135,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pfbl_estalagmite_8
+      objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
@@ -261,6 +267,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pfbl_estalagmite_6
       objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
       propertyPath: m_RootOrder
@@ -359,7 +370,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &98752347
 Transform:
@@ -400,6 +411,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pfbl_estalagmite
+      objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
@@ -500,7 +516,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &168860826
 Transform:
@@ -22987,6 +23003,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pfbl_estalagmite_1
       objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
       propertyPath: m_RootOrder
@@ -23082,6 +23103,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pfbl_estalagmite_10
       objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
       propertyPath: m_RootOrder
@@ -23176,6 +23202,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ground Fog_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943904140560786230, guid: 77279bcf000de9d478312c5ec2f11d5d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2943904140560786232, guid: 77279bcf000de9d478312c5ec2f11d5d,
         type: 3}
@@ -23335,12 +23366,12 @@ PrefabInstance:
     - target: {fileID: 6471829175399510939, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016963163
+      value: 0.000000016963163
       objectReference: {fileID: 0}
     - target: {fileID: 6471829175399510939, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000028828169
+      value: -0.0000000028828169
       objectReference: {fileID: 0}
     - target: {fileID: 7262514707707344432, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
@@ -23449,6 +23480,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pfbl_estalagmite_9
       objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
       propertyPath: m_RootOrder
@@ -23548,7 +23584,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &389738617
 Transform:
@@ -29426,6 +29462,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground Fog_2
       objectReference: {fileID: 0}
+    - target: {fileID: 2943904140560786230, guid: 77279bcf000de9d478312c5ec2f11d5d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2943904140560786232, guid: 77279bcf000de9d478312c5ec2f11d5d,
         type: 3}
       propertyPath: InitialModule.maxNumParticles
@@ -29523,7 +29564,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &442149334
 Transform:
@@ -29552,6 +29593,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pfbl_estalagmite_11
+      objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
@@ -29647,6 +29693,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pfbl_estalagmite_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
@@ -29793,6 +29844,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pfbl_estalagmite_12
       objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
       propertyPath: m_RootOrder
@@ -29906,12 +29962,12 @@ PrefabInstance:
     - target: {fileID: 3874512464777918950, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016240387
+      value: 0.000000016240387
       objectReference: {fileID: 0}
     - target: {fileID: 3874512464777918950, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000005684135
+      value: -0.000000005684135
       objectReference: {fileID: 0}
     - target: {fileID: 4814090757390707792, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
@@ -30023,6 +30079,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pfbl_estalagmite_13
+      objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
@@ -30283,7 +30344,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &704306650
 Transform:
@@ -38464,6 +38525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pfbl_estalagmite_7
       objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
       propertyPath: m_RootOrder
@@ -38562,7 +38628,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &725915431
 Transform:
@@ -38767,7 +38833,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &779938959
 Transform:
@@ -38893,6 +38959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ground Fog_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943904140560786230, guid: 77279bcf000de9d478312c5ec2f11d5d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2943904140560786232, guid: 77279bcf000de9d478312c5ec2f11d5d,
         type: 3}
@@ -39096,6 +39167,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pfbl_estalagmite_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
@@ -39479,7 +39555,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1256787085
 Transform:
@@ -39520,6 +39596,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pfbl_estalagmite_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
@@ -39619,7 +39700,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1320454142
 Transform:
@@ -39702,7 +39783,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1364608223
 Transform:
@@ -39747,7 +39828,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1395148748
 Transform:
@@ -39780,6 +39861,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pfbl_estalagmite_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 296370092096476750, guid: d31b62018e239b94b9af23f674e9ec45,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1105417842788240628, guid: d31b62018e239b94b9af23f674e9ec45,
         type: 3}
@@ -39878,7 +39964,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1497194383
 Transform:
@@ -39911,7 +39997,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1527174455
 Transform:
@@ -39944,6 +40030,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ground Fog
+      objectReference: {fileID: 0}
+    - target: {fileID: 2943904140560786230, guid: 77279bcf000de9d478312c5ec2f11d5d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2943904140560786232, guid: 77279bcf000de9d478312c5ec2f11d5d,
         type: 3}
@@ -40256,6 +40347,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground Fog_3
       objectReference: {fileID: 0}
+    - target: {fileID: 2943904140560786230, guid: 77279bcf000de9d478312c5ec2f11d5d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2943904140560786232, guid: 77279bcf000de9d478312c5ec2f11d5d,
         type: 3}
       propertyPath: InitialModule.maxNumParticles
@@ -40355,7 +40451,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1845130258
 Transform:
@@ -40469,7 +40565,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1891327501
 Transform:
@@ -40571,7 +40667,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1998089574
 Transform:
@@ -40685,7 +40781,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2022062236
 Transform:
@@ -40731,7 +40827,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2055849515
 Transform:

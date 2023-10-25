@@ -87,7 +87,7 @@ MonoBehaviour:
   level: 1
   experienceDrop: 200
   experience: 0
-  attackAnimation: {fileID: 11400000, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
+  attackAnimation: {fileID: 11400000, guid: 3b7fb8247b3fd33459451a32790190d6, type: 2}
   maxHp: 200
   currentHp: 200
   maxTp: 100

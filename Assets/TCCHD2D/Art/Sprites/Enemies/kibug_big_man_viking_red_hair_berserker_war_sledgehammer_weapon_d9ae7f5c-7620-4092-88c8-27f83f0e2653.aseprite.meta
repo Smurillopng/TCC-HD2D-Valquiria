@@ -119,7 +119,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: kibug_big_man_viking_red_hair_berserker_war_sledgehammer_weapon_d9ae7f5c-7620-4092-88c8-27f83f0e2653
     originalName: 
-    pivot: {x: 0.5436893, y: -0.036363635}
+    pivot: {x: 0.5436893, y: 0.0033732883}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:

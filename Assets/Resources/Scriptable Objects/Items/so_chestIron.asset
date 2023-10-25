@@ -20,8 +20,8 @@ MonoBehaviour:
   itemIcon: {fileID: -2688558570510602250, guid: 2621d847bc908e247a1ad803059396d0,
     type: 3}
   itemDescription: Uma malha de ferro utilizada pelos grandiosos guerreiros de Frigga.
-    Aumenta +6 de defesa
+    Aumenta +5 de defesa
   maxStack: 1
   currentStack: 0
   itemValue: 0
-  statusValue: 6
+  statusValue: 5

@@ -108,7 +108,7 @@ MonoBehaviour:
   attack: 12
   defence: 7
   speed: 2
-  luck: 3
+  luck: 4
   dexterity: 4
   attributesPoints: 0
   isPlayer: 0

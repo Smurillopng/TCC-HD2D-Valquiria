@@ -40916,8 +40916,9 @@ GameObject:
   - component: {fileID: 8440511093826681163}
   - component: {fileID: 8440511093826681162}
   - component: {fileID: 8440511093826681164}
+  - component: {fileID: 8440511093826681165}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: BossEinar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40950,7 +40951,19 @@ MonoBehaviour:
   interactBool: {fileID: 11400000, guid: f9cc4a05f35383e48b5f8ca7dabe8534, type: 2}
   onAwake:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8440511093826681165}
+        m_TargetAssemblyTypeName: TCCHD2D.Code.BossEncounter, Assembly-CSharp
+        m_MethodName: FightStarted
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onInteractionStart:
     m_PersistentCalls:
       m_Calls: []
@@ -41029,7 +41042,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2889326136653211420, guid: 70dd87ffc606ab24ab813fb6bd0e32b3,
+  m_Sprite: {fileID: -2276145360210973651, guid: 2f319ae647dc0b64080538d78ba84c08,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -41041,3 +41054,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8440511093826681165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8440511093826681161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b356c48c84624aa8805e5f68cf54ad77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fought: 0

@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e80dc07e029db4fb7c55e5a7693680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: {fileID: 11400000, guid: 35b846d0996288b44a4c12697dd879f5, type: 2}
   backPosition: {fileID: 5503125387402026879}
   frontPosition: {fileID: 7419839548313692074}
   leftPosition: {fileID: 8942752522487761838}
@@ -559,12 +560,12 @@ PrefabInstance:
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016963163
+      value: 0.000000016963163
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000028828169
+      value: -0.0000000028828169
       objectReference: {fileID: 0}
     - target: {fileID: 6080997214863353709, guid: c5b80279cceae2e44851743e79d2436c,
         type: 3}

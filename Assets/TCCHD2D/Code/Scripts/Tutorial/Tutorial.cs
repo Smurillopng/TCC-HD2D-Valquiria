@@ -15,6 +15,7 @@ public class Tutorial : MonoBehaviour
     public GameObject[] tutorialObjects;
     public Transform startPosition;
     public GameObject bjorn, player;
+    public Unit _player;
 
     private bool _finishedTutorial;
 
@@ -178,5 +179,8 @@ public class Tutorial : MonoBehaviour
         writer.Commit();
         foreach (var tutorialObject in tutorialObjects)
             tutorialObject.SetActive(false);
+        _player.Experience = 1;
+        _player.CurrentHp = _player.MaxHp;
+        _player.CurrentTp = 0;
     }
 }

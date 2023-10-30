@@ -19,7 +19,8 @@ MonoBehaviour:
   itemName: Capacete de ferro
   itemIcon: {fileID: 8611604984759191763, guid: 955b77d6192512446a19ea4daa010f8f,
     type: 3}
-  itemDescription: Um capacete de ferro comum mas util
+  itemDescription: "Um capacete de ferro comum, por\xE9m muito \xFAtil para batalhas.
+    Aumenta +4 de destreza"
   maxStack: 1
   currentStack: 0
   itemValue: 0

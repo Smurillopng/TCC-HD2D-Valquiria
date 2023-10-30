@@ -15,6 +15,11 @@ MonoBehaviour:
   characterName: Rolf
   dialogueLines:
   - text: Oi, me chamo Rolf.
-  - text: "Moro longe da vila com meu pai. Ele prefere o estilo de vida n\xF4made."
-  - text: "Fique atento aos animais na floresta, alguns deles s\xE3o bastante perigosos."
-  isNpcDialogue: 1
+  - text: "Moro aqui longe da vila com o meu pai. Ele \xE9 um \xF3timo ca\xE7ador
+      e \xE0s vezes vai at\xE9 a vila para vender as peles dos animais que ca\xE7a."
+  - text: "Mas agora ele n\xE3o est\xE1. Ele saiu j\xE1 faz um tempo para ca\xE7ar
+      e ainda n\xE3o voltou."
+  - text: "Se voc\xEA encontr\xE1-lo, fale para ele que estou esperando."
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 0

@@ -18,6 +18,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 3d63ebeb5ed374345b9b069ef44dbacb, type: 2}
     - {fileID: 11400000, guid: 0ea991b6914b857428588b2b3d4fd5c7, type: 2}
+    - {fileID: 11400000, guid: 3119ced51a1dfac418d7420b15fc8dd5, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -36,7 +37,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
@@ -45,7 +46,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 34
+      Data: 30
     - Name: 
       Entry: 8
       Data: 
@@ -57,7 +58,19 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 3
-      Data: 40
+      Data: 35
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -85,14 +98,14 @@ MonoBehaviour:
   unitSprite: {fileID: -4593415472689137059, guid: a1bb11bd0e72c3248b05181a8d53cd0a,
     type: 3}
   level: 1
-  experienceDrop: 16
+  experienceDrop: 20
   experience: 0
   attackAnimation: {fileID: 11400000, guid: 8d4d4cc446c53344e851946797338249, type: 2}
   maxHp: 65
   currentHp: 65
   maxTp: 100
   currentTp: 0
-  attack: 4
+  attack: 6
   defence: 4
   speed: 2
   luck: 1

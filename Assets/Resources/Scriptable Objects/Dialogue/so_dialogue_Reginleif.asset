@@ -15,7 +15,10 @@ MonoBehaviour:
   characterName: Reginleif
   dialogueLines:
   - text: "Eu vi l\xE1 na floresta."
-  - text: "Parecia um homem s\xF3 que ele estava estranho e se movia como se fosse
+  - text: "Parecia um homem, s\xF3 que ele estava estranho e se movia como se fosse
       um animal."
-  - text: "Eu fiquei assustada depois disso n\xE3o deixei mais minha irm\xE3zinha
+  - text: "Eu fiquei assustada, depois disso n\xE3o deixei mais minha irm\xE3zinha
       brincar muito a fundo na floresta."
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 0

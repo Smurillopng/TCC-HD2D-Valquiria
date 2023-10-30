@@ -97,7 +97,8 @@ public class InventoryUI : MonoBehaviour
 
     public Unit PlayerUnit => playerUnit;
 
-    private bool _gameStarted;
+    private bool _gameStarted, _tutorialFinished;
+    private QuickSaveReader _reader;
 
     private void Start()
     {
@@ -105,19 +106,19 @@ public class InventoryUI : MonoBehaviour
         if (QuickSaveReader.Create("GameInfo").Exists("GameStarted"))
             _gameStarted = QuickSaveReader.Create("GameInfo").Read<bool>("GameStarted");
         if (_gameStarted) return;
-        var reader = QuickSaveReader.Create("GameSave");
-        if (reader.Exists("PlayerAttack")) playerUnit.Attack = reader.Read<int>("PlayerAttack");
-        if (reader.Exists("PlayerDefence")) playerUnit.Defence = reader.Read<int>("PlayerDefence");
-        if (reader.Exists("PlayerSpeed")) playerUnit.Speed = reader.Read<int>("PlayerSpeed");
-        if (reader.Exists("PlayerLuck")) playerUnit.Luck = reader.Read<int>("PlayerLuck");
-        if (reader.Exists("PlayerDexterity")) playerUnit.Dexterity = reader.Read<int>("PlayerDexterity");
-        if (reader.Exists("Level")) playerUnit.Level = reader.Read<int>("Level");
-        if (reader.Exists("Experience")) playerUnit.Experience = reader.Read<int>("Experience");
-        if (reader.Exists("AttributesPoints")) playerUnit.AttributesPoints = reader.Read<int>("AttributesPoints");
-        if (reader.Exists("PlayerMaxHealth")) playerUnit.MaxHp = reader.Read<int>("PlayerMaxHealth");
-        if (reader.Exists("PlayerCurrentHealth")) playerUnit.CurrentHp = reader.Read<int>("PlayerCurrentHealth");
-        if (reader.Exists("PlayerMaxTp")) playerUnit.MaxTp = reader.Read<int>("PlayerMaxTp");
-        if (reader.Exists("PlayerCurrentTp")) playerUnit.CurrentTp = reader.Read<int>("PlayerCurrentTp");
+        _reader = QuickSaveReader.Create("GameSave");
+        if (_reader.Exists("PlayerAttack")) playerUnit.Attack = _reader.Read<int>("PlayerAttack");
+        if (_reader.Exists("PlayerDefence")) playerUnit.Defence = _reader.Read<int>("PlayerDefence");
+        if (_reader.Exists("PlayerSpeed")) playerUnit.Speed = _reader.Read<int>("PlayerSpeed");
+        if (_reader.Exists("PlayerLuck")) playerUnit.Luck = _reader.Read<int>("PlayerLuck");
+        if (_reader.Exists("PlayerDexterity")) playerUnit.Dexterity = _reader.Read<int>("PlayerDexterity");
+        if (_reader.Exists("Level")) playerUnit.Level = _reader.Read<int>("Level");
+        if (_reader.Exists("Experience")) playerUnit.Experience = _reader.Read<int>("Experience");
+        if (_reader.Exists("AttributesPoints")) playerUnit.AttributesPoints = _reader.Read<int>("AttributesPoints");
+        if (_reader.Exists("PlayerMaxHealth")) playerUnit.MaxHp = _reader.Read<int>("PlayerMaxHealth");
+        if (_reader.Exists("PlayerCurrentHealth")) playerUnit.CurrentHp = _reader.Read<int>("PlayerCurrentHealth");
+        if (_reader.Exists("PlayerMaxTp")) playerUnit.MaxTp = _reader.Read<int>("PlayerMaxTp");
+        if (_reader.Exists("PlayerCurrentTp")) playerUnit.CurrentTp = _reader.Read<int>("PlayerCurrentTp");
         _gameStarted = true;
         QuickSaveWriter.Create("GameInfo").Write("GameStarted", _gameStarted).Commit();
     }
@@ -211,6 +212,8 @@ public class InventoryUI : MonoBehaviour
             {
                 var consumable = currentItem as Consumable;
                 if (consumable != null)
+                {
+                    itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Usar";
                     switch (consumable.EffectType)
                     {
                         case ConsumableTypes.Damage:
@@ -236,6 +239,7 @@ public class InventoryUI : MonoBehaviour
                         default:
                             throw new ArgumentOutOfRangeException();
                     }
+                }
             }
             else if (currentItem.ItemType == ItemTyping.Equipment)
             {
@@ -385,7 +389,13 @@ public class InventoryUI : MonoBehaviour
 
     public void Update()
     {
-        if (!SceneTransitioner.currentlyTransitioning)
+        if (!_tutorialFinished)
+        {
+            _reader = QuickSaveReader.Create("GameSave");
+            if (_reader.Exists("FinishedTutorial"))
+                _tutorialFinished = _reader.Read<bool>("FinishedTutorial");
+        }
+        if (!SceneTransitioner.currentlyTransitioning && _tutorialFinished)
         {
             inventoryPanel.SetActive(isInventoryOpen.Value);
             if (isInventoryOpen.Value)

@@ -16,12 +16,12 @@ MonoBehaviour:
   itemID: 3
   slotType: 3
   attackType: 0
-  itemName: Espada deprata
+  itemName: Espada de Prata
   itemIcon: {fileID: 1943784594541857895, guid: dfaef4b399d8a2c478d7d878aeb10cff,
     type: 3}
-  itemDescription: Uma espada forjada de prata por um antigo ferreiro. Aumenta +6
+  itemDescription: Uma espada forjada de prata por um antigo ferreiro. Aumenta +9
     de ataque
   maxStack: 1
   currentStack: 0
   itemValue: 5
-  statusValue: 6
+  statusValue: 9

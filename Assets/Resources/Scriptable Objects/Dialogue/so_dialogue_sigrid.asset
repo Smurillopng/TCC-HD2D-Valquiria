@@ -15,7 +15,10 @@ MonoBehaviour:
   characterName: Sigrid
   dialogueLines:
   - text: "Liv! Minha irm\xE3 falou que os animais parecem mais agressivos na floresta."
-  - text: "Antes eu achava que ela falava isso para eu n\xE3o sair para brincar l\xE1
-      por perto, mas eu acabei indo para l\xE1 e vi com meus pr\xF3prios olhos."
+  - text: "Antes eu achava que ela falava isso para eu n\xE3o sair para brincar por
+      l\xE1, mas eu acabei indo para l\xE1 e vi com meus pr\xF3prios olhos."
   - text: "Um javali com olhos vermelhos, enlouquecido, correndo na minha dire\xE7\xE3o.
       Sorte a minha que eu estava perto da vila."
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 0

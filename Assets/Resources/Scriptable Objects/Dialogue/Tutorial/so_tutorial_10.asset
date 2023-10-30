@@ -18,9 +18,9 @@ MonoBehaviour:
       os perigos que est\xE3o por vir."
   - text: "Criaturas est\xE3o surgindo por toda a terra de Frigga, causando o caos
       por onde passam."
-  - text: "Por isso voc\xEA ficara aqui na vila, cuidando de todos como a nova l\xEDder
-      de Hrafnfl\xF3a, enquanto eu vou com a expedi\xE7\xE3o para acabar com essas
-      criaturas."
+  - text: "Por isso voc\xEA ficar\xE1 aqui na vila, cuidando de todos como a nova
+      l\xEDder de Hrafnfl\xF3a, enquanto eu vou com a expedi\xE7\xE3o para acabar
+      com essas criaturas."
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

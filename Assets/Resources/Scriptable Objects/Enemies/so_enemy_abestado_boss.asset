@@ -98,18 +98,18 @@ MonoBehaviour:
   unitSprite: {fileID: -2276145360210973651, guid: 2f319ae647dc0b64080538d78ba84c08,
     type: 3}
   level: 1
-  experienceDrop: 15
+  experienceDrop: 50
   experience: 0
   attackAnimation: {fileID: 11400000, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
   maxHp: 200
   currentHp: 200
   maxTp: 100
   currentTp: 0
-  attack: 9
-  defence: 5
-  speed: 3
-  luck: 1
-  dexterity: 5
+  attack: 14
+  defence: 8
+  speed: 7
+  luck: 4
+  dexterity: 7
   attributesPoints: 0
   isPlayer: 0
   isDangerous: 1

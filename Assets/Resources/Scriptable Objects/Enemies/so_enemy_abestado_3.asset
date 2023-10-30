@@ -94,21 +94,21 @@ MonoBehaviour:
       Entry: 8
       Data: 
   type: 1
-  unitName: Abestado Atirador
+  unitName: Abestado Marreteiro
   unitSprite: {fileID: -6140681502614135989, guid: aca748e33c644ac4c8d0b2ec008a123d,
     type: 3}
   level: 1
-  experienceDrop: 20
+  experienceDrop: 40
   experience: 0
   attackAnimation: {fileID: 11400000, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
   maxHp: 150
   currentHp: 150
   maxTp: 100
   currentTp: 0
-  attack: 10
-  defence: 4
+  attack: 12
+  defence: 7
   speed: 2
-  luck: 1
+  luck: 4
   dexterity: 4
   attributesPoints: 0
   isPlayer: 0

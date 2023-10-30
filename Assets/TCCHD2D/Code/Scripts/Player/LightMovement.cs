@@ -3,18 +3,20 @@ using UnityEngine;
 public class LightMovement : MonoBehaviour
 {
     private PlayerMovement _playerMovement;
+    [SerializeField] private BoolVariable canMove;
     [SerializeField] private Transform backPosition;
     [SerializeField] private Transform frontPosition;
     [SerializeField] private Transform leftPosition;
     [SerializeField] private Transform rightPosition;
-    
+
     private void Start()
     {
         _playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
-    
+
     private void Update()
     {
+        if (!canMove.Value) return;
         if (_playerMovement.Direction.x == 1 && transform.position != rightPosition.position)
         {
             transform.position = rightPosition.position;

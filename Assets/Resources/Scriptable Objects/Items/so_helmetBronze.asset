@@ -19,7 +19,8 @@ MonoBehaviour:
   itemName: Capacete de Bronze
   itemIcon: {fileID: 2857183015838398721, guid: 955b77d6192512446a19ea4daa010f8f,
     type: 3}
-  itemDescription: Pertence a um guerreiro de uma terra distante
+  itemDescription: Pertenceu a um guerreiro de uma terra distante. Aumenta +2 de
+    destreza
   maxStack: 1
   currentStack: 0
   itemValue: 0

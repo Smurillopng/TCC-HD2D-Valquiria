@@ -2,6 +2,7 @@ using System.Collections;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Manages the dialogue system.
@@ -17,6 +18,9 @@ public class DialogueManager : MonoBehaviour
     [TitleGroup("Dialogue Manager Settings", Alignment = TitleAlignments.Centered)]
     [SerializeField, Required, Tooltip("Dialogue box that will be displayed on screen.")]
     private GameObject dialogueBox;
+
+    [SerializeField, Required, Tooltip("Dialogue image that will be displayed on screen.")]
+    private GameObject dialogueImage;
 
     [SerializeField, Required, Tooltip("Text that will display the name of the character speaking.")]
     private TextMeshProUGUI speakerName;
@@ -84,6 +88,24 @@ public class DialogueManager : MonoBehaviour
             DisplayDialogue();
         }
     }
+    private void AdvanceTip()
+    {
+        if (dialogueText.text != CurrentDialogueData.DialogueLines[_currentLine].Text)
+        {
+            StopAllCoroutines();
+            dialogueText.text = CurrentDialogueData.DialogueLines[_currentLine].Text;
+        }
+        else
+        {
+            _currentLine++;
+            if (_currentLine >= CurrentDialogueData.DialogueLines.Length)
+            {
+                EndTip();
+                return;
+            }
+            DisplayDialogue();
+        }
+    }
     /// <summary>Starts a new dialogue.</summary>
     /// <param name="dialogueData">The data for the dialogue to start.</param>
     /// <remarks>If the dialogue box is not active, it will be activated. If the dialogue data is different from the current dialogue data, the current line will be set to 0 and the dialogue will be displayed. Otherwise, the dialogue will be advanced.</remarks>
@@ -99,6 +121,18 @@ public class DialogueManager : MonoBehaviour
         }
         else AdvanceDialogue();
     }
+    public void StartTip(DialogueData dialogueData)
+    {
+        if (!dialogueBox.activeSelf)
+            dialogueBox.SetActive(true);
+        if (currentDialogueData != dialogueData)
+        {
+            CurrentDialogueData = dialogueData;
+            _currentLine = 0;
+            DisplayDialogue();
+        }
+        else AdvanceTip();
+    }
     /// <summary>Ends the current dialogue by clearing the speaker name and dialogue text, setting the current dialogue data to null, and hiding the dialogue box.</summary>
     public void EndDialogue()
     {
@@ -106,6 +140,26 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = string.Empty;
         currentDialogueData = null;
         dialogueBox.SetActive(false);
+    }
+    public void EndTip()
+    {
+        speakerName.text = string.Empty;
+        dialogueText.text = string.Empty;
+        currentDialogueData = null;
+        dialogueBox.SetActive(false);
+        HideImage();
+    }
+
+    public void ShowImage(Sprite sprite)
+    {
+        dialogueImage.SetActive(true);
+        dialogueImage.GetComponent<Image>().sprite = sprite;
+    }
+
+    public void HideImage()
+    {
+        dialogueImage.SetActive(false);
+        dialogueImage.GetComponent<Image>().sprite = null;
     }
 
     public void TutorialDialoguePlayer()

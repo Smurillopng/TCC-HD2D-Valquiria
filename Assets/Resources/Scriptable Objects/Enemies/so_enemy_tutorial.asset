@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 36bc8c0e04964c541bf618b6dc1fd986, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -34,7 +35,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
       Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -59,11 +72,11 @@ MonoBehaviour:
   unitSprite: {fileID: 7987107396893427850, guid: fd0c50c37af59a34e9b9306cc76267fe,
     type: 3}
   level: 1
-  experienceDrop: 2
+  experienceDrop: 1
   experience: 0
   attackAnimation: {fileID: 11400000, guid: 5ae97508ff10eda49ac2f274eb3a556d, type: 2}
-  maxHp: 99999
-  currentHp: 99999
+  maxHp: 200
+  currentHp: 200
   maxTp: 100
   currentTp: 0
   attack: 0

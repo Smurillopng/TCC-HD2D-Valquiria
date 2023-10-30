@@ -16,12 +16,12 @@ MonoBehaviour:
   itemID: 0
   slotType: 3
   attackType: 2
-  itemName: "Arco do ca\xE7ador"
+  itemName: "Arco do ca\xE7ador lend\xE1rio"
   itemIcon: {fileID: 2026126408643383960, guid: c54764a8d971e7244a937980be694703,
     type: 3}
-  itemDescription: "Um arco de ca\xE7a para arqueiros mais experientes. Aumenta +6
-    de ataque"
+  itemDescription: "Um arco capaz de abater criaturas mitol\xF3gicas de outros mundos.
+    Aumenta +20 de ataque"
   maxStack: 1
   currentStack: 0
   itemValue: 0
-  statusValue: 6
+  statusValue: 20

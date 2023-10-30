@@ -19,9 +19,9 @@ MonoBehaviour:
   itemName: "Runa de geb\u014D"
   itemIcon: {fileID: -2428243343789234284, guid: 052f91fea041a70469fbeb63b5d7f788,
     type: 3}
-  itemDescription: "A runa geb\u014D significa presente quando equipada aumentara
-    sua sorte"
+  itemDescription: "A runa geb\u014D significa presente, logo voc\xEA ganha +4 de
+    sorte quando ela \xE9 equipada."
   maxStack: 1
   currentStack: 0
   itemValue: 0
-  statusValue: 2
+  statusValue: 4

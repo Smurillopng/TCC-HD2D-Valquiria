@@ -16,7 +16,7 @@ MonoBehaviour:
   specialType: 3
   specialAilment: 4
   turnsToLast: 1
-  specialCost: 3
-  specialDamage: 0
+  specialCost: 30
+  specialDamage: 10
   specialHeal: 0
-  specialDescription: "Ap\xF3s ser atingido por esse golpe seu inimigo fica incapacitado"
+  specialDescription: "Ap\xF3s ser atingido por esse golpe seu inimigo fica incapacitado."

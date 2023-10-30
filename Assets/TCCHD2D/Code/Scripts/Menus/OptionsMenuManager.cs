@@ -45,7 +45,7 @@ public class OptionsMenuManager : MonoBehaviour
     [BoxGroup("Graphics Settings")]
     [SerializeField]
     private TMP_Dropdown screenDropdown;
-    
+
     [BoxGroup("Graphics Settings")]
     [SerializeField]
     private TMP_Dropdown fpsDropdown;

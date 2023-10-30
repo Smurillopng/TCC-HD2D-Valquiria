@@ -39,7 +39,7 @@ MonoBehaviour:
       Data: 2
     - Name: Experience
       Entry: 3
-      Data: 5
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -51,7 +51,7 @@ MonoBehaviour:
       Data: 3
     - Name: Experience
       Entry: 3
-      Data: 12
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -63,7 +63,7 @@ MonoBehaviour:
       Data: 4
     - Name: Experience
       Entry: 3
-      Data: 20
+      Data: 26
     - Name: 
       Entry: 8
       Data: 
@@ -75,7 +75,7 @@ MonoBehaviour:
       Data: 5
     - Name: Experience
       Entry: 3
-      Data: 29
+      Data: 35
     - Name: 
       Entry: 8
       Data: 
@@ -87,7 +87,7 @@ MonoBehaviour:
       Data: 6
     - Name: Experience
       Entry: 3
-      Data: 39
+      Data: 40
     - Name: 
       Entry: 8
       Data: 
@@ -99,7 +99,7 @@ MonoBehaviour:
       Data: 7
     - Name: Experience
       Entry: 3
-      Data: 50
+      Data: 58
     - Name: 
       Entry: 8
       Data: 
@@ -111,7 +111,7 @@ MonoBehaviour:
       Data: 8
     - Name: Experience
       Entry: 3
-      Data: 62
+      Data: 70
     - Name: 
       Entry: 8
       Data: 
@@ -123,7 +123,7 @@ MonoBehaviour:
       Data: 9
     - Name: Experience
       Entry: 3
-      Data: 75
+      Data: 82
     - Name: 
       Entry: 8
       Data: 
@@ -135,7 +135,7 @@ MonoBehaviour:
       Data: 10
     - Name: Experience
       Entry: 3
-      Data: 89
+      Data: 94
     - Name: 
       Entry: 8
       Data: 
@@ -147,7 +147,7 @@ MonoBehaviour:
       Data: 11
     - Name: Experience
       Entry: 3
-      Data: 104
+      Data: 105
     - Name: 
       Entry: 8
       Data: 

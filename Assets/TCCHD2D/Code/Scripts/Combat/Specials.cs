@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Timeline;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// This class represents a special action.
@@ -154,8 +155,15 @@ public class Specials : MonoBehaviour
             var attackDamageCalculated = _player.Unit.Attack;
             if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
                 attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+            var randomFactorDam = Random.Range(0.85f, 1f);
+            var math = ((_player.Unit.Level * 1) + 2) / 5 + randomFactorDam;
+            var randomIncDec = Mathf.RoundToInt(Random.Range(-3, 4));
+            var randomBool = Random.Range(0, 2);
+            randomIncDec = randomBool == 0 ? randomIncDec : -randomIncDec;
+            var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated + math + randomIncDec);
+
             SetBindings(_player.BasicAttack);
-            ExecuteLogic(ailmentType, cost, specialAction, _enemyAilments, attackDamageCalculated);
+            ExecuteLogic(ailmentType, cost, specialAction, _enemyAilments, calculatedDamage);
         }
         else
         {
@@ -220,8 +228,14 @@ public class Specials : MonoBehaviour
             var attackDamageCalculated = _player.Unit.Attack + damageAmount;
             if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
                 attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+            var randomFactorDam = Random.Range(0.85f, 1f);
+            var math = ((_player.Unit.Level * 1) + 2) / 5 + randomFactorDam;
+            var randomIncDec = Mathf.RoundToInt(Random.Range(-3, 4));
+            var randomBool = Random.Range(0, 2);
+            randomIncDec = randomBool == 0 ? randomIncDec : -randomIncDec;
+            var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated + math + randomIncDec);
             SetBindings(_player.BasicAttack);
-            ExecuteLogic(cost, attackDamageCalculated);
+            ExecuteLogic(cost, calculatedDamage);
         }
         else
         {

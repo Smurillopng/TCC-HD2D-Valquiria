@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 0
   itemID: 2
-  itemName: "Po\xE7\xE3o de TP"
+  itemName: "Po\xE7\xE3o de TP grande"
   itemIcon: {fileID: -3520770975769160378, guid: 987a3ee179b7727418f7ea496d9e5d99,
     type: 3}
   effectType: 2
   vfx: {fileID: 0}
-  itemDescription: "Essa po\xE7\xE3o grande revigorante te da mais energia para combater
-    inimigos. Recupera +30 de TP"
+  itemDescription: "Essa po\xE7\xE3o grande e revigorante te d\xE1 mais energia para
+    combater inimigos. Recupera +40 de TP"
   maxStack: 99
   currentStack: 0
   itemValue: 10
-  effectValue: 30
+  effectValue: 40

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -49,6 +50,15 @@ public class UnitController : MonoBehaviour
     [FoldoutGroup("Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's run action.")]
     private TimelineAsset run;
+    [FoldoutGroup("Vfx's")]
+    [SerializeField]
+    private VisualEffect hitVfx;
+    [FoldoutGroup("Vfx's")]
+    [SerializeField]
+    private VisualEffect swordAttackVfx;
+    [FoldoutGroup("Vfx's")]
+    [SerializeField]
+    private VisualEffect hammerAttackVfx;
 
     [FoldoutGroup("Unit Floating Numbers")]
     [SerializeField, Tooltip("The animator that controls the damage text animation.")]
@@ -85,6 +95,7 @@ public class UnitController : MonoBehaviour
     public TimelineAsset BasicRangedAttack => basicRangedAttack;
     public TimelineAsset UseItem => useItem;
     public TimelineAsset Run => run;
+    public VisualEffect HitVfx => hitVfx;
     public int Charges
     {
         get => charges;
@@ -104,6 +115,7 @@ public class UnitController : MonoBehaviour
     {
         if (_playerCombatHUD == null) _playerCombatHUD = FindObjectOfType<PlayerCombatHUD>();
         if (_sceneTransitioner == null) _sceneTransitioner = FindObjectOfType<SceneTransitioner>();
+        TurnManager.onDeath += SetDead;
         if (!unit.IsPlayer)
         {
             unit.IsDead = false;
@@ -246,13 +258,16 @@ public class UnitController : MonoBehaviour
 
         var randomFactorDam = Random.Range(0.85f, 1f);
         var math = ((unit.Level * 1) + 2) / 5 + randomFactorDam;
-        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated + math);
+        var randomIncDec = Mathf.RoundToInt(Random.Range(-3, 4));
+        var randomBool = Random.Range(0, 2);
+        if (!_criticalHit) randomIncDec = randomBool == 0 ? randomIncDec : -randomIncDec;
+        var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated + math + randomIncDec);
         if (_criticalHit)
         {
             math = ((unit.Level * 2) + 2) / 5 + randomFactorDam;
             if (math < 1.5) math = 1.5f;
             if (math > 2) math = 2;
-            calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * math);
+            calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * math + randomIncDec);
             StartCoroutine(CritNumbers(target));
             PlayerCombatHUD.CombatTextEvent.Invoke($"Acerto <color=red>Crítico!</color>", 3f);
         }
@@ -276,6 +291,28 @@ public class UnitController : MonoBehaviour
                         break;
                     case "Signals":
                         director.SetGenericBinding(track, enemyObject.GetComponentInChildren<SignalReceiver>());
+                        break;
+                    case "AttackVfx":
+                        if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
+                            switch (InventoryManager.Instance.EquipmentSlots[3].equipItem.AttackType)
+                            {
+                                case AttackType.Blunt:
+                                    director.SetGenericBinding(track, hammerAttackVfx);
+                                    break;
+                                case AttackType.Cut:
+                                    director.SetGenericBinding(track, swordAttackVfx);
+                                    break;
+                                default:
+                                    director.SetGenericBinding(track, swordAttackVfx);
+                                    break;
+                            }
+                        else
+                        {
+                            director.SetGenericBinding(track, swordAttackVfx);
+                        }
+                        break;
+                    case "HitVfx":
+                        director.SetGenericBinding(track, enemyObject.GetComponent<UnitController>().HitVfx);
                         break;
                 }
             }
@@ -374,6 +411,10 @@ public class UnitController : MonoBehaviour
     {
         StartCoroutine(Dissolve());
     }
+    private void SetDead()
+    {
+        unit.IsDead = false;
+    }
     private IEnumerator Dissolve()
     {
         var renderer = GetComponent<SpriteRenderer>();
@@ -428,24 +469,35 @@ public class UnitController : MonoBehaviour
     /// If the player successfully escapes, the game will load the last scene visited and update the game save file with the name of the current scene.
     /// If the player fails to escape, the game will display a message indicating the failure.
     /// </remarks>
-    public void RunAction()
+    public void RunAction(UnitController target)
     {
-        var gotAway = RunLogic();
-
-        if (gotAway)
+        if (target.Unit.Attack.Equals(0)) // tutorial
         {
+            if (unit.Experience.Equals(0)) unit.Experience = 1;
             var reader = QuickSaveReader.Create("GameInfo");
             _sceneTransitioner.StartCoroutine(_sceneTransitioner.TransitionTo(reader.Read<string>("LastScene")));
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>", 5f);
+            PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino", 5f);
             PlayerCombatHUD.TakenAction.Invoke();
-            _playerCombatHUD.playerCharges.fillAmount -= 0.25f;
             PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         }
         else
         {
-            PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>", 4f);
-            PlayerCombatHUD.TakenAction.Invoke();
-            PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+            var gotAway = RunLogic();
+
+            if (gotAway)
+            {
+                var reader = QuickSaveReader.Create("GameInfo");
+                _sceneTransitioner.StartCoroutine(_sceneTransitioner.TransitionTo(reader.Read<string>("LastScene")));
+                PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=green>fugiu com sucesso</color>", 5f);
+                PlayerCombatHUD.TakenAction.Invoke();
+                PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+            }
+            else
+            {
+                PlayerCombatHUD.CombatTextEvent.Invoke($"Você <color=red>falhou em fugir</color>", 4f);
+                PlayerCombatHUD.TakenAction.Invoke();
+                PlayerCombatHUD.ForceDisableButtons.Invoke(true);
+            }
         }
     }
     /// <summary>Runs a logic that involves a random chance and a unit's luck.</summary>
@@ -457,7 +509,7 @@ public class UnitController : MonoBehaviour
         randomChance = randomChance > 50 ? 1 : 0;
         if (randomChance == 1)
         {
-            //TODO: play run animation
+            if (run != null) Director.Play(run);
             return true;
         }
         return false;
@@ -471,15 +523,10 @@ public class UnitController : MonoBehaviour
         // AI logic for selecting an action goes here
         AttackLogic(target);
     }
-    // tutorial
-    public void RunActionTutorial()
-    {
-        var reader = QuickSaveReader.Create("GameInfo");
-        SceneManager.LoadScene(reader.Read<string>("LastScene"));
-        PlayerCombatHUD.CombatTextEvent.Invoke($"Você terminou seu treino", 5f);
-        PlayerCombatHUD.TakenAction.Invoke();
-        unit.Experience = 1;
-    }
 
+    private void OnDisable()
+    {
+        TurnManager.onDeath -= SetDead;
+    }
     #endregion
 }

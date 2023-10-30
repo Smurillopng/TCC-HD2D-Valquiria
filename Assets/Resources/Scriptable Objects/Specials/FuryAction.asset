@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   specialName: "F\xFAria"
   specialType: 1
-  specialCost: 50
-  specialDamage: 10
+  specialAilment: 0
+  turnsToLast: 0
+  specialCost: 30
+  specialDamage: 12
   specialHeal: 0
-  specialDescription: Um ataque poderoso e devastador
+  specialDescription: Um ataque poderoso e devastador.

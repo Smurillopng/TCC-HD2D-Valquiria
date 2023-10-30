@@ -50,8 +50,22 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: 3323964807741867811, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
+    - {fileID: 5857909734611743426, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
+    - {fileID: -5608486974825894786, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
+    - {fileID: -3544896551838721698, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
+    - {fileID: -5849096844334442221, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
+    - {fileID: 103469518308593163, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
+    - {fileID: 103469518308593163, guid: 41260d4750065984b8c24dc5394a17fb, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -76,4 +90,12 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.1
+    functionName: CheckStep
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 7ea6c7abeaac4d69ae07cf7288e06790,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

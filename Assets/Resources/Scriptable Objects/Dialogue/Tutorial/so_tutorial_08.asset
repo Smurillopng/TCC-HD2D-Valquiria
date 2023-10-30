@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Bjorn
   dialogueLines:
-  - text: "Voc\xEA realmente ficou mais forte"
+  - text: "Voc\xEA realmente ficou mais forte..."
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

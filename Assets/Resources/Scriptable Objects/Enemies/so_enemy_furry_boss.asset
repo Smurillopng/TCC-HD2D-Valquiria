@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d458961d4a2d44cca4f0fcac8a363c99, type: 3}
+  m_Name: so_enemy_furry_boss
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: b53847a8553a60d4eabc39a3ea91f60b, type: 2}
+    - {fileID: 11400000, guid: 2eec66ab1b3750946b78af1b1f39617e, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: itemDrops
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[IItem, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[IItem, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: statsTable
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[Unit+StatsTable, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  type: 1
+  unitName: Furry das Terras distantes
+  unitSprite: {fileID: -7708084762740616598, guid: 30cd53cfddfac8a44b717c168269d7bb,
+    type: 3}
+  level: 1
+  experienceDrop: 200
+  experience: 0
+  attackAnimation: {fileID: 11400000, guid: 3b7fb8247b3fd33459451a32790190d6, type: 2}
+  maxHp: 200
+  currentHp: 200
+  maxTp: 100
+  currentTp: 0
+  attack: 14
+  defence: 8
+  speed: 10
+  luck: 50
+  dexterity: 13
+  attributesPoints: 0
+  isPlayer: 0
+  isDangerous: 1
+  resetOnExit: 0
+  isDead: 0
+  hasTakenTurn: 0

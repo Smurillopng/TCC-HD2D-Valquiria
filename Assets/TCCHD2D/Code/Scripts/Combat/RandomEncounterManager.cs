@@ -206,7 +206,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         save.Commit();
 
         _tutorial.director.Pause();
-        StartCoroutine(_transitioner.TransitionTo("scn_combat_tutorial"));
+        StartCoroutine(_transitioner.TransitionTo(combatScene));
         SceneManager.sceneLoaded += SetScene;
     }
 

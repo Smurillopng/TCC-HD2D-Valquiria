@@ -7,6 +7,7 @@ public class MusicPlayer : MonoBehaviour
 {
     private void Start()
     {
+        OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

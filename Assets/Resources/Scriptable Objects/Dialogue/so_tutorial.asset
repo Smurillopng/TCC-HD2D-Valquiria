@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Dev Infiltrado
   dialogueLines:
-  - text: "Ol\xE1. Bem-vindo ao playteste do nosso jogo\nEstou aqui para te ensinar
+  - text: "Ol\xE1. Bem-vindo ao playtest do nosso jogo.\nEstou aqui para te ensinar
       os controles do jogo."
   - text: "Use W A S D para se movimentar, mas se voc\xEA chegou at\xE9 aqui voc\xEA
       provavelmente j\xE1 sabia disso."
@@ -22,9 +22,11 @@ MonoBehaviour:
   - text: "Aperte TAB para abrir e fechar seu invent\xE1rio."
   - text: "Aperte E perto de objetos como ba\xFAs e barris e voc\xEA talvez encontre
       itens."
-  - text: "O combate \xE9 completamente \"Point and Click\" ent\xE3o voc\xEA usa
+  - text: "O combate \xE9 completamente \"Point and Click\", ent\xE3o voc\xEA usa
       apenas o mouse para apertar os bot\xF5es."
-  - text: "Deixei um presente no b\xE1u l\xF3go a esquerda para voc\xEA come\xE7ar
-      bem essa aventura."
-  - text: "Boa sorte! Explore o mapa e batalhe com v\xE1rios inimigos :D"
-  isNpcDialogue: 1
+  - text: "Deixei um presente no b\xE1u logo a esquerda para voc\xEA come\xE7ar bem
+      essa aventura."
+  - text: "Boa sorte! Explore o mapa e batalhe com v\xE1rios inimigos!"
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 0

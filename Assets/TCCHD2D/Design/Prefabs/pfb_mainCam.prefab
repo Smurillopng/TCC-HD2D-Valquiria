@@ -425,6 +425,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 5846691457573055879}
+  dialogueImageBorder: {fileID: 2673452785155740374}
+  dialogueImage: {fileID: 3510780402678153778}
   speakerName: {fileID: 5846691456293653838}
   dialogueText: {fileID: 5846691458180708496}
   charDelay: 0.01
@@ -767,6 +769,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52c278208cfb3754daa81fd8228b8b0c, type: 3}
+--- !u!1 &2673452785155740374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7489997780364906711, guid: 52c278208cfb3754daa81fd8228b8b0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4822179172663280129}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3510780402678153778 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8237961422809137203, guid: 52c278208cfb3754daa81fd8228b8b0c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4822179172663280129}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5846691456293653838 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1425473461648625487, guid: 52c278208cfb3754daa81fd8228b8b0c,

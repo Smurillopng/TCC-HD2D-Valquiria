@@ -7,19 +7,35 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Equipment Item", menuName = "RPG/New Equipment Item", order = 0)]
 public class Equipment : ScriptableObject, IItem
 {
-    [SerializeField] private ItemTyping itemType;
-    [SerializeField, HideInInspector] private int itemID; // TODO: Implementar caso seja útil
-    [SerializeField] private EquipmentSlotType slotType;
+    [BoxGroup("!", showLabel: false)]
+    [SerializeField, InfoBox("File name to be assign on creation")] private string filename;
+    [BoxGroup("Type", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("green")] private ItemTyping itemType;
+    [BoxGroup("Type", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("green")] private EquipmentSlotType slotType;
     [ShowIf("slotType", EquipmentSlotType.Weapon)]
-    [SerializeField] private AttackType attackType;
-    [SerializeField] private string itemName;
-    [SerializeField, PreviewField] private Sprite itemIcon;
-    [SerializeField, TextArea] private string itemDescription;
-    [SerializeField] private int maxStack;
-    [SerializeField] private int currentStack;
+    [BoxGroup("Info", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("cyan")] private AttackType attackType;
+    [BoxGroup("Info", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("cyan")] private string itemName;
+    [BoxGroup("Info", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("cyan"), PreviewField(32, ObjectFieldAlignment.Center, FilterMode = FilterMode.Point), HideLabel]  private Sprite itemIcon;
+    [BoxGroup("Info", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("cyan"), TextArea] private string itemDescription;
+    [BoxGroup("Values", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("yellow")] private int maxStack;
+    [BoxGroup("Values", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("yellow")] private int currentStack;
+    [BoxGroup("Values", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("yellow")] private int statusValue;
     [SerializeField, HideInInspector] private int itemValue; // TODO: Implementar quando der para comprar e vender
-    [SerializeField] private int statusValue;
+    [SerializeField, HideInInspector] private int itemID; // TODO: Implementar caso seja útil
 
+    public string Filename
+    {
+        get => filename;
+        set => filename = value;
+    }
     public ItemTyping ItemType
     {
         get => itemType;
@@ -72,4 +88,9 @@ public class Equipment : ScriptableObject, IItem
     }
 
     public int StatusValue => statusValue;
+    
+    public void OnEnable()
+    {
+        filename = name;
+    }
 }

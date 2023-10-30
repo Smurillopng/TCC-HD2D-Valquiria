@@ -3,6 +3,7 @@
 
 using System;
 using CI.QuickSave;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
@@ -11,18 +12,35 @@ using UnityEngine.VFX;
 [CreateAssetMenu(fileName = "New Consumable Item", menuName = "RPG/New Consumable Item", order = 0)]
 public class Consumable : ScriptableObject, IItem
 {
-    [SerializeField] private ItemTyping itemType;
+    [BoxGroup("!", showLabel: false)]
+    [SerializeField, InfoBox("File name to be assign on creation")] private string filename;
+    [BoxGroup("Type", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("green")] private ItemTyping itemType;
+    [BoxGroup("Type", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("green")] private ConsumableTypes effectType;
+    [BoxGroup("Info", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("cyan")] private string itemName;
+    [BoxGroup("Info", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("cyan"), PreviewField(32, ObjectFieldAlignment.Center, FilterMode = FilterMode.Point), HideLabel] 
+    private Sprite itemIcon;
+    [BoxGroup("Info", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("cyan"), TextArea] private string itemDescription;
+    [BoxGroup("Info", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("magenta")] private VisualEffectAsset vfx;
+    [BoxGroup("Values", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("yellow")] private int maxStack;
+    [BoxGroup("Values", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("yellow")] private int currentStack;
+    [BoxGroup("Values", centerLabel: true, showLabel: true)]
+    [SerializeField, GUIColor("yellow")] private int effectValue;
     [SerializeField, HideInInspector] private int itemID; // TODO: caso seja necessário
-    [SerializeField] private string itemName;
-    [SerializeField] private Sprite itemIcon;
-    [SerializeField] private ConsumableTypes effectType;
-    [SerializeField] private VisualEffectAsset vfx;
-    [SerializeField] private string itemDescription;
-    [SerializeField] private int maxStack;
-    [SerializeField] private int currentStack;
     [SerializeField, HideInInspector] private int itemValue; // TODO: para quando der para vender
-    [SerializeField] private int effectValue;
-
+    
+    public string Filename
+    {
+        get => filename;
+        set => filename = value;
+    }
     public ItemTyping ItemType
     {
         get => itemType;
@@ -80,6 +98,11 @@ public class Consumable : ScriptableObject, IItem
     {
         get => effectValue;
         set => effectValue = value;
+    }
+    
+    public void OnEnable()
+    {
+        filename = name;
     }
 
     public void Use()

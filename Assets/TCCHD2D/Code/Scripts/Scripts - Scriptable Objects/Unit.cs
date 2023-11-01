@@ -10,90 +10,98 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using System.Linq;
 
-[CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit")]
+[CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit"), InlineEditor]
 public class Unit : SerializedScriptableObject
 {
-    [TitleGroup("Unit Type", Alignment = TitleAlignments.Centered)]
+    [BoxGroup("!", showLabel: false)]
+    [SerializeField, InfoBox("File name to be assign on creation")] private string filename;
+    
+    [TitleGroup("Unit Type", Alignment = TitleAlignments.Centered), GUIColor("green")]
     [SerializeField] private UnitType type;
 
-    [TitleGroup("Appearance", Alignment = TitleAlignments.Centered)]
+    [TitleGroup("Appearance", Alignment = TitleAlignments.Centered), GUIColor("cyan")]
     [SerializeField]
     private string unitName;
 
-    [SerializeField, PreviewField]
+    [SerializeField, HideLabel, PreviewField(128, ObjectFieldAlignment.Center, FilterMode = FilterMode.Point), GUIColor("cyan")]
     private Sprite unitSprite;
 
     [TitleGroup("Stats", Alignment = TitleAlignments.Centered)]
-    [SerializeField, MinValue(1), ShowIf("type", UnitType.Player)]
+    [SerializeField, MinValue(1), ShowIf("type", UnitType.Player), GUIColor("yellow")]
     private int level = 1;
 
     [TitleGroup("Stats", Alignment = TitleAlignments.Centered)]
-    [SerializeField, ShowIf("type", UnitType.Enemy)]
+    [SerializeField, ShowIf("type", UnitType.Enemy), GUIColor("yellow")]
     private Dictionary<IItem, int> itemDrops;
 
-    [SerializeField, MinValue(0), ShowIf("type", UnitType.Enemy)]
+    [SerializeField, MinValue(0), ShowIf("type", UnitType.Enemy), GUIColor("yellow")]
     private int experienceDrop;
 
-    [SerializeField, MinValue(0), ShowIf("type", UnitType.Player)]
+    [SerializeField, MinValue(0), ShowIf("type", UnitType.Player), GUIColor("yellow")]
     private int experience;
 
-    [SerializeField, ShowIf("type", UnitType.Player)]
+    [SerializeField, ShowIf("type", UnitType.Player), GUIColor("yellow")]
     private readonly List<StatsTable> statsTable = new();
 
-    [SerializeField, ShowIf("type", UnitType.Enemy)]
+    [SerializeField, ShowIf("type", UnitType.Enemy), GUIColor("yellow")]
     private TimelineAsset attackAnimation;
 
-    [SerializeField, MinValue(1)]
+    [SerializeField, MinValue(1), GUIColor("yellow")]
     private int maxHp = 1;
 
-    [SerializeField, MinValue(0), ProgressBar(0, "MaxHp", r: 0, g: 1, b: 0)]
+    [SerializeField, MinValue(0), ProgressBar(0, "MaxHp", r: 0, g: 1, b: 0), GUIColor("yellow")]
     private int currentHp;
 
-    [SerializeField, MinValue(1), ShowIf("type", UnitType.Player)]
+    [SerializeField, MinValue(1), ShowIf("type", UnitType.Player), GUIColor("yellow")]
     private int maxTp = 100;
 
-    [SerializeField, MinValue(0), MaxValue(100), ProgressBar(0, "MaxTp", r: 0, g: 0.35f, b: 0.75f), ShowIf("type", UnitType.Player)]
+    [SerializeField, MinValue(0), MaxValue(100), ProgressBar(0, "MaxTp", r: 0, g: 0.35f, b: 0.75f), ShowIf("type", UnitType.Player), GUIColor("yellow")]
     private int currentTp;
 
-    [SerializeField, MinValue(1)]
+    [SerializeField, MinValue(1), GUIColor("yellow")]
     private int attack = 1;
 
-    [SerializeField, MinValue(1)]
+    [SerializeField, MinValue(1), GUIColor("yellow")]
     private int defence = 1;
 
-    [SerializeField, MinValue(1)]
+    [SerializeField, MinValue(1), GUIColor("yellow")]
     private int speed = 1;
 
-    [SerializeField, MinValue(1)]
+    [SerializeField, MinValue(1), GUIColor("yellow")]
     private int luck = 1;
 
-    [SerializeField, MinValue(1)]
+    [SerializeField, MinValue(1), GUIColor("yellow")]
     private int dexterity = 1;
 
-    [SerializeField, ShowIf("type", UnitType.Player)]
+    [SerializeField, ShowIf("type", UnitType.Player), GUIColor("yellow")]
     private int attributesPoints;
 
-    [TitleGroup("Conditions", Alignment = TitleAlignments.Centered)]
+    [TitleGroup("Conditions", Alignment = TitleAlignments.Centered), GUIColor("yellow")]
     [SerializeField]
     private bool isPlayer;
 
-    [TitleGroup("Conditions", Alignment = TitleAlignments.Centered)]
+    [TitleGroup("Conditions", Alignment = TitleAlignments.Centered), GUIColor("yellow")]
     [SerializeField]
     private bool isDangerous;
 
-    [TitleGroup("Save Settings", Alignment = TitleAlignments.Centered)]
+    [TitleGroup("Save Settings", Alignment = TitleAlignments.Centered), GUIColor("red")]
     [SerializeField]
     private bool resetOnExit;
 
-    [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
+    [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered), GUIColor("darkorange")]
     [SerializeField, ReadOnly]
     private bool isDead;
 
-    [SerializeField, ReadOnly]
+    [SerializeField, ReadOnly, GUIColor("darkorange")]
     private bool hasTakenTurn;
 
     public UnitType Type => type;
-    public string UnitName => unitName;
+    public string UnitName
+    {
+        get => unitName;
+        set => unitName = value;
+    }
+
     public Sprite UnitSprite => unitSprite;
     public int Level
     {
@@ -176,6 +184,7 @@ public class Unit : SerializedScriptableObject
         get => hasTakenTurn;
         set => hasTakenTurn = value;
     }
+    public string Filename => filename;
 
 #if UNITY_EDITOR
     protected void OnEnable()

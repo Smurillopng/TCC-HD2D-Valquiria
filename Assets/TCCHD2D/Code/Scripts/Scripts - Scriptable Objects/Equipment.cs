@@ -4,7 +4,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Equipment Item", menuName = "RPG/New Equipment Item", order = 0)]
+[CreateAssetMenu(fileName = "New Equipment Item", menuName = "RPG/New Equipment Item", order = 0), InlineEditor]
 public class Equipment : ScriptableObject, IItem
 {
     [BoxGroup("!", showLabel: false)]

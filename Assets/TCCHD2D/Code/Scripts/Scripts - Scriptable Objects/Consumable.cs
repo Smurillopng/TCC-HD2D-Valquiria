@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using UnityEngine.VFX;
 
-[CreateAssetMenu(fileName = "New Consumable Item", menuName = "RPG/New Consumable Item", order = 0)]
+[CreateAssetMenu(fileName = "New Consumable Item", menuName = "RPG/New Consumable Item", order = 0), InlineEditor]
 public class Consumable : ScriptableObject, IItem
 {
     [BoxGroup("!", showLabel: false)]

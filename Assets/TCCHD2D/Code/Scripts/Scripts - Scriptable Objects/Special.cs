@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Special", menuName = "RPG/New Special", order = 0)]
+[CreateAssetMenu(fileName = "New Special", menuName = "RPG/New Special", order = 0), InlineEditor]
 public class Special : ScriptableObject
 {
     public string specialName;

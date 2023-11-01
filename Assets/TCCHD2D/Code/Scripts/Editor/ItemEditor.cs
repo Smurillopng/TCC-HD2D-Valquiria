@@ -9,7 +9,7 @@ public class ItemEditor : OdinMenuEditorWindow
     private CreateNewItemConsumable _createNewItemConsumable;
     private CreateNewItemEquipment _createNewItemEquipment;
     
-    [MenuItem("Tools/Item Editor")]
+    [MenuItem("Tools/TCC/Item Editor")]
     private static void OpenWindow()
     {
         var window = GetWindow<ItemEditor>();

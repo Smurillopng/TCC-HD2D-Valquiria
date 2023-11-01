@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Dialogue", menuName = "RPG/New Dialogue")]
+[CreateAssetMenu(fileName = "New Dialogue", menuName = "RPG/New Dialogue"), InlineEditor]
 public class DialogueData : ScriptableObject
 {
     [SerializeField] private string characterName;

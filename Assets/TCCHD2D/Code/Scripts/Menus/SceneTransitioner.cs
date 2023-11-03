@@ -1,42 +1,68 @@
-﻿using System;
+﻿// Created by Sérgio Murillo da Costa Faria
+
+using System;
 using System.Collections;
 using CI.QuickSave;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using PrimeTween;
 using Sirenix.OdinInspector;
 using UnityEngine.UI;
 
+[HideMonoScript]
 public class SceneTransitioner : MonoBehaviour
 {
-    [SerializeField, Required, BoxGroup("Scene Related")]
+    #region === Variables ===============================================================
+    [FoldoutGroup("Scene Transitioner")]
+    [BoxGroup("Scene Transitioner/Scene Related")]
+    [SerializeField, Required, InlineEditor]
     private StringVariable previousScene;
-    [SerializeField, BoxGroup("Scene Related")]
+
+    [BoxGroup("Scene Transitioner/Scene Related")]
+    [SerializeField]
     private string goToScene;
-    [SerializeField, BoxGroup("Scene Related")]
+
+    [BoxGroup("Scene Transitioner/Scene Related")]
+    [SerializeField]
     private bool spawnStart, spawnEnd;
-    [SerializeField, BoxGroup("Transition Related")]
+
+    [BoxGroup("Scene Transitioner/Transition Related")]
+    [SerializeField]
     private RectTransform playerBar, minimap;
-    [SerializeField, BoxGroup("Transition Related")]
+
+    [BoxGroup("Scene Transitioner/Transition Related")]
+    [SerializeField, InlineEditor]
     private Material mat;
-    [SerializeField, BoxGroup("Transition Related")]
+
+    [BoxGroup("Scene Transitioner/Transition Related")]
+    [SerializeField]
     private Slider slider;
-    [SerializeField, BoxGroup("Transition Values")]
+
+    [BoxGroup("Scene Transitioner/Transition Related")]
+    [SerializeField]
     private float min, max, speedTransition, acelerationValue;
-    [SerializeField, BoxGroup("Transition Values")]
+
+    [BoxGroup("Scene Transitioner/Transition Related")]
+    [SerializeField]
     private float tweenTime = 1f;
 
-    [SerializeField, ReadOnly, BoxGroup("Debug")]
+    [BoxGroup("Scene Transitioner/Debug")]
+    [SerializeField, ReadOnly]
     private float current;
-    [SerializeField, ReadOnly, BoxGroup("Debug")]
+
+    [BoxGroup("Scene Transitioner/Debug")]
+    [SerializeField, ReadOnly]
     private PlayerMovement _pm;
-    [SerializeField, ReadOnly, BoxGroup("Debug")]
+
+    [BoxGroup("Scene Transitioner/Debug")]
+    [SerializeField, ReadOnly]
     private float _aceleration = 1f;
 
     public static bool currentlyTransitioning;
     private static readonly int CutoffHeight = Shader.PropertyToID("_Cutoff_Height");
+    #endregion ==========================================================================
 
+    #region === Unity Methods ===========================================================
     private void Awake()
     {
         if (playerBar != null)
@@ -122,7 +148,9 @@ public class SceneTransitioner : MonoBehaviour
             yield return null;
         }
     }
+    #endregion ==========================================================================
 
+    #region === Methods =================================================================
     private IEnumerator TransitionOut()
     {
         currentlyTransitioning = true;
@@ -242,4 +270,5 @@ public class SceneTransitioner : MonoBehaviour
         Tween.UIAnchoredPositionX(playerBar, 196.0001f, tweenTime, Ease.OutQuad);
         Tween.UIAnchoredPositionX(minimap, -180.0001f, tweenTime, Ease.OutQuad);
     }
+    #endregion ==========================================================================
 }

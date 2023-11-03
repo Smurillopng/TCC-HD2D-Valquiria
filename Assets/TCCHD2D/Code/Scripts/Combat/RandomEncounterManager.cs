@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿// Created by Sérgio Murillo da Costa Faria.
+
 using System.Collections.Generic;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
@@ -8,73 +9,57 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-/// <summary>
-/// This class manages the random enemy encounters for the player.
-/// </summary>
-/// <remarks>
-/// This class manages the random enemy encounters for the player. It is responsible for generating a random amount of steps to start encountering an enemy,
-/// calculating the minimum encounter chance, generating a random number to check if an enemy will be encountered, selecting a random enemy from a list of possible enemies,
-/// and loading the combat scene.
-/// </remarks>
 [HideMonoScript]
 public class RandomEncounterManager : SerializedMonoBehaviour
 {
     #region === Variables ===============================================================
-
-    [TitleGroup("Units", Alignment = TitleAlignments.Centered)]
+    [FoldoutGroup("Random Encounter Manager")]
+    [BoxGroup("Random Encounter Manager/Units")]
     [Tooltip("The player unit")]
     public Unit player;
 
+    [BoxGroup("Random Encounter Manager/Units")]
     [Tooltip("A list of possible enemies to encounter")]
     public List<Unit> enemies;
 
-    [TitleGroup("Rates", Alignment = TitleAlignments.Centered)]
-    [Range(0, 100)]
-    [Tooltip("The rate of encountering an enemy event called in the walking animation")]
+    [BoxGroup("Random Encounter Manager/Rates")]
+    [Range(0, 100), Tooltip("The rate of encountering an enemy event called in the walking animation")]
     public float areaEncounterRate;
 
-    [SerializeField]
-    [MinValue(1)]
-    [Tooltip("The minimum and maximum amount of steps to start encountering an enemy")]
+    [BoxGroup("Random Encounter Manager/Rates")]
+    [SerializeField, MinValue(1), Tooltip("The minimum and maximum amount of steps to start encountering an enemy")]
     private int minimumSteps, maximumSteps;
 
-    [TitleGroup("Transition", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [ValidateInput("ValidateScene", "The combat scene must exist in the build settings")]
-    [Tooltip("The name of the combat scene")]
+    [BoxGroup("Random Encounter Manager/Transition")]
+    [SerializeField, ValidateInput("ValidateScene", "The combat scene must exist in the build settings"), Tooltip("The name of the combat scene")]
     private string combatScene;
 
-    [SerializeField]
-    [Tooltip("The name of the combat scene")]
+    [BoxGroup("Random Encounter Manager/Transition")]
+    [SerializeField, Tooltip("The name of the combat scene")]
     private CombatScenarios combatScenario;
 
-    [SerializeField]
-    [Required]
-    [Tooltip("The volume to apply fade effect to")]
+    [BoxGroup("Random Encounter Manager/Transition")]
+    [SerializeField, Required, Tooltip("The volume to apply fade effect to")]
     private Volume volume;
 
-    [SerializeField]
-    [Tooltip("The duration of the fade-in effect")]
+    [BoxGroup("Random Encounter Manager/Transition")]
+    [SerializeField, Tooltip("The duration of the fade-in effect")]
     private float fadeTime;
 
-    [TitleGroup("Debug", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [ReadOnly]
-    [Tooltip("The minimum encounter chance in this area")]
+    [BoxGroup("Random Encounter Manager/Debug")]
+    [SerializeField, ReadOnly, Tooltip("The minimum encounter chance in this area")]
     private float minimumEncounterChance;
 
-    [SerializeField]
-    [ReadOnly]
-    [Tooltip("The random amount of steps to start encountering an enemy")]
+    [BoxGroup("Random Encounter Manager/Debug")]
+    [SerializeField, ReadOnly, Tooltip("The random amount of steps to start encountering an enemy")]
     private int randomSteps;
 
-    [SerializeField]
-    [ReadOnly]
-    [Tooltip("The current amount of steps the player has taken")]
+    [BoxGroup("Random Encounter Manager/Debug")]
+    [SerializeField, ReadOnly, Tooltip("The current amount of steps the player has taken")]
     private int currentSteps;
 
-    [SerializeField]
-    [Tooltip("Whether to show the encounter chance log in the console")]
+    [BoxGroup("Random Encounter Manager/Debug")]
+    [SerializeField, Tooltip("Whether to show the encounter chance log in the console")]
     private bool showEncounterLog;
 
     private Unit _selectedEnemy; // The encountered enemy
@@ -84,8 +69,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
     private bool _randomized; // Whether the random amount of steps was already generated
     private Tutorial _tutorial; // The Tutorial component of the player
     private SceneTransitioner _transitioner;
-
-    #endregion
+    #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
 
@@ -134,7 +118,7 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -232,13 +216,14 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         }
     }
 
+    [BoxGroup("Random Encounter Manager/Debug")]
     [Button]
     private void UpdateEncounterChance()
     {
         minimumEncounterChance = areaEncounterRate / 100f; // Calculate the minimum encounter chance
     }
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Validation Methods ======================================================
 
@@ -258,5 +243,5 @@ public class RandomEncounterManager : SerializedMonoBehaviour
         return false;
     }
 
-    #endregion
+    #endregion ==========================================================================
 }

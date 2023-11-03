@@ -1,82 +1,61 @@
+// Created by Sérgio Murillo da Costa Faria.
+
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// This class is responsible for calculating player position based on the <see cref="Movement"/> input
-/// </summary>
-/// <remarks>
-/// Created by Sérgio Murillo da Costa Faria on 19/02/2023.
-/// </remarks>
 [HideMonoScript]
 public class PlayerMovement : MonoBehaviour
 {
     #region === Variables ===============================================================
-
-    [TitleGroup("Input Variables", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Required]
-    [InlineEditor]
-    [Tooltip("Bool variable that tells if the player can move or not.")]
+    [FoldoutGroup("Player Movement")]
+    [BoxGroup("Player Movement/Input Variables", true)]
+    [SerializeField, Required, InlineEditor, Tooltip("Bool variable that tells if the player can move or not.")]
     private BoolVariable canMove;
 
-    [SerializeField]
-    [Required]
-    [InlineEditor]
-    [Tooltip("Bool variable that tells if the player is running or not.")]
+    [BoxGroup("Player Movement/Input Variables", true)]
+    [SerializeField, Required, InlineEditor, Tooltip("Bool variable that tells if the player is running or not.")]
     private BoolVariable isRunning;
 
-    [SerializeField]
-    [Required]
-    [InlineEditor]
-    [Tooltip("Vector2 variable that tells the player's movement direction values.")]
+    [BoxGroup("Player Movement/Input Variables", true)]
+    [SerializeField, Required, InlineEditor, Tooltip("Vector2 variable that tells the player's movement direction values.")]
     private Vector2Variable direction;
 
-    [TitleGroup("Movement Variables", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [MinValue(0)]
-    [Tooltip("Player's movement speed.")]
+    [BoxGroup("Player Movement/Movement Variables", true)]
+    [SerializeField, MinValue(0), Tooltip("Player's movement speed.")]
     private float speed;
 
-    [SerializeField]
-    [MinValue(1)]
-    [Tooltip("Player's movement speed multiplier when running.")]
+    [BoxGroup("Player Movement/Movement Variables", true)]
+    [SerializeField, MinValue(1), Tooltip("Player's movement speed multiplier when running.")]
     private float runSpeedMultiplier = 1;
 
-    [TitleGroup("Detection", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Tooltip("The layer that represents the ground.")]
+    [BoxGroup("Player Movement/Detection", true)]
+    [SerializeField, Tooltip("The layer that represents the ground.")]
     private LayerMask groundLayer;
 
-    [SerializeField]
-    [Range(0, 1)]
-    [Tooltip("The distance of the raycast that detects the horizontal and forward collisions.")]
+    [BoxGroup("Player Movement/Detection", true)]
+    [SerializeField, Range(0, 1), Tooltip("The distance of the raycast that detects the horizontal and forward collisions.")]
     private float rayDistance;
 
-    [SerializeField]
-    [Range(0, 1)]
-    [Tooltip("The distance of the raycast that detects the diagonal collisions.")]
+    [BoxGroup("Player Movement/Detection", true)]
+    [SerializeField, Range(0, 1), Tooltip("The distance of the raycast that detects the diagonal collisions.")]
     private float rayDistanceDiagonal;
 
-    [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Required]
-    [Tooltip("Animator component of the player.")]
+    [BoxGroup("Player Movement/Debug", true)]
+    [SerializeField, Required, Tooltip("Animator component of the player.")]
     private Animator animator;
 
-    [SerializeField]
-    [Tooltip("The spawn controller of the game.")]
+    [BoxGroup("Player Movement/Debug", true)]
+    [SerializeField, Tooltip("The spawn controller of the game.")]
     private SpawnController spawnController;
 
-    [SerializeField]
-    [ReadOnly]
-    [Tooltip("Rigidbody component of the player. If it doesn't exist, it will be added automatically.")]
+    [BoxGroup("Player Movement/Debug", true)]
+    [SerializeField, ReadOnly, Tooltip("Rigidbody component of the player. If it doesn't exist, it will be added automatically.")]
     private Rigidbody rigidBody;
 
-    [SerializeField]
-    [ReadOnly]
-    [Tooltip("The value that will be used to calculate the player's movement.")]
+    [BoxGroup("Player Movement/Debug", true)]
+    [SerializeField, ReadOnly, Tooltip("The value that will be used to calculate the player's movement.")]
     private Vector3 movementValue;
 
     public BoolVariable CanMove => canMove;
@@ -105,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         _dirForward = Vector3.forward,
         _dirBack = Vector3.back;
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
 
@@ -215,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawRay(position, new Vector3(Vector3.back.x, -1, Vector3.back.z) * rayDistanceDiagonal);
     }
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -294,5 +273,5 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.MovePosition(smoothedNewPosition);
     }
 
-    #endregion
+    #endregion ==========================================================================
 }

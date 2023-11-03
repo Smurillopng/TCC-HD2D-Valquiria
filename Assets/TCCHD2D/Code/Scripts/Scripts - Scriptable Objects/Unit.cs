@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.Timeline;
 using System.Linq;
 
-[CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit")]
+[CreateAssetMenu(fileName = "New Unit", menuName = "RPG/New Unit"), InlineEditor]
 public class Unit : SerializedScriptableObject
 {
     [TitleGroup("Unit Type", Alignment = TitleAlignments.Centered)]

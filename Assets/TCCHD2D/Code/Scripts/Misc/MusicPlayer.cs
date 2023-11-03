@@ -1,8 +1,11 @@
-﻿using System;
+﻿// Created by Sérgio Murillo da Costa Faria
+
 using MuriPNG.Audio;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[HideMonoScript]
 public class MusicPlayer : MonoBehaviour
 {
     private void Start()

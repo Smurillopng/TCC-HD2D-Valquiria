@@ -1,3 +1,5 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace MuriPNG.Audio
     /// <remarks>
     /// It contains the list of available mixers, the list of available audio sources, and the list of available sounds.
     /// </remarks>
+    [HideMonoScript]
     public class SoundManager : MonoBehaviour
     {
         #region === Variables ===============================================================
@@ -19,19 +22,20 @@ namespace MuriPNG.Audio
         public static SoundManager Instance;
 
         [Tooltip("List of available mixers in the game.")]
-        [BoxGroup("Mixer Settings"), SerializeField] private List<Mixer> mixerGroups = new();
+        [FoldoutGroup("Sound Manager")]
+        [BoxGroup("Sound Manager/Mixer Settings"), SerializeField] private List<Mixer> mixerGroups = new();
 
         [Tooltip("Maximum number of AudioSources that can be created to play sounds.")]
-        [BoxGroup("Source List Settings"), SerializeField] private int sourceLimit = 10;
+        [BoxGroup("Sound Manager/Source List Settings"), SerializeField] private int sourceLimit = 10;
         [Tooltip("If the list of AudioSources can grow if the limit of sources playing sounds is reached.")]
-        [BoxGroup("Source List Settings"), SerializeField] private bool canExpand;
+        [BoxGroup("Sound Manager/Source List Settings"), SerializeField] private bool canExpand;
         [Tooltip("List of AudioSources that can be used to play sounds.")]
-        [BoxGroup("Source List Settings"), SerializeField] private List<AudioSource> sourceList = new();
+        [BoxGroup("Sound Manager/Source List Settings"), SerializeField] private List<AudioSource> sourceList = new();
 
         [Tooltip("List of sounds that can be played by the script")]
-        [BoxGroup("Sound List"), SerializeField] private List<Sound> sounds;
+        [BoxGroup("Sound Manager/Sound List"), SerializeField] private List<Sound> sounds;
 
-        #endregion
+        #endregion ==========================================================================
 
         #region === Unity Methods ===========================================================
 
@@ -72,7 +76,7 @@ namespace MuriPNG.Audio
             }
         }
 
-        #endregion
+        #endregion ==========================================================================
 
         #region === Methods =================================================================
 
@@ -332,7 +336,7 @@ namespace MuriPNG.Audio
         /// <remarks>
         /// This method iterates through all sounds in the collection and applies the sound settings to each one.
         /// </remarks>
-        [BoxGroup("Debug"), Button]
+        [BoxGroup("Sound Manager/Debug"), Button]
         public void UpdateSoundSettings()
         {
             foreach (var sound in sounds)
@@ -343,7 +347,7 @@ namespace MuriPNG.Audio
         }
         /// <summary>Updates the mixer settings for all mixer groups.</summary>
         /// <remarks>This method is intended for debugging purposes.</remarks>
-        [BoxGroup("Debug"), Button]
+        [BoxGroup("Sound Manager/Debug"), Button]
         public void UpdateMixerSettings()
         {
             foreach (var mixer in mixerGroups)
@@ -353,12 +357,11 @@ namespace MuriPNG.Audio
         }
         /// <summary>Plays a sound sample once.</summary>
         /// <param name="sampleName">The name of the sound sample to play.</param>
-        [BoxGroup("Debug"), Button("Play Sample")]
+        [BoxGroup("Sound Manager/Debug"), Button("Play Sample")]
         public void PlaySample(string sampleName)
         {
             PlaySoundOnce(sampleName);
         }
-
-        #endregion
+        #endregion ==========================================================================
     }
 }

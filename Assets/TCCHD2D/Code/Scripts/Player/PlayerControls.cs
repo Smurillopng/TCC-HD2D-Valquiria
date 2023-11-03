@@ -1,3 +1,5 @@
+// Created by Sérgio Murillo da Costa Faria.
+
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -5,61 +7,43 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// This class is responsible for storing the values of callbacks related to the game controls action map.
-/// </summary>
-/// <remarks>
-/// Created by Sérgio Murillo da Costa Faria on 19/02/2023.
-/// </remarks>
 [HideMonoScript]
 public class PlayerControls : SerializedMonoBehaviour
 {
     #region === Variables ===============================================================
-    
     public static PlayerControls Instance { get; private set; }
-
-    [SerializeField]
-    [ReadOnly]
-    [Tooltip("The game controls asset used to create the input actions.")]
+    [FoldoutGroup("Player Controls")]
+    [BoxGroup("Player Controls/Debug", true)]
+    [SerializeField, ReadOnly, Tooltip("The game controls asset used to create the input actions.")]
     private GameControls gameControls;
 
-    [SerializeField]
-    [InlineEditor]
-    [Tooltip("Bool to toggle the console on and off.")]
+    [BoxGroup("Player Controls/Variables", true)]
+    [SerializeField, InlineEditor, Tooltip("Bool to toggle the console on and off.")]
     private BoolVariable showConsole;
 
-    [SerializeField]
-    [InlineEditor]
-    [Tooltip("Bool that reads the current movement input value.")]
+    [BoxGroup("Player Controls/Variables", true)]
+    [SerializeField, InlineEditor, Tooltip("Bool that reads the current movement input value.")]
     private Vector2Variable moveValue;
 
-    [SerializeField]
-    [InlineEditor]
-    [Tooltip("Bool that checks whether or not the player is running.")]
+    [BoxGroup("Player Controls/Variables", true)]
+    [SerializeField, InlineEditor, Tooltip("Bool that checks whether or not the player is running.")]
     private BoolVariable isRunning;
 
-    [SerializeField]
-    [InlineEditor]
-    [Tooltip("Bool that checks whether or not the player has interacted with something.")]
+    [BoxGroup("Player Controls/Variables", true)]
+    [SerializeField, InlineEditor, Tooltip("Bool that checks whether or not the player has interacted with something.")]
     private BoolVariable interacted;
 
-    [SerializeField]
-    [InlineEditor]
-    [Tooltip("Bool that checks whether or not the game is currently paused.")]
-    private BoolVariable isPaused;
-
-    [SerializeField]
-    [InlineEditor]
-    [Tooltip("Bool that checks whether or not the player has opened the inventory.")]
+    [BoxGroup("Player Controls/Variables", true)]
+    [SerializeField, InlineEditor, Tooltip("Bool that checks whether or not the player has opened the inventory.")]
     private BoolVariable openInventory;
 
-    [SerializeField]
-    [Tooltip("A mapping of scene names to SceneType enums.")]
+    [BoxGroup("Player Controls/Scenes", true)]
+    [SerializeField, Tooltip("A mapping of scene names to SceneType enums.")]
     private Dictionary<string, SceneType> sceneMap = new();
 
     public Dictionary<string, SceneType> SceneMap => sceneMap;
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
 
@@ -143,7 +127,7 @@ public class PlayerControls : SerializedMonoBehaviour
         gameControls?.Disable();
     }
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -202,6 +186,5 @@ public class PlayerControls : SerializedMonoBehaviour
         else
             gameControls.Default.Disable();
     }
-
-    #endregion
+    #endregion ==========================================================================
 }

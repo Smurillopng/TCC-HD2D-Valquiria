@@ -1,5 +1,4 @@
 // Created by Sérgio Murillo da Costa Faria
-// Date: 09/03/2023
 
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
@@ -9,55 +8,58 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Responsible for handling everything related to the options menu.
-/// </summary>
+[HideMonoScript]
 public class OptionsMenuManager : MonoBehaviour
 {
-    [BoxGroup("Audio Settings")]
+    #region === Variables ===============================================================
+    [FoldoutGroup("Options Menu Manager")]
+    [BoxGroup("Options Menu Manager/Audio Settings")]
     [SerializeField]
     private AudioMixerGroup masterMixer;
 
-    [BoxGroup("Audio Settings")]
+    [BoxGroup("Options Menu Manager/Audio Settings")]
     [SerializeField]
     private Slider masterVolumeSlider;
 
-    [BoxGroup("Audio Settings")]
+    [BoxGroup("Options Menu Manager/Audio Settings")]
     [SerializeField]
     private AudioMixerGroup musicMixer;
 
-    [BoxGroup("Audio Settings")]
+    [BoxGroup("Options Menu Manager/Audio Settings")]
     [SerializeField]
     private Slider musicVolumeSlider;
 
-    [BoxGroup("Audio Settings")]
+    [BoxGroup("Options Menu Manager/Audio Settings")]
     [SerializeField]
     private AudioMixerGroup sfxMixer;
 
-    [BoxGroup("Audio Settings")]
+    [BoxGroup("Options Menu Manager/Audio Settings")]
     [SerializeField]
     private Slider sfxVolumeSlider;
 
-    [BoxGroup("Graphics Settings")]
+    [BoxGroup("Options Menu Manager/Graphics Settings")]
     [SerializeField]
     private TMP_Dropdown qualityDropdown;
 
-    [BoxGroup("Graphics Settings")]
+    [BoxGroup("Options Menu Manager/Graphics Settings")]
     [SerializeField]
     private TMP_Dropdown screenDropdown;
 
-    [BoxGroup("Graphics Settings")]
+    [BoxGroup("Options Menu Manager/Graphics Settings")]
     [SerializeField]
     private TMP_Dropdown fpsDropdown;
 
-    [BoxGroup("Graphics Settings")]
+    [BoxGroup("Options Menu Manager/Graphics Settings")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
 
+    [BoxGroup("Options Menu Manager/Scene Settings")]
     [SerializeField] private StringVariable previousScene;
 
     private Resolution[] _resolutions;
     private List<Resolution> _filteredResolutions;
+    #endregion ==========================================================================
 
+    #region === Unity Methods ===========================================================
     private void Start()
     {
         qualityDropdown.ClearOptions();
@@ -108,7 +110,9 @@ public class OptionsMenuManager : MonoBehaviour
         sfxMixer.audioMixer.SetFloat("SfxVolume", Mathf.Log10(PlayerPrefs.GetFloat("SfxVolume", 0.75f)) * 20f);
         resolutionDropdown.value = PlayerPrefs.GetInt("Resolution", currentResolutionIndex);
     }
+    #endregion ==========================================================================
 
+    #region === Methods =================================================================
     /// <summary>
     /// Sets the master volume of the game and saves it to PlayerPrefs.
     /// </summary>
@@ -204,4 +208,5 @@ public class OptionsMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(previousScene.Value);
     }
+    #endregion ==========================================================================
 }

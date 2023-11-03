@@ -156,102 +156,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Console"",
-            ""id"": ""2d6d5855-a0e4-4fc4-ba66-ab9df4b0fa65"",
-            ""actions"": [
-                {
-                    ""name"": ""ShowConsole"",
-                    ""type"": ""Button"",
-                    ""id"": ""667c014a-60ff-4d5c-a299-797fa4be75d4"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""CommandHistory"",
-                    ""type"": ""Button"",
-                    ""id"": ""1bf0e21f-ca97-45e3-be8d-1199e1566d07"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""AutoComplete"",
-                    ""type"": ""Button"",
-                    ""id"": ""9d862727-b407-47cb-9bd4-4eadc74f5b04"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""0515aa79-74d1-4de4-9fe9-0eb4f5c53d99"",
-                    ""path"": ""<Keyboard>/home"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""ShowConsole"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""49e40913-51ec-4c30-882b-36867f5ee602"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PC"",
-                    ""action"": ""CommandHistory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2ae16383-b37c-4ab7-ae25-a2c3c6873a06"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""AutoComplete"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Combat"",
-            ""id"": ""2ea20a0e-e1f0-439b-8ea9-17f749fc83de"",
-            ""actions"": [
-                {
-                    ""name"": ""Placeholder"",
-                    ""type"": ""Button"",
-                    ""id"": ""59957dfe-2f09-4a35-97e6-c0cdb0aec100"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""1d6014a3-bdd2-45a0-a228-e105de89c6ae"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Placeholder"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Menus"",
             ""id"": ""10a3839b-069d-4b42-8082-e0c0c796de0b"",
             ""actions"": [
@@ -355,14 +259,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         m_Default_Run = m_Default.FindAction("Run", throwIfNotFound: true);
         m_Default_Walk = m_Default.FindAction("Walk", throwIfNotFound: true);
         m_Default_Interact = m_Default.FindAction("Interact", throwIfNotFound: true);
-        // Console
-        m_Console = asset.FindActionMap("Console", throwIfNotFound: true);
-        m_Console_ShowConsole = m_Console.FindAction("ShowConsole", throwIfNotFound: true);
-        m_Console_CommandHistory = m_Console.FindAction("CommandHistory", throwIfNotFound: true);
-        m_Console_AutoComplete = m_Console.FindAction("AutoComplete", throwIfNotFound: true);
-        // Combat
-        m_Combat = asset.FindActionMap("Combat", throwIfNotFound: true);
-        m_Combat_Placeholder = m_Combat.FindAction("Placeholder", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_OpenInventory = m_Menus.FindAction("OpenInventory", throwIfNotFound: true);
@@ -482,88 +378,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
     }
     public DefaultActions @Default => new DefaultActions(this);
 
-    // Console
-    private readonly InputActionMap m_Console;
-    private IConsoleActions m_ConsoleActionsCallbackInterface;
-    private readonly InputAction m_Console_ShowConsole;
-    private readonly InputAction m_Console_CommandHistory;
-    private readonly InputAction m_Console_AutoComplete;
-    public struct ConsoleActions
-    {
-        private @GameControls m_Wrapper;
-        public ConsoleActions(@GameControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @ShowConsole => m_Wrapper.m_Console_ShowConsole;
-        public InputAction @CommandHistory => m_Wrapper.m_Console_CommandHistory;
-        public InputAction @AutoComplete => m_Wrapper.m_Console_AutoComplete;
-        public InputActionMap Get() { return m_Wrapper.m_Console; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ConsoleActions set) { return set.Get(); }
-        public void SetCallbacks(IConsoleActions instance)
-        {
-            if (m_Wrapper.m_ConsoleActionsCallbackInterface != null)
-            {
-                @ShowConsole.started -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnShowConsole;
-                @ShowConsole.performed -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnShowConsole;
-                @ShowConsole.canceled -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnShowConsole;
-                @CommandHistory.started -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnCommandHistory;
-                @CommandHistory.performed -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnCommandHistory;
-                @CommandHistory.canceled -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnCommandHistory;
-                @AutoComplete.started -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnAutoComplete;
-                @AutoComplete.performed -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnAutoComplete;
-                @AutoComplete.canceled -= m_Wrapper.m_ConsoleActionsCallbackInterface.OnAutoComplete;
-            }
-            m_Wrapper.m_ConsoleActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @ShowConsole.started += instance.OnShowConsole;
-                @ShowConsole.performed += instance.OnShowConsole;
-                @ShowConsole.canceled += instance.OnShowConsole;
-                @CommandHistory.started += instance.OnCommandHistory;
-                @CommandHistory.performed += instance.OnCommandHistory;
-                @CommandHistory.canceled += instance.OnCommandHistory;
-                @AutoComplete.started += instance.OnAutoComplete;
-                @AutoComplete.performed += instance.OnAutoComplete;
-                @AutoComplete.canceled += instance.OnAutoComplete;
-            }
-        }
-    }
-    public ConsoleActions @Console => new ConsoleActions(this);
-
-    // Combat
-    private readonly InputActionMap m_Combat;
-    private ICombatActions m_CombatActionsCallbackInterface;
-    private readonly InputAction m_Combat_Placeholder;
-    public struct CombatActions
-    {
-        private @GameControls m_Wrapper;
-        public CombatActions(@GameControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Placeholder => m_Wrapper.m_Combat_Placeholder;
-        public InputActionMap Get() { return m_Wrapper.m_Combat; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CombatActions set) { return set.Get(); }
-        public void SetCallbacks(ICombatActions instance)
-        {
-            if (m_Wrapper.m_CombatActionsCallbackInterface != null)
-            {
-                @Placeholder.started -= m_Wrapper.m_CombatActionsCallbackInterface.OnPlaceholder;
-                @Placeholder.performed -= m_Wrapper.m_CombatActionsCallbackInterface.OnPlaceholder;
-                @Placeholder.canceled -= m_Wrapper.m_CombatActionsCallbackInterface.OnPlaceholder;
-            }
-            m_Wrapper.m_CombatActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Placeholder.started += instance.OnPlaceholder;
-                @Placeholder.performed += instance.OnPlaceholder;
-                @Placeholder.canceled += instance.OnPlaceholder;
-            }
-        }
-    }
-    public CombatActions @Combat => new CombatActions(this);
-
     // Menus
     private readonly InputActionMap m_Menus;
     private IMenusActions m_MenusActionsCallbackInterface;
@@ -644,16 +458,6 @@ public partial class @GameControls : IInputActionCollection2, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnWalk(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-    }
-    public interface IConsoleActions
-    {
-        void OnShowConsole(InputAction.CallbackContext context);
-        void OnCommandHistory(InputAction.CallbackContext context);
-        void OnAutoComplete(InputAction.CallbackContext context);
-    }
-    public interface ICombatActions
-    {
-        void OnPlaceholder(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

@@ -6,9 +6,12 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using PrimeTween;
 using Sirenix.OdinInspector;
+using UnityEngine.UI;
 
 public class SceneTransitioner : MonoBehaviour
 {
+    [SerializeField, Required, BoxGroup("Scene Related")]
+    private StringVariable previousScene;
     [SerializeField, BoxGroup("Scene Related")]
     private string goToScene;
     [SerializeField, BoxGroup("Scene Related")]
@@ -17,6 +20,8 @@ public class SceneTransitioner : MonoBehaviour
     private RectTransform playerBar, minimap;
     [SerializeField, BoxGroup("Transition Related")]
     private Material mat;
+    [SerializeField, BoxGroup("Transition Related")]
+    private Slider slider;
     [SerializeField, BoxGroup("Transition Values")]
     private float min, max, speedTransition, acelerationValue;
     [SerializeField, BoxGroup("Transition Values")]
@@ -52,8 +57,12 @@ public class SceneTransitioner : MonoBehaviour
 
     private IEnumerator TransitionIn(string scene)
     {
+        if (scene == "scn_optionsMenu")
+            previousScene.Value = SceneManager.GetActiveScene().name;
         currentlyTransitioning = true;
         _pm.CanMove.Value = false;
+        var asyncOperation = SceneManager.LoadSceneAsync(scene);
+        asyncOperation.allowSceneActivation = false;
         current = min;
         TiraUI();
         yield return new WaitUntil(() => Math.Abs(playerBar.anchoredPosition.x - (-196.0001f)) < 0.01);
@@ -70,35 +79,48 @@ public class SceneTransitioner : MonoBehaviour
 
             yield return null;
 
+            if (current >= max / 3)
+            {
+                slider.gameObject.SetActive(true);
+            }
+
             if (current >= max)
             {
                 current = max;
                 _aceleration = 1;
             }
         }
-
-        yield return new WaitUntil(() => Math.Abs(current - max) < 0.01);
-
-        SceneManager.LoadScene(scene);
-        if (spawnStart)
+        while (!asyncOperation.isDone)
         {
-            var writer = QuickSaveWriter.Create("GameInfo");
-            writer.Write("SpawnStart", true);
-            writer.Write("SpawnEnd", false);
-            writer.Write("ChangingScene", true);
-            writer.Commit();
-        }
-        else if (spawnEnd)
-        {
-            var writer = QuickSaveWriter.Create("GameInfo");
-            writer.Write("SpawnStart", false);
-            writer.Write("SpawnEnd", true);
-            writer.Write("ChangingScene", true);
-            writer.Commit();
-        }
+            slider.value = asyncOperation.progress;
 
-        _pm.CanMove.Value = true;
-        currentlyTransitioning = false;
+            if (asyncOperation.progress == 0.9f)
+            {
+                slider.value = 1f;
+                yield return new WaitUntil(() => Math.Abs(current - max) < 0.01);
+                if (spawnStart)
+                {
+                    var writer = QuickSaveWriter.Create("GameInfo");
+                    writer.Write("SpawnStart", true);
+                    writer.Write("SpawnEnd", false);
+                    writer.Write("ChangingScene", true);
+                    writer.Commit();
+                }
+                else if (spawnEnd)
+                {
+                    var writer = QuickSaveWriter.Create("GameInfo");
+                    writer.Write("SpawnStart", false);
+                    writer.Write("SpawnEnd", true);
+                    writer.Write("ChangingScene", true);
+                    writer.Commit();
+                }
+
+                _pm.CanMove.Value = true;
+                currentlyTransitioning = false;
+                asyncOperation.allowSceneActivation = true;
+            }
+            yield return null;
+        }
     }
 
     private IEnumerator TransitionOut()
@@ -106,6 +128,7 @@ public class SceneTransitioner : MonoBehaviour
         currentlyTransitioning = true;
         current = max;
         mat.SetFloat(CutoffHeight, current);
+        slider.gameObject.SetActive(false);
 
         while (current > min)
         {
@@ -134,8 +157,12 @@ public class SceneTransitioner : MonoBehaviour
 
     public IEnumerator TransitionTo(string scene)
     {
+        if (scene == "scn_optionsMenu")
+            previousScene.Value = SceneManager.GetActiveScene().name;
         currentlyTransitioning = true;
         if (_pm != null) _pm.CanMove.Value = false;
+        var asyncOperation = SceneManager.LoadSceneAsync(scene);
+        asyncOperation.allowSceneActivation = false;
         current = min;
         if (playerBar != null)
         {
@@ -155,19 +182,53 @@ public class SceneTransitioner : MonoBehaviour
 
             yield return null;
 
+            if (current >= max / 3)
+            {
+                slider.gameObject.SetActive(true);
+            }
+
             if (current >= max)
             {
                 current = max;
                 _aceleration = 1;
             }
         }
+        while (!asyncOperation.isDone)
+        {
+            slider.value = asyncOperation.progress;
 
-        yield return new WaitUntil(() => Math.Abs(current - max) < 0.01);
+            if (asyncOperation.progress == 0.9f)
+            {
+                slider.value = 1f;
+                yield return new WaitUntil(() => Math.Abs(current - max) < 0.01);
+                if (spawnStart)
+                {
+                    var writer = QuickSaveWriter.Create("GameInfo");
+                    writer.Write("SpawnStart", true);
+                    writer.Write("SpawnEnd", false);
+                    writer.Write("ChangingScene", true);
+                    writer.Commit();
+                }
+                else if (spawnEnd)
+                {
+                    var writer = QuickSaveWriter.Create("GameInfo");
+                    writer.Write("SpawnStart", false);
+                    writer.Write("SpawnEnd", true);
+                    writer.Write("ChangingScene", true);
+                    writer.Commit();
+                }
 
-        SceneManager.LoadScene(scene);
+                _pm.CanMove.Value = true;
+                currentlyTransitioning = false;
+                asyncOperation.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+    }
 
-        if (_pm != null) _pm.CanMove.Value = true;
-        currentlyTransitioning = false;
+    public void TransitionToScene(string scene)
+    {
+        StartCoroutine(TransitionTo(scene));
     }
 
     private void TiraUI()

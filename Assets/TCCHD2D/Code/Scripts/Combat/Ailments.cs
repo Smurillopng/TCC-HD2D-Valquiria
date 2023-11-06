@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿// Created by Sérgio Murillo da Costa Faria
+
+using UnityEngine;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
@@ -18,16 +20,12 @@ public class Ailment
     public int turnsLeft;
 }
 
-/// <summary>
-/// This class represents the ailments of an object.
-/// </summary>
-/// <remarks>
-/// It contains the OnFire, Frozen, Bleeding, Stunned, and Incapacitated properties.
-/// </remarks>
+[HideMonoScript]
 public class Ailments : MonoBehaviour
 {
     #region === Properties ==============================================================
-
+    [FoldoutGroup("Ailments")]
+    [BoxGroup("Ailments/Settings")]
     [ShowInInspector, ReadOnly]
     private Dictionary<AilmentType, Ailment> _ailments = new()
     {
@@ -37,9 +35,9 @@ public class Ailments : MonoBehaviour
         { AilmentType.Stunned, new Ailment() },
         { AilmentType.Incapacitated, new Ailment() }
     };
+    
     public Dictionary<AilmentType, Ailment> AilmentsDictionary => _ailments;
-
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -75,5 +73,5 @@ public class Ailments : MonoBehaviour
         }
     }
 
-    #endregion
+    #endregion ==========================================================================
 }

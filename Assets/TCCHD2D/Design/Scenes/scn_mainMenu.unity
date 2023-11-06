@@ -3832,15 +3832,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousScene: {fileID: 11400000, guid: 8f95ac550c89d34438fe9bc55132be5a, type: 2}
   confirmPanel: {fileID: 1977642069}
+  transitionCanvas: {fileID: 8862271875706368485}
   mat: {fileID: 2100000, guid: b0d35499e79747942bc22f07bec70176, type: 2}
   slider: {fileID: 2068838720675525976}
   min: -1800
   max: 1800
   speedTransition: 2500
-  acelerationValue: 1.02
-  tweenTime: 1
+  accelerationValue: 1
   current: 0
-  _aceleration: 1
+  acceleration: 1
 --- !u!114 &2124367092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4198,13 +4198,31 @@ GameObject:
   - component: {fileID: 4929791946379490201}
   - component: {fileID: 7627752069076232718}
   - component: {fileID: 8804833493182137043}
+  - component: {fileID: 8862271875706368486}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
+--- !u!114 &8862271875706368486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862271875706368485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 3
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 511
 --- !u!114 &9198155689754180444
 MonoBehaviour:
   m_ObjectHideFlags: 0

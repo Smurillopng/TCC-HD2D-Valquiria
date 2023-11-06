@@ -1,20 +1,34 @@
 // Created by Sérgio Murillo da Costa Faria
-// Date: 01/04/2023
 
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[HideMonoScript]
 public class ItemUI : MonoBehaviour
 {
+    #region === Variables ===============================================================
+    [FoldoutGroup("Item UI")]
+    [BoxGroup("Item UI/References")]
     [Required] public Image icon;
+    
+    [BoxGroup("Item UI/References")]
     [Required] public TMP_Text nameText;
+    
+    [BoxGroup("Item UI/References")]
     [Required] public TMP_Text quantityText;
+    
+    [BoxGroup("Item UI/References")]
     [Required] public Button useButton;
+    
+    [BoxGroup("Item UI/References")]
     [Required] public Image div;
+    
     public IItem DisplayedItem;
+    #endregion ==========================================================================
 
+    #region === Unity Methods ===========================================================
     private void Awake()
     {
         icon.maskable = true;
@@ -22,7 +36,9 @@ public class ItemUI : MonoBehaviour
         quantityText.maskable = true;
         div.maskable = true;
     }
+    #endregion ==========================================================================
 
+    #region === Methods =================================================================
     public void SetItem(IItem item)
     {
         icon.sprite = item.ItemIcon;
@@ -43,4 +59,5 @@ public class ItemUI : MonoBehaviour
         itemQuantity.text = $"{itemToDisplay.CurrentStack}x";
         DisplayedItem = itemToDisplay;
     }
+    #endregion ==========================================================================
 }

@@ -8,12 +8,6 @@ using UnityEngine;
 
 namespace MuriPNG.Audio
 {
-    /// <summary>
-    /// This class represents the sound manager.
-    /// </summary>
-    /// <remarks>
-    /// It contains the list of available mixers, the list of available audio sources, and the list of available sounds.
-    /// </remarks>
     [HideMonoScript]
     public class SoundManager : MonoBehaviour
     {

@@ -29,6 +29,10 @@ public class SceneTransitioner : MonoBehaviour
     [BoxGroup("Scene Transitioner/Transition Related")]
     [SerializeField]
     private RectTransform playerBar, minimap;
+    
+    [BoxGroup("Scene Transitioner/Transition Related")]
+    [SerializeField]
+    private GameObject transitionCanvas;
 
     [BoxGroup("Scene Transitioner/Transition Related")]
     [SerializeField, InlineEditor]
@@ -59,6 +63,7 @@ public class SceneTransitioner : MonoBehaviour
     private float _aceleration = 1f;
 
     public static bool currentlyTransitioning;
+    public GameObject TransitionCanvas => transitionCanvas;
     private static readonly int CutoffHeight = Shader.PropertyToID("_Cutoff_Height");
     #endregion ==========================================================================
 
@@ -71,6 +76,7 @@ public class SceneTransitioner : MonoBehaviour
             minimap.anchoredPosition = new Vector2(180.0001f, minimap.anchoredPosition.y);
             _pm = FindObjectOfType<PlayerMovement>();
         }
+        transitionCanvas = GameObject.FindGameObjectWithTag("Transition");
 
         StartCoroutine(TransitionOut());
     }
@@ -80,9 +86,12 @@ public class SceneTransitioner : MonoBehaviour
         if (!other.CompareTag("Player")) return;
         StartCoroutine(TransitionIn(goToScene));
     }
+    #endregion ==========================================================================
 
+    #region === Methods =================================================================
     private IEnumerator TransitionIn(string scene)
     {
+        transitionCanvas.SetActive(true);
         if (scene == "scn_optionsMenu")
             previousScene.Value = SceneManager.GetActiveScene().name;
         currentlyTransitioning = true;
@@ -147,12 +156,12 @@ public class SceneTransitioner : MonoBehaviour
             }
             yield return null;
         }
+        transitionCanvas.SetActive(false);
     }
-    #endregion ==========================================================================
-
-    #region === Methods =================================================================
+    
     private IEnumerator TransitionOut()
     {
+        transitionCanvas.SetActive(true);
         currentlyTransitioning = true;
         current = max;
         mat.SetFloat(CutoffHeight, current);
@@ -181,10 +190,12 @@ public class SceneTransitioner : MonoBehaviour
         yield return new WaitUntil(() => Math.Abs(current - min) < 0.01);
         if (_pm != null) _pm.CanMove.Value = true;
         currentlyTransitioning = false;
+        transitionCanvas.SetActive(false);
     }
 
     public IEnumerator TransitionTo(string scene)
     {
+        transitionCanvas.SetActive(true);
         if (scene == "scn_optionsMenu")
             previousScene.Value = SceneManager.GetActiveScene().name;
         currentlyTransitioning = true;
@@ -252,6 +263,7 @@ public class SceneTransitioner : MonoBehaviour
             }
             yield return null;
         }
+        transitionCanvas.SetActive(false);
     }
 
     public void TransitionToScene(string scene)

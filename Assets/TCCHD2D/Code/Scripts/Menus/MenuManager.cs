@@ -13,47 +13,47 @@ public class MenuManager : MonoBehaviour
 {
     #region === Variables ===============================================================
     [FoldoutGroup("Menu Manager")]
-    [BoxGroup("Menu Manager/Scene Settings", true)]
+    [BoxGroup("Menu Manager/Scene Settings")]
     [SerializeField, Required, InlineEditor, Tooltip("The previous scene.")]
     private StringVariable previousScene;
 
-    [BoxGroup("Menu Manager/Scene Settings", true)]
+    [BoxGroup("Menu Manager/Scene Settings")]
     [SerializeField, Tooltip("The confirmation panel.")]
     private GameObject confirmPanel;
 
-    [BoxGroup("Menu Manager/Transition Settings", true)]
+    [BoxGroup("Menu Manager/Transition Settings")]
+    [SerializeField]
+    private GameObject transitionCanvas;
+    
+    [BoxGroup("Menu Manager/Transition Settings")]
     [SerializeField, InlineEditor, PreviewField, Tooltip("The transition material.")]
     private Material mat;
 
-    [BoxGroup("Menu Manager/Transition Settings", true)]
+    [BoxGroup("Menu Manager/Transition Settings")]
     [SerializeField, Tooltip("The transition slider.")]
     private Slider slider;
 
-    [BoxGroup("Menu Manager/Transition Values", true)]
+    [BoxGroup("Menu Manager/Transition Values")]
     [SerializeField, Wrap(-2000f, 2000f), Tooltip("The minimum and maximum transition values.")]
     private float min = -1800, max = 1800;
 
-    [BoxGroup("Menu Manager/Transition Values", true)]
+    [BoxGroup("Menu Manager/Transition Values")]
     [SerializeField, Wrap(1f, 5000f), Tooltip("The transition speed.")]
     private float speedTransition = 2500;
-
-    [BoxGroup("Menu Manager/Transition Values", true)]
+    
+    [BoxGroup("Menu Manager/Transition Values")]
     [SerializeField, Min(1), Tooltip("The acceleration value.")]
-    private float acelerationValue;
+    private float accelerationValue = 1f;
 
-    [BoxGroup("Menu Manager/Transition Values", true)]
-    [SerializeField, Min(1), Tooltip("The tween time.")]
-    private float tweenTime = 1f;
-
-    [BoxGroup("Menu Manager/Debug", true)]
+    [BoxGroup("Menu Manager/Debug")]
     [SerializeField, ReadOnly, Tooltip("The current value.")]
     private float current;
-
-    [BoxGroup("Menu Manager/Debug", true)]
+    
+    [BoxGroup("Menu Manager/Debug")]
     [SerializeField, ReadOnly, Tooltip("The acceleration.")]
-    private float _aceleration = 1f;
+    private float acceleration = 1f;
 
-    [BoxGroup("Menu Manager/Debug", true)]
+    [BoxGroup("Menu Manager/Debug")]
     [SerializeField, ReadOnly, Tooltip("Current cut-off height")]
     private static readonly int CutoffHeight = Shader.PropertyToID("_Cutoff_Height");
     #endregion ==========================================================================
@@ -68,6 +68,7 @@ public class MenuManager : MonoBehaviour
     #region === Methods =================================================================
     private IEnumerator TransitionOut()
     {
+        transitionCanvas.SetActive(true);
         current = max;
         mat.SetFloat(CutoffHeight, current);
         slider.gameObject.SetActive(false);
@@ -75,9 +76,9 @@ public class MenuManager : MonoBehaviour
         while (current > min)
         {
             if (Math.Abs(current - max) > 0.01 && Math.Abs(current - min) > 0.01)
-                _aceleration = acelerationValue;
+                acceleration = accelerationValue;
 
-            current -= speedTransition * Time.deltaTime * _aceleration;
+            current -= speedTransition * Time.deltaTime * acceleration;
             var progress = Mathf.Clamp01((current - min) / (max - min));
             var targetHeight = Mathf.Lerp(min, max, progress);
             mat.SetFloat(CutoffHeight, targetHeight);
@@ -87,9 +88,10 @@ public class MenuManager : MonoBehaviour
             if (current <= min)
             {
                 current = min;
-                _aceleration = 1;
+                acceleration = 1;
             }
         }
+        transitionCanvas.SetActive(false);
     }
 
     /// <summary>
@@ -101,8 +103,9 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(TransitionTo(sceneName));
     }
 
-    private IEnumerator TransitionTo(string sceneName)
+    public IEnumerator TransitionTo(string sceneName)
     {
+        transitionCanvas.SetActive(true);
         if (sceneName == "scn_optionsMenu")
             previousScene.Value = SceneManager.GetActiveScene().name;
         current = min;
@@ -111,9 +114,9 @@ public class MenuManager : MonoBehaviour
         while (current < max)
         {
             if (Math.Abs(current - max) > 0.01 && Math.Abs(current - min) > 0.01)
-                _aceleration = acelerationValue;
+                acceleration = accelerationValue;
 
-            current += speedTransition * _aceleration * Time.deltaTime;
+            current += speedTransition * acceleration * Time.deltaTime;
             var progress = Mathf.Clamp01((current - min) / (max - min));
             var targetHeight = Mathf.Lerp(min, max, progress);
             mat.SetFloat(CutoffHeight, targetHeight);
@@ -128,7 +131,7 @@ public class MenuManager : MonoBehaviour
             if (current >= max)
             {
                 current = max;
-                _aceleration = 1;
+                acceleration = 1;
             }
         }
 
@@ -136,7 +139,7 @@ public class MenuManager : MonoBehaviour
         {
             slider.value = asyncOperation.progress;
 
-            if (asyncOperation.progress == 0.9f)
+            if (Math.Abs(asyncOperation.progress - 0.9f) < 0.01f)
             {
                 slider.value = 1f;
                 yield return new WaitUntil(() => Math.Abs(current - max) < 0.01);
@@ -144,6 +147,7 @@ public class MenuManager : MonoBehaviour
             }
             yield return null;
         }
+        transitionCanvas.SetActive(false);
     }
 
     public void ConfirmTutorial()

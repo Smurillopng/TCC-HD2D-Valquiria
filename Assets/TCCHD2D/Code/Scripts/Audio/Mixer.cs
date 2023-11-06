@@ -1,32 +1,39 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
 
 namespace MuriPNG.Audio
 {
-    /// <summary>
-    /// This class represents an audio mixer.
-    /// </summary>
-    /// <remarks>
-    /// It contains the mixer ID, the mixer group, the exposed parameter name, the volume, and the mute flag.
-    /// </remarks>
     [Serializable]
     public class Mixer
     {
         #region === Variables ===============================================================
 
-        [Tooltip("Mixer ID")]
-        [SerializeField] private string mixerID;
-        [Tooltip("Mixer Group")]
-        [SerializeField] private AudioMixerGroup mixerGroup;
-        [Tooltip("Exposed Parameter")]
-        [SerializeField] private string exposedParameterName;
-        [Tooltip("Mixer's Volume")]
-        [Range(-80f, 0f)][SerializeField] private float volume;
-        [Tooltip("Is the Mixer Muted?")]
-        [SerializeField] private bool mute;
+        [FoldoutGroup("$mixerID")]
+        [BoxGroup("$mixerID/Settings")]
+        [SerializeField, Tooltip("Mixer ID")] 
+        private string mixerID;
+        
+        [BoxGroup("$mixerID/Settings")]
+        [SerializeField, Tooltip("Mixer Group")] 
+        private AudioMixerGroup mixerGroup;
+        
+        [BoxGroup("$mixerID/Settings")]
+        [SerializeField, Tooltip("Exposed Parameter")] 
+        private string exposedParameterName;
+        
+        [BoxGroup("$mixerID/Settings")]
+        [Range(-80f, 0f), SerializeField, Tooltip("Mixer's Volume")] 
+        private float volume;
+        
+        [BoxGroup("$mixerID/Settings")]
+        [SerializeField, Tooltip("Is the Mixer Muted?")] 
+        private bool mute;
 
-        #endregion
+        #endregion ==========================================================================
 
         #region === Properties ==============================================================
 
@@ -44,7 +51,7 @@ namespace MuriPNG.Audio
             set => mute = value;
         }
 
-        #endregion
+        #endregion ==========================================================================
 
         #region === Methods =================================================================
 
@@ -80,6 +87,6 @@ namespace MuriPNG.Audio
             if (mixerGroup != null && mixerGroup.audioMixer != null) mixerGroup.audioMixer.SetFloat(exposedParameterName, mute ? -80f : volume);
         }
 
-        #endregion
+        #endregion ==========================================================================
     }
 }

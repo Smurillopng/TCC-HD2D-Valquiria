@@ -1,44 +1,55 @@
 ﻿// Created by Sérgio Murillo da Costa Faria
-// Date: 11/04/2023
 
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
+
+[HideMonoScript]
 public class ItemNotification : MonoBehaviour
 {
+    #region === Variables ===============================================================
+    [FoldoutGroup("Item Notification")]
+    [BoxGroup("Item Notification/Settings")]
     public GameObject panelPrefab;
+    
+    [BoxGroup("Item Notification/Settings")]
     public float displayTime = 2f;
+    
+    [BoxGroup("Item Notification/Settings")]
     public float fadeTime = 1f;
 
-    private readonly Queue<IItem> itemQueue = new();
-    private bool isDisplaying;
-    
-    public Queue<IItem> ItemQueue => itemQueue;
-    public bool IsDisplaying => isDisplaying;
+    public Queue<IItem> ItemQueue { get; } = new();
+    public bool IsDisplaying { get; private set; }
 
+    #endregion ==========================================================================
+    
+    #region === Unity Methods ===========================================================
     private void Update()
     {
-        if (itemQueue.Count > 0 && !isDisplaying)
+        if (ItemQueue.Count > 0 && !IsDisplaying)
             StartCoroutine(nameof(DisplayItem));
     }
-
+    #endregion ==========================================================================
+    
+    #region === Methods =================================================================
     public void AddConsumableWithNotification(Consumable item)
     {
         InventoryManager.Instance.AddConsumableItem(item);
-        itemQueue.Enqueue(item);
+        ItemQueue.Enqueue(item);
     }
     
     public void AddEquipmentWithNotification(Equipment item)
     {
         InventoryManager.Instance.AddEquipmentItem(item);
-        itemQueue.Enqueue(item);
+        ItemQueue.Enqueue(item);
     }
     
     public void AddItemWithNotification(IItem item)
     {
         InventoryManager.Instance.AddItem(item);
-        itemQueue.Enqueue(item);
+        ItemQueue.Enqueue(item);
     }
     
     public void EquipNotification(Equipment item)
@@ -48,8 +59,8 @@ public class ItemNotification : MonoBehaviour
 
     private void DisplayItem()
     {
-        isDisplaying = true;
-        var item = itemQueue.Dequeue();
+        IsDisplaying = true;
+        var item = ItemQueue.Dequeue();
         var panel = Instantiate(panelPrefab, transform);
         var panelIcon = panel.transform.Find("Icon").GetComponent<UnityEngine.UI.Image>();
         panelIcon.sprite = item.ItemIcon;
@@ -71,7 +82,8 @@ public class ItemNotification : MonoBehaviour
         
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.1);
         
-        isDisplaying = false;
+        IsDisplaying = false;
         Destroy(panel, fadeTime);
     }
+    #endregion ==========================================================================
 }

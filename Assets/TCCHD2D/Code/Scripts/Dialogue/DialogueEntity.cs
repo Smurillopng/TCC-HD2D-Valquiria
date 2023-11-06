@@ -1,29 +1,31 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-/// <summary>
-/// Represents a dialogue entity in the game world.
-/// </summary>
-/// <remarks>
-/// This class is used to represent a dialogue entity in the game world. A dialogue entity is an object that can be interacted with by the player to start a dialogue.
-/// </remarks>
+[HideMonoScript]
 public class DialogueEntity : MonoBehaviour
 {
     #region === Variables ===============================================================
 
+    [FoldoutGroup("Dialogue Entity")]
+    [BoxGroup("Dialogue Entity/Settings")]
     [SerializeField, Required, Tooltip("Dialogue data that represents the dialogue of this unit.")]
     private DialogueData dialogueData;
 
+    [BoxGroup("Dialogue Entity/Settings")]
     [SerializeField, Required]
     private DialogueManager dialogueManager;
 
+    [BoxGroup("Dialogue Entity/Settings")]
     [SerializeField, Required, Tooltip("Sprite renderer of the icon that will hover above the unit's head.")]
     private SpriteRenderer spriteRenderer;
 
+    [BoxGroup("Dialogue Entity/Settings")]
     [SerializeField, Required, Tooltip("Default icon that will be displayed above the unit's head when the player is in range of interaction.")]
     private Sprite defaultIcon;
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -52,5 +54,5 @@ public class DialogueEntity : MonoBehaviour
         spriteRenderer.sprite = null;
     }
 
-    #endregion
+    #endregion ==========================================================================
 }

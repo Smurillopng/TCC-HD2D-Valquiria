@@ -1,24 +1,51 @@
-﻿using System.Collections;
+﻿// Created by Sérgio Murillo da Costa Faria
+
+using System.Collections;
 using CI.QuickSave;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 
+[HideMonoScript]
 public class Tutorial : MonoBehaviour
 {
+    #region === Variables ===============================================================
+    [FoldoutGroup("Tutorial")]
+    [BoxGroup("Tutorial/Settings")]
     public DialogueManager dialogueManager;
+    
+    [BoxGroup("Tutorial/Settings")]
     public PlayableDirector director;
+    
+    [BoxGroup("Tutorial/Settings")]
     public PlayableDirector director2;
+    
+    [BoxGroup("Tutorial/Settings")]
     public TMP_Text dialogueText;
+    
+    [BoxGroup("Tutorial/Settings")]
     public GameControls gameControls;
+    
+    [BoxGroup("Tutorial/Settings")]
     public PlayerMovement playerMovement;
+    
+    [BoxGroup("Tutorial/Settings")]
     public GameObject[] tutorialObjects;
+    
+    [BoxGroup("Tutorial/Settings")]
     public Transform startPosition;
+    
+    [BoxGroup("Tutorial/Settings")]
     public GameObject bjorn, player;
+    
+    [BoxGroup("Tutorial/Settings")]
     public Unit _player;
 
     private bool _finishedTutorial;
+    #endregion ==========================================================================
 
+    #region === Unity Methods ===========================================================
     private void Start()
     {
         var reader = QuickSaveReader.Create("GameSave");
@@ -38,7 +65,9 @@ public class Tutorial : MonoBehaviour
         }
         playerMovement.enabled = false;
     }
+    #endregion ==========================================================================
 
+    #region === Methods =================================================================
     public void StartTutorial()
     {
         director.Play();
@@ -183,4 +212,5 @@ public class Tutorial : MonoBehaviour
         _player.CurrentHp = _player.MaxHp;
         _player.CurrentTp = 0;
     }
+    #endregion ==========================================================================
 }

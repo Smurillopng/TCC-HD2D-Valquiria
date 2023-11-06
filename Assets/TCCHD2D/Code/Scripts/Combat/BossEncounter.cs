@@ -1,12 +1,20 @@
-﻿using CI.QuickSave;
+﻿// Created by Sérgio Murillo da Costa Faria
+
+using CI.QuickSave;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace TCCHD2D.Code
 {
+    [HideMonoScript]
     public class BossEncounter : MonoBehaviour
     {
+        #region === Variables ===============================================================
+        [FoldoutGroup("Boss Encounter")]
         public bool fought;
-
+        #endregion ==========================================================================
+        
+        #region === Unity Methods ===========================================================
         public void FightStarted()
         {
             fought = true;
@@ -31,5 +39,6 @@ namespace TCCHD2D.Code
                     Destroy(gameObject);
             }
         }
+        #endregion ==========================================================================
     }
 }

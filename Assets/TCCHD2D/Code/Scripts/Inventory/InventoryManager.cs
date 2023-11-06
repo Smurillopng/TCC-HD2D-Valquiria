@@ -1,3 +1,5 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,12 +7,6 @@ using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-/// <summary>
-/// This class manages the inventory of the player.
-/// </summary>
-/// <remarks>
-/// Created by Sérgio Murillo da Costa Faria on 01/04/2023.
-/// </remarks>
 [HideMonoScript]
 public class InventoryManager : SerializedMonoBehaviour
 {
@@ -18,13 +14,14 @@ public class InventoryManager : SerializedMonoBehaviour
 
     public static InventoryManager Instance { get; private set; } // Singleton
 
-    [ShowInInspector]
-    [Tooltip("The inventory list")]
-    private List<IItem> inventory = new();
+    [FoldoutGroup("Inventory Manager")]
+    [BoxGroup("Inventory Manager/Inventory")]
+    [ShowInInspector, Tooltip("The inventory list")]
+    private List<IItem> _inventory = new();
 
-    [ShowInInspector]
-    [Tooltip("The equipment slots list")]
-    private List<EquipmentSlot> equipmentSlots = new()
+    [BoxGroup("Inventory Manager/Equipment")]
+    [ShowInInspector, Tooltip("The equipment slots list")]
+    private List<EquipmentSlot> _equipmentSlots = new()
     {
         new EquipmentSlot {slotType = EquipmentSlotType.Head},
         new EquipmentSlot {slotType = EquipmentSlotType.Chest},
@@ -36,18 +33,17 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <summary>
     /// Gets the inventory list.
     /// </summary>
-    public List<IItem> Inventory => inventory;
+    public List<IItem> Inventory => _inventory;
     /// <summary>
     /// Gets the equipment slots list.
     /// </summary>
-    public List<EquipmentSlot> EquipmentSlots => equipmentSlots;
+    public List<EquipmentSlot> EquipmentSlots => _equipmentSlots;
 
-    [TitleGroup("Debug", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Tooltip("If true, the inventory will reset when the game is exited.")]
+    [BoxGroup("Inventory Manager/Debug")]
+    [SerializeField, Tooltip("If true, the inventory will reset when the game is exited.")]
     private bool resetOnExit;
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
 
@@ -71,8 +67,8 @@ public class InventoryManager : SerializedMonoBehaviour
         var itemReader = QuickSaveReader.Create("GameSave");
         foreach (var key in itemReader.GetAllKeys())
         {
-            if (inventory.Exists(item => item.ItemName == key))
-                inventory.Find(item => item.ItemName == key).CurrentStack = itemReader.Read<int>(key);
+            if (_inventory.Exists(item => item.ItemName == key))
+                _inventory.Find(item => item.ItemName == key).CurrentStack = itemReader.Read<int>(key);
             else
             {
                 var possibleConsumables = Resources.LoadAll<Consumable>("Scriptable Objects/Items/");
@@ -81,22 +77,22 @@ public class InventoryManager : SerializedMonoBehaviour
                 {
                     var item = possibleConsumables.First(item => item.ItemName == key);
                     item.CurrentStack = itemReader.Read<int>(key);
-                    if (item.CurrentStack > 0 ) inventory.Add(item);
+                    if (item.CurrentStack > 0 ) _inventory.Add(item);
                 }
                 else if (possibleEquipment.Any(item => item.ItemName == key))
                 {
                     var item = possibleEquipment.First(item => item.ItemName == key);
                     item.CurrentStack = itemReader.Read<int>(key);
-                    if (item.CurrentStack > 0 ) inventory.Add(item);
+                    if (item.CurrentStack > 0 ) _inventory.Add(item);
                 }
             }
         }
         var equipmentReader = QuickSaveReader.Create("GameSave");
         foreach (var key in equipmentReader.GetAllKeys())
         {
-            if (equipmentSlots.Exists(slot => slot.slotType.ToString() == key))
+            if (_equipmentSlots.Exists(slot => slot.slotType.ToString() == key))
             {
-                var equipSlot = equipmentSlots.Find(slot => slot.slotType.ToString() == key);
+                var equipSlot = _equipmentSlots.Find(slot => slot.slotType.ToString() == key);
                 var possibleEquipment = Resources.LoadAll<Equipment>("Scriptable Objects/Items/");
                 if (possibleEquipment.Any(item => item.ItemName == equipmentReader.Read<string>(key)))
                 {
@@ -113,11 +109,11 @@ public class InventoryManager : SerializedMonoBehaviour
     private void OnDisable()
     {
         if (!resetOnExit) return;
-        foreach (var item in inventory)
+        foreach (var item in _inventory)
             item.CurrentStack = 0;
     }
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -128,7 +124,7 @@ public class InventoryManager : SerializedMonoBehaviour
     public void AddConsumableItem(Consumable item)
     {
         var writer = QuickSaveWriter.Create("InventoryInfo");
-        if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
+        if (_inventory.Contains(item) && item.CurrentStack < item.MaxStack)
         {
             item.CurrentStack++;
             writer.Write(item.ItemName, item.CurrentStack);
@@ -140,7 +136,7 @@ public class InventoryManager : SerializedMonoBehaviour
         }
         else
         {
-            inventory.Add(item);
+            _inventory.Add(item);
             item.CurrentStack++;
             writer.Write(item.ItemName, item.CurrentStack);
             writer.Commit();
@@ -153,7 +149,7 @@ public class InventoryManager : SerializedMonoBehaviour
     public void AddEquipmentItem(Equipment item)
     {
         var writer = QuickSaveWriter.Create("InventoryInfo");
-        if (inventory.Contains(item) && item.CurrentStack < item.MaxStack)
+        if (_inventory.Contains(item) && item.CurrentStack < item.MaxStack)
         {
             item.CurrentStack++;
             writer.Write(item.ItemName, item.CurrentStack);
@@ -165,7 +161,7 @@ public class InventoryManager : SerializedMonoBehaviour
         }
         else
         {
-            inventory.Add(item);
+            _inventory.Add(item);
             item.CurrentStack++;
             writer.Write(item.ItemName, item.CurrentStack);
             writer.Commit();
@@ -193,7 +189,7 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="item">The consumable item to be removed.</param>
     public void RemoveConsumableItem(Consumable item)
     {
-        inventory.Remove(item);
+        _inventory.Remove(item);
     }
     /// <summary>
     /// Removes an equipment item from the inventory.
@@ -201,7 +197,7 @@ public class InventoryManager : SerializedMonoBehaviour
     /// <param name="item">The equipment item to be removed.</param>
     public void RemoveEquipmentItem(Equipment item)
     {
-        inventory.Remove(item);
+        _inventory.Remove(item);
     }
     /// <summary>
     /// Removes an item from the inventory.
@@ -226,7 +222,7 @@ public class InventoryManager : SerializedMonoBehaviour
     public void Equip(Equipment equipment)
     {
         var writer = QuickSaveWriter.Create("InventoryInfo");
-        var slot = equipmentSlots.Find(x => x.slotType == equipment.SlotType);
+        var slot = _equipmentSlots.Find(x => x.slotType == equipment.SlotType);
         if (slot == null) return;
         if (slot.equipItem == equipment)
         {
@@ -268,7 +264,7 @@ public class InventoryManager : SerializedMonoBehaviour
     public void Unequip(Equipment equipment)
     {
         var writer = QuickSaveWriter.Create("InventoryInfo");
-        var slot = equipmentSlots.Find(x => x.slotType == equipment.SlotType);
+        var slot = _equipmentSlots.Find(x => x.slotType == equipment.SlotType);
         if (slot == null) return;
         if (slot.equipItem != equipment)
         {
@@ -312,19 +308,19 @@ public class InventoryManager : SerializedMonoBehaviour
         item.Use();
         if (item.CurrentStack <= 0)
         {
-            inventory.Remove(item);
+            _inventory.Remove(item);
         }
         else
         {
             item.CurrentStack--;
             if (item.CurrentStack <= 0)
             {
-                inventory.Remove(item);
+                _inventory.Remove(item);
             }
         }
     }
 
-    #endregion
+    #endregion ==========================================================================
 }
 
 [Serializable]

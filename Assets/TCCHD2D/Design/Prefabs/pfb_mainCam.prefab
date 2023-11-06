@@ -719,7 +719,7 @@ PrefabInstance:
     - target: {fileID: 2693222053378576364, guid: 52c278208cfb3754daa81fd8228b8b0c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -621.3802
+      value: -621.3801
       objectReference: {fileID: 0}
     - target: {fileID: 2693222053378576364, guid: 52c278208cfb3754daa81fd8228b8b0c,
         type: 3}
@@ -812,6 +812,11 @@ PrefabInstance:
       propertyPath: acelerationValue
       value: 1.02
       objectReference: {fileID: 0}
+    - target: {fileID: 8267519813343231134, guid: 52c278208cfb3754daa81fd8228b8b0c,
+        type: 3}
+      propertyPath: transitionCanvas
+      value: 
+      objectReference: {fileID: 7808678577297387405}
     - target: {fileID: 8363076174180495067, guid: 52c278208cfb3754daa81fd8228b8b0c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -896,6 +901,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Transition Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082163233259411888, guid: 1b7d2463f37c2ae4994d91daf845da76,
+        type: 3}
+      propertyPath: m_TagString
+      value: Transition
       objectReference: {fileID: 0}
     - target: {fileID: 3082163233259411892, guid: 1b7d2463f37c2ae4994d91daf845da76,
         type: 3}
@@ -1012,6 +1022,12 @@ PrefabInstance:
 --- !u!224 &7808678577297387401 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3082163233259411892, guid: 1b7d2463f37c2ae4994d91daf845da76,
+    type: 3}
+  m_PrefabInstance: {fileID: 5087929491233257021}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7808678577297387405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3082163233259411888, guid: 1b7d2463f37c2ae4994d91daf845da76,
     type: 3}
   m_PrefabInstance: {fileID: 5087929491233257021}
   m_PrefabAsset: {fileID: 0}

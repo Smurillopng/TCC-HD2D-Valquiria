@@ -1,3 +1,5 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,152 +10,172 @@ using UnityEngine.Serialization;
 namespace MuriPNG.Audio
 {
     public enum SoundTab { SoundInfo, SoundSettings, SoundEvents }
-
-    /// <summary>
-    /// This class represents a sound.
-    /// </summary>
-    /// <remarks>
-    /// It contains the sound ID, the audio clip, the audio source, the reference position, the volume, the pitch, the loop flag, the mute flag, the play on awake flag, the spatial blend, the min distance, the max distance, the rolloff mode, the doppler level, the spread, the priority, the mixer group, the exposed parameter name, the volume curve, the pitch curve, the on play event, the on stop event, the on pause event, the on resume event, the on mute event, and the on unmute event.
-    /// </remarks>
+    
     [Serializable]
     public class Sound
     {
         #region === Variables ===============================================================
 
-        #region Basic Sound Info
+        #region === Basic Sound Info ========================================================
 
-        [Tooltip("Sound ID")]
-        [FoldoutGroup("Sound", expanded: true)]
-        [Required, SerializeField] private string name;
+        [FoldoutGroup("$name")]
+        [FoldoutGroup("$name/General Info")]
+        [Tooltip("Sound ID"), Required, SerializeField]
+        private string name;
 
-        [Tooltip("Sound Audio Clip")]
-        [FoldoutGroup("Sound", expanded: true)]
-        [Required, SerializeField] private AudioClip clip;
+        [FoldoutGroup("$name/General Info")]
+        [Tooltip("Sound Audio Clip"), Required, SerializeField]
+        private AudioClip clip;
 
-        [FoldoutGroup("Sound", expanded: true)]
-        [EnumToggleButtons, HideLabel] public SoundTab tab;
+        [FoldoutGroup("$name/General Info")]
+        [EnumToggleButtons, HideLabel]
+        public SoundTab tab;
 
-        #endregion
+        #endregion ==========================================================================
 
-        # region Sound Info
+        #region === Sound Info ==============================================================
 
+        [FoldoutGroup("$name/Sound Info")]
         [Tooltip("The AudioSource that will play the sound. If not specified, an AudioSource from the AudioManager's list of AudioSources will be used.")]
-        [FoldoutGroup("Sound/Sound Info", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundInfo), SerializeField] private AudioSource source;
+        [ShowIf("tab", SoundTab.SoundInfo), SerializeField]
+        private AudioSource source;
 
+        [FoldoutGroup("$name/Sound Info")]
         [Tooltip("Reference position to use when playing the sound. If not specified, the position will be the same as the AudioSource.")]
-        [FoldoutGroup("Sound/Sound Info", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundInfo), SerializeField] private Transform position;
+        [ShowIf("tab", SoundTab.SoundInfo), SerializeField]
+        private Transform position;
 
+        [FoldoutGroup("$name/Sound Info")]
         [Tooltip("Audio group where the sound volume will come out.")]
-        [FoldoutGroup("Sound/Sound Info", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundInfo), SerializeField] private AudioMixerGroup output;
+        [ShowIf("tab", SoundTab.SoundInfo), SerializeField]
+        private AudioMixerGroup output;
 
-        #endregion
+        #endregion ==========================================================================
 
-        #region Sound Settings
+        #region === Sound Settings ==========================================================
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("If the sound settings will be based on a SoundSettings scriptable object.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
         [ShowIf("tab", SoundTab.SoundSettings), LabelText("Override Settings"), SerializeField]
         private bool usePreDefinedSettings;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("The set of sound configuration rules.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("usePreDefinedSettings"), InlineEditor, SerializeField] private SoundSettings soundSettings;
+        [ShowIf("usePreDefinedSettings"), InlineEditor, SerializeField]
+        private SoundSettings soundSettings;
 
         [Space(2)]
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Is the audio clip in loop?")]
         [Title("Individual Settings", titleAlignment: TitleAlignments.Centered, horizontalLine: true, bold: true)]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private bool loop;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private bool loop;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("If set to true, the audio source will start playing automatically when created.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private bool playOnAwake;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private bool playOnAwake;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("If the sound is muted or not")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private bool mute;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private bool mute;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Ignore effects (applied from filter components or listener global filters).")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private bool ignoreEffects;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private bool ignoreEffects;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("When set, global effects on the AudioListener will not be applied to the audio signal generated by the AudioSource. Does not apply if the AudioSource is playing in an AudioMixer group.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private bool ignoreListenerEffects;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private bool ignoreListenerEffects;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("When set, does not route the signal of an AudioSource to the global reverb associated with the reverb zones.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private bool ignoreReverbZone;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private bool ignoreReverbZone;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Enables or disables spatialization.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private bool spatialize;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private bool spatialize;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Defines the priority of the AudioSource.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), Range(0f, 256f), SerializeField] private int priority = 128;
+        [ShowIf("tab", SoundTab.SoundSettings), Range(0f, 256f), SerializeField]
+        private int priority = 128;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("The volume of the audio source (0.0 to 1.0).")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), Range(0f, 1f), SerializeField] private float volume = 1;
+        [ShowIf("tab", SoundTab.SoundSettings), Range(0f, 1f), SerializeField]
+        private float volume = 1;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("The pitch of the audio source.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), Range(.1f, 3f), SerializeField] private float pitch = 1;
+        [ShowIf("tab", SoundTab.SoundSettings), Range(.1f, 3f), SerializeField]
+        private float pitch = 1;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Shifts a stereo sound (left or right) being played. This only applies to Mono or Stereo sounds.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), Range(-1, 1f), SerializeField] private float panStereo;
+        [ShowIf("tab", SoundTab.SoundSettings), Range(-1, 1f), SerializeField]
+        private float panStereo;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Defines how much this AudioSource is affected by 3D spatialization calculations (attenuation, doppler etc). 0.0 makes the sound fully 2D, 1.0 makes the sound fully 3D.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), Range(0f, 1f), SerializeField] private float spacialBlend;
+        [ShowIf("tab", SoundTab.SoundSettings), Range(0f, 1f), SerializeField]
+        private float spacialBlend;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("The amount by which the signal of an AudioSource will be mixed into the global reverb associated with the reverb zones.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), Range(0f, 1.1f), SerializeField] private float reverbZoneMix = 1;
+        [ShowIf("tab", SoundTab.SoundSettings), Range(0f, 1.1f), SerializeField]
+        private float reverbZoneMix = 1;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Defines the Doppler scale for this AudioSource.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private float dopplerLevel = 1;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private float dopplerLevel = 1;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Defines the spread angle (in degrees) of a 3D stereo or multichannel sound in speaker space.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private float spread;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private float spread;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Defines how the AudioSource attenuates over distance.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private AudioRolloffMode rollOffMode = AudioRolloffMode.Logarithmic;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private AudioRolloffMode rollOffMode = AudioRolloffMode.Logarithmic;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("Within the minimum distance, the AudioSource will stop increasing the volume.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private float minimumDistance = 1;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private float minimumDistance = 1;
 
+        [FoldoutGroup("$name/Sound Settings", expanded: true)]
         [Tooltip("(Logarithmic rollOff) maximum distance is the distance at which a sound stops attenuating.")]
-        [FoldoutGroup("Sound/Sound Settings", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundSettings), SerializeField] private float maximumDistance = 500;
+        [ShowIf("tab", SoundTab.SoundSettings), SerializeField]
+        private float maximumDistance = 500;
 
         #endregion
 
-        #region Sound Events
+        #region === Sound Events ==============================================================
 
         [FormerlySerializedAs("onPlay")]
+        [FoldoutGroup("$name/Sound Events", expanded: true)]
         [Space(2)]
         [Tooltip("Event called when the sound starts playing.")]
-        [FoldoutGroup("Sound/Sound Events", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundEvents), SerializeField] private UnityEvent play;
+        [ShowIf("tab", SoundTab.SoundEvents), SerializeField]
+        private UnityEvent play;
 
         [FormerlySerializedAs("onStop")]
+        [FoldoutGroup("$name/Sound Events", expanded: true)]
         [Tooltip("Event called when the sound stops playing.")]
-        [FoldoutGroup("Sound/Sound Events", expanded: true)]
-        [ShowIf("tab", SoundTab.SoundEvents), SerializeField] private UnityEvent stop;
+        [ShowIf("tab", SoundTab.SoundEvents), SerializeField]
+        private UnityEvent stop;
 
         #endregion
 
-        #endregion
+        #endregion ==========================================================================
 
         #region === Properties ==============================================================
 
@@ -273,7 +295,7 @@ namespace MuriPNG.Audio
             set => maximumDistance = value;
         }
 
-        #endregion
+        #endregion ==========================================================================
 
         #region === Methods =================================================================
 
@@ -398,6 +420,6 @@ namespace MuriPNG.Audio
                     break;
             }
         }
-        #endregion
+        #endregion ==========================================================================
     }
 }

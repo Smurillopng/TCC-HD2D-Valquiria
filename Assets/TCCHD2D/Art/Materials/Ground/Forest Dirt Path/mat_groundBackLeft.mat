@@ -98,7 +98,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalGroundLeft:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: ba22761d771e49f43a5c88d6c8c1738a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalGroundRight:
@@ -106,7 +106,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalGroundTop:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: 18e29c15f12697641b467982ae2b1da0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normals:
@@ -134,7 +134,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularGroundLeft:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4c1180ec41918e94ba13b4bde70b0830, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularGroundRight:
@@ -142,7 +142,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularGroundTop:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: e6c8eb8f0f195644b86d23ef84afe7d4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -175,13 +175,13 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NormalStrength: 0.57
+    - _NormalStrength: 0.3
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smooth: 0.5
+    - _Smooth: 5
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

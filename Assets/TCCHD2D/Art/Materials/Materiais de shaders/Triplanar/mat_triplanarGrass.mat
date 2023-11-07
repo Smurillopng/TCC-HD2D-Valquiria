@@ -76,14 +76,15 @@ Material:
     - _Blend_Sharpness: 4
     - _Blend_Sharpness_top: 1.54
     - _Float: 0
-    - _NormalStrength: 0.4
-    - _NormalStrengthTop: 0
+    - _NormalStrength: 0.5
+    - _NormalStrengthTop: 0.3
     - _Opacity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Size: 1
     - _Smoothness: 0
-    - _SmoothnessTop: 0
+    - _SmoothnessSide: 3.5
+    - _SmoothnessTop: 5
     - _Tilling: 4
     m_Colors:
     - _: {r: 0, g: 0, b: 0, a: 0}

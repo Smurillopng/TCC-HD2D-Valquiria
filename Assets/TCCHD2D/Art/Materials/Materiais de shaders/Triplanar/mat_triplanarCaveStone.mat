@@ -75,13 +75,16 @@ Material:
     - _AlphaMaskSmoothness: 0.5
     - _Blend_Sharpness: 4
     - _Blend_Sharpness_top: 1.54
-    - _NormalStrength: 0.5
+    - _NormalStrength: 0.19
+    - _NormalStrengthTop: 0.19
     - _Opacity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Size: 1
     - _Smoothness: 18
-    - _Tilling: 3.99745
+    - _SmoothnessSide: 18.33
+    - _SmoothnessTop: 18.33
+    - _Tilling: 4
     m_Colors:
     - _: {r: 0, g: 0, b: 0, a: 0}
     - _PlayerPosition: {r: 0.5, g: 0.5, b: 0, a: 0}

@@ -1,20 +1,30 @@
+// Created by Sérgio Murillo da Costa Faria
+
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[HideMonoScript]
 public class FastTravelUI : MonoBehaviour
 {
+    #region === Variables ===============================================================
+    [FoldoutGroup("Fast Travel UI")]
+    [BoxGroup("Fast Travel UI/Settings")]
     [SerializeField] private GameObject fastTravelPanel;
+    
+    [BoxGroup("Fast Travel UI/Settings")]
     [SerializeField] private GameObject buttonPrefab;
+    
+    [BoxGroup("Fast Travel UI/Settings")]
     [SerializeField] private Transform buttonParent;
+    
     private FastTravelManager _fastTravelManager;
     private bool _isPanelActive, _buttonsSet;
+    #endregion ==========================================================================
 
-    private void Awake()
-    {
-    }
-
+    #region === Methods =================================================================
     public void TogglePanel(bool state)
     {
         fastTravelPanel.SetActive(state);
@@ -48,4 +58,5 @@ public class FastTravelUI : MonoBehaviour
     {
         foreach (Transform child in buttonParent.transform) Destroy(child.gameObject);
     }
+    #endregion ==========================================================================
 }

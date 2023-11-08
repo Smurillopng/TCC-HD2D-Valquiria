@@ -1,27 +1,27 @@
-﻿using System;
+﻿// Created by Sérgio Murillo da Costa Faria
+
+using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Timeline;
 using Random = UnityEngine.Random;
 
-/// <summary>
-/// This class represents a special action.
-/// </summary>
-/// <remarks>
-/// It contains the special action's name, description, type, cost, heal, damage, and debuff.
-/// </remarks>
+[HideMonoScript]
 public class Specials : MonoBehaviour
 {
     #region === Variables ===============================================================
 
+    [FoldoutGroup("Specials")]
     public List<Special> specialsList = new();
+    
     private PlayerCombatHUD _combatHUD;
     private TurnManager _turnManager;
     private UnitController _player;
     private UnitController _enemy;
     private Ailments _enemyAilments;
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
 
@@ -36,7 +36,7 @@ public class Specials : MonoBehaviour
         _enemyAilments = _enemy.gameObject.GetComponent<Ailments>();
     }
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -242,5 +242,5 @@ public class Specials : MonoBehaviour
             InsufficientTP(cost);
         }
     }
-    #endregion
+    #endregion ==========================================================================
 }

@@ -1,5 +1,4 @@
 // Created by Sérgio Murillo da Costa Faria
-// Date: 01/04/2023
 
 using UnityEngine;
 

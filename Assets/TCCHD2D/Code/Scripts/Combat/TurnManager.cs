@@ -1,3 +1,5 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,16 +8,9 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
-using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using Random = UnityEngine.Random;
 
-/// <summary>
-/// This enum represents the current state of the combat.
-/// </summary>
-/// <remarks>
-/// It contains the following states: CombatStart, TurnCheck, TurnEnd, PlayerTurn, EnemyTurn, PlayerWon, and PlayerLost.
-/// </remarks>
 public enum CombatState
 {
     CombatStart,
@@ -27,57 +22,58 @@ public enum CombatState
     PlayerLost
 }
 
-/// <summary>
-/// This class manages the turns of the units in combat.
-/// </summary>
-/// <remarks>
-/// It contains a list of all units in combat, the current state of the combat, the current unit, the current unit index, the turn count, and the delay for changing scenes.
-/// </remarks>
+[HideMonoScript]
 public class TurnManager : MonoBehaviour
 {
     #region === Variables ===============================================================
 
-    [BoxGroup("Units")]
+    [FoldoutGroup("Turn Manager")]
+    [BoxGroup("Turn Manager/Units")]
     [SerializeField, Tooltip("List of all units in combat")]
     private List<UnitController> units = new();
 
-    [FoldoutGroup("Events")]
+    [BoxGroup("Turn Manager/Events")]
     [SerializeField, Tooltip("Event called at the start of a unit's turn")]
     private UnityEvent onTurnStart;
-    [FoldoutGroup("Events")]
+    
+    [BoxGroup("Turn Manager/Events")]
     [SerializeField, Tooltip("Event called when a unit's turn ends or is skipped")]
     private UnityEvent onTurnChange;
 
-    [FoldoutGroup("Debug Info")]
+    [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField]
     private ItemNotification itemNotification;
-    [FoldoutGroup("Debug Info")]
+    
+    [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField]
     private float sceneChangeDelay;
-    [FoldoutGroup("Debug Info")]
+    
+    [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField]
-    private SceneTransitioner sceneTransitioner;
-    [FoldoutGroup("Debug Info")]
+    private MenuManager menuManager;
+    
+    [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField, ReadOnly, Tooltip("The index of the current unit in the units list")]
     private int currentUnitIndex;
-    [FoldoutGroup("Debug Info")]
+    
+    [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField, ReadOnly, Tooltip("Whether the current unit is controlled by the AI and has already moved this turn")]
     private bool aiMoved;
-    [FoldoutGroup("Debug Info")]
-    [SerializeField, ReadOnly, Tooltip("The UnitController component of the current player unit")]
 
+    [BoxGroup("Turn Manager/Debug Info")]
     public bool isPlayerTurn;
 
+    [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField, ReadOnly] private CombatState combatState; // The current state of the combat
+    
     private UnitController _currentUnit; // The UnitController component of the current unit
     private int _turnCount; // The current turn number
-
     public UnitController PlayerUnitController { get; private set; }
     public UnitController EnemyUnitController { get; private set; }
     public static UnityAction onDeath;
     private Ailments _playerAilments, _enemyAilments;
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
 
@@ -118,7 +114,7 @@ public class TurnManager : MonoBehaviour
         PlayerCombatHUD.TakenAction -= TakeAction;
     }
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -389,7 +385,7 @@ public class TurnManager : MonoBehaviour
     /// <summary>Loads the "scn_gameOver" scene, indicating that the game is over.</summary>
     private void GameOver()
     {
-        sceneTransitioner.StartCoroutine(sceneTransitioner.TransitionTo("scn_gameOver"));
+        menuManager.StartCoroutine(menuManager.TransitionTo("scn_gameOver"));
         onDeath.Invoke();
     }
     /// <summary>Performs the actions necessary for a victory.</summary>
@@ -413,7 +409,7 @@ public class TurnManager : MonoBehaviour
         yield return new WaitUntil(() => itemNotification.ItemQueue.Count == 0 && !itemNotification.IsDisplaying);
         yield return new WaitForSeconds(sceneChangeDelay);
         var lastScene = QuickSaveReader.Create("GameInfo").Read<string>("LastScene");
-        sceneTransitioner.StartCoroutine(sceneTransitioner.TransitionTo(lastScene));
+        menuManager.StartCoroutine(menuManager.TransitionTo(lastScene));
     }
     /// <summary>Calculates and applies the experience reward for defeating an enemy unit.</summary>
     /// <remarks>
@@ -486,5 +482,5 @@ public class TurnManager : MonoBehaviour
         onTurnChange.Invoke();
     }
 
-    #endregion
+    #endregion ==========================================================================
 }

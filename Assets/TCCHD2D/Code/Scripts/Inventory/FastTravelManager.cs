@@ -1,22 +1,29 @@
-using System;
-using System.Collections;
+// Created by Sérgio Murillo da Costa Faria
+
 using System.Collections.Generic;
 using CI.QuickSave;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[HideMonoScript]
 public class FastTravelManager : MonoBehaviour
 {
+    #region === Variables ===============================================================
     public static FastTravelManager Instance { get; private set; }
-
-    [SerializeField] private List<FastTravelPointData> fastTravelLocations;
-    private SceneTransitioner _sceneTransitioner;
+    
+    [FoldoutGroup("Fast Travel Manager")]
+    [SerializeField] 
+    private List<FastTravelPointData> fastTravelLocations;
+    
     public List<FastTravelPointData> FastTravelLocations => fastTravelLocations;
-
+    private SceneTransitioner _sceneTransitioner;
     private string _scene, _name;
     private Vector3 _position;
     private bool _discovered;
+    #endregion ==========================================================================
 
+    #region === Unity Methods ===========================================================
     private void Awake()
     {
         if (Instance == null)
@@ -31,7 +38,19 @@ public class FastTravelManager : MonoBehaviour
         LoadGameSaveData();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
+    
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        StartManager();
+    }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    #endregion ==========================================================================
+
+    #region === Methods =================================================================
     private void LoadGameSaveData()
     {
         var reader = QuickSaveReader.Create("GameSave");
@@ -55,16 +74,6 @@ public class FastTravelManager : MonoBehaviour
                     UpdatePoint(AddPointData(_name, _scene, _position, _discovered));
             }
         }
-    }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        StartManager();
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void StartManager()
@@ -118,4 +127,5 @@ public class FastTravelManager : MonoBehaviour
         writer.Write($"ft:{point.fastTravelName}_discovered", point.discovered);
         writer.Commit();
     }
+    #endregion ==========================================================================
 }

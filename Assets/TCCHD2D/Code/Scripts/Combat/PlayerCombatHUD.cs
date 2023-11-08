@@ -1,3 +1,5 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,131 +11,122 @@ using TMPro;
 using UnityEngine.EventSystems;
 using UnityEngine.VFX;
 
-/// <summary>
-/// Responsible for controlling the combat UI and the player's combat actions.
-/// </summary>
-/// <remarks>
-/// This class contains the player's health bar, the player's Tp bar, the player's charges bar, the player's charged stance vfx, the enemy's health bar, the enemy's name, the player's attack button, the player's defend button, the player's item button, the player's flee button, the player's attack button text, the player's defend button text, the player's item button text, the player's flee button text, the player's attack button event, the player's defend button event, the player's item button event, the player's flee button event, the player's attack button text event, the player's defend button text event, the player's item button text event, the player's flee button text event, the player's attack button text, the player's defend button text, the player's item button text, and the player's flee button text.
-/// </remarks>
 [HideMonoScript]
 public class PlayerCombatHUD : MonoBehaviour
 {
     #region === Variables ===============================================================
 
-    [TitleGroup("Player HUD Elements", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Tooltip("The fill image of the player's health bar.")]
+    [FoldoutGroup("Player Combat HUD")]
+    [BoxGroup("Player Combat HUD/HUD Elements")]
+    [SerializeField, Tooltip("The fill image of the player's health bar.")]
     private Image playerHealthBarFill;
 
-    [SerializeField]
-    [Tooltip("The text displaying the player's current health.")]
+    [BoxGroup("Player Combat HUD/HUD Elements")]
+    [SerializeField, Tooltip("The text displaying the player's current health.")]
     private TMP_Text playerHealthText;
 
-    [SerializeField]
-    [Tooltip("The fill image of the player's Tp bar.")]
+    [BoxGroup("Player Combat HUD/HUD Elements")]
+    [SerializeField, Tooltip("The fill image of the player's Tp bar.")]
     private Image playerTpBarFill;
 
-    [SerializeField]
-    [Tooltip("The text displaying the player's current Tp.")]
+    [BoxGroup("Player Combat HUD/HUD Elements")]
+    [SerializeField, Tooltip("The text displaying the player's current Tp.")]
     private TMP_Text playerTpText;
 
+    [BoxGroup("Player Combat HUD/HUD Elements")]
     [SerializeField]
     private GameObject experienceBar;
 
+    [BoxGroup("Player Combat HUD/HUD Elements")]
     [SerializeField]
     private Image experienceBarFill;
 
+    [BoxGroup("Player Combat HUD/HUD Elements")]
     [SerializeField]
     private TMP_Text experienceBarText;
 
+    [BoxGroup("Player Combat HUD/HUD Elements")]
     [SerializeField]
     [Tooltip("The fill image of the player's charges bar")]
     public Image playerCharges;
 
+    [BoxGroup("Player Combat HUD/HUD Elements")]
     [SerializeField]
     [Tooltip("The vfx for the player charged stance")]
     private VisualEffect playerChargedVfx;
 
-    [TitleGroup("Enemy HUD Elements", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Tooltip("The name text of the enemy.")]
+    [BoxGroup("Player Combat HUD/Enemy HUD Elements")]
+    [SerializeField, Tooltip("The name text of the enemy.")]
     private TMP_Text enemyName;
 
-    [SerializeField]
-    [Tooltip("The fill image of the enemy's health bar.")]
+    [BoxGroup("Player Combat HUD/Enemy HUD Elements")]
+    [SerializeField, Tooltip("The fill image of the enemy's health bar.")]
     private Image enemyHealthBarFill;
 
-    [SerializeField]
-    [Tooltip("The text displaying the enemy's current health.")]
+    [BoxGroup("Player Combat HUD/Enemy HUD Elements")]
+    [SerializeField, Tooltip("The text displaying the enemy's current health.")]
     private TMP_Text enemyHealthText;
 
-    [TitleGroup("Combat Text Box", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Tooltip("The text box displaying combat information.")]
+    [BoxGroup("Player Combat HUD/Combat Text Box")]
+    [SerializeField, Tooltip("The text box displaying combat information.")]
     private TMP_Text combatTextBox;
 
-    [TitleGroup("Combat Text Box", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Tooltip("The text box displaying combat information.")]
+    [BoxGroup("Player Combat HUD/Combat Text Box")]
+    [SerializeField, Tooltip("The text box displaying combat information.")]
     private GameObject textBoxObject;
 
-    [TitleGroup("Combat Panels", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Tooltip("The prefab for combat buttons.")]
+    [BoxGroup("Player Combat HUD/Combat Panels")]
+    [SerializeField, Tooltip("The prefab for combat buttons.")]
     private GameObject buttonPrefab;
 
-    [SerializeField]
-    [Tooltip("The panel containing combat options.")]
+    [BoxGroup("Player Combat HUD/Combat Panels")]
+    [SerializeField, Tooltip("The panel containing combat options.")]
     private GameObject optionsPanel;
 
-    [SerializeField]
-    [Tooltip("The panel containing special combat options.")]
+    [BoxGroup("Player Combat HUD/Combat Panels")]
+    [SerializeField, Tooltip("The panel containing special combat options.")]
     private GameObject specialPanel;
 
-    [SerializeField]
-    [Tooltip("The panel containing special combat options.")]
+    [BoxGroup("Player Combat HUD/Combat Panels")]
+    [SerializeField, Tooltip("The panel containing special combat options.")]
     private GameObject specialPanelContainer;
 
-    [SerializeField]
-    [Tooltip("The panel containing item options.")]
+    [BoxGroup("Player Combat HUD/Combat Panels")]
+    [SerializeField, Tooltip("The panel containing item options.")]
     private GameObject itemPanel;
 
-    [SerializeField]
-    [Tooltip("The panel containing item options.")]
+    [BoxGroup("Player Combat HUD/Combat Panels")]
+    [SerializeField, Tooltip("The panel containing item options.")]
     private GameObject itemPanelContainer;
 
-    [TitleGroup("Buttons", Alignment = TitleAlignments.Centered)]
-    [SerializeField]
-    [Tooltip("The button for attacking the enemy.")]
+    [BoxGroup("Player Combat HUD/Buttons")]
+    [SerializeField, Tooltip("The button for attacking the enemy.")]
     private Button attackButton;
 
-    [SerializeField]
-    [Tooltip("The button for using a special attack on the enemy.")]
+    [BoxGroup("Player Combat HUD/Buttons")]
+    [SerializeField, Tooltip("The button for using a special attack on the enemy.")]
     private Button specialButton;
 
-    [SerializeField]
-    [Tooltip("The button for using an item in combat.")]
+    [BoxGroup("Player Combat HUD/Buttons")]
+    [SerializeField, Tooltip("The button for using an item in combat.")]
     private Button itemButton;
 
-    [SerializeField]
-    [Tooltip("The button for attempting to run away from combat.")]
+    [BoxGroup("Player Combat HUD/Buttons")]
+    [SerializeField, Tooltip("The button for attempting to run away from combat.")]
     private Button runButton;
 
-    [SerializeField]
-    [Tooltip("The button for attempting to run away from combat.")]
+    [BoxGroup("Player Combat HUD/Buttons")]
+    [SerializeField, Tooltip("The button for attempting to run away from combat.")]
     private Button returnButton;
 
-    [SerializeField]
-    [Tooltip("The button for charging up the player's basic attack.")]
+    [BoxGroup("Player Combat HUD/Buttons")]
+    [SerializeField, Tooltip("The button for charging up the player's basic attack.")]
     private Button chargeButton;
 
-    [SerializeField]
-    [Tooltip("The button for discharging the player's basic attack.")]
+    [BoxGroup("Player Combat HUD/Buttons")]
+    [SerializeField, Tooltip("The button for discharging the player's basic attack.")]
     private Button dischargeButton;
-
-    [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered)]
-    [ShowInInspector, ReadOnly]
-
+    
     public static UnityAction TakenAction;
     public static UnityAction<string, float> CombatTextEvent;
     public static UnityAction UpdateCombatHUDPlayerHp;
@@ -143,12 +136,12 @@ public class PlayerCombatHUD : MonoBehaviour
     public static UnityAction<bool> ForceDisableButtons;
     public static UnityAction UpdateExperience;
 
-    [SerializeField]
-    [Tooltip("The manager for controlling turns in combat.")]
+    [BoxGroup("Player Combat HUD/Debug Info")]
+    [SerializeField, Tooltip("The manager for controlling turns in combat.")]
     private TurnManager turnManager;
 
-    [SerializeField]
-    [Tooltip("The collection of special attacks available to the player.")]
+    [BoxGroup("Player Combat HUD/Debug Info")]
+    [SerializeField, Tooltip("The collection of special attacks available to the player.")]
     private Specials specials;
 
     public GameObject SpecialPanel => specialPanel;
@@ -158,7 +151,7 @@ public class PlayerCombatHUD : MonoBehaviour
     private bool _charging;
     public static int _usedItemValue;
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
 
@@ -243,7 +236,7 @@ public class PlayerCombatHUD : MonoBehaviour
         ForceDisableButtons -= DisableButtons;
     }
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -599,5 +592,5 @@ public class PlayerCombatHUD : MonoBehaviour
         }
     }
 
-    #endregion
+    #endregion ==========================================================================
 }

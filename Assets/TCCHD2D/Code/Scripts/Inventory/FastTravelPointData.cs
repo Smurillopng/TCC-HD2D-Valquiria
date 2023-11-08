@@ -1,8 +1,10 @@
+// Created by Sérgio Murillo da Costa Faria
 using UnityEngine;
 
 [System.Serializable]
 public struct FastTravelPointData
 {
+    #region === Variables ===============================================================
     public string fastTravelName;
     public string sceneName;
     public Vector3 position;
@@ -15,4 +17,5 @@ public struct FastTravelPointData
         this.position = position;
         this.discovered = discovered;
     }
+    #endregion ==========================================================================
 }

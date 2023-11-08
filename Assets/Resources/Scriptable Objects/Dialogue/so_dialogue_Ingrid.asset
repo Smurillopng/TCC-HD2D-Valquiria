@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
-  m_Name: so_dialogue_ingrid
+  m_Name: so_dialogue_Ingrid
   m_EditorClassIdentifier: 
   characterName: Ingrid
   dialogueLines:

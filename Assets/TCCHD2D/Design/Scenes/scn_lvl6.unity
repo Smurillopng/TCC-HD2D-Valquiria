@@ -23366,12 +23366,12 @@ PrefabInstance:
     - target: {fileID: 6471829175399510939, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016963163
+      value: -0.000000016963163
       objectReference: {fileID: 0}
     - target: {fileID: 6471829175399510939, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000028828169
+      value: 0.0000000028828169
       objectReference: {fileID: 0}
     - target: {fileID: 7262514707707344432, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
@@ -29962,12 +29962,12 @@ PrefabInstance:
     - target: {fileID: 3874512464777918950, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016240387
+      value: -0.000000016240387
       objectReference: {fileID: 0}
     - target: {fileID: 3874512464777918950, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000005684135
+      value: 0.000000005684135
       objectReference: {fileID: 0}
     - target: {fileID: 4814090757390707792, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
@@ -39465,7 +39465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8333a7a7649e0c2488056dfa36c4d115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  engameScene: scn_fim
+  endgameScene: scn_fim
 --- !u!1001 &1241229613
 PrefabInstance:
   m_ObjectHideFlags: 0

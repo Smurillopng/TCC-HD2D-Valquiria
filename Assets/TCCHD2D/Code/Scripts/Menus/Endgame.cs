@@ -1,17 +1,28 @@
+// Created by Sérgio Murillo da Costa Faria
+
+using Sirenix.OdinInspector;
 using UnityEngine;
 
+[HideMonoScript]
 public class Endgame : MonoBehaviour
 {
-    public string engameScene;
+    #region === Variables ===============================================================
+    [FoldoutGroup("Endgame")]
+    public string endgameScene;
     private SceneTransitioner _transitioner;
+    #endregion ==========================================================================
 
-    void Awake()
+    #region === Unity Methods ===========================================================
+    private void Awake()
     {
         _transitioner = FindObjectOfType<SceneTransitioner>();
     }
+    #endregion ==========================================================================
 
+    #region === Methods =================================================================
     public void GameComplete()
     {
-        StartCoroutine(_transitioner.TransitionTo(engameScene));
+        StartCoroutine(_transitioner.TransitionTo(endgameScene));
     }
+    #endregion ==========================================================================
 }

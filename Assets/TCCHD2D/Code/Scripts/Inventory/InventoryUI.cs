@@ -1,5 +1,4 @@
 // Created by Sérgio Murillo da Costa Faria
-// Date: 04/04/2023
 
 using System;
 using System.Collections.Generic;
@@ -9,89 +8,92 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[HideMonoScript]
 public class InventoryUI : MonoBehaviour
 {
-    [BoxGroup("Panels")][SerializeField] private GameObject inventoryPanel;
-    [BoxGroup("Panels")][SerializeField] private GameObject bagPanel;
-    [BoxGroup("Panels")][SerializeField] private GameObject equipmentPanel;
-    [BoxGroup("Panels")][SerializeField] private GameObject itemDisplayPanel;
-    [BoxGroup("Panels")][SerializeField] private GameObject statusPanel;
-    [BoxGroup("Panels")][SerializeField] private GameObject exitPanel;
+    #region === Variables ===============================================================
+    [FoldoutGroup("Inventory UI")]
+    [BoxGroup("Inventory UI/Panels")][SerializeField] private GameObject inventoryPanel;
+    [BoxGroup("Inventory UI/Panels")][SerializeField] private GameObject bagPanel;
+    [BoxGroup("Inventory UI/Panels")][SerializeField] private GameObject equipmentPanel;
+    [BoxGroup("Inventory UI/Panels")][SerializeField] private GameObject itemDisplayPanel;
+    [BoxGroup("Inventory UI/Panels")][SerializeField] private GameObject statusPanel;
+    [BoxGroup("Inventory UI/Panels")][SerializeField] private GameObject exitPanel;
 
-    [BoxGroup("Equipment Slots")]
+    [BoxGroup("Inventory UI/Equipment Slots")]
     [SerializeField]
     private Image headSlot;
 
-    [BoxGroup("Equipment Slots")]
+    [BoxGroup("Inventory UI/Equipment Slots")]
     [SerializeField]
     private Image chestSlot;
 
-    [BoxGroup("Equipment Slots")]
+    [BoxGroup("Inventory UI/Equipment Slots")]
     [SerializeField]
     private Image legsSlot;
 
-    [BoxGroup("Equipment Slots")]
+    [BoxGroup("Inventory UI/Equipment Slots")]
     [SerializeField]
     private Image weaponSlot;
 
-    [BoxGroup("Equipment Slots")]
+    [BoxGroup("Inventory UI/Equipment Slots")]
     [SerializeField]
     private Image runeSlot;
 
-    [BoxGroup("Status")][SerializeField] private TMP_Text playerLvl;
-    [BoxGroup("Status")][SerializeField] private Image playerHealthBarFill;
-    [BoxGroup("Status")][SerializeField] private TMP_Text playerHealthText;
-    [BoxGroup("Status")][SerializeField] private Image playerTpFill;
-    [BoxGroup("Status")][SerializeField] private TMP_Text playerTpText;
-    [BoxGroup("Status")][SerializeField] private Image playerXpBarFill;
-    [BoxGroup("Status")][SerializeField] private TMP_Text playerXpText;
-    [BoxGroup("Status")][SerializeField] private TMP_Text playerAttack;
-    [BoxGroup("Status")][SerializeField] private TMP_Text playerDefence;
-    [BoxGroup("Status")][SerializeField] private TMP_Text playerSpeed;
-    [BoxGroup("Status")][SerializeField] private TMP_Text playerLuck;
-    [BoxGroup("Status")][SerializeField] private TMP_Text playerDexterity;
-    [BoxGroup("Status")][SerializeField] private GameObject lvlUpAttributesButtons;
-    [BoxGroup("Status")][SerializeField] private TMP_Text attributePointsText;
-    [BoxGroup("Status")][SerializeField] private TMP_Text availableAttributePointsText;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text playerLvl;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private Image playerHealthBarFill;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text playerHealthText;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private Image playerTpFill;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text playerTpText;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private Image playerXpBarFill;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text playerXpText;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text playerAttack;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text playerDefence;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text playerSpeed;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text playerLuck;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text playerDexterity;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private GameObject lvlUpAttributesButtons;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text attributePointsText;
+    [BoxGroup("Inventory UI/Status")][SerializeField] private TMP_Text availableAttributePointsText;
 
-    [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerHealthBarFill;
-    [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerHealthText;
-    [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerTpFill;
-    [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerTpText;
-    [BoxGroup("Left Bars")][SerializeField] private Image topLeftPlayerXpBarFill;
-    [BoxGroup("Left Bars")][SerializeField] private TMP_Text topLeftPlayerXpText;
+    [BoxGroup("Inventory UI/Left Bars")][SerializeField] private Image topLeftPlayerHealthBarFill;
+    [BoxGroup("Inventory UI/Left Bars")][SerializeField] private TMP_Text topLeftPlayerHealthText;
+    [BoxGroup("Inventory UI/Left Bars")][SerializeField] private Image topLeftPlayerTpFill;
+    [BoxGroup("Inventory UI/Left Bars")][SerializeField] private TMP_Text topLeftPlayerTpText;
+    [BoxGroup("Inventory UI/Left Bars")][SerializeField] private Image topLeftPlayerXpBarFill;
+    [BoxGroup("Inventory UI/Left Bars")][SerializeField] private TMP_Text topLeftPlayerXpText;
 
-    [BoxGroup("Item Display")][SerializeField] private TMP_Text itemName;
-    [BoxGroup("Item Display")][SerializeField] private TMP_Text itemDescription;
-    [BoxGroup("Item Display")][SerializeField] private Image itemIcon;
-    [BoxGroup("Item Display")][SerializeField] private TMP_Text itemQuantity;
-    [BoxGroup("Item Display")][SerializeField] private Button itemUseButton;
+    [BoxGroup("Inventory UI/Item Display")][SerializeField] private TMP_Text itemName;
+    [BoxGroup("Inventory UI/Item Display")][SerializeField] private TMP_Text itemDescription;
+    [BoxGroup("Inventory UI/Item Display")][SerializeField] private Image itemIcon;
+    [BoxGroup("Inventory UI/Item Display")][SerializeField] private TMP_Text itemQuantity;
+    [BoxGroup("Inventory UI/Item Display")][SerializeField] private Button itemUseButton;
 
-    [BoxGroup("Item Scroll")][SerializeField] private RectTransform bagRectTransform;
-    [BoxGroup("Item Scroll")][SerializeField] private ScrollRect bagScrollRect;
-    [BoxGroup("Item Scroll")][SerializeField] private float scrollOffset;
+    [BoxGroup("Inventory UI/Item Scroll")][SerializeField] private RectTransform bagRectTransform;
+    [BoxGroup("Inventory UI/Item Scroll")][SerializeField] private ScrollRect bagScrollRect;
+    [BoxGroup("Inventory UI/Item Scroll")][SerializeField] private float scrollOffset;
 
-    [BoxGroup("External References")]
+    [BoxGroup("Inventory UI/External References")]
     [SerializeField]
     private Button autoHealButton;
 
-    [BoxGroup("External References")]
+    [BoxGroup("Inventory UI/External References")]
     [SerializeField]
     private Unit playerUnit;
 
-    [BoxGroup("External References")]
+    [BoxGroup("Inventory UI/External References")]
     [SerializeField]
     private GameObject itemPrefab;
 
-    [BoxGroup("External References")]
+    [BoxGroup("Inventory UI/External References")]
     [SerializeField]
     private BoolVariable isInventoryOpen;
 
-    [BoxGroup("Debug")]
+    [BoxGroup("Inventory UI/Debug")]
     [SerializeField, ReadOnly]
     private bool updatedStatus;
 
-    [BoxGroup("Debug")]
+    [BoxGroup("Inventory UI/Debug")]
     [SerializeField, ReadOnly]
     private InventoryManager inventoryManager;
 
@@ -99,7 +101,9 @@ public class InventoryUI : MonoBehaviour
 
     private bool _gameStarted, _tutorialFinished;
     private QuickSaveReader _reader;
+    #endregion ==========================================================================
 
+    #region === Unity Methods ===========================================================
     private void Start()
     {
         inventoryManager = InventoryManager.Instance;
@@ -122,7 +126,50 @@ public class InventoryUI : MonoBehaviour
         _gameStarted = true;
         QuickSaveWriter.Create("GameInfo").Write("GameStarted", _gameStarted).Commit();
     }
+    
+    public void Update()
+    {
+        if (!_tutorialFinished)
+        {
+            _reader = QuickSaveReader.Create("GameSave");
+            if (_reader.Exists("FinishedTutorial"))
+                _tutorialFinished = _reader.Read<bool>("FinishedTutorial");
+        }
+        if (!SceneTransitioner.currentlyTransitioning && _tutorialFinished)
+        {
+            inventoryPanel.SetActive(isInventoryOpen.Value);
+            if (isInventoryOpen.Value)
+            {
+                PlayerControls.Instance.ToggleDefaultControls(false);
+                if (!updatedStatus)
+                {
+                    ResetPanels();
+                    UpdatePlayerStatus(playerUnit);
+                    updatedStatus = true;
+                }
+            }
+            else
+            {
+                PlayerControls.Instance.ToggleDefaultControls(true);
+                updatedStatus = false;
+            }
+        }
+        else
+        {
+            inventoryPanel.SetActive(false);
+            updatedStatus = false;
+        }
 
+        if (autoHealButton.gameObject.activeSelf) autoHealButton.interactable = playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp;
+        availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}" : string.Empty;
+        lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
+        attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
+        attributePointsText.text = $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}";
+        UpdateTopLeftBars();
+    }
+    #endregion ==========================================================================
+
+    #region === Methods =================================================================
     public void ShowBagPanel()
     {
         inventoryPanel.SetActive(true);
@@ -387,47 +434,6 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    public void Update()
-    {
-        if (!_tutorialFinished)
-        {
-            _reader = QuickSaveReader.Create("GameSave");
-            if (_reader.Exists("FinishedTutorial"))
-                _tutorialFinished = _reader.Read<bool>("FinishedTutorial");
-        }
-        if (!SceneTransitioner.currentlyTransitioning && _tutorialFinished)
-        {
-            inventoryPanel.SetActive(isInventoryOpen.Value);
-            if (isInventoryOpen.Value)
-            {
-                PlayerControls.Instance.ToggleDefaultControls(false);
-                if (!updatedStatus)
-                {
-                    ResetPanels();
-                    UpdatePlayerStatus(playerUnit);
-                    updatedStatus = true;
-                }
-            }
-            else
-            {
-                PlayerControls.Instance.ToggleDefaultControls(true);
-                updatedStatus = false;
-            }
-        }
-        else
-        {
-            inventoryPanel.SetActive(false);
-            updatedStatus = false;
-        }
-
-        if (autoHealButton.gameObject.activeSelf) autoHealButton.interactable = playerUnit.CurrentTp >= 10 && playerUnit.CurrentHp < playerUnit.MaxHp;
-        availableAttributePointsText.text = playerUnit.AttributesPoints > 0 ? $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}" : string.Empty;
-        lvlUpAttributesButtons.SetActive(playerUnit.AttributesPoints > 0);
-        attributePointsText.gameObject.SetActive(playerUnit.AttributesPoints > 0);
-        attributePointsText.text = $"Pontos de Atributos disponíveis: {playerUnit.AttributesPoints}";
-        UpdateTopLeftBars();
-    }
-
     // Lvl Up Methods
     public void LvlUpAttack()
     {
@@ -473,4 +479,5 @@ public class InventoryUI : MonoBehaviour
             }
         UpdatePlayerStatus(playerUnit);
     }
+    #endregion ==========================================================================
 }

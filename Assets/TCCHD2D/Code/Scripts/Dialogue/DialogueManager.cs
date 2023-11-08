@@ -1,45 +1,45 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using System.Collections;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// Manages the dialogue system.
-/// </summary>
-/// <remarks>
-/// This class is used to manage the dialogue system. It is responsible for displaying the dialogue box, displaying the dialogue text, and advancing the dialogue.
-/// </remarks>
 [HideMonoScript]
 public class DialogueManager : MonoBehaviour
 {
     #region === Variables ===============================================================
 
-    [TitleGroup("Dialogue Manager Settings", Alignment = TitleAlignments.Centered)]
+    [FoldoutGroup("Dialogue Manager")]
+    [BoxGroup("Dialogue Manager/Settings")]
     [SerializeField, Required, Tooltip("Dialogue box that will be displayed on screen.")]
     private GameObject dialogueBox;
 
+    [BoxGroup("Dialogue Manager/Settings")]
     [SerializeField, Required, Tooltip("Dialogue image that will be displayed on screen.")]
     private GameObject dialogueImage;
 
+    [BoxGroup("Dialogue Manager/Settings")]
     [SerializeField, Required, Tooltip("Text that will display the name of the character speaking.")]
     private TextMeshProUGUI speakerName;
 
+    [BoxGroup("Dialogue Manager/Settings")]
     [SerializeField, Required, Tooltip("Text that will display the dialogue of the character speaking.")]
     private TextMeshProUGUI dialogueText;
 
+    [BoxGroup("Dialogue Manager/Settings")]
     [SerializeField, Range(0.01f, 1f), Tooltip("Delay between each character of the dialogue text.")]
     private float charDelay = 0.1f;
 
-    [TitleGroup("Dialogue Data", Alignment = TitleAlignments.Centered)]
+    [BoxGroup("Dialogue Manager/Dialogue Data")]
     [SerializeField, ReadOnly, Tooltip("Current dialogue data being displayed.")]
     private DialogueData currentDialogueData;
 
     private int _currentLine;
-
     public DialogueData CurrentDialogueData { get => currentDialogueData; set => currentDialogueData = value; }
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -170,5 +170,5 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    #endregion
+    #endregion ==========================================================================
 }

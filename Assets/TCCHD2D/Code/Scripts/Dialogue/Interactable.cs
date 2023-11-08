@@ -1,41 +1,42 @@
 // Created by Sérgio Murillo da Costa Faria
-// Date: 17/03/2023
 
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
+[HideMonoScript]
 public class Interactable : SerializedMonoBehaviour
 {
     #region === Variables ===============================================================
 
-    [FoldoutGroup("Interaction Settings")]
+    [FoldoutGroup("Interactable")]
+    [FoldoutGroup("Interactable/Interaction Settings")]
     [SerializeField, EnumPaging, Tooltip("Type of interaction that the object will have with the player.")]
     private InteractionType interactionType;
 
-    [FoldoutGroup("Interaction Settings")]
+    [FoldoutGroup("Interactable/Interaction Settings")]
     [SerializeField, Range(0.1f, 2f), Tooltip("Distance needed to interact with the object.")]
     private float interactionRange = 1f;
 
-    [FoldoutGroup("Interaction Settings")]
+    [FoldoutGroup("Interactable/Interaction Settings")]
     [SerializeField]
     private Transform playerTransform;
 
-    [FoldoutGroup("Interaction Settings")]
+    [FoldoutGroup("Interactable/Interaction Settings")]
     [SerializeField, InlineEditor, Required, Tooltip("Bool variable that will be used to interact with the object.")]
     private BoolVariable interactBool;
     
-    [FoldoutGroup("Events"), Tooltip("Event called when the player interacts with the object.")]
+    [FoldoutGroup("Interactable/Events"), Tooltip("Event called when the player interacts with the object.")]
     public UnityEvent onAwake;
 
-    [FoldoutGroup("Events"), Tooltip("Event called when the player interacts with the object.")]
+    [FoldoutGroup("Interactable/Events"), Tooltip("Event called when the player interacts with the object.")]
     public UnityEvent onInteractionStart;
 
-    [FoldoutGroup("Events"), Tooltip("Event called when the player is in range of the object.")]
+    [FoldoutGroup("Interactable/Events"), Tooltip("Event called when the player is in range of the object.")]
     public UnityEvent onInteractionInRange;
 
-    [FoldoutGroup("Events"), Tooltip("Event called when the player is out of range of the object.")]
+    [FoldoutGroup("Interactable/Events"), Tooltip("Event called when the player is out of range of the object.")]
     public UnityEvent onInteractionOffRange;
 
     private bool _interacted;

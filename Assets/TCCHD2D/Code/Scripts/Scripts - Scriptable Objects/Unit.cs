@@ -15,7 +15,7 @@ public class Unit : SerializedScriptableObject
 {
     [BoxGroup("!", showLabel: false)]
     [SerializeField, InfoBox("File name to be assign on creation")] private string filename;
-    
+
     [TitleGroup("Unit Type", Alignment = TitleAlignments.Centered), GUIColor("green")]
     [SerializeField] private UnitType type;
 
@@ -23,7 +23,7 @@ public class Unit : SerializedScriptableObject
     [SerializeField]
     private string unitName;
 
-    [SerializeField, HideLabel, PreviewField(128, ObjectFieldAlignment.Center, FilterMode = FilterMode.Point), GUIColor("cyan")]
+    [SerializeField, HideLabel, PreviewField(160, ObjectFieldAlignment.Center, FilterMode = FilterMode.Point), GUIColor("cyan")]
     private Sprite unitSprite;
 
     [TitleGroup("Stats", Alignment = TitleAlignments.Centered)]

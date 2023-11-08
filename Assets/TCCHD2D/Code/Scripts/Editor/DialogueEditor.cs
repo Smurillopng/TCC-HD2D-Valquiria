@@ -4,14 +4,14 @@ using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 
-public class EnemyEditor : OdinMenuEditorWindow
+public class DialogueEditor : OdinMenuEditorWindow
 {
-    private CreateNewEnemy _createNewEnemy;
+    private CreateNewDialogue _createNewDialogue;
 
-    [MenuItem("Tools/TCC/Enemy Editor")]
+    [MenuItem("Tools/TCC/Dialogue Editor")]
     private static void OpenWindow()
     {
-        var window = GetWindow<EnemyEditor>();
+        var window = GetWindow<DialogueEditor>();
         window.Show();
         window.titleContent.image = EditorGUIUtility.IconContent("d_UnityEditor.ConsoleWindow").image;
     }
@@ -19,16 +19,17 @@ public class EnemyEditor : OdinMenuEditorWindow
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        if (_createNewEnemy != null)
-            DestroyImmediate(_createNewEnemy.EnemyData);
+        if (_createNewDialogue != null)
+            DestroyImmediate(_createNewDialogue.DialogueData);
     }
 
     protected override OdinMenuTree BuildMenuTree()
     {
         var tree = new OdinMenuTree();
-        _createNewEnemy = new CreateNewEnemy();
-        tree.Add("Create New Enemy", new CreateNewEnemy());
-        tree.AddAllAssetsAtPath("Enemies", "Assets/Resources/Scriptable Objects/Enemies", true);
+        _createNewDialogue = new CreateNewDialogue();
+        tree.Add("Create New Dialogue", new CreateNewDialogue());
+        tree.AddAllAssetsAtPath("Dialogues", "Assets/Resources/Scriptable Objects/Dialogue", typeof(DialogueData), true, true);
+        tree.SortMenuItemsByName();
         tree.MenuItems[0].AddIcon(SdfIconType.PencilSquare);
         tree.MenuItems[1].AddIcon(SdfIconType.Archive).ChildMenuItems.AddIcons(EditorIcons.CharGraph);
         return tree;
@@ -40,7 +41,7 @@ public class EnemyEditor : OdinMenuEditorWindow
         SirenixEditorGUI.BeginHorizontalToolbar();
         {
             GUILayout.FlexibleSpace();
-            if (SirenixEditorGUI.ToolbarButton("Delete Current Enemy"))
+            if (SirenixEditorGUI.ToolbarButton("Delete Current Dialogue"))
             {
                 switch (selected.SelectedValue)
                 {
@@ -57,25 +58,25 @@ public class EnemyEditor : OdinMenuEditorWindow
         SirenixEditorGUI.EndHorizontalToolbar();
     }
 
-    public class CreateNewEnemy
+    public class CreateNewDialogue
     {
         [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
-        public Unit EnemyData;
+        public DialogueData DialogueData;
 
-        public CreateNewEnemy()
+        public CreateNewDialogue()
         {
-            EnemyData = CreateInstance<Unit>();
-            EnemyData.UnitName = "New Enemy";
+            DialogueData = CreateInstance<DialogueData>();
+            DialogueData.ID = "New Dialogue";
         }
 
-        [Button("Add New Enemy SO")]
+        [Button("Add New Dialogue SO")]
         private void AddNewEnemy()
         {
-            AssetDatabase.CreateAsset(EnemyData, $"Assets/Resources/Scriptable Objects/Enemies/{EnemyData.Filename}.asset");
+            AssetDatabase.CreateAsset(DialogueData, $"Assets/Resources/Scriptable Objects/Enemies/{DialogueData.ID}.asset");
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            EnemyData = CreateInstance<Unit>();
-            EnemyData.UnitName = "New Enemy";
+            DialogueData = CreateInstance<DialogueData>();
+            DialogueData.ID = "New Enemy";
         }
     }
 }

@@ -13,29 +13,46 @@ using UnityEngine.VFX;
 public class Consumable : ScriptableObject, IItem
 {
     [BoxGroup("!", showLabel: false)]
-    [SerializeField, InfoBox("File name to be assign on creation")] private string filename;
-    [BoxGroup("Type", centerLabel: true, showLabel: true)]
-    [SerializeField, GUIColor("green")] private ItemTyping itemType;
-    [BoxGroup("Type", centerLabel: true, showLabel: true)]
-    [SerializeField, GUIColor("green")] private ConsumableTypes effectType;
-    [BoxGroup("Info", centerLabel: true, showLabel: true)]
-    [SerializeField, GUIColor("cyan")] private string itemName;
-    [BoxGroup("Info", centerLabel: true, showLabel: true)]
-    [SerializeField, GUIColor("cyan"), PreviewField(32, ObjectFieldAlignment.Center, FilterMode = FilterMode.Point), HideLabel] 
+    [SerializeField, InfoBox("File name to be assign on creation")]
+    private string filename;
+
+    [TitleGroup("Type", Alignment = TitleAlignments.Centered)]
+    [SerializeField, GUIColor("green")]
+    private ItemTyping itemType;
+
+    [SerializeField, GUIColor("green")]
+    private ConsumableTypes effectType;
+
+    [TitleGroup("Info", Alignment = TitleAlignments.Centered)]
+    [SerializeField, GUIColor("cyan")]
+    private string itemName;
+
+
+    [SerializeField, GUIColor("cyan"), PreviewField(160, ObjectFieldAlignment.Center, FilterMode = FilterMode.Point), HideLabel]
     private Sprite itemIcon;
-    [BoxGroup("Info", centerLabel: true, showLabel: true)]
-    [SerializeField, GUIColor("cyan"), TextArea] private string itemDescription;
-    [BoxGroup("Info", centerLabel: true, showLabel: true)]
-    [SerializeField, GUIColor("magenta")] private VisualEffectAsset vfx;
-    [BoxGroup("Values", centerLabel: true, showLabel: true)]
-    [SerializeField, GUIColor("yellow")] private int maxStack;
-    [BoxGroup("Values", centerLabel: true, showLabel: true)]
-    [SerializeField, GUIColor("yellow")] private int currentStack;
-    [BoxGroup("Values", centerLabel: true, showLabel: true)]
-    [SerializeField, GUIColor("yellow")] private int effectValue;
-    [SerializeField, HideInInspector] private int itemID; // TODO: caso seja necessário
-    [SerializeField, HideInInspector] private int itemValue; // TODO: para quando der para vender
-    
+
+    [SerializeField, GUIColor("cyan"), TextArea]
+    private string itemDescription;
+
+    [SerializeField, GUIColor("magenta")]
+    private VisualEffectAsset vfx;
+
+    [TitleGroup("Values", Alignment = TitleAlignments.Centered)]
+    [SerializeField, GUIColor("yellow")]
+    private int maxStack;
+
+    [SerializeField, GUIColor("yellow")]
+    private int currentStack;
+
+    [SerializeField, GUIColor("yellow")]
+    private int effectValue;
+
+    [SerializeField, HideInInspector]
+    private int itemID; // TODO: caso seja necessário
+
+    [SerializeField, HideInInspector]
+    private int itemValue; // TODO: para quando der para vender
+
     public string Filename
     {
         get => filename;
@@ -99,7 +116,7 @@ public class Consumable : ScriptableObject, IItem
         get => effectValue;
         set => effectValue = value;
     }
-    
+
     public void OnEnable()
     {
         filename = name;

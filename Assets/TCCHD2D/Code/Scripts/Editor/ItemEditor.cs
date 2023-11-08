@@ -8,15 +8,15 @@ public class ItemEditor : OdinMenuEditorWindow
 {
     private CreateNewItemConsumable _createNewItemConsumable;
     private CreateNewItemEquipment _createNewItemEquipment;
-    
+
     [MenuItem("Tools/TCC/Item Editor")]
     private static void OpenWindow()
     {
         var window = GetWindow<ItemEditor>();
         window.Show();
-        // TODO: window.titleContent.image =
+        window.titleContent.image = EditorGUIUtility.IconContent("d_UnityEditor.ConsoleWindow").image;
     }
-    
+
     protected override void OnDestroy()
     {
         base.OnDestroy();
@@ -25,7 +25,7 @@ public class ItemEditor : OdinMenuEditorWindow
         if (_createNewItemEquipment != null)
             DestroyImmediate(_createNewItemEquipment.ItemData);
     }
-    
+
     protected override OdinMenuTree BuildMenuTree()
     {
         var tree = new OdinMenuTree();
@@ -53,25 +53,25 @@ public class ItemEditor : OdinMenuEditorWindow
                 switch (selected.SelectedValue)
                 {
                     case Consumable deleteConsumable:
-                    {
-                        var path = AssetDatabase.GetAssetPath(deleteConsumable);
-                        AssetDatabase.DeleteAsset(path);
-                        AssetDatabase.SaveAssets();
-                        break;
-                    }
+                        {
+                            var path = AssetDatabase.GetAssetPath(deleteConsumable);
+                            AssetDatabase.DeleteAsset(path);
+                            AssetDatabase.SaveAssets();
+                            break;
+                        }
                     case Equipment deleteEquipment:
-                    {
-                        var path = AssetDatabase.GetAssetPath(deleteEquipment);
-                        AssetDatabase.DeleteAsset(path);
-                        AssetDatabase.SaveAssets();
-                        break;
-                    }
+                        {
+                            var path = AssetDatabase.GetAssetPath(deleteEquipment);
+                            AssetDatabase.DeleteAsset(path);
+                            AssetDatabase.SaveAssets();
+                            break;
+                        }
                 }
             }
         }
         SirenixEditorGUI.EndHorizontalToolbar();
     }
-    
+
     public class CreateNewItemConsumable
     {
         [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
@@ -82,7 +82,7 @@ public class ItemEditor : OdinMenuEditorWindow
             ItemData = CreateInstance<Consumable>();
             ItemData.ItemName = "New Consumable";
         }
-        
+
         [Button("Add New Consumable SO")]
         private void AddNewConsumable()
         {
@@ -93,7 +93,7 @@ public class ItemEditor : OdinMenuEditorWindow
             ItemData.ItemName = "New Consumable";
         }
     }
-    
+
     public class CreateNewItemEquipment
     {
         [InlineEditor(ObjectFieldMode = InlineEditorObjectFieldModes.Hidden)]
@@ -104,7 +104,7 @@ public class ItemEditor : OdinMenuEditorWindow
             ItemData = CreateInstance<Equipment>();
             ItemData.ItemName = "New Equipment";
         }
-        
+
         [Button("Add New Equipment SO")]
         private void AddNewEquipment()
         {

@@ -8,13 +8,34 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Dialogue", menuName = "RPG/New Dialogue"), InlineEditor]
 public class DialogueData : ScriptableObject
 {
-    [SerializeField] private string characterName;
-    [SerializeField] private DialogueLine[] dialogueLines;
-    [SerializeField] private bool isTutorial;
-    [SerializeField] private bool hasPlayed;
-    [ShowIf("isTutorial")]
-    [SerializeField] private bool resetOnExit;
+    [InfoBox("File name to be assign on creation"), BoxGroup("!", showLabel: false)]
+    [SerializeField]
+    private string id;
 
+    [TitleGroup("Dialogue Info", Alignment = TitleAlignments.Centered)]
+    [SerializeField, GUIColor("green")]
+    private string characterName;
+
+    [TitleGroup("Dialogue Lines", Alignment = TitleAlignments.Centered)]
+    [SerializeField, GUIColor("cyan")]
+    private DialogueLine[] dialogueLines;
+
+    [TitleGroup("Additional Options", Alignment = TitleAlignments.Centered)]
+    [SerializeField, GUIColor("yellow")]
+    private bool isTutorial;
+
+    [SerializeField, GUIColor("yellow")]
+    private bool hasPlayed;
+
+    [ShowIf("isTutorial")]
+    [SerializeField, GUIColor("yellow")]
+    private bool resetOnExit;
+
+    public string ID
+    {
+        get => id;
+        set => id = value;
+    }
     public string CharacterName => characterName;
     public DialogueLine[] DialogueLines => dialogueLines;
     public bool IsTutorial => isTutorial;
@@ -24,7 +45,7 @@ public class DialogueData : ScriptableObject
         set => hasPlayed = value;
     }
     public bool ResetOnExit => resetOnExit;
-    
+
 #if UNITY_EDITOR
     protected void OnEnable()
     {

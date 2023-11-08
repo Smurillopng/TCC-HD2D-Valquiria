@@ -1,14 +1,14 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-/// <summary>
-/// This class represents a set of combat scenarios.
-/// </summary>
-/// <remarks>
-/// It contains a dictionary of combat scenarios.
-/// </remarks>
+[HideMonoScript]
 public class SetScenario : SerializedMonoBehaviour
 {
+    #region === Variables ===============================================================
+    [FoldoutGroup("Set Scenario")]
     public Dictionary<CombatScenarios, GameObject> scenarios;
+    #endregion ==========================================================================
 }

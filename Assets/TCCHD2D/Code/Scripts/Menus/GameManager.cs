@@ -1,11 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+// Created by Sérgio Murillo da Costa Faria
+
 using MuriPNG.Audio;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
+[HideMonoScript]
 public class GameManager : MonoBehaviour
 {
+    #region === Variables ===============================================================
+    [FoldoutGroup("Game Manager")]
+    [SerializeField, Tooltip("The sound manager.")]
+
     private SoundManager _soundManager;
+    #endregion ==========================================================================
+
+    #region === Unity Methods ===========================================================
+    [BoxGroup("Game Manager/Debug", true)]
+    [Button("Set Initial Values")]
     void Awake()
     {
         if (_soundManager == null) _soundManager = FindObjectOfType<SoundManager>();
@@ -16,36 +27,39 @@ public class GameManager : MonoBehaviour
         SetFps();
         SetFullscreen();
     }
+    #endregion ==========================================================================
 
+    #region === Methods =================================================================
+    [BoxGroup("Game Manager/Debug", true)]
+    [Button("Set Master Volume")]
     public void SetMasterVolume()
     {
         _soundManager.SetMixerVolume("MasterMixer", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume")) * 20f);
     }
 
-    /// <summary>
-    /// Sets the music volume of the game and saves it to PlayerPrefs.
-    /// </summary>
+    [BoxGroup("Game Manager/Debug", true)]
+    [Button("Set Music Volume")]
     public void SetMusicVolume()
     {
         _soundManager.SetMixerVolume("MusicMixer", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume")) * 20f);
     }
 
-    /// <summary>
-    /// Sets the sfx volume of the game and saves it to PlayerPrefs.
-    /// </summary>
+    [BoxGroup("Game Manager/Debug", true)]
+    [Button("Set Sfx Volume")]
     public void SetSfxVolume()
     {
         _soundManager.SetMixerVolume("SfxMixer", Mathf.Log10(PlayerPrefs.GetFloat("SfxVolume")) * 20f);
     }
 
-    /// <summary>
-    /// Sets the quality of the game and saves it to PlayerPrefs.
-    /// </summary>
+    [BoxGroup("Game Manager/Debug", true)]
+    [Button("Set Quality")]
     public void SetQuality()
     {
         QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality"));
     }
 
+    [BoxGroup("Game Manager/Debug", true)]
+    [Button("Set Fps")]
     public void SetFps()
     {
         var fps = PlayerPrefs.GetInt("Fps");
@@ -64,9 +78,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Sets the game to fullscreen or windowed and saves it to PlayerPrefs.
-    /// </summary>
+    [BoxGroup("Game Manager/Debug", true)]
+    [Button("Set Fullscreen")]
     public void SetFullscreen()
     {
         var screenType = PlayerPrefs.GetInt("Fullscreen");
@@ -83,4 +96,5 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+    #endregion ==========================================================================
 }

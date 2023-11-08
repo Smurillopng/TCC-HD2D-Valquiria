@@ -1,28 +1,29 @@
-﻿using System;
+﻿// Created by Sérgio Murillo da Costa Faria
+
+using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-/// <summary>
-/// This class is responsible for detecting objects that are between the player and the camera and hiding them.
-/// </summary>
-/// <remarks>
-/// Created by Sérgio Murillo da Costa Faria on 23/04/2023.
-/// </remarks>
 [HideMonoScript]
 public class DistanceHider : MonoBehaviour
 {
     #region === Variables ===============================================================
 
+    [FoldoutGroup("Distance Hider")]
+    [BoxGroup("Distance Hider/Settings")]
     [SerializeField, Tooltip("The transform of the player.")]
     private Transform player;
     
+    [BoxGroup("Distance Hider/Settings")]
     [SerializeField, Tooltip("The layers to be considered for object detection.")]
     private LayerMask layerMask;
     
+    [BoxGroup("Distance Hider/Settings")]
     [SerializeField, Tooltip("The camera that will be used to calculate the distance to the objects.")]
     private Camera mainCam;
     
+    [BoxGroup("Distance Hider/Settings")]
     [SerializeField, Tooltip("The strength of the alpha applied to the materials of the hidden objects.")]
     private float alphaStrength = 0.1f;
 
@@ -33,7 +34,7 @@ public class DistanceHider : MonoBehaviour
     private readonly List<Renderer> _toRemove = new();
     private static readonly int AlphaValue = Shader.PropertyToID("_AlphaValue");
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
 
@@ -108,7 +109,5 @@ public class DistanceHider : MonoBehaviour
             return true;
         });
     }
-
-    
-    #endregion
+    #endregion ==========================================================================
 }

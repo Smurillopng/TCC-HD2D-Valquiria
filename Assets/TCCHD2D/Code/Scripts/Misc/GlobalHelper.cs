@@ -1,11 +1,13 @@
 // Created by Sérgio Murillo da Costa Faria
-// Date: 03/04/2023
 
 using CI.QuickSave;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
+[HideMonoScript]
 public class GlobalHelper : MonoBehaviour
 {
+    #region === Variables ===============================================================
     private static GlobalHelper _instance;
     public static GlobalHelper Instance
     {
@@ -23,7 +25,9 @@ public class GlobalHelper : MonoBehaviour
             return _instance;
         }
     }
+    #endregion ==========================================================================
 
+    #region === Unity Methods ===========================================================
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -33,6 +37,9 @@ public class GlobalHelper : MonoBehaviour
             _instance = this;
         }
     }
+    #endregion ==========================================================================
+    
+    #region === Methods =================================================================
     public void DestroyObject(GameObject target)
     {
         target.SetActive(false);
@@ -57,4 +64,5 @@ public class GlobalHelper : MonoBehaviour
             }
         }
     }
+    #endregion ==========================================================================
 }

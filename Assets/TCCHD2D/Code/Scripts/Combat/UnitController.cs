@@ -1,77 +1,91 @@
+// Created by Sérgio Murillo da Costa Faria
+
 using System.Collections;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
-/// <summary>
-/// Controls the behaviour of a unit.
-/// </summary>
-/// <remarks>
-/// This class controls the behaviour of a unit. It contains the unit data, the playable director that controls the animations of the unit, and the playable assets that represent the unit's actions.
-/// </remarks>
+[HideMonoScript]
 public class UnitController : MonoBehaviour
 {
     #region === Variables ===============================================================
 
-    [BoxGroup("Unit Info")]
+    [FoldoutGroup("Unit Controller")]
+    [BoxGroup("Unit Controller/Unit Info")]
     [SerializeField, InlineEditor, Tooltip("The unit data that this controller controls.")]
     private Unit unit;
 
-    [FoldoutGroup("Action Timelines")]
+    [FoldoutGroup("Unit Controller/Action Timelines")]
     [SerializeField, Tooltip("The playable director that controls the animations of this unit.")]
     private PlayableDirector director;
 
-    [FoldoutGroup("Action Timelines")]
+    [FoldoutGroup("Unit Controller/Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private TimelineAsset basicAttack;
 
-    [FoldoutGroup("Action Timelines")]
+    [FoldoutGroup("Unit Controller/Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private TimelineAsset basicCutAttack;
 
-    [FoldoutGroup("Action Timelines")]
+    [FoldoutGroup("Unit Controller/Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private TimelineAsset basicBluntAttack;
 
-    [FoldoutGroup("Action Timelines")]
+    [FoldoutGroup("Unit Controller/Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's basic attack.")]
     private TimelineAsset basicRangedAttack;
 
-    [FoldoutGroup("Action Timelines")]
+    [FoldoutGroup("Unit Controller/Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's use item action.")]
     private TimelineAsset useItem;
 
-    [FoldoutGroup("Action Timelines")]
+    [FoldoutGroup("Unit Controller/Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's run action.")]
     private TimelineAsset run;
-    [FoldoutGroup("Vfx's")]
+    
+    [FoldoutGroup("Unit Controller/Vfx's")]
     [SerializeField]
     private VisualEffect hitVfx;
-    [FoldoutGroup("Vfx's")]
+    
+    [FoldoutGroup("Unit Controller/Vfx's")]
     [SerializeField]
     private VisualEffect swordAttackVfx;
-    [FoldoutGroup("Vfx's")]
+    
+    [FoldoutGroup("Unit Controller/Vfx's")]
     [SerializeField]
     private VisualEffect hammerAttackVfx;
 
-    [FoldoutGroup("Unit Floating Numbers")]
+    [FoldoutGroup("Unit Controller/Unit Floating Numbers")]
     [SerializeField, Tooltip("The animator that controls the damage text animation.")]
     private Animator damageTextAnimator;
 
-    [FoldoutGroup("Unit Floating Numbers")]
+    [FoldoutGroup("Unit Controller/Unit Floating Numbers")]
     [SerializeField, Tooltip("The text that displays the damage taken by the unit.")]
     private TMP_Text damageText;
 
+    [FoldoutGroup("Unit Controller/Debug")] 
+    [ReadOnly]
     public int damageTakenThisTurn;
+    
+    [FoldoutGroup("Unit Controller/Debug")]
+    [ReadOnly]
     public int attackDamageCalculated;
+    
+    [FoldoutGroup("Unit Controller/Debug")]
+    [ReadOnly]
     public int defenceCalculated;
+    
+    [FoldoutGroup("Unit Controller/Debug")]
+    [ReadOnly]
     public int speedCalculated;
+    
+    [FoldoutGroup("Unit Controller/Debug")]
+    [ReadOnly]
     public int charges;
 
     private int _ongoingChargeAttacks;
@@ -79,7 +93,7 @@ public class UnitController : MonoBehaviour
     private PlayerCombatHUD _playerCombatHUD;
     private SceneTransitioner _sceneTransitioner;
 
-    #endregion
+    #endregion ==========================================================================
 
     #region === Properties ==============================================================
 
@@ -157,7 +171,12 @@ public class UnitController : MonoBehaviour
             _isCoroutineRunning = false;
         }
     }
-    #endregion
+    
+    private void OnDisable()
+    {
+        TurnManager.onDeath -= SetDead;
+    }
+    #endregion ==========================================================================
 
     #region === Methods =================================================================
 
@@ -523,10 +542,5 @@ public class UnitController : MonoBehaviour
         // AI logic for selecting an action goes here
         AttackLogic(target);
     }
-
-    private void OnDisable()
-    {
-        TurnManager.onDeath -= SetDead;
-    }
-    #endregion
+    #endregion ==========================================================================
 }

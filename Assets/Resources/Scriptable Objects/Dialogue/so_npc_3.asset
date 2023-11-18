@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
   m_Name: so_npc_3
   m_EditorClassIdentifier: 
+  id: so_npc_3
   characterName: Rolf
   dialogueLines:
   - text: Oi, me chamo Rolf.

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
   m_Name: so_tutorial_03
   m_EditorClassIdentifier: 
+  id: so_tutorial_03
   characterName: Trygve
   dialogueLines:
   - text: "Ei, Liv, voc\xEA est\xE1 indo para o treino?"

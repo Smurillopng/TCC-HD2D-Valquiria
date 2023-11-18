@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
   m_Name: so_tip_status
   m_EditorClassIdentifier: 
+  id: so_tip_status
   characterName: 
   dialogueLines:
   - text: 'A Liv possui 5 status que ela pode aumentar:'

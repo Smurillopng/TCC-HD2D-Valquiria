@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
   m_Name: so_dialogue_hilda
   m_EditorClassIdentifier: 
+  id: so_dialogue_hilda
   characterName: Hilda
   dialogueLines:
   - text: "Ol\xE1, Liv, como tem estado?"

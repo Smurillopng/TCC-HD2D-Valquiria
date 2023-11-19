@@ -100,6 +100,7 @@ public class InventoryUI : MonoBehaviour
     public Unit PlayerUnit => playerUnit;
 
     private bool _gameStarted, _tutorialFinished;
+    private int totalAttack, totalDefence, totalSpeed, totalLuck, totalDexterity;
     private QuickSaveReader _reader;
     #endregion ==========================================================================
 
@@ -126,7 +127,7 @@ public class InventoryUI : MonoBehaviour
         _gameStarted = true;
         QuickSaveWriter.Create("GameInfo").Write("GameStarted", _gameStarted).Commit();
     }
-    
+
     public void Update()
     {
         if (!_tutorialFinished)
@@ -225,6 +226,7 @@ public class InventoryUI : MonoBehaviour
             {
                 itemName.text = equipment.ItemName;
                 itemDescription.text = equipment.ItemDescription;
+                itemDescription.text += UpdateEquipmentDescriptions(equipment);
                 itemIcon.sprite = equipment.ItemIcon;
                 itemQuantity.text = $"x{equipment.CurrentStack}";
                 itemDisplayPanel.SetActive(true);
@@ -291,6 +293,7 @@ public class InventoryUI : MonoBehaviour
             else if (currentItem.ItemType == ItemTyping.Equipment)
             {
                 var equipment = currentItem as Equipment;
+                itemDescription.text += UpdateEquipmentDescriptions(equipment);
                 if (inventoryManager.EquipmentSlots.Find(x => equipment != null && x.slotType == equipment.SlotType).equipItem != equipment)
                 {
                     itemUseButton.gameObject.GetComponentInChildren<TMP_Text>().text = "Equipar";
@@ -307,6 +310,17 @@ public class InventoryUI : MonoBehaviour
                 }
             }
         }
+    }
+
+    private string UpdateEquipmentDescriptions(Equipment equipment)
+    {
+        var text = "\n";
+        if (equipment.StatusValue.Attack > 0) text += $"\nAtaque: +{equipment.StatusValue.Attack}";
+        if (equipment.StatusValue.Defence > 0) text += $"\nDefesa: +{equipment.StatusValue.Defence}";
+        if (equipment.StatusValue.Speed > 0) text += $"\nVelocidade: +{equipment.StatusValue.Speed}";
+        if (equipment.StatusValue.Luck > 0) text += $"\nSorte: +{equipment.StatusValue.Luck}";
+        if (equipment.StatusValue.Dexterity > 0) text += $"\nDestreza: +{equipment.StatusValue.Dexterity}";
+        return text;
     }
 
     public void UpdateEquipments(List<EquipmentSlot> equipmentSlots)
@@ -386,11 +400,29 @@ public class InventoryUI : MonoBehaviour
         playerTpFill.fillAmount = (float)unit.CurrentTp / unit.MaxTp;
         playerXpText.text = $"XP: {unit.Experience} / {unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience}";
         playerXpBarFill.fillAmount = (float)unit.Experience / unit.StatsTables.Find(x => x.Level == unit.Level + 1).Experience;
-        playerAttack.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem != null ? $"Ataque: {unit.Attack} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Weapon).equipItem.StatusValue})" : $"Ataque: {unit.Attack}</color>";
-        playerDefence.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem != null ? $"Defesa: {unit.Defence} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Chest).equipItem.StatusValue})" : $"Defesa: {unit.Defence}</color>";
-        playerSpeed.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem != null ? $"Velocidade: {unit.Speed} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Legs).equipItem.StatusValue})" : $"Velocidade: {unit.Speed}</color>";
-        playerLuck.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem != null ? $"Sorte: {unit.Luck} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Rune).equipItem.StatusValue})" : $"Sorte: {unit.Luck}</color>";
-        playerDexterity.text = inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem != null ? $"Destreza: {unit.Dexterity} <color=#00FF00>(+{inventoryManager.EquipmentSlots.Find(x => x.slotType == EquipmentSlotType.Head).equipItem.StatusValue})" : $"Destreza: {unit.Dexterity}</color>";
+
+        totalAttack = 0;
+        totalDefence = 0;
+        totalSpeed = 0;
+        totalLuck = 0;
+        totalDexterity = 0;
+
+        foreach (var equipment in InventoryManager.Instance.EquipmentSlots)
+        {
+            if (equipment.equipItem != null)
+            {
+                totalAttack += equipment.equipItem.StatusValue.Attack;
+                totalDefence += equipment.equipItem.StatusValue.Defence;
+                totalSpeed += equipment.equipItem.StatusValue.Speed;
+                totalLuck += equipment.equipItem.StatusValue.Luck;
+                totalDexterity += equipment.equipItem.StatusValue.Dexterity;
+            }
+        }
+        playerAttack.text = totalAttack > 0 ? $"Ataque: {unit.Attack} <color=#00FF00>(+{totalAttack})" : $"Ataque: {unit.Attack}</color>";
+        playerDefence.text = totalDefence > 0 ? $"Defesa: {unit.Defence} <color=#00FF00>(+{totalDefence})" : $"Defesa: {unit.Defence}</color>";
+        playerSpeed.text = totalSpeed > 0 ? $"Velocidade: {unit.Speed} <color=#00FF00>(+{totalSpeed})" : $"Velocidade: {unit.Speed}</color>";
+        playerLuck.text = totalLuck > 0 ? $"Sorte: {unit.Luck} <color=#00FF00>(+{totalLuck})" : $"Sorte: {unit.Luck}</color>";
+        playerDexterity.text = totalDexterity > 0 ? $"Destreza: {unit.Dexterity} <color=#00FF00>(+{totalDexterity})" : $"Destreza: {unit.Dexterity}</color>";
     }
 
     private void UpdateTopLeftBars()

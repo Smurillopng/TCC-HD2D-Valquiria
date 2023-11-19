@@ -1,6 +1,7 @@
 // Created by Sérgio Murillo da Costa Faria
 // Date: 01/04/2023
 
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -41,7 +42,7 @@ public class Equipment : ScriptableObject, IItem
     private int currentStack;
 
     [SerializeField, GUIColor("yellow")]
-    private int statusValue;
+    private EquipmentAttributes statusValue;
 
     [SerializeField, HideInInspector]
     private int itemValue; // TODO: Implementar quando der para comprar e vender
@@ -105,10 +106,20 @@ public class Equipment : ScriptableObject, IItem
         set => itemValue = value;
     }
 
-    public int StatusValue => statusValue;
+    public EquipmentAttributes StatusValue => statusValue;
 
     public void OnEnable()
     {
         filename = name;
     }
+}
+
+[Serializable]
+public struct EquipmentAttributes
+{
+    public int Attack;
+    public int Defence;
+    public int Speed;
+    public int Luck;
+    public int Dexterity;
 }

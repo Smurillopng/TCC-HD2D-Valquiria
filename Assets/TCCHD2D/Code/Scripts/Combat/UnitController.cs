@@ -200,8 +200,10 @@ public class UnitController : MonoBehaviour
     private void AttackLogic(UnitController target)
     {
         attackDamageCalculated = unit.Attack;
-        if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-            attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+        foreach (var equipment in InventoryManager.Instance.EquipmentSlots)
+        {
+            attackDamageCalculated += equipment.equipItem != null ? equipment.equipItem.StatusValue.Attack : 0;
+        }
         CalcDamage(target);
 
         if (charges > 0)
@@ -397,10 +399,10 @@ public class UnitController : MonoBehaviour
     public int TakeDamage(int damage)
     {
         defenceCalculated = unit.Defence;
-        if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[0].equipItem != null)
-            defenceCalculated += InventoryManager.Instance.EquipmentSlots[0].equipItem.StatusValue;
-        if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[1].equipItem != null)
-            defenceCalculated += InventoryManager.Instance.EquipmentSlots[1].equipItem.StatusValue;
+        foreach (var equipment in InventoryManager.Instance.EquipmentSlots)
+        {
+            defenceCalculated += equipment.equipItem != null ? equipment.equipItem.StatusValue.Defence : 0;
+        }
         // Calculate damage taken based on defense
         damageTakenThisTurn = damage - defenceCalculated / 2;
 

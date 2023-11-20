@@ -22,15 +22,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _NormalSide1:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: 495d3a34aec4d78458cfd04d2d411cd1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalSide2:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: 495d3a34aec4d78458cfd04d2d411cd1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalTop:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5113640a388f5864db889e47a74386b1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Side1:
@@ -42,15 +42,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularSide1:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: 128363d3eabb2604c95c8ae2633a09d5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularSide2:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: 128363d3eabb2604c95c8ae2633a09d5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecularTop:
-        m_Texture: {fileID: 2800000, guid: ac89552b18a5bf64aadd27b040e91323, type: 3}
+        m_Texture: {fileID: 2800000, guid: a9a85fa5264de814b889f79d520d1add, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Top:
@@ -76,12 +76,15 @@ Material:
     - _Blend_Sharpness: 4
     - _Blend_Sharpness_top: 1.54
     - _Float: 0
-    - _NormalStrength: 0
+    - _NormalStrength: 0.5
+    - _NormalStrengthTop: 0.3
     - _Opacity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Size: 1
     - _Smoothness: 0
+    - _SmoothnessSide: 3.5
+    - _SmoothnessTop: 5
     - _Tilling: 4
     m_Colors:
     - _: {r: 0, g: 0, b: 0, a: 0}

@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_bowHunter
   m_EditorClassIdentifier: 
+  filename: so_bowHunter
   itemType: 1
-  itemID: 0
   slotType: 3
   attackType: 2
   itemName: "Arco do ca\xE7ador lend\xE1rio"
   itemIcon: {fileID: 2026126408643383960, guid: c54764a8d971e7244a937980be694703,
     type: 3}
-  itemDescription: "Um arco capaz de abater criaturas mitol\xF3gicas de outros mundos.
-    Aumenta +20 de ataque"
+  itemDescription: "Um arco capaz de abater criaturas mitol\xF3gicas de outros mundos."
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 20
+    Defence: 0
+    Speed: 0
+    Luck: 0
+    Dexterity: 0
   itemValue: 0
-  statusValue: 20
+  itemID: 0

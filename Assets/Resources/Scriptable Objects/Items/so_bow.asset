@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_bow
   m_EditorClassIdentifier: 
+  filename: so_bow
   itemType: 1
-  itemID: 0
   slotType: 3
   attackType: 2
   itemName: Arco de iniciante
   itemIcon: {fileID: 4789025182271690568, guid: c54764a8d971e7244a937980be694703,
     type: 3}
-  itemDescription: "Um arco simples dado para crian\xE7as ou iniciantes. Aumenta
-    +5 de ataque"
+  itemDescription: "Um arco simples dado para crian\xE7as ou iniciantes."
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 5
+    Defence: 0
+    Speed: 0
+    Luck: 0
+    Dexterity: 0
   itemValue: 0
-  statusValue: 5
+  itemID: 0

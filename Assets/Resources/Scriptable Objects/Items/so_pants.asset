@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_pants
   m_EditorClassIdentifier: 
+  filename: so_pants
   itemType: 1
-  itemID: 0
   slotType: 2
   attackType: 0
   itemName: "Cal\xE7a de Couro"
   itemIcon: {fileID: 3925444170300180161, guid: 1a2f425b7d15a634e8fadd7882c57042,
     type: 3}
-  itemDescription: "Cal\xE7a feita com o couro de animais da floresta. Aumenta +2
-    de velocidade"
+  itemDescription: "Cal\xE7a feita com o couro de animais da floresta."
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 0
+    Defence: 0
+    Speed: 2
+    Luck: 0
+    Dexterity: 0
   itemValue: 0
-  statusValue: 2
+  itemID: 0

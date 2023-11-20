@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_chestIron
   m_EditorClassIdentifier: 
+  filename: so_chestIron
   itemType: 1
-  itemID: 0
   slotType: 1
   attackType: 0
   itemName: Cota de malha
   itemIcon: {fileID: -2688558570510602250, guid: 2621d847bc908e247a1ad803059396d0,
     type: 3}
   itemDescription: Uma malha de ferro utilizada pelos grandiosos guerreiros de Frigga.
-    Aumenta +5 de defesa
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 0
+    Defence: 5
+    Speed: 0
+    Luck: 0
+    Dexterity: 0
   itemValue: 0
-  statusValue: 5
+  itemID: 0

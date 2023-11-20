@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_helmetFerro
   m_EditorClassIdentifier: 
+  filename: so_helmetFerro
   itemType: 1
-  itemID: 0
   slotType: 0
   attackType: 0
   itemName: Capacete de ferro
   itemIcon: {fileID: 8611604984759191763, guid: 955b77d6192512446a19ea4daa010f8f,
     type: 3}
-  itemDescription: "Um capacete de ferro comum, por\xE9m muito \xFAtil para batalhas.
-    Aumenta +4 de destreza"
+  itemDescription: "Um capacete de ferro comum, por\xE9m muito \xFAtil para batalhas."
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 0
+    Defence: 0
+    Speed: 0
+    Luck: 0
+    Dexterity: 4
   itemValue: 0
-  statusValue: 4
+  itemID: 0

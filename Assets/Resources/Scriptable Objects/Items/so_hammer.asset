@@ -12,16 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_hammer
   m_EditorClassIdentifier: 
+  filename: so_hammer
   itemType: 1
-  itemID: 3
   slotType: 3
   attackType: 1
   itemName: Martelo
   itemIcon: {fileID: 2733489640717710059, guid: bfdd675a2a598724f863d988a9ebb8ed,
     type: 3}
   itemDescription: "Normalmente utilizado para amaciar carne de animais, mas seres
-    humanos tam\xE9m s\xE3o animais... Aumenta +6 de ataque"
+    humanos tamb\xE9m s\xE3o animais..."
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 6
+    Defence: 0
+    Speed: 0
+    Luck: 0
+    Dexterity: 0
   itemValue: 5
-  statusValue: 6
+  itemID: 3

@@ -80,6 +80,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  filename: 
   type: 1
   unitName: Furry das Terras distantes
   unitSprite: {fileID: -7708084762740616598, guid: 30cd53cfddfac8a44b717c168269d7bb,
@@ -95,7 +96,7 @@ MonoBehaviour:
   attack: 14
   defence: 8
   speed: 10
-  luck: 50
+  luck: 20
   dexterity: 13
   attributesPoints: 0
   isPlayer: 0

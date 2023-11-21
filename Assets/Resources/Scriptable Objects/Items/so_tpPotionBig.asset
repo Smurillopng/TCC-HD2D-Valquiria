@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7e845936f24d58a175d3d846e813f7, type: 3}
   m_Name: so_tpPotionBig
   m_EditorClassIdentifier: 
+  filename: so_tpPotionBig
   itemType: 0
-  itemID: 2
+  effectType: 2
   itemName: "Po\xE7\xE3o de TP grande"
   itemIcon: {fileID: -3520770975769160378, guid: 987a3ee179b7727418f7ea496d9e5d99,
     type: 3}
-  effectType: 2
-  vfx: {fileID: 0}
   itemDescription: "Essa po\xE7\xE3o grande e revigorante te d\xE1 mais energia para
     combater inimigos. Recupera +40 de TP"
+  vfx: {fileID: 0}
   maxStack: 99
   currentStack: 0
+  effectValue: 50
+  itemID: 2
   itemValue: 10
-  effectValue: 40

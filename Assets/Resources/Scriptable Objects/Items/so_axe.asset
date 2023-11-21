@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7e845936f24d58a175d3d846e813f7, type: 3}
   m_Name: so_axe
   m_EditorClassIdentifier: 
+  filename: so_axe
   itemType: 0
-  itemID: 2
+  effectType: 1
   itemName: Machado de arremesso
   itemIcon: {fileID: 7603757967652125121, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
-  effectType: 1
+  itemDescription: 'Um machado de arremesso para jogar nos inimigos. '
   vfx: {fileID: 0}
-  itemDescription: 'Um machado de arremesso para jogar nos inimigos. Dano: 10'
   maxStack: 99
   currentStack: 0
+  effectValue: 25
+  itemID: 2
   itemValue: 10
-  effectValue: 20

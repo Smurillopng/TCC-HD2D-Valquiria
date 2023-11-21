@@ -24,9 +24,9 @@ MonoBehaviour:
   currentStack: 0
   statusValue:
     Attack: 0
-    Defence: 2
+    Defence: 3
     Speed: 0
     Luck: 0
-    Dexterity: 2
+    Dexterity: 3
   itemValue: 0
   itemID: 0

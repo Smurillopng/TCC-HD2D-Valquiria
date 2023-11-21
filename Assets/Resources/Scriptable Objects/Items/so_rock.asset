@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7e845936f24d58a175d3d846e813f7, type: 3}
   m_Name: so_rock
   m_EditorClassIdentifier: 
+  filename: so_rock
   itemType: 0
-  itemID: 2
+  effectType: 1
   itemName: Pedra Pesada
   itemIcon: {fileID: -8089839015586339301, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
-  effectType: 1
-  vfx: {fileID: 0}
   itemDescription: 'Uma pedra encontrada pelo caminho durante sua jornada para jogar
-    nos inimigos. Dano: 5'
+    nos inimigos. '
+  vfx: {fileID: 0}
   maxStack: 99
   currentStack: 0
+  effectValue: 15
+  itemID: 2
   itemValue: 10
-  effectValue: 10

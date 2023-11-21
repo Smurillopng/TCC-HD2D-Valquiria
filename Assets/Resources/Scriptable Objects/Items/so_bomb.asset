@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7e845936f24d58a175d3d846e813f7, type: 3}
   m_Name: so_bomb
   m_EditorClassIdentifier: 
+  filename: so_bomb
   itemType: 0
-  itemID: 2
+  effectType: 1
   itemName: "Bomba de m\xE3o"
   itemIcon: {fileID: 2133776664999080902, guid: 117e47e4e6824c74a8c7dbe5a775784f,
     type: 3}
-  effectType: 1
+  itemDescription: "Uma pequena bomba de m\xE3o para jogar nos inimigos."
   vfx: {fileID: 0}
-  itemDescription: "Uma pequena bomba de m\xE3o para jogar nos inimigos. Dano: 20"
   maxStack: 99
   currentStack: 0
+  effectValue: 60
+  itemID: 2
   itemValue: 10
-  effectValue: 40

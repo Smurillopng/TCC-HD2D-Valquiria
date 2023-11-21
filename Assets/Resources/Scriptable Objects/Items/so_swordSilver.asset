@@ -26,7 +26,7 @@ MonoBehaviour:
     Attack: 9
     Defence: 0
     Speed: 0
-    Luck: 0
+    Luck: 5
     Dexterity: 0
   itemValue: 5
   itemID: 3

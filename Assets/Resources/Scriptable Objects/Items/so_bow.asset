@@ -25,8 +25,8 @@ MonoBehaviour:
   statusValue:
     Attack: 5
     Defence: 0
-    Speed: 0
-    Luck: 0
+    Speed: 2
+    Luck: 2
     Dexterity: 0
   itemValue: 0
   itemID: 0

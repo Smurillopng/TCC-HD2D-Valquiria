@@ -6,6 +6,7 @@ using System.Linq;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [HideMonoScript]
 public class InventoryManager : SerializedMonoBehaviour
@@ -43,6 +44,8 @@ public class InventoryManager : SerializedMonoBehaviour
     [SerializeField, Tooltip("If true, the inventory will reset when the game is exited.")]
     private bool resetOnExit;
 
+    private bool _inventoryLoaded;
+
     #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
@@ -62,45 +65,12 @@ public class InventoryManager : SerializedMonoBehaviour
         {
             Destroy(gameObject);
         }
-        
-        //Load
-        var itemReader = QuickSaveReader.Create("GameSave");
-        foreach (var key in itemReader.GetAllKeys())
-        {
-            if (_inventory.Exists(item => item.ItemName == key))
-                _inventory.Find(item => item.ItemName == key).CurrentStack = itemReader.Read<int>(key);
-            else
-            {
-                var possibleConsumables = Resources.LoadAll<Consumable>("Scriptable Objects/Items/");
-                var possibleEquipment = Resources.LoadAll<Equipment>("Scriptable Objects/Items/");
-                if (possibleConsumables.Any(item => item.ItemName == key))
-                {
-                    var item = possibleConsumables.First(item => item.ItemName == key);
-                    item.CurrentStack = itemReader.Read<int>(key);
-                    if (item.CurrentStack > 0 ) _inventory.Add(item);
-                }
-                else if (possibleEquipment.Any(item => item.ItemName == key))
-                {
-                    var item = possibleEquipment.First(item => item.ItemName == key);
-                    item.CurrentStack = itemReader.Read<int>(key);
-                    if (item.CurrentStack > 0 ) _inventory.Add(item);
-                }
-            }
-        }
-        var equipmentReader = QuickSaveReader.Create("GameSave");
-        foreach (var key in equipmentReader.GetAllKeys())
-        {
-            if (_equipmentSlots.Exists(slot => slot.slotType.ToString() == key))
-            {
-                var equipSlot = _equipmentSlots.Find(slot => slot.slotType.ToString() == key);
-                var possibleEquipment = Resources.LoadAll<Equipment>("Scriptable Objects/Items/");
-                if (possibleEquipment.Any(item => item.ItemName == equipmentReader.Read<string>(key)))
-                {
-                    var item = possibleEquipment.First(item => item.ItemName == equipmentReader.Read<string>(key));
-                    equipSlot.equipItem = item;
-                }
-            }
-        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        LoadInventory();
     }
 
     /// <summary>
@@ -108,6 +78,7 @@ public class InventoryManager : SerializedMonoBehaviour
     /// </summary>
     private void OnDisable()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
         if (!resetOnExit) return;
         foreach (var item in _inventory)
             item.CurrentStack = 0;
@@ -117,6 +88,53 @@ public class InventoryManager : SerializedMonoBehaviour
 
     #region === Methods =================================================================
 
+    private void LoadInventory()
+    {
+        var itemReader = QuickSaveReader.Create("GameSave");
+        if (SceneManager.GetActiveScene().name == "scn_mainMenu")
+            _inventoryLoaded = false;
+
+        if (!_inventoryLoaded)
+        {
+            foreach (var key in itemReader.GetAllKeys())
+            {
+                if (_inventory.Exists(item => item.ItemName == key))
+                    _inventory.Find(item => item.ItemName == key).CurrentStack = itemReader.Read<int>(key);
+                else
+                {
+                    var possibleConsumables = Resources.LoadAll<Consumable>("Scriptable Objects/Items/");
+                    var possibleEquipment = Resources.LoadAll<Equipment>("Scriptable Objects/Items/");
+                    if (possibleConsumables.Any(item => item.ItemName == key))
+                    {
+                        var item = possibleConsumables.First(item => item.ItemName == key);
+                        item.CurrentStack = itemReader.Read<int>(key);
+                        if (item.CurrentStack > 0) _inventory.Add(item);
+                    }
+                    else if (possibleEquipment.Any(item => item.ItemName == key))
+                    {
+                        var item = possibleEquipment.First(item => item.ItemName == key);
+                        item.CurrentStack = itemReader.Read<int>(key);
+                        if (item.CurrentStack > 0) _inventory.Add(item);
+                    }
+                }
+            }
+            var equipmentReader = QuickSaveReader.Create("GameSave");
+            foreach (var key in equipmentReader.GetAllKeys())
+            {
+                if (_equipmentSlots.Exists(slot => slot.slotType.ToString() == key))
+                {
+                    var equipSlot = _equipmentSlots.Find(slot => slot.slotType.ToString() == key);
+                    var possibleEquipment = Resources.LoadAll<Equipment>("Scriptable Objects/Items/");
+                    if (possibleEquipment.Any(item => item.ItemName == equipmentReader.Read<string>(key)))
+                    {
+                        var item = possibleEquipment.First(item => item.ItemName == equipmentReader.Read<string>(key));
+                        equipSlot.equipItem = item;
+                    }
+                }
+            }
+            _inventoryLoaded = true;
+        }
+    }
     /// <summary>
     /// Adds a consumable item to the inventory.
     /// </summary>

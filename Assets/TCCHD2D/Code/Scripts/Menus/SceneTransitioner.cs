@@ -156,7 +156,6 @@ public class SceneTransitioner : MonoBehaviour
             }
             yield return null;
         }
-        transitionCanvas.SetActive(false);
     }
 
     private IEnumerator TransitionOut()
@@ -254,7 +253,6 @@ public class SceneTransitioner : MonoBehaviour
             }
             yield return null;
         }
-        transitionCanvas.SetActive(false);
     }
 
     public void TransitionToScene(string scene)

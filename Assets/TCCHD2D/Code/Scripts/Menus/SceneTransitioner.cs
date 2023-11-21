@@ -243,9 +243,10 @@ public class SceneTransitioner : MonoBehaviour
                 writer.Write("SpawnEnd", false);
                 writer.Write("ChangingScene", true);
                 writer.Commit();
-                _pm.CanMove.Value = true;
                 currentlyTransitioning = false;
                 asyncOperation.allowSceneActivation = true;
+                if (asyncOperation.isDone)
+                    _pm.CanMove.Value = true;
             }
             else
             {

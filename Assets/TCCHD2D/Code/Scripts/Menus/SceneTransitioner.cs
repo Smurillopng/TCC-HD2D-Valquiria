@@ -29,7 +29,7 @@ public class SceneTransitioner : MonoBehaviour
     [BoxGroup("Scene Transitioner/Transition Related")]
     [SerializeField]
     private RectTransform playerBar, minimap;
-    
+
     [BoxGroup("Scene Transitioner/Transition Related")]
     [SerializeField]
     private GameObject transitionCanvas;
@@ -158,7 +158,7 @@ public class SceneTransitioner : MonoBehaviour
         }
         transitionCanvas.SetActive(false);
     }
-    
+
     private IEnumerator TransitionOut()
     {
         transitionCanvas.SetActive(true);
@@ -234,32 +234,22 @@ public class SceneTransitioner : MonoBehaviour
         }
         while (!asyncOperation.isDone)
         {
-            slider.value = asyncOperation.progress;
-
-            if (asyncOperation.progress == 0.9f)
+            if (asyncOperation.progress >= 0.9f)
             {
                 slider.value = 1f;
                 yield return new WaitUntil(() => Math.Abs(current - max) < 0.01);
-                if (spawnStart)
-                {
-                    var writer = QuickSaveWriter.Create("GameInfo");
-                    writer.Write("SpawnStart", true);
-                    writer.Write("SpawnEnd", false);
-                    writer.Write("ChangingScene", true);
-                    writer.Commit();
-                }
-                else if (spawnEnd)
-                {
-                    var writer = QuickSaveWriter.Create("GameInfo");
-                    writer.Write("SpawnStart", false);
-                    writer.Write("SpawnEnd", true);
-                    writer.Write("ChangingScene", true);
-                    writer.Commit();
-                }
-
+                var writer = QuickSaveWriter.Create("GameInfo");
+                writer.Write("SpawnStart", false);
+                writer.Write("SpawnEnd", false);
+                writer.Write("ChangingScene", true);
+                writer.Commit();
                 _pm.CanMove.Value = true;
                 currentlyTransitioning = false;
                 asyncOperation.allowSceneActivation = true;
+            }
+            else
+            {
+                slider.value = asyncOperation.progress;
             }
             yield return null;
         }

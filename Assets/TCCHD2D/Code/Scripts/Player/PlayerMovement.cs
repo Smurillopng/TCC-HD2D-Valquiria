@@ -108,6 +108,32 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = saveReader.Read<Vector3>("PlayerPosition");
         }
 
+        if (reader.Exists("LastScene"))
+        {
+            if (reader.Exists("ChangingScene") && reader.Read<bool>("ChangingScene").Equals(true))
+                if (SceneManager.GetActiveScene().name != reader.Read<string>("LastScene"))
+                {
+                    var writer = QuickSaveWriter.Create("GameInfo");
+                    gameObject.transform.position = reader.Read<Vector3>("PlayerPosition");
+                    writer.Write("ChangingScene", false);
+                    writer.Commit();
+                }
+        }
+
+        if (reader.Exists("ChangingScene") && reader.Read<bool>("ChangingScene").Equals(true))
+        {
+            if (PlayerControls.Instance.SceneMap.TryGetValue(SceneManager.GetActiveScene().name, out var value))
+            {
+                if (value == SceneType.Game)
+                {
+                    var writer = QuickSaveWriter.Create("GameInfo");
+                    gameObject.transform.position = reader.Read<Vector3>("PlayerPosition");
+                    writer.Write("ChangingScene", false);
+                    writer.Commit();
+                }
+            }
+        }
+
         if (reader.Exists("ChangingScene"))
         {
             if (reader.Exists("SpawnStart") ||
@@ -125,26 +151,6 @@ public class PlayerMovement : MonoBehaviour
                     transform.position = spawnController.SpawnEnd.position;
                     writer.Write("ChangingScene", false);
                     writer.Commit();
-                }
-            }
-        }
-
-        if (reader.Exists("LastScene"))
-        {
-            if (reader.Exists("ChangingScene") && reader.Read<bool>("ChangingScene").Equals(false))
-                if (SceneManager.GetActiveScene().name != reader.Read<string>("LastScene"))
-                {
-                    gameObject.transform.position = reader.Read<Vector3>("PlayerPosition");
-                }
-        }
-
-        if (reader.Exists("ChangingScene") && reader.Read<bool>("ChangingScene").Equals(false))
-        {
-            if (PlayerControls.Instance.SceneMap.TryGetValue(SceneManager.GetActiveScene().name, out var value))
-            {
-                if (value == SceneType.Game)
-                {
-                    gameObject.transform.position = reader.Read<Vector3>("PlayerPosition");
                 }
             }
         }

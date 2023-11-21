@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using UnityEngine.VFX;
 using Random = UnityEngine.Random;
@@ -540,7 +541,7 @@ public class UnitController : MonoBehaviour
     /// <remarks>If the unit is a player, no action is taken. Otherwise, the unit attacks the target and displays the damage dealt in the player combat HUD.</remarks>
     public void SelectAction(UnitController target)
     {
-        if (unit.IsPlayer) return;
+        if (!unit.IsPlayer && unit.UnitName == "Boneco de Treino") return;
         // AI logic for selecting an action goes here
         AttackLogic(target);
     }

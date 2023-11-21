@@ -67,6 +67,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  filename: 
   type: 1
   unitName: Boneco de Treino
   unitSprite: {fileID: 7987107396893427850, guid: fd0c50c37af59a34e9b9306cc76267fe,
@@ -79,11 +80,11 @@ MonoBehaviour:
   currentHp: 200
   maxTp: 100
   currentTp: 0
-  attack: 0
-  defence: 0
-  speed: 0
-  luck: 0
-  dexterity: 0
+  attack: 1
+  defence: 1
+  speed: 1
+  luck: 1
+  dexterity: 1
   attributesPoints: 0
   isPlayer: 0
   isDangerous: 0

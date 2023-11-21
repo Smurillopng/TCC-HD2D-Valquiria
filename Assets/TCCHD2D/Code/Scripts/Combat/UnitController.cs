@@ -291,6 +291,7 @@ public class UnitController : MonoBehaviour
             StartCoroutine(CritNumbers(target));
             PlayerCombatHUD.CombatTextEvent.Invoke($"Acerto <color=red>Crítico!</color>", 3f);
         }
+        if (calculatedDamage < 0) calculatedDamage = 0;
         target.TakeDamage(calculatedDamage);
     }
 

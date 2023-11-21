@@ -12,16 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_hammerWar
   m_EditorClassIdentifier: 
+  filename: so_hammerWar
   itemType: 1
-  itemID: 3
   slotType: 3
   attackType: 1
   itemName: Martelo de guerra
   itemIcon: {fileID: -1174314718005133635, guid: bfdd675a2a598724f863d988a9ebb8ed,
     type: 3}
   itemDescription: Um martelo utilizado em guerras passadas, aparenta carregar consigo
-    a bravura daqueles que um dia o empunharam. Aumenta +12 de ataque
+    a bravura daqueles que um dia o empunharam.
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 12
+    Defence: 0
+    Speed: 0
+    Luck: 0
+    Dexterity: 0
   itemValue: 5
-  statusValue: 12
+  itemID: 3

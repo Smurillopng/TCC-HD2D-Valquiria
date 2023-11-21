@@ -35,7 +35,7 @@ public class TurnManager : MonoBehaviour
     [BoxGroup("Turn Manager/Events")]
     [SerializeField, Tooltip("Event called at the start of a unit's turn")]
     private UnityEvent onTurnStart;
-    
+
     [BoxGroup("Turn Manager/Events")]
     [SerializeField, Tooltip("Event called when a unit's turn ends or is skipped")]
     private UnityEvent onTurnChange;
@@ -43,19 +43,19 @@ public class TurnManager : MonoBehaviour
     [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField]
     private ItemNotification itemNotification;
-    
+
     [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField]
     private float sceneChangeDelay;
-    
+
     [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField]
     private MenuManager menuManager;
-    
+
     [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField, ReadOnly, Tooltip("The index of the current unit in the units list")]
     private int currentUnitIndex;
-    
+
     [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField, ReadOnly, Tooltip("Whether the current unit is controlled by the AI and has already moved this turn")]
     private bool aiMoved;
@@ -65,7 +65,7 @@ public class TurnManager : MonoBehaviour
 
     [BoxGroup("Turn Manager/Debug Info")]
     [SerializeField, ReadOnly] private CombatState combatState; // The current state of the combat
-    
+
     private UnitController _currentUnit; // The UnitController component of the current unit
     private int _turnCount; // The current turn number
     public UnitController PlayerUnitController { get; private set; }
@@ -207,10 +207,11 @@ public class TurnManager : MonoBehaviour
         {
             if (unit.Unit.IsPlayer)
             {
-                if (InventoryManager.Instance.EquipmentSlots[2].equipItem != null)
-                    unit.speedCalculated = unit.Unit.Speed + InventoryManager.Instance.EquipmentSlots[2].equipItem.StatusValue;
-                else
-                    unit.speedCalculated = unit.Unit.Speed;
+                unit.speedCalculated = unit.Unit.Speed;
+                foreach (var equipment in InventoryManager.Instance.EquipmentSlots)
+                {
+                    unit.speedCalculated += equipment.equipItem != null ? equipment.equipItem.StatusValue.Dexterity : 0;
+                }
             }
             else
             {

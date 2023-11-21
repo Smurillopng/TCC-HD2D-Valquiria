@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
   m_Name: so_npc_1
   m_EditorClassIdentifier: 
+  id: so_npc_1
   characterName: Arnheid
   dialogueLines:
   - text: "Liv, voc\xEA chegou em um momento perigoso."
@@ -19,3 +20,6 @@ MonoBehaviour:
       Tenha cuidado."
   - text: "Seu pai saiu em uma miss\xE3o com alguns guerreiros para tentar encontrar
       de onde est\xE3o saindo esses animais perigosos."
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 0

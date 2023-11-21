@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
   m_Name: so_tutorial_10
   m_EditorClassIdentifier: 
+  id: so_tutorial_10
   characterName: Bjorn
   dialogueLines:
   - text: "N\xE3o! Voc\xEA ficou mais forte, mas ainda n\xE3o est\xE1 preparada para

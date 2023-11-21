@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_swordBronze
   m_EditorClassIdentifier: 
+  filename: so_swordBronze
   itemType: 1
-  itemID: 3
   slotType: 3
   attackType: 0
   itemName: Espada de Cobre
   itemIcon: {fileID: -5566181938308581267, guid: dfaef4b399d8a2c478d7d878aeb10cff,
     type: 3}
-  itemDescription: Uma espada forjada por guerreiros de terras distantes. Aumenta
-    +4 de ataque.
+  itemDescription: Uma espada forjada por guerreiros de terras distantes.
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 4
+    Defence: 0
+    Speed: 0
+    Luck: 0
+    Dexterity: 0
   itemValue: 5
-  statusValue: 4
+  itemID: 3

@@ -47,15 +47,15 @@ public class UnitController : MonoBehaviour
     [FoldoutGroup("Unit Controller/Action Timelines")]
     [SerializeField, Tooltip("The PlayableAsset representing the unit's run action.")]
     private TimelineAsset run;
-    
+
     [FoldoutGroup("Unit Controller/Vfx's")]
     [SerializeField]
     private VisualEffect hitVfx;
-    
+
     [FoldoutGroup("Unit Controller/Vfx's")]
     [SerializeField]
     private VisualEffect swordAttackVfx;
-    
+
     [FoldoutGroup("Unit Controller/Vfx's")]
     [SerializeField]
     private VisualEffect hammerAttackVfx;
@@ -68,22 +68,22 @@ public class UnitController : MonoBehaviour
     [SerializeField, Tooltip("The text that displays the damage taken by the unit.")]
     private TMP_Text damageText;
 
-    [FoldoutGroup("Unit Controller/Debug")] 
+    [FoldoutGroup("Unit Controller/Debug")]
     [ReadOnly]
     public int damageTakenThisTurn;
-    
+
     [FoldoutGroup("Unit Controller/Debug")]
     [ReadOnly]
     public int attackDamageCalculated;
-    
+
     [FoldoutGroup("Unit Controller/Debug")]
     [ReadOnly]
     public int defenceCalculated;
-    
+
     [FoldoutGroup("Unit Controller/Debug")]
     [ReadOnly]
     public int speedCalculated;
-    
+
     [FoldoutGroup("Unit Controller/Debug")]
     [ReadOnly]
     public int charges;
@@ -171,7 +171,7 @@ public class UnitController : MonoBehaviour
             _isCoroutineRunning = false;
         }
     }
-    
+
     private void OnDisable()
     {
         TurnManager.onDeath -= SetDead;
@@ -200,8 +200,10 @@ public class UnitController : MonoBehaviour
     private void AttackLogic(UnitController target)
     {
         attackDamageCalculated = unit.Attack;
-        if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-            attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+        foreach (var equipment in InventoryManager.Instance.EquipmentSlots)
+        {
+            attackDamageCalculated += equipment.equipItem != null ? equipment.equipItem.StatusValue.Attack : 0;
+        }
         CalcDamage(target);
 
         if (charges > 0)
@@ -263,30 +265,29 @@ public class UnitController : MonoBehaviour
         var criticalHitChance = (unit.Luck / 100f) + randomFactor;
         _criticalHit = criticalHitChance >= 0.9f;
 
-
         PlayerCombatHUD.ForceDisableButtons.Invoke(true);
         CalcAnimation();
 
         if (unit.IsPlayer && unit.CurrentTp < unit.MaxTp && charges <= 0)
         {
             unit.CurrentTp += 10;
-            if (unit.CurrentTp > unit.MaxTp)
-                unit.CurrentTp = unit.MaxTp;
+            unit.CurrentTp = Mathf.Clamp(unit.CurrentTp, 0, unit.MaxTp);
             PlayerCombatHUD.UpdateCombatHUDPlayerTp.Invoke();
         }
 
-        var randomFactorDam = Random.Range(0.85f, 1f);
-        var math = ((unit.Level * 1) + 2) / 5 + randomFactorDam;
+        var math = Random.Range(((unit.Level * 2) + 2) / 5 - 1, ((unit.Level * 2) + 2) / 5 + 1);
         var randomIncDec = Mathf.RoundToInt(Random.Range(-3, 4));
         var randomBool = Random.Range(0, 2);
-        if (!_criticalHit) randomIncDec = randomBool == 0 ? randomIncDec : -randomIncDec;
+        randomIncDec = !_criticalHit ? (randomBool == 0 ? randomIncDec : -randomIncDec) : randomIncDec;
         var calculatedDamage = Mathf.RoundToInt(attackDamageCalculated + math + randomIncDec);
         if (_criticalHit)
         {
-            math = ((unit.Level * 2) + 2) / 5 + randomFactorDam;
-            if (math < 1.5) math = 1.5f;
-            if (math > 2) math = 2;
-            calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * math + randomIncDec);
+            math = ((unit.Level * 2) + 2) / 5;
+            var multiplier = 1f;
+            if (math < 1.5) multiplier = 1.5f;
+            if (math > 2) multiplier = 2f;
+            randomIncDec = Mathf.RoundToInt(Random.Range(0, 4));
+            calculatedDamage = Mathf.RoundToInt(attackDamageCalculated * multiplier + randomIncDec);
             StartCoroutine(CritNumbers(target));
             PlayerCombatHUD.CombatTextEvent.Invoke($"Acerto <color=red>Crítico!</color>", 3f);
         }
@@ -398,14 +399,14 @@ public class UnitController : MonoBehaviour
     public int TakeDamage(int damage)
     {
         defenceCalculated = unit.Defence;
-        if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[0].equipItem != null)
-            defenceCalculated += InventoryManager.Instance.EquipmentSlots[0].equipItem.StatusValue;
-        if (unit.IsPlayer && InventoryManager.Instance.EquipmentSlots[1].equipItem != null)
-            defenceCalculated += InventoryManager.Instance.EquipmentSlots[1].equipItem.StatusValue;
+        foreach (var equipment in InventoryManager.Instance.EquipmentSlots)
+        {
+            defenceCalculated += equipment.equipItem != null ? equipment.equipItem.StatusValue.Defence : 0;
+        }
         // Calculate damage taken based on defense
-        damageTakenThisTurn = Mathf.Max(1, damage - defenceCalculated);
+        damageTakenThisTurn = damage - defenceCalculated / 2;
 
-        if (damage == 0)
+        if (damage <= 0)
             damageTakenThisTurn = 0;
 
         // Subtract damage from health

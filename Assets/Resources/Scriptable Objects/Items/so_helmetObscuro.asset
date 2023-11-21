@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_helmetObscuro
   m_EditorClassIdentifier: 
+  filename: so_helmetObscuro
   itemType: 1
-  itemID: 0
   slotType: 0
   attackType: 0
   itemName: Capacete Obscuro
   itemIcon: {fileID: -4985607334769591766, guid: 955b77d6192512446a19ea4daa010f8f,
     type: 3}
-  itemDescription: "Um capacete que possui uma aura sinistra, por\xE9m poderosa.
-    Aumenta +7 de destreza"
+  itemDescription: "Um capacete que possui uma aura sinistra, por\xE9m poderosa."
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 0
+    Defence: 0
+    Speed: 0
+    Luck: 0
+    Dexterity: 7
   itemValue: 0
-  statusValue: 7
+  itemID: 0

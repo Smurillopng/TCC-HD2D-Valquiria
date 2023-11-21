@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_helmetBronze
   m_EditorClassIdentifier: 
+  filename: so_helmetBronze
   itemType: 1
-  itemID: 0
   slotType: 0
   attackType: 0
   itemName: Capacete de Bronze
   itemIcon: {fileID: 2857183015838398721, guid: 955b77d6192512446a19ea4daa010f8f,
     type: 3}
-  itemDescription: Pertenceu a um guerreiro de uma terra distante. Aumenta +2 de
-    destreza
+  itemDescription: Pertenceu a um guerreiro de uma terra distante.
   maxStack: 1
   currentStack: 0
+  statusValue:
+    Attack: 0
+    Defence: 0
+    Speed: 0
+    Luck: 0
+    Dexterity: 2
   itemValue: 0
-  statusValue: 2
+  itemID: 0

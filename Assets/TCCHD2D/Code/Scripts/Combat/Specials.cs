@@ -14,7 +14,7 @@ public class Specials : MonoBehaviour
 
     [FoldoutGroup("Specials")]
     public List<Special> specialsList = new();
-    
+
     private PlayerCombatHUD _combatHUD;
     private TurnManager _turnManager;
     private UnitController _player;
@@ -153,8 +153,10 @@ public class Specials : MonoBehaviour
             UpdateHUD();
             // Standard attack damage calculation
             var attackDamageCalculated = _player.Unit.Attack;
-            if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-                attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+            foreach (var equipment in InventoryManager.Instance.EquipmentSlots)
+            {
+                attackDamageCalculated += equipment.equipItem != null ? equipment.equipItem.StatusValue.Attack : 0;
+            }
             var randomFactorDam = Random.Range(0.85f, 1f);
             var math = ((_player.Unit.Level * 1) + 2) / 5 + randomFactorDam;
             var randomIncDec = Mathf.RoundToInt(Random.Range(-3, 4));
@@ -226,8 +228,10 @@ public class Specials : MonoBehaviour
             UpdateHUD();
             // Standard attack damage calculation
             var attackDamageCalculated = _player.Unit.Attack + damageAmount;
-            if (InventoryManager.Instance.EquipmentSlots[3].equipItem != null)
-                attackDamageCalculated += InventoryManager.Instance.EquipmentSlots[3].equipItem.StatusValue;
+            foreach (var equipment in InventoryManager.Instance.EquipmentSlots)
+            {
+                attackDamageCalculated += equipment.equipItem != null ? equipment.equipItem.StatusValue.Luck : 0;
+            }
             var randomFactorDam = Random.Range(0.85f, 1f);
             var math = ((_player.Unit.Level * 1) + 2) / 5 + randomFactorDam;
             var randomIncDec = Mathf.RoundToInt(Random.Range(-3, 4));

@@ -72,7 +72,7 @@ public class DialogueEditor : OdinMenuEditorWindow
         [Button("Add New Dialogue SO")]
         private void AddNewEnemy()
         {
-            AssetDatabase.CreateAsset(DialogueData, $"Assets/Resources/Scriptable Objects/Enemies/{DialogueData.ID}.asset");
+            AssetDatabase.CreateAsset(DialogueData, $"Assets/Resources/Scriptable Objects/Dialogue/{DialogueData.ID}.asset");
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             DialogueData = CreateInstance<DialogueData>();

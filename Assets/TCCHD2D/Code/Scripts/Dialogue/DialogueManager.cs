@@ -1,5 +1,6 @@
 // Created by Sérgio Murillo da Costa Faria
 
+using System;
 using System.Collections;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -35,6 +36,8 @@ public class DialogueManager : MonoBehaviour
     [BoxGroup("Dialogue Manager/Dialogue Data")]
     [SerializeField, ReadOnly, Tooltip("Current dialogue data being displayed.")]
     private DialogueData currentDialogueData;
+
+    public static Action OnDialogueEnd;
 
     private int _currentLine;
     public DialogueData CurrentDialogueData { get => currentDialogueData; set => currentDialogueData = value; }
@@ -140,6 +143,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = string.Empty;
         currentDialogueData = null;
         dialogueBox.SetActive(false);
+        OnDialogueEnd?.Invoke();
     }
     public void EndTip()
     {

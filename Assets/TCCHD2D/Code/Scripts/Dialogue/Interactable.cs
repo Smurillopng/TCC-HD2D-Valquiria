@@ -1,5 +1,6 @@
 // Created by Sérgio Murillo da Costa Faria
 
+using System.Collections.Generic;
 using CI.QuickSave;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class Interactable : SerializedMonoBehaviour
     [FoldoutGroup("Interactable/Interaction Settings")]
     [SerializeField, InlineEditor, Required, Tooltip("Bool variable that will be used to interact with the object.")]
     private BoolVariable interactBool;
-    
+
     [FoldoutGroup("Interactable/Events"), Tooltip("Event called when the player interacts with the object.")]
     public UnityEvent onAwake;
 

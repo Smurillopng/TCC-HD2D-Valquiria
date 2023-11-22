@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
+  m_Name: so_dialogue_BjornAbestado
+  m_EditorClassIdentifier: 
+  id: so_dialogue_BjornAbestado
+  dialogueLines:
+  - speakerName: Abestado ???
+    text: RrRrrRRr Q..uem.. se ... aprr..oo..xim...a?
+  - speakerName: Liv
+    text: "O qu\xEA \xE9 isso? um abestadoque consegue falar?"
+  - speakerName: Abestado ???
+    text: "Hmmnn.. v...oc\xEA !!!!"
+  - speakerName: Liv
+    text: Preparesse para ser derrotado
+  - speakerName: Abestado ???
+    text: Rrraaawwww LIIIIV FUHHJA !!!!! AAAARRRRHG
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 1

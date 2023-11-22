@@ -18,10 +18,12 @@ MonoBehaviour:
     text: Pare, abestado maldito!
   - speakerName: Abestado
     text: Rawr?
+  - speakerName: Ragnvaldr
+    text: So....co......r.......ro
   - speakerName: Liv
     text: Deixe esse senhor em paz!
   - speakerName: Abestado
-    text: Raawr!
+    text: RaAaAawr!
   isTutorial: 0
   hasPlayed: 0
   resetOnExit: 0

@@ -26,6 +26,8 @@ MonoBehaviour:
     text: Tenho que voltar para o meu filho, Rolf, ele deve estar preocupado.
   - speakerName: Ragnvaldr
     text: "Mas antes preciso de um tempo para recuperar minhas for\xE7as."
+  - speakerName: Ragnvaldr
+    text: "Tome cuidado! o caminho a frente est\xE1 cheio de feras perigosas"
   isTutorial: 0
   hasPlayed: 0
   resetOnExit: 0

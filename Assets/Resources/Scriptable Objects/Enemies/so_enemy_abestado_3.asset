@@ -139,7 +139,7 @@ MonoBehaviour:
   dexterity: 4
   attributesPoints: 0
   isPlayer: 0
-  isDangerous: 0
+  isDangerous: 1
   resetOnExit: 0
   isDead: 1
   hasTakenTurn: 0

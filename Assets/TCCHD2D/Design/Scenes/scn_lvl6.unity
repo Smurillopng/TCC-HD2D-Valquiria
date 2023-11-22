@@ -23366,12 +23366,12 @@ PrefabInstance:
     - target: {fileID: 6471829175399510939, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016963163
+      value: -0.000000016963163
       objectReference: {fileID: 0}
     - target: {fileID: 6471829175399510939, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000028828169
+      value: 0.0000000028828169
       objectReference: {fileID: 0}
     - target: {fileID: 7262514707707344432, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
@@ -30002,12 +30002,12 @@ PrefabInstance:
     - target: {fileID: 3874512464777918950, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000016240387
+      value: -0.000000016240387
       objectReference: {fileID: 0}
     - target: {fileID: 3874512464777918950, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000005684135
+      value: 0.000000005684135
       objectReference: {fileID: 0}
     - target: {fileID: 4814090757390707792, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
@@ -30119,6 +30119,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -621.3801
       objectReference: {fileID: 0}
+    - target: {fileID: 7501234983097578559, guid: 1241caaeb4e53504cb6ed1401af805d4,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7857057876537747915, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
       propertyPath: field of view
@@ -30153,6 +30158,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 596061411}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &596061414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3938599122462440540, guid: 1241caaeb4e53504cb6ed1401af805d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 596061411}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad72fa629569c6419d45b8147c7b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &641160666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30404,6 +30421,11 @@ PrefabInstance:
     - target: {fileID: 4093154086451070565, guid: 438ef2bd1e8b58c41bbf590ab5a89ba7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849219128145874256, guid: 438ef2bd1e8b58c41bbf590ab5a89ba7,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7536793742887484799, guid: 438ef2bd1e8b58c41bbf590ab5a89ba7,
@@ -41098,6 +41120,7 @@ GameObject:
   - component: {fileID: 8440511093826681162}
   - component: {fileID: 8440511093826681164}
   - component: {fileID: 8440511093826681165}
+  - component: {fileID: 8440511093826681166}
   m_Layer: 0
   m_Name: BossEinar
   m_TagString: Untagged
@@ -41147,33 +41170,33 @@ MonoBehaviour:
         m_CallState: 2
   onInteractionStart:
     m_PersistentCalls:
-      m_Calls: []
-  onInteractionInRange:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 310596393}
-        m_TargetAssemblyTypeName: RandomEncounterManager, Assembly-CSharp
-        m_MethodName: SpecificEncounter
+      - m_Target: {fileID: 596061414}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: StartDialogue
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: d91ee9f45e2471c4eabf6e6f44b3bc00,
+          m_ObjectArgument: {fileID: 11400000, guid: 6f4cfca2a5cbd7b469091a8ac33271d4,
             type: 2}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: DialogueData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8440511093826681165}
-        m_TargetAssemblyTypeName: TCCHD2D.Code.BossEncounter, Assembly-CSharp
-        m_MethodName: FightStarted
-        m_Mode: 1
+  onInteractionInRange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8440511093826681166}
+        m_TargetAssemblyTypeName: DialogueEvent, Assembly-CSharp
+        m_MethodName: StartEvent
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Final
           m_BoolArgument: 0
         m_CallState: 2
   onInteractionOffRange:
@@ -41260,3 +41283,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fought: 0
+--- !u!114 &8440511093826681166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8440511093826681161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8542a979a26ce74ea4d371e439ce90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  events:
+  - eventName: Final
+    onEventStart:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 596061414}
+          m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+          m_MethodName: StartDialogue
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 6f4cfca2a5cbd7b469091a8ac33271d4,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: DialogueData, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: 35b846d0996288b44a4c12697dd879f5, type: 2}
+          m_TargetAssemblyTypeName: ScriptableVariable`1[[System.Boolean, mscorlib
+          m_MethodName: set_Value
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: 74bbf2897551b8c4c97e5729e8fc2c93, type: 2}
+          m_TargetAssemblyTypeName: ScriptableVariable`1[[System.Boolean, mscorlib
+          m_MethodName: set_Value
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    onEventEnd:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 310596393}
+          m_TargetAssemblyTypeName: RandomEncounterManager, Assembly-CSharp
+          m_MethodName: SpecificEncounter
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: d91ee9f45e2471c4eabf6e6f44b3bc00,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8440511093826681165}
+          m_TargetAssemblyTypeName: TCCHD2D.Code.BossEncounter, Assembly-CSharp
+          m_MethodName: FightStarted
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

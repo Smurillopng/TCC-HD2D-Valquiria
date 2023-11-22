@@ -125,7 +125,7 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 41
       width: 20
       height: 32
     spriteID: b53c43c14e5bf1f40b46073a1c809586
@@ -136,7 +136,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 4, y: 41}
   - name: spr_pants_leather_Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0}
@@ -144,8 +144,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 32
-      y: 4
+      x: 4
+      y: 81
       width: 20
       height: 32
     spriteID: 10465c2bcca06ad4b90ed4885e7bfbd1
@@ -156,7 +156,27 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 32, y: 4}
+    uvTransform: {x: 4, y: 81}
+  - name: spr_pants_leather_Frame_2
+    originalName: 
+    pivot: {x: 0.52, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 25
+      height: 29
+    spriteID: f2c8496a3509ffa4baa91d0be1cc3efe
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -182,6 +202,14 @@ ScriptedImporter:
         width: 20
         height: 32
       spriteId: 10465c2bcca06ad4b90ed4885e7bfbd1
+    - name: spr_pants_leather_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 3
+        y: 0
+        width: 25
+        height: 29
+      spriteId: f2c8496a3509ffa4baa91d0be1cc3efe
     linkedCells: []
     parentIndex: -1
   platformSettings: []

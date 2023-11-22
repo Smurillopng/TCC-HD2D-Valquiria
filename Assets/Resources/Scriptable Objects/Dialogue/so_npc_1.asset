@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: so_npc_1
   m_EditorClassIdentifier: 
   id: so_npc_1
-  characterName: Arnheid
   dialogueLines:
-  - text: "Liv, voc\xEA chegou em um momento perigoso."
-  - text: "Os lobos e javalis est\xE3o atacando tudo o que se movimenta nessa floresta.
+  - speakerName: Arnheid
+    text: "Liv, voc\xEA chegou em um momento perigoso."
+  - speakerName: Arnheid
+    text: "Os lobos e javalis est\xE3o atacando tudo o que se movimenta nessa floresta.
       Tenha cuidado."
-  - text: "Seu pai saiu em uma miss\xE3o com alguns guerreiros para tentar encontrar
+  - speakerName: Arnheid
+    text: "Seu pai saiu em uma miss\xE3o com alguns guerreiros para tentar encontrar
       de onde est\xE3o saindo esses animais perigosos."
   isTutorial: 0
   hasPlayed: 0

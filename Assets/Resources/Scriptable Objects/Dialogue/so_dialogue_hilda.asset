@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: so_dialogue_hilda
   m_EditorClassIdentifier: 
   id: so_dialogue_hilda
-  characterName: Hilda
   dialogueLines:
-  - text: "Ol\xE1, Liv, como tem estado?"
-  - text: Esteve pensando em seu pai?
-  - text: "Faz sentido! J\xE1 faz um bom tempo que ele e os seus guerreiros sa\xEDram
+  - speakerName: Hilda
+    text: "Ol\xE1, Liv, como tem estado?"
+  - speakerName: Hilda
+    text: Esteve pensando em seu pai?
+  - speakerName: Hilda
+    text: "Faz sentido! J\xE1 faz um bom tempo que ele e os seus guerreiros sa\xEDram
       em expedi\xE7\xE3o."
-  - text: "HAHAHA! Mas n\xE3o se desanime, voc\xEA como primog\xEAnita do chefe da
+  - speakerName: Hilda
+    text: "HAHAHA! Mas n\xE3o se desanime, voc\xEA como primog\xEAnita do chefe da
       vila tem que se manter sempre de cabe\xE7a erguida."
   isTutorial: 0
   hasPlayed: 0

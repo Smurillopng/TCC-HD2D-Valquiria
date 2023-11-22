@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: so_dialogue_Reginleif
   m_EditorClassIdentifier: 
   id: so_dialogue_Reginleif
-  characterName: Reginleif
   dialogueLines:
-  - text: "Eu vi l\xE1 na floresta."
-  - text: "Parecia um homem, s\xF3 que ele estava estranho e se movia como se fosse
+  - speakerName: Reginleif
+    text: "Eu vi l\xE1 na floresta."
+  - speakerName: Reginleif
+    text: "Parecia um homem, s\xF3 que ele estava estranho e se movia como se fosse
       um animal."
-  - text: "Eu fiquei assustada, depois disso n\xE3o deixei mais minha irm\xE3zinha
+  - speakerName: Reginleif
+    text: "Eu fiquei assustada, depois disso n\xE3o deixei mais minha irm\xE3zinha
       brincar muito a fundo na floresta."
   isTutorial: 0
   hasPlayed: 0

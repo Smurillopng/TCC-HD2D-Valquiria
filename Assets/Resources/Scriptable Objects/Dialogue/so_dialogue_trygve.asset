@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: so_dialogue_trygve
   m_EditorClassIdentifier: 
   id: so_dialogue_trygve
-  characterName: trygve
   dialogueLines:
-  - text: Oi, Liv!
-  - text: Hoje foi uma boa pesca, peguei dois peixes, um pequeno e um grande!
-  - text: "Eu tamb\xE9m peguei uma arma enferrujada, se quiser eu deixei ela no ba\xFA."
+  - speakerName: Trygve
+    text: Oi, Liv!
+  - speakerName: Trygve
+    text: Hoje foi uma boa pesca, peguei dois peixes, um pequeno e um grande!
+  - speakerName: Trygve
+    text: "Eu tamb\xE9m peguei uma arma enferrujada, se quiser eu deixei ela no ba\xFA."
   isTutorial: 0
   hasPlayed: 0
   resetOnExit: 0

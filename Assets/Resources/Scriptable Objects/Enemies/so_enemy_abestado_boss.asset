@@ -93,6 +93,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  filename: 
   type: 1
   unitName: Abestado Guerreiro Enfurecido
   unitSprite: {fileID: -2276145360210973651, guid: 2f319ae647dc0b64080538d78ba84c08,
@@ -105,10 +106,10 @@ MonoBehaviour:
   currentHp: 200
   maxTp: 100
   currentTp: 0
-  attack: 14
+  attack: 13
   defence: 8
-  speed: 7
-  luck: 4
+  speed: 15
+  luck: 5
   dexterity: 7
   attributesPoints: 0
   isPlayer: 0

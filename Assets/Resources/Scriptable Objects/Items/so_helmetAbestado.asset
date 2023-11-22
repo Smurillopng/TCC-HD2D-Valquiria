@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
+  m_Name: so_helmetAbestado
+  m_EditorClassIdentifier: 
+  filename: so_helmetAbestado
+  itemType: 1
+  slotType: 0
+  attackType: 0
+  itemName: Capacete Bestial
+  itemIcon: {fileID: 2857183015838398721, guid: 955b77d6192512446a19ea4daa010f8f,
+    type: 3}
+  itemDescription: Um capacete obtido por aqueles que subjugaram os guerreiros abestados.
+  maxStack: 1
+  currentStack: 0
+  statusValue:
+    Attack: 0
+    Defence: 13
+    Speed: 0
+    Luck: 1
+    Dexterity: 10
+  itemValue: 0
+  itemID: 0

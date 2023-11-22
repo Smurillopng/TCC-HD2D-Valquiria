@@ -119,6 +119,26 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: spr_helmet_simple_Frame_0
     originalName: 
+    pivot: {x: 0.516129, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 44
+      y: 4
+      width: 31
+      height: 31
+    spriteID: 4861511f2e64c9f4983e52f5e8bddac1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 44, y: 4}
+  - name: spr_helmet_simple_Frame_1
+    originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,7 +148,7 @@ ScriptedImporter:
       y: 4
       width: 32
       height: 32
-    spriteID: 4861511f2e64c9f4983e52f5e8bddac1
+    spriteID: 61fc7979ca34ed041b9c8b1d16955f40
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -137,7 +157,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: spr_helmet_simple_Frame_1
+  - name: spr_helmet_simple_Frame_2
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -148,7 +168,7 @@ ScriptedImporter:
       y: 44
       width: 32
       height: 32
-    spriteID: 61fc7979ca34ed041b9c8b1d16955f40
+    spriteID: fffc466eb47e119428be1f4eba08930b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -168,7 +188,7 @@ ScriptedImporter:
       y: 84
       width: 32
       height: 32
-    spriteID: fffc466eb47e119428be1f4eba08930b
+    spriteID: 93426d6c752950f45ad0b7cf22cb2226
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -186,6 +206,14 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
+    - name: spr_helmet_simple_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 0
+        y: 0
+        width: 31
+        height: 31
+      spriteId: 4861511f2e64c9f4983e52f5e8bddac1
     - name: spr_helmet_simple_Frame_0
       frameIndex: 0
       cellRect:
@@ -193,7 +221,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: 4861511f2e64c9f4983e52f5e8bddac1
+      spriteId: 61fc7979ca34ed041b9c8b1d16955f40
     - name: spr_helmet_simple_Frame_1
       frameIndex: 1
       cellRect:
@@ -201,7 +229,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: 61fc7979ca34ed041b9c8b1d16955f40
+      spriteId: fffc466eb47e119428be1f4eba08930b
     - name: spr_helmet_simple_Frame_2
       frameIndex: 2
       cellRect:
@@ -209,7 +237,7 @@ ScriptedImporter:
         y: 0
         width: 32
         height: 32
-      spriteId: fffc466eb47e119428be1f4eba08930b
+      spriteId: 93426d6c752950f45ad0b7cf22cb2226
     linkedCells: []
     parentIndex: -1
   platformSettings: []

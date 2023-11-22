@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: so_dialogue_Aslaug
   m_EditorClassIdentifier: 
   id: so_dialogue_Aslaug
-  characterName: Aslaug
   dialogueLines:
-  - text: "Ol\xE1, garotinha \xE9 um prazer conhece-la."
-  - text: Me chamo Aslaug, e vivo sozinha nessa cabana.
-  - text: "N\xE3o fique com pena de mim. Eu gosto do local, o \xFAnico problema s\xE3o
+  - speakerName: Aslaug
+    text: "Ol\xE1, garotinha \xE9 um prazer conhec\xEA-la."
+  - speakerName: Aslaug
+    text: Me chamo Aslaug, e vivo sozinha nessa cabana.
+  - speakerName: Aslaug
+    text: "N\xE3o fique com pena de mim. Eu gosto do local, o \xFAnico problema s\xE3o
       os animais que est\xE3o ficando mais agressivos."
-  - text: "Eu vivo aqui j\xE1 fazem anos e te digo uma coisa, eles n\xE3o ficaram
+  - speakerName: Aslaug
+    text: "Eu vivo aqui j\xE1 fazem anos e te digo uma coisa, eles n\xE3o ficaram
       assim naturalmente! Algu\xE9m est\xE1 fazendo algo para esses animais ficarem
       assim."
-  isTutorial: 1
+  isTutorial: 0
   hasPlayed: 0
   resetOnExit: 0

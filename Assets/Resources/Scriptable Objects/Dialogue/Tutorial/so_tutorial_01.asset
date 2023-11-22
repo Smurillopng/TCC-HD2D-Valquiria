@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: so_tutorial_01
   m_EditorClassIdentifier: 
   id: so_tutorial_01
-  characterName: Bjorn
   dialogueLines:
-  - text: "Ent\xE3o voc\xEA estava a\xED, Liv."
-  - text: Venha!
-  - text: "Vamos logo come\xE7ar seu treinamento."
+  - speakerName: Bjorn
+    text: "Ent\xE3o voc\xEA estava a\xED, Liv."
+  - speakerName: Bjorn
+    text: Venha!
+  - speakerName: Bjorn
+    text: "Vamos logo come\xE7ar seu treinamento."
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

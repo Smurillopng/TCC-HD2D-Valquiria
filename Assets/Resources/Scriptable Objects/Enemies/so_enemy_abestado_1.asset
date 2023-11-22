@@ -17,12 +17,14 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 0ea991b6914b857428588b2b3d4fd5c7, type: 2}
-    - {fileID: 11400000, guid: 36bc8c0e04964c541bf618b6dc1fd986, type: 2}
+    - {fileID: 11400000, guid: 59ab0a11b61245a4395b990da97c9ccb, type: 2}
     - {fileID: 11400000, guid: 3d63ebeb5ed374345b9b069ef44dbacb, type: 2}
     - {fileID: 11400000, guid: 3119ced51a1dfac418d7420b15fc8dd5, type: 2}
     - {fileID: 11400000, guid: b53847a8553a60d4eabc39a3ea91f60b, type: 2}
     - {fileID: 11400000, guid: 89f454fed765df548bc41eabba8df102, type: 2}
     - {fileID: 11400000, guid: f055cbd13f609284f87c1f1f8b872fb5, type: 2}
+    - {fileID: 11400000, guid: 65a533d592fc5cc4b8f25301da06cebd, type: 2}
+    - {fileID: 11400000, guid: cea5cd023fc53c34798fcf874c147da9, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -41,7 +43,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 7
+      Data: 9
     - Name: 
       Entry: 7
       Data: 
@@ -62,7 +64,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 3
-      Data: 25
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -127,6 +129,30 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 7
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -145,6 +171,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  filename: 
   type: 1
   unitName: Abestado Guerreiro
   unitSprite: {fileID: 5470260758971073697, guid: 993d1cd5b19fdd141b3328f55fa8a55a,

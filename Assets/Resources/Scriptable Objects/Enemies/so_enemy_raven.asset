@@ -93,6 +93,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  filename: 
   type: 1
   unitName: Corvos
   unitSprite: {fileID: 21300000, guid: 9773077a77b8da24eb0bd6fc868e9b50, type: 3}
@@ -107,7 +108,7 @@ MonoBehaviour:
   attack: 3
   defence: 1
   speed: 8
-  luck: 10
+  luck: 8
   dexterity: 7
   attributesPoints: 0
   isPlayer: 0

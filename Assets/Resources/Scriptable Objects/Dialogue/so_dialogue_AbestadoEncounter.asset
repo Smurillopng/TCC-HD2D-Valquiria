@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
+  m_Name: so_dialogue_AbestadoEncounter
+  m_EditorClassIdentifier: 
+  id: so_dialogue_AbestadoEncounter
+  dialogueLines:
+  - speakerName: Liv
+    text: "Mas que criatura \xE9 essa?"
+  - speakerName: Liv
+    text: "Ser\xE1 que... N\xE3o... N\xE3o pode ser."
+  - speakerName: Liv
+    text: "Meu pai saiu com sua expedi\xE7\xE3o para eliminar os abestados."
+  - speakerName: Liv
+    text: Como pode ainda haver essas criaturas pelas terras de Frigga?
+  - speakerName: Liv
+    text: "Devo seguir os passos do meu pai e garantir a seguran\xE7a da regi\xE3o."
+  - speakerName: Liv
+    text: Preparesse, Abestado!!!
+  - speakerName: Abestado
+    text: RAAAWR!!!
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 0

@@ -23,7 +23,7 @@ MonoBehaviour:
   maxStack: 1
   currentStack: 0
   statusValue:
-    Attack: 9
+    Attack: 10
     Defence: 0
     Speed: 0
     Luck: 5

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98df24a5bc240188d32d0c74dc4909d, type: 3}
+  m_Name: so_dialogue_PaiDoRolf
+  m_EditorClassIdentifier: 
+  id: so_dialogue_PaiDoRolf
+  dialogueLines:
+  - speakerName: Ragnvaldr
+    text: Muito obrigado, minha jovem.
+  - speakerName: Ragnvaldr
+    text: "Eu estava ca\xE7ando alguns animais quando fui pego desprevinido por essa
+      criatura."
+  - speakerName: Ragnvaldr
+    text: "Se voc\xEA n\xE3o estivesse por perto eu n\xE3o sei o que aconteceria
+      comigo..."
+  - speakerName: Ragnvaldr
+    text: Tenho que voltar para o meu filho, Rolf, ele deve estar preocupado.
+  - speakerName: Ragnvaldr
+    text: "Mas antes preciso de um tempo para recuperar minhas for\xE7as."
+  isTutorial: 0
+  hasPlayed: 0
+  resetOnExit: 0

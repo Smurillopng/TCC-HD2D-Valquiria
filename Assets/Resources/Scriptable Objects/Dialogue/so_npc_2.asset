@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: so_npc_2
   m_EditorClassIdentifier: 
   id: so_npc_2
-  characterName: Harald
   dialogueLines:
-  - text: "Ol\xE1, minha jovem."
-  - text: Cuidado adiante!
-  - text: "H\xE1 muitos mist\xE9rios ocultos nas profundezas desse caverna."
-  - text: " Algo que pode enfurecer at\xE9 os deuses!"
+  - speakerName: Ymir
+    text: "Ol\xE1, minha jovem."
+  - speakerName: Ymir
+    text: Cuidado adiante!
+  - speakerName: Ymir
+    text: "H\xE1 muitos mist\xE9rios ocultos nas profundezas desse caverna."
+  - speakerName: Ymir
+    text: " Algo que pode enfurecer at\xE9 os deuses!"
   isTutorial: 0
   hasPlayed: 0
   resetOnExit: 0

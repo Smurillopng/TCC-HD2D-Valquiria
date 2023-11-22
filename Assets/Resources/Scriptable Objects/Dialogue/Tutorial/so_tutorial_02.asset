@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: so_tutorial_02
   m_EditorClassIdentifier: 
   id: so_tutorial_02
-  characterName: Liv
   dialogueLines:
-  - text: Certo!
+  - speakerName: Liv
+    text: Certo!
   isTutorial: 1
   hasPlayed: 0
   resetOnExit: 1

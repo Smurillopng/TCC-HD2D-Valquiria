@@ -157,6 +157,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: spr_armor_leather_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: -0.03448276}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 83
+      width: 26
+      height: 29
+    spriteID: 542883149e4a828478acdc473f118352
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 83}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -182,6 +202,14 @@ ScriptedImporter:
         width: 28
         height: 31
       spriteId: ab460b52f7e139d458fb5ab4a89c8153
+    - name: spr_armor_leather_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 3
+        y: 1
+        width: 26
+        height: 29
+      spriteId: 542883149e4a828478acdc473f118352
     linkedCells: []
     parentIndex: -1
   platformSettings: []

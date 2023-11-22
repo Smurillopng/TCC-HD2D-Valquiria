@@ -17,14 +17,14 @@ MonoBehaviour:
   slotType: 0
   attackType: 0
   itemName: Capacete Obscuro
-  itemIcon: {fileID: -4985607334769591766, guid: 955b77d6192512446a19ea4daa010f8f,
+  itemIcon: {fileID: 6107990172078776538, guid: 955b77d6192512446a19ea4daa010f8f,
     type: 3}
   itemDescription: "Um capacete que possui uma aura sinistra, por\xE9m poderosa."
   maxStack: 1
   currentStack: 0
   statusValue:
     Attack: 0
-    Defence: 10
+    Defence: 8
     Speed: 0
     Luck: 0
     Dexterity: 8

@@ -13,20 +13,25 @@ MonoBehaviour:
   m_Name: so_dialogue_Ingrid
   m_EditorClassIdentifier: 
   id: so_dialogue_Ingrid
-  characterName: Ingrid
   dialogueLines:
-  - text: "LIV! Eu tenho que te contar algo, r\xE1pido!"
-  - text: "Eu estava ca\xE7ando pela floresta, at\xE9 que uma hora um lobo cheio
+  - speakerName: Ingrid
+    text: "LIV! Eu tenho que te contar algo, r\xE1pido!"
+  - speakerName: Ingrid
+    text: "Eu estava ca\xE7ando pela floresta, at\xE9 que uma hora um lobo cheio
       de cicatrizes veio para me atacar!"
-  - text: "Eu corri at\xE9 perto de uma caverna, onde na entrada eu escutei gritos
+  - speakerName: Ingrid
+    text: "Eu corri at\xE9 perto de uma caverna, onde na entrada eu escutei gritos
       estranhos vindos do fundo dela e na frente eu encontrei alguns equipamentos
       daqueles que foram na expedi\xE7\xE3o!"
-  - text: "Eu pensei que talvez eles tivessem deixado cair aqui esses itens h\xE1
+  - speakerName: Ingrid
+    text: "Eu pensei que talvez eles tivessem deixado cair aqui esses itens h\xE1
       um tempo atr\xE1s, mas aqueles gritos me fizeram pensar que talvez eles estejam
       presos l\xE1!"
-  - text: "Voc\xEA \xE9 a mais habilidosa guerreira e ca\xE7adora da vila, voc\xEA
+  - speakerName: Ingrid
+    text: "Voc\xEA \xE9 a mais habilidosa guerreira e ca\xE7adora da vila, voc\xEA
       s\xF3 ficava atr\xE1s do seu pai, Bjorn!"
-  - text: "Por favor! Voc\xEA pode ir at\xE9 a caverna ver o que est\xE1 acontecendo?"
+  - speakerName: Ingrid
+    text: "Por favor! Voc\xEA pode ir at\xE9 a caverna ver o que est\xE1 acontecendo?"
   isTutorial: 0
   hasPlayed: 0
   resetOnExit: 0

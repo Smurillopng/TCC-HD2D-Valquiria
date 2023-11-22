@@ -60,7 +60,7 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator DisplayDialogueCoroutine()
     {
         var currentLine = CurrentDialogueData.DialogueLines[_currentLine];
-        speakerName.text = CurrentDialogueData.CharacterName;
+        speakerName.text = CurrentDialogueData.DialogueLines[_currentLine].SpeakerName;
         dialogueText.text = "";
         foreach (var character in currentLine.Text)
         {

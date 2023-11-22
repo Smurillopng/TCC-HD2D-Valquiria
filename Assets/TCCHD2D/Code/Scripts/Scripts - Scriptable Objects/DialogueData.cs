@@ -12,10 +12,6 @@ public class DialogueData : ScriptableObject
     [SerializeField]
     private string id;
 
-    [TitleGroup("Dialogue Info", Alignment = TitleAlignments.Centered)]
-    [SerializeField, GUIColor("green")]
-    private string characterName;
-
     [TitleGroup("Dialogue Lines", Alignment = TitleAlignments.Centered)]
     [SerializeField, GUIColor("cyan")]
     private DialogueLine[] dialogueLines;
@@ -36,7 +32,6 @@ public class DialogueData : ScriptableObject
         get => id;
         set => id = value;
     }
-    public string CharacterName => characterName;
     public DialogueLine[] DialogueLines => dialogueLines;
     public bool IsTutorial => isTutorial;
     public bool HasPlayed
@@ -77,12 +72,15 @@ public class DialogueData : ScriptableObject
 [System.Serializable]
 public class DialogueLine
 {
+    [SerializeField] private string speakerName;
     [SerializeField, TextArea] private string text;
 
+    public string SpeakerName => speakerName;
     public string Text => text;
 
-    public DialogueLine(string text)
+    public DialogueLine(string speakerName, string text)
     {
+        this.speakerName = speakerName;
         this.text = text;
     }
 }

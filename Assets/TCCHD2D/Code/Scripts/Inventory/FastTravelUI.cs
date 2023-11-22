@@ -13,13 +13,13 @@ public class FastTravelUI : MonoBehaviour
     [FoldoutGroup("Fast Travel UI")]
     [BoxGroup("Fast Travel UI/Settings")]
     [SerializeField] private GameObject fastTravelPanel;
-    
+
     [BoxGroup("Fast Travel UI/Settings")]
     [SerializeField] private GameObject buttonPrefab;
-    
+
     [BoxGroup("Fast Travel UI/Settings")]
     [SerializeField] private Transform buttonParent;
-    
+
     private FastTravelManager _fastTravelManager;
     private bool _isPanelActive, _buttonsSet;
     #endregion ==========================================================================
@@ -44,13 +44,16 @@ public class FastTravelUI : MonoBehaviour
             buttonText.text = location.fastTravelName;
             buttonButton.onClick.RemoveAllListeners();
             if (location.discovered && location.sceneName != SceneManager.GetActiveScene().name)
+            {
+                buttonButton.gameObject.SetActive(true);
                 buttonButton.onClick.AddListener(() =>
                 {
                     FastTravelManager.Instance.TravelTo(location);
                     TogglePanel(false);
                 });
+            }
             else
-                buttonButton.interactable = false;
+                buttonButton.gameObject.SetActive(false);
         }
     }
 

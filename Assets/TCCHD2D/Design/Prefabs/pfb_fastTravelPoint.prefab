@@ -149,10 +149,13 @@ MonoBehaviour:
       m_Calls: []
   onInteractionStart:
     m_PersistentCalls:
+      m_Calls: []
+  onInteractionInRange:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3748571126026837166}
         m_TargetAssemblyTypeName: FastTravelPoint, Assembly-CSharp
-        m_MethodName: UpdatePoint
+        m_MethodName: Discover
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -162,24 +165,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FastTravelUI, Assembly-CSharp
-        m_MethodName: TogglePanel
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  onInteractionInRange:
-    m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 3748571126026837166}
         m_TargetAssemblyTypeName: FastTravelPoint, Assembly-CSharp
-        m_MethodName: Discover
+        m_MethodName: UpdatePoint
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -634,8 +634,8 @@ MonoBehaviour:
   experienceDrop: 0
   experience: 0
   attackAnimation: {fileID: 0}
-  maxHp: 20
-  currentHp: 20
+  maxHp: 30
+  currentHp: 30
   maxTp: 100
   currentTp: 0
   attack: 10

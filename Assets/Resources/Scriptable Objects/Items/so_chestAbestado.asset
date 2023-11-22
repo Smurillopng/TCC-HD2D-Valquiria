@@ -12,21 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b245defb636b42bc8f2101fa6e955927, type: 3}
   m_Name: so_chestAbestado
   m_EditorClassIdentifier: 
-  filename: so_chestIron
+  filename: so_chestAbestado
   itemType: 1
   slotType: 1
   attackType: 0
   itemName: Cota de malha
-  itemIcon: {fileID: -2688558570510602250, guid: 2621d847bc908e247a1ad803059396d0,
+  itemIcon: {fileID: -414913942748913205, guid: 2621d847bc908e247a1ad803059396d0,
     type: 3}
   itemDescription: Uma malha de ferro utilizada pelos grandiosos guerreiros de Frigga.
   maxStack: 1
   currentStack: 0
   statusValue:
     Attack: 0
-    Defence: 10
+    Defence: 15
     Speed: 0
     Luck: 0
-    Dexterity: 2
+    Dexterity: 3
   itemValue: 0
   itemID: 0

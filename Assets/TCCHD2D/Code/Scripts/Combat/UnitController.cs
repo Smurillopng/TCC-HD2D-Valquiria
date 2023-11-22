@@ -493,7 +493,7 @@ public class UnitController : MonoBehaviour
     /// </remarks>
     public void RunAction(UnitController target)
     {
-        if (target.Unit.Attack.Equals(0)) // tutorial
+        if (target.unit.UnitName == "Boneco de Treino") // tutorial
         {
             if (unit.Experience.Equals(0)) unit.Experience = 1;
             var reader = QuickSaveReader.Create("GameInfo");

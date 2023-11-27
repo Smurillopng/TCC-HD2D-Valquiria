@@ -119,6 +119,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  filename: 
   type: 1
   unitName: Lobo Alpha
   unitSprite: {fileID: 6008706663345991552, guid: d6f2111ca9d406141bbab4a2868a39ae,
@@ -133,7 +134,7 @@ MonoBehaviour:
   currentTp: 0
   attack: 7
   defence: 4
-  speed: 4
+  speed: 7
   luck: 2
   dexterity: 2
   attributesPoints: 0

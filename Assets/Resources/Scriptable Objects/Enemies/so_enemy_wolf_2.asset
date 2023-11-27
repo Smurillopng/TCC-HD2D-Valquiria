@@ -106,6 +106,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  filename: 
   type: 1
   unitName: Lobo Raivoso
   unitSprite: {fileID: -8744431690374718632, guid: 2493a0e7d94f34042b0fa1dae89fcd9d,
@@ -120,7 +121,7 @@ MonoBehaviour:
   currentTp: 0
   attack: 5
   defence: 3
-  speed: 3
+  speed: 5
   luck: 2
   dexterity: 2
   attributesPoints: 0

@@ -15,8 +15,8 @@ MonoBehaviour:
   specialName: Golpe Flamejante
   specialType: 3
   specialAilment: 0
-  turnsToLast: 3
-  specialCost: 40
-  specialDamage: 10
+  turnsToLast: 5
+  specialCost: 25
+  specialDamage: 15
   specialHeal: 0
   specialDescription: Um golpe capaz de deixar o inimigo em chamas.

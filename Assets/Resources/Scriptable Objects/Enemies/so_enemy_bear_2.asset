@@ -93,6 +93,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+  filename: 
   type: 1
   unitName: Urso Beta
   unitSprite: {fileID: -4593415472689137059, guid: a1bb11bd0e72c3248b05181a8d53cd0a,
@@ -107,7 +108,7 @@ MonoBehaviour:
   currentTp: 0
   attack: 6
   defence: 4
-  speed: 2
+  speed: 4
   luck: 1
   dexterity: 1
   attributesPoints: 0

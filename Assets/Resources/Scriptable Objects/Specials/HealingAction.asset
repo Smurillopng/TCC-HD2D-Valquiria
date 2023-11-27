@@ -16,7 +16,7 @@ MonoBehaviour:
   specialType: 0
   specialAilment: 0
   turnsToLast: 0
-  specialCost: 20
+  specialCost: 6
   specialDamage: 0
   specialHeal: 3
   specialDescription: "Canaliza uma runa de regenera\xE7\xE3o para regenerar +3 de

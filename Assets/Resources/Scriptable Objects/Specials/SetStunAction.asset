@@ -16,7 +16,7 @@ MonoBehaviour:
   specialType: 3
   specialAilment: 3
   turnsToLast: 1
-  specialCost: 60
-  specialDamage: 2
+  specialCost: 40
+  specialDamage: 10
   specialHeal: 0
   specialDescription: Um golpe poderoso que deixa os inimigos atordoados.

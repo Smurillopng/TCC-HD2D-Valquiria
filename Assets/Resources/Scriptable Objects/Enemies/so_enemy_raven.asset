@@ -105,9 +105,9 @@ MonoBehaviour:
   currentHp: 30
   maxTp: 100
   currentTp: 0
-  attack: 3
+  attack: 2
   defence: 1
-  speed: 8
+  speed: 5
   luck: 8
   dexterity: 7
   attributesPoints: 0

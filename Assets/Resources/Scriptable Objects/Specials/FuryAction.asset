@@ -16,7 +16,7 @@ MonoBehaviour:
   specialType: 1
   specialAilment: 0
   turnsToLast: 0
-  specialCost: 30
-  specialDamage: 12
+  specialCost: 20
+  specialDamage: 15
   specialHeal: 0
   specialDescription: Um ataque poderoso e devastador.

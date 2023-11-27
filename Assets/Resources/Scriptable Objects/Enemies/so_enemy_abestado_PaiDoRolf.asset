@@ -147,7 +147,7 @@ MonoBehaviour:
   currentTp: 0
   attack: 6
   defence: 6
-  speed: 4
+  speed: 6
   luck: 3
   dexterity: 5
   attributesPoints: 0

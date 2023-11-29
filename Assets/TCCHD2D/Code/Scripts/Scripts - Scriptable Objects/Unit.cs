@@ -89,7 +89,7 @@ public class Unit : SerializedScriptableObject
     private bool resetOnExit;
 
     [TitleGroup("Debug Info", Alignment = TitleAlignments.Centered), GUIColor("darkorange")]
-    [SerializeField, ReadOnly]
+    [SerializeField]
     private bool isDead;
 
     [SerializeField, ReadOnly, GUIColor("darkorange")]

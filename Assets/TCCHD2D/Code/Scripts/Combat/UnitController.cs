@@ -6,7 +6,6 @@ using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 using UnityEngine.VFX;
 using Random = UnityEngine.Random;

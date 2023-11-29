@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class DialogueEvent : MonoBehaviour
 {
     public List<Event> events = new();
-    public static string currentEvent;
+    public static string CurrentEvent;
 
     private void OnEnable()
     {
@@ -16,19 +16,21 @@ public class DialogueEvent : MonoBehaviour
     private void OnDisable()
     {
         DialogueManager.OnDialogueEnd -= OnDialogueEnd;
-        currentEvent = string.Empty;
+        CurrentEvent = string.Empty;
     }
 
     public void StartEvent(string eventName)
     {
         var evento = events.Find(e => e.eventName == eventName);
-        currentEvent = eventName;
-        evento.onEventStart?.Invoke();
+        CurrentEvent = eventName;
+        if (!evento.played)
+            evento.onEventStart?.Invoke();
     }
 
     private void OnDialogueEnd()
     {
-        var evento = events.Find(e => e.eventName == currentEvent);
+        var evento = events.Find(e => e.eventName == CurrentEvent);
+        evento.played = true;
         evento.onEventEnd?.Invoke();
     }
 
@@ -45,4 +47,5 @@ public struct Event
     public string eventName;
     public UnityEvent onEventStart;
     public UnityEvent onEventEnd;
+    public bool played;
 }

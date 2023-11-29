@@ -35,14 +35,6 @@ public class PlayerCombatHUD : MonoBehaviour
 
     [BoxGroup("Player Combat HUD/HUD Elements")]
     [SerializeField]
-    private GameObject experienceBar;
-
-    [BoxGroup("Player Combat HUD/HUD Elements")]
-    [SerializeField]
-    private Image experienceBarFill;
-
-    [BoxGroup("Player Combat HUD/HUD Elements")]
-    [SerializeField]
     private TMP_Text experienceBarText;
 
     [BoxGroup("Player Combat HUD/HUD Elements")]
@@ -285,34 +277,14 @@ public class PlayerCombatHUD : MonoBehaviour
         }
     }
 
-    private IEnumerator UpdateXpCorroutine()
-    {
-        experienceBar.SetActive(true);
-        experienceBarFill.fillAmount = turnManager.PlayerUnitController.Unit.Experience / turnManager.PlayerUnitController.Unit.StatsTables.First(statGroup => statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1).Experience;
-        if (experienceBarFill.fillAmount != turnManager.PlayerUnitController.Unit.Experience +
-            turnManager.EnemyUnitController.Unit.ExperienceDrop)
-        {
-            var fillAmount = experienceBarFill.fillAmount;
-            var targetFillAmount = (float)turnManager.PlayerUnitController.Unit.Experience +
-                                   turnManager.EnemyUnitController.Unit.ExperienceDrop / turnManager.PlayerUnitController.Unit.StatsTables.First(statGroup => statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1).Experience;
-            experienceBarText.text = turnManager.PlayerUnitController.Unit.Experience + turnManager.EnemyUnitController.Unit.ExperienceDrop >
-                                     turnManager.PlayerUnitController
-                                         .Unit.StatsTables.First(statGroup =>
-                                             statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1)
-                                         .Experience ? $"Aumento de Nível => {turnManager.PlayerUnitController.Unit.Level + 1}\n+{turnManager.EnemyUnitController.Unit.ExperienceDrop} XP" : $"+{turnManager.EnemyUnitController.Unit.ExperienceDrop} XP";
-            var time = 0f;
-            while (time < 5f)
-            {
-                time += Time.deltaTime;
-                experienceBarFill.fillAmount = Mathf.Lerp(fillAmount, targetFillAmount, time);
-                yield return null;
-            }
-        }
-    }
-
     private void UpdateXp()
     {
-        StartCoroutine(UpdateXpCorroutine());
+        experienceBarText.gameObject.SetActive(true);
+        experienceBarText.text = turnManager.PlayerUnitController.Unit.Experience + turnManager.EnemyUnitController.Unit.ExperienceDrop >
+                                 turnManager.PlayerUnitController
+                                     .Unit.StatsTables.First(statGroup =>
+                                         statGroup.Level == turnManager.PlayerUnitController.Unit.Level + 1)
+                                     .Experience ? $"Aumento de Nível => {turnManager.PlayerUnitController.Unit.Level + 1}\n+{turnManager.EnemyUnitController.Unit.ExperienceDrop} XP" : $"+{turnManager.EnemyUnitController.Unit.ExperienceDrop} XP";
     }
     /// <summary>Updates the player's charges if the player's turn has started and the player is not currently charging.</summary>
     /// <remarks>Increments the fill amount of the player's charges by 0.25f if it is less than 1.</remarks>

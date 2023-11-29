@@ -18,7 +18,7 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 0ea991b6914b857428588b2b3d4fd5c7, type: 2}
     - {fileID: 11400000, guid: 36bc8c0e04964c541bf618b6dc1fd986, type: 2}
-    - {fileID: 11400000, guid: b53847a8553a60d4eabc39a3ea91f60b, type: 2}
+    - {fileID: 11400000, guid: 3d63ebeb5ed374345b9b069ef44dbacb, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -70,7 +70,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 3
-      Data: 2
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -107,7 +107,7 @@ MonoBehaviour:
   currentTp: 0
   attack: 2
   defence: 1
-  speed: 5
+  speed: 8
   luck: 8
   dexterity: 7
   attributesPoints: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   itemType: 1
   slotType: 2
   attackType: 0
-  itemName: "Cal\xE7a de Couro"
+  itemName: Saia Bestial
   itemIcon: {fileID: 8147360594481224712, guid: 1a2f425b7d15a634e8fadd7882c57042,
     type: 3}
   itemDescription: Saia de guerra obtida por aqueles que subjugaram os guerreiros
@@ -25,8 +25,8 @@ MonoBehaviour:
   currentStack: 0
   statusValue:
     Attack: 0
-    Defence: 11
-    Speed: 8
+    Defence: 12
+    Speed: 9
     Luck: 1
     Dexterity: 0
   itemValue: 0

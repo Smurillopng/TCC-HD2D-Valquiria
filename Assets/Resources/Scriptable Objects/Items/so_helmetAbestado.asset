@@ -16,7 +16,7 @@ MonoBehaviour:
   itemType: 1
   slotType: 0
   attackType: 0
-  itemName: Capacete Bestial
+  itemName: Gorro Bestial
   itemIcon: {fileID: 2857183015838398721, guid: 955b77d6192512446a19ea4daa010f8f,
     type: 3}
   itemDescription: Um capacete obtido por aqueles que subjugaram os guerreiros abestados.

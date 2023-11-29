@@ -16,7 +16,7 @@ MonoBehaviour:
   itemType: 1
   slotType: 2
   attackType: 0
-  itemName: "Cal\xE7a de Couro"
+  itemName: "Cal\xE7a de Couro Negro"
   itemIcon: {fileID: 4779812269504871434, guid: 1a2f425b7d15a634e8fadd7882c57042,
     type: 3}
   itemDescription: "Cal\xE7a leve, feita de pele de lobo raivoso, para ajudar na

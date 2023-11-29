@@ -22,6 +22,6 @@ MonoBehaviour:
   vfx: {fileID: 0}
   maxStack: 99
   currentStack: 0
-  effectValue: 25
+  effectValue: 30
   itemID: 2
   itemValue: 10

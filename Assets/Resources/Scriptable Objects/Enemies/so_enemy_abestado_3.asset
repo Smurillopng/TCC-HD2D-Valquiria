@@ -128,11 +128,11 @@ MonoBehaviour:
   experienceDrop: 40
   experience: 0
   attackAnimation: {fileID: 11400000, guid: d103cb735b8f05649999ed47b88d1322, type: 2}
-  maxHp: 150
-  currentHp: 150
+  maxHp: 175
+  currentHp: 175
   maxTp: 100
   currentTp: 0
-  attack: 12
+  attack: 13
   defence: 8
   speed: 10
   luck: 5

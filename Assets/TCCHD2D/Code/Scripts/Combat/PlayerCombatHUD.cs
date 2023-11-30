@@ -118,7 +118,7 @@ public class PlayerCombatHUD : MonoBehaviour
     [BoxGroup("Player Combat HUD/Buttons")]
     [SerializeField, Tooltip("The button for discharging the player's basic attack.")]
     private Button dischargeButton;
-    
+
     public static UnityAction TakenAction;
     public static UnityAction<string, float> CombatTextEvent;
     public static UnityAction UpdateCombatHUDPlayerHp;
@@ -524,12 +524,15 @@ public class PlayerCombatHUD : MonoBehaviour
                     playerChargedVfx.Play();
                     break;
                 case 2:
+                    playerChargedVfx.Reinit();
                     playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 0f, 1f, 1));
                     break;
                 case 3:
+                    playerChargedVfx.Reinit();
                     playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 1f, 0f, 1));
                     break;
                 case 4:
+                    playerChargedVfx.Reinit();
                     playerChargedVfx.SetVector4("DropColor", new Vector4(1f, 0f, 0f, 1));
                     break;
             }
@@ -548,12 +551,15 @@ public class PlayerCombatHUD : MonoBehaviour
                     playerChargedVfx.Stop();
                     break;
                 case 1:
+                    playerChargedVfx.Reinit();
                     playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 0f, 1f, 1));
                     break;
                 case 2:
+                    playerChargedVfx.Reinit();
                     playerChargedVfx.SetVector4("DropColor", new Vector4(0f, 1f, 0f, 1));
                     break;
                 case 3:
+                    playerChargedVfx.Reinit();
                     playerChargedVfx.SetVector4("DropColor", new Vector4(1f, 0f, 0f, 1));
                     break;
             }

@@ -40,7 +40,7 @@ public class Interactable : SerializedMonoBehaviour
     [FoldoutGroup("Interactable/Events"), Tooltip("Event called when the player is out of range of the object.")]
     public UnityEvent onInteractionOffRange;
 
-    private bool _interacted;
+    private bool _interacted, _setStage;
 
     private enum InteractionState { InRange, OffRange, Interacting }
     private InteractionState _interactionState;
@@ -66,6 +66,7 @@ public class Interactable : SerializedMonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!TutorialPrologue.playedTutorial || !Tutorial.finishedTutorial && _setStage) return;
         var inRange = (transform.position - playerTransform.position).sqrMagnitude <= interactionRange * interactionRange;
         if (inRange)
         {
@@ -92,6 +93,7 @@ public class Interactable : SerializedMonoBehaviour
             _interactionState = InteractionState.OffRange;
             onInteractionOffRange?.Invoke();
         }
+        _setStage = true;
     }
 
     private void OnDrawGizmosSelected()

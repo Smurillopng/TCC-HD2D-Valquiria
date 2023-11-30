@@ -42,15 +42,15 @@ public class Tutorial : MonoBehaviour
     [BoxGroup("Tutorial/Settings")]
     public Unit _player;
 
-    private bool _finishedTutorial;
+    public static bool finishedTutorial;
     #endregion ==========================================================================
 
     #region === Unity Methods ===========================================================
     private void Start()
     {
         var reader = QuickSaveReader.Create("GameSave");
-        _finishedTutorial = reader.Exists("FinishedTutorial") && reader.Read<bool>("FinishedTutorial");
-        if (_finishedTutorial.Equals(true))
+        finishedTutorial = reader.Exists("FinishedTutorial") && reader.Read<bool>("FinishedTutorial");
+        if (finishedTutorial.Equals(true))
         {
             foreach (var tutorialObject in tutorialObjects)
                 tutorialObject.SetActive(false);
@@ -202,9 +202,9 @@ public class Tutorial : MonoBehaviour
         director.Stop();
         director2.Stop();
         playerMovement.enabled = true;
-        _finishedTutorial = true;
+        finishedTutorial = true;
         var writer = QuickSaveWriter.Create("GameSave");
-        writer.Write("FinishedTutorial", _finishedTutorial);
+        writer.Write("FinishedTutorial", finishedTutorial);
         writer.Commit();
         foreach (var tutorialObject in tutorialObjects)
             tutorialObject.SetActive(false);

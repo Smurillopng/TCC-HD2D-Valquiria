@@ -11,7 +11,7 @@ public class TutorialPrologue : MonoBehaviour
     #region === Variables ===============================================================
     [FoldoutGroup("Tutorial Prologue")]
     [BoxGroup("Tutorial Prologue/Settings")]
-    public bool playedTutorial;
+    public static bool playedTutorial;
     
     [BoxGroup("Tutorial Prologue/Settings")]
     public PlayableDirector playableDirector;

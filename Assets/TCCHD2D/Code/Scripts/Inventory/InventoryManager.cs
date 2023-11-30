@@ -70,7 +70,10 @@ public class InventoryManager : SerializedMonoBehaviour
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        LoadInventory();
+        if (SceneManager.GetActiveScene().name == "scn_mainMenu")
+            Destroy(gameObject);
+        else
+            LoadInventory();
     }
 
     /// <summary>

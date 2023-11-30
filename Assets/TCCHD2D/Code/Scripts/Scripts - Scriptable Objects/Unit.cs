@@ -201,7 +201,7 @@ public class Unit : SerializedScriptableObject
         {
             level = 1;
             experience = 0;
-            maxHp = 20;
+            maxHp = 30;
             currentHp = maxHp;
             maxTp = 100;
             currentTp = 0;

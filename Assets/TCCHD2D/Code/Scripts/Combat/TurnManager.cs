@@ -355,8 +355,9 @@ public class TurnManager : MonoBehaviour
         }
         if (targetAilments.HasAilment(AilmentType.Incapacitated))
         {
-            // TODO explorar mais possibilidades
-            target.TakeRawDamage(1);
+            if (target.Unit.Defence > 0) target.Unit.Defence -= 1;
+            if (target.Unit.Attack > 0) target.Unit.Attack -= 1;
+            target.TakeRawDamage(5);
             if (target.Unit.IsDead)
                 target.Unit.HasTakenTurn = true;
             PlayerCombatHUD.UpdateCombatHUD();

@@ -9,15 +9,9 @@ namespace TCCHD2D.Code
     [HideMonoScript]
     public class BossEncounter : MonoBehaviour
     {
-        #region === Variables ===============================================================
-        [FoldoutGroup("Boss Encounter")]
-        public bool fought;
-        #endregion ==========================================================================
-        
         #region === Unity Methods ===========================================================
         public void FightStarted()
         {
-            fought = true;
             QuickSaveWriter.Create("ItemInfo").Write(name + "_BossEncountered", true).Commit();
         }
 
@@ -28,14 +22,12 @@ namespace TCCHD2D.Code
 
             if (saveReader.Exists(name + "_BossEncountered"))
             {
-                saveReader.Read<bool>(name + "_BossEncountered");
-                if (fought)
+                if (saveReader.Read<bool>(name + "_BossEncountered"))
                     Destroy(gameObject);
             }
             if (infoReader.Exists(name + "_BossEncountered"))
             {
-                fought = infoReader.Read<bool>(name + "_BossEncountered");
-                if (fought)
+                if (infoReader.Read<bool>(name + "_BossEncountered"))
                     Destroy(gameObject);
             }
         }

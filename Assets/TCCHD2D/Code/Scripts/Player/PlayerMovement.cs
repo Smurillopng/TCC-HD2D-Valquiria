@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
     [BoxGroup("Player Movement/Debug", true)]
     [SerializeField, ReadOnly, Tooltip("The value that will be used to calculate the player's movement.")]
     private Vector3 movementValue;
+    private Vector3 rayPosition;
 
     public BoolVariable CanMove => canMove;
     public Vector3 NewPosition { get; private set; }
@@ -77,8 +78,11 @@ public class PlayerMovement : MonoBehaviour
     private static readonly int IsWalking = Animator.StringToHash("IsWalking");
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
-    private Ray _rightRay, _leftRay, _forwardRay, _backRay;
-
+    private Ray _rightRay, _leftRay, _forwardRay, _backRay, _diagonalRightRay, _diagonalLeftRay;
+    private const float angle = 45 * Mathf.Deg2Rad;
+    private Vector3 _dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle)),
+                    _dirDiagonalRight = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle)),
+                    _dirDiagonalLeft = new Vector3(-Mathf.Sin(angle), 0, Mathf.Cos(angle));
     private readonly Vector3 _dirRight = Vector3.right,
         _dirLeft = Vector3.left,
         _dirForward = Vector3.forward,
@@ -219,22 +223,21 @@ public class PlayerMovement : MonoBehaviour
 
         movementValue = new Vector3(direction.Value.x, 0, direction.Value.y).normalized;
 
-        var rayPosition = transform.position;
+        rayPosition = transform.position;
         rayPosition.y += 0.2f;
-        const float angle = 45 * Mathf.Deg2Rad;
-        var dir = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-
         _rightRay = new Ray(rayPosition, new Vector3(_dirRight.x, -1, _dirRight.z));
         _leftRay = new Ray(rayPosition, new Vector3(_dirLeft.x, -1, _dirLeft.z));
         _forwardRay = new Ray(rayPosition, new Vector3(_dirForward.x, -1, _dirForward.z));
         _backRay = new Ray(rayPosition, new Vector3(_dirBack.x, -1, _dirBack.z));
+        _diagonalRightRay = new Ray(rayPosition, new Vector3(_dirDiagonalRight.x, -1, _dirDiagonalRight.z));
+        _diagonalLeftRay = new Ray(rayPosition, new Vector3(_dirDiagonalLeft.x, -1, _dirDiagonalLeft.z));
 
-        if ((Physics.Raycast(rayPosition, dir, rayDistance, groundLayer) && direction.Value.x > 0)
+        if ((Physics.Raycast(rayPosition, _dir, rayDistance, groundLayer) && direction.Value.x > 0)
             || (!Physics.Raycast(_rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0))
         {
             movementValue = new Vector3(0, 0, direction.Value.y);
         }
-        else if ((Physics.Raycast(rayPosition, -dir, rayDistance, groundLayer) && direction.Value.x < 0)
+        else if ((Physics.Raycast(rayPosition, -_dir, rayDistance, groundLayer) && direction.Value.x < 0)
                  || (!Physics.Raycast(_leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0))
         {
             movementValue = new Vector3(0, 0, direction.Value.y);
@@ -248,6 +251,19 @@ public class PlayerMovement : MonoBehaviour
                  || (!Physics.Raycast(_backRay, rayDistanceDiagonal, groundLayer) && direction.Value.y < 0))
         {
             movementValue = new Vector3(direction.Value.x, 0, 0);
+        }
+
+        if ((Physics.Raycast(rayPosition, _dir, rayDistance, groundLayer) && direction.Value.x > 0)
+            || (!Physics.Raycast(_rightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0)
+            || (!Physics.Raycast(_diagonalRightRay, rayDistanceDiagonal, groundLayer) && direction.Value.x > 0 && direction.Value.y > 0))
+        {
+            movementValue = new Vector3(0, 0, 0);
+        }
+        else if ((Physics.Raycast(rayPosition, -_dir, rayDistance, groundLayer) && direction.Value.x < 0)
+                 || (!Physics.Raycast(_leftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0)
+                 || (!Physics.Raycast(_diagonalLeftRay, rayDistanceDiagonal, groundLayer) && direction.Value.x < 0 && direction.Value.y < 0))
+        {
+            movementValue = new Vector3(0, 0, 0);
         }
 
         if (direction.Value.x != 0 && direction.Value.y != 0)

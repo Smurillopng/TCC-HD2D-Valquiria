@@ -1,0 +1,1366 @@
+fileFormatVersion: 2
+guid: 0e30a9211c90bd649a57706bd19b09c8
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMasterTextureLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: spr_npc_horse_Frame_0
+    originalName: 
+    pivot: {x: 0.5555556, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 420
+      width: 18
+      height: 44
+    spriteID: 063f98ae6064f3449a6a66a9ffb376b1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 420}
+  - name: spr_npc_horse_Frame_1
+    originalName: 
+    pivot: {x: 0.6, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 298
+      width: 20
+      height: 44
+    spriteID: 5162426fe44c2484baf9a6ed58a7a262
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 298}
+  - name: spr_npc_horse_Frame_2
+    originalName: 
+    pivot: {x: 0.6, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 350
+      width: 20
+      height: 44
+    spriteID: 309b7f64a41960741a634b336fef6339
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 350}
+  - name: spr_npc_horse_Frame_3
+    originalName: 
+    pivot: {x: 0.6, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 402
+      width: 20
+      height: 44
+    spriteID: 3a0798c3de8a6f54ea4d0b7e3cc286cd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 402}
+  - name: spr_npc_horse_Frame_4
+    originalName: 
+    pivot: {x: 0.6, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 454
+      width: 20
+      height: 44
+    spriteID: 0ab1cf5e5521d7444b4e7618a1559f1c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 454}
+  - name: spr_npc_horse_Frame_5
+    originalName: 
+    pivot: {x: 0.5555556, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 154
+      y: 4
+      width: 18
+      height: 44
+    spriteID: d1bb5907ab67aee4e81b07de025bb0c1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 154, y: 4}
+  - name: spr_npc_horse_Frame_6
+    originalName: 
+    pivot: {x: 0.52941173, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 154
+      y: 368
+      width: 17
+      height: 44
+    spriteID: 619ae7b15b980dd4c9af90d892ff7a31
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 154, y: 368}
+  - name: spr_npc_horse_Frame_7
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 154
+      y: 56
+      width: 18
+      height: 44
+    spriteID: aceed1e5c0288194f9e4973a411a435b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 154, y: 56}
+  - name: spr_npc_horse_Frame_8
+    originalName: 
+    pivot: {x: 0.45, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 94
+      y: 298
+      width: 20
+      height: 44
+    spriteID: 4982900fc0e8e44468f58ca1c19f8e78
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 94, y: 298}
+  - name: spr_npc_horse_Frame_9
+    originalName: 
+    pivot: {x: 0.45, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 94
+      y: 350
+      width: 20
+      height: 44
+    spriteID: c0d13522ba037f84ebc848b6df52d67b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 94, y: 350}
+  - name: spr_npc_horse_Frame_10
+    originalName: 
+    pivot: {x: 0.45, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 94
+      y: 402
+      width: 20
+      height: 44
+    spriteID: 40f584720d1b5cc4dae5e12682ad5e74
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 94, y: 402}
+  - name: spr_npc_horse_Frame_11
+    originalName: 
+    pivot: {x: 0.45, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 94
+      y: 454
+      width: 20
+      height: 44
+    spriteID: 28ca515817be841409b08cd2176fb209
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 94, y: 454}
+  - name: spr_npc_horse_Frame_12
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 154
+      y: 108
+      width: 18
+      height: 44
+    spriteID: d5234d8cbbb46f54f8ad7bf10150ea07
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 154, y: 108}
+  - name: spr_npc_horse_Frame_13
+    originalName: 
+    pivot: {x: 0.52941173, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 154
+      y: 420
+      width: 17
+      height: 44
+    spriteID: d8ff3400354cadd488eb0234955531e6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 154, y: 420}
+  - name: spr_npc_horse_Frame_14
+    originalName: 
+    pivot: {x: 0.5555556, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 154
+      y: 160
+      width: 18
+      height: 44
+    spriteID: 6040be6919654864f90a847609b9a581
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 154, y: 160}
+  - name: spr_npc_horse_Frame_15
+    originalName: 
+    pivot: {x: 0.6, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 4
+      width: 20
+      height: 44
+    spriteID: ac4c2162c18676e42a43488628c1b4f1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 4}
+  - name: spr_npc_horse_Frame_16
+    originalName: 
+    pivot: {x: 0.6, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 56
+      width: 20
+      height: 44
+    spriteID: 8fb76290e84acf14f80546756e86e0bc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 56}
+  - name: spr_npc_horse_Frame_17
+    originalName: 
+    pivot: {x: 0.6, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 108
+      width: 20
+      height: 44
+    spriteID: 3103ab8f55dc92c41a05f0a0e5731845
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 108}
+  - name: spr_npc_horse_Frame_18
+    originalName: 
+    pivot: {x: 0.6, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 160
+      width: 20
+      height: 44
+    spriteID: b6c25a0c8de3b994c84a1cedf42d823c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 160}
+  - name: spr_npc_horse_Frame_19
+    originalName: 
+    pivot: {x: 0.5555556, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 154
+      y: 212
+      width: 18
+      height: 44
+    spriteID: 02d91e6176226d64ca0ee0051736f625
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 154, y: 212}
+  - name: spr_npc_horse_Frame_20
+    originalName: 
+    pivot: {x: 0.52941173, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 180
+      y: 4
+      width: 17
+      height: 44
+    spriteID: 8c1930b86dc80d54fb9f43ab8a73283e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 180, y: 4}
+  - name: spr_npc_horse_Frame_21
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 154
+      y: 264
+      width: 18
+      height: 44
+    spriteID: 122fbe8d1bf4af14db7c5e08dbc16527
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 154, y: 264}
+  - name: spr_npc_horse_Frame_22
+    originalName: 
+    pivot: {x: 0.45, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 212
+      width: 20
+      height: 44
+    spriteID: a3a12f69a6472184581d8472b5d8e859
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 212}
+  - name: spr_npc_horse_Frame_23
+    originalName: 
+    pivot: {x: 0.45, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 264
+      width: 20
+      height: 44
+    spriteID: 5ac19dc883417364e9f41bbf26ae5ac6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 264}
+  - name: spr_npc_horse_Frame_24
+    originalName: 
+    pivot: {x: 0.45, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 316
+      width: 20
+      height: 44
+    spriteID: be95a93f16d04ad4783cb3a22a06126c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 316}
+  - name: spr_npc_horse_Frame_25
+    originalName: 
+    pivot: {x: 0.45, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 368
+      width: 20
+      height: 44
+    spriteID: 817f4cf196ce56a448d4caadf24e6370
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 126, y: 368}
+  - name: spr_npc_horse_Frame_26
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 154
+      y: 316
+      width: 18
+      height: 44
+    spriteID: e734c41c2c81da2429db160665e3b269
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 154, y: 316}
+  - name: spr_npc_horse_Frame_27
+    originalName: 
+    pivot: {x: 0.52941173, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 180
+      y: 56
+      width: 17
+      height: 44
+    spriteID: 0aced5ab090a6c64682800da4c76edc7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 180, y: 56}
+  - name: spr_npc_horse_Frame_28
+    originalName: 
+    pivot: {x: 0.5, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 298
+      width: 52
+      height: 41
+    spriteID: 20ea0cf659b731a4da4e7c939acce441
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 298}
+  - name: spr_npc_horse_Frame_29
+    originalName: 
+    pivot: {x: 0.5, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 347
+      width: 52
+      height: 41
+    spriteID: 812f85b8cdcbbfd4d9d917ff019ce9fd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 347}
+  - name: spr_npc_horse_Frame_30
+    originalName: 
+    pivot: {x: 0.49019608, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 53
+      width: 51
+      height: 41
+    spriteID: 38ce2edfe2fb73944af5a3d6ca8a47c5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 53}
+  - name: spr_npc_horse_Frame_31
+    originalName: 
+    pivot: {x: 0.49019608, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 102
+      width: 51
+      height: 41
+    spriteID: 8d0cf7ee12cc1f84fb7a013d96a36fe3
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 102}
+  - name: spr_npc_horse_Frame_32
+    originalName: 
+    pivot: {x: 0.509434, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 200
+      width: 53
+      height: 41
+    spriteID: fc4f6d3e92f883c4c814127e503f72ba
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 200}
+  - name: spr_npc_horse_Frame_33
+    originalName: 
+    pivot: {x: 0.5185185, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 54
+      height: 41
+    spriteID: 7fd59cc741ea2fe4babf45954a1ed020
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: spr_npc_horse_Frame_34
+    originalName: 
+    pivot: {x: 0.5185185, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 53
+      width: 54
+      height: 41
+    spriteID: decd1e4fecd292741b664fb85ee276c9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 53}
+  - name: spr_npc_horse_Frame_35
+    originalName: 
+    pivot: {x: 0.49019608, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 151
+      width: 51
+      height: 41
+    spriteID: 7a5ecdf22d67af24d9c9abdd1ea6ce83
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 151}
+  - name: spr_npc_horse_Frame_36
+    originalName: 
+    pivot: {x: 0.5, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 396
+      width: 52
+      height: 41
+    spriteID: 3d449b78527df754d9f9dd2a759652f6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 396}
+  - name: spr_npc_horse_Frame_37
+    originalName: 
+    pivot: {x: 0.5, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 445
+      width: 52
+      height: 41
+    spriteID: fca9091f896cdd349ae005643acfd4d1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 445}
+  - name: spr_npc_horse_Frame_38
+    originalName: 
+    pivot: {x: 0.49019608, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 200
+      width: 51
+      height: 41
+    spriteID: 263559a4c66c16a429c860600347f4de
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 200}
+  - name: spr_npc_horse_Frame_39
+    originalName: 
+    pivot: {x: 0.49019608, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 249
+      width: 51
+      height: 41
+    spriteID: e10c59cc7ef9ea048a30f56d3872d85a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 249}
+  - name: spr_npc_horse_Frame_40
+    originalName: 
+    pivot: {x: 0.509434, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 249
+      width: 53
+      height: 41
+    spriteID: c661e2b03967b6d4b98780c57b15401e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 249}
+  - name: spr_npc_horse_Frame_41
+    originalName: 
+    pivot: {x: 0.5185185, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 102
+      width: 54
+      height: 41
+    spriteID: b1c9b792d8038b342a633f96c329857d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 102}
+  - name: spr_npc_horse_Frame_42
+    originalName: 
+    pivot: {x: 0.5185185, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 151
+      width: 54
+      height: 41
+    spriteID: 1289d0d141b087a48965ec08f34f6448
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 151}
+  - name: spr_npc_horse_Frame_43
+    originalName: 
+    pivot: {x: 0.5, y: -0.04878049}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 66
+      y: 4
+      width: 52
+      height: 41
+    spriteID: bf561586d85a7c64a9756f4694d9eb95
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 66, y: 4}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 1101932439
+    name: spr_npc_horse
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: spr_npc_horse_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 19
+        y: 0
+        width: 18
+        height: 44
+      spriteId: 063f98ae6064f3449a6a66a9ffb376b1
+    - name: spr_npc_horse_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 17
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 5162426fe44c2484baf9a6ed58a7a262
+    - name: spr_npc_horse_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 17
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 309b7f64a41960741a634b336fef6339
+    - name: spr_npc_horse_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 17
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 3a0798c3de8a6f54ea4d0b7e3cc286cd
+    - name: spr_npc_horse_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 17
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 0ab1cf5e5521d7444b4e7618a1559f1c
+    - name: spr_npc_horse_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 19
+        y: 0
+        width: 18
+        height: 44
+      spriteId: d1bb5907ab67aee4e81b07de025bb0c1
+    - name: spr_npc_horse_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 20
+        y: 0
+        width: 17
+        height: 44
+      spriteId: 619ae7b15b980dd4c9af90d892ff7a31
+    - name: spr_npc_horse_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 20
+        y: 0
+        width: 18
+        height: 44
+      spriteId: aceed1e5c0288194f9e4973a411a435b
+    - name: spr_npc_horse_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 20
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 4982900fc0e8e44468f58ca1c19f8e78
+    - name: spr_npc_horse_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 20
+        y: 0
+        width: 20
+        height: 44
+      spriteId: c0d13522ba037f84ebc848b6df52d67b
+    - name: spr_npc_horse_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 20
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 40f584720d1b5cc4dae5e12682ad5e74
+    - name: spr_npc_horse_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 20
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 28ca515817be841409b08cd2176fb209
+    - name: spr_npc_horse_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 20
+        y: 0
+        width: 18
+        height: 44
+      spriteId: d5234d8cbbb46f54f8ad7bf10150ea07
+    - name: spr_npc_horse_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 20
+        y: 0
+        width: 17
+        height: 44
+      spriteId: d8ff3400354cadd488eb0234955531e6
+    - name: spr_npc_horse_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 19
+        y: 0
+        width: 18
+        height: 44
+      spriteId: 6040be6919654864f90a847609b9a581
+    - name: spr_npc_horse_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 17
+        y: 0
+        width: 20
+        height: 44
+      spriteId: ac4c2162c18676e42a43488628c1b4f1
+    - name: spr_npc_horse_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 17
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 8fb76290e84acf14f80546756e86e0bc
+    - name: spr_npc_horse_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 17
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 3103ab8f55dc92c41a05f0a0e5731845
+    - name: spr_npc_horse_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 17
+        y: 0
+        width: 20
+        height: 44
+      spriteId: b6c25a0c8de3b994c84a1cedf42d823c
+    - name: spr_npc_horse_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 19
+        y: 0
+        width: 18
+        height: 44
+      spriteId: 02d91e6176226d64ca0ee0051736f625
+    - name: spr_npc_horse_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 20
+        y: 0
+        width: 17
+        height: 44
+      spriteId: 8c1930b86dc80d54fb9f43ab8a73283e
+    - name: spr_npc_horse_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 20
+        y: 0
+        width: 18
+        height: 44
+      spriteId: 122fbe8d1bf4af14db7c5e08dbc16527
+    - name: spr_npc_horse_Frame_22
+      frameIndex: 22
+      cellRect:
+        x: 20
+        y: 0
+        width: 20
+        height: 44
+      spriteId: a3a12f69a6472184581d8472b5d8e859
+    - name: spr_npc_horse_Frame_23
+      frameIndex: 23
+      cellRect:
+        x: 20
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 5ac19dc883417364e9f41bbf26ae5ac6
+    - name: spr_npc_horse_Frame_24
+      frameIndex: 24
+      cellRect:
+        x: 20
+        y: 0
+        width: 20
+        height: 44
+      spriteId: be95a93f16d04ad4783cb3a22a06126c
+    - name: spr_npc_horse_Frame_25
+      frameIndex: 25
+      cellRect:
+        x: 20
+        y: 0
+        width: 20
+        height: 44
+      spriteId: 817f4cf196ce56a448d4caadf24e6370
+    - name: spr_npc_horse_Frame_26
+      frameIndex: 26
+      cellRect:
+        x: 20
+        y: 0
+        width: 18
+        height: 44
+      spriteId: e734c41c2c81da2429db160665e3b269
+    - name: spr_npc_horse_Frame_27
+      frameIndex: 27
+      cellRect:
+        x: 20
+        y: 0
+        width: 17
+        height: 44
+      spriteId: 0aced5ab090a6c64682800da4c76edc7
+    - name: spr_npc_horse_Frame_28
+      frameIndex: 28
+      cellRect:
+        x: 3
+        y: 2
+        width: 52
+        height: 41
+      spriteId: 20ea0cf659b731a4da4e7c939acce441
+    - name: spr_npc_horse_Frame_29
+      frameIndex: 29
+      cellRect:
+        x: 3
+        y: 2
+        width: 52
+        height: 41
+      spriteId: 812f85b8cdcbbfd4d9d917ff019ce9fd
+    - name: spr_npc_horse_Frame_30
+      frameIndex: 30
+      cellRect:
+        x: 4
+        y: 2
+        width: 51
+        height: 41
+      spriteId: 38ce2edfe2fb73944af5a3d6ca8a47c5
+    - name: spr_npc_horse_Frame_31
+      frameIndex: 31
+      cellRect:
+        x: 4
+        y: 2
+        width: 51
+        height: 41
+      spriteId: 8d0cf7ee12cc1f84fb7a013d96a36fe3
+    - name: spr_npc_horse_Frame_32
+      frameIndex: 32
+      cellRect:
+        x: 2
+        y: 2
+        width: 53
+        height: 41
+      spriteId: fc4f6d3e92f883c4c814127e503f72ba
+    - name: spr_npc_horse_Frame_33
+      frameIndex: 33
+      cellRect:
+        x: 1
+        y: 2
+        width: 54
+        height: 41
+      spriteId: 7fd59cc741ea2fe4babf45954a1ed020
+    - name: spr_npc_horse_Frame_34
+      frameIndex: 34
+      cellRect:
+        x: 1
+        y: 2
+        width: 54
+        height: 41
+      spriteId: decd1e4fecd292741b664fb85ee276c9
+    - name: spr_npc_horse_Frame_35
+      frameIndex: 35
+      cellRect:
+        x: 4
+        y: 2
+        width: 51
+        height: 41
+      spriteId: 7a5ecdf22d67af24d9c9abdd1ea6ce83
+    - name: spr_npc_horse_Frame_36
+      frameIndex: 36
+      cellRect:
+        x: 3
+        y: 2
+        width: 52
+        height: 41
+      spriteId: 3d449b78527df754d9f9dd2a759652f6
+    - name: spr_npc_horse_Frame_37
+      frameIndex: 37
+      cellRect:
+        x: 3
+        y: 2
+        width: 52
+        height: 41
+      spriteId: fca9091f896cdd349ae005643acfd4d1
+    - name: spr_npc_horse_Frame_38
+      frameIndex: 38
+      cellRect:
+        x: 4
+        y: 2
+        width: 51
+        height: 41
+      spriteId: 263559a4c66c16a429c860600347f4de
+    - name: spr_npc_horse_Frame_39
+      frameIndex: 39
+      cellRect:
+        x: 4
+        y: 2
+        width: 51
+        height: 41
+      spriteId: e10c59cc7ef9ea048a30f56d3872d85a
+    - name: spr_npc_horse_Frame_40
+      frameIndex: 40
+      cellRect:
+        x: 2
+        y: 2
+        width: 53
+        height: 41
+      spriteId: c661e2b03967b6d4b98780c57b15401e
+    - name: spr_npc_horse_Frame_41
+      frameIndex: 41
+      cellRect:
+        x: 1
+        y: 2
+        width: 54
+        height: 41
+      spriteId: b1c9b792d8038b342a633f96c329857d
+    - name: spr_npc_horse_Frame_42
+      frameIndex: 42
+      cellRect:
+        x: 1
+        y: 2
+        width: 54
+        height: 41
+      spriteId: 1289d0d141b087a48965ec08f34f6448
+    - name: spr_npc_horse_Frame_43
+      frameIndex: 43
+      cellRect:
+        x: 3
+        y: 2
+        width: 52
+        height: 41
+      spriteId: bf561586d85a7c64a9756f4694d9eb95
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 58, y: 45}

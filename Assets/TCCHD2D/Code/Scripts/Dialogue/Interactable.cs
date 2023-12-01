@@ -44,6 +44,7 @@ public class Interactable : SerializedMonoBehaviour
 
     private enum InteractionState { InRange, OffRange, Interacting }
     private InteractionState _interactionState;
+    private QuickSaveReader _reader;
 
     #endregion
 
@@ -55,18 +56,19 @@ public class Interactable : SerializedMonoBehaviour
         onAwake?.Invoke();
         if (interactionType == InteractionType.Item)
         {
-            var readerSave = QuickSaveReader.Create("GameSave");
-            if (readerSave.Exists($"{name}") && readerSave.Read<bool>($"{name}"))
+            _reader = QuickSaveReader.Create("GameSave");
+            if (_reader.Exists($"{name}") && _reader.Read<bool>($"{name}"))
                 gameObject.SetActive(false);
-            var readerInfo = QuickSaveReader.Create("ItemInfo");
-            if (readerInfo.Exists($"{name}") && readerInfo.Read<bool>($"{name}"))
+            _reader = QuickSaveReader.Create("ItemInfo");
+            if (_reader.Exists($"{name}") && _reader.Read<bool>($"{name}"))
                 gameObject.SetActive(false);
         }
     }
 
     private void FixedUpdate()
     {
-        if (!TutorialPrologue.playedTutorial || !Tutorial.finishedTutorial && _setStage) return;
+        _reader ??= QuickSaveReader.Create("GameSave");
+        if (_reader.Exists("PlayedTutorial") && !_reader.Read<bool>("PlayedTutorial") && _setStage) return;
         var inRange = (transform.position - playerTransform.position).sqrMagnitude <= interactionRange * interactionRange;
         if (inRange)
         {

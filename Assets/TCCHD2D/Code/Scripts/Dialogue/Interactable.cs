@@ -41,10 +41,16 @@ public class Interactable : SerializedMonoBehaviour
     public UnityEvent onInteractionOffRange;
 
     private bool _interacted, _setStage;
+    private static bool _canInteract = true;
 
     private enum InteractionState { InRange, OffRange, Interacting }
     private InteractionState _interactionState;
     private QuickSaveReader _reader;
+    public static bool CanInteract
+    {
+        get { return _canInteract; }
+        set { _canInteract = value; }
+    }
 
     #endregion
 
@@ -75,7 +81,7 @@ public class Interactable : SerializedMonoBehaviour
             switch (interactBool.Value)
             {
                 case true:
-                    if (!_interacted)
+                    if (!_interacted && _canInteract)
                     {
                         _interacted = true;
                         StartInteraction();

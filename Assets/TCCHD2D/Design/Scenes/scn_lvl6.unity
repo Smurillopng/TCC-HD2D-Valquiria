@@ -23366,12 +23366,12 @@ PrefabInstance:
     - target: {fileID: 6471829175399510939, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016963163
+      value: 0.000000016963163
       objectReference: {fileID: 0}
     - target: {fileID: 6471829175399510939, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000028828169
+      value: -0.0000000028828169
       objectReference: {fileID: 0}
     - target: {fileID: 7262514707707344432, guid: 2a302e5570121834e83931ff384a978e,
         type: 3}
@@ -29401,6 +29401,7 @@ GameObject:
   - component: {fileID: 409676873}
   - component: {fileID: 409676872}
   - component: {fileID: 409676871}
+  - component: {fileID: 409676874}
   m_Layer: 0
   m_Name: Helper
   m_TagString: Untagged
@@ -29450,6 +29451,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &409676874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409676870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a44231932cec849b652506fc2a5e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &413357028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30002,12 +30015,12 @@ PrefabInstance:
     - target: {fileID: 3874512464777918950, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016240387
+      value: 0.000000016240387
       objectReference: {fileID: 0}
     - target: {fileID: 3874512464777918950, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000005684135
+      value: -0.000000005684135
       objectReference: {fileID: 0}
     - target: {fileID: 4814090757390707792, guid: 1241caaeb4e53504cb6ed1401af805d4,
         type: 3}
@@ -38838,6 +38851,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2558232297493564526, guid: eeb6f3502c317d14593d08aae2d560c1,
         type: 3}
+    - target: {fileID: 2558232297493564526, guid: eeb6f3502c317d14593d08aae2d560c1,
+        type: 3}
+      propertyPath: onAwake.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558232297493564526, guid: eeb6f3502c317d14593d08aae2d560c1,
+        type: 3}
+      propertyPath: onAwake.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558232297493564526, guid: eeb6f3502c317d14593d08aae2d560c1,
+        type: 3}
+      propertyPath: onAwake.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 409676874}
+    - target: {fileID: 2558232297493564526, guid: eeb6f3502c317d14593d08aae2d560c1,
+        type: 3}
+      propertyPath: onAwake.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558232297493564526, guid: eeb6f3502c317d14593d08aae2d560c1,
+        type: 3}
+      propertyPath: onAwake.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableInteraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558232297493564526, guid: eeb6f3502c317d14593d08aae2d560c1,
+        type: 3}
+      propertyPath: onAwake.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StopInteraction, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558232297493564526, guid: eeb6f3502c317d14593d08aae2d560c1,
+        type: 3}
+      propertyPath: onAwake.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eeb6f3502c317d14593d08aae2d560c1, type: 3}
 --- !u!1001 &778569787
@@ -41282,7 +41330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b356c48c84624aa8805e5f68cf54ad77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fought: 0
 --- !u!114 &8440511093826681166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41365,3 +41412,16 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 409676874}
+          m_TargetAssemblyTypeName: StopInteraction, Assembly-CSharp
+          m_MethodName: DisableInteraction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    played: 0

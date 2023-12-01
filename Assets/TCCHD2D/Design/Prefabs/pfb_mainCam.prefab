@@ -880,6 +880,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -180.00006
       objectReference: {fileID: 0}
+    - target: {fileID: 7841410463296806294, guid: 52c278208cfb3754daa81fd8228b8b0c,
+        type: 3}
+      propertyPath: m_text
+      value: "Tem certeza que deseja sair do jogo?\n\nSeu progresso n\xE3o ser\xE1
+        \nsalvo automaticamente"
+      objectReference: {fileID: 0}
     - target: {fileID: 8267519813343231134, guid: 52c278208cfb3754daa81fd8228b8b0c,
         type: 3}
       propertyPath: mat
